@@ -5,6 +5,10 @@ Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 Build-Depends: cmake,
                debhelper (>= 9),
                dh-translations,
+               libgl1-mesa-dev[i386 amd64] | libgl-dev[i386 amd64],
+               libgles2-mesa-dev[armhf],
+               qtbase5-dev,
+               qtdeclarative5-dev,
 Standards-Version: 3.9.4
 # If you don't have commit rights to lp:address-book-app but need to upload
 # packaging changes, just go ahead.  The developers will notice and sync
