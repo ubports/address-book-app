@@ -6,20 +6,16 @@ Build-Depends: cmake,
                debhelper (>= 9),
                dh-translations,
 Standards-Version: 3.9.4
-# If you don't have commit rights to lp:address-book-app but need to upload
-# packaging changes, just go ahead.  The developers will notice and sync
-# up the code again.
-Vcs-Bzr: lp:address-book-app
-Vcs-Browser: https://code.launchpad.net/address-book-app
+Vcs-Bzr: https://code.launchpad.net/~phablet-team/address-book-app/trunk
 
 Package: address-book-app
 Architecture: any
-Depends: ${misc:Depends},
-         qmlscene,
-         qtdeclarative5-qtquick2-plugin,
-         libqt5contacts5,
+Depends: libqt5contacts5,
          libqt5versit5,
-         qtdeclarative5-qtcontacts-plugin,
+         qmlscene,
          qtcontact5-galera,
+         qtdeclarative5-qtcontacts-plugin,
+         qtdeclarative5-qtquick2-plugin,
+         ${misc:Depends},
 Description: Address Book application
  Address Book application to manager contacts.
