@@ -22,4 +22,4 @@ override_dh_translations:
 
 .PHONY: override_dh_strip
 override_dh_strip:
-	dh_strip --dbg-package=address-book-app
+	dh_strip --dbg-package=address-book-app-dbg

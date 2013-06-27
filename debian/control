@@ -17,5 +17,18 @@ Depends: libqt5contacts5,
          qtdeclarative5-qtcontacts-plugin,
          qtdeclarative5-qtquick2-plugin,
          ${misc:Depends},
+         ${shlibs:Depends},
 Description: Address Book application
  Address Book application to manager contacts.
+
+Package: address-book-app-dbg
+Architecture: any
+Section: debug
+Priority: extra
+Depends: address-book-app (= ${binary:Version}),
+         ${misc:Depends},
+Description: debugging symbols for address-book-app
+ Address Book application to manager contacts.
+ .
+ This package contains the debugging symbols for address-book-app
+
