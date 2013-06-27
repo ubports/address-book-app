@@ -1,0 +1,14 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Terminal=false
+NoDisplay=true
+Type=Application
+Name=tr("Address Book")
+GenericName=tr("Address Book")
+Comment=tr("Address Book")
+Exec=@CMAKE_INSTALL_FULL_BINDIR@/address-book-app
+Icon=address-book-app
+X-Ubuntu-Touch=true
+X-Ubuntu-StageHint=SideStage
+X-Ubuntu-Gettext-Domain=address-book-app
