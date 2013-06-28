@@ -5,21 +5,33 @@ Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 Build-Depends: cmake,
                debhelper (>= 9),
                dh-translations,
+               libgl1-mesa-dev[i386 amd64] | libgl-dev[i386 amd64],
+               libgles2-mesa-dev[armhf],
+               qtbase5-dev,
+               qtdeclarative5-dev,
 Standards-Version: 3.9.4
-# If you don't have commit rights to lp:address-book-app but need to upload
-# packaging changes, just go ahead.  The developers will notice and sync
-# up the code again.
-Vcs-Bzr: lp:address-book-app
-Vcs-Browser: https://code.launchpad.net/address-book-app
+Vcs-Bzr: https://code.launchpad.net/~phablet-team/address-book-app/trunk
 
 Package: address-book-app
 Architecture: any
-Depends: ${misc:Depends},
-         qmlscene,
-         qtdeclarative5-qtquick2-plugin,
-         libqt5contacts5,
+Depends: libqt5contacts5,
          libqt5versit5,
-         qtdeclarative5-qtcontacts-plugin,
+         qmlscene,
          qtcontact5-galera,
+         qtdeclarative5-qtcontacts-plugin,
+         qtdeclarative5-qtquick2-plugin,
+         ${misc:Depends},
+         ${shlibs:Depends},
 Description: Address Book application
  Address Book application to manager contacts.
+
+Package: address-book-app-dbg
+Architecture: any
+Section: debug
+Priority: extra
+Depends: address-book-app (= ${binary:Version}),
+         ${misc:Depends},
+Description: debugging symbols for address-book-app
+ Address Book application to manager contacts.
+ .
+ This package contains the debugging symbols for address-book-app
