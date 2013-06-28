@@ -45,7 +45,7 @@ ContactDetailItem {
             if (root.contact.displayLabel && root.contact.displayLabel.label && root.contact.displayLabel.label !== "") {
                 return root.contact.displayLabel.label
             } else if (detail) {
-               [detail.prefix, detail.firstName, detail.middleName, detail.lastName, detail.suffix].filter(isNotEmptyString).join(" ")
+               return [detail.prefix, detail.firstName, detail.middleName, detail.lastName, detail.suffix].filter(isNotEmptyString).join(" ")
             } else {
                 return ""
             }

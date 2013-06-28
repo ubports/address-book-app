@@ -33,10 +33,6 @@ Page {
     ContactModel {
         id: contactsModel
 
-        property string titleField : "First name"
-        property string subTitleField: "Phone"
-        property alias sortOrderField: sortOrder.field
-
         manager: "galera"
         sortOrders: [
             SortOrder {
@@ -57,39 +53,6 @@ Page {
         Component.onCompleted: {
             if (manager == "memory")
                 contactsModel.importContacts(Qt.resolvedUrl("example.vcf"))
-        }
-
-        function getContactDetails(contact, fieldNames) {
-            var fullValue = ""
-
-            if (contact) {
-                var fieldNameList = fieldNames.split(",")
-                for (var fieldNameIndex in fieldNameList) {
-                    var fieldName = fieldNameList[fieldNameIndex]
-                    var value = "";
-                    if (fieldName === "First name") {
-                        value = contact.name.firstName
-                    } else if (fieldName === "Middle name") {
-                        value = contact.name.middleName
-                    } else if (fieldName === "Last name") {
-                        value = contact.name.lastName
-                    } else if (fieldName === "Full name") {
-                        value = contact.displayLabel.label
-                    } else if (fieldName === "Nickname") {
-                        value = contact.nickname.nickname
-                    } else if (fieldName === "Phone") {
-                        value = contact.phoneNumber.number
-                    } else if (fieldName === "e-mail") {
-                        value = contact.email.emailAddress
-                    } else {
-                        value = "null"
-                    }
-                    if (fullValue.length != 0)
-                        fullValue += ", "
-                    fullValue += value
-                }
-            }
-            return fullValue
         }
     }
 
@@ -128,8 +91,6 @@ Page {
     ListView {
         id: contactListView
 
-        property string title
-
         clip: true
         snapMode: ListView.NoSnap
         section {
@@ -147,19 +108,35 @@ Page {
             top: alphabetView.bottom
             left: parent.left
             right: parent.right
-            bottom: parent.bottom
+            bottom: status.top
         }
         model: contactsModel
-        header: ListItem.Header {
-            text: contactListView.title
-        }
-
         onCountChanged: {
             dirtyTimer.restart()
             if (mainPage.startTime) {
                 var currentTime = new Date();
                 var elapsed = currentTime.getTime() - mainPage.startTime.getTime()
-                contactListView.title = "Elapsed time to load " + count + " contacts: " + (elapsed/1000) + " secs"
+                status.text = "Elapsed time to load " + count + " contacts: " + (elapsed/1000) + " secs"
+            }
+        }
+
+        function isNotEmptyString(value) {
+            return (value && value.length !== 0);
+        }
+
+        function formatNameToDisplay(contact) {
+            if (!contact) {
+                console.debug("No contact")
+                return ""
+            }
+
+            if (contact.displayLabel && contact.displayLabel.label && contact.displayLabel.label !== "") {
+                console.debug("display:" + contact.displayLabel.label)
+                return contact.displayLabel.label
+            } else if (contact.name) {
+               return [contact.name.prefix, contact.name.firstName, contact.name.middleName, contact.name.lastName, contact.name.suffix].filter(isNotEmptyString).join(" ")
+            } else {
+                return "XXX"
             }
         }
 
@@ -169,8 +146,8 @@ Page {
             property string sectionName: ListView.section
 
             icon: contact && contact.avatar && (contact.avatar.imageUrl != "") ?  Qt.resolvedUrl(contact.avatar.imageUrl) : "artwork:/avatar-default.png"
-            text: contactsModel.titleField ? contactsModel.getContactDetails(contact, contactsModel.titleField) : ""
-            subText: contactsModel.subTitleField ? contactsModel.getContactDetails(contact, contactsModel.subTitleField) : ""
+            text: contactListView.formatNameToDisplay(contactObject)
+            subText: contact && contact.phoneNumber ? contact.phoneNumber.number : ""
             selected: contactListView.currentIndex === index
 
             MouseArea {
@@ -202,6 +179,17 @@ Page {
         }
     }
 
+    Label {
+        id: status
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+            leftMargin: units.gu(1)
+        }
+        height: units.gu(3)
+    }
+
     Timer {
         id: dirtyTimer
 
@@ -224,12 +212,6 @@ Page {
     }
 
     tools: ToolbarActions {
-        Action {
-            text: i18n.tr("Settings")
-            iconSource: "artwork:/settings.png"
-            onTriggered: pageStack.push(Qt.resolvedUrl("ContactSettings.qml"), {model: contactsModel})
-        }
-
         Action {
             text: i18n.tr("Details")
             iconSource: "artwork:/edit.png"
