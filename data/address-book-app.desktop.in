@@ -2,7 +2,6 @@
 Encoding=UTF-8
 Version=1.0
 Terminal=false
-NoDisplay=true
 Type=Application
 Name=tr("Address Book")
 GenericName=tr("Address Book")
