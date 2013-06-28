@@ -1,8 +1,21 @@
-  /****************************************************************************
-  **
-  ** Copyright (C) 2013 Canonical Ltd
-  **
-  ****************************************************************************/
+/*
+ * Copyright 2012-2013 Canonical Ltd.
+ *
+ * This file is part of address-book-app.
+ *
+ * phone-app is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; version 3.
+ *
+ * phone-app is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 import QtQuick 2.0
 import QtContacts 5.0
 import Ubuntu.Components 0.1
@@ -155,7 +168,7 @@ Page {
             property string contactId: contact.contactId
             property string sectionName: ListView.section
 
-            icon: contact && contact.avatar && (contact.avatar.imageUrl != "") ?  Qt.resolvedUrl(contact.avatar.imageUrl) : "artwork:/avatar.png"
+            icon: contact && contact.avatar && (contact.avatar.imageUrl != "") ?  Qt.resolvedUrl(contact.avatar.imageUrl) : "artwork:/avatar-default.png"
             text: contactsModel.titleField ? contactsModel.getContactDetails(contact, contactsModel.titleField) : ""
             subText: contactsModel.subTitleField ? contactsModel.getContactDetails(contact, contactsModel.subTitleField) : ""
             selected: contactListView.currentIndex === index
@@ -166,7 +179,7 @@ Page {
                     contactListView.currentIndex = index
                 }
                 onDoubleClicked: {
-                    editContactPriv.contactId = contactListView.currentItem.contactObject.contactId
+                    editContactPriv.edit(contactListView.currentItem.contactObject.contactId)
                 }
             }
         }
@@ -218,16 +231,14 @@ Page {
         }
 
         Action {
-            text: i18n.tr("Edit")
+            text: i18n.tr("Details")
             iconSource: "artwork:/edit.png"
-            onTriggered: {
-                editContactPriv.contactId = contactListView.currentItem.contactObject.contactId
-            }
+            onTriggered: editContactPriv.edit(contactListView.currentItem.contactObject.contactId)
         }
         Action {
             text: i18n.tr("New")
             iconSource: "artwork:/add.png"
-            onTriggered: pageStack.push(Qt.resolvedUrl("ContactEditor.qml"), {model: contactsModel})
+            onTriggered: console.debug("Not implemented")
         }
         Action {
             text: i18n.tr("Delete")
@@ -241,7 +252,6 @@ Page {
     Item {
         id: editContactPriv
 
-        property string contactId
         property int currentQueryId: -1
 
         visible: false
@@ -250,14 +260,16 @@ Page {
             onContactsFetched: {
                 if (requestId == editContactPriv.currentQueryId) {
                     busyIndicator.pageIsBusy = false
-                    pageStack.push(Qt.resolvedUrl("ContactEditor.qml"),
+                    editContactPriv.currentQueryId = -1
+                    pageStack.push(Qt.resolvedUrl("ContactView/ContactEditor.qml"),
                                    {model: contactsModel, contact: fetchedContacts[0]})
                 }
             }
         }
 
-        onContactIdChanged: {
+        function edit(contactId) {
             if (!contactId || (currentQueryId != -1)) {
+                console.debug("in progress...")
                 return
             }
 
