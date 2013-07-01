@@ -1,13 +1,11 @@
 /*
- * Copyright 2012-2013 Canonical Ltd.
+ * Copyright (C) 2012-2013 Canonical, Ltd.
  *
- * This file is part of address-book-app.
- *
- * phone-app is free software; you can redistribute it and/or modify
+ * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; version 3.
  *
- * phone-app is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -30,8 +28,9 @@ var phoneSubTypes = [ { value: "Mobile", label: i18n.tr("Mobile") },
 var emailSubTypes = detailsSubTypes;
 var postalAddressSubTypes = detailsSubTypes;
 
-# We are using the int values here until we get this bug fixed: https://bugreports.qt-project.org/browse/QTBUG-32142
-# then we can change it to the correct enums
+/* We are using the int values here until we get this bug fixed: https://bugreports.qt-project.org/browse/QTBUG-32142
+ * then we can change it to the correct enums
+ */
 var IMSubTypes = [ { value: 0, label: i18n.tr("Other") },
                    { value: 1, label: i18n.tr("Aim") },
                    { value: 2, label: i18n.tr("ICQ") },
