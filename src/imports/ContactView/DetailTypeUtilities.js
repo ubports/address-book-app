@@ -18,26 +18,6 @@
 
 .import QtContacts 5.0 as QtContacts
 
-var PROTOCOL_LABEL_AIM      = "AIM";
-var PROTOCOL_LABEL_MSN      = "Windows Live";
-var PROTOCOL_LABEL_YAHOO    = "Yahoo";
-var PROTOCOL_LABEL_SKYPE    = "Skype";
-var PROTOCOL_LABEL_QQ       = "QQ";
-var PROTOCOL_LABEL_GTALK    = "Google Talk";
-var PROTOCOL_LABEL_ICQ      = "ICQ";
-var PROTOCOL_LABEL_JABBER   = "Jabber";
-var PROTOCOL_LABEL_OTHER    = "Other";
-
-var PROTOCOL_TYPE_CUSTOM    = "im";
-var PROTOCOL_TYPE_AIM       = "aim";
-var PROTOCOL_TYPE_MSN       = "msn";
-var PROTOCOL_TYPE_YAHOO     = "yahoo";
-var PROTOCOL_TYPE_SKYPE     = "skype";
-var PROTOCOL_TYPE_GTALK     = "google_talk";
-var PROTOCOL_TYPE_ICQ       = "icq";
-var PROTOCOL_TYPE_JABBER    = "jabber";
-var PROTOCOL_TYPE_OTHER     = "other";
-
 var detailsSubTypes = [ { value: "Home", label: i18n.tr("Home") },
                         { value: "Work", label: i18n.tr("Work") },
                         { value: "Other", label: i18n.tr("Other") } ];
@@ -50,11 +30,17 @@ var phoneSubTypes = [ { value: "Mobile", label: i18n.tr("Mobile") },
 var emailSubTypes = detailsSubTypes;
 var postalAddressSubTypes = detailsSubTypes;
 
-
-var IMSubTypes = [ { value: PROTOCOL_LABEL_GTALK, label: i18n.tr("Google Talk") },
-                   { value: PROTOCOL_LABEL_YAHOO, label: i18n.tr("Yahoo") },
-                   { value: PROTOCOL_LABEL_SKYPE, label: i18n.tr("Skype") },
-                   { value: PROTOCOL_LABEL_OTHER, label: i18n.tr("Other") } ]
+# We are using the int values here until we get this bug fixed: https://bugreports.qt-project.org/browse/QTBUG-32142
+# then we can change it to the correct enums
+var IMSubTypes = [ { value: 0, label: i18n.tr("Other") },
+                   { value: 1, label: i18n.tr("Aim") },
+                   { value: 2, label: i18n.tr("ICQ") },
+                   { value: 3, label: i18n.tr("IRC") },
+                   { value: 4, label: i18n.tr("Jabber") },
+                   { value: 5, label: i18n.tr("MSN") },
+                   { value: 6, label: i18n.tr("QQ") },
+                   { value: 7, label: i18n.tr("Skype") },
+                   { value: 8, label: i18n.tr("Yahoo") } ];
 
 function getDetailSubType(detail) {
     if (!detail) {
@@ -72,17 +58,7 @@ function getDetailSubType(detail) {
         }
         return phoneSubTypes[3];
     } else if (detail.type === QtContacts.ContactDetail.OnlineAccount) {
-        var protocol = detail.serviceProvider;
-        console.debug("Provider:" + protocol)
-        if (protocol === PROTOCOL_TYPE_YAHOO) {
-            return IMSubTypes[1];
-        } else if (protocol === PROTOCOL_TYPE_SKYPE) {
-            return IMSubTypes[2];
-        } else if (protocol === PROTOCOL_TYPE_GTALK) {
-            return IMSubTypes[0];
-        } else {
-            return IMSubTypes[3];
-        }
+        return IMSubTypes[detail.value(2)];
     } else if (detail.type === QtContacts.ContactDetail.Address) {
         var contexts = detail.contexts;
         if (contexts.indexOf(QtContacts.ContactDetail.ContextHome) > -1) {

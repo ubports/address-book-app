@@ -63,7 +63,7 @@ Page {
                 details: contactEditor.contact ? contactEditor.contact.phoneNumbers : null
                 view: ContactDetailViewWithAction {
                     fields: [ PhoneNumber.Number ]
-                    subtitle.text: DetailTypes.getDetailSubType(detail).value
+                    subtitle.text: DetailTypes.getDetailSubType(detail).label
                     actionIcon: "artwork:/contact-call.png"
                     height: implicitHeight
                     anchors {
@@ -85,7 +85,7 @@ Page {
                 details: contactEditor.contact ? contactEditor.contact.emails : null
                 view: ContactDetailViewWithAction {
                     fields: [ 0 ]
-                    subtitle.text: DetailTypes.getDetailSubType(detail).value
+                    subtitle.text: DetailTypes.getDetailSubType(detail).label
                     actionIcon: "artwork:/contact-email.png"
                     height: implicitHeight
                     anchors {
@@ -108,7 +108,7 @@ Page {
                 details: contactEditor.contact ? contactEditor.contact.details(ContactDetail.OnlineAccount) : null
                 view: ContactDetailViewWithAction {
                     fields: [ OnlineAccount.AccountUri ]
-                    subtitle.text: DetailTypes.getDetailSubType(detail).value
+                    subtitle.text: DetailTypes.getDetailSubType(detail).label
                     //TODO: parse protocol name into a icon name
                     actionIcon: "artwork:/contact-email.png"
                     height: implicitHeight
@@ -131,7 +131,7 @@ Page {
                 details: contactEditor.contact ? contactEditor.contact.addresses : null
                 view: ContactDetailViewWithAction {
                     fields: [Address.Street, Address.Locality, Address.Region, Address.Postcode, Address.Country]
-                    subtitle.text: DetailTypes.getDetailSubType(detail).value
+                    subtitle.text: DetailTypes.getDetailSubType(detail).label
                     actionIcon: "artwork:/contact-location.png"
                     height: implicitHeight
                     anchors {
