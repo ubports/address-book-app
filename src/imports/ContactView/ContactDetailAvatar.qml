@@ -15,20 +15,23 @@
  */
 
 import QtQuick 2.0
-import QtContacts 5.0
 import Ubuntu.Components 0.1
+import QtContacts 5.0
 
-MainView {
-    id: mainView
+ContactDetailItem {
+    id: root
 
-    width: units.gu(40)
-    height: units.gu(71)
-
-    PageStack {
-        id: mainStack
-
+    detail: contact ? contact.avatar : null
+    view: UbuntuShape {
         anchors.fill: parent
-    }
-
-    Component.onCompleted: mainStack.push(Qt.resolvedUrl("ContactList.qml"))
+        image: Image {
+            source: root.detail && root.detail.imageUrl != "" ? root.detail.imageUrl : "artwork:/avatar-default.png"
+            asynchronous: true
+            fillMode: Image.PreserveAspectCrop
+            // since we don't know if the image is portrait or landscape without actually reading it,
+            // set the sourceSize to be the size we need plus 30% to allow cropping.
+            sourceSize.width: width * 1.3
+            sourceSize.height: height * 1.3
+        }
+   }
 }

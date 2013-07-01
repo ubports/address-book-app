@@ -15,20 +15,22 @@
  */
 
 import QtQuick 2.0
-import QtContacts 5.0
 import Ubuntu.Components 0.1
+import QtContacts 5.0
 
-MainView {
-    id: mainView
+ContactDetailItem {
+    id: root
 
-    width: units.gu(40)
-    height: units.gu(71)
-
-    PageStack {
-        id: mainStack
-
+    detail: root.contact ? root.contact.favorite : null
+    view: Image {
         anchors.fill: parent
-    }
-
-    Component.onCompleted: mainStack.push(Qt.resolvedUrl("ContactList.qml"))
+        source: root.detail && root.detail.favorite ? "artwork:/favorite-selected.png" : "artwork:/favorite-unselected.png"
+        MouseArea {
+           anchors.fill: parent
+           onClicked: {
+               root.detail.favorite = !root.detail.favorite
+               //TODO: save favorite if not in edit mode
+           }
+        }
+   }
 }

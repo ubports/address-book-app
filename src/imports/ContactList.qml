@@ -1,8 +1,19 @@
-  /****************************************************************************
-  **
-  ** Copyright (C) 2013 Canonical Ltd
-  **
-  ****************************************************************************/
+/*
+ * Copyright (C) 2012-2013 Canonical, Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; version 3.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 import QtQuick 2.0
 import QtContacts 5.0
 import Ubuntu.Components 0.1
@@ -19,10 +30,6 @@ Page {
 
     ContactModel {
         id: contactsModel
-
-        property string titleField : "First name"
-        property string subTitleField: "Phone"
-        property alias sortOrderField: sortOrder.field
 
         manager: "galera"
         sortOrders: [
@@ -44,39 +51,6 @@ Page {
         Component.onCompleted: {
             if (manager == "memory")
                 contactsModel.importContacts(Qt.resolvedUrl("example.vcf"))
-        }
-
-        function getContactDetails(contact, fieldNames) {
-            var fullValue = ""
-
-            if (contact) {
-                var fieldNameList = fieldNames.split(",")
-                for (var fieldNameIndex in fieldNameList) {
-                    var fieldName = fieldNameList[fieldNameIndex]
-                    var value = "";
-                    if (fieldName === "First name") {
-                        value = contact.name.firstName
-                    } else if (fieldName === "Middle name") {
-                        value = contact.name.middleName
-                    } else if (fieldName === "Last name") {
-                        value = contact.name.lastName
-                    } else if (fieldName === "Full name") {
-                        value = contact.displayLabel.label
-                    } else if (fieldName === "Nickname") {
-                        value = contact.nickname.nickname
-                    } else if (fieldName === "Phone") {
-                        value = contact.phoneNumber.number
-                    } else if (fieldName === "e-mail") {
-                        value = contact.email.emailAddress
-                    } else {
-                        value = "null"
-                    }
-                    if (fullValue.length != 0)
-                        fullValue += ", "
-                    fullValue += value
-                }
-            }
-            return fullValue
         }
     }
 
@@ -115,8 +89,6 @@ Page {
     ListView {
         id: contactListView
 
-        property string title
-
         clip: true
         snapMode: ListView.NoSnap
         section {
@@ -134,19 +106,34 @@ Page {
             top: alphabetView.bottom
             left: parent.left
             right: parent.right
-            bottom: parent.bottom
+            bottom: status.top
         }
         model: contactsModel
-        header: ListItem.Header {
-            text: contactListView.title
-        }
-
         onCountChanged: {
             dirtyTimer.restart()
             if (mainPage.startTime) {
                 var currentTime = new Date();
                 var elapsed = currentTime.getTime() - mainPage.startTime.getTime()
-                contactListView.title = "Elapsed time to load " + count + " contacts: " + (elapsed/1000) + " secs"
+                status.text = "Elapsed time to load " + count + " contacts: " + (elapsed/1000) + " secs"
+            }
+        }
+
+        function isNotEmptyString(value) {
+            return (value && value.length !== 0);
+        }
+
+        function formatNameToDisplay(contact) {
+            if (!contact) {
+                console.debug("No contact")
+                return ""
+            }
+
+            if (contact.displayLabel && contact.displayLabel.label && contact.displayLabel.label !== "") {
+                return contact.displayLabel.label
+            } else if (contact.name) {
+               return [contact.name.prefix, contact.name.firstName, contact.name.middleName, contact.name.lastName, contact.name.suffix].filter(isNotEmptyString).join(" ")
+            } else {
+                return "Unknown"
             }
         }
 
@@ -155,9 +142,9 @@ Page {
             property string contactId: contact.contactId
             property string sectionName: ListView.section
 
-            icon: contact && contact.avatar && (contact.avatar.imageUrl != "") ?  Qt.resolvedUrl(contact.avatar.imageUrl) : "artwork:/avatar.png"
-            text: contactsModel.titleField ? contactsModel.getContactDetails(contact, contactsModel.titleField) : ""
-            subText: contactsModel.subTitleField ? contactsModel.getContactDetails(contact, contactsModel.subTitleField) : ""
+            icon: contact && contact.avatar && (contact.avatar.imageUrl != "") ?  Qt.resolvedUrl(contact.avatar.imageUrl) : "artwork:/avatar-default.png"
+            text: contactListView.formatNameToDisplay(contactObject)
+            subText: contact && contact.phoneNumber ? contact.phoneNumber.number : ""
             selected: contactListView.currentIndex === index
 
             MouseArea {
@@ -166,7 +153,7 @@ Page {
                     contactListView.currentIndex = index
                 }
                 onDoubleClicked: {
-                    editContactPriv.contactId = contactListView.currentItem.contactObject.contactId
+                    editContactPriv.edit(contactListView.currentItem.contactObject.contactId)
                 }
             }
         }
@@ -187,6 +174,17 @@ Page {
                 return null
             }
         }
+    }
+
+    Label {
+        id: status
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+            leftMargin: units.gu(1)
+        }
+        height: units.gu(3)
     }
 
     Timer {
@@ -212,22 +210,14 @@ Page {
 
     tools: ToolbarActions {
         Action {
-            text: i18n.tr("Settings")
-            iconSource: "artwork:/settings.png"
-            onTriggered: pageStack.push(Qt.resolvedUrl("ContactSettings.qml"), {model: contactsModel})
-        }
-
-        Action {
-            text: i18n.tr("Edit")
+            text: i18n.tr("Details")
             iconSource: "artwork:/edit.png"
-            onTriggered: {
-                editContactPriv.contactId = contactListView.currentItem.contactObject.contactId
-            }
+            onTriggered: editContactPriv.edit(contactListView.currentItem.contactObject.contactId)
         }
         Action {
             text: i18n.tr("New")
             iconSource: "artwork:/add.png"
-            onTriggered: pageStack.push(Qt.resolvedUrl("ContactEditor.qml"), {model: contactsModel})
+            onTriggered: console.debug("Not implemented")
         }
         Action {
             text: i18n.tr("Delete")
@@ -241,7 +231,6 @@ Page {
     Item {
         id: editContactPriv
 
-        property string contactId
         property int currentQueryId: -1
 
         visible: false
@@ -250,14 +239,16 @@ Page {
             onContactsFetched: {
                 if (requestId == editContactPriv.currentQueryId) {
                     busyIndicator.pageIsBusy = false
-                    pageStack.push(Qt.resolvedUrl("ContactEditor.qml"),
+                    editContactPriv.currentQueryId = -1
+                    pageStack.push(Qt.resolvedUrl("ContactView/ContactEditor.qml"),
                                    {model: contactsModel, contact: fetchedContacts[0]})
                 }
             }
         }
 
-        onContactIdChanged: {
+        function edit(contactId) {
             if (!contactId || (currentQueryId != -1)) {
+                console.debug("in progress...")
                 return
             }
 

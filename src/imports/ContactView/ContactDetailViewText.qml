@@ -15,20 +15,18 @@
  */
 
 import QtQuick 2.0
-import QtContacts 5.0
 import Ubuntu.Components 0.1
+import QtContacts 5.0
 
-MainView {
-    id: mainView
+ContactDetailView {
+    property string defaultText
+    property alias label: defaultLabel
 
-    width: units.gu(40)
-    height: units.gu(71)
+    Label {
+        id: defaultLabel
 
-    PageStack {
-        id: mainStack
-
+        visible: defaultText
         anchors.fill: parent
+        text: defaultText && defaultText.length > 0 ? defaultText : detail.value(field)
     }
-
-    Component.onCompleted: mainStack.push(Qt.resolvedUrl("ContactList.qml"))
 }
