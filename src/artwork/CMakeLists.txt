@@ -12,16 +12,16 @@ set(ADDRESS_BOOK_APP_ARTWORK
     edit.png
     favorite-selected.png
     favorite-unselected.png
-    protocol_aim.png
-    protocol_facebook.png
-    protocol_icq.png
-    protocol_irc.png
-    protocol_jabber.png
-    protocol_msn.png
-    protocol_other.png
-    protocol_qq.png
-    protocol_skype.png
-    protocol_yahoo.png
+    protocol-aim.png
+    protocol-facebook.png
+    protocol-icq.png
+    protocol-irc.png
+    protocol-jabber.png
+    protocol-msn.png
+    protocol-other.png
+    protocol-qq.png
+    protocol-skype.png
+    protocol-yahoo.png
     settings.png
 )
 
