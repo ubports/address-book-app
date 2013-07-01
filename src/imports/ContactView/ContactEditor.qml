@@ -57,7 +57,7 @@ Page {
                 }
                 height: implicitHeight
 
-                title: "Phone"
+                title: i18n.tr("Phone")
                 details: contactEditor.contact ? contactEditor.contact.phoneNumbers : null
                 view: ContactDetailViewWithAction {
                     fields: [ PhoneNumber.Number ]
@@ -79,7 +79,7 @@ Page {
                     margins: units.gu(1)
                 }
                 height: implicitHeight
-                title: "Email"
+                title: i18n.tr("Email")
                 details: contactEditor.contact ? contactEditor.contact.emails : null
                 view: ContactDetailViewWithAction {
                     fields: [ 0 ]
@@ -101,7 +101,7 @@ Page {
                     margins: units.gu(1)
                 }
                 height: implicitHeight
-                title: "IM"
+                title: i18n.tr("IM")
                 //TODO: implement support for onlineAccount list in QtPim
                 details: contactEditor.contact ? contactEditor.contact.details(ContactDetail.OnlineAccount) : null
                 view: ContactDetailViewWithAction {
@@ -125,7 +125,7 @@ Page {
                     margins: units.gu(1)
                 }
                 height: implicitHeight
-                title: "Address"
+                title: i18n.tr("Address")
                 details: contactEditor.contact ? contactEditor.contact.addresses : null
                 view: ContactDetailViewWithAction {
                     fields: [Address.Street, Address.Locality, Address.Region, Address.Postcode, Address.Country]
