@@ -129,12 +129,11 @@ Page {
             }
 
             if (contact.displayLabel && contact.displayLabel.label && contact.displayLabel.label !== "") {
-                console.debug("display:" + contact.displayLabel.label)
                 return contact.displayLabel.label
             } else if (contact.name) {
                return [contact.name.prefix, contact.name.firstName, contact.name.middleName, contact.name.lastName, contact.name.suffix].filter(isNotEmptyString).join(" ")
             } else {
-                return "XXX"
+                return "Unknown"
             }
         }
 
