@@ -31,15 +31,16 @@ var postalAddressSubTypes = detailsSubTypes;
 /* We are using the int values here until we get this bug fixed: https://bugreports.qt-project.org/browse/QTBUG-32142
  * then we can change it to the correct enums
  */
-var IMSubTypes = [ { value: 0, label: i18n.tr("Other") },
-                   { value: 1, label: i18n.tr("Aim") },
-                   { value: 2, label: i18n.tr("ICQ") },
-                   { value: 3, label: i18n.tr("IRC") },
-                   { value: 4, label: i18n.tr("Jabber") },
-                   { value: 5, label: i18n.tr("MSN") },
-                   { value: 6, label: i18n.tr("QQ") },
-                   { value: 7, label: i18n.tr("Skype") },
-                   { value: 8, label: i18n.tr("Yahoo") } ];
+var IMSubTypes = [ { value: 0, label: i18n.tr("Other"), icon: "protocol_other.png" },
+                   { value: 1, label: i18n.tr("Aim"), icon: "protocol_aim.png" },
+                   { value: 2, label: i18n.tr("ICQ"), icon: "protocol_icq.png" },
+                   { value: 3, label: i18n.tr("IRC"), icon: "protocol_irc.png" },
+                   { value: 4, label: i18n.tr("Jabber"), icon: "protocol_jabber.png" },
+                   { value: 5, label: i18n.tr("MSN"), icon: "protocol_msn.png" },
+                   { value: 6, label: i18n.tr("QQ"), icon: "protocol_qq.png" },
+                   { value: 7, label: i18n.tr("Skype"), icon: "protocol_skype.png" },
+                   { value: 8, label: i18n.tr("Yahoo"), icon: "protocol_yahoo.png" } ];
+
 
 function getDetailSubType(detail) {
     if (!detail) {

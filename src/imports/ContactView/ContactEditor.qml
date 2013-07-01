@@ -105,10 +105,10 @@ Page {
                 //TODO: implement support for onlineAccount list in QtPim
                 details: contactEditor.contact ? contactEditor.contact.details(ContactDetail.OnlineAccount) : null
                 view: ContactDetailViewWithAction {
+                    property variant protocolDetails: DetailTypes.getDetailSubType(detail)
                     fields: [ OnlineAccount.AccountUri ]
-                    subtitle.text: DetailTypes.getDetailSubType(detail).label
-                    //TODO: parse protocol name into a icon name
-                    actionIcon: "artwork:/contact-email.png"
+                    subtitle.text: protocolDetails.label
+                    actionIcon: "artwork:/" + protocolDetails.icon
                     height: implicitHeight
                     anchors {
                         left: parent.left

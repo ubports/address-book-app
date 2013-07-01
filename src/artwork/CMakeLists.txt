@@ -10,12 +10,19 @@ set(ADDRESS_BOOK_APP_ARTWORK
     contact-location.png
     delete.png
     edit.png
-    facebook.png
     favorite-selected.png
     favorite-unselected.png
+    protocol_aim.png
+    protocol_facebook.png
+    protocol_icq.png
+    protocol_irc.png
+    protocol_jabber.png
+    protocol_msn.png
+    protocol_other.png
+    protocol_qq.png
+    protocol_skype.png
+    protocol_yahoo.png
     settings.png
-    skype.png
-    twitter.png
 )
 
 install(FILES ${ADDRESS_BOOK_APP_ICON}
@@ -25,5 +32,6 @@ install(FILES ${ADDRESS_BOOK_APP_ICON}
 install(FILES ${ADDRESS_BOOK_APP_ARTWORK}
     DESTINATION ${ADDRESS_BOOK_APP_DIR}/artwork
 )
+
 
 
