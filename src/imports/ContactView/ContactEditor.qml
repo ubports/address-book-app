@@ -26,6 +26,24 @@ Page {
     property variant contact: null
     property variant model: null
 
+    function edit() {
+        for(var i = 0; i < contents.children.length; ++i) {
+            var field = contents.children[i]
+            if (field.edit) {
+                field.edit()
+            }
+        }
+    }
+
+    function save() {
+        for(var i = 0; i < contents.children.length; ++i) {
+            var field = contents.children[i]
+            if (field.save) {
+                field.save()
+            }
+        }
+    }
+
     Flickable {
         flickableDirection: Flickable.VerticalFlick
         anchors.fill: parent
@@ -45,10 +63,10 @@ Page {
             ContactHeader {
                 contact: contactEditor.contact
                 width: parent.width
-                height: units.gu(12)
+                height: implicitHeight
             }
 
-            ContactDetailGroup {
+            ContactDetailPhoneNumbers {
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
@@ -56,22 +74,9 @@ Page {
                     margins: units.gu(1)
                 }
                 height: implicitHeight
-
-                title: i18n.tr("Phone")
-                details: contactEditor.contact ? contactEditor.contact.phoneNumbers : null
-                view: ContactDetailViewWithAction {
-                    fields: [ PhoneNumber.Number ]
-                    subtitle.text: DetailTypes.getDetailSubType(detail).label
-                    actionIcon: "artwork:/contact-call.png"
-                    height: implicitHeight
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                    }
-                }
             }
 
-            ContactDetailGroup {
+            ContactDetailEmails {
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
@@ -79,21 +84,9 @@ Page {
                     margins: units.gu(1)
                 }
                 height: implicitHeight
-                title: i18n.tr("Email")
-                details: contactEditor.contact ? contactEditor.contact.emails : null
-                view: ContactDetailViewWithAction {
-                    fields: [ 0 ]
-                    subtitle.text: DetailTypes.getDetailSubType(detail).label
-                    actionIcon: "artwork:/contact-email.png"
-                    height: implicitHeight
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                    }
-                }
             }
 
-            ContactDetailGroup {
+            ContactDetailOnlineAccounts {
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
@@ -101,23 +94,9 @@ Page {
                     margins: units.gu(1)
                 }
                 height: implicitHeight
-                title: i18n.tr("IM")
-                //TODO: implement support for onlineAccount list in QtPim
-                details: contactEditor.contact ? contactEditor.contact.details(ContactDetail.OnlineAccount) : null
-                view: ContactDetailViewWithAction {
-                    property variant protocolDetails: DetailTypes.getDetailSubType(detail)
-                    fields: [ OnlineAccount.AccountUri ]
-                    subtitle.text: protocolDetails.label
-                    actionIcon: "artwork:/" + protocolDetails.icon
-                    height: implicitHeight
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                    }
-                }
             }
 
-            ContactDetailGroup {
+            ContactDetailAddress {
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
@@ -125,17 +104,17 @@ Page {
                     margins: units.gu(1)
                 }
                 height: implicitHeight
-                title: i18n.tr("Address")
-                details: contactEditor.contact ? contactEditor.contact.addresses : null
-                view: ContactDetailViewWithAction {
-                    fields: [Address.Street, Address.Locality, Address.Region, Address.Postcode, Address.Country]
-                    subtitle.text: DetailTypes.getDetailSubType(detail).label
-                    actionIcon: "artwork:/contact-location.png"
-                    height: implicitHeight
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                    }
+            }
+        }
+    }
+
+    tools: ToolbarItems {
+        ToolbarButton {
+            action: Action {
+                text: i18n.tr("Edit")
+                onTriggered: {
+                    console.debug("call edit")
+                    contactEditor.edit()
                 }
             }
         }

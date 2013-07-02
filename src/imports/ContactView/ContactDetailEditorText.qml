@@ -19,13 +19,62 @@ import Ubuntu.Components 0.1
 import QtContacts 5.0
 
 ContactDetailEditor {
-    Row {
+    id: detailEditor
+
+    property bool removable: true
+    implicitHeight: contents.childrenRect.height + units.gu(1)
+
+    Column {
+        id: contents
+
+        spacing: units.gu(0.5)
+        anchors.fill: parent
+
         Repeater {
+            id: repeater
+
             model: enabled ? fields : 0
-            TextInput {
-                anchors.left: parent.left
-                anchors.right: parent.right
-                text: (detail) ? detail.value(modelData) : ""
+            Rectangle {
+                border.color: "black"
+                border.width: 1
+
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                height: units.gu(4)
+
+                TextInput {
+                    clip: true
+                    anchors {
+                        left: parent.left
+                        top: parent.top
+                        right: removeButton.left
+                        bottom: parent.bottom
+                        margins: units.gu(1)
+                    }
+                    text: (detail) ? detail.value(modelData) : ""
+                }
+
+                AbstractButton {
+                    id: removeButton
+
+                    anchors {
+                        verticalCenter: parent.verticalCenter
+                        right: parent.right
+                        rightMargin: units.gu(1)
+                    }
+                    width: units.gu(2)
+                    height: units.gu(2)
+                    visible: detailEditor.visible
+
+                    Image {
+                        anchors.fill: parent
+                        source: "artwork:/edit-remove.png"
+                        fillMode: Image.PreserveAspectFit
+                    }
+
+                }
             }
         }
     }

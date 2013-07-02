@@ -15,20 +15,14 @@
  */
 
 import QtQuick 2.0
-import Ubuntu.Components 0.1
-import QtContacts 5.0
+import QtContacts 5.0 as QtContacts
 
-ContactDetailView {
-    property string defaultText
-    property alias label: defaultLabel
-
-    implicitHeight: defaultLabel.paintedHeight
-
-    Label {
-        id: defaultLabel
-
-        visible: defaultText
-        anchors.fill: parent
-        text: defaultText && defaultText.length > 0 ? defaultText : detail.value(field)
-    }
+ContactDetailGroupWithAction {
+    title: i18n.tr("Address")
+    details: contactEditor.contact ? contactEditor.contact.addresses : null
+    fields: [ QtContacts.Address.Street,
+              QtContacts.Address.Locality,
+              QtContacts.Address.Region,
+              QtContacts.Address.Postcode,
+              QtContacts.Address.Country]
 }

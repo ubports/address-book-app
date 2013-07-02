@@ -22,6 +22,7 @@ ContactDetailItem {
     id: root
 
     detail: root.contact ? root.contact.name : null
+
     view: ContactDetailViewText {
         label {
             fontSize: "large"
@@ -30,6 +31,7 @@ ContactDetailItem {
             style: Text.Raised
             styleColor: "white"
         }
+        height: units.gu(10)
 
         function isNotEmptyString(string) {
             return (string && string.length !== 0);
@@ -51,13 +53,12 @@ ContactDetailItem {
 
         defaultText: formatNameToDisplay()
     }
-    editor: ContactDetailEditorText {
-        fields: [ContactName.Prefix,
-            ContactName.FirstName,
-            contactName.MiddleName,
-            contactName.LastName,
-            contactName.Suffix]
 
-        anchors.fill: parent
+    editor: ContactDetailEditorText {
+        fields: [   Name.FirstName,
+                    Name.MiddleName,
+                    Name.LastName
+                ]
+        height: implicitHeight
     }
 }

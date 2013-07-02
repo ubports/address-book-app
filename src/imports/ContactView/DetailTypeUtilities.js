@@ -41,7 +41,6 @@ var IMSubTypes = [ { value: 0, label: i18n.tr("Other"), icon: "protocol-other.pn
                    { value: 7, label: i18n.tr("Skype"), icon: "protocol-skype.png" },
                    { value: 8, label: i18n.tr("Yahoo"), icon: "protocol-yahoo.png" } ];
 
-
 function getDetailSubType(detail) {
     if (!detail) {
         return "";

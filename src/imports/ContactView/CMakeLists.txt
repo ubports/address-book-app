@@ -1,11 +1,16 @@
 set(CONTACT_VIEW_QMLS
+    ContactDetailAddress.qml
     ContactDetailAvatar.qml
     ContactDetailEditor.qml
     ContactDetailEditorText.qml
+    ContactDetailEmails.qml
     ContactDetailFavorite.qml
-    ContactDetailGroup.qml
+    ContactDetailGroupBase.qml
+    ContactDetailGroupWithAction.qml
     ContactDetailItem.qml
     ContactDetailName.qml
+    ContactDetailOnlineAccounts.qml
+    ContactDetailPhoneNumbers.qml
     ContactDetailView.qml
     ContactDetailViewText.qml
     ContactDetailViewWithAction.qml

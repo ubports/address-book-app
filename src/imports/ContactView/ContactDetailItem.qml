@@ -27,6 +27,19 @@ FocusScope {
     property Component view
     property Component editor
 
+    function edit() {
+        if (detail && !detail.readOnly && editor) {
+            state = "edit"
+        }
+    }
+
+    function save() {
+        if (state == "edit") {
+            //TODO
+            state = "view"
+        }
+    }
+
     states: [
         State {
             name: "view"
@@ -51,14 +64,19 @@ FocusScope {
         id: contents
 
         anchors.fill: parent
-        onItemChanged: {
-            if (item.hasOwnProperty("detail")) {
-                item.detail = root.detail
-            }
 
-            if (item.hasOwnProperty("contact")) {
-                item.detail = root.contact
-            }
+        Binding {
+            target: contents.item
+            property: "detail"
+            value: root.detail
+            when: contents.item != null && contents.item != undefined
+        }
+
+        Binding {
+            target: contents.item
+            property: "contact"
+            value: root.contact
+            when: contents.item != null && contents.item != undefined
         }
     }
 }

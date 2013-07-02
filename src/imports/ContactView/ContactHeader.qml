@@ -23,6 +23,25 @@ FocusScope {
 
     property variant contact: null
 
+    function edit() {
+        for(var i = 0; i < contactHeader.children.length; ++i) {
+            var field = contactHeader.children[i]
+            if (field.edit) {
+                field.edit()
+            }
+        }
+    }
+
+    function save() {
+        for(var i = 0; i < contactHeader.children.length; ++i) {
+            var field = contactHeader.children[i]
+            if (field.save) {
+                field.save()
+            }
+        }
+    }
+
+    implicitHeight: detailName.height + units.gu(2)
     ContactDetailAvatar {
         id: detailAvatar
 
@@ -46,8 +65,8 @@ FocusScope {
             right: detailFavorite.right
             top: parent.top
             margins: units.gu(2)
-            bottom: parent.bottom
         }
+        height: implicitHeight
     }
 
     ContactDetailFavorite {

@@ -15,20 +15,9 @@
  */
 
 import QtQuick 2.0
-import Ubuntu.Components 0.1
-import QtContacts 5.0
 
-ContactDetailView {
-    property string defaultText
-    property alias label: defaultLabel
-
-    implicitHeight: defaultLabel.paintedHeight
-
-    Label {
-        id: defaultLabel
-
-        visible: defaultText
-        anchors.fill: parent
-        text: defaultText && defaultText.length > 0 ? defaultText : detail.value(field)
-    }
+ContactDetailGroupWithAction {
+    title: i18n.tr("Email")
+    details: contactEditor.contact ? contactEditor.contact.emails : null
+    fields: [ 0 ]
 }
