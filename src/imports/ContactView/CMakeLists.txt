@@ -16,7 +16,6 @@ set(CONTACT_VIEW_QMLS
     ContactDetailViewWithAction.qml
     ContactEditor.qml
     ContactHeader.qml
-    DetailTypeUtilities.js
 )
 
 install(FILES ${CONTACT_VIEW_QMLS}
