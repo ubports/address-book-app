@@ -22,7 +22,7 @@ import Ubuntu.Components.Popups 0.1 as Popups
 ContactDetailEditor {
     id: root
 
-    property double itemHeight: units.gu(5)
+    property double itemHeight: units.gu(4)
     property alias types: detailTypeCombo.values
     property alias selectedTypeIndex: detailTypeCombo.currentIndex
 
@@ -52,12 +52,20 @@ ContactDetailEditor {
         Repeater {
             model: detail ? root.fields : 0
             TextInputDetail {
+                property variant originalValue: root.detail ? root.detail.value(modelData) : null
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
                 height: root.itemHeight
-                text: root.detail ? root.detail.value(modelData) : ""
+                onRemoveClicked: {
+                    root.contact.removeDetail(root.detail)
+                }
+                Component.onCompleted: {
+                    if (originalValue) {
+                        text = originalValue
+                    }
+                }
             }
         }
     }

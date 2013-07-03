@@ -112,8 +112,8 @@ Page {
             action: Action {
                 text: i18n.tr("Edit")
                 onTriggered: {
-                    console.debug("call edit")
                     contactEditor.edit()
+                    contactEditor.toolbar.opened = false
                 }
             }
         }

@@ -18,7 +18,10 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 
 Rectangle {
+    id: root
+
     property alias text:input.text
+    signal removeClicked()
 
     border.color: "black"
     border.width: 1
@@ -55,5 +58,7 @@ Rectangle {
             source: "artwork:/edit-remove.png"
             fillMode: Image.PreserveAspectFit
         }
+
+        onClicked: root.removeClicked()
     }
 }

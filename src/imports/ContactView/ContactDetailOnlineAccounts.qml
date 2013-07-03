@@ -19,11 +19,13 @@ import QtContacts 5.0 as QtContacts
 
 ContactDetailGroupWithAction {
     function getTypeIndex(detail) {
-        return detail.value(2)
+        var index = detail.value(2)
+        return index ? index : 0
     }
 
+    detailQmlTypeName: "OnlineAccount"
     title: i18n.tr("IM")
-    details: contactEditor.contact ? contactEditor.contact.details(QtContacts.ContactDetail.OnlineAccount) : null
+    detailType: QtContacts.ContactDetail.OnlineAccount
     fields: [ QtContacts.OnlineAccount.AccountUri ]
 
     typeModel: ListModel {

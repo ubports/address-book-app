@@ -23,16 +23,16 @@ ContactDetailGroupWithAction {
             return 1
         } else if (detail.contexts.indexOf(QtContacts.ContactDetail.ContextWork) > -1) {
             return 2
-        } else if (detail.subTypes.indexOf(QtContacts.ContactPhoneNumber.Mobile) > -1) {
+        } else if (detail.subTypes.indexOf(QtContacts.PhoneNumber.Mobile) > -1) {
             return 0
         } else {
             return 3
         }
     }
 
-
+    detailQmlTypeName: "PhoneNumber"
+    detailType: QtContacts.ContactDetail.PhoneNumber
     title: i18n.tr("Phone")
-    details: contactEditor.contact ? contactEditor.contact.phoneNumbers : null
     fields: [ QtContacts.PhoneNumber.Number ]
     defaultIcon: "artwork:/contact-call.png"
     typeModel: ListModel {

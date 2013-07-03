@@ -34,10 +34,10 @@ FocusScope {
     }
 
     function save() {
-        if (state == "edit") {
-            //TODO
-            state = "view"
-        }
+//        if (state == "edit") {
+//            //TODO
+//            state = "view"
+//        }
     }
 
     states: [
@@ -58,7 +58,7 @@ FocusScope {
     ]
 
     state: "view"
-    implicitHeight: contents.item ? contents.item.height : 0
+    implicitHeight: contents.item && root.detail ? contents.item.height : 0
 
     Loader {
         id: contents

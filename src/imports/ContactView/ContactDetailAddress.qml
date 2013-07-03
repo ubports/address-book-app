@@ -18,8 +18,9 @@ import QtQuick 2.0
 import QtContacts 5.0 as QtContacts
 
 ContactDetailGroupWithAction {
+    detailQmlTypeName: "Address"
     title: i18n.tr("Address")
-    details: contactEditor.contact ? contactEditor.contact.addresses : null
+    detailType: QtContacts.ContactDetail.Address
     fields: [ QtContacts.Address.Street,
               QtContacts.Address.Locality,
               QtContacts.Address.Region,

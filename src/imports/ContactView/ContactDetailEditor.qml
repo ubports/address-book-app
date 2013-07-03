@@ -17,6 +17,7 @@
 import QtQuick 2.0
 
 FocusScope {
+    property QtObject contact: null
     property QtObject detail: null
     property variant fields
     property bool enabled: false

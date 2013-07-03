@@ -59,7 +59,7 @@ ContactDetailView {
                     verticalAlignment: Text.AlignVCenter
                     height: root.itemHeight
                     fontSize: "medium"
-                    text: root.detail ? root.detail.value(modelData) : ""
+                    text: root.detail && root.detail.value(modelData) ? root.detail.value(modelData) : ""
                 }
             }
         }

@@ -62,13 +62,11 @@ ContactDetailGroupBase {
         fields: root.fields
 
         height: implicitHeight
-        anchors {
-            left: parent ? parent.left : undefined
-            right: parent ? parent.right : undefined
-        }
+        width: parent ? parent.width : 0
     }
 
     editor: ContactDetailEditorWithAction {
+        contact: root.contact
         height: implicitHeight
         fields: root.fields
         selectedTypeIndex: detail ? root.getTypeIndex(detail) : -1
@@ -84,14 +82,7 @@ ContactDetailGroupBase {
             }
         }
 
-        anchors {
-            left: parent ? parent.left : undefined
-            right: parent ? parent.right : undefined
-        }
-        Rectangle {
-            opacity: 0.3
-            anchors.fill: parent
-        }
+        width: parent ? parent.width : 0
     }
 
     typeModel: ListModel {

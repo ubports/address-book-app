@@ -21,33 +21,70 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 FocusScope {
     id: root
 
+    readonly property variant details : priv.details
+
+    property string detailQmlTypeName: null
     property QtObject contact: null
-    property list<QtObject> details
+    property int detailType: 0
     property bool editable: false
     property bool valid: false
     property alias title: header.text
     property alias spacing: contents.spacing
-
     property Component view
     property Component editor
 
-    implicitHeight: root.details.length > 0 ? contents.childrenRect.height + units.gu(1) : 0
+    implicitHeight: priv.editing || root.details.length > 0 ? contents.height + units.gu(1) : 0
     visible: implicitHeight > 0
 
+    QtObject {
+        id: priv
+
+        property variant details : contact && detailType ? contact.details(detailType) : []
+        property int newDetailsCount: 0
+        property bool editing: false
+    }
+
+    Connections {
+        target: root.contact
+        onContactChanged: {
+            if (contact && detailType) {
+                priv.details = contact.details(detailType)
+            } else {
+                priv.details = []
+            }
+        }
+    }
+
     function edit() {
-        for(var i = 0; i < contents.children.length; ++i) {
-            var field = contents.children[i]
-            if (field.edit) {
-                field.edit()
+        if (!priv.editing) {
+            priv.editing = true
+            for(var i = 0; i < contents.children.length; ++i) {
+                var field = contents.children[i]
+                if (field.edit) {
+                    field.edit()
+                }
             }
         }
     }
 
     function save() {
-        for(var i = 0; i < detailFields.children.length; ++i) {
-            var field = detailFields.children[i]
-            if (field.save) {
-                field.save()
+        if (priv.editing) {
+            for(var i = 0; i < detailFields.children.length; ++i) {
+                var field = detailFields.children[i]
+                if (field.save) {
+                    field.save()
+                }
+            }
+            priv.editing = false
+        }
+    }
+
+    function newDetail() {
+        if (detailQmlTypeName) {
+            var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + detailQmlTypeName + "{}", parent)
+            if (newDetail) {
+                root.contact.addDetail(newDetail)
+                priv.newDetailsCount += 1
             }
         }
     }
@@ -60,9 +97,46 @@ FocusScope {
             right: parent.right
         }
 
-        Label {
-            id: header
+        height: childrenRect.height
+        Item {
+            id: headerLine
+
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
             height: units.gu(3)
+
+            Label {
+                id: header
+                anchors {
+                    left: parent.left
+                    top: parent.top
+                    right: newFieldButton.left
+                    bottom: parent.bottom
+                }
+            }
+            AbstractButton {
+                id: newFieldButton
+
+                anchors {
+                    top: parent.top
+                    right: parent.right
+                    rightMargin: units.gu(1)
+                    bottom: parent.bottom
+                }
+                width: units.gu(2)
+                height: units.gu(2)
+                visible: priv.editing
+
+                Image {
+                    anchors.fill: parent
+                    source: "artwork:/add-detail.png"
+                    fillMode: Image.PreserveAspectFit
+                }
+
+                onClicked: root.newDetail()
+            }
         }
 
         Repeater {
@@ -70,18 +144,20 @@ FocusScope {
 
             model: root.details.length
             ContactDetailItem {
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-                height: implicitHeight
+                state: priv.editing ? "edit" : "view"
                 contact: root.contact
                 detail: root.details[index]
                 editable: root.editable
                 valid: root.valid
                 view: root.view
                 editor: root.editor
+                width: parent ? parent.width : 0
+                height: implicitHeight
             }
         }
+    }
+
+    ListItem.ThinDivider {
+        anchors.bottom: parent.bottom
     }
 }

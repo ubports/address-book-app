@@ -15,9 +15,11 @@
  */
 
 import QtQuick 2.0
+import QtContacts 5.0 as QtContacts
 
 ContactDetailGroupWithAction {
+    detailQmlTypeName: "EmailAddress"
+    detailType: QtContacts.ContactDetail.Email
     title: i18n.tr("Email")
-    details: contactEditor.contact ? contactEditor.contact.emails : null
     fields: [ 0 ]
 }
