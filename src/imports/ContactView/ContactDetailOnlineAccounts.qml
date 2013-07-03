@@ -18,21 +18,15 @@ import QtQuick 2.0
 import QtContacts 5.0 as QtContacts
 
 ContactDetailGroupWithAction {
-    function getType(detail) {
-        return imTypeModel.get(detail.value(2))
-    }
-
-    function getTypeCount() {
-        return imTypeModel.count
+    function getTypeIndex(detail) {
+        return detail.value(2)
     }
 
     title: i18n.tr("IM")
     details: contactEditor.contact ? contactEditor.contact.details(QtContacts.ContactDetail.OnlineAccount) : null
     fields: [ QtContacts.OnlineAccount.AccountUri ]
 
-    ListModel {
-        id: imTypeModel
-
+    typeModel: ListModel {
         Component.onCompleted: {
             append({"value": 0, "label": i18n.tr("Other"), icon: "artwork:/protocol-other.png"})
             append({"value": 1, "label": i18n.tr("Aim"), icon: "artwork:/protocol-aim.png"})

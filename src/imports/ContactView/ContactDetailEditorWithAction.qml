@@ -16,31 +16,48 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
-import QtContacts 5.0
+import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components.Popups 0.1 as Popups
 
 ContactDetailEditor {
-    id: detailEditor
+    id: root
 
-    property bool removable: true
-    implicitHeight: contents.childrenRect.height + units.gu(1)
+    property double itemHeight: units.gu(5)
+    property alias types: detailTypeCombo.values
+    property alias selectedTypeIndex: detailTypeCombo.currentIndex
+
+    implicitHeight: fieldValues.height
+
+    Combobox {
+        id: detailTypeCombo
+
+        anchors {
+            left: parent.left
+            top: parent.top
+            bottom: parent.bottom
+        }
+        width: units.gu(10)
+    }
 
     Column {
-        id: contents
+        id: fieldValues
 
-        spacing: units.gu(0.5)
-        anchors.fill: parent
+        anchors {
+            left: detailTypeCombo.right
+            right: parent.right
+            margins: units.gu(1)
+        }
+        height: childrenRect.height
 
         Repeater {
-            id: repeater
-
-            model: enabled ? fields : 0
+            model: detail ? root.fields : 0
             TextInputDetail {
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
-                height: units.gu(4)
-                text: (detail) ? detail.value(modelData) : ""
+                height: root.itemHeight
+                text: root.detail ? root.detail.value(modelData) : ""
             }
         }
     }

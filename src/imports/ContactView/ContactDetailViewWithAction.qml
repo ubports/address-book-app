@@ -22,7 +22,6 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 ContactDetailView {
     id: root
 
-    property variant fields
     property alias subtitle: subtitle
     property alias actionIcon: action.source
     property double itemHeight: units.gu(3)
@@ -54,6 +53,7 @@ ContactDetailView {
 
                     anchors {
                         left: parent.left
+                        //leftMargin: units.gu(1)
                         right: parent.right
                     }
                     verticalAlignment: Text.AlignVCenter
@@ -63,7 +63,6 @@ ContactDetailView {
                 }
             }
         }
-
 
         Label {
             id: subtitle

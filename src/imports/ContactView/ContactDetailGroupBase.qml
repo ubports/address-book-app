@@ -26,6 +26,7 @@ FocusScope {
     property bool editable: false
     property bool valid: false
     property alias title: header.text
+    property alias spacing: contents.spacing
 
     property Component view
     property Component editor

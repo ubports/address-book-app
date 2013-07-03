@@ -23,9 +23,13 @@ ContactDetailGroupBase {
 
     property variant fields
     property string defaultIcon : "artwork:/protocol-other.png"
-    property bool modelLoaded: false
+    property ListModel typeModel
 
     function getType(detail) {
+        return typeModel.get(getTypeIndex(detail))
+    }
+
+    function getTypeIndex(detail) {
         var context = -1;
         for (var i = 0; i < detail.contexts.length; i++) {
             context = detail.contexts[i];
@@ -40,44 +44,61 @@ ContactDetailGroupBase {
             }
         }
         if (context === QtContacts.ContactDetail.ContextHome) {
-            return contextTypeModel.get(0)
+            return 0
         } else if (context === QtContacts.ContactDetail.ContextWork) {
-            return contextTypeModel.get(1)
+            return 1
         } else if (subType === QtContacts.ContactDetail.ContextOther) {
-            return contextTypeModel.get(2)
+            return 2
         } else {
-            return contextTypeModel.get(2)
+            return 2
         }
     }
 
-    function getTypeCount() {
-        return contextTypeModel.count
-    }
-
     view: ContactDetailViewWithAction {
-        property variant detailType: root.modelLoaded && detail ? root.getType(detail) : null
+        property variant detailType: root.typeModel.count && detail ? root.getType(detail) : null
 
-        subtitle.text: detailType ? detailType.label : "xxx"
+        subtitle.text: detailType ? detailType.label : ""
         actionIcon: detailType && detailType.icon ? detailType.icon : root.defaultIcon
         fields: root.fields
 
         height: implicitHeight
         anchors {
-            left: parent.left
-            right: parent.right
+            left: parent ? parent.left : undefined
+            right: parent ? parent.right : undefined
         }
     }
 
-    editor: null
+    editor: ContactDetailEditorWithAction {
+        height: implicitHeight
+        fields: root.fields
+        selectedTypeIndex: detail ? root.getTypeIndex(detail) : -1
+        types: {
+            if (typeModel.count > 0) {
+                var newTypes = [];
+                for(var i=0; i < typeModel.count; i++) {
+                    newTypes[i] = typeModel.get(i).label
+                }
+                return newTypes
+            } else {
+                return []
+            }
+        }
 
-    ListModel {
-        id: contextTypeModel
+        anchors {
+            left: parent ? parent.left : undefined
+            right: parent ? parent.right : undefined
+        }
+        Rectangle {
+            opacity: 0.3
+            anchors.fill: parent
+        }
+    }
 
+    typeModel: ListModel {
         Component.onCompleted: {
-            contextTypeModel.append({"value": "Home", "label": i18n.tr("Home"), icon: null})
-            contextTypeModel.append({"value": "Work", "label": i18n.tr("Work"), icon: null})
-            contextTypeModel.append({"value": "Other", "label": i18n.tr("Other"), icon: null})
-            root.modelLoaded = true
+            append({"value": "Home", "label": i18n.tr("Home"), icon: null})
+            append({"value": "Work", "label": i18n.tr("Work"), icon: null})
+            append({"value": "Other", "label": i18n.tr("Other"), icon: null})
         }
     }
 }

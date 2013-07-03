@@ -18,30 +18,24 @@ import QtQuick 2.0
 import QtContacts 5.0 as QtContacts
 
 ContactDetailGroupWithAction {
-    function getType(detail) {
+    function getTypeIndex(detail) {
         if (detail.contexts.indexOf(QtContacts.ContactDetail.ContextHome) > -1) {
-            return phoneTypeModel.get(1)
+            return 1
         } else if (detail.contexts.indexOf(QtContacts.ContactDetail.ContextWork) > -1) {
-            return phoneTypeModel.get(2)
+            return 2
         } else if (detail.subTypes.indexOf(QtContacts.ContactPhoneNumber.Mobile) > -1) {
-            return phoneTypeModel.get(0)
+            return 0
         } else {
-            return phoneTypeModel.get(3)
+            return 3
         }
     }
 
-    function getTypeCount() {
-        return phoneTypeModel.count
-    }
 
     title: i18n.tr("Phone")
     details: contactEditor.contact ? contactEditor.contact.phoneNumbers : null
     fields: [ QtContacts.PhoneNumber.Number ]
     defaultIcon: "artwork:/contact-call.png"
-
-    ListModel {
-        id: phoneTypeModel
-
+    typeModel: ListModel {
         Component.onCompleted: {
             append({"value": "Mobile", "label": i18n.tr("Mobile"), icon: null})
             append({"value": "Home", "label": i18n.tr("Home"), icon: null})

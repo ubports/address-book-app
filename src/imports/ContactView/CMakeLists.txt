@@ -1,8 +1,10 @@
 set(CONTACT_VIEW_QMLS
+    Combobox.qml
     ContactDetailAddress.qml
     ContactDetailAvatar.qml
     ContactDetailEditor.qml
     ContactDetailEditorText.qml
+    ContactDetailEditorWithAction.qml
     ContactDetailEmails.qml
     ContactDetailFavorite.qml
     ContactDetailGroupBase.qml
@@ -16,6 +18,7 @@ set(CONTACT_VIEW_QMLS
     ContactDetailViewWithAction.qml
     ContactEditor.qml
     ContactHeader.qml
+    TextInputDetail.qml
 )
 
 install(FILES ${CONTACT_VIEW_QMLS}
