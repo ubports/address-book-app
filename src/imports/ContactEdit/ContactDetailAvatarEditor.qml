@@ -28,7 +28,7 @@ ContactDetailBase {
 
     Image {
         anchors.fill: parent
-        source: root.detail && root.detail.imageUrl !== "" ? root.detail.imageUrl : "artwork:/avatar-default.png"
+        source: root.detail && root.detail.imageUrl != "" ? root.detail.imageUrl : "artwork:/avatar-default.png"
         asynchronous: true
         fillMode: Image.PreserveAspectCrop
 

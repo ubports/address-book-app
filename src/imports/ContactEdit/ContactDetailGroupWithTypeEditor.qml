@@ -26,6 +26,22 @@ ContactDetailGroupWithTypeBase {
     property string detailQmlTypeName
     property int currentItem: -1
 
+
+    function save() {
+        for(var i=0; i < detailDelegates.length; i++) {
+            var delegate = detailDelegates[i]
+
+            // Get item from Loader
+            if (delegate.item) {
+                delegate = delegate.item
+            }
+
+            if (delegate.save) {
+                delegate.save()
+            }
+        }
+    }
+
     minimumHeight: units.gu(3)
 
     headerDelegate: Item {
@@ -73,6 +89,7 @@ ContactDetailGroupWithTypeBase {
 
     detailDelegate: ContactDetailWithTypeEditor {
         property variant detailType: root.typeModel.count && detail ? root.getType(detail) : null
+
         onDetailTypeChanged: {
             var newTypes = []
             for(var i=0; i < root.typeModel.count; i++) {

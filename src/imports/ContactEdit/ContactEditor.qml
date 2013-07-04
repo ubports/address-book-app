@@ -26,16 +26,13 @@ Page {
     property QtObject model: null
 
     function save() {
-        if (state != "View") {
-            state = "View"
-            for(var i = 0; i < contents.children.length; ++i) {
-                var field = contents.children[i]
-                if (field.save) {
-                    field.save()
-                }
+        for(var i = 0; i < contents.children.length; ++i) {
+            var field = contents.children[i]
+            if (field.save) {
+                field.save()
             }
-            model.saveContact(contact)
         }
+        model.saveContact(contact)
     }
 
     Flickable {

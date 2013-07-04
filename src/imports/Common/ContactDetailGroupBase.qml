@@ -22,6 +22,7 @@ FocusScope {
     id: root
 
     readonly property variant details : priv.details
+    readonly property alias detailDelegates: contents.children
 
     property QtObject contact: null
     property int detailType: 0
@@ -30,6 +31,7 @@ FocusScope {
     property alias headerDelegate: headerItem.sourceComponent
     property Component detailDelegate
     property int minimumHeight: 0
+
 
     implicitHeight: root.details.length > 0 ? contents.height + units.gu(1) : minimumHeight
     visible: implicitHeight > 0

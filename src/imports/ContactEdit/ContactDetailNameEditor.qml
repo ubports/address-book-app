@@ -23,6 +23,15 @@ import "../Common"
 ContactDetailItem {
     id: root
 
+    function save() {
+        for(var i=0; i < fieldDelegates.length; i++) {
+            var delegate = fieldDelegates[i]
+            if (delegate.detail && (delegate.field >= 0)) {
+                delegate.detail.setValue(delegate.field, delegate.text)
+            }
+        }
+    }
+
     detail: root.contact ? root.contact.name : null
     fields: [ QtContacts.Name.FirstName, QtContacts.Name.MiddleName, QtContacts.Name.LastName ]
 

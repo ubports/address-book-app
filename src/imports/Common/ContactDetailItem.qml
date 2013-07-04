@@ -21,6 +21,7 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 ContactDetailBase {
     id: root
 
+    readonly property alias fieldDelegates: fieldsColumn.children
     property Component fieldDelegate: null
 
     implicitHeight: fieldsColumn.height

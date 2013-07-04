@@ -32,6 +32,16 @@ ContactDetailBase {
         detailTypeCombo.selectItem(type)
     }
 
+    function save() {
+        for (var i=0; i < fieldValues.children.length; i++) {
+            var input = fieldValues.children[i]
+            if (input.detail && (input.field >= 0)) {
+                //TODO: save type
+                input.detail.setValue(input.field, input.text)
+            }
+        }
+    }
+
     implicitHeight: fieldValues.height
 
     Combobox {
