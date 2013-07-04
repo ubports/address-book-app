@@ -41,7 +41,17 @@ FocusScope {
         }
     }
 
+    function cancel() {
+        for(var i = 0; i < contactHeader.children.length; ++i) {
+            var field = contactHeader.children[i]
+            if (field.cancel) {
+                field.cancel()
+            }
+        }
+    }
+
     implicitHeight: detailName.height + units.gu(2)
+
     ContactDetailAvatar {
         id: detailAvatar
 

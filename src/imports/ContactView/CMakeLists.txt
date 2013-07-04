@@ -17,6 +17,7 @@ set(CONTACT_VIEW_QMLS
     ContactDetailViewText.qml
     ContactDetailViewWithAction.qml
     ContactEditor.qml
+    ContactFetch.qml
     ContactHeader.qml
     TextInputDetail.qml
 )

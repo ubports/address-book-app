@@ -22,32 +22,59 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 Page {
     id: contactEditor
 
-    property variant contact: null
-    property variant model: null
+    readonly property alias contact: contactFetch.contact
+    property variant contactId: null
+    property alias model: contactFetch.model
 
     function edit() {
-        for(var i = 0; i < contents.children.length; ++i) {
-            var field = contents.children[i]
-            if (field.edit) {
-                field.edit()
+        if (state != "Edit") {
+            state = "Edit"
+
+            for(var i = 0; i < contents.children.length; ++i) {
+                var field = contents.children[i]
+                if (field.edit) {
+                    field.edit()
+                }
             }
         }
     }
 
     function save() {
-        for(var i = 0; i < contents.children.length; ++i) {
-            var field = contents.children[i]
-            if (field.save) {
-                field.save()
+        if (state != "View") {
+            state = "View"
+            for(var i = 0; i < contents.children.length; ++i) {
+                var field = contents.children[i]
+                if (field.save) {
+                    field.save()
+                }
             }
+            console.debug("Call save")
+            model.saveContact(contact)
         }
     }
+
+    function cancel() {
+        if (state != "View") {
+            state = "View"
+            for(var i = 0; i < contents.children.length; ++i) {
+                var field = contents.children[i]
+                if (field.cancel) {
+                    field.cancel()
+                }
+            }
+            contactFetch.fetchContact(contactEditor.contactId)
+        }
+    }
+
+    state: "View"
+    Component.onCompleted: contactFetch.fetchContact(contactEditor.contactId)
 
     Flickable {
         flickableDirection: Flickable.VerticalFlick
         anchors.fill: parent
         contentHeight: contents.height
         contentWidth: parent.width
+        visible: !busyIndicator.visible
 
         Column {
             id: contents
@@ -107,12 +134,39 @@ Page {
         }
     }
 
+    ActivityIndicator {
+        id: busyIndicator
+
+        running: contactFetch.running
+        visible: running
+        anchors.centerIn: parent
+    }
+
+    ContactFetch {
+        id: contactFetch
+    }
+
     tools: ToolbarItems {
         ToolbarButton {
             action: Action {
-                text: i18n.tr("Edit")
+                text: contactEditor.state === "View" ? i18n.tr("Edit") : i18n.tr("Save")
                 onTriggered: {
-                    contactEditor.edit()
+                    if (contactEditor.state === "View") {
+                        contactEditor.edit()
+                    } else {
+                        contactEditor.save()
+                    }
+                    contactEditor.toolbar.opened = false
+
+                }
+            }
+        }
+        ToolbarButton {
+            action: Action {
+                text: i18n.tr("Cancel")
+                visible: contactEditor.state == "Edit"
+                onTriggered: {
+                    contactEditor.cancel()
                     contactEditor.toolbar.opened = false
                 }
             }

@@ -34,10 +34,17 @@ FocusScope {
     }
 
     function save() {
-//        if (state == "edit") {
-//            //TODO
-//            state = "view"
-//        }
+        if (state == "edit") {
+            if (contents.item.save) {
+                contents.item.save()
+            }
+            state = "view"
+        }
+    }
+
+    function cancel() {
+        console.debug("Cancel Edit of field")
+        state = "view"
     }
 
     states: [
@@ -58,12 +65,18 @@ FocusScope {
     ]
 
     state: "view"
-    implicitHeight: contents.item && root.detail ? contents.item.height : 0
+    implicitHeight: contents.item ? contents.item.height : 0
 
     Loader {
         id: contents
 
         anchors.fill: parent
+        onStateChanged: {
+            if (state === Loader.Ready) {
+                item.detail = root.detail
+                item.contact = root.contact
+            }
+        }
 
         Binding {
             target: contents.item

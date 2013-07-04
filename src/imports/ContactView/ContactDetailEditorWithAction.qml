@@ -26,6 +26,17 @@ ContactDetailEditor {
     property alias types: detailTypeCombo.values
     property alias selectedTypeIndex: detailTypeCombo.currentIndex
 
+    function save() {
+        for(var i = 0; i < fieldValues.children.length; ++i) {
+            var input = fieldValues.children[i]
+            if (input.detail &&  (input.field >= 0)) {
+                console.debug("Child:" + input)
+                console.debug("Input value:" + input.text)
+                input.detail.setValue(input.field, input.text)
+            }
+        }
+    }
+
     implicitHeight: fieldValues.height
 
     Combobox {
@@ -51,8 +62,11 @@ ContactDetailEditor {
 
         Repeater {
             model: detail ? root.fields : 0
+
             TextInputDetail {
-                property variant originalValue: root.detail ? root.detail.value(modelData) : null
+                detail: root.detail
+                field: modelData
+
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -60,11 +74,6 @@ ContactDetailEditor {
                 height: root.itemHeight
                 onRemoveClicked: {
                     root.contact.removeDetail(root.detail)
-                }
-                Component.onCompleted: {
-                    if (originalValue) {
-                        text = originalValue
-                    }
                 }
             }
         }

@@ -22,6 +22,14 @@ ContactDetailEditor {
     id: detailEditor
 
     property bool removable: true
+
+    function save() {
+        for(var i = 0; i < contents.children.length; ++i) {
+            var input = contents.children[i]
+            //input.updateDetail()
+        }
+    }
+
     implicitHeight: contents.childrenRect.height + units.gu(1)
 
     Column {
@@ -35,12 +43,13 @@ ContactDetailEditor {
 
             model: enabled ? fields : 0
             TextInputDetail {
+                detail: detailEditor.detail
+                field: modelData
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
                 height: units.gu(4)
-                text: (detail) ? detail.value(modelData) : ""
             }
         }
     }

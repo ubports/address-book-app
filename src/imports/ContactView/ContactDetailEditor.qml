@@ -21,4 +21,7 @@ FocusScope {
     property QtObject detail: null
     property variant fields
     property bool enabled: false
+
+    function save() {
+    }
 }

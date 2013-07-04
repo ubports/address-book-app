@@ -67,7 +67,6 @@ ContactDetailGroupBase {
 
     editor: ContactDetailEditorWithAction {
         contact: root.contact
-        height: implicitHeight
         fields: root.fields
         selectedTypeIndex: detail ? root.getTypeIndex(detail) : -1
         types: {
@@ -82,6 +81,7 @@ ContactDetailGroupBase {
             }
         }
 
+        height: implicitHeight
         width: parent ? parent.width : 0
     }
 

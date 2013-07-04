@@ -24,15 +24,6 @@ ContactDetailItem {
     detail: root.contact ? root.contact.name : null
 
     view: ContactDetailViewText {
-        label {
-            fontSize: "large"
-            elide: Text.ElideRight
-            color: Qt.rgba(0.4, 0.4, 0.4, 1.0)
-            style: Text.Raised
-            styleColor: "white"
-        }
-        height: units.gu(10)
-
         function isNotEmptyString(string) {
             return (string && string.length !== 0);
         }
@@ -51,7 +42,15 @@ ContactDetailItem {
             }
         }
 
-        defaultText: formatNameToDisplay()
+        height: units.gu(10)
+        label {
+            fontSize: "large"
+            elide: Text.ElideRight
+            color: Qt.rgba(0.4, 0.4, 0.4, 1.0)
+            style: Text.Raised
+            styleColor: "white"
+            text: formatNameToDisplay()
+        }
     }
 
     editor: ContactDetailEditorText {

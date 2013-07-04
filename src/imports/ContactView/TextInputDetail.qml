@@ -20,15 +20,22 @@ import Ubuntu.Components 0.1
 Rectangle {
     id: root
 
-    property alias text:input.text
+    property QtObject detail
+    property int field: -1
+    readonly property alias text: input.text
+
     signal removeClicked()
 
     border.color: "black"
     border.width: 1
     implicitHeight: input.height
 
+    onDetailChanged: "Input detail changed:" + detail
+
     TextInput {
         id: input
+
+        property variant originalValue: root.detail && (root.field >= 0) ? root.detail.value(root.field) : null
 
         clip: true
         anchors {
@@ -39,6 +46,7 @@ Rectangle {
             verticalCenter: parent.verticalCenter
         }
         height: units.gu(2)
+        text: originalValue ? originalValue : ""
     }
 
     AbstractButton {
@@ -51,7 +59,6 @@ Rectangle {
         }
         width: units.gu(2)
         height: units.gu(2)
-        //visible: detailEditor.visible
 
         Image {
             anchors.fill: parent

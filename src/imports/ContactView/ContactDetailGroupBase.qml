@@ -69,10 +69,22 @@ FocusScope {
 
     function save() {
         if (priv.editing) {
-            for(var i = 0; i < detailFields.children.length; ++i) {
-                var field = detailFields.children[i]
+            for(var i = 0; i < contents.children.length; ++i) {
+                var field = contents.children[i]
                 if (field.save) {
                     field.save()
+                }
+            }
+            priv.editing = false
+        }
+    }
+
+    function cancel() {
+        if (priv.editing) {
+            for(var i = 0; i < contents.children.length; ++i) {
+                var field = contents.children[i]
+                if (field.cancel) {
+                    field.cancel()
                 }
             }
             priv.editing = false

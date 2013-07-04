@@ -19,7 +19,6 @@ import Ubuntu.Components 0.1
 import QtContacts 5.0
 
 ContactDetailView {
-    property string defaultText
     property alias label: defaultLabel
 
     implicitHeight: defaultLabel.paintedHeight
@@ -27,8 +26,7 @@ ContactDetailView {
     Label {
         id: defaultLabel
 
-        visible: defaultText
         anchors.fill: parent
-        text: defaultText && defaultText.length > 0 ? defaultText : detail.value(field)
+        text: detail.value(fields[0])
     }
 }

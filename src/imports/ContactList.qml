@@ -153,7 +153,8 @@ Page {
                     contactListView.currentIndex = index
                 }
                 onDoubleClicked: {
-                    editContactPriv.edit(contactListView.currentItem.contactObject.contactId)
+                    pageStack.push(Qt.resolvedUrl("ContactView/ContactEditor.qml"),
+                                   {model: contactsModel, contactId: contactListView.currentItem.contactObject.contactId})
                 }
             }
         }
@@ -201,9 +202,7 @@ Page {
     ActivityIndicator {
         id: busyIndicator
 
-        property bool pageIsBusy: false
-
-        running: contactListView.count == 0 || pageIsBusy
+        running: contactListView.count == 0
         visible: running
         anchors.centerIn: contactListView
     }
@@ -212,7 +211,10 @@ Page {
         Action {
             text: i18n.tr("Details")
             iconSource: "artwork:/edit.png"
-            onTriggered: editContactPriv.edit(contactListView.currentItem.contactObject.contactId)
+            onTriggered: {
+                pageStack.push(Qt.resolvedUrl("ContactView/ContactEditor.qml"),
+                               {model: contactsModel, contactId: contactListView.currentItem.contactObject.contactId})
+            }
         }
         Action {
             text: i18n.tr("New")
@@ -227,41 +229,4 @@ Page {
             }
         }
     }
-
-    Item {
-        id: editContactPriv
-
-        property int currentQueryId: -1
-
-        visible: false
-        Connections {
-            target: contactsModel
-            onContactsFetched: {
-                if (requestId == editContactPriv.currentQueryId) {
-                    busyIndicator.pageIsBusy = false
-                    editContactPriv.currentQueryId = -1
-                    pageStack.push(Qt.resolvedUrl("ContactView/ContactEditor.qml"),
-                                   {model: contactsModel, contact: fetchedContacts[0]})
-                }
-            }
-        }
-
-        function edit(contactId) {
-            if (!contactId || (currentQueryId != -1)) {
-                console.debug("in progress...")
-                return
-            }
-
-            busyIndicator.pageIsBusy = true
-
-            currentQueryId = contactsModel.fetchContacts([contactId])
-            if (currentQueryId == -1) {
-                busyIndicator.pageIsBusy = false
-            }
-        }
-
-
-    }
-
-
 }
