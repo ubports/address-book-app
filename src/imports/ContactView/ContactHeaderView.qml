@@ -23,36 +23,9 @@ FocusScope {
 
     property variant contact: null
 
-    function edit() {
-        for(var i = 0; i < contactHeader.children.length; ++i) {
-            var field = contactHeader.children[i]
-            if (field.edit) {
-                field.edit()
-            }
-        }
-    }
+    implicitHeight: units.gu(12)
 
-    function save() {
-        for(var i = 0; i < contactHeader.children.length; ++i) {
-            var field = contactHeader.children[i]
-            if (field.save) {
-                field.save()
-            }
-        }
-    }
-
-    function cancel() {
-        for(var i = 0; i < contactHeader.children.length; ++i) {
-            var field = contactHeader.children[i]
-            if (field.cancel) {
-                field.cancel()
-            }
-        }
-    }
-
-    implicitHeight: detailName.height + units.gu(2)
-
-    ContactDetailAvatar {
+    ContactDetailAvatarView {
         id: detailAvatar
 
         contact: contactHeader.contact
@@ -66,7 +39,7 @@ FocusScope {
         height: units.gu(8)
     }
 
-    ContactDetailName {
+    ContactDetailNameView {
         id: detailName
 
         contact: contactHeader.contact
@@ -79,7 +52,7 @@ FocusScope {
         height: implicitHeight
     }
 
-    ContactDetailFavorite {
+    ContactDetailFavoriteView {
         id: detailFavorite
 
         contact: contactHeader.contact

@@ -1,25 +1,16 @@
 set(CONTACT_VIEW_QMLS
-    Combobox.qml
-    ContactDetailAddress.qml
-    ContactDetailAvatar.qml
-    ContactDetailEditor.qml
-    ContactDetailEditorText.qml
-    ContactDetailEditorWithAction.qml
-    ContactDetailEmails.qml
-    ContactDetailFavorite.qml
-    ContactDetailGroupBase.qml
-    ContactDetailGroupWithAction.qml
-    ContactDetailItem.qml
-    ContactDetailName.qml
-    ContactDetailOnlineAccounts.qml
-    ContactDetailPhoneNumbers.qml
-    ContactDetailView.qml
-    ContactDetailViewText.qml
-    ContactDetailViewWithAction.qml
-    ContactEditor.qml
+    ContactDetailAddressView.qml
+    ContactDetailAvatarView.qml
+    ContactDetailEmailsView.qml
+    ContactDetailFavoriteView.qml
+    ContactDetailGroupWithTypeView.qml
+    ContactDetailNameView.qml
+    ContactDetailOnlineAccountsView.qml
+    ContactDetailPhoneNumbersView.qml
+    ContactDetailWithTypeView.qml
     ContactFetch.qml
-    ContactHeader.qml
-    TextInputDetail.qml
+    ContactHeaderView.qml
+    ContactView.qml
 )
 
 install(FILES ${CONTACT_VIEW_QMLS}
@@ -28,4 +19,3 @@ install(FILES ${CONTACT_VIEW_QMLS}
 
 # make the files visible on qtcreator
 add_custom_target(contact_view_QmlFiles ALL SOURCES ${CONTACT_VIEW_QMLS})
-

@@ -22,22 +22,8 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 Page {
     id: contactEditor
 
-    readonly property alias contact: contactFetch.contact
-    property variant contactId: null
-    property alias model: contactFetch.model
-
-    function edit() {
-        if (state != "Edit") {
-            state = "Edit"
-
-            for(var i = 0; i < contents.children.length; ++i) {
-                var field = contents.children[i]
-                if (field.edit) {
-                    field.edit()
-                }
-            }
-        }
-    }
+    property QtObject contact: null
+    property QtObject model: null
 
     function save() {
         if (state != "View") {
@@ -48,26 +34,9 @@ Page {
                     field.save()
                 }
             }
-            console.debug("Call save")
             model.saveContact(contact)
         }
     }
-
-    function cancel() {
-        if (state != "View") {
-            state = "View"
-            for(var i = 0; i < contents.children.length; ++i) {
-                var field = contents.children[i]
-                if (field.cancel) {
-                    field.cancel()
-                }
-            }
-            contactFetch.fetchContact(contactEditor.contactId)
-        }
-    }
-
-    state: "View"
-    Component.onCompleted: contactFetch.fetchContact(contactEditor.contactId)
 
     Flickable {
         flickableDirection: Flickable.VerticalFlick
@@ -79,55 +48,66 @@ Page {
         Column {
             id: contents
 
-            height: childrenRect.height
+            spacing: units.gu(1)
+
             anchors {
                 top: parent.top
                 left: parent.left
                 right: parent.right
+                margins: units.gu(1)
             }
+            height: childrenRect.height
 
-            ContactHeader {
-                contact: contactEditor.contact
-                width: parent.width
-                height: implicitHeight
-            }
-
-            ContactDetailPhoneNumbers {
+            ContactDetailNameEditor {
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
                     right: parent.right
-                    margins: units.gu(1)
                 }
                 height: implicitHeight
             }
 
-            ContactDetailEmails {
+            ContactDetailAvatarEditor {
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
                     right: parent.right
-                    margins: units.gu(1)
                 }
                 height: implicitHeight
             }
 
-            ContactDetailOnlineAccounts {
+            ContactDetailPhoneNumbersEditor {
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
                     right: parent.right
-                    margins: units.gu(1)
                 }
                 height: implicitHeight
             }
 
-            ContactDetailAddress {
+            ContactDetailEmailsEditor {
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
                     right: parent.right
-                    margins: units.gu(1)
+                }
+                height: implicitHeight
+            }
+
+            ContactDetailOnlineAccountsEditor {
+                contact: contactEditor.contact
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                height: implicitHeight
+            }
+
+            ContactDetailAddressesEditor {
+                contact: contactEditor.contact
+                anchors {
+                    left: parent.left
+                    right: parent.right
                 }
                 height: implicitHeight
             }
@@ -137,36 +117,18 @@ Page {
     ActivityIndicator {
         id: busyIndicator
 
-        running: contactFetch.running
+        running: false
         visible: running
         anchors.centerIn: parent
-    }
-
-    ContactFetch {
-        id: contactFetch
     }
 
     tools: ToolbarItems {
         ToolbarButton {
             action: Action {
-                text: contactEditor.state === "View" ? i18n.tr("Edit") : i18n.tr("Save")
+                text: i18n.tr("Save")
+                iconSource: "artwork:/edit.png"
                 onTriggered: {
-                    if (contactEditor.state === "View") {
-                        contactEditor.edit()
-                    } else {
-                        contactEditor.save()
-                    }
-                    contactEditor.toolbar.opened = false
-
-                }
-            }
-        }
-        ToolbarButton {
-            action: Action {
-                text: i18n.tr("Cancel")
-                visible: contactEditor.state == "Edit"
-                onTriggered: {
-                    contactEditor.cancel()
+                    contactEditor.save()
                     contactEditor.toolbar.opened = false
                 }
             }

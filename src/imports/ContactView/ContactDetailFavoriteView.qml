@@ -15,11 +15,24 @@
  */
 
 import QtQuick 2.0
-import QtContacts 5.0 as QtContacts
+import Ubuntu.Components 0.1
+import QtContacts 5.0
 
-ContactDetailGroupWithAction {
-    detailQmlTypeName: "EmailAddress"
-    detailType: QtContacts.ContactDetail.Email
-    title: i18n.tr("Email")
-    fields: [ 0 ]
+import "../Common"
+
+ContactDetailBase {
+    id: root
+
+    detail: root.contact ? root.contact.favorite : null
+    Image {
+        anchors.fill: parent
+        source: root.detail && root.detail.favorite ? "artwork:/favorite-selected.png" : "artwork:/favorite-unselected.png"
+        MouseArea {
+           anchors.fill: parent
+           onClicked: {
+               root.detail.favorite = !root.detail.favorite
+               //TODO: save favorite if not in edit mode
+           }
+        }
+   }
 }

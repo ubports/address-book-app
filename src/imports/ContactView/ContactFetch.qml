@@ -37,7 +37,6 @@ Item {
         id: connections
 
         property int currentQueryId: -1
-        property string requestedContactId: nulls
 
         onContactsFetched: {
             if (requestId == currentQueryId) {

@@ -17,7 +17,9 @@
 import QtQuick 2.0
 import QtContacts 5.0 as QtContacts
 
-ContactDetailGroupWithAction {
+ListModel {
+    id: typeModel
+
     function getTypeIndex(detail) {
         if (detail.contexts.indexOf(QtContacts.ContactDetail.ContextHome) > -1) {
             return 1
@@ -30,17 +32,10 @@ ContactDetailGroupWithAction {
         }
     }
 
-    detailQmlTypeName: "PhoneNumber"
-    detailType: QtContacts.ContactDetail.PhoneNumber
-    title: i18n.tr("Phone")
-    fields: [ QtContacts.PhoneNumber.Number ]
-    defaultIcon: "artwork:/contact-call.png"
-    typeModel: ListModel {
-        Component.onCompleted: {
-            append({"value": "Mobile", "label": i18n.tr("Mobile"), icon: null})
-            append({"value": "Home", "label": i18n.tr("Home"), icon: null})
-            append({"value": "Work", "label": i18n.tr("Work"), icon: null})
-            append({"value": "Other", "label": i18n.tr("Other"), icon: null})
-        }
+    Component.onCompleted: {
+        append({"value": "Mobile", "label": i18n.tr("Mobile"), icon: null})
+        append({"value": "Home", "label": i18n.tr("Home"), icon: null})
+        append({"value": "Work", "label": i18n.tr("Work"), icon: null})
+        append({"value": "Other", "label": i18n.tr("Other"), icon: null})
     }
 }

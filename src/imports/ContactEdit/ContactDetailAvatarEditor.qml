@@ -18,39 +18,38 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import QtContacts 5.0
 
-ContactDetailEditor {
-    id: detailEditor
+import "../Common"
 
-    property bool removable: true
+ContactDetailBase {
+    id: root
 
-    function save() {
-        for(var i = 0; i < contents.children.length; ++i) {
-            var input = contents.children[i]
-            //input.updateDetail()
-        }
-    }
+    detail: contact ? contact.avatar : null
+    implicitHeight: units.gu(12)
 
-    implicitHeight: contents.childrenRect.height + units.gu(1)
-
-    Column {
-        id: contents
-
-        spacing: units.gu(0.5)
+    Image {
         anchors.fill: parent
+        source: root.detail && root.detail.imageUrl !== "" ? root.detail.imageUrl : "artwork:/avatar-default.png"
+        asynchronous: true
+        fillMode: Image.PreserveAspectCrop
 
-        Repeater {
-            id: repeater
+        AbstractButton {
+            id: changeButton
 
-            model: enabled ? fields : 0
-            TextInputDetail {
-                detail: detailEditor.detail
-                field: modelData
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-                height: units.gu(4)
+            anchors {
+                right: parent.right
+                bottom: parent.bottom
+                margins: units.gu(1)
+            }
+
+            width: units.gu(2)
+            height: units.gu(2)
+
+            Image {
+                anchors.fill: parent
+                source: "artwork:/edit.png"
+                fillMode: Image.PreserveAspectFit
             }
         }
     }
 }
+

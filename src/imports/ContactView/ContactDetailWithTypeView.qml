@@ -19,7 +19,9 @@ import Ubuntu.Components 0.1
 import QtContacts 5.0
 import Ubuntu.Components.ListItems 0.1 as ListItem
 
-ContactDetailView {
+import "../Common"
+
+ContactDetailBase {
     id: root
 
     property alias subtitle: subtitle
@@ -46,11 +48,10 @@ ContactDetailView {
             height: childrenRect.height + units.gu(2) // margin
 
             Repeater {
-                model: detail ? root.fields : 0
+                model: root.fields
 
                 Label {
                     id: title
-
                     anchors {
                         left: parent.left
                         //leftMargin: units.gu(1)
@@ -59,7 +60,7 @@ ContactDetailView {
                     verticalAlignment: Text.AlignVCenter
                     height: root.itemHeight
                     fontSize: "medium"
-                    text: root.detail && root.detail.value(modelData) ? root.detail.value(modelData) : ""
+                    text: root.detail ? root.detail.value(modelData) : "xxx"
                 }
             }
         }

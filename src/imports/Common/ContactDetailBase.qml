@@ -15,13 +15,14 @@
  */
 
 import QtQuick 2.0
+import Ubuntu.Components 0.1
+import Ubuntu.Components.ListItems 0.1 as ListItem
+
 
 FocusScope {
+    id: root
+
     property QtObject contact: null
     property QtObject detail: null
-    property variant fields
-    property bool enabled: false
-
-    function save() {
-    }
+    property variant fields: null
 }

@@ -16,21 +16,19 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
-import QtContacts 5.0
+import QtContacts 5.0 as QtContacts
+
+import "../Common"
 
 ContactDetailItem {
     id: root
 
-    detail: root.contact ? root.contact.favorite : null
-    view: Image {
-        anchors.fill: parent
-        source: root.detail && root.detail.favorite ? "artwork:/favorite-selected.png" : "artwork:/favorite-unselected.png"
-        MouseArea {
-           anchors.fill: parent
-           onClicked: {
-               root.detail.favorite = !root.detail.favorite
-               //TODO: save favorite if not in edit mode
-           }
-        }
-   }
+    detail: root.contact ? root.contact.name : null
+    fields: [ QtContacts.Name.FirstName, QtContacts.Name.MiddleName, QtContacts.Name.LastName ]
+
+    fieldDelegate: TextInputDetail {
+        detail: root.detail
+        width: root.width
+        height: units.gu(4)
+    }
 }

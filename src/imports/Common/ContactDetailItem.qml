@@ -16,17 +16,37 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
-import QtContacts 5.0
+import Ubuntu.Components.ListItems 0.1 as ListItem
 
-ContactDetailView {
-    property alias label: defaultLabel
+ContactDetailBase {
+    id: root
 
-    implicitHeight: defaultLabel.paintedHeight
+    property Component fieldDelegate: null
 
-    Label {
-        id: defaultLabel
+    implicitHeight: fieldsColumn.height
 
-        anchors.fill: parent
-        text: detail.value(fields[0])
+    Column {
+        id: fieldsColumn
+
+        anchors {
+            left: parent.left
+            right: parent.right
+        }
+
+        height: childrenRect.height
+        Repeater {
+            model: root.fields
+            Loader {
+                id: field
+
+                sourceComponent: fieldDelegate
+
+                Binding {
+                    target: item
+                    property: "field"
+                    value: modelData
+                }
+            }
+        }
     }
 }

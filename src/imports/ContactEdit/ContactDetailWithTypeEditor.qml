@@ -16,25 +16,20 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import QtContacts 5.0
 import Ubuntu.Components.ListItems 0.1 as ListItem
-import Ubuntu.Components.Popups 0.1 as Popups
 
-ContactDetailEditor {
+import "../Common"
+
+ContactDetailBase {
     id: root
 
     property double itemHeight: units.gu(4)
     property alias types: detailTypeCombo.values
     property alias selectedTypeIndex: detailTypeCombo.currentIndex
 
-    function save() {
-        for(var i = 0; i < fieldValues.children.length; ++i) {
-            var input = fieldValues.children[i]
-            if (input.detail &&  (input.field >= 0)) {
-                console.debug("Child:" + input)
-                console.debug("Input value:" + input.text)
-                input.detail.setValue(input.field, input.text)
-            }
-        }
+    function selectType(type) {
+        detailTypeCombo.selectItem(type)
     }
 
     implicitHeight: fieldValues.height
@@ -56,12 +51,11 @@ ContactDetailEditor {
         anchors {
             left: detailTypeCombo.right
             right: parent.right
-            margins: units.gu(1)
         }
         height: childrenRect.height
 
         Repeater {
-            model: detail ? root.fields : 0
+            model: root.fields
 
             TextInputDetail {
                 detail: root.detail

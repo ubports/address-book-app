@@ -153,7 +153,7 @@ Page {
                     contactListView.currentIndex = index
                 }
                 onDoubleClicked: {
-                    pageStack.push(Qt.resolvedUrl("ContactView/ContactEditor.qml"),
+                    pageStack.push(Qt.resolvedUrl("ContactView/ContactView.qml"),
                                    {model: contactsModel, contactId: contactListView.currentItem.contactObject.contactId})
                 }
             }
@@ -210,9 +210,9 @@ Page {
     tools: ToolbarActions {
         Action {
             text: i18n.tr("Details")
-            iconSource: "artwork:/edit.png"
+            iconSource: "artwork:/avatar-default.png"
             onTriggered: {
-                pageStack.push(Qt.resolvedUrl("ContactView/ContactEditor.qml"),
+                pageStack.push(Qt.resolvedUrl("ContactView/ContactView.qml"),
                                {model: contactsModel, contactId: contactListView.currentItem.contactObject.contactId})
             }
         }
