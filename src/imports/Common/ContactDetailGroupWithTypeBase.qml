@@ -82,9 +82,15 @@ ContactDetailGroupBase {
                 return
             }
 
-            var newContext = detail.contexts.filter(isNotAModelValue)
+            // WORKAROUND: in EDS empty context is equal to QtContacts.ContactDetail.ContextOther
+            // this will avoid call contact update if the context has not changed
+            if ((detail.contexts.length === 0) && (modelData.value === QtContacts.ContactDetail.ContextOther)) {
+                return
+            }
 
-            detail.contexts.push(modelData.value)
+            var newContext = detail.contexts.filter(isNotAModelValue)
+            newContext.push(modelData.value)
+            detail.contexts = newContext
         }
 
         Component.onCompleted: {
