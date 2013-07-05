@@ -60,7 +60,7 @@ ContactDetailBase {
                     verticalAlignment: Text.AlignVCenter
                     height: root.itemHeight
                     fontSize: "medium"
-                    text: root.detail ? root.detail.value(modelData) : "xxx"
+                    text: root.detail ? root.detail.value(modelData) : ""
                 }
             }
         }

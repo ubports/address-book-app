@@ -17,39 +17,19 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 
-Rectangle {
+TextField {
     id: root
 
     property QtObject detail
     property int field: -1
-    readonly property alias text: input.text
+    property variant originalValue: root.detail && (root.field >= 0) ? root.detail.value(root.field) : null
 
     signal removeClicked()
 
-    border.color: "black"
-    border.width: 1
-    implicitHeight: input.height
+    hasClearButton: false
+    text: originalValue ? originalValue : ""
 
-    onDetailChanged: "Input detail changed:" + detail
-
-    TextInput {
-        id: input
-
-        property variant originalValue: root.detail && (root.field >= 0) ? root.detail.value(root.field) : null
-
-        clip: true
-        anchors {
-            left: parent.left
-            right: removeButton.left
-            leftMargin: units.gu(1)
-            rightMargin: units.gu(1)
-            verticalCenter: parent.verticalCenter
-        }
-        height: units.gu(2)
-        text: originalValue ? originalValue : ""
-    }
-
-    AbstractButton {
+    secondaryItem: AbstractButton {
         id: removeButton
 
         anchors {

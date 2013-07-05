@@ -26,6 +26,7 @@ ContactDetailBase {
 
     property double itemHeight: units.gu(4)
     property alias types: detailTypeCombo.values
+    property int fieldType: -1
     property alias selectedTypeIndex: detailTypeCombo.currentIndex
 
     function selectType(type) {
@@ -33,10 +34,10 @@ ContactDetailBase {
     }
 
     function save() {
+        // save field values
         for (var i=0; i < fieldValues.children.length; i++) {
             var input = fieldValues.children[i]
             if (input.detail && (input.field >= 0)) {
-                //TODO: save type
                 input.detail.setValue(input.field, input.text)
             }
         }

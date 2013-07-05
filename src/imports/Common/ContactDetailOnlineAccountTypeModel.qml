@@ -20,9 +20,20 @@ import QtContacts 5.0 as QtContacts
 ListModel {
     id: typeModel
 
+    signal loaded()
+
     function getTypeIndex(detail) {
         var index = detail.value(2)
         return index ? index : 0
+    }
+
+    function updateDetail(detail, index) {
+        var modelData = get(index)
+        if (!modelData) {
+            return
+        }
+
+        detail.setValue(2, modelData.value)
     }
 
     Component.onCompleted: {
@@ -35,5 +46,6 @@ ListModel {
         append({"value": 6, "label": i18n.tr("QQ"), icon: "artwork:/protocol-qq.png"})
         append({"value": 7, "label": i18n.tr("Skype"), icon: "artwork:/protocol-skype.png"})
         append({"value": 8, "label": i18n.tr("Yahoo"), icon: "artwork:/protocol-yahoo.png"})
+        loaded()
     }
 }

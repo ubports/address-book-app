@@ -32,9 +32,16 @@ ContactDetailGroupBase {
         }
     }
 
+    function updateDetail(detail, index) {
+        if (typeModel) {
+            typeModel.updateDetail(detail, index)
+        }
+    }
+
     typeModel: ListModel {
 
-        objectName: "defaultModel"
+        signal loaded()
+
         function getTypeIndex(detail) {
             var context = -1;
             for (var i = 0; i < detail.contexts.length; i++) {
@@ -60,10 +67,31 @@ ContactDetailGroupBase {
             }
         }
 
+        function isNotAModelValue(value) {
+            for(var i=0; i < count; i++) {
+                if (value === get(i).value) {
+                    return false
+                }
+            }
+            return true
+        }
+
+        function updateDetail(detail, index) {
+            var modelData = get(index)
+            if (!modelData) {
+                return
+            }
+
+            var newContext = detail.contexts.filter(isNotAModelValue)
+
+            detail.contexts.push(modelData.value)
+        }
+
         Component.onCompleted: {
-            append({"value": "Home", "label": i18n.tr("Home"), icon: null})
-            append({"value": "Work", "label": i18n.tr("Work"), icon: null})
-            append({"value": "Other", "label": i18n.tr("Other"), icon: null})
+            append({"value": QtContacts.ContactDetail.ContextHome, "label": i18n.tr("Home"), icon: null})
+            append({"value": QtContacts.ContactDetail.ContextWork, "label": i18n.tr("Work"), icon: null})
+            append({"value": QtContacts.ContactDetail.ContextOther, "label": i18n.tr("Other"), icon: null})
+            loaded()
         }
     }
 }

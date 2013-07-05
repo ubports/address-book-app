@@ -25,7 +25,7 @@ ContactDetailGroupWithTypeBase {
 
     property string detailQmlTypeName
     property int currentItem: -1
-
+    property int fieldType: QtContacts.ContactDetail.FieldContext
 
     function save() {
         for(var i=0; i < detailDelegates.length; i++) {
@@ -37,6 +37,9 @@ ContactDetailGroupWithTypeBase {
             }
 
             if (delegate.save) {
+                // save type
+                updateDetail(delegate.detail, delegate.selectedTypeIndex)
+                // save fields
                 delegate.save()
             }
         }
@@ -88,16 +91,20 @@ ContactDetailGroupWithTypeBase {
     }
 
     detailDelegate: ContactDetailWithTypeEditor {
-        property variant detailType: root.typeModel.count && detail ? root.getType(detail) : null
+        property variant detailType: null
 
-        onDetailTypeChanged: {
+        function updateCombo()
+        {
             var newTypes = []
             for(var i=0; i < root.typeModel.count; i++) {
                 newTypes.push(root.typeModel.get(i).label)
             }
             types = newTypes
-            if (detailType) {
-                selectType(detailType.label)
+            if (detail) {
+                detailType = getType(detail)
+                if (detailType) {
+                    selectType(detailType.label)
+                }
             }
         }
 
@@ -105,5 +112,12 @@ ContactDetailGroupWithTypeBase {
         fields: root.fields
         height: implicitHeight
         width: root.width
+
+        onDetailChanged: updateCombo()
+
+        Connections {
+            target: root.typeModel
+            onLoaded: updateCombo()
+        }
     }
 }
