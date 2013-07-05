@@ -126,7 +126,7 @@ Page {
                 iconSource: "artwork:/edit.png"
                 onTriggered: {
                     contactEditor.save()
-                    contactEditor.toolbar.opened = false
+                    pageStack.pop()
                 }
             }
         }
