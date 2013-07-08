@@ -26,6 +26,12 @@ ContactDetailItem {
     function save() {
         for(var i=0; i < fieldDelegates.length; i++) {
             var delegate = fieldDelegates[i]
+
+            // Get item from Loader
+            if (delegate.item) {
+                delegate = delegate.item
+            }
+
             if (delegate.detail && (delegate.field >= 0)) {
                 delegate.detail.setValue(delegate.field, delegate.text)
             }

@@ -47,6 +47,12 @@ ContactDetailBase {
                     property: "field"
                     value: modelData
                 }
+
+                Binding {
+                    target: item
+                    property: "detail"
+                    value: root.detail
+                }
             }
         }
     }
