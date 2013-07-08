@@ -22,14 +22,29 @@ Item {
     property alias model: connections.target
     property bool running: false
     property QtObject contact: null
+    property bool contactIsDirty: false
 
     signal contactFetched(QtObject contact)
 
     function fetchContact(contactId) {
-        running = true
-        connections.currentQueryId = model.fetchContacts([contactId])
-        if (connections.currentQueryId === -1) {
-            running = false
+        if (contact && !contactIsDirty) {
+            contactFetched(contact)
+        } else {
+            running = true
+            connections.currentQueryId = model.fetchContacts([contactId])
+            if (connections.currentQueryId === -1) {
+                running = false
+            }
+        }
+    }
+
+    Connections {
+        target: root.model
+
+        onContactsChanged: {
+            if (root.contact) {
+                root.contactIsDirty = true
+            }
         }
     }
 
@@ -40,6 +55,7 @@ Item {
 
         onContactsFetched: {
             if (requestId == currentQueryId) {
+                root.contactIsDirty = false
                 root.running = false
                 currentQueryId = -1
                 root.contactFetched(fetchedContacts[0])

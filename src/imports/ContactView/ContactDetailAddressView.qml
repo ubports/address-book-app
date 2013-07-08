@@ -19,6 +19,7 @@ import QtContacts 5.0 as QtContacts
 
 ContactDetailGroupWithTypeView {
     title: i18n.tr("Address")
+    defaultIcon: "artwork:/contact-location.png"
     detailType: QtContacts.ContactDetail.Address
     fields: [ QtContacts.Address.Street,
               QtContacts.Address.Locality,

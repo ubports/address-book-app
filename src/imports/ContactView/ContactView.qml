@@ -44,7 +44,12 @@ Page {
         }
     }
 
-    Component.onCompleted: contactFetch.fetchContact(root.contactId)
+    onActiveChanged: {
+        if (active) {
+            contactFetch.fetchContact(root.contactId)
+        }
+    }
+
     title: formatNameToDisplay(contact)
 
     Flickable {

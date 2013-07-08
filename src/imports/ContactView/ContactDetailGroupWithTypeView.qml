@@ -32,11 +32,11 @@ ContactDetailGroupWithTypeBase {
     }
 
     detailDelegate: ContactDetailWithTypeView {
-        property variant detailType: root.typeModel.count && detail ? root.getType(detail) : null
+        property variant detailType: detail && root.contact && root.typeModel ? root.getType(detail) : null
 
         contact: root.contact
         fields: root.fields
-        subtitle.text: detailType ? detailType.label : "cccc"
+        subtitle.text: detailType ? detailType.label : ""
         actionIcon: detailType && detailType.icon ? detailType.icon : root.defaultIcon
 
         height: implicitHeight

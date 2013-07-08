@@ -114,9 +114,28 @@ Page {
     ActivityIndicator {
         id: busyIndicator
 
-        running: false
+        running: contactSaveLock.saving
         visible: running
         anchors.centerIn: parent
+    }
+
+    Connections {
+        id: contactSaveLock
+
+        property bool saving: false
+
+        target: contactEditor.model
+
+        onContactsChanged: {
+            if (active) {
+                pageStack.pop()
+            }
+        }
+
+        onErrorChanged: {
+            //TODO: show a dialog
+            console.debug("Save error:" + contactEditor.model.error)
+        }
     }
 
     tools: ToolbarItems {
@@ -125,9 +144,11 @@ Page {
                 text: i18n.tr("Save")
                 iconSource: "artwork:/edit.png"
                 onTriggered: {
+                    // wait for contact to be saved or cause a error
+                    contactSaveLock.saving = true
                     contactEditor.save()
-                    pageStack.pop()
                 }
+
             }
         }
     }
