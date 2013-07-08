@@ -219,7 +219,11 @@ Page {
         Action {
             text: i18n.tr("New")
             iconSource: "artwork:/add.png"
-            onTriggered: console.debug("Not implemented")
+            onTriggered: {
+                var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", mainPage)
+                pageStack.push(Qt.resolvedUrl("ContactEdit/ContactEditor.qml"),
+                               {model: contactsModel, contact: newContact})
+            }
         }
         Action {
             text: i18n.tr("Delete")
