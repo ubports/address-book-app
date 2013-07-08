@@ -21,7 +21,7 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 FocusScope {
     id: root
 
-    readonly property variant details : contact && detailType ? contact.details(detailType) : []
+    readonly property variant details: contact && contact.contactDetails && detailType ? contact.details(detailType) : []
     readonly property alias detailDelegates: contents.children
 
     property QtObject contact: null
@@ -31,7 +31,6 @@ FocusScope {
     property alias headerDelegate: headerItem.sourceComponent
     property Component detailDelegate
     property int minimumHeight: 0
-
 
     implicitHeight: root.details.length > 0 ? contents.height + units.gu(1) : minimumHeight
     visible: implicitHeight > 0
@@ -61,16 +60,6 @@ FocusScope {
                     target: detailItem.item
                     property: "detail"
                     value: root.details[index]
-                }
-
-                Connections {
-                    target: root
-                    onDetailsChanged: detailItem.item.detail = root.details[index]
-                }
-
-                Connections {
-                    target: root.contact
-                    onContactChanged: detailItem.item.detail = root.details[index]
                 }
             }
         }
