@@ -26,26 +26,26 @@ TextField {
 
     signal removeClicked()
 
-    hasClearButton: false
+    //hasClearButton: false
     text: originalValue ? originalValue : ""
 
-    secondaryItem: AbstractButton {
-        id: removeButton
+//    secondaryItem: AbstractButton {
+//        id: removeButton
 
-        anchors {
-            verticalCenter: parent.verticalCenter
-            right: parent.right
-            rightMargin: units.gu(1)
-        }
-        width: units.gu(2)
-        height: units.gu(2)
+//        anchors {
+//            verticalCenter: parent.verticalCenter
+//            right: parent.right
+//            rightMargin: units.gu(1)
+//        }
+//        width: units.gu(2)
+//        height: units.gu(2)
 
-        Image {
-            anchors.fill: parent
-            source: "artwork:/edit-remove.png"
-            fillMode: Image.PreserveAspectFit
-        }
+//        Image {
+//            anchors.fill: parent
+//            source: "artwork:/edit-remove.png"
+//            fillMode: Image.PreserveAspectFit
+//        }
 
-        onClicked: root.removeClicked()
-    }
+//        onClicked: root.removeClicked()
+//    }
 }
