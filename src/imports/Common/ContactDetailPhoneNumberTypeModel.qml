@@ -24,16 +24,16 @@ ListModel {
 
     function getTypeIndex(detail) {
         var contexts = detail.contexts
-        var subTypes = details.subTypes
+        var subTypes = detail.subTypes
 
         if (contexts.indexOf(QtContacts.ContactDetail.ContextHome) > -1) {
-            if (subTypes && subTypes.indexOf(QtContacts.PhoneNumber.Mobile)) {
+            if (subTypes && subTypes.indexOf(QtContacts.PhoneNumber.Mobile) > -1) {
                 return 2
             } else {
                 return 0
             }
         } else if (contexts.indexOf(QtContacts.ContactDetail.ContextWork) > -1) {
-            if (subTypes && subTypes.indexOf(QtContacts.PhoneNumber.Mobile)) {
+            if (subTypes && subTypes.indexOf(QtContacts.PhoneNumber.Mobile)> -1) {
                 return 3
             } else {
                 return 1
