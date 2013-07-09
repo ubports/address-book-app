@@ -29,14 +29,15 @@ MainView {
 
         anchors {
             fill: parent
-            bottomMargin: Qt.inputMethod.visible ? (Qt.inputMethod.keyboardRectangle.height - mainView.anchors.bottomMargin) : 0
+            bottomMargin: Qt.inputMethod.visible ? (Qt.inputMethod.keyboardRectangle.height - mainView.anchors.bottomMargin) + units.gu(2) : 0
             Behavior on bottomMargin {
                 NumberAnimation {
                     duration: 175
                     easing.type: Easing.OutQuad
                 }
             }
-            onBottomMarginChanged: console.debug("TODO: implement scrool to correct position")
+            //TODO: waiting for final design to correct implementation
+            onBottomMarginChanged: console.debug("TODO: implement scroll to correct position")
         }
     }
 
