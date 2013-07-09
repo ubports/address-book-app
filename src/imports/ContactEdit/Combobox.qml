@@ -19,7 +19,7 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1 as Popups
 
-Item {
+FocusScope {
     id: root
 
     property variant values: []
@@ -87,6 +87,7 @@ Item {
     AbstractButton {
         id: button
 
+        focus: true
         anchors {
             verticalCenter: label.verticalCenter
             right: parent.right
@@ -102,6 +103,10 @@ Item {
             fillMode: Image.PreserveAspectFit
             rotation: root.expanded ? 270 : 90
         }
-        onClicked: Popups.PopupUtils.open(popoverComponent, button)
+
+        onClicked: {
+            button.forceActiveFocus()
+            Popups.PopupUtils.open(popoverComponent, button)
+        }
     }
 }
