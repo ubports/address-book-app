@@ -35,10 +35,11 @@ Page {
             return ""
         }
 
-        if (contact.displayLabel && contact.displayLabel.label && contact.displayLabel.label !== "") {
+        if (contact.name) {
+            var detail = contact.name
+            return [detail.prefix, detail.firstName, detail.middleName, detail.lastName, detail.suffix].filter(isNotEmptyString).join(" ")
+        } else if (contact.displayLabel && contact.displayLabel.label && contact.displayLabel.label !== "") {
             return contact.displayLabel.label
-        } else if (detail) {
-           return [detail.prefix, detail.firstName, detail.middleName, detail.lastName, detail.suffix].filter(isNotEmptyString).join(" ")
         } else {
             return ""
         }
