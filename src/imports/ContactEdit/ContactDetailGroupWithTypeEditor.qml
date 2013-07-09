@@ -92,9 +92,16 @@ ContactDetailGroupWithTypeBase {
 
     detailDelegate: ContactDetailWithTypeEditor {
         property variant detailType: null
+        property bool comboLoaded: false
 
-        function updateCombo()
+        function updateCombo(reload)
         {
+            // Does not update the combo info after details change (Ex. a new detail field was created)
+            if (!reload && comboLoaded) {
+                return;
+            }
+
+            comboLoaded = true
             var newTypes = []
             for(var i=0; i < root.typeModel.count; i++) {
                 newTypes.push(root.typeModel.get(i).label)
@@ -113,11 +120,11 @@ ContactDetailGroupWithTypeBase {
         height: implicitHeight
         width: root.width
 
-        onDetailChanged: updateCombo()
+        onDetailChanged: updateCombo(false)
 
         Connections {
             target: root.typeModel
-            onLoaded: updateCombo()
+            onLoaded: updateCombo(true)
         }
     }
 }

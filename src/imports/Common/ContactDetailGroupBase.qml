@@ -35,6 +35,30 @@ FocusScope {
     implicitHeight: root.details.length > 0 ? contents.height + units.gu(1) : minimumHeight
     visible: implicitHeight > 0
 
+    // This model is used to avoid rebuild the repeater every time that the details change
+    // With this model the changed info on the fields will remain after add a new field
+    ListModel {
+        id: detailsModel
+
+        property var values: root.details
+
+        onValuesChanged: {
+            while (count > values.lenght) {
+                remove(count - 1)
+            }
+
+            var modelCount = count
+
+            for(var i=0; i < values.length; i++) {
+                if (modelCount < i) {
+                    append({"detail": values[i]})
+                } else if (get(i) != values[i]) {
+                    set(i, {"detail": values[i]})
+                }
+            }
+        }
+    }
+
     Column {
         id: contents
 
@@ -51,7 +75,7 @@ FocusScope {
         Repeater {
             id: detailFields
 
-            model: root.details.length
+            model: detailsModel
             Loader {
                 id: detailItem
 
