@@ -21,6 +21,7 @@
 #include <QUrl>
 #include <QDir>
 #include <QDebug>
+#include <QLibrary>
 
 #include "config.h"
 
@@ -43,6 +44,28 @@ int main(int argc, char** argv)
 {
     QGuiApplication::setApplicationName(ADDRESS_BOOK_APP_NAME);
     QGuiApplication app(argc, argv);
+    QStringList args = app.arguments();
+    bool testability = args.removeAll("-testability") > 0;
+
+    // The testability driver is only loaded by QApplication but not by
+    // QGuiApplication.
+    // However, QApplication depends on QWidget which would add some
+    // unneeded overhead => Let's load the testability driver on our own.
+    if (testability) {
+        QLibrary testLib(QLatin1String("qttestability"));
+        if (testLib.load()) {
+            typedef void (*TasInitialize)(void);
+            TasInitialize initFunction =
+                (TasInitialize)testLib.resolve("qt_testability_init");
+            if (initFunction) {
+                initFunction();
+            } else {
+                qCritical("Library qttestability resolve failed!");
+            }
+        } else {
+            qCritical("Library qttestability load failed!");
+        }
+    }
 
     /* Configure "artwork:" prefix so that any access to a file whose name starts
        with that prefix resolves properly. */
