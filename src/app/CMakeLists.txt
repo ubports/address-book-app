@@ -1,3 +1,5 @@
+project(address-book-main-app)
+
 set(ADDRESS_BOOK_APP_BIN address-book-app)
 
 include_directories(

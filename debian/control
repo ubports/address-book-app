@@ -7,6 +7,7 @@ Build-Depends: cmake,
                dh-translations,
                libgl1-mesa-dev[i386 amd64] | libgl-dev[i386 amd64],
                libgles2-mesa-dev[armhf],
+               python,
                qtbase5-dev,
                qtdeclarative5-dev,
 Standards-Version: 3.9.4
@@ -35,3 +36,14 @@ Description: debugging symbols for address-book-app
  Address Book application to manager contacts.
  .
  This package contains the debugging symbols for address-book-app
+
+Package: address-book-app-autopilot
+Architecture: all
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         libautopilot-qt,
+         libqt5test5,
+         libqt5widgets5,
+         address-book-app (= ${binary:Version}),
+Description: Test package for address-book-app
+ Autopilot tests for the address-book-app package

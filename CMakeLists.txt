@@ -1,5 +1,6 @@
 project(address-book-app)
 cmake_minimum_required(VERSION 2.8.9)
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -21,9 +22,13 @@ set(ADDRESS_BOOK_APP_NAME "Address Book")
 # (regarding syntax consistency, see http://pad.lv/1181187)
 set (GETTEXT_PACKAGE "address-book-app")
 
+# Tests
+enable_testing()
+
 add_subdirectory(data)
 add_subdirectory(src)
 add_subdirectory(po)
+add_subdirectory(tests)
 
 # uninstall target
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
