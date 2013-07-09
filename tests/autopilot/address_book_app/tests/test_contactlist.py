@@ -23,19 +23,6 @@ from os import path
 class TestContactList(AddressBookAppTestCase):
     """Tests the contact list features"""
 
-    """ This is needed to wait for the application to start.
-        In the testfarm, the application may take some time to show up."""
-    def setUp(self):
-        super(TestContactList, self).setUp()
-        self.launch_app()
-        self.assertThat(
-            self.main_window.get_qml_view().visible, Eventually(Equals(True)))
-
-    def tearDown(self):
-        super(TestContactList, self).tearDown()
-
-    """ Test if the toolbar appears """
-    def test_toolbar_visibility(self):
-        self.assertThat(
-            self.main_window.get_qml_view().visible, Eventually(Equals(True)))
-
+    def test_contact_list(self):
+        contact_list = self.main_window.get_object("ContactList")
+        self.assertThat(contact_list.visible, Eventually(Equals(True)))

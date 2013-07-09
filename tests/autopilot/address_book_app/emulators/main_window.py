@@ -16,5 +16,9 @@ class MainWindow(object):
         """Get the main QML view"""
         return self.app.select_single("QQuickView")
 
-    def get_object(self, typeName, name):
-        return self.app.select_single(typeName, objectName=name)
+
+    def get_object(self, typeName, name=None):
+        if name:
+            return self.app.select_single(typeName, objectName=name)
+        else:
+            return self.app.select_single(typeName)

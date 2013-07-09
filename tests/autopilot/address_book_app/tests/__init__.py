@@ -14,16 +14,18 @@ import os
 from autopilot.input import Mouse, Touch, Pointer
 from autopilot.platform import model
 from autopilot.testcase import AutopilotTestCase
+from autopilot.matchers import Eventually
+from testtools.matchers import Equals
 
 from address_book_app.emulators.main_window import MainWindow
 
 
 class AddressBookAppTestCase(AutopilotTestCase):
-
     """A common test case class that provides several useful methods for
     address-book-app tests.
 
     """
+    DEFAULT_DEV_LOCATION = "../../src/app/address-book-app"
 
     if model() == 'Desktop':
         scenarios = [
@@ -36,31 +38,28 @@ class AddressBookAppTestCase(AutopilotTestCase):
         self.pointing_device = Pointer(self.input_device_class.create())
         super(AddressBookAppTestCase, self).setUp()
 
-    def launch_app(self, movie_file=None):
-        if movie_file is None:
-            movie_file = ""
-        # Lets assume we are installed system wide if this file is somewhere
-        # in /usr
-        if os.path.realpath(__file__).startswith("/usr/"):
-            self.launch_test_installed(movie_file)
+        if 'AUTOPILOT_APP' in os.environ:
+            self.app_bin = os.environ['AUTOPILOT_APP']
         else:
-            self.launch_test_local(movie_file)
+            self.app_bin  = AddressBookAppTestCase.DEFAULT_DEV_LOCATION
 
-    def launch_test_local(self, movie_file):
-        mp_app = os.environ['AUTOPILOT_APP']    
-        if mp_app:
-            self.app = self.launch_test_application(mp_app)
+        print "Running from: %s" % (self.app_bin)
+            
+        if not os.path.exists(self.app_bin):
+            self.launch_test_installed()
         else:
-            self.app = None
+            self.launch_test_local()
 
-    def launch_test_installed(self, movie_file):
-        if model() == 'Desktop':
-            self.app = self.launch_test_application("address-book-app")
-        else:
-            self.app = self.launch_test_application("address-book-app", 
-                "--fullscreen",
-                "--desktop_file_hint=/usr/share/applications/address-book-app.desktop",
-                app_type='qt')
+        main_view = self.main_window.get_qml_view()
+        self.assertThat(main_view.visible, Eventually(Equals(True)))         
+
+    def launch_test_local(self):            
+        self.app = self.launch_test_application(self.app_bin, app_type='qt')
+
+    def launch_test_installed(self):
+        self.app = self.launch_test_application("address-book-app",
+            "--desktop_file_hint=/usr/share/applications/address-book-app.desktop",
+            app_type='qt')
 
     @property
     def main_window(self):
