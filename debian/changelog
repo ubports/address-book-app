@@ -7,6 +7,7 @@ address-book-app (0.2-0ubuntu1) UNRELEASED; urgency=low
   * debian/control:
     - Some minor packaging fixes
   * Add the COPYING* files for both source code and artwork
+  * Automatic snapshot from revision 6 (bootstrap)
 
  -- Sergio Schvezov <sergio.schvezov@canonical.com>  Thu, 27 Jun 2013 18:50:58 -0300
 
