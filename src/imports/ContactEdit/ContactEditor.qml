@@ -26,13 +26,19 @@ Page {
     property QtObject model: null
 
     function save() {
+        var changed = false
         for(var i = 0; i < contents.children.length; ++i) {
             var field = contents.children[i]
-            if (field.save) {
-                field.save()
+            if (field.save && field.save()) {
+                changed = true
             }
         }
-        model.saveContact(contact)
+
+        if (changed) {
+            model.saveContact(contact)
+        } else {
+            pageStack.pop()
+        }
     }
 
     Flickable {
@@ -127,7 +133,7 @@ Page {
         target: contactEditor.model
 
         onContactsChanged: {
-            if (active) {
+            if (saving) {
                 pageStack.pop()
             }
         }

@@ -34,8 +34,9 @@ ContactDetailGroupBase {
 
     function updateDetail(detail, index) {
         if (typeModel) {
-            typeModel.updateDetail(detail, index)
+            return typeModel.updateDetail(detail, index)
         }
+        return false
     }
 
     typeModel: ListModel {
@@ -76,21 +77,45 @@ ContactDetailGroupBase {
             return true
         }
 
+        function compareList(listA, listB) {
+            if (!listA && !listB) {
+                return true
+            }
+
+            if (!listA || !listB) {
+                return false
+            }
+
+            if (listA.length != listB.length) {
+                return false
+            }
+            for(var i=0; i < listA.length; i++) {
+                if (listA[i] != listB[i]) {
+                    return false
+                }
+            }
+            return true
+        }
+
         function updateDetail(detail, index) {
             var modelData = get(index)
             if (!modelData) {
-                return
+                return false
             }
 
             // WORKAROUND: in EDS empty context is equal to QtContacts.ContactDetail.ContextOther
             // this will avoid call contact update if the context has not changed
             if ((detail.contexts.length === 0) && (modelData.value === QtContacts.ContactDetail.ContextOther)) {
-                return
+                return false
             }
 
             var newContext = detail.contexts.filter(isNotAModelValue)
             newContext.push(modelData.value)
-            detail.contexts = newContext
+            if (!compareList(newContext, detail.contexts)) {
+                detail.contexts = newContext
+                return true
+            }
+            return false
         }
 
         Component.onCompleted: {

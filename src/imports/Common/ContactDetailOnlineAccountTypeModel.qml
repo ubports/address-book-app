@@ -30,10 +30,15 @@ ListModel {
     function updateDetail(detail, index) {
         var modelData = get(index)
         if (!modelData) {
-            return
+            return false
         }
 
-        detail.setValue(2, modelData.value)
+        if (detail.value(2) != modelData.value) {
+            detail.setValue(2, modelData.value)
+            return true
+        }
+
+        return false
     }
 
     Component.onCompleted: {

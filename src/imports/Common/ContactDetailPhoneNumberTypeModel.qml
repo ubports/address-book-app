@@ -43,17 +43,37 @@ ListModel {
         }
     }
 
+    function compareList(listA, listB) {
+        if (!listA && !listB) {
+            return true
+        }
+
+        if (!listA || !listB) {
+            return false
+        }
+
+        if (listA.length != listB.length) {
+            return false
+        }
+        for(var i=0; i < listA.length; i++) {
+            if (listA[i] != listB[i]) {
+                return false
+            }
+        }
+        return true
+    }
+
     function updateDetail(detail, index) {
         var modelData = get(index)
         if (!modelData) {
-            return
+            return false
         }
 
-        // WORKAROUND: in EDS empty context is equal to QtContacts.ContactDetail.ContextOther
-        // this will avoid call contact update if the context has not changed
-        if ((detail.contexts.length === 0) && (modelData.value === "Other")) {
-            return
-        }
+//        // WORKAROUND: in EDS empty context is equal to QtContacts.ContactDetail.ContextOther
+//        // this will avoid call contact update if the context has not changed
+//        if ((detail.contexts.length === 0) && (modelData.value === "Other")) {
+//            return
+//        }
 
         var newSubTypes = []
         var newContext = []
@@ -65,8 +85,17 @@ ListModel {
         // All current labels is voice type
         newSubTypes.push(QtContacts.PhoneNumber.Voice)
 
-        detail.contexts = newContext
-        detail.subTypes = newSubTypes
+        var changed  = false
+        if (!compareList(newContext, detail.contexts)) {
+            detail.contexts = newContext
+            changed = true
+        }
+
+        if (!compareList(newSubTypes, detail.subTypes)) {
+            detail.subTypes = newSubTypes
+            changed = true
+        }
+        return changed
     }
 
     Component.onCompleted: {

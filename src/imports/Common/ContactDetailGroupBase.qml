@@ -43,7 +43,12 @@ FocusScope {
         property var values: root.details
 
         onValuesChanged: {
-            while (count > values.lenght) {
+            if (!values) {
+                clear()
+                return
+            }
+
+            while (count > values.length) {
                 remove(count - 1)
             }
 

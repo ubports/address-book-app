@@ -28,6 +28,7 @@ ContactDetailGroupWithTypeBase {
     property int fieldType: QtContacts.ContactDetail.FieldContext
 
     function save() {
+        var changed = false
         for(var i=0; i < detailDelegates.length; i++) {
             var delegate = detailDelegates[i]
 
@@ -38,11 +39,17 @@ ContactDetailGroupWithTypeBase {
 
             if (delegate.save) {
                 // save type
-                updateDetail(delegate.detail, delegate.selectedTypeIndex)
+                if (updateDetail(delegate.detail, delegate.selectedTypeIndex)) {
+                    changed = true
+                }
+
                 // save fields
-                delegate.save()
+                if (delegate.save()) {
+                    changed = true
+                }
             }
         }
+        return changed
     }
 
     minimumHeight: units.gu(3)

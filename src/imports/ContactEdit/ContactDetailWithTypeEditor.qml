@@ -34,13 +34,21 @@ ContactDetailBase {
     }
 
     function save() {
+        var detailchanged  = false
+
         // save field values
         for (var i=0; i < fieldValues.children.length; i++) {
             var input = fieldValues.children[i]
             if (input.detail && (input.field >= 0)) {
-                input.detail.setValue(input.field, input.text)
+                var originalValue = input.detail.value(input.field)
+                if (originalValue != input.text) {
+                    input.detail.setValue(input.field, input.text)
+                    detailchanged  = true
+                }
             }
         }
+
+        return detailchanged
     }
 
     implicitHeight: fieldValues.height
