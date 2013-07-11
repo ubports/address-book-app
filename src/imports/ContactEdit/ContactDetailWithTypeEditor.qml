@@ -37,15 +37,23 @@ ContactDetailBase {
         var detailchanged  = false
 
         // save field values
+        var isEmpty = true
         for (var i=0; i < fieldValues.children.length; i++) {
             var input = fieldValues.children[i]
             if (input.detail && (input.field >= 0)) {
                 var originalValue = input.detail.value(input.field)
+                if (input.text != "") {
+                    isEmpty = false
+                }
                 if (originalValue != input.text) {
                     input.detail.setValue(input.field, input.text)
                     detailchanged  = true
                 }
             }
+        }
+
+        if (isEmpty) {
+            contact.removeDetail(detail)
         }
 
         return detailchanged

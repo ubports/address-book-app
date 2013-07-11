@@ -24,6 +24,8 @@ ContactDetailItem {
     id: root
 
     function save() {
+        var changed = false;
+
         for(var i=0; i < fieldDelegates.length; i++) {
             var delegate = fieldDelegates[i]
 
@@ -33,9 +35,14 @@ ContactDetailItem {
             }
 
             if (delegate.detail && (delegate.field >= 0)) {
-                delegate.detail.setValue(delegate.field, delegate.text)
+                if (delegate.text != delegate.detail.value(delegate.field)) {
+                    delegate.detail.setValue(delegate.field, delegate.text)
+                    changed  = true;
+                }
             }
         }
+
+        return changed
     }
 
     detail: root.contact ? root.contact.name : null

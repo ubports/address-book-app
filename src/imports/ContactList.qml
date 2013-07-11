@@ -118,22 +118,22 @@ Page {
             }
         }
 
-        function isNotEmptyString(value) {
-            return (value && value.length !== 0);
+        function isNotEmptyString(string) {
+            return (string && string.length !== 0);
         }
 
         function formatNameToDisplay(contact) {
             if (!contact) {
-                console.debug("No contact")
                 return ""
             }
 
-            if (contact.displayLabel && contact.displayLabel.label && contact.displayLabel.label !== "") {
+            if (contact.name) {
+                var detail = contact.name
+                return [detail.prefix, detail.firstName, detail.middleName, detail.lastName, detail.suffix].filter(isNotEmptyString).join(" ")
+            } else if (contact.displayLabel && contact.displayLabel.label && contact.displayLabel.label !== "") {
                 return contact.displayLabel.label
-            } else if (contact.name) {
-               return [contact.name.prefix, contact.name.firstName, contact.name.middleName, contact.name.lastName, contact.name.suffix].filter(isNotEmptyString).join(" ")
             } else {
-                return "Unknown"
+                return ""
             }
         }
 

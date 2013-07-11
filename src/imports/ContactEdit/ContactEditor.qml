@@ -29,8 +29,10 @@ Page {
         var changed = false
         for(var i = 0; i < contents.children.length; ++i) {
             var field = contents.children[i]
-            if (field.save && field.save()) {
-                changed = true
+            if (field.save) {
+                if (field.save()) {
+                    changed = true
+                }
             }
         }
 
