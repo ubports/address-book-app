@@ -1,6 +1,6 @@
 Source: address-book-app
 Section: x11
-Priority: extra
+Priority: optional
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 Build-Depends: cmake,
                debhelper (>= 9),
@@ -11,7 +11,11 @@ Build-Depends: cmake,
                qtbase5-dev,
                qtdeclarative5-dev,
 Standards-Version: 3.9.4
+Homepage: https://launchpad.net/address-book-app
+# If you aren't a member of ~phablet-team but need to upload packaging changes,
+# just go ahead. ~phablet-team will notice and sync up the code again.
 Vcs-Bzr: https://code.launchpad.net/~phablet-team/address-book-app/trunk
+Vcs-Browser: http://bazaar.launchpad.net/~phablet-team/address-book-app/trunk/files
 
 Package: address-book-app
 Architecture: any
@@ -44,6 +48,6 @@ Depends: ${misc:Depends},
          libautopilot-qt,
          libqt5test5,
          libqt5widgets5,
-         address-book-app (= ${binary:Version}),
+         address-book-app (>= ${binary:Version}),
 Description: Test package for address-book-app
  Autopilot tests for the address-book-app package
