@@ -18,48 +18,41 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 
-FocusScope {
+ContactDetailBase {
     id: root
 
-    property QtObject contact: null
-    property list<QtObject> details
-    property bool editable: false
-    property bool valid: false
-    property alias title: header.text
+    readonly property alias fieldDelegates: fieldsColumn.children
+    property Component fieldDelegate: null
 
-    property Component view
-    property Component editor
-
-    implicitHeight: root.details.length > 0 ? contents.childrenRect.height + units.gu(1) : 0
-    visible: implicitHeight > 0
+    implicitHeight: fieldsColumn.height
 
     Column {
-        id: contents
+        id: fieldsColumn
 
         anchors {
             left: parent.left
             right: parent.right
         }
 
-        Label {
-            id: header
-            height: units.gu(3)
-        }
-
+        height: childrenRect.height
         Repeater {
-            model: root.details.length
-            ContactDetailItem {
-                anchors {
-                    left: parent.left
-                    right: parent.right
+            model: root.fields
+            Loader {
+                id: field
+
+                sourceComponent: fieldDelegate
+
+                Binding {
+                    target: item
+                    property: "field"
+                    value: modelData
                 }
-                height: implicitHeight
-                contact: root.contact
-                detail: root.details[index]
-                editable: root.editable
-                valid: root.valid
-                view: root.view
-                editor: root.editor
+
+                Binding {
+                    target: item
+                    property: "detail"
+                    value: root.detail
+                }
             }
         }
     }

@@ -27,7 +27,18 @@ MainView {
     PageStack {
         id: mainStack
 
-        anchors.fill: parent
+        anchors {
+            fill: parent
+            bottomMargin: Qt.inputMethod.visible ? (Qt.inputMethod.keyboardRectangle.height - mainView.anchors.bottomMargin) + units.gu(2) : 0
+            Behavior on bottomMargin {
+                NumberAnimation {
+                    duration: 175
+                    easing.type: Easing.OutQuad
+                }
+            }
+            //TODO: waiting for final design to correct implementation
+            onBottomMarginChanged: console.debug("TODO: implement scroll to correct position")
+        }
     }
 
     Component.onCompleted: mainStack.push(Qt.resolvedUrl("ContactList.qml"))

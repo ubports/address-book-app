@@ -23,7 +23,9 @@ FocusScope {
 
     property variant contact: null
 
-    ContactDetailAvatar {
+    implicitHeight: units.gu(12)
+
+    ContactDetailAvatarView {
         id: detailAvatar
 
         contact: contactHeader.contact
@@ -37,7 +39,7 @@ FocusScope {
         height: units.gu(8)
     }
 
-    ContactDetailName {
+    ContactDetailNameView {
         id: detailName
 
         contact: contactHeader.contact
@@ -46,11 +48,11 @@ FocusScope {
             right: detailFavorite.right
             top: parent.top
             margins: units.gu(2)
-            bottom: parent.bottom
         }
+        height: implicitHeight
     }
 
-    ContactDetailFavorite {
+    ContactDetailFavoriteView {
         id: detailFavorite
 
         contact: contactHeader.contact

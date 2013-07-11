@@ -18,15 +18,21 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import QtContacts 5.0
 
-ContactDetailEditor {
-    Row {
-        Repeater {
-            model: enabled ? fields : 0
-            TextInput {
-                anchors.left: parent.left
-                anchors.right: parent.right
-                text: (detail) ? detail.value(modelData) : ""
-            }
+import "../Common"
+
+ContactDetailBase {
+    id: root
+
+    detail: root.contact ? root.contact.favorite : null
+    Image {
+        anchors.fill: parent
+        source: root.detail && root.detail.favorite ? "artwork:/favorite-selected.png" : "artwork:/favorite-unselected.png"
+        MouseArea {
+           anchors.fill: parent
+           onClicked: {
+               root.detail.favorite = !root.detail.favorite
+               //TODO: save favorite if not in edit mode
+           }
         }
-    }
+   }
 }

@@ -18,18 +18,16 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import QtContacts 5.0
 
-ContactDetailItem {
+import "../Common"
+
+ContactDetailBase {
     id: root
 
     detail: root.contact ? root.contact.name : null
-    view: ContactDetailViewText {
-        label {
-            fontSize: "large"
-            elide: Text.ElideRight
-            color: Qt.rgba(0.4, 0.4, 0.4, 1.0)
-            style: Text.Raised
-            styleColor: "white"
-        }
+    implicitHeight: label.paintedHeight
+
+    Label {
+        id: label
 
         function isNotEmptyString(string) {
             return (string && string.length !== 0);
@@ -49,15 +47,12 @@ ContactDetailItem {
             }
         }
 
-        defaultText: formatNameToDisplay()
-    }
-    editor: ContactDetailEditorText {
-        fields: [ContactName.Prefix,
-            ContactName.FirstName,
-            contactName.MiddleName,
-            contactName.LastName,
-            contactName.Suffix]
-
         anchors.fill: parent
+        fontSize: "x-large"
+        elide: Text.ElideRight
+        color: Qt.rgba(0.4, 0.4, 0.4, 1.0)
+        style: Text.Raised
+        styleColor: "white"
+        text: formatNameToDisplay()
     }
 }

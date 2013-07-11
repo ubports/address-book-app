@@ -18,20 +18,38 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import QtContacts 5.0
 
-ContactDetailItem {
+import "../Common"
+
+ContactDetailBase {
     id: root
 
     detail: contact ? contact.avatar : null
-    view: UbuntuShape {
+    implicitHeight: units.gu(12)
+
+    Image {
         anchors.fill: parent
-        image: Image {
-            source: root.detail && root.detail.imageUrl != "" ? root.detail.imageUrl : "artwork:/avatar-default.png"
-            asynchronous: true
-            fillMode: Image.PreserveAspectCrop
-            // since we don't know if the image is portrait or landscape without actually reading it,
-            // set the sourceSize to be the size we need plus 30% to allow cropping.
-            sourceSize.width: width * 1.3
-            sourceSize.height: height * 1.3
+        source: root.detail && root.detail.imageUrl != "" ? root.detail.imageUrl : "artwork:/avatar-default.png"
+        asynchronous: true
+        fillMode: Image.PreserveAspectCrop
+
+        AbstractButton {
+            id: changeButton
+
+            anchors {
+                right: parent.right
+                bottom: parent.bottom
+                margins: units.gu(1)
+            }
+
+            width: units.gu(2)
+            height: units.gu(2)
+
+            Image {
+                anchors.fill: parent
+                source: "artwork:/edit.png"
+                fillMode: Image.PreserveAspectFit
+            }
         }
-   }
+    }
 }
+

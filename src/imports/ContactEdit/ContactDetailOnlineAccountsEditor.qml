@@ -15,9 +15,14 @@
  */
 
 import QtQuick 2.0
+import QtContacts 5.0 as QtContacts
 
-FocusScope {
-    property QtObject detail: null
-    property variant fields
-    property bool enabled: false
+import "../Common"
+
+ContactDetailGroupWithTypeEditor {
+    title: i18n.tr("IM")
+    detailType: QtContacts.ContactDetail.OnlineAccount
+    detailQmlTypeName: "OnlineAccount"
+    fields: [ QtContacts.OnlineAccount.AccountUri ]
+    typeModel: ContactDetailOnlineAccountTypeModel { }
 }

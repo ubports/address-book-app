@@ -3,13 +3,16 @@ set(ADDRESS_BOOK_APP_ICON
 )
 
 set(ADDRESS_BOOK_APP_ARTWORK
+    add-detail.png
     add.png
     avatar-default.png
+    combo-indicator.png
     contact-call.png
     contact-email.png
     contact-location.png
     delete.png
     edit.png
+    edit-remove.png
     favorite-selected.png
     favorite-unselected.png
     protocol-aim.png
@@ -32,6 +35,7 @@ install(FILES ${ADDRESS_BOOK_APP_ICON}
 install(FILES ${ADDRESS_BOOK_APP_ARTWORK}
     DESTINATION ${ADDRESS_BOOK_APP_DIR}/artwork
 )
+
 
 
 

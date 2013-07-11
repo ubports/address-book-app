@@ -118,22 +118,22 @@ Page {
             }
         }
 
-        function isNotEmptyString(value) {
-            return (value && value.length !== 0);
+        function isNotEmptyString(string) {
+            return (string && string.length !== 0);
         }
 
         function formatNameToDisplay(contact) {
             if (!contact) {
-                console.debug("No contact")
                 return ""
             }
 
-            if (contact.displayLabel && contact.displayLabel.label && contact.displayLabel.label !== "") {
+            if (contact.name) {
+                var detail = contact.name
+                return [detail.prefix, detail.firstName, detail.middleName, detail.lastName, detail.suffix].filter(isNotEmptyString).join(" ")
+            } else if (contact.displayLabel && contact.displayLabel.label && contact.displayLabel.label !== "") {
                 return contact.displayLabel.label
-            } else if (contact.name) {
-               return [contact.name.prefix, contact.name.firstName, contact.name.middleName, contact.name.lastName, contact.name.suffix].filter(isNotEmptyString).join(" ")
             } else {
-                return "Unknown"
+                return ""
             }
         }
 
@@ -153,7 +153,8 @@ Page {
                     contactListView.currentIndex = index
                 }
                 onDoubleClicked: {
-                    editContactPriv.edit(contactListView.currentItem.contactObject.contactId)
+                    pageStack.push(Qt.resolvedUrl("ContactView/ContactView.qml"),
+                                   {model: contactsModel, contactId: contactListView.currentItem.contactObject.contactId})
                 }
             }
         }
@@ -201,9 +202,7 @@ Page {
     ActivityIndicator {
         id: busyIndicator
 
-        property bool pageIsBusy: false
-
-        running: contactListView.count == 0 || pageIsBusy
+        running: contactListView.count == 0
         visible: running
         anchors.centerIn: contactListView
     }
@@ -211,13 +210,20 @@ Page {
     tools: ToolbarActions {
         Action {
             text: i18n.tr("Details")
-            iconSource: "artwork:/edit.png"
-            onTriggered: editContactPriv.edit(contactListView.currentItem.contactObject.contactId)
+            iconSource: "artwork:/avatar-default.png"
+            onTriggered: {
+                pageStack.push(Qt.resolvedUrl("ContactView/ContactView.qml"),
+                               {model: contactsModel, contactId: contactListView.currentItem.contactObject.contactId})
+            }
         }
         Action {
             text: i18n.tr("New")
             iconSource: "artwork:/add.png"
-            onTriggered: console.debug("Not implemented")
+            onTriggered: {
+                var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", mainPage)
+                pageStack.push(Qt.resolvedUrl("ContactEdit/ContactEditor.qml"),
+                               {model: contactsModel, contact: newContact})
+            }
         }
         Action {
             text: i18n.tr("Delete")
@@ -227,41 +233,4 @@ Page {
             }
         }
     }
-
-    Item {
-        id: editContactPriv
-
-        property int currentQueryId: -1
-
-        visible: false
-        Connections {
-            target: contactsModel
-            onContactsFetched: {
-                if (requestId == editContactPriv.currentQueryId) {
-                    busyIndicator.pageIsBusy = false
-                    editContactPriv.currentQueryId = -1
-                    pageStack.push(Qt.resolvedUrl("ContactView/ContactEditor.qml"),
-                                   {model: contactsModel, contact: fetchedContacts[0]})
-                }
-            }
-        }
-
-        function edit(contactId) {
-            if (!contactId || (currentQueryId != -1)) {
-                console.debug("in progress...")
-                return
-            }
-
-            busyIndicator.pageIsBusy = true
-
-            currentQueryId = contactsModel.fetchContacts([contactId])
-            if (currentQueryId == -1) {
-                busyIndicator.pageIsBusy = false
-            }
-        }
-
-
-    }
-
-
 }
