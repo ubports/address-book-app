@@ -1,5 +1,4 @@
 set(CONTACT_LIST_QMLS
-    ContactList.js
     ContactList.qml
 )
 
