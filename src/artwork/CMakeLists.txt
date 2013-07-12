@@ -25,6 +25,7 @@ set(ADDRESS_BOOK_APP_ARTWORK
     protocol-qq.png
     protocol-skype.png
     protocol-yahoo.png
+    save.png
     settings.png
 )
 
