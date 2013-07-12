@@ -22,6 +22,10 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 Page {
     id: contactEditor
 
+    // FIXME: this is necessary due a bug on SDK
+    // Until now is impossible to mix pages with and without title
+    title: i18n.tr("Edit contact")
+
     property QtObject contact: null
     property QtObject model: null
 

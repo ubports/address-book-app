@@ -1,6 +1,4 @@
 set(ADDRESS_BOOK_APP_QMLS
-    ContactList.js
-    ContactList.qml
     main.qml
 )
 
@@ -12,5 +10,6 @@ install(FILES ${ADDRESS_BOOK_APP_QMLS}
 add_custom_target(address_book_QMlFiles ALL SOURCES ${ADDRESS_BOOK_APP_QMLS})
 
 add_subdirectory(Common)
+add_subdirectory(ContactList)
 add_subdirectory(ContactView)
 add_subdirectory(ContactEdit)
