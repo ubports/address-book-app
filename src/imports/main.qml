@@ -29,16 +29,26 @@ MainView {
 
         anchors {
             fill: parent
-            bottomMargin: Qt.inputMethod.visible ? (Qt.inputMethod.keyboardRectangle.height - mainView.anchors.bottomMargin) + units.gu(2) : 0
             Behavior on bottomMargin {
                 NumberAnimation {
                     duration: 175
                     easing.type: Easing.OutQuad
                 }
             }
+
+            // make the page full visible if the inputMethod appears
+            bottomMargin: Qt.inputMethod.visible ? toolbar.height + Qt.inputMethod.keyboardRectangle.height + units.gu(2) : 0
             //TODO: waiting for final design to correct implementation
             onBottomMarginChanged: console.debug("TODO: implement scroll to correct position")
         }
+    }
+
+    // Make the toolbar visible if it is locked and the inputMethod appears
+    Binding {
+        target: toolbar
+        property: "anchors.bottomMargin"
+        value: Qt.inputMethod.visible && toolbar.locked ? Qt.inputMethod.keyboardRectangle.height : 0
+        when: toolbar
     }
 
     Component.onCompleted: {
