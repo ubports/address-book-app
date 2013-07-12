@@ -101,15 +101,9 @@ Page {
             subText: contact && contact.phoneNumber ? contact.phoneNumber.number : ""
             selected: contactListView.currentIndex === index
 
-            MouseArea {
-                anchors.fill:  parent
-                onClicked: {
-                    contactListView.currentIndex = index
-                }
-                onDoubleClicked: {
-                    pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
-                                   {model: contactsModel, contactId: contactListView.currentItem.contactObject.contactId})
-                }
+            onClicked: {
+                pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
+                               {model: contactsModel, contactId: contactListView.currentItem.contactObject.contactId})
             }
         }
 
