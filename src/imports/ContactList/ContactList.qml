@@ -166,10 +166,13 @@ Page {
 
         visible: busy
         anchors.fill: parent
+
+        // This is a workaround to make sure the spinner will disappear if the model is empty
+        // FIXME: implement a model property to say if the model still busy or not
         Timer {
             id: timer
 
-            interval: 2000
+            interval: 6000
             running: true
             repeat: false
             onTriggered: busyIndicator.busy = false
