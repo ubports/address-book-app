@@ -41,5 +41,7 @@ MainView {
         }
     }
 
-    Component.onCompleted: mainStack.push(Qt.resolvedUrl("ContactList.qml"))
+    Component.onCompleted: {
+        mainStack.push(Qt.createComponent("ContactList/ContactList.qml"))
+    }
 }

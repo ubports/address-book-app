@@ -24,9 +24,7 @@ import "ContactList.js" as Sections
 Page {
     id: mainPage
 
-    property var startTime
-
-    Component.onCompleted: mainPage.startTime = new Date()
+    title: i18n.tr("Contacts")
 
     ContactModel {
         id: contactsModel
@@ -55,38 +53,6 @@ Page {
     }
 
     ListView {
-        id: alphabetView
-
-        property string selectedLetter: contactListView.contentY > 0  ? contactListView.itemAt(0, contactListView.contentY).sectionName : "A"
-
-        anchors {
-            top: parent.top
-            left: parent.left
-            right: parent.right
-        }
-        focus: true
-        height: units.gu(4)
-        orientation: ListView.Horizontal
-
-        model: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" ]
-        delegate: Label {
-            text: modelData
-            font.bold: alphabetView.selectedLetter == text
-            horizontalAlignment: Text.AlignHCenter
-            fontSize: "large"
-            width: units.gu(3)
-
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    contactListView.scroolToSection(modelData)
-                }
-            }
-
-        }
-    }
-
-    ListView {
         id: contactListView
 
         clip: true
@@ -96,26 +62,14 @@ Page {
             criteria: ViewSection.FirstCharacter
             delegate: ListItem.Header {
                 id: listHeader
-                //text: section
-                visible: false
-                height: 0
+                text: section
             }
         }
 
-        anchors {
-            top: alphabetView.bottom
-            left: parent.left
-            right: parent.right
-            bottom: status.top
-        }
+        anchors.fill: parent
         model: contactsModel
         onCountChanged: {
             dirtyTimer.restart()
-            if (mainPage.startTime) {
-                var currentTime = new Date();
-                var elapsed = currentTime.getTime() - mainPage.startTime.getTime()
-                status.text = "Elapsed time to load " + count + " contacts: " + (elapsed/1000) + " secs"
-            }
         }
 
         function isNotEmptyString(string) {
@@ -153,7 +107,7 @@ Page {
                     contactListView.currentIndex = index
                 }
                 onDoubleClicked: {
-                    pageStack.push(Qt.resolvedUrl("ContactView/ContactView.qml"),
+                    pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
                                    {model: contactsModel, contactId: contactListView.currentItem.contactObject.contactId})
                 }
             }
@@ -177,17 +131,6 @@ Page {
         }
     }
 
-    Label {
-        id: status
-        anchors {
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-            leftMargin: units.gu(1)
-        }
-        height: units.gu(3)
-    }
-
     Timer {
         id: dirtyTimer
 
@@ -207,29 +150,17 @@ Page {
         anchors.centerIn: contactListView
     }
 
-    tools: ToolbarActions {
-        Action {
-            text: i18n.tr("Details")
-            iconSource: "artwork:/avatar-default.png"
-            onTriggered: {
-                pageStack.push(Qt.resolvedUrl("ContactView/ContactView.qml"),
-                               {model: contactsModel, contactId: contactListView.currentItem.contactObject.contactId})
-            }
-        }
-        Action {
-            text: i18n.tr("New")
-            iconSource: "artwork:/add.png"
-            onTriggered: {
-                var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", mainPage)
-                pageStack.push(Qt.resolvedUrl("ContactEdit/ContactEditor.qml"),
-                               {model: contactsModel, contact: newContact})
-            }
-        }
-        Action {
-            text: i18n.tr("Delete")
-            iconSource: "artwork:/delete.png"
-            onTriggered: {
-                contactsModel.removeContact(contactListView.currentItem.contactId);
+    tools: ToolbarItems {
+        ToolbarButton {
+            action: Action {
+                text: i18n.tr("Add")
+                iconSource: "artwork:/add.png"
+                onTriggered: {
+                    var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", mainPage)
+                    pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                                   {model: contactsModel, contact: newContact})
+                }
+
             }
         }
     }
