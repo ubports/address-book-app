@@ -152,7 +152,7 @@ Page {
 
     tools: ToolbarItems {
         locked: true
-
+        opened: true
         ToolbarButton {
             action: Action {
                 text: i18n.tr("Done")
