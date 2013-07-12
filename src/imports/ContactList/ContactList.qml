@@ -18,6 +18,7 @@ import QtQuick 2.0
 import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components.Popups 0.1 as Popups
 
 import "ContactList.js" as Sections
 
@@ -25,6 +26,23 @@ Page {
     id: mainPage
 
     title: i18n.tr("Contacts")
+
+    Component {
+        id: dialog
+
+        Popups.Dialog {
+            id: dialogue
+
+            title: i18n.tr("Error")
+            text: i18n.tr("Fail to Load contacts")
+
+            Button {
+                text: "Cancel"
+                gradient: UbuntuColors.greyGradient
+                onClicked: PopupUtils.close(dialogue)
+            }
+        }
+    }
 
     ContactModel {
         id: contactsModel
@@ -44,6 +62,11 @@ Page {
             detailTypesHint: [ContactDetail.Avatar,
                               ContactDetail.Name,
                               ContactDetail.PhoneNumber]
+        }
+
+        onErrorChanged: {
+            busyIndicator.busy = false
+            PopupUtils.open(dialog, null)
         }
 
         Component.onCompleted: {
@@ -69,7 +92,7 @@ Page {
         anchors.fill: parent
         model: contactsModel
         onCountChanged: {
-            dirtyTimer.restart()
+            busyIndicator.ping()
         }
 
         function isNotEmptyString(string) {
@@ -131,23 +154,34 @@ Page {
         }
     }
 
-    Timer {
-        id: dirtyTimer
-
-        interval: 2000
-        running: false
-        repeat: false
-        onTriggered: {
-            Sections.initSectionData(contactListView)
-        }
-    }
-
-    ActivityIndicator {
+    Item {
         id: busyIndicator
 
-        running: contactListView.count == 0
-        visible: running
-        anchors.centerIn: contactListView
+        property alias busy: activity.running
+
+        function ping()
+        {
+            timer.restart()
+        }
+
+        visible: busy
+        anchors.fill: parent
+        Timer {
+            id: timer
+
+            interval: 2000
+            running: true
+            repeat: false
+            onTriggered: busyIndicator.busy = false
+        }
+
+        ActivityIndicator {
+            id: activity
+
+            anchors.centerIn: parent
+            running: contactListView.count == 0
+            visible: running
+        }
     }
 
     tools: ToolbarItems {
