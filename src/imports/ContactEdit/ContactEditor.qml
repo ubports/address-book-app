@@ -151,16 +151,17 @@ Page {
     }
 
     tools: ToolbarItems {
+        locked: true
+
         ToolbarButton {
             action: Action {
-                text: i18n.tr("Save")
-                iconSource: "artwork:/edit.png"
+                text: i18n.tr("Done")
+                iconSource: "artwork:/save.png"
                 onTriggered: {
                     // wait for contact to be saved or cause a error
                     contactSaveLock.saving = true
                     contactEditor.save()
                 }
-
             }
         }
     }
