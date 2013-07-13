@@ -20,8 +20,6 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1 as Popups
 
-import "ContactList.js" as Sections
-
 Page {
     id: mainPage
 
@@ -115,41 +113,15 @@ Page {
         }
 
         delegate: ListItem.Subtitled {
-            property variant contactObject: contact
-            property string contactId: contact.contactId
-            property string sectionName: ListView.section
-
             icon: contact && contact.avatar && (contact.avatar.imageUrl != "") ?  Qt.resolvedUrl(contact.avatar.imageUrl) : "artwork:/avatar-default.png"
-            text: contactListView.formatNameToDisplay(contactObject)
+            text: contactListView.formatNameToDisplay(contact)
             subText: contact && contact.phoneNumber ? contact.phoneNumber.number : ""
-            selected: contactListView.currentIndex === index
 
-            MouseArea {
-                anchors.fill:  parent
-                onClicked: {
-                    contactListView.currentIndex = index
-                }
-                onDoubleClicked: {
-                    pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
-                                   {model: contactsModel, contactId: contactListView.currentItem.contactObject.contactId})
-                }
-            }
-        }
+            onClicked: {
+                contactListView.currentIndex = index
+                pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
+                               {model: contactsModel, contactId: contact.contactId})
 
-        UbuntuNumberAnimation { id: scroolToSectionAnimation; target: contactListView; property: "contentY"; }
-        function scroolToSection(targetSection) {
-            scroolToSectionAnimation.from = contactListView.contentY
-            contactListView.positionViewAtIndex(Sections.getIndexFor(targetSection), ListView.Beginning)
-            scroolToSectionAnimation.to = contactListView.contentY
-            scroolToSectionAnimation.running = true
-        }
-
-        // function used to build the section cache by "ContactList.js"
-        function sectionValueForContact(contact) {
-            if (contact) {
-                return contact.name && contact.name.firstName ? contact.name.firstName[0] : ""
-            } else {
-                return null
             }
         }
     }
