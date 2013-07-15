@@ -112,10 +112,9 @@ Page {
             }
         }
 
-        delegate: ListItem.Subtitled {
+        delegate: ListItem.Standard {
             icon: contact && contact.avatar && (contact.avatar.imageUrl != "") ?  Qt.resolvedUrl(contact.avatar.imageUrl) : "artwork:/avatar-default.png"
             text: contactListView.formatNameToDisplay(contact)
-            subText: contact && contact.phoneNumber ? contact.phoneNumber.number : ""
 
             onClicked: {
                 contactListView.currentIndex = index
