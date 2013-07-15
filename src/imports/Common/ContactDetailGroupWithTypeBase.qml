@@ -64,7 +64,7 @@ ContactDetailGroupBase {
             } else if (subType === QtContacts.ContactDetail.ContextOther) {
                 return 2
             } else {
-                return 2
+                return 0 // default value is "Home"
             }
         }
 

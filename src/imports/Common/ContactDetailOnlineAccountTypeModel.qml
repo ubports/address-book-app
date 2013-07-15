@@ -38,7 +38,7 @@ ListModel {
         case 8:
             return 5;
         default:
-            return 2; //jabber
+            return 4; //default value is "Skype"
         }
     }
 
