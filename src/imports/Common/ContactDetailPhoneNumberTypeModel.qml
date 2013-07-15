@@ -39,7 +39,7 @@ ListModel {
                 return 1
             }
         } else{
-            return 4
+            return 2 // Default value is "Mobile"
         }
     }
 
