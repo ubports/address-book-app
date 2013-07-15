@@ -103,7 +103,7 @@ Page {
                 height: implicitHeight
             }
 
-            ContactDetailAddressView {
+            ContactDetailAddressesView {
                 contact: root.contact
                 anchors {
                     left: parent.left

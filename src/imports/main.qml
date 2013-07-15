@@ -45,10 +45,7 @@ MainView {
                 }
                 return 0
             }
-
-            //TODO: waiting for final design to correct implementation
-            onBottomMarginChanged: console.debug("TODO: implement scroll to correct position")
-        }
+       }
     }
 
     // Make the toolbar visible if it is locked and the inputMethod appears

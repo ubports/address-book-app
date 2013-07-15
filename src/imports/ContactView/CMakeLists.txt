@@ -1,5 +1,5 @@
 set(CONTACT_VIEW_QMLS
-    ContactDetailAddressessView.qml
+    ContactDetailAddressesView.qml
     ContactDetailAvatarView.qml
     ContactDetailEmailsView.qml
     ContactDetailFavoriteView.qml
