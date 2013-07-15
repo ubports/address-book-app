@@ -22,6 +22,7 @@ import Ubuntu.Components.Popups 0.1 as Popups
 
 Page {
     id: mainPage
+    objectName: "ContactList"
 
     title: i18n.tr("Contacts")
 
