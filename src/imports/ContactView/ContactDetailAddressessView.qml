@@ -16,8 +16,11 @@
 
 import QtQuick 2.0
 import QtContacts 5.0 as QtContacts
+import Ubuntu.Components 0.1
 
 ContactDetailGroupWithTypeView {
+    id: root
+
     title: i18n.tr("Address")
     defaultIcon: "artwork:/contact-location.png"
     detailType: QtContacts.ContactDetail.Address
@@ -26,4 +29,22 @@ ContactDetailGroupWithTypeView {
               QtContacts.Address.Region,
               QtContacts.Address.Postcode,
               QtContacts.Address.Country]
+
+    detailDelegate: ContactDetailMultilineWithTypeView {
+        property variant detailType: detail && root.contact && root.typeModel ? root.getType(detail) : null
+
+        action: Action {
+            text: i18n.tr("Location")
+            iconSource: "artwork:/contact-location.png"
+        }
+
+        contact: root.contact
+        fields: root.fields
+        subtitle.text: detailType ? detailType.label : ""
+        defaultIcon: detailType && detailType.icon ? detailType.icon : ""
+
+        height: implicitHeight
+        width: root.width
+        onActionTrigerred: root.actionTrigerred(action, contact)
+    }
 }

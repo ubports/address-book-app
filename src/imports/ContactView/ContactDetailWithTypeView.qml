@@ -24,84 +24,105 @@ import "../Common"
 ContactDetailBase {
     id: root
 
+    property QtObject availabelActions
     property alias subtitle: subtitle
-    property alias actionIcon: action.source
     property double itemHeight: units.gu(3)
+    property string defaultIcon
 
-    implicitHeight: fieldValues.height
+    signal actionTrigerred(string action, QtObject contact)
 
-    Rectangle {
-        anchors.fill: parent
-        border.color: "black"
-        border.width: 1
+    implicitHeight: units.gu(6)
 
-        Column {
-            id: fieldValues
+    Image {
+        id: primaryIcon
 
-            spacing: 0
-            anchors {
-                left: parent.left
-                right: subtitle.left
-                margins: units.gu(1)
-            }
-            y: units.gu(1) // margin
-            height: childrenRect.height + units.gu(2) // margin
+        property variant action: availabelActions && (availabelActions.children.length > 0) ? availabelActions.children[0] : null
 
-            Repeater {
-                model: root.fields
+        anchors {
+            verticalCenter: parent.verticalCenter
+            left: parent.left
+        }
+        height: units.gu(2)
+        width: units.gu(2)
+        source: action && action.iconSource && action.iconSource != "" ? action.iconSource : defaultIcon
+    }
 
-                Label {
-                    id: title
-                    anchors {
-                        left: parent.left
-                        //leftMargin: units.gu(1)
-                        right: parent.right
-                    }
-                    verticalAlignment: Text.AlignVCenter
-                    height: root.itemHeight
-                    fontSize: "medium"
-                    text: root.detail ? root.detail.value(modelData) : ""
-                }
-            }
+    Label {
+        id: subtitle
+
+        anchors {
+            left: primaryIcon.right
+            leftMargin: units.gu(1)
+            top: parent.top
+            topMargin: units.gu(1)
         }
 
-        Label {
-            id: subtitle
+        // style
+        fontSize: "x-small"
+        color: "#f3f3e7"
+        opacity: 0.2
+    }
 
-            anchors {
-                verticalCenter: div.verticalCenter
-                right: div.right
-                rightMargin: units.gu(1)
-            }
-            horizontalAlignment: Text.AlignRight
-            width: units.gu(6)
-            fontSize: "small"
+    Label {
+        id: title
+
+        anchors {
+            left: subtitle.left
+            top: subtitle.bottom
+            right: comboIcon.left
+            bottom: parent.bottom
+            bottomMargin: units.gu(1)
         }
 
-        Rectangle {
-            id: div
+        verticalAlignment: Text.AlignVCenter
+        text: root.detail && fields.length > 0 ? root.detail.value(fields[0]) : ""
 
-            color: "gray"
-            anchors {
-                top: parent.top
-                topMargin: units.gu(1)
-                right: action.left
-                rightMargin: units.gu(1)
-            }
-            width: 1
-            height: units.gu(3)
-            border.width: 0
+        // style
+        fontSize: "medium"
+        color: "#f3f3e7"
+    }
+
+    Image {
+        id: comboIcon
+
+        anchors {
+            verticalCenter: parent.verticalCenter
+            right: secondaryIcon.left
         }
+        height: units.gu(2)
+        width: visible ? units.gu(2) : 0
+        visible: availabelActions && (availabelActions.children.length > 2)
+        source: "artwork:/action-list.png"
+    }
+
+    MouseArea {
+        id: secondaryIcon
+
+        property variant action: availabelActions && (availabelActions.children.length > 1) ? availabelActions.children[1] : null
+
+        anchors {
+            right: parent.right
+            top: parent.top
+            bottom: parent.bottom
+        }
+        width: visible ? units.gu(4) : 0
+        visible: action != null
 
         Image {
-            id: action
             anchors {
-                verticalCenter: div.verticalCenter
-                right: parent.right
-                rightMargin: units.gu(1)
+                verticalCenter: parent.verticalCenter
+                horizontalCenter: parent.horizontalCenter
             }
-            height: units.gu(2)
+
+            source: secondaryIcon && secondaryIcon.action ? secondaryIcon.action.iconSource : ""
             width: units.gu(2)
+            height: units.gu(2)
+        }
+    }
+
+    onClicked: {
+        if (availabelActions && (availabelActions.children.length > 0)) {
+            actionTrigerred(availabelActions.children[0], contact)
         }
     }
 }

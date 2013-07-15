@@ -37,7 +37,15 @@ MainView {
             }
 
             // make the page full visible if the inputMethod appears
-            bottomMargin: Qt.inputMethod.visible ? toolbar.height + Qt.inputMethod.keyboardRectangle.height + units.gu(2) : 0
+            bottomMargin: {
+                if (Qt.inputMethod.visible) {
+                    return toolbar.height + Qt.inputMethod.keyboardRectangle.height + units.gu(2)
+                } else if (toolbar.locked && toolbar.opened) {
+                    return toolbar.height + units.gu(2)
+                }
+                return 0
+            }
+
             //TODO: waiting for final design to correct implementation
             onBottomMarginChanged: console.debug("TODO: implement scroll to correct position")
         }

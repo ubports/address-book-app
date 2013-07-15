@@ -16,6 +16,7 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import Ubuntu.Components.ListItems 0.1 as ListItem
 import QtContacts 5.0 as QtContacts
 
 import "../Common"
@@ -23,23 +24,24 @@ import "../Common"
 ContactDetailGroupWithTypeBase {
     id: root
 
-    headerDelegate: Label {
-        id: header
+    property QtObject availabelActions
+    signal actionTrigerred(string action, QtObject contact)
 
-        width: root.width
-        height: units.gu(3)
+    headerDelegate: ListItem.Header {
         text: root.title
     }
 
     detailDelegate: ContactDetailWithTypeView {
         property variant detailType: detail && root.contact && root.typeModel ? root.getType(detail) : null
 
+        availabelActions: root.availabelActions
         contact: root.contact
         fields: root.fields
         subtitle.text: detailType ? detailType.label : ""
-        actionIcon: detailType && detailType.icon ? detailType.icon : root.defaultIcon
+        defaultIcon: detailType && detailType.icon ? detailType.icon : ""
 
         height: implicitHeight
         width: root.width
+        onActionTrigerred: root.actionTrigerred(action, contact)
     }
 }

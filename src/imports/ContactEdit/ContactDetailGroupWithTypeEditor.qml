@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2012-2013 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -129,9 +129,12 @@ ContactDetailGroupWithTypeBase {
 
         onDetailChanged: updateCombo(false)
 
-        Connections {
-            target: root.typeModel
-            onLoaded: updateCombo(true)
+        // this is necessary due the default property of ListItem.Empty
+        Item {
+            Connections {
+                target: root.typeModel
+                onLoaded: updateCombo(true)
+            }
         }
     }
 }

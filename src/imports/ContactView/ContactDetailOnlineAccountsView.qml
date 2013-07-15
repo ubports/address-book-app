@@ -16,6 +16,7 @@
 
 import QtQuick 2.0
 import QtContacts 5.0 as QtContacts
+import Ubuntu.Components 0.1
 
 import "../Common"
 
@@ -24,4 +25,10 @@ ContactDetailGroupWithTypeView {
     fields: [ QtContacts.OnlineAccount.AccountUri ]
     title: i18n.tr("IM")
     typeModel: ContactDetailOnlineAccountTypeModel { }
+
+    availabelActions: ActionList {
+        Action {
+            text: i18n.tr("Touch")
+        }
+    }
 }

@@ -16,13 +16,28 @@
 
 import QtQuick 2.0
 import QtContacts 5.0 as QtContacts
+import Ubuntu.Components 0.1
 
 import "../Common"
 
 ContactDetailGroupWithTypeView {
     detailType: QtContacts.ContactDetail.PhoneNumber
     fields: [ QtContacts.PhoneNumber.Number ]
-    defaultIcon: "artwork:/contact-call.png"
+
     title: i18n.tr("Phone")
     typeModel: ContactDetailPhoneNumberTypeModel { }
+    availabelActions: ActionList {
+        Action {
+            text: i18n.tr("call")
+            iconSource: "artwork:/contact-call.png"
+        }
+        Action {
+            text: i18n.tr("message")
+            iconSource: "artwork:/contact-message.png"
+        }
+        Action {
+            text: i18n.tr("Skype")
+            iconSource: "artwork:/contact-message.png"
+        }
+    }
 }
