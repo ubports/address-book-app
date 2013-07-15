@@ -46,7 +46,7 @@ ContactDetailItem {
     }
 
     detail: root.contact ? root.contact.name : null
-    fields: [ QtContacts.Name.FirstName, QtContacts.Name.MiddleName, QtContacts.Name.LastName ]
+    fields: [ QtContacts.Name.FirstName, QtContacts.Name.LastName ]
 
     fieldDelegate: TextInputDetail {
         detail: root.detail

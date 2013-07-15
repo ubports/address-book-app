@@ -26,10 +26,6 @@ Page {
     property variant contactId: null
     property alias model: contactFetch.model
 
-    function isNotEmptyString(string) {
-        return (string && string.length !== 0);
-    }
-
     function formatNameToDisplay(contact) {
         if (!contact) {
             return ""
@@ -37,7 +33,7 @@ Page {
 
         if (contact.name) {
             var detail = contact.name
-            return [detail.prefix, detail.firstName, detail.middleName, detail.lastName, detail.suffix].filter(isNotEmptyString).join(" ")
+            return detail.firstName + " " + detail.lastName
         } else if (contact.displayLabel && contact.displayLabel.label && contact.displayLabel.label !== "") {
             return contact.displayLabel.label
         } else {
