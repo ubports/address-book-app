@@ -17,6 +17,9 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 
+//style
+import Ubuntu.Components.Themes.Ambiance 0.1
+
 TextField {
     id: root
 
@@ -29,6 +32,11 @@ TextField {
     //hasClearButton: false
     text: originalValue ? originalValue : ""
 
+    style: TextFieldStyle {
+        overlaySpacing: 0
+        frameSpacing: 0
+        background: Item {}
+    }
 //    secondaryItem: AbstractButton {
 //        id: removeButton
 

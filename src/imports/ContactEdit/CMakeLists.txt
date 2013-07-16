@@ -1,5 +1,4 @@
 set(CONTACT_EDIT_QMLS
-    Combobox.qml
     ContactDetailAddressesEditor.qml
     ContactDetailAvatarEditor.qml
     ContactDetailEmailsEditor.qml
@@ -10,6 +9,7 @@ set(CONTACT_EDIT_QMLS
     ContactDetailWithTypeEditor.qml
     ContactEditor.qml
     TextInputDetail.qml
+    ValueSelector.qml
 )
 
 install(FILES ${CONTACT_EDIT_QMLS}
