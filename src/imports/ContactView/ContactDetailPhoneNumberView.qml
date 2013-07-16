@@ -25,10 +25,7 @@ ContactDetailBase {
     id: root
 
     property alias typeLabel: view.typeLabel
-    property string typeIcon: null
     property alias lineHeight: view.lineHeight
-
-    implicitHeight: view.implicitHeight
 
     function populateValues()
     {
@@ -54,6 +51,6 @@ ContactDetailBase {
             bottom: parent.bottom
             leftMargin: units.gu(1)
         }
-        iconSource: typeIcon ? typeIcon : (root.action ? root.action.iconSource : "")
+        iconSource: root.action ? root.action.iconSource : ""
     }
 }

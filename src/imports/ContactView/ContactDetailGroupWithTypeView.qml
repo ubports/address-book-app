@@ -24,8 +24,8 @@ import "../Common"
 ContactDetailGroupWithTypeBase {
     id: root
 
-    property QtObject availabelActions
-    signal actionTrigerred(string action, QtObject contact)
+    property Action defaultAction
+    signal actionTrigerred(string action, QtObject detail)
 
     headerDelegate: ListItem.Empty {
         highlightWhenPressed: false
@@ -51,14 +51,14 @@ ContactDetailGroupWithTypeBase {
     detailDelegate: ContactDetailWithTypeView {
         property variant detailType: detail && root.contact && root.typeModel ? root.getType(detail) : null
 
-        availabelActions: root.availabelActions
+        action: root.defaultAction
         contact: root.contact
         fields: root.fields
-        subtitle.text: detailType ? detailType.label : ""
-        defaultIcon: detailType && detailType.icon ? detailType.icon : ""
+        typeLabel: detailType ? detailType.label : ""
+        typeIcon: detailType ? detailType.icon : null
 
         height: implicitHeight
         width: root.width
-        onActionTrigerred: root.actionTrigerred(action, contact)
+        onClicked: root.actionTrigerred(action, detail)
     }
 }

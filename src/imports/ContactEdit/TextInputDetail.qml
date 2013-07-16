@@ -29,31 +29,10 @@ TextField {
 
     signal removeClicked()
 
-    //hasClearButton: false
     text: originalValue ? originalValue : ""
-
     style: TextFieldStyle {
         overlaySpacing: 0
         frameSpacing: 0
         background: Item {}
     }
-//    secondaryItem: AbstractButton {
-//        id: removeButton
-
-//        anchors {
-//            verticalCenter: parent.verticalCenter
-//            right: parent.right
-//            rightMargin: units.gu(1)
-//        }
-//        width: units.gu(2)
-//        height: units.gu(2)
-
-//        Image {
-//            anchors.fill: parent
-//            source: "artwork:/edit-remove.png"
-//            fillMode: Image.PreserveAspectFit
-//        }
-
-//        onClicked: root.removeClicked()
-//    }
 }

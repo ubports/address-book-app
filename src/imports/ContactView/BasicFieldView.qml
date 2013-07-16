@@ -16,28 +16,37 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
-import QtContacts 5.0
-import Ubuntu.Components.ListItems 0.1 as ListItem
 
 import "../Common"
 
-ContactDetailBase {
+ Item {
     id: root
 
-    property QtObject action
-    property alias subtitle: subtitle
-    property double itemHeight: units.gu(3)
-    property string defaultIcon
+    property alias typeLabel: typeLabel.text
+    property alias values: valueList.model
+    property alias iconSource: actionIcon.source
+    property double lineHeight: units.gu(3)
 
-    signal actionTrigerred(string action, QtObject contact)
+    implicitHeight: typeLabel.height  + fieldValues.childrenRect.height + units.gu(2)
 
-    implicitHeight: contents.childrenRect.height + units.gu(1)
-
-    Label {
-        id: subtitle
+    Image {
+        id: actionIcon
 
         anchors {
+            verticalCenter: parent.verticalCenter
             left: parent.left
+        }
+        height: units.gu(2)
+        width: visible ? units.gu(2) : 0
+        visible: iconSource && iconSource != ""
+    }
+
+    Label {
+        id: typeLabel
+
+        anchors {
+            left: actionIcon.right
+            leftMargin: actionIcon.visible ? units.gu(1) : 0
             top: parent.top
             topMargin: units.gu(1)
         }
@@ -49,62 +58,32 @@ ContactDetailBase {
     }
 
     Column {
-        id: contents
+        id: fieldValues
 
         anchors {
-            top: parent.top
-            right: actionIcon.left
+            left: typeLabel.left
+            top: typeLabel.bottom
+            right: parent.right
             bottom: parent.bottom
         }
 
-        width: units.gu(25)
-
         Repeater {
-            model: 3
+            id: valueList
 
             Label {
-                id: title
-
+                id: label
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
-                height: root.itemHeight
+                height: root.lineHeight
                 verticalAlignment: Text.AlignVCenter
-                text: root.detail && fields.length > 0 ? root.detail.value(modelData) : ""
+                text: modelData
 
                 // style
                 fontSize: "medium"
                 color: "#f3f3e7"
             }
-        }
-    }
-
-    Item {
-        id: actionIcon
-
-        anchors {
-            right: parent.right
-            verticalCenter: parent.verticalCenter
-        }
-        width: visible ? units.gu(4) : 0
-        visible: action != null
-
-        Image {
-            anchors {
-                verticalCenter: parent.verticalCenter
-                horizontalCenter: parent.horizontalCenter
-            }
-
-            source: root.action.iconSource
-            width: units.gu(2)
-            height: units.gu(2)
-        }
-    }
-
-    onClicked: {
-        if (action) {
-            actionTrigerred(action.text, contact)
         }
     }
 }

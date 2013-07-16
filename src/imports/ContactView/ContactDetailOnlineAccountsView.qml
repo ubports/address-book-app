@@ -23,12 +23,9 @@ import "../Common"
 ContactDetailGroupWithTypeView {
     detailType: QtContacts.ContactDetail.OnlineAccount
     fields: [ QtContacts.OnlineAccount.AccountUri ]
-    title: i18n.tr("IM")
+    title: i18n.tr("Social")
     typeModel: ContactDetailOnlineAccountTypeModel { }
-
-    availabelActions: ActionList {
-        Action {
-            text: i18n.tr("Touch")
-        }
+    defaultAction: Action {
+        text: i18n.tr("Touch")
     }
 }

@@ -29,22 +29,4 @@ ContactDetailGroupWithTypeView {
               QtContacts.Address.Region,
               QtContacts.Address.Postcode,
               QtContacts.Address.Country]
-
-    detailDelegate: ContactDetailMultilineWithTypeView {
-        property variant detailType: detail && root.contact && root.typeModel ? root.getType(detail) : null
-
-        action: Action {
-            text: i18n.tr("Location")
-            iconSource: "artwork:/contact-location.png"
-        }
-
-        contact: root.contact
-        fields: root.fields
-        subtitle.text: detailType ? detailType.label : ""
-        defaultIcon: detailType && detailType.icon ? detailType.icon : ""
-
-        height: implicitHeight
-        width: root.width
-        onActionTrigerred: root.actionTrigerred(action, contact)
-    }
 }

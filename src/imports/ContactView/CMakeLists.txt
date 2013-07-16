@@ -1,13 +1,14 @@
 set(CONTACT_VIEW_QMLS
+    BasicFieldView.qml
     ContactDetailAddressesView.qml
     ContactDetailAvatarView.qml
     ContactDetailEmailsView.qml
     ContactDetailFavoriteView.qml
     ContactDetailGroupWithTypeView.qml
-    ContactDetailMultilineWithTypeView.qml
     ContactDetailNameView.qml
     ContactDetailOnlineAccountsView.qml
     ContactDetailPhoneNumbersView.qml
+    ContactDetailPhoneNumberView.qml
     ContactDetailWithTypeView.qml
     ContactFetch.qml
     ContactHeaderView.qml

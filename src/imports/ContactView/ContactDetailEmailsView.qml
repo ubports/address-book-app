@@ -22,10 +22,8 @@ ContactDetailGroupWithTypeView {
     detailType: QtContacts.ContactDetail.Email
     title: i18n.tr("Email")
     fields: [ 0 ]
-    availabelActions: ActionList {
-        Action {
-            text: i18n.tr("Email")
-            iconSource: "artwork:/contact-email.png"
-        }
+    defaultAction: Action {
+        text: i18n.tr("Email")
+        iconSource: "artwork:/contact-email.png"
     }
 }
