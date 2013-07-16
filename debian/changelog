@@ -1,4 +1,4 @@
-address-book-app (0.2-0ubuntu1) UNRELEASED; urgency=low
+address-book-app (0.2+13.10.20130716-0ubuntu1) saucy; urgency=low
 
   [ Sergio Schvezov ]
   * Initial packaging preparation for daily release.
@@ -9,7 +9,38 @@ address-book-app (0.2-0ubuntu1) UNRELEASED; urgency=low
   * Add the COPYING* files for both source code and artwork
   * Automatic snapshot from revision 6 (bootstrap)
 
- -- Sergio Schvezov <sergio.schvezov@canonical.com>  Thu, 27 Jun 2013 18:50:58 -0300
+  [ Didier Roche ]
+  * small debian/rules simplification: distro cmake integrates a debug
+    build in distro flags by default (-g) and add --fail-missing to dh
+    directly.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Implemented contact edit support.
+  * Move contact list code to a individual folder. Re-factory contact
+    list toolbar: * Remove ¨details¨ button * Rename button from ¨New¨
+    to ¨Add¨. (LP: #1199107)
+  * Added delete button into contact view page. (LP: #1199121)
+  * Fixed busy indicator timeout to 2sec. If the model reports a error
+    show the contact load error dialog and stop the spinner. If the
+    model stay static for 2secs stop the busy indicator. (LP: #1200397)
+  * Make sure that the toolbar is always visible when in edit mode. (LP:
+    #1199122)
+  * Use single click to show contact details. (LP: #1199109)
+  * Removed phone number from contact details on contact list. (LP:
+    #1199110)
+  * Updated default categories for "Phone", "Email", "IM" and "Address".
+    (LP: #1199980)
+  * Only uses QtContacts.Name.FirstName, QtContacts.Name.LastName to
+    represent contact name. (LP: #1200395)
+  * Fixed autopilot to retrieve the correct object.
+
+  [ Łukasz 'sil2100' Zemczak ]
+  * Add missing UI toolkit dependency.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 19
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 16 Jul 2013 08:25:47 +0000
 
 address-book-app (0.1) saucy; urgency=low
 
