@@ -1,4 +1,5 @@
 set(CONTACT_VIEW_QMLS
+    ActionButton.qml
     BasicFieldView.qml
     ContactDetailAddressesView.qml
     ContactDetailAvatarView.qml

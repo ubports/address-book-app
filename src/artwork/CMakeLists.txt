@@ -29,6 +29,7 @@ set(ADDRESS_BOOK_APP_ARTWORK
     protocol-yahoo.png
     save.png
     settings.png
+    vertical-div.png
 )
 
 install(FILES ${ADDRESS_BOOK_APP_ICON}
