@@ -27,8 +27,25 @@ ContactDetailGroupWithTypeBase {
     property QtObject availabelActions
     signal actionTrigerred(string action, QtObject contact)
 
-    headerDelegate: ListItem.Header {
-        text: root.title
+    headerDelegate: ListItem.Empty {
+        highlightWhenPressed: false
+
+        width: root.width
+        height: units.gu(5)
+        Label {
+            anchors {
+                verticalCenter: parent.verticalCenter
+                left: parent.left
+                right: parent.right
+            }
+
+            text: root.title
+
+            // style
+            fontSize: "medium"
+            color: "#f3f3e7"
+            opacity: 0.2
+        }
     }
 
     detailDelegate: ContactDetailWithTypeView {
