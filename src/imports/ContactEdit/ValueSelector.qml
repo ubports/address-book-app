@@ -37,21 +37,43 @@ FocusScope {
 
     focus: true
 
-    Label {
-        id: label
+    Item {
 
-        anchors {
-            verticalCenter: parent.verticalCenter
-            left: parent.left
-            right: parent.right
+        visible: !root.activeFocus
+        anchors.fill: parent
+
+        Label {
+            id: label
+
+            anchors {
+                verticalCenter: parent.verticalCenter
+                left: parent.left
+            }
+            width: contentWidth
+
+            text: root.values[root.currentIndex]
+
+            // style
+            fontSize: "small"
+            color: "#f3f3e7"
         }
 
-        text: root.values[root.currentIndex]
-        visible: !root.activeFocus
+        Label {
+            id: arrowIndicator
 
-        // style
-        fontSize: "small"
-        color: "#f3f3e7"
+            anchors {
+                verticalCenter: parent.verticalCenter
+                left: label.right
+            }
+            width: units.gu(2)
+            horizontalAlignment: Text.AlignHCenter
+            text: ">"
+
+            // style
+            fontSize: "small"
+            color: "#f3f3e7"
+            opacity: 0.2
+        }
 
         MouseArea {
             anchors.fill: parent
