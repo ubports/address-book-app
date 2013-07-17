@@ -1,5 +1,7 @@
 set(CONTACT_VIEW_QMLS
-    ContactDetailAddressView.qml
+    ActionButton.qml
+    BasicFieldView.qml
+    ContactDetailAddressesView.qml
     ContactDetailAvatarView.qml
     ContactDetailEmailsView.qml
     ContactDetailFavoriteView.qml
@@ -7,6 +9,7 @@ set(CONTACT_VIEW_QMLS
     ContactDetailNameView.qml
     ContactDetailOnlineAccountsView.qml
     ContactDetailPhoneNumbersView.qml
+    ContactDetailPhoneNumberView.qml
     ContactDetailWithTypeView.qml
     ContactFetch.qml
     ContactHeaderView.qml

@@ -25,10 +25,7 @@ ContactDetailBase {
     id: root
 
     property alias typeLabel: view.typeLabel
-    property string typeIcon: null
     property alias lineHeight: view.lineHeight
-
-    implicitHeight: view.implicitHeight
 
     function populateValues()
     {
@@ -48,12 +45,62 @@ ContactDetailBase {
         id: view
 
         anchors {
-            right: parent.right
-            top: parent.top
             left: parent.left
+            top: parent.top
+            right: div0.left
             bottom: parent.bottom
             leftMargin: units.gu(1)
         }
-        iconSource: typeIcon ? typeIcon : (root.action ? root.action.iconSource : "")
+        iconSource: root.action ? root.action.iconSource : ""
+    }
+
+    Image {
+        id: div0
+
+        anchors {
+            top: parent.top
+            right: callActions.left
+            bottom: parent.bottom
+        }
+        width: 2
+        fillMode: Image.TileVertically
+        source: "artwork:/vertical-div.png"
+    }
+
+    ActionButton {
+        id: callActions
+
+        anchors {
+            right: div1.left
+            top: parent.top
+            bottom: parent.bottom
+        }
+        width: height
+        iconSource: "artwork:/contact-call.png"
+    }
+
+    Image {
+        id: div1
+
+        anchors {
+            top: parent.top
+            right: messageActions.left
+            bottom: parent.bottom
+        }
+        width: 2
+        fillMode: Image.TileVertically
+        source: "artwork:/vertical-div.png"
+    }
+
+    ActionButton {
+        id: messageActions
+
+        anchors {
+            right: parent.right
+            top: parent.top
+            bottom: parent.bottom
+        }
+        width: height
+        iconSource: "artwork:/contact-message.png"
     }
 }
