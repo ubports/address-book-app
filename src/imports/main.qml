@@ -52,6 +52,6 @@ MainView {
     }
 
     Component.onCompleted: {
-        mainStack.push(Qt.createComponent("ContactList/ContactList.qml"))
+        mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"))
     }
 }

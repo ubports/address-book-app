@@ -20,11 +20,10 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1 as Popups
 
-Page {
-    id: mainPage
-    objectName: "ContactList"
+Item {
+    id: root
 
-    title: i18n.tr("Contacts")
+    property alias header: contactListView.header
 
     Component {
         id: dialog
@@ -152,21 +151,6 @@ Page {
             anchors.centerIn: parent
             running: contactListView.count == 0
             visible: running
-        }
-    }
-
-    tools: ToolbarItems {
-        ToolbarButton {
-            action: Action {
-                text: i18n.tr("Add")
-                iconSource: "artwork:/add.png"
-                onTriggered: {
-                    var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", mainPage)
-                    pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                                   {model: contactsModel, contact: newContact})
-                }
-
-            }
         }
     }
 }
