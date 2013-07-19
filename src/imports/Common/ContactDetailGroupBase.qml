@@ -32,7 +32,7 @@ FocusScope {
     property Component detailDelegate
     property int minimumHeight: 0
 
-    implicitHeight: root.details.length > 0 ? contents.height + units.gu(1) : minimumHeight
+    implicitHeight: root.details.length > 0 ? contents.height : minimumHeight
     visible: implicitHeight > 0
 
     // This model is used to avoid rebuild the repeater every time that the details change
@@ -92,9 +92,5 @@ FocusScope {
                 }
             }
         }
-    }
-
-    ListItem.ThinDivider {
-        anchors.bottom: parent.bottom
     }
 }

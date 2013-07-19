@@ -3,6 +3,7 @@ set(ADDRESS_BOOK_APP_ICON
 )
 
 set(ADDRESS_BOOK_APP_ARTWORK
+    action-list.png
     add-detail.png
     add.png
     avatar-default.png
@@ -10,6 +11,7 @@ set(ADDRESS_BOOK_APP_ARTWORK
     contact-call.png
     contact-email.png
     contact-location.png
+    contact-message.png
     delete.png
     edit.png
     edit-remove.png
@@ -27,6 +29,7 @@ set(ADDRESS_BOOK_APP_ARTWORK
     protocol-yahoo.png
     save.png
     settings.png
+    vertical-div.png
 )
 
 install(FILES ${ADDRESS_BOOK_APP_ICON}

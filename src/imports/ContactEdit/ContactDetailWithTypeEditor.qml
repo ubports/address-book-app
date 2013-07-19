@@ -24,13 +24,13 @@ import "../Common"
 ContactDetailBase {
     id: root
 
-    property double itemHeight: units.gu(4)
-    property alias types: detailTypeCombo.values
+    property double itemHeight: units.gu(2)
+    property alias types: detailTypeSelector.values
     property int fieldType: -1
-    property alias selectedTypeIndex: detailTypeCombo.currentIndex
+    property alias selectedTypeIndex: detailTypeSelector.currentIndex
 
     function selectType(type) {
-        detailTypeCombo.selectItem(type)
+        detailTypeSelector.selectItem(type)
     }
 
     function save() {
@@ -59,25 +59,28 @@ ContactDetailBase {
         return detailchanged
     }
 
-    implicitHeight: fieldValues.height
+    implicitHeight: detailTypeSelector.height + fieldValues.height + units.gu(1)
 
-    Combobox {
-        id: detailTypeCombo
+    ValueSelector {
+        id: detailTypeSelector
 
         anchors {
             left: parent.left
+            leftMargin: units.gu(1)
+            right: parent.right
+            rightMargin: units.gu(1)
             top: parent.top
-            bottom: parent.bottom
         }
-        width: units.gu(10)
+        height: units.gu(3)
     }
 
     Column {
         id: fieldValues
 
         anchors {
-            left: detailTypeCombo.right
-            right: parent.right
+            left: detailTypeSelector.left
+            right: detailTypeSelector.right
+            top: detailTypeSelector.bottom
         }
         height: childrenRect.height
 

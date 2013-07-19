@@ -1,3 +1,13 @@
+address-book-app (0.2+13.10.20130718-0ubuntu1) saucy; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Updated ContactView visuals based on design spec.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 21
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 18 Jul 2013 07:12:28 +0000
+
 address-book-app (0.2+13.10.20130716-0ubuntu1) saucy; urgency=low
 
   [ Sergio Schvezov ]

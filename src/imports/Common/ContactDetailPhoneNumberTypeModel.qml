@@ -99,16 +99,16 @@ ListModel {
     }
 
     Component.onCompleted: {
-        append({"value": "Home", "label": i18n.tr("Home"), icon: null,
-                context: QtContacts.ContactDetail.ContextHome, subType: QtContacts.PhoneNumber.Landline })
-        append({"value": "Work", "label": i18n.tr("Work"), icon: null,
-               context: QtContacts.ContactDetail.ContextWork, subType: QtContacts.PhoneNumber.Landline })
-        append({"value": "Mobile", "label": i18n.tr("Mobile"), icon: null,
-                context: QtContacts.ContactDetail.ContextHome, subType: QtContacts.PhoneNumber.Mobile })
-        append({"value": "Mobile-Work", "label": i18n.tr("Work Mobile"), icon: null,
-                context: QtContacts.ContactDetail.ContextWork, subType: QtContacts.PhoneNumber.Mobile })
-        append({"value": "Other", "label": i18n.tr("Other"), icon: null,
-                context: QtContacts.ContactDetail.ContextOther, subType: -1 })
+        append({"value": "Home", "label": i18n.tr("Home"), "icon": null,
+                "context": QtContacts.ContactDetail.ContextHome, "subType": QtContacts.PhoneNumber.Landline })
+        append({"value": "Work", "label": i18n.tr("Work"), "icon": null,
+               "context": QtContacts.ContactDetail.ContextWork, "subType": QtContacts.PhoneNumber.Landline })
+        append({"value": "Mobile", "label": i18n.tr("Mobile"), "icon": null,
+                "context": QtContacts.ContactDetail.ContextHome, "subType": QtContacts.PhoneNumber.Mobile })
+        append({"value": "Mobile-Work", "label": i18n.tr("Work Mobile"), "icon": null,
+                "context": QtContacts.ContactDetail.ContextWork, "subType": QtContacts.PhoneNumber.Mobile })
+        append({"value": "Other", "label": i18n.tr("Other"), "icon": null,
+                "context": QtContacts.ContactDetail.ContextOther, "subType": -1 })
         loaded()
     }
 }

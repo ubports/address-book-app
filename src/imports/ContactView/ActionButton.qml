@@ -15,15 +15,34 @@
  */
 
 import QtQuick 2.0
-import QtContacts 5.0 as QtContacts
+import Ubuntu.Components 0.1
 
-ContactDetailGroupWithTypeView {
-    title: i18n.tr("Address")
-    defaultIcon: "artwork:/contact-location.png"
-    detailType: QtContacts.ContactDetail.Address
-    fields: [ QtContacts.Address.Street,
-              QtContacts.Address.Locality,
-              QtContacts.Address.Region,
-              QtContacts.Address.Postcode,
-              QtContacts.Address.Country]
+AbstractButton {
+    id: messageActions
+
+    property QtObject actions
+    property alias iconSource: icon.source
+
+    Image {
+        id: icon
+        anchors {
+            left: parent.left
+            top: parent.top
+            right: parent.right
+            bottom: arrow.top
+        }
+        fillMode: Image.Pad
+    }
+    Image {
+        id: arrow
+
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+        height: units.gu(2)
+        fillMode: Image.Pad
+        source: "artwork:/action-list.png"
+    }
 }

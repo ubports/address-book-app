@@ -37,10 +37,15 @@ MainView {
             }
 
             // make the page full visible if the inputMethod appears
-            bottomMargin: Qt.inputMethod.visible ? toolbar.height + Qt.inputMethod.keyboardRectangle.height + units.gu(2) : 0
-            //TODO: waiting for final design to correct implementation
-            onBottomMarginChanged: console.debug("TODO: implement scroll to correct position")
-        }
+            bottomMargin: {
+                if (Qt.inputMethod.visible) {
+                    return toolbar.height + Qt.inputMethod.keyboardRectangle.height + units.gu(2)
+                } else if (toolbar.locked && toolbar.opened) {
+                    return toolbar.height + units.gu(2)
+                }
+                return 0
+            }
+       }
     }
 
     // Make the toolbar visible if it is locked and the inputMethod appears
@@ -52,6 +57,7 @@ MainView {
     }
 
     Component.onCompleted: {
+        Theme.name = "Ubuntu.Components.Themes.SuruGradient"
         mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"))
     }
 }

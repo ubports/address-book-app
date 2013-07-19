@@ -17,6 +17,9 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 
+//style
+import Ubuntu.Components.Themes.Ambiance 0.1
+
 TextField {
     id: root
 
@@ -26,26 +29,10 @@ TextField {
 
     signal removeClicked()
 
-    //hasClearButton: false
     text: originalValue ? originalValue : ""
-
-//    secondaryItem: AbstractButton {
-//        id: removeButton
-
-//        anchors {
-//            verticalCenter: parent.verticalCenter
-//            right: parent.right
-//            rightMargin: units.gu(1)
-//        }
-//        width: units.gu(2)
-//        height: units.gu(2)
-
-//        Image {
-//            anchors.fill: parent
-//            source: "artwork:/edit-remove.png"
-//            fillMode: Image.PreserveAspectFit
-//        }
-
-//        onClicked: root.removeClicked()
-//    }
+    style: TextFieldStyle {
+        overlaySpacing: 0
+        frameSpacing: 0
+        background: Item {}
+    }
 }
