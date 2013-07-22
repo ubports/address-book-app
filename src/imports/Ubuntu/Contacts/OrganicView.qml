@@ -17,10 +17,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 
-/*!
-An "organic" list of photos.  Used as the "tray" contents for each event in
-the OrganicEventView, and the layout of the OrganicAlbumView.
-*/
 Item {
     id: organicList
 

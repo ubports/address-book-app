@@ -31,6 +31,18 @@ Depends: libqt5contacts5,
 Description: Address Book application
  Address Book application to manager contacts.
 
+Package: qtdeclarative5-ubuntu-contacts-plugin
+Architecture: all
+Depends: qtdeclarative5-qtquick2-plugin,
+         qtdeclarative5-ubuntu-ui-toolkit-plugin,
+         ${misc:Depends},
+         ${shlibs:Depends},
+Description: Qt Ubuntu Contacts Components - QML plugin
+ Qt Ubuntu Contacts Components offers a set of reusable user interface
+ related with contacts for Qt Quick 2 / QML.
+ .
+ This package contains the Ubuntu Contacts Components QML plugin.
+
 Package: address-book-app-dbg
 Architecture: any
 Section: debug

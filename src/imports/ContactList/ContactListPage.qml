@@ -15,12 +15,10 @@
  */
 
 import QtQuick 2.0
-import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1 as Popups
-
-import "../Components"
+import Ubuntu.Contacts 0.1 as ContactsUI
 
 Page {
     id: mainPage
@@ -28,20 +26,41 @@ Page {
 
     title: i18n.tr("Contacts")
 
-    ContactList {
+    Component {
+        id: dialog
+
+        Popups.Dialog {
+            id: dialogue
+
+            title: i18n.tr("Error")
+            text: i18n.tr("Fail to Load contacts")
+
+            Button {
+                text: "Cancel"
+                gradient: UbuntuColors.greyGradient
+                onClicked: PopupUtils.close(dialogue)
+            }
+        }
+    }
+
+    ContactsUI.ContactListView {
         id: contactList
 
-        header: FavoriteList {
-            id: favoriteList
-
-            anchors {
-                left: parent.left
-                top: parent.top
-                right: parent.right
-            }
-            height: units.gu(31)
-        }
         anchors.fill: parent
+        onError: PopupUtils.open(dialog, null)
+
+        ActivityIndicator {
+            id: activity
+
+            anchors.centerIn: parent
+            running: contactListView.loading
+            visible: running
+        }
+
+        onContactClicked: {
+            pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
+                           {model: contactList.model, contactId: contactId})
+        }
     }
 
     tools: ToolbarItems {
