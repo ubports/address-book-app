@@ -48,9 +48,7 @@ ContactDetailGroupWithTypeView {
         height: implicitHeight
         width: root.width
         onClicked: {
-            if (isPreffered) {
-                var emptDetay = Qt.createQmlObject("import QtContacts 5.0; PhoneNumber{}", root)
-                root.contact.setPreferredDetail("TEL", emptDetay)
+            if (isPreffered && contact.favorite.favorite) {
                 contact.favorite.favorite = false
             } else {
                 root.contact.setPreferredDetail("TEL", detail)
