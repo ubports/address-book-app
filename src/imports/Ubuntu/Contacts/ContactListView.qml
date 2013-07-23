@@ -44,6 +44,7 @@ ContactSimpleListView {
             top: parent.top
             right: parent.right
         }
+        height: count > 0 ? implicitHeight : 0
         onContactClicked: root.contactClicked(contactId)
     }
 }

@@ -23,7 +23,7 @@ UbuntuShape {
 
     property var contact: model ? model.contact : null
 
-    signal clicked(QtObject contact)
+    signal clicked(string contactId)
 
     image: Image {
         source: img.contact.avatar && (img.contact.avatar.imageUrl != "") ?

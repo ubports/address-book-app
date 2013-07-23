@@ -71,7 +71,7 @@ Page {
                 onTriggered: {
                     var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", mainPage)
                     pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                                   {model: contactsModel, contact: newContact})
+                                   {model: contactList.model, contact: newContact})
                 }
 
             }
