@@ -26,6 +26,7 @@ UbuntuShape {
     signal clicked(string contactId)
 
     image: Image {
+        fillMode: Image.PreserveAspectCrop
         source: img.contact.avatar && (img.contact.avatar.imageUrl != "") ?
                     Qt.resolvedUrl(img.contact.avatar.imageUrl) :
                     "artwork:/avatar-default.png"
