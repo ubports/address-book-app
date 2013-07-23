@@ -46,6 +46,7 @@ Page {
     ContactsUI.ContactListView {
         id: contactList
 
+        multiSelectionEnabled: true
         anchors.fill: parent
         onError: PopupUtils.open(dialog, null)
 
@@ -60,6 +61,15 @@ Page {
         onContactClicked: {
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
                            {model: contactList.model, contactId: contactId})
+        }
+
+        onSelectionDone: {
+            var ids = []
+            var contacts = model.contacts
+            for (var i=0; i < items.length; i++) {
+                ids.push(contacts[items[i]].contactId)
+            }
+            contactList.model.removeContacts(ids)
         }
     }
 
