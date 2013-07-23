@@ -30,7 +30,7 @@ import QtQuick 2.0
         import Ubuntu.Contacts 0.1
 
         ContactListView {
-            anchors.fill: paret
+            anchors.fill: parent
             onContactClicked: console.debug("Contact ID:" + contactId)
         }
     \endqml

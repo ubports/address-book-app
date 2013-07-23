@@ -33,7 +33,7 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
         import Ubuntu.Contacts 0.1
 
         ContactSimpleListView {
-            anchors.fill: paret
+            anchors.fill: parent
             onContactClicked: console.debug("Contact ID:" + contactId)
         }
     \endqml
@@ -78,14 +78,14 @@ ListView {
     */
     property variant subTitleFields: [ Organization.Name ]
     /*!
-      \qmlproperty list<SortOrder> ContactModel::sortOrders
+      \qmlproperty list<SortOrder> sortOrders
 
       This property holds a list of sort orders used by the contacts model.
       \sa SortOrder
     */
     property alias sortOrders: contactsModel.sortOrders
     /*!
-      \qmlproperty FetchHint ContactModel::fetchHint
+      \qmlproperty FetchHint fetchHint
 
       This property holds the fetch hint instance used by the contact model.
 
@@ -93,7 +93,7 @@ ListView {
     */
     property alias fetchHint: contactsModel.fetchHint
     /*!
-      \qmlproperty Filter ContactModel::filter
+      \qmlproperty Filter filter
 
       This property holds the filter instance used by the contact model.
 
