@@ -25,4 +25,6 @@ ListItem.Empty {
     property QtObject contact: null
     property QtObject detail: null
     property variant fields: null
+
+    highlightWhenPressed: false
 }
