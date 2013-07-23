@@ -3,6 +3,8 @@ set(CONTACT_COMPONENTS_QMLS
     ContactFavoriteListView.qml
     ContactListView.qml
     ContactSimpleListView.qml
+    DialogButtons.qml
+    MultipleSelectionListView.qml
     OrganicView.qml
     qmldir
 )
