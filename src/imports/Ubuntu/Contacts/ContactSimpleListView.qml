@@ -39,7 +39,7 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
     \endqml
 */
 
-ListView {
+MultipleSelectionListView {
     id: contactListView
 
     /*!
@@ -101,6 +101,13 @@ ListView {
     */
     property alias filter: contactsModel.filter
     /*!
+      \qmlproperty bool multiSelectionEnabled
+
+      This property holds if the multi selection mode is enabled or not
+      By default this is set to false
+    */
+    property bool multiSelectionEnabled: false
+    /*!
       \qmlproperty bool loading
 
       This property holds when the model still loading new contacts
@@ -157,10 +164,20 @@ ListView {
                   "artwork:/avatar-default.png"
         text: contactListView.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
         subText: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
-
+        selected: contactListView.multiSelectionEnabled && (contactListView.selectedItems.indexOf(index) != -1)
         onClicked: {
-            contactListView.currentIndex = index
-            contactListView.contactClicked(contact.contactId)
+            if (contactListView.isInSelectionModel) {
+                contactListView.selectItem(index)
+            } else {
+                contactListView.currentIndex = index
+                contactListView.contactClicked(contact.contactId)
+            }
+        }
+
+        onPressAndHold: {
+            if (contactListView.multiSelectionEnabled) {
+                contactListView.startSelection()
+            }
         }
     }
 
