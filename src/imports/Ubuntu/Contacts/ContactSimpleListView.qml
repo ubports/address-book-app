@@ -108,7 +108,7 @@ ListView {
 
       \sa Filter
     */
-    property string defaultAvatarImageUrl: ""
+    property string defaultAvatarImageUrl: "gicon:/avatar-default"
     /*!
       \qmlproperty bool loading
 

@@ -46,5 +46,6 @@ ContactSimpleListView {
         }
         height: count > 0 ? implicitHeight : 0
         onContactClicked: root.contactClicked(contactId)
+        defaultAvatarImageUrl: root.defaultAvatarImageUrl
     }
 }

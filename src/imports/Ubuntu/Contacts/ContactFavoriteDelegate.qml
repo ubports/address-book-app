@@ -22,6 +22,7 @@ UbuntuShape {
     id: img
 
     property var contact: model ? model.contact : null
+    property string defaultAvatarImageUrl
 
     signal clicked(string contactId)
 
@@ -29,7 +30,7 @@ UbuntuShape {
         fillMode: Image.PreserveAspectCrop
         source: img.contact.avatar && (img.contact.avatar.imageUrl != "") ?
                     Qt.resolvedUrl(img.contact.avatar.imageUrl) :
-                    "artwork:/avatar-default.png"
+                    img.defaultAvatarImageUrl
         asynchronous: true
     }
 
