@@ -8,6 +8,7 @@ Build-Depends: cmake,
                libgl1-mesa-dev[i386 amd64] | libgl-dev[i386 amd64],
                libgles2-mesa-dev[armhf],
                python,
+               qt5-default,
                qtbase5-dev,
                qtdeclarative5-dev,
 Standards-Version: 3.9.4
@@ -23,6 +24,7 @@ Depends: libqt5contacts5,
          libqt5versit5,
          qmlscene,
          qtcontact5-galera,
+         qtdeclarative5-ubuntu-contacts-plugin (= ${binary:Version}),
          qtdeclarative5-ubuntu-ui-toolkit-plugin,
          qtdeclarative5-qtcontacts-plugin,
          qtdeclarative5-qtquick2-plugin,
@@ -30,6 +32,18 @@ Depends: libqt5contacts5,
          ${shlibs:Depends},
 Description: Address Book application
  Address Book application to manager contacts.
+
+Package: qtdeclarative5-ubuntu-contacts-plugin
+Architecture: all
+Depends: qtdeclarative5-qtquick2-plugin,
+         qtdeclarative5-ubuntu-ui-toolkit-plugin,
+         ${misc:Depends},
+         ${shlibs:Depends},
+Description: Qt Ubuntu Contacts Components - QML plugin
+ Qt Ubuntu Contacts Components offers a set of reusable user interface
+ related with contacts for Qt Quick 2 / QML.
+ .
+ This package contains the Ubuntu Contacts Components QML plugin.
 
 Package: address-book-app-dbg
 Architecture: any

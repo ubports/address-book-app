@@ -29,20 +29,32 @@ ContactDetailGroupWithTypeView {
     title: i18n.tr("Phone")
     typeModel: ContactDetailPhoneNumberTypeModel { }
     defaultAction: Action {
-        text: i18n.tr("Call")
+        text: i18n.tr("Favorite")
         iconSource: "artwork:/contact-call.png"
     }
 
     detailDelegate: ContactDetailPhoneNumberView {
         property variant detailType: detail && root.contact && root.typeModel ? root.getType(detail) : null
+        property bool isPreffered: root.contact && root.contact.preferredDetails && root.contact.isPreferredDetail("TEL", detail)
 
-        action: root.defaultAction
+        action: Action {
+            text: i18n.tr("Favorite")
+            iconSource: contact.favorite.favorite && isPreffered ? "artwork:/favorite-selected.png" : "artwork:/favorite-unselected.png"
+        }
         contact: root.contact
         fields: root.fields
         typeLabel: detailType ? detailType.label : ""
 
         height: implicitHeight
         width: root.width
-        onClicked: root.actionTrigerred(action, detail)
+        onClicked: {
+            if (isPreffered && contact.favorite.favorite) {
+                contact.favorite.favorite = false
+            } else {
+                root.contact.setPreferredDetail("TEL", detail)
+                contact.favorite.favorite = true
+            }
+            contact.save()
+        }
     }
 }

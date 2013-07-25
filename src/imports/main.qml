@@ -58,6 +58,6 @@ MainView {
 
     Component.onCompleted: {
         Theme.name = "Ubuntu.Components.Themes.SuruGradient"
-        mainStack.push(Qt.createComponent("ContactList/ContactList.qml"))
+        mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"))
     }
 }

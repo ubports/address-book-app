@@ -25,7 +25,7 @@
 
 #include "config.h"
 
-static QString getFullPath(const QString &fileName)
+static QString fullPath(const QString &fileName)
 {
     QString result;
     QString appPath = QCoreApplication::applicationDirPath();
@@ -38,7 +38,15 @@ static QString getFullPath(const QString &fileName)
     return result;
 }
 
-
+static QString importPath(const QString &suffix)
+{
+    QString appPath = QCoreApplication::applicationDirPath();
+    if (appPath != ADDRESS_BOOK_APP_BINDIR) {
+        return QString(ADDRESS_BOOK_APP_DEV_DATADIR) + suffix;
+    } else {
+        return "";
+    }
+}
 
 int main(int argc, char** argv)
 {
@@ -69,13 +77,14 @@ int main(int argc, char** argv)
 
     /* Configure "artwork:" prefix so that any access to a file whose name starts
        with that prefix resolves properly. */
-    QDir::addSearchPath("artwork", getFullPath("/artwork"));
+    QDir::addSearchPath("artwork", fullPath("/artwork"));
 
     QQuickView *view = new QQuickView();
     view->setResizeMode(QQuickView::SizeRootObjectToView);
     view->setTitle(ADDRESS_BOOK_APP_NAME);
+    view->engine()->addImportPath(importPath("/imports/"));
 
-    QUrl source(getFullPath("/imports/main.qml"));
+    QUrl source(fullPath("/imports/main.qml"));
     view->setSource(source);
     view->showNormal();
 
