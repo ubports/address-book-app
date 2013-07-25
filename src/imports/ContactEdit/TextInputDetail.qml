@@ -36,4 +36,9 @@ TextField {
         frameSpacing: 0
         background: Item {}
     }
+    onActiveFocusChanged: {
+        if (activeFocus) {
+            makeMeVisible(root)
+        }
+    }
 }

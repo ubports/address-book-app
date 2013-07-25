@@ -43,9 +43,31 @@ Page {
         }
     }
 
-    flickable: null
+    function makeMeVisible(item) {
+        console.debug("Item requested visibility:" + item)
+        var position = scrollArea.contentItem.mapFromItem(item, 0, item.y);
 
+        // check if the item is already visible
+        var bottomY = scrollArea.contentY + scrollArea.height
+        var itemBottom = position.y + item.height
+        if (position.y >= scrollArea.contentY && itemBottom <= bottomY) {
+            return;
+        }
+
+        // if it is not, try to scroll and make it visible
+        var targetY = position.y + item.height - scrollArea.height
+        if (targetY >= 0 && position.y) {
+            scrollArea.contentY = targetY;
+        } else if (position.y < scrollArea.contentY) {
+            // if it is hidden at the top, also show it
+            scrollArea.contentY = position.y;
+        }
+    }
+
+    flickable: null
     Flickable {
+        id: scrollArea
+
         flickableDirection: Flickable.VerticalFlick
         anchors.fill: parent
         contentHeight: contents.height
