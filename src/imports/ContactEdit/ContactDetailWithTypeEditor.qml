@@ -24,7 +24,7 @@ import "../Common"
 ContactDetailBase {
     id: root
 
-    property double itemHeight: units.gu(2)
+    property double itemHeight: units.gu(3)
     property alias types: detailTypeSelector.values
     property int fieldType: -1
     property alias selectedTypeIndex: detailTypeSelector.currentIndex
@@ -59,17 +59,20 @@ ContactDetailBase {
         return detailchanged
     }
 
-    implicitHeight: detailTypeSelector.height + fieldValues.height
+    // disable listview mouse area
+    __mouseArea.visible: false
+    implicitHeight: detailTypeSelector.height + fieldValues.height + units.gu(2)
 
     ValueSelector {
         id: detailTypeSelector
 
         anchors {
             left: parent.left
-            leftMargin: units.gu(1)
+            leftMargin: units.gu(2)
             right: parent.right
-            rightMargin: units.gu(1)
+            rightMargin: units.gu(2)
             top: parent.top
+            topMargin: units.gu(1)
         }
         height: units.gu(3)
     }

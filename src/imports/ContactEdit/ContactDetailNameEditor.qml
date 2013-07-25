@@ -49,8 +49,9 @@ ContactDetailItem {
     fields: [ QtContacts.Name.FirstName, QtContacts.Name.LastName ]
 
     fieldDelegate: TextInputDetail {
+        width: root.width - units.gu(4)
+        x: units.gu(2)
         detail: root.detail
-        width: root.width
         height: units.gu(4)
     }
 }

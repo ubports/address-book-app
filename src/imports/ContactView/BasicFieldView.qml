@@ -54,7 +54,7 @@ import "../Common"
         verticalAlignment: Text.AlignVCenter
 
         // style
-        fontSize: "x-small"
+        fontSize: "medium"
         color: "#f3f3e7"
         opacity: 0.2
     }

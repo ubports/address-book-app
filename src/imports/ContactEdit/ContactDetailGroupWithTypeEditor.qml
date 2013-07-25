@@ -52,18 +52,21 @@ ContactDetailGroupWithTypeBase {
         }
         return changed
     }
-    minimumHeight: units.gu(3)
+    minimumHeight: units.gu(5)
     headerDelegate: ListItem.Empty {
         id: header
         highlightWhenPressed: false
 
         width: root.width
-        height: units.gu(3)
+        height: units.gu(5)
+        // disable listview mouse area
+        __mouseArea.visible: false
         Label {
             anchors {
                 verticalCenter: parent.verticalCenter
                 left: parent.left
                 right: parent.right
+                margins: units.gu(2)
             }
 
             text: root.title
@@ -74,23 +77,27 @@ ContactDetailGroupWithTypeBase {
             opacity: 0.2
         }
 
+
         Image {
             anchors {
                 verticalCenter: parent.verticalCenter
                 right: parent.right
+                rightMargin: units.gu(2)
             }
-            width: units.gu(2)
-            height: units.gu(2)
+            width: units.gu(3)
+            height: units.gu(3)
 
-            source: "artwork:/add-detail.png"
+            source: "artwork:/add-detail.svg"
             fillMode: Image.PreserveAspectFit
-        }
-
-        onClicked: {
-            if (detailQmlTypeName) {
-                var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + detailQmlTypeName + "{}", root)
-                if (newDetail) {
-                    root.contact.addDetail(newDetail)
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    if (detailQmlTypeName) {
+                        var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + detailQmlTypeName + "{}", root)
+                        if (newDetail) {
+                            root.contact.addDetail(newDetail)
+                        }
+                    }
                 }
             }
         }

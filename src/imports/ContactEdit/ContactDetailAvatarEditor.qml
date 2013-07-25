@@ -28,7 +28,7 @@ ContactDetailBase {
 
     Image {
         anchors.fill: parent
-        source: root.detail && root.detail.imageUrl != "" ? root.detail.imageUrl : "artwork:/avatar-default.png"
+        source: root.detail && root.detail.imageUrl != "" ? root.detail.imageUrl : "artwork:/avatar-default.svg"
         asynchronous: true
         fillMode: Image.PreserveAspectCrop
 
@@ -41,12 +41,12 @@ ContactDetailBase {
                 margins: units.gu(1)
             }
 
-            width: units.gu(2)
-            height: units.gu(2)
+            width: units.gu(3)
+            height: units.gu(3)
 
             Image {
                 anchors.fill: parent
-                source: "artwork:/edit.png"
+                source: "artwork:/import-image.svg"
                 fillMode: Image.PreserveAspectFit
             }
         }

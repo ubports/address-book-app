@@ -43,6 +43,8 @@ Page {
         }
     }
 
+    flickable: null
+
     Flickable {
         flickableDirection: Flickable.VerticalFlick
         anchors.fill: parent
@@ -57,7 +59,6 @@ Page {
                 top: parent.top
                 left: parent.left
                 right: parent.right
-                margins: units.gu(1)
             }
             height: childrenRect.height
 
