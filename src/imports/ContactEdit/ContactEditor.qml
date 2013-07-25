@@ -63,6 +63,8 @@ Page {
             height: childrenRect.height
 
             ContactDetailNameEditor {
+                id: nameEditor
+
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
@@ -117,6 +119,8 @@ Page {
             }
         }
     }
+
+    Component.onCompleted: nameEditor.forceActiveFocus()
 
     ActivityIndicator {
         id: busyIndicator

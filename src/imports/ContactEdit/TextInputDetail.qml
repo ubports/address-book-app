@@ -29,6 +29,7 @@ TextField {
 
     signal removeClicked()
 
+    focus: true
     text: originalValue ? originalValue : ""
     style: TextFieldStyle {
         overlaySpacing: 0
