@@ -49,10 +49,11 @@ ContactDetailBase {
 
         anchors {
             right: parent.right
+            rightMargin: units.gu(2)
             top: parent.top
             left: parent.left
             bottom: parent.bottom
-            leftMargin: units.gu(1)
+            leftMargin: units.gu(2)
         }
         iconSource: typeIcon ? typeIcon : (root.action ? root.action.iconSource : "")
     }

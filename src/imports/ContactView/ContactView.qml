@@ -26,28 +26,12 @@ Page {
     property variant contactId: null
     property alias model: contactFetch.model
 
-    function formatNameToDisplay(contact) {
-        if (!contact) {
-            return ""
-        }
-
-        if (contact.name) {
-            var detail = contact.name
-            return detail.firstName + " " + detail.lastName
-        } else if (contact.displayLabel && contact.displayLabel.label && contact.displayLabel.label !== "") {
-            return contact.displayLabel.label
-        } else {
-            return ""
-        }
-    }
-
+    flickable: null
     onActiveChanged: {
         if (active) {
             contactFetch.fetchContact(root.contactId)
         }
     }
-
-    title: formatNameToDisplay(contact)
 
     Flickable {
         flickableDirection: Flickable.VerticalFlick
@@ -64,7 +48,15 @@ Page {
                 top: parent.top
                 left: parent.left
                 right: parent.right
-                margins: units.gu(1)
+            }
+
+            ContactDetailNameView {
+                contact: root.contact
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                height: implicitHeight
             }
 
             ContactDetailAvatarView {

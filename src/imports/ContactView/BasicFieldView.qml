@@ -36,8 +36,8 @@ import "../Common"
             verticalCenter: parent.verticalCenter
             left: parent.left
         }
-        height: units.gu(2)
-        width: visible ? units.gu(2) : 0
+        height: units.gu(2.5)
+        width: visible ? units.gu(2.5) : 0
         visible: iconSource && iconSource != ""
     }
 
@@ -50,6 +50,8 @@ import "../Common"
             top: parent.top
             topMargin: units.gu(1)
         }
+        height: units.gu(2)
+        verticalAlignment: Text.AlignVCenter
 
         // style
         fontSize: "x-small"

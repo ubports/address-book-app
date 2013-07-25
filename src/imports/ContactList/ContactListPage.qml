@@ -24,8 +24,7 @@ Page {
     id: mainPage
     objectName: "ContactList"
 
-    title: i18n.tr("Contacts")
-
+    flickable: null
     Component {
         id: dialog
 
@@ -48,6 +47,7 @@ Page {
 
         anchors.fill: parent
         onError: PopupUtils.open(dialog, null)
+        defaultAvatarImageUrl: "artwork:/avatar-default.svg"
 
         ActivityIndicator {
             id: activity

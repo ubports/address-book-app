@@ -23,17 +23,24 @@ AbstractButton {
     property QtObject actions
     property alias iconSource: icon.source
 
-    Image {
-        id: icon
+    Item {
         anchors {
             left: parent.left
             top: parent.top
             right: parent.right
             bottom: arrow.top
         }
-        fillMode: Image.Pad
+        Image {
+            id: icon
+            anchors.centerIn: parent
+            fillMode: Image.PreserveAspectFit
+            smooth: true
+            height: units.gu(3)
+            width: height
+        }
     }
-    Image {
+
+    Item {
         id: arrow
 
         anchors {
@@ -42,7 +49,13 @@ AbstractButton {
             bottom: parent.bottom
         }
         height: units.gu(2)
-        fillMode: Image.Pad
-        source: "artwork:/action-list.png"
+        Image {
+            anchors.centerIn: parent
+            fillMode: Image.PreserveAspectFit
+            smooth: true
+            height: units.gu(2)
+            width: height
+            source: "artwork:/action-list.png"
+        }
     }
 }

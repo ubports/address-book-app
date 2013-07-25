@@ -59,7 +59,7 @@ ContactDetailBase {
         return detailchanged
     }
 
-    implicitHeight: detailTypeSelector.height + fieldValues.height + units.gu(1)
+    implicitHeight: detailTypeSelector.height + fieldValues.height
 
     ValueSelector {
         id: detailTypeSelector
@@ -96,9 +96,7 @@ ContactDetailBase {
                     right: parent.right
                 }
                 height: root.itemHeight
-                onRemoveClicked: {
-                    root.contact.removeDetail(root.detail)
-                }
+                onRemoveClicked: root.contact.removeDetail(root.detail)
             }
         }
     }

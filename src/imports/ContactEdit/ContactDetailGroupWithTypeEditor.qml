@@ -17,6 +17,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import QtContacts 5.0 as QtContacts
+import Ubuntu.Components.ListItems 0.1 as ListItem
 
 import "../Common"
 
@@ -51,47 +52,45 @@ ContactDetailGroupWithTypeBase {
         }
         return changed
     }
-
     minimumHeight: units.gu(3)
-
-    headerDelegate: Item {
+    headerDelegate: ListItem.Empty {
         id: header
+        highlightWhenPressed: false
+
         width: root.width
         height: units.gu(3)
-
         Label {
             anchors {
+                verticalCenter: parent.verticalCenter
                 left: parent.left
-                top: parent.top
-                right: addFieldButton.left
-                bottom: parent.bottom
+                right: parent.right
             }
+
             text: root.title
+
+            // style
+            fontSize: "medium"
+            color: "#f3f3e7"
+            opacity: 0.2
         }
 
-        AbstractButton {
-            id: addFieldButton
-
+        Image {
             anchors {
                 verticalCenter: parent.verticalCenter
                 right: parent.right
-                rightMargin: units.gu(1)
             }
             width: units.gu(2)
             height: units.gu(2)
 
-            Image {
-                anchors.fill: parent
-                source: "artwork:/add-detail.png"
-                fillMode: Image.PreserveAspectFit
-            }
+            source: "artwork:/add-detail.png"
+            fillMode: Image.PreserveAspectFit
+        }
 
-            onClicked: {
-                if (detailQmlTypeName) {
-                    var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + detailQmlTypeName + "{}", root)
-                    if (newDetail) {
-                        root.contact.addDetail(newDetail)
-                    }
+        onClicked: {
+            if (detailQmlTypeName) {
+                var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + detailQmlTypeName + "{}", root)
+                if (newDetail) {
+                    root.contact.addDetail(newDetail)
                 }
             }
         }

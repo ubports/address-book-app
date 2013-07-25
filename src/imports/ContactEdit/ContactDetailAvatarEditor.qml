@@ -24,7 +24,7 @@ ContactDetailBase {
     id: root
 
     detail: contact ? contact.avatar : null
-    implicitHeight: units.gu(12)
+    implicitHeight: units.gu(17)
 
     Image {
         anchors.fill: parent

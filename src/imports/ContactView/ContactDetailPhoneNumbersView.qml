@@ -39,7 +39,7 @@ ContactDetailGroupWithTypeView {
 
         action: Action {
             text: i18n.tr("Favorite")
-            iconSource: contact.favorite.favorite && isPreffered ? "artwork:/favorite-selected.png" : "artwork:/favorite-unselected.png"
+            iconSource: contact.favorite.favorite && isPreffered ? "artwork:/favorite-selected.svg" : "artwork:/favorite-unselected.svg"
         }
         contact: root.contact
         fields: root.fields
