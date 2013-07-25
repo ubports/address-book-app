@@ -53,5 +53,6 @@ ContactDetailItem {
         x: units.gu(2)
         detail: root.detail
         height: units.gu(4)
+        placeholderText: field == QtContacts.Name.FirstName ? i18n.tr("First name") : i18n.tr("Last name")
     }
 }

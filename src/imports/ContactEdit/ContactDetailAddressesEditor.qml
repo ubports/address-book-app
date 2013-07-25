@@ -28,4 +28,9 @@ ContactDetailGroupWithTypeEditor {
         QtContacts.Address.Region,
         QtContacts.Address.Postcode,
         QtContacts.Address.Country ]
+    placeholderTexts: [ i18n.tr("Street"),
+                        i18n.tr("Locality"),
+                        i18n.tr("Region"),
+                        i18n.tr("Post code"),
+                        i18n.tr("Cuntry") ]
 }

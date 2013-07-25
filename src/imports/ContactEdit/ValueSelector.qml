@@ -76,7 +76,8 @@ FocusScope {
         }
 
         MouseArea {
-            anchors.fill: parent
+            anchors.fill: label
+            propagateComposedEvents: true
             onClicked: root.forceActiveFocus()
         }
     }

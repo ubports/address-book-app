@@ -27,6 +27,7 @@ ContactDetailGroupWithTypeBase {
     property string detailQmlTypeName
     property int currentItem: -1
     property int fieldType: QtContacts.ContactDetail.FieldContext
+    property variant placeholderTexts: []
 
     function save() {
         var changed = false
@@ -128,6 +129,7 @@ ContactDetailGroupWithTypeBase {
             }
         }
 
+        placeholderTexts: root.placeholderTexts
         contact: root.contact
         fields: root.fields
         height: implicitHeight

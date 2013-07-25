@@ -28,6 +28,7 @@ ContactDetailBase {
     property alias types: detailTypeSelector.values
     property int fieldType: -1
     property alias selectedTypeIndex: detailTypeSelector.currentIndex
+    property variant placeholderTexts: []
 
     function selectType(type) {
         detailTypeSelector.selectItem(type)
@@ -93,6 +94,7 @@ ContactDetailBase {
             TextInputDetail {
                 detail: root.detail
                 field: modelData
+                placeholderText: root.placeholderTexts[index]
 
                 anchors {
                     left: parent.left

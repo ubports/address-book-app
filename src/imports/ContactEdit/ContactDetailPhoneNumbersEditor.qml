@@ -24,5 +24,6 @@ ContactDetailGroupWithTypeEditor {
     detailType: QtContacts.ContactDetail.PhoneNumber
     detailQmlTypeName: "PhoneNumber"
     fields: [ QtContacts.PhoneNumber.Number ]
+    placeholderTexts: [ i18n.tr("Enter a number") ]
     typeModel: ContactDetailPhoneNumberTypeModel { }
 }
