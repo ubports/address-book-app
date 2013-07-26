@@ -46,10 +46,16 @@ Page {
     onActiveChanged: {
         if (active) {
             contactFetch.fetchContact(root.contactId)
+
+            //WORKAROUND: to correct scroll back the page
+            flickable.contentY = -100
+            flickable.returnToBounds()
         }
     }
 
     Flickable {
+        id: flickable
+
         flickableDirection: Flickable.VerticalFlick
         anchors.fill: parent
         contentHeight: contents.height
