@@ -47,5 +47,8 @@ ContactSimpleListView {
         height: count > 0 ? implicitHeight : 0
         onContactClicked: root.contactClicked(contactId)
         defaultAvatarImageUrl: root.defaultAvatarImageUrl
+
+        // Make sure that the head is fully visibe when its appear for the first time
+        onHeightChanged: root.positionViewAtBeginning()
     }
 }
