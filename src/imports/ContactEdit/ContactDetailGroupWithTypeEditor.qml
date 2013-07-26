@@ -53,6 +53,7 @@ ContactDetailGroupWithTypeBase {
         }
         return changed
     }
+    focus: true
     minimumHeight: units.gu(5)
     headerDelegate: ListItem.Empty {
         id: header
@@ -93,6 +94,7 @@ ContactDetailGroupWithTypeBase {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
+                    root.forceActiveFocus()
                     if (detailQmlTypeName) {
                         var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + detailQmlTypeName + "{}", root)
                         if (newDetail) {

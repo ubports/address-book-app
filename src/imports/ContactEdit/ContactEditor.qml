@@ -25,6 +25,8 @@ Page {
     property QtObject contact: null
     property QtObject model: null
 
+    property QtObject activeItem: null
+
     function save() {
         var changed = false
         for(var i = 0; i < contents.children.length; ++i) {
@@ -44,7 +46,11 @@ Page {
     }
 
     function makeMeVisible(item) {
-        console.debug("Item requested visibility:" + item)
+        if (!item) {
+            return
+        }
+
+        activeItem = item
         var position = scrollArea.contentItem.mapFromItem(item, 0, item.y);
 
         // check if the item is already visible
@@ -73,6 +79,9 @@ Page {
         contentHeight: contents.height
         contentWidth: parent.width
         visible: !busyIndicator.visible
+
+        // after add a new field we need to wait for the contentHeight to change to scroll to the correct position
+        onContentHeightChanged: contactEditor.makeMeVisible(contactEditor.activeItem)
 
         Column {
             id: contents

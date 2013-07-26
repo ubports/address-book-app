@@ -84,6 +84,7 @@ FocusScope {
             Loader {
                 id: detailItem
 
+                focus: true
                 sourceComponent: root.detailDelegate
                 Binding {
                     target: detailItem.item

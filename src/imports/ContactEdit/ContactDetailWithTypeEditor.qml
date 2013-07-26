@@ -61,6 +61,7 @@ ContactDetailBase {
     }
 
     // disable listview mouse area
+    focus: true
     __mouseArea.visible: false
     implicitHeight: detailTypeSelector.height + fieldValues.height + units.gu(2)
 
@@ -86,11 +87,13 @@ ContactDetailBase {
             right: detailTypeSelector.right
             top: detailTypeSelector.bottom
         }
+        focus: true
         height: childrenRect.height
 
         Repeater {
             model: root.fields
 
+            focus: true
             TextInputDetail {
                 detail: root.detail
                 field: modelData
@@ -105,4 +108,5 @@ ContactDetailBase {
             }
         }
     }
+
 }
