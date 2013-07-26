@@ -24,6 +24,7 @@ Page {
     id: mainPage
     objectName: "ContactList"
 
+    title: i18n.tr("Contacts")
     flickable: null
     Component {
         id: dialog
