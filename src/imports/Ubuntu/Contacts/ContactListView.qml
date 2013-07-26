@@ -48,7 +48,11 @@ ContactSimpleListView {
         onContactClicked: root.contactClicked(contactId)
         defaultAvatarImageUrl: root.defaultAvatarImageUrl
 
-        // Make sure that the head is fully visibe when its appear for the first time
-        onHeightChanged: root.positionViewAtBeginning()
+        // WORKAROUND: Due a bug on the SDK Page component the page is nto correct positioned if it changes
+        // the size dynamically
+        onHeightChanged: {
+            root.contentY = -1000
+            root.returnToBounds()
+        }
     }
 }
