@@ -24,7 +24,7 @@ Depends: libqt5contacts5,
          libqt5versit5,
          qmlscene,
          qtcontact5-galera,
-         qtdeclarative5-ubuntu-contacts-plugin (= ${binary:Version}),
+         qtdeclarative5-ubuntu-contacts0.1 (= ${binary:Version}),
          qtdeclarative5-ubuntu-ui-toolkit-plugin,
          qtdeclarative5-qtcontacts-plugin,
          qtdeclarative5-qtquick2-plugin,
@@ -33,8 +33,8 @@ Depends: libqt5contacts5,
 Description: Address Book application
  Address Book application to manager contacts.
 
-Package: qtdeclarative5-ubuntu-contacts-plugin
-Architecture: all
+Package: qtdeclarative5-ubuntu-contacts0.1
+Architecture: any
 Depends: qtdeclarative5-qtquick2-plugin,
          qtdeclarative5-ubuntu-ui-toolkit-plugin,
          ${misc:Depends},

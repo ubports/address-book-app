@@ -17,6 +17,7 @@ find_package(Qt5Quick)
 set(ADDRESS_BOOK_APP_DIR ${CMAKE_INSTALL_DATADIR}/address-book-app)
 set(ADDRESS_BOOK_APP_FULL_DIR ${CMAKE_INSTALL_FULL_DATADIR}/address-book-app)
 set(ADDRESS_BOOK_APP_NAME "Address Book")
+set(API_VERSION 0.1)
 
 # for dh_translations to extract the domain
 # (regarding syntax consistency, see http://pad.lv/1181187)
