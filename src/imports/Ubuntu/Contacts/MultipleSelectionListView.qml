@@ -64,11 +64,23 @@ ListView {
     */
     property variant selectedItems: []
     /*!
+      \qmlproperty Action acceptAction
+
+      This property holds the action used into the accept button
+    */
+    property alias acceptAction: sheet.acceptAction
+    /*!
+      \qmlproperty Action acceptAction
+
+      This property holds the action used into the reject button
+    */
+    property alias rejectAction: sheet.rejectAction
+    /*!
       \qmlproperty bool isInSelectionModel
 
       This property holds a list with the index of selected items
     */
-    readonly property bool isInSelectionModel: state === "selection"
+    readonly property bool isInSelectionMode: state === "selection"
     /*!
       This handler is called when the selection mode is finished without be canceled
     */
@@ -83,12 +95,37 @@ ListView {
     }
     /*!
       Add a index into the list of selected items
+      Returns true if the item was marked as selected or false if the item is already selected
     */
     function selectItem(index)
     {
-        var newItems = listView.selectedItems
-        newItems.push(index)
-        listView.selectedItems = newItems
+        if (listView.selectedItems.indexOf(index) == -1) {
+            var newItems = listView.selectedItems
+            newItems.push(index)
+            listView.selectedItems = newItems
+            return true
+        } else {
+            return false
+        }
+    }
+    /*!
+      Remove the index from the selected list
+    */
+    function deselectItem(index)
+    {
+        if (listView.selectedItems.indexOf(index) != -1) {
+            var newItems = []
+            var oldItems = listView.selectedItems
+            for (var i=0; i < oldItems.length; i++) {
+                if (oldItems[i] != index) {
+                    newItems.push(oldItems[i])
+                }
+            }
+            listView.selectedItems = newItems
+            return true
+        } else {
+            return false
+        }
     }
     /*!
       Finish the selection mode with sucess
@@ -132,7 +169,7 @@ ListView {
         height: visible ? units.gu(6) : 0
         visible: false
 
-        onCancel: listView.cancelSelection()
-        onDone: listView.endSelection()
+        onReject: listView.cancelSelection()
+        onAccept: listView.endSelection()
     }
 }

@@ -21,34 +21,39 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 Rectangle {
     id: root
 
-    signal cancel()
-    signal done()
+    signal reject()
+    signal accept()
+
+    property alias acceptAction: accept.action
+    property alias rejectAction: reject.action
 
     color: "gray"
 
     Button {
-        id: cancel
+        id: reject
 
-        text: i18n.tr("Cancel")
+        action: Action {
+            text: i18n.tr("Cancel")
+        }
         anchors {
             left: parent.left
             leftMargin: units.gu(1)
             verticalCenter: parent.verticalCenter
         }
-
-        onClicked: root.cancel()
+        onClicked: root.reject()
     }
 
     Button {
-        id: done
+        id: accept
 
-        text: i18n.tr("Done")
+        action: Action {
+            text: i18n.tr("Done")
+        }
         anchors {
             right: parent.right
             rightMargin: units.gu(1)
             verticalCenter: parent.verticalCenter
         }
-
-        onClicked: root.done()
+        onClicked: root.accept()
     }
 }

@@ -152,6 +152,8 @@ MultipleSelectionListView {
         }
     }
 
+    acceptAction.text: i18n.tr("Delete")
+
     anchors.fill: parent
     model: contactsModel
     onCountChanged: {
@@ -166,8 +168,10 @@ MultipleSelectionListView {
         subText: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
         selected: contactListView.multiSelectionEnabled && (contactListView.selectedItems.indexOf(index) != -1)
         onClicked: {
-            if (contactListView.isInSelectionModel) {
-                contactListView.selectItem(index)
+            if (contactListView.isInSelectionMode) {
+                if (!contactListView.selectItem(index)) {
+                    contactListView.deselectItem(index)
+                }
             } else {
                 contactListView.currentIndex = index
                 contactListView.contactClicked(contact.contactId)
@@ -177,6 +181,7 @@ MultipleSelectionListView {
         onPressAndHold: {
             if (contactListView.multiSelectionEnabled) {
                 contactListView.startSelection()
+                contactListView.selectItem(index)
             }
         }
     }
