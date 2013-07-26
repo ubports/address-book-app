@@ -30,10 +30,6 @@ ContactDetailBase {
     Label {
         id: label
 
-        function isNotEmptyString(string) {
-            return (string && string.length !== 0);
-        }
-
         function formatNameToDisplay(contact) {
             if (!contact) {
                 return ""

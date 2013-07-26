@@ -42,7 +42,6 @@ Page {
     }
 
 
-    flickable: null
     title: formatNameToDisplay(contact)
     onActiveChanged: {
         if (active) {
