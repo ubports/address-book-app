@@ -17,6 +17,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import QtContacts 5.0 as QtContacts
+import Ubuntu.Components.ListItems 0.1 as ListItem
 
 import "../Common"
 
@@ -26,6 +27,7 @@ ContactDetailGroupWithTypeBase {
     property string detailQmlTypeName
     property int currentItem: -1
     property int fieldType: QtContacts.ContactDetail.FieldContext
+    property variant placeholderTexts: []
 
     function save() {
         var changed = false
@@ -51,46 +53,53 @@ ContactDetailGroupWithTypeBase {
         }
         return changed
     }
-
-    minimumHeight: units.gu(3)
-
-    headerDelegate: Item {
+    focus: true
+    minimumHeight: units.gu(5)
+    headerDelegate: ListItem.Empty {
         id: header
-        width: root.width
-        height: units.gu(3)
+        highlightWhenPressed: false
 
+        width: root.width
+        height: units.gu(5)
+        // disable listview mouse area
+        __mouseArea.visible: false
         Label {
             anchors {
+                verticalCenter: parent.verticalCenter
                 left: parent.left
-                top: parent.top
-                right: addFieldButton.left
-                bottom: parent.bottom
+                right: parent.right
+                margins: units.gu(2)
             }
+
             text: root.title
+
+            // style
+            fontSize: "medium"
+            color: "#f3f3e7"
+            opacity: 0.2
         }
 
-        AbstractButton {
-            id: addFieldButton
 
+        Image {
             anchors {
                 verticalCenter: parent.verticalCenter
                 right: parent.right
-                rightMargin: units.gu(1)
+                rightMargin: units.gu(2)
             }
-            width: units.gu(2)
-            height: units.gu(2)
+            width: units.gu(3)
+            height: units.gu(3)
 
-            Image {
+            source: "artwork:/add-detail.svg"
+            fillMode: Image.PreserveAspectFit
+            MouseArea {
                 anchors.fill: parent
-                source: "artwork:/add-detail.png"
-                fillMode: Image.PreserveAspectFit
-            }
-
-            onClicked: {
-                if (detailQmlTypeName) {
-                    var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + detailQmlTypeName + "{}", root)
-                    if (newDetail) {
-                        root.contact.addDetail(newDetail)
+                onClicked: {
+                    root.forceActiveFocus()
+                    if (detailQmlTypeName) {
+                        var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + detailQmlTypeName + "{}", root)
+                        if (newDetail) {
+                            root.contact.addDetail(newDetail)
+                        }
                     }
                 }
             }
@@ -122,6 +131,7 @@ ContactDetailGroupWithTypeBase {
             }
         }
 
+        placeholderTexts: root.placeholderTexts
         contact: root.contact
         fields: root.fields
         height: implicitHeight

@@ -4,29 +4,33 @@ set(ADDRESS_BOOK_APP_ICON
 
 set(ADDRESS_BOOK_APP_ARTWORK
     action-list.png
-    add-detail.png
+    add-detail.svg
     add.png
-    avatar-default.png
+    address-book-app.png
+    avatar-default.svg
+    birthday-cake.svg
     combo-indicator.png
-    contact-call.png
-    contact-email.png
+    contact-call.svg
+    contact-email.svg
     contact-location.png
-    contact-message.png
+    contact-message.svg
     delete.png
     edit.png
     edit-remove.png
-    favorite-selected.png
-    favorite-unselected.png
-    protocol-aim.png
-    protocol-facebook.png
-    protocol-icq.png
-    protocol-irc.png
-    protocol-jabber.png
-    protocol-msn.png
-    protocol-other.png
-    protocol-qq.png
-    protocol-skype.png
-    protocol-yahoo.png
+    favorite-selected.svg
+    favorite-unselected.svg
+    import-image.svg
+    new-contact.svg
+    protocol-aim.svg
+    protocol-facebook.svg
+    protocol-icq.svg
+    protocol-jabber.svg
+    protocol-msn.svg
+    protocol-other.svg
+    protocol-qq.svg
+    protocol-skype.svg
+    protocol-twitter.svg
+    protocol-yahoo.svg
     save.png
     settings.png
     vertical-div.png
@@ -36,9 +40,14 @@ install(FILES ${ADDRESS_BOOK_APP_ICON}
     DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/48x48/apps
 )
 
+install(FILES avatar-default.svg
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/emblems
+)
+
 install(FILES ${ADDRESS_BOOK_APP_ARTWORK}
     DESTINATION ${ADDRESS_BOOK_APP_DIR}/artwork
 )
+
 
 
 

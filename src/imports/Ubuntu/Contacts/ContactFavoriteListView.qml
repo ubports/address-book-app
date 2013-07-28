@@ -45,6 +45,16 @@ OrganicView {
     */
     signal contactClicked(string contactId)
 
+    /*!
+      \qmlproperty string defaultAvatarImage
+
+      This property holds the default image url to be used when the current contact does
+      not contains a photo
+
+      \sa Filter
+    */
+    property string defaultAvatarImageUrl: "gicon:/avatar-default"
+
     bigSize: units.gu(17)
     smallSize: units.gu(11)
     margin: units.gu(1)
@@ -79,5 +89,6 @@ OrganicView {
     delegate: ContactFavoriteDelegate {
         anchors.fill: parent
         onClicked: root.contactClicked(contactId)
+        defaultAvatarImageUrl: root.defaultAvatarImageUrl
     }
 }

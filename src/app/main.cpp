@@ -18,6 +18,7 @@
 #include <QGuiApplication>
 #include <QQuickView>
 #include <QQmlEngine>
+#include <QQmlContext>
 #include <QUrl>
 #include <QDir>
 #include <QDebug>
@@ -83,6 +84,7 @@ int main(int argc, char** argv)
     view->setResizeMode(QQuickView::SizeRootObjectToView);
     view->setTitle(ADDRESS_BOOK_APP_NAME);
     view->engine()->addImportPath(importPath("/imports/"));
+    view->engine()->rootContext()->setProperty("CONTACT_DEFAULT_AVATAR", QStringLiteral("artwork:/avatar-default.svg"));
 
     QUrl source(fullPath("/imports/main.qml"));
     view->setSource(source);

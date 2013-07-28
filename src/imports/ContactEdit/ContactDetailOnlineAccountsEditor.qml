@@ -24,5 +24,6 @@ ContactDetailGroupWithTypeEditor {
     detailType: QtContacts.ContactDetail.OnlineAccount
     detailQmlTypeName: "OnlineAccount"
     fields: [ QtContacts.OnlineAccount.AccountUri ]
+    placeholderTexts: [ i18n.tr("Enter a social alias") ]
     typeModel: ContactDetailOnlineAccountTypeModel { }
 }

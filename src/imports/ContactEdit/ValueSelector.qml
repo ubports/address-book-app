@@ -54,7 +54,7 @@ FocusScope {
             text: root.values[root.currentIndex]
 
             // style
-            fontSize: "small"
+            fontSize: "medium"
             color: "#f3f3e7"
         }
 
@@ -70,13 +70,14 @@ FocusScope {
             text: ">"
 
             // style
-            fontSize: "small"
+            fontSize: "medium"
             color: "#f3f3e7"
             opacity: 0.2
         }
 
         MouseArea {
-            anchors.fill: parent
+            anchors.fill: label
+            propagateComposedEvents: true
             onClicked: root.forceActiveFocus()
         }
     }
@@ -108,7 +109,7 @@ FocusScope {
                 visible: index > 0
 
                 // style
-                fontSize: "small"
+                fontSize: "medium"
                 color: "#f3f3e7"
                 opacity: 0.2
             }
@@ -123,7 +124,7 @@ FocusScope {
                 text: modelData
 
                 // style
-                fontSize: "small"
+                fontSize: "medium"
                 color: "#f3f3e7"
                 opacity: currentIndex == index ? 1.0 : 0.2
 

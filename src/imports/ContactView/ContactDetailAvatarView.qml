@@ -24,12 +24,13 @@ ContactDetailBase {
     id: root
 
     detail: contact ? contact.avatar : null
-    implicitHeight: units.gu(12)
+    implicitHeight: units.gu(17)
 
     Image {
         anchors.fill: parent
-        source: root.detail && root.detail.imageUrl != "" ? root.detail.imageUrl : "artwork:/avatar-default.png"
+        source: root.detail && root.detail.imageUrl != "" ? root.detail.imageUrl : "artwork:/avatar-default.svg"
         asynchronous: true
+        smooth: true
         fillMode: Image.PreserveAspectCrop
     }
 }

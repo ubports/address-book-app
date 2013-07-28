@@ -25,7 +25,6 @@ Page {
     objectName: "ContactList"
 
     title: i18n.tr("Contacts")
-
     Component {
         id: dialog
 
@@ -48,12 +47,13 @@ Page {
 
         anchors.fill: parent
         onError: PopupUtils.open(dialog, null)
+        defaultAvatarImageUrl: "artwork:/avatar-default.svg"
 
         ActivityIndicator {
             id: activity
 
             anchors.centerIn: parent
-            running: contactListView.loading
+            running: contactList.loading
             visible: running
         }
 

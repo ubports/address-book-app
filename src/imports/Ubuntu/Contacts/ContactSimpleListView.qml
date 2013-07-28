@@ -101,6 +101,15 @@ ListView {
     */
     property alias filter: contactsModel.filter
     /*!
+      \qmlproperty string defaultAvatarImage
+
+      This property holds the default image url to be used when the current contact does
+      not contains a photo
+
+      \sa Filter
+    */
+    property string defaultAvatarImageUrl: "gicon:/avatar-default"
+    /*!
       \qmlproperty bool loading
 
       This property holds when the model still loading new contacts
@@ -154,7 +163,7 @@ ListView {
     delegate: ListItem.Subtitled {
         icon: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
                   Qt.resolvedUrl(contact.avatar.imageUrl) :
-                  "artwork:/avatar-default.png"
+                  contactListView.defaultAvatarImageUrl
         text: contactListView.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
         subText: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
 

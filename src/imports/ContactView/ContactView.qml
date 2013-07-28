@@ -33,7 +33,7 @@ Page {
 
         if (contact.name) {
             var detail = contact.name
-            return detail.firstName + " " + detail.lastName
+            return detail.firstName + "\n" + detail.lastName
         } else if (contact.displayLabel && contact.displayLabel.label && contact.displayLabel.label !== "") {
             return contact.displayLabel.label
         } else {
@@ -41,15 +41,21 @@ Page {
         }
     }
 
+
+    title: formatNameToDisplay(contact)
     onActiveChanged: {
         if (active) {
             contactFetch.fetchContact(root.contactId)
+
+            //WORKAROUND: to correct scroll back the page
+            flickable.contentY = -100
+            flickable.returnToBounds()
         }
     }
 
-    title: formatNameToDisplay(contact)
-
     Flickable {
+        id: flickable
+
         flickableDirection: Flickable.VerticalFlick
         anchors.fill: parent
         contentHeight: contents.height
@@ -64,7 +70,6 @@ Page {
                 top: parent.top
                 left: parent.left
                 right: parent.right
-                margins: units.gu(1)
             }
 
             ContactDetailAvatarView {

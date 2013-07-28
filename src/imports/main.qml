@@ -23,6 +23,7 @@ MainView {
 
     width: units.gu(40)
     height: units.gu(71)
+    anchorToKeyboard: true
 
     PageStack {
         id: mainStack
@@ -35,25 +36,7 @@ MainView {
                     easing.type: Easing.OutQuad
                 }
             }
-
-            // make the page full visible if the inputMethod appears
-            bottomMargin: {
-                if (Qt.inputMethod.visible) {
-                    return toolbar.height + Qt.inputMethod.keyboardRectangle.height + units.gu(2)
-                } else if (toolbar.locked && toolbar.opened) {
-                    return toolbar.height + units.gu(2)
-                }
-                return 0
-            }
        }
-    }
-
-    // Make the toolbar visible if it is locked and the inputMethod appears
-    Binding {
-        target: toolbar
-        property: "anchors.bottomMargin"
-        value: Qt.inputMethod.visible && toolbar.locked ? Qt.inputMethod.keyboardRectangle.height : 0
-        when: toolbar
     }
 
     Component.onCompleted: {

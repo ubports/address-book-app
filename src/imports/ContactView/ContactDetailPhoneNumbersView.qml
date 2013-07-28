@@ -35,11 +35,11 @@ ContactDetailGroupWithTypeView {
 
     detailDelegate: ContactDetailPhoneNumberView {
         property variant detailType: detail && root.contact && root.typeModel ? root.getType(detail) : null
-        property bool isPreffered: root.contact && root.contact.preferredDetails && root.contact.isPreferredDetail("TEL", detail)
+        property bool isPreferred: root.contact && root.contact.preferredDetails && detail && root.contact.isPreferredDetail("TEL", detail)
 
         action: Action {
             text: i18n.tr("Favorite")
-            iconSource: contact.favorite.favorite && isPreffered ? "artwork:/favorite-selected.png" : "artwork:/favorite-unselected.png"
+            iconSource: (contact.favorite.favorite && isPreferred) ? "artwork:/favorite-selected.svg" : "artwork:/favorite-unselected.svg"
         }
         contact: root.contact
         fields: root.fields
@@ -48,7 +48,7 @@ ContactDetailGroupWithTypeView {
         height: implicitHeight
         width: root.width
         onClicked: {
-            if (isPreffered && contact.favorite.favorite) {
+            if (isPreferred && contact.favorite.favorite) {
                 contact.favorite.favorite = false
             } else {
                 root.contact.setPreferredDetail("TEL", detail)
