@@ -50,6 +50,13 @@ ListView {
     */
     property bool showAvatar: true
     /*!
+      \qmlproperty bool swipeToDelete
+
+      This property holds if the swipe to delete contact gesture is enabled or not
+      By default this is set to false.
+    */
+    property bool swipeToDelete: false
+    /*!
       \qmlproperty int titleDetail
 
       This property holds the contact detail which will be used to display the contact title in the delegate
@@ -161,6 +168,9 @@ ListView {
     }
 
     delegate: ListItem.Subtitled {
+        id: delegate
+
+        removable: contactListView.swipeToDelete
         icon: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
                   Qt.resolvedUrl(contact.avatar.imageUrl) :
                   contactListView.defaultAvatarImageUrl
@@ -170,6 +180,22 @@ ListView {
         onClicked: {
             contactListView.currentIndex = index
             contactListView.contactClicked(contact.contactId)
+        }
+        onItemRemoved: {
+            contactsModel.removeContact(contact.contactId)
+        }
+        backgroundIndicator: Rectangle {
+            anchors.fill: parent
+            color: Theme.palette.selected.base
+            Label {
+                text: "Delete"
+                anchors {
+                    fill: parent
+                    margins: units.gu(2)
+                }
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment:  delegate.swipingState === "SwipingLeft" ? Text.AlignLeft : Text.AlignRight
+            }
         }
     }
 

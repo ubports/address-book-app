@@ -48,6 +48,7 @@ Page {
         anchors.fill: parent
         onError: PopupUtils.open(dialog, null)
         defaultAvatarImageUrl: "artwork:/avatar-default.svg"
+        swipeToDelete: true
 
         ActivityIndicator {
             id: activity
