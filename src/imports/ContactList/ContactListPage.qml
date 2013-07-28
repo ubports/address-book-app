@@ -53,7 +53,7 @@ Page {
             id: activity
 
             anchors.centerIn: parent
-            running: contactListView.loading
+            running: contactList.loading
             visible: running
         }
 
