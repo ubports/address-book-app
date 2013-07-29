@@ -54,13 +54,13 @@ Page {
             id: activity
 
             anchors.centerIn: parent
-            running: contactList.loading
+            running: contactList.loading && (contactList.count === 0)
             visible: running
         }
 
         onContactClicked: {
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
-                           {model: contactList.model, contactId: contactId})
+                           {model: contactList.model, contactId: contact.contactId})
         }
     }
 

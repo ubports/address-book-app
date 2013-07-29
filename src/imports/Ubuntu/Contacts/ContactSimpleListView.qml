@@ -123,13 +123,19 @@ ListView {
     */
     readonly property bool loading: busyIndicator.busy
     /*!
+      \qmlproperty int currentOperation
+
+      This property holds the current fetch request index
+    */
+    property int currentOperation: 0
+    /*!
       This handler is called when any error occurs in the contact model
     */
     signal error(string message)
     /*!
       This handler is called when any contact int the list receives a click.
     */
-    signal contactClicked(string contactId)
+    signal contactClicked(QtObject contact)
 
     function formatToDisplay(contact, contactDetail, detailFields) {
         if (!contact) {
@@ -178,8 +184,11 @@ ListView {
         subText: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
 
         onClicked: {
+            if (contactListView.currentOperation !== 0) {
+                return
+            }
             contactListView.currentIndex = index
-            contactListView.contactClicked(contact.contactId)
+            contactListView.currentOperation = contactsModel.fetchContacts(contact.contactId)
         }
         onItemRemoved: {
             contactsModel.removeContact(contact.contactId)
@@ -224,6 +233,20 @@ ListView {
                 contactListView.error(error)
             }
         }
+
+    }
+    
+    Connections {
+        target: model
+        onContactsFetched: {
+            if (requestId == contactListView.currentOperation) {
+                contactListView.currentOperation = 0
+                // this fetch request can only return one contact
+                if(fetchedContacts.length !== 1)
+                    return
+                contactListView.contactClicked(fetchedContacts[0])
+            }
+        }
     }
 
     // This is a workaround to make sure the spinner will disappear if the model is empty
@@ -231,7 +254,7 @@ ListView {
     Item {
         id: busyIndicator
 
-        property bool busy: false
+        property bool busy: timer.running || contactListView.currentOperation !== 0
 
         function ping()
         {
@@ -247,7 +270,6 @@ ListView {
             interval: 6000
             running: true
             repeat: false
-            onTriggered: busyIndicator.busy = false
         }
     }
 }
