@@ -94,7 +94,12 @@ OrganicView {
 
     delegate: ContactFavoriteDelegate {
         anchors.fill: parent
-        onClicked: favoriteView.currentOperation = model.fetchContacts(contactId)
+        onClicked: {
+            if (favoriteView.currentOperation !== 0) {
+                return
+            }
+            favoriteView.currentOperation = model.fetchContacts(contactId)
+        }
         defaultAvatarImageUrl: root.defaultAvatarImageUrl
     }
 

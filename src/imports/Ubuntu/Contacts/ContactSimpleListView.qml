@@ -184,6 +184,9 @@ ListView {
         subText: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
 
         onClicked: {
+            if (contactListView.currentOperation !== 0) {
+                return
+            }
             contactListView.currentIndex = index
             contactListView.currentOperation = contactsModel.fetchContacts(contact.contactId)
         }
@@ -251,7 +254,7 @@ ListView {
     Item {
         id: busyIndicator
 
-        property bool busy: false
+        property bool busy: timer.running || contactListView.currentOperation !== 0
 
         function ping()
         {
@@ -267,7 +270,6 @@ ListView {
             interval: 6000
             running: true
             repeat: false
-            onTriggered: busyIndicator.busy = false
         }
     }
 }

@@ -54,7 +54,7 @@ Page {
             id: activity
 
             anchors.centerIn: parent
-            running: contactList.loading
+            running: contactList.loading && (contactList.count === 0)
             visible: running
         }
 
