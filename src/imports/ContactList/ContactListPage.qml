@@ -60,7 +60,7 @@ Page {
 
         onContactClicked: {
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
-                           {model: contactList.model, contactId: contactId})
+                           {model: contactList.model, contactId: contact.contactId})
         }
     }
 

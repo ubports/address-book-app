@@ -123,13 +123,19 @@ ListView {
     */
     readonly property bool loading: busyIndicator.busy
     /*!
+      \qmlproperty int currentOperation
+
+      This property holds the current fetch request index
+    */
+    property int currentOperation: 0
+    /*!
       This handler is called when any error occurs in the contact model
     */
     signal error(string message)
     /*!
       This handler is called when any contact int the list receives a click.
     */
-    signal contactClicked(string contactId)
+    signal contactClicked(QtObject contact)
 
     function formatToDisplay(contact, contactDetail, detailFields) {
         if (!contact) {
@@ -179,7 +185,7 @@ ListView {
 
         onClicked: {
             contactListView.currentIndex = index
-            contactListView.contactClicked(contact.contactId)
+            contactListView.currentOperation = contactsModel.fetchContacts(contact.contactId)
         }
         onItemRemoved: {
             contactsModel.removeContact(contact.contactId)
@@ -222,6 +228,20 @@ ListView {
             if (error) {
                 busyIndicator.busy = false
                 contactListView.error(error)
+            }
+        }
+
+    }
+    
+    Connections {
+        target: model
+        onContactsFetched: {
+            if (requestId == contactListView.currentOperation) {
+                contactListView.currentOperation = 0
+                // this fetch request can only return one contact
+                if(fetchedContacts.length !== 1)
+                    return
+                contactListView.contactClicked(fetchedContacts[0])
             }
         }
     }

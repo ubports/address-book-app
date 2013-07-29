@@ -31,7 +31,7 @@ import QtQuick 2.0
 
         ContactListView {
             anchors.fill: parent
-            onContactClicked: console.debug("Contact ID:" + contactId)
+            onContactClicked: console.debug("Contact ID:" + contact.contactId)
         }
     \endqml
 */
@@ -45,7 +45,7 @@ ContactSimpleListView {
             right: parent.right
         }
         height: count > 0 ? implicitHeight : 0
-        onContactClicked: root.contactClicked(contactId)
+        onContactClicked: root.contactClicked(contact)
         defaultAvatarImageUrl: root.defaultAvatarImageUrl
 
         // WORKAROUND: Due a bug on the SDK Page component the page is nto correct positioned if it changes
