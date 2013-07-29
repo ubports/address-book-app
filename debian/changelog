@@ -1,3 +1,20 @@
+address-book-app (0.2+13.10.20130729-0ubuntu1) saucy; urgency=low
+
+  [ Ken VanDine ]
+  * Allow for parallel installable versions to handle transitions for
+    API bumps by installing in versioned directories and versioning the
+    package. .
+
+  [ Renato Araujo Oliveira Filho ]
+  * Implemented ContactFavoriteListView.
+  * Update app with the new visual spec.
+  * Added support to swipe to delete.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 26
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 29 Jul 2013 07:45:52 +0000
+
 address-book-app (0.2+13.10.20130718-0ubuntu1) saucy; urgency=low
 
   [ Renato Araujo Oliveira Filho ]
