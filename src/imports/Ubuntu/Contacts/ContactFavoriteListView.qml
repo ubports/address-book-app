@@ -98,7 +98,7 @@ OrganicView {
             if (favoriteView.currentOperation !== 0) {
                 return
             }
-            favoriteView.currentOperation = model.fetchContacts(contactId)
+            favoriteView.currentOperation = favoriteView.model.fetchContacts(contactId)
         }
         defaultAvatarImageUrl: root.defaultAvatarImageUrl
     }
