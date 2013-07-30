@@ -40,7 +40,8 @@ Item {
                 detailPickerDelegate.contact = fetchedContacts[0]
                 // TODO: add more types and delegates
                 switch(detailType) {
-                case ContactDetail.PhoneNumber: delegateLoader.source = Qt.resolvedUrl("ContactDetailPickerPhoneNumberDelegate.qml")
+                case ContactDetail.PhoneNumber: 
+                    delegateLoader.source = Qt.resolvedUrl("ContactDetailPickerPhoneNumberDelegate.qml")
                     break
                 default: ""
                 }
