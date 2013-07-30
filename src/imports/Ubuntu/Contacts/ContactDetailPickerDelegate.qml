@@ -27,7 +27,7 @@ Item {
     property int detailType: 0
     property QtObject contactsModel
 
-    signal detailClicked(QtObject detail)
+    signal detailClicked(QtObject contact, QtObject detail)
 
     onContactIdChanged: {
         currentOperation = contactsModel.fetchContacts(contactId)
@@ -58,6 +58,6 @@ Item {
 
     Connections {
         target: delegateLoader.item
-        onDetailClicked: detailClicked(detail)
+        onDetailClicked: detailClicked(contact, detail)
     }
 }
