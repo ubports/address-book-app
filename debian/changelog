@@ -1,3 +1,13 @@
+address-book-app (0.2+13.10.20130730-0ubuntu1) saucy; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * emit full contact on contactClicked() signal.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 28
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 30 Jul 2013 07:01:53 +0000
+
 address-book-app (0.2+13.10.20130729-0ubuntu1) saucy; urgency=low
 
   [ Ken VanDine ]
