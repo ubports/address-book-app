@@ -186,7 +186,14 @@ ListView {
         dirtyModel.restart()
     }
 
-    delegate: contactListView.expanded ? contactDelegate : contactDelegateEmpty
+    delegate: Loader {
+        property var contact: contactListView.model.contacts[index]
+
+        asynchronous: true
+        height: contactListView.expanded ? units.gu(6) : 0
+        width: parent.width
+        sourceComponent: contactListView.expanded ? contactDelegate : null
+    }
 
     ContactModel {
         id: contactsModel
@@ -280,14 +287,6 @@ ListView {
                     horizontalAlignment:  delegate.swipingState === "SwipingLeft" ? Text.AlignLeft : Text.AlignRight
                 }
             }
-        }
-    }
-
-    Component {
-        id: contactDelegateEmpty
-
-        Item {
-            height: 0
         }
     }
 
