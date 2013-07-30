@@ -1,6 +1,7 @@
 set(CONTACT_COMPONENTS_QMLS
     ContactFavoriteDelegate.qml
     ContactFavoriteListView.qml
+    ContactList.js
     ContactListView.qml
     ContactSimpleListView.qml
     OrganicView.qml

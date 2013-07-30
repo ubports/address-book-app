@@ -39,11 +39,7 @@ ContactSimpleListView {
     id: root
 
     header: ContactFavoriteListView {
-        anchors {
-            left: parent.left
-            top: parent.top
-            right: parent.right
-        }
+        width: root.width
         height: count > 0 ? implicitHeight : 0
         onContactClicked: root.contactClicked(contact)
         defaultAvatarImageUrl: root.defaultAvatarImageUrl

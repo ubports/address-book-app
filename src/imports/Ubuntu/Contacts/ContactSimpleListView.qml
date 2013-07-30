@@ -19,6 +19,8 @@ import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 
+import "ContactList.js" as Sections
+
 /*!
     \qmltype ContactSimpleListView
     \inqmlmodule Ubuntu.Contacts 0.1
@@ -56,6 +58,13 @@ ListView {
       By default this is set to false.
     */
     property bool swipeToDelete: false
+    /*!
+      \qmlproperty bool expanded
+
+      This property holds if the list is expaned or not
+      By default this is set to true.
+    */
+    property bool expanded: true
     /*!
       \qmlproperty int titleDetail
 
@@ -123,12 +132,6 @@ ListView {
     */
     readonly property bool loading: busyIndicator.busy
     /*!
-      \qmlproperty int currentOperation
-
-      This property holds the current fetch request index
-    */
-    property int currentOperation: 0
-    /*!
       This handler is called when any error occurs in the contact model
     */
     signal error(string message)
@@ -156,6 +159,8 @@ ListView {
         return values
     }
 
+
+
     clip: true
     snapMode: ListView.NoSnap
     section {
@@ -164,6 +169,13 @@ ListView {
         delegate: ListItem.Header {
             id: listHeader
             text: section
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    priv.activeSection = listHeader.text
+                    contactListView.expanded = !contactListView.expanded
+                }
+            }
         }
     }
 
@@ -171,11 +183,13 @@ ListView {
     model: contactsModel
     onCountChanged: {
         busyIndicator.ping()
+        dirtyModel.restart()
     }
 
     delegate: ListItem.Subtitled {
         id: delegate
 
+        height: contactListView.expanded ? units.gu(6) : 0
         removable: contactListView.swipeToDelete
         icon: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
                   Qt.resolvedUrl(contact.avatar.imageUrl) :
@@ -184,11 +198,11 @@ ListView {
         subText: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
 
         onClicked: {
-            if (contactListView.currentOperation !== 0) {
+            if (priv.currentOperation !== 0) {
                 return
             }
             contactListView.currentIndex = index
-            contactListView.currentOperation = contactsModel.fetchContacts(contact.contactId)
+            priv.currentOperation = contactsModel.fetchContacts(contact.contactId)
         }
         onItemRemoved: {
             contactsModel.removeContact(contact.contactId)
@@ -235,12 +249,27 @@ ListView {
         }
 
     }
-    
+
+    onContentHeightChanged: {
+        if (priv.activeSection !== "") {
+            dirtyHeightTimer.restart()
+        }
+    }
+
+    Timer {
+        id: dirtyHeightTimer
+
+        interval: 200
+        running: false
+        repeat: false
+        onTriggered: priv.scrollToSection(priv.activeSection)
+    }
+
     Connections {
         target: model
         onContactsFetched: {
-            if (requestId == contactListView.currentOperation) {
-                contactListView.currentOperation = 0
+            if (requestId == priv.currentOperation) {
+                priv.currentOperation = 0
                 // this fetch request can only return one contact
                 if(fetchedContacts.length !== 1)
                     return
@@ -254,7 +283,7 @@ ListView {
     Item {
         id: busyIndicator
 
-        property bool busy: timer.running || contactListView.currentOperation !== 0
+        property bool busy: timer.running || priv.currentOperation !== 0
 
         function ping()
         {
@@ -270,6 +299,28 @@ ListView {
             interval: 6000
             running: true
             repeat: false
+        }
+    }
+
+    Timer {
+        id: dirtyModel
+
+        interval: 1000
+        running: false
+        repeat: false
+        onTriggered: Sections.initSectionData(contactListView)
+    }
+
+    QtObject {
+        id: priv
+
+        property int currentOperation: 0
+        property string activeSection: ""
+
+        function scrollToSection() {
+            var index = Sections.getIndexFor(activeSection)
+            contactListView.positionViewAtIndex(index, ListView.Beginning)
+            activeSection = ""
         }
     }
 }
