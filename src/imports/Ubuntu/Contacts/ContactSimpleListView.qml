@@ -127,7 +127,13 @@ ListView {
 
       This property holds the current fetch request index
     */
-    property int currentOperation: 0
+    property int currentOperation: -1
+    /*!
+      \qmlproperty int detailToPick
+
+      This property holds the detail type to be picked
+    */
+    property int detailToPick: 0
     /*!
       This handler is called when any error occurs in the contact model
     */
@@ -136,6 +142,10 @@ ListView {
       This handler is called when any contact int the list receives a click.
     */
     signal contactClicked(QtObject contact)
+    /*!
+      This handler is called when any contact detail in the list receives a click
+    */
+    signal detailClicked(QtObject contact, QtObject detail)
 
     function formatToDisplay(contact, contactDetail, detailFields) {
         if (!contact) {
@@ -173,38 +183,77 @@ ListView {
         busyIndicator.ping()
     }
 
-    delegate: ListItem.Subtitled {
-        id: delegate
-
-        removable: contactListView.swipeToDelete
-        icon: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
-                  Qt.resolvedUrl(contact.avatar.imageUrl) :
-                  contactListView.defaultAvatarImageUrl
-        text: contactListView.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
-        subText: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
-
-        onClicked: {
-            if (contactListView.currentOperation !== 0) {
-                return
-            }
-            contactListView.currentIndex = index
-            contactListView.currentOperation = contactsModel.fetchContacts(contact.contactId)
+    delegate: Item {
+        height: delegate.detailsShown ? (delegate.height + pickerLoader.height) : delegate.height
+        width: parent.width
+        clip: true
+        Behavior on height {
+            UbuntuNumberAnimation { }
         }
-        onItemRemoved: {
-            contactsModel.removeContact(contact.contactId)
-        }
-        backgroundIndicator: Rectangle {
-            anchors.fill: parent
-            color: Theme.palette.selected.base
-            Label {
-                text: "Delete"
-                anchors {
-                    fill: parent
-                    margins: units.gu(2)
+        ListItem.Subtitled {
+            id: delegate
+            property bool detailsShown: false
+
+            removable: contactListView.swipeToDelete
+            icon: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
+                      Qt.resolvedUrl(contact.avatar.imageUrl) :
+                      contactListView.defaultAvatarImageUrl
+            text: contactListView.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
+            subText: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
+
+            onClicked: {
+                // check if we should expand and display the details picker
+                if (detailToPick !== 0) {
+                    if (detailsShown) {
+                        // remove the details picker
+                        pickerLoader.source = ""
+                    } else {
+                        // load the details picker
+                        pickerLoader.source = Qt.resolvedUrl("ContactDetailPickerDelegate.qml")
+                    }
+                    detailsShown = !detailsShown
+                    return;
                 }
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment:  delegate.swipingState === "SwipingLeft" ? Text.AlignLeft : Text.AlignRight
+
+                if (contactListView.currentOperation !== -1) {
+                    return
+                }
+                contactListView.currentIndex = index
+                contactListView.currentOperation = contactsModel.fetchContacts(contact.contactId)
             }
+            onItemRemoved: {
+                contactsModel.removeContact(contact.contactId)
+            }
+            backgroundIndicator: Rectangle {
+                anchors.fill: parent
+                color: Theme.palette.selected.base
+                Label {
+                    text: "Delete"
+                    anchors {
+                        fill: parent
+                        margins: units.gu(2)
+                    }
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment:  delegate.swipingState === "SwipingLeft" ? Text.AlignLeft : Text.AlignRight
+                }
+            }
+        }
+        Loader {
+            id: pickerLoader
+            anchors.top: delegate.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            onStatusChanged: {
+                if (status == Loader.Ready) {
+                    item.contactsModel = contactsModel
+                    item.detailType = detailToPick
+                    item.contactId = contact.contactId
+                }
+            }
+        }
+        Connections {
+            target: pickerLoader.item
+            onDetailClicked: detailClicked(contact, detail)
         }
     }
 
@@ -240,7 +289,7 @@ ListView {
         target: model
         onContactsFetched: {
             if (requestId == contactListView.currentOperation) {
-                contactListView.currentOperation = 0
+                contactListView.currentOperation = -1
                 // this fetch request can only return one contact
                 if(fetchedContacts.length !== 1)
                     return
@@ -254,7 +303,7 @@ ListView {
     Item {
         id: busyIndicator
 
-        property bool busy: timer.running || contactListView.currentOperation !== 0
+        property bool busy: timer.running || contactListView.currentOperation !== -1
 
         function ping()
         {
