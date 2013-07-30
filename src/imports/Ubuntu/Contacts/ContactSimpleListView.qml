@@ -186,41 +186,7 @@ ListView {
         dirtyModel.restart()
     }
 
-    delegate: ListItem.Subtitled {
-        id: delegate
-
-        height: contactListView.expanded ? units.gu(6) : 0
-        removable: contactListView.swipeToDelete
-        icon: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
-                  Qt.resolvedUrl(contact.avatar.imageUrl) :
-                  contactListView.defaultAvatarImageUrl
-        text: contactListView.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
-        subText: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
-
-        onClicked: {
-            if (priv.currentOperation !== 0) {
-                return
-            }
-            contactListView.currentIndex = index
-            priv.currentOperation = contactsModel.fetchContacts(contact.contactId)
-        }
-        onItemRemoved: {
-            contactsModel.removeContact(contact.contactId)
-        }
-        backgroundIndicator: Rectangle {
-            anchors.fill: parent
-            color: Theme.palette.selected.base
-            Label {
-                text: "Delete"
-                anchors {
-                    fill: parent
-                    margins: units.gu(2)
-                }
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment:  delegate.swipingState === "SwipingLeft" ? Text.AlignLeft : Text.AlignRight
-            }
-        }
-    }
+    delegate: contactListView.expanded ? contactDelegate : contactDelegateEmpty
 
     ContactModel {
         id: contactsModel
@@ -275,6 +241,53 @@ ListView {
                     return
                 contactListView.contactClicked(fetchedContacts[0])
             }
+        }
+    }
+
+    Component {
+        id: contactDelegate
+
+        ListItem.Subtitled {
+            id: delegate
+
+            removable: contactListView.swipeToDelete
+            icon: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
+                      Qt.resolvedUrl(contact.avatar.imageUrl) :
+                      contactListView.defaultAvatarImageUrl
+            text: contactListView.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
+            subText: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
+
+            onClicked: {
+                if (priv.currentOperation !== 0) {
+                    return
+                }
+                contactListView.currentIndex = index
+                priv.currentOperation = contactsModel.fetchContacts(contact.contactId)
+            }
+            onItemRemoved: {
+                contactsModel.removeContact(contact.contactId)
+            }
+            backgroundIndicator: Rectangle {
+                anchors.fill: parent
+                color: Theme.palette.selected.base
+                Label {
+                    text: "Delete"
+                    anchors {
+                        fill: parent
+                        margins: units.gu(2)
+                    }
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment:  delegate.swipingState === "SwipingLeft" ? Text.AlignLeft : Text.AlignRight
+                }
+            }
+        }
+    }
+
+    Component {
+        id: contactDelegateEmpty
+
+        Item {
+            height: 0
         }
     }
 
