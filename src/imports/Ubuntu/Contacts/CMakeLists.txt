@@ -1,11 +1,11 @@
 set(CONTACT_COMPONENTS_QMLS
+    ContactDetailPickerDelegate.qml
+    ContactDetailPickerPhoneNumberDelegate.qml
     ContactFavoriteDelegate.qml
     ContactFavoriteListView.qml
     ContactListView.qml
     ContactSimpleListView.qml
     OrganicView.qml
-    ContactDetailPickerPhoneNumberDelegate.qml
-    ContactDetailPickerDelegate.qml
     qmldir
 )
 
