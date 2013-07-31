@@ -30,8 +30,6 @@ Item {
     anchors {
         left: parent.left
         right: parent.right
-        leftMargin: units.gu(2)
-        rightMargin: units.gu(2)
     }
 
     Column {
@@ -43,17 +41,21 @@ Item {
         Repeater {
             model: contact ? contact.phoneNumbers : undefined
             ListItem.Empty {
-                removable: false
-                Text {
-                    id: context
-                    anchors.top: parent.top
-                    text: phoneTypeModel.get(phoneTypeModel.getTypeIndex(modelData)).label
-                    color: "grey"
-                }
-                Text {
-                    anchors.top: context.bottom
-                    text: number
-                    color: "white"
+                Column {
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.leftMargin: units.gu(2)
+                    anchors.rightMargin: units.gu(2)
+                    Text {
+                        id: context
+                        text: phoneTypeModel.get(phoneTypeModel.getTypeIndex(modelData)).label
+                        color: "grey"
+                    }
+                    Text {
+                        text: number
+                        color: "white"
+                    }
                 }
 
                 onClicked: detailClicked(modelData)
