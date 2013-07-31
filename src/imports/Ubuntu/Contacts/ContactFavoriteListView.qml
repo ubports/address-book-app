@@ -59,7 +59,7 @@ OrganicView {
 
       This property holds the current fetch request index
     */
-    property int currentOperation: 0
+    property int currentOperation: -1
 
     bigSize: units.gu(17)
     smallSize: units.gu(11)
@@ -95,7 +95,7 @@ OrganicView {
     delegate: ContactFavoriteDelegate {
         anchors.fill: parent
         onClicked: {
-            if (favoriteView.currentOperation !== 0) {
+            if (favoriteView.currentOperation !== -1) {
                 return
             }
             favoriteView.currentOperation = favoriteView.model.fetchContacts(contactId)
@@ -107,7 +107,7 @@ OrganicView {
         target: model
         onContactsFetched: {
             if (requestId == favoriteView.currentOperation) {
-                favoriteView.currentOperation = 0
+                favoriteView.currentOperation = -1
                 // this fetch request can only return one contact
                 if(fetchedContacts.length !== 1)
                     return
