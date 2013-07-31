@@ -1,3 +1,14 @@
+address-book-app (0.2+13.10.20130731-0ubuntu1) saucy; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Launch the respective applications when clicking the phone and the
+    messaging icons on the phone number detail.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 30
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 31 Jul 2013 07:01:51 +0000
+
 address-book-app (0.2+13.10.20130730-0ubuntu1) saucy; urgency=low
 
   [ Tiago Salem Herrmann ]
