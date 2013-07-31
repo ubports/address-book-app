@@ -135,6 +135,12 @@ ListView {
     */
     property int detailToPick: 0
     /*!
+      \qmlproperty int currentContactExpanded
+
+      This property holds the current contact expanded
+    */
+    property int currentContactExpanded: -1
+    /*!
       This handler is called when any error occurs in the contact model
     */
     signal error(string message)
@@ -190,6 +196,14 @@ ListView {
         Behavior on height {
             UbuntuNumberAnimation { }
         }
+        Connections {
+            target: contactListView
+            onCurrentContactExpandedChanged: {
+                if (index != currentContactExpanded) {
+                    delegate.detailsShown = false
+                }
+            }
+        }
         ListItem.Subtitled {
             id: delegate
             property bool detailsShown: false
@@ -202,6 +216,7 @@ ListView {
             subText: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
 
             onClicked: {
+                currentContactExpanded = index
                 // check if we should expand and display the details picker
                 if (detailToPick !== 0) {
                     detailsShown = !detailsShown
