@@ -21,10 +21,12 @@ Item {
     property QtObject contact: null
 
     height: details.height
-    anchors.left:parent.left
-    anchors.right:parent.right
-    anchors.leftMargin: units.gu(2)
-    anchors.rightMargin: units.gu(2)
+    anchors {
+        left: parent.left
+        right: parent.right
+        leftMargin: units.gu(2)
+        rightMargin: units.gu(2)
+    }
 
     signal detailClicked(QtObject detail)
 
