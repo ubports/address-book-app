@@ -16,6 +16,7 @@
 
 import QtQuick 2.0
 import QtContacts 5.0 as QtContacts
+import Ubuntu.Contacts 0.1
 
 import "../Common"
 

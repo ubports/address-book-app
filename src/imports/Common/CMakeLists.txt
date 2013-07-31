@@ -3,8 +3,6 @@ set(CONTACT_COMMON_QMLS
     ContactDetailItem.qml
     ContactDetailGroupBase.qml
     ContactDetailGroupWithTypeBase.qml
-    ContactDetailOnlineAccountTypeModel.qml
-    ContactDetailPhoneNumberTypeModel.qml
 )
 
 install(FILES ${CONTACT_COMMON_QMLS}

@@ -16,9 +16,15 @@
 
 import QtQuick 2.0
 import Ubuntu.Components.ListItems 0.1 as ListItem
-import QtContacts 5.0
+
 Item {
     property QtObject contact: null
+
+    signal detailClicked(QtObject detail)
+
+    ContactDetailPhoneNumberTypeModel {
+        id: phoneTypeModel
+    }
 
     height: details.height
     anchors {
@@ -27,8 +33,6 @@ Item {
         leftMargin: units.gu(2)
         rightMargin: units.gu(2)
     }
-
-    signal detailClicked(QtObject detail)
 
     Column {
         id: details
@@ -43,14 +47,7 @@ Item {
                 Text {
                     id: context
                     anchors.top: parent.top
-                    text: {
-                        // TODO: check if we have more than one context
-                        switch(contexts[0]) {
-                        case ContactDetail.ContextHome: "Home"; break;
-                        case ContactDetail.ContextWork: "Work"; break;
-                        case ContactDetail.ContextWork: "Other"; break;
-                        }
-                    }
+                    text: phoneTypeModel.get(phoneTypeModel.getTypeIndex(modelData)).label
                     color: "grey"
                 }
                 Text {
@@ -59,7 +56,7 @@ Item {
                     color: "white"
                 }
 
-                onClicked: detailClicked(contact.phoneNumbers[index])
+                onClicked: detailClicked(modelData)
             }
         }
     }

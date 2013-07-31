@@ -194,7 +194,7 @@ ListView {
             id: delegate
             property bool detailsShown: false
 
-            removable: contactListView.swipeToDelete
+            removable: contactListView.swipeToDelete && !detailsShown
             icon: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
                       Qt.resolvedUrl(contact.avatar.imageUrl) :
                       contactListView.defaultAvatarImageUrl
@@ -204,13 +204,6 @@ ListView {
             onClicked: {
                 // check if we should expand and display the details picker
                 if (detailToPick !== 0) {
-                    if (detailsShown) {
-                        // remove the details picker
-                        pickerLoader.source = ""
-                    } else {
-                        // load the details picker
-                        pickerLoader.source = Qt.resolvedUrl("ContactDetailPickerDelegate.qml")
-                    }
                     detailsShown = !detailsShown
                     return;
                 }
@@ -240,9 +233,12 @@ ListView {
         }
         Loader {
             id: pickerLoader
-            anchors.top: delegate.bottom
-            anchors.left: parent.left
-            anchors.right: parent.right
+            source: delegate.detailsShown ? Qt.resolvedUrl("ContactDetailPickerDelegate.qml") : ""
+            anchors {
+                top: delegate.bottom
+                left: parent.left
+                right: parent.right
+            }
             onStatusChanged: {
                 if (status == Loader.Ready) {
                     item.contactsModel = contactsModel
