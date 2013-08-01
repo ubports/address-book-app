@@ -1,3 +1,18 @@
+address-book-app (0.2+13.10.20130801-0ubuntu1) saucy; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Revert the application launching as this adds an extra dependency on
+    telephony-service which is not yet in the build.
+
+  [ Tiago Salem Herrmann ]
+  * add initial version of the new details picker.
+  * fix text size of the detail picker delegate.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 34
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 01 Aug 2013 07:01:52 +0000
+
 address-book-app (0.2+13.10.20130731-0ubuntu1) saucy; urgency=low
 
   [ Gustavo Pichorim Boiko ]
