@@ -78,4 +78,13 @@ Page {
             }
         }
     }
+
+    Connections {
+        target: pageStack
+        onContactRequested: {
+            pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
+                           {model: contactList.model, contactId: contactId})
+        }
+
+    }
 }

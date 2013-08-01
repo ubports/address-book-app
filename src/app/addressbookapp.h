@@ -14,21 +14,40 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "config.h"
-#include "addressbookapp.h"
+#ifndef ADDRESSBOOK_APP_H
+#define ADDRESSBOOK_APP_H
 
-// Qt
+#include <QObject>
+#include <QQuickView>
 #include <QGuiApplication>
 
-int main(int argc, char** argv)
+class AddressBookAppDBus;
+
+class AddressBookApp : public QGuiApplication
 {
-    QGuiApplication::setApplicationName("Address Book App");
-    AddressBookApp application(argc, argv);
+    Q_OBJECT
 
-    if (!application.setup()) {
-        return 0;
-    }
+public:
+    AddressBookApp(int &argc, char **argv);
+    virtual ~AddressBookApp();
 
-    return application.exec();
-}
+    bool setup();
 
+public Q_SLOTS:
+    void activateWindow();
+
+private:
+    void parseArgument(const QString &arg);
+
+private Q_SLOTS:
+    void onMessageReceived(const QString &message);
+    void onViewStatusChanged(QQuickView::Status status);
+
+private:
+    QQuickView *m_view;
+    AddressBookAppDBus *m_dbus;
+    QString m_arg;
+    bool m_applicationIsReady;
+};
+
+#endif
