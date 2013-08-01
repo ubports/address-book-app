@@ -38,6 +38,7 @@ static void printUsage(const QStringList& arguments)
     qDebug() << "usage:"
              << arguments.at(0).toUtf8().constData()
              << "[contact://CONTACT_ID]"
+             << "[create://PHONE_NUMBER]"
              << "[--fullscreen]"
              << "[--help]"
              << "[-testability]";
@@ -79,6 +80,7 @@ bool AddressBookApp::setup()
 
     if (validSchemes.isEmpty()) {
         validSchemes << "contact";
+        validSchemes << "create";
     }
 
     QString contactKey;
