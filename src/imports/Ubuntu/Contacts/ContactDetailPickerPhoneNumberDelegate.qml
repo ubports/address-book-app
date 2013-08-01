@@ -16,6 +16,7 @@
 
 import QtQuick 2.0
 import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components 0.1
 
 Item {
     property QtObject contact: null
@@ -47,14 +48,15 @@ Item {
                     anchors.right: parent.right
                     anchors.leftMargin: units.gu(2)
                     anchors.rightMargin: units.gu(2)
-                    Text {
+                    Label {
                         id: context
                         text: phoneTypeModel.get(phoneTypeModel.getTypeIndex(modelData)).label
-                        color: "grey"
+                        fontSize: "small"
+                        color: "#a3a3a3"
                     }
-                    Text {
+                    Label {
                         text: number
-                        color: "white"
+                        fontSize: "large"
                     }
                 }
 
