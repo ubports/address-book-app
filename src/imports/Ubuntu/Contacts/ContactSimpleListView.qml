@@ -187,12 +187,22 @@ ListView {
     }
 
     delegate: Loader {
+        id: loaderDelegate
+
         property var contact: contactListView.model.contacts[index]
+        property int _index: index
 
         asynchronous: true
         height: contactListView.expanded ? units.gu(6) : 0
         width: parent.width
         sourceComponent: contactListView.expanded ? contactDelegate : null
+
+        Binding {
+            target: loaderDelegate.item
+            property: "index"
+            value: loaderDelegate._index
+            when: loaderDelegate.status == Loader.Ready
+        }
     }
 
     ContactModel {
@@ -256,6 +266,8 @@ ListView {
 
         ListItem.Subtitled {
             id: delegate
+
+            property int index: -1
 
             removable: contactListView.swipeToDelete
             icon: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
