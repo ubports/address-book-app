@@ -68,6 +68,7 @@ Page {
             // if it is hidden at the top, also show it
             scrollArea.contentY = position.y;
         }
+        scrollArea.returnToBounds()
     }
 
     flickable: null
