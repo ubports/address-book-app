@@ -58,7 +58,7 @@ AddressBookAppDBus::connectToBus()
 
 void AddressBookAppDBus::ShowContact(const QVariant &contactId)
 {
-    Q_EMIT request(QString("show_contact://%1").arg(contactId.toString()));
+    Q_EMIT request(QString("contact://%1").arg(contactId.toString()));
 }
 
 void AddressBookAppDBus::SendAppMessage(const QString &message)

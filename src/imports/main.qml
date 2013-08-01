@@ -27,7 +27,7 @@ MainView {
 
     signal applicationReady()
 
-    function showcontact(contactId) {
+    function contact(contactId) {
         mainStack.contactRequested(contactId)
     }
 
