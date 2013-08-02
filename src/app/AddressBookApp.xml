@@ -15,6 +15,12 @@
             ]]></dox:d>
             <arg name="number" type="s" direction="in"/>
         </method>
+        <method name="CreateContact">
+            <dox:d><![CDATA[
+               Request to create a new contact with a given phone number
+            ]]></dox:d>
+            <arg name="number" type="s" direction="in"/>
+        </method>
         <method name="SendAppMessage">
             <dox:d><![CDATA[
                 Send a message to the running application.

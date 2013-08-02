@@ -31,10 +31,15 @@ MainView {
         mainStack.contactRequested(contactId)
     }
 
+    function create(phoneNumber) {
+        mainStack.createContactRequested(phoneNumber)
+    }
+
     PageStack {
         id: mainStack
 
         signal contactRequested(string contactId)
+        signal createContactRequested(string phoneNumber)
 
         anchors {
             fill: parent

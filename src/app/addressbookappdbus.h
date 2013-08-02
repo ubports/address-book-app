@@ -39,6 +39,7 @@ public:
 
 public Q_SLOTS:
     Q_NOREPLY void ShowContact(const QVariant &contactId);
+    Q_NOREPLY void CreateContact(const QString &phoneNumber);
     Q_NOREPLY void SendAppMessage(const QString &message);
 
 Q_SIGNALS:

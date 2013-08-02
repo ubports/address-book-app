@@ -103,6 +103,10 @@ Page {
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
                            {model: contactList.model, contactId: contactId})
         }
-
+        onCreateContactRequested: {
+            var newContact = mainPage.createEmptyContact(phoneNumber)
+            pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                           {model: contactList.model, contact: newContact})
+        }
     }
 }
