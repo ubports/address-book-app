@@ -1,3 +1,16 @@
+address-book-app (0.2+13.10.20130802-0ubuntu1) saucy; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Renamed application desktop name.
+  * Implemented dbus calls support, and arguments parser.
+  * Call returnToBounds after move the flickable area to avoid scrolling
+    problems.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 38
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 02 Aug 2013 07:01:49 +0000
+
 address-book-app (0.2+13.10.20130801-0ubuntu1) saucy; urgency=low
 
   [ Gustavo Pichorim Boiko ]
