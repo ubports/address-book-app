@@ -24,6 +24,25 @@ Page {
     id: mainPage
     objectName: "ContactList"
 
+    function createEmptyContact(phoneNumber) {
+        var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
+                        {detail: "EmailAddress", field: "emailAddress", value: ""},
+                        {detail: "OnlineAccount", field: "accountUri", value: ""},
+                        {detail: "Address", field: "street", value: ""}
+                      ]
+
+        var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", mainPage)
+        var detailSourceTemplate = "import QtContacts 5.0; %1{ %2: \"%3\" }"
+        for (var i=0; i < details.length; i++) {
+            var detailMetaData = details[i]
+            var newDetail = Qt.createQmlObject(detailSourceTemplate.arg(detailMetaData.detail)
+                                            .arg(detailMetaData.field)
+                                            .arg(detailMetaData.value), mainPage)
+            newContact.addDetail(newDetail)
+        }
+        return newContact
+    }
+
     title: i18n.tr("Contacts")
     Component {
         id: dialog
@@ -70,11 +89,10 @@ Page {
                 text: i18n.tr("Add")
                 iconSource: "artwork:/add.png"
                 onTriggered: {
-                    var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", mainPage)
+                    var newContact = mainPage.createEmptyContact("")
                     pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
                                    {model: contactList.model, contact: newContact})
                 }
-
             }
         }
     }
