@@ -39,6 +39,7 @@ ContactDetailBase {
             model: root.fields
             Loader {
                 id: field
+                focus: true
 
                 sourceComponent: fieldDelegate
 

@@ -23,9 +23,23 @@ MainView {
 
     width: units.gu(40)
     height: units.gu(71)
+    anchorToKeyboard: true
+
+    signal applicationReady()
+
+    function contact(contactId) {
+        mainStack.contactRequested(contactId)
+    }
+
+    function create(phoneNumber) {
+        mainStack.createContactRequested(phoneNumber)
+    }
 
     PageStack {
         id: mainStack
+
+        signal contactRequested(string contactId)
+        signal createContactRequested(string phoneNumber)
 
         anchors {
             fill: parent
@@ -35,29 +49,12 @@ MainView {
                     easing.type: Easing.OutQuad
                 }
             }
-
-            // make the page full visible if the inputMethod appears
-            bottomMargin: {
-                if (Qt.inputMethod.visible) {
-                    return toolbar.height + Qt.inputMethod.keyboardRectangle.height + units.gu(2)
-                } else if (toolbar.locked && toolbar.opened) {
-                    return toolbar.height + units.gu(2)
-                }
-                return 0
-            }
        }
-    }
-
-    // Make the toolbar visible if it is locked and the inputMethod appears
-    Binding {
-        target: toolbar
-        property: "anchors.bottomMargin"
-        value: Qt.inputMethod.visible && toolbar.locked ? Qt.inputMethod.keyboardRectangle.height : 0
-        when: toolbar
     }
 
     Component.onCompleted: {
         Theme.name = "Ubuntu.Components.Themes.SuruGradient"
         mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"))
+        mainView.applicationReady()
     }
 }

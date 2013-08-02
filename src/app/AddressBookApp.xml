@@ -1,0 +1,31 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node xmlns:dox="http://www.ayatana.org/dbus/dox.dtd">
+    <dox:d><![CDATA[
+      @mainpage
+
+      An interface to the address book application.
+    ]]></dox:d>
+    <interface name="com.canonical.AddressBookApp" xmlns:dox="http://www.ayatana.org/dbus/dox.dtd">
+        <dox:d>
+          An interface to the address book application.
+        </dox:d>
+        <method name="ShowContact">
+            <dox:d><![CDATA[
+               Request to show contact details of specific contact
+            ]]></dox:d>
+            <arg name="number" type="s" direction="in"/>
+        </method>
+        <method name="CreateContact">
+            <dox:d><![CDATA[
+               Request to create a new contact with a given phone number
+            ]]></dox:d>
+            <arg name="number" type="s" direction="in"/>
+        </method>
+        <method name="SendAppMessage">
+            <dox:d><![CDATA[
+                Send a message to the running application.
+            ]]></dox:d>
+            <arg name="message" type="s" direction="in"/>
+        </method>
+    </interface>
+</node>

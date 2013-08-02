@@ -76,6 +76,13 @@ ListView {
     */
     property alias rejectAction: sheet.rejectAction
     /*!
+      \qmlproperty bool showActionButtons
+
+      This property holds if the default sheet element must be visible during the selection
+      By default this is set to true
+    */
+    property alias showActionButtons: sheet.enabled
+    /*!
       \qmlproperty bool isInSelectionMode
 
       This property holds a list with the index of selected items
@@ -149,7 +156,7 @@ ListView {
             name: "selection"
             PropertyChanges {
                 target: sheet
-                visible: true
+                active: true
             }
             PropertyChanges {
                 target: listView
@@ -161,13 +168,16 @@ ListView {
     DialogButtons {
         id: sheet
 
+        property bool active: false
+        property bool enabled: true
+
         anchors {
             left: parent.left
             right: parent.right
             bottom: parent.bottom
         }
         height: visible ? units.gu(6) : 0
-        visible: false
+        visible: active && enabled
 
         onReject: listView.cancelSelection()
         onAccept: listView.endSelection()

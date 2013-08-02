@@ -29,10 +29,16 @@ TextField {
 
     signal removeClicked()
 
+    focus: true
     text: originalValue ? originalValue : ""
     style: TextFieldStyle {
         overlaySpacing: 0
         frameSpacing: 0
         background: Item {}
+    }
+    onActiveFocusChanged: {
+        if (activeFocus) {
+            makeMeVisible(root)
+        }
     }
 }

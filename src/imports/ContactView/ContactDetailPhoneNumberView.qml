@@ -38,6 +38,7 @@ ContactDetailBase {
         }
     }
 
+    implicitHeight: view.implicitHeight
     onFieldsChanged: populateValues()
     onDetailChanged: populateValues()
 
@@ -49,7 +50,7 @@ ContactDetailBase {
             top: parent.top
             right: div0.left
             bottom: parent.bottom
-            leftMargin: units.gu(1)
+            leftMargin: units.gu(2)
         }
         iconSource: root.action ? root.action.iconSource : ""
     }
@@ -76,7 +77,7 @@ ContactDetailBase {
             bottom: parent.bottom
         }
         width: height
-        iconSource: "artwork:/contact-call.png"
+        iconSource: "artwork:/contact-call.svg"
     }
 
     Image {
@@ -101,6 +102,6 @@ ContactDetailBase {
             bottom: parent.bottom
         }
         width: height
-        iconSource: "artwork:/contact-message.png"
+        iconSource: "artwork:/contact-message.svg"
     }
 }

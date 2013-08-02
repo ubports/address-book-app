@@ -33,7 +33,7 @@ import Ubuntu.Components 0.1
 
         ContactFavoriteListView {
             anchors.fill: parent
-            onContactClicked: console.debug("Contact ID:" + contactId)
+            onContactClicked: console.debug("Contact ID:" + contact.contactId)
         }
     \endqml
 */
@@ -43,7 +43,23 @@ OrganicView {
     /*!
       This handler is called when any contact int the list receives a click.
     */
-    signal contactClicked(string contactId)
+    signal contactClicked(QtObject contact)
+
+    /*!
+      \qmlproperty string defaultAvatarImage
+
+      This property holds the default image url to be used when the current contact does
+      not contains a photo
+
+      \sa Filter
+    */
+    property string defaultAvatarImageUrl: "gicon:/avatar-default"
+    /*!
+      \qmlproperty int currentOperation
+
+      This property holds the current fetch request index
+    */
+    property int currentOperation: -1
 
     bigSize: units.gu(17)
     smallSize: units.gu(11)
@@ -78,6 +94,26 @@ OrganicView {
 
     delegate: ContactFavoriteDelegate {
         anchors.fill: parent
-        onClicked: root.contactClicked(contactId)
+        onClicked: {
+            if (favoriteView.currentOperation !== -1) {
+                return
+            }
+            favoriteView.currentOperation = favoriteView.model.fetchContacts(contactId)
+        }
+        defaultAvatarImageUrl: root.defaultAvatarImageUrl
     }
+
+    Connections {
+        target: model
+        onContactsFetched: {
+            if (requestId == favoriteView.currentOperation) {
+                favoriteView.currentOperation = -1
+                // this fetch request can only return one contact
+                if(fetchedContacts.length !== 1)
+                    return
+                favoriteView.contactClicked(fetchedContacts[0])
+            }
+        }
+    }
+
 }

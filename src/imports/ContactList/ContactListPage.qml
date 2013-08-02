@@ -25,7 +25,6 @@ Page {
     objectName: "ContactList"
 
     title: i18n.tr("Contacts")
-
     Component {
         id: dialog
 
@@ -49,18 +48,20 @@ Page {
         multiSelectionEnabled: true
         anchors.fill: parent
         onError: PopupUtils.open(dialog, null)
+        defaultAvatarImageUrl: "artwork:/avatar-default.svg"
+        swipeToDelete: true
 
         ActivityIndicator {
             id: activity
 
             anchors.centerIn: parent
-            running: contactListView.loading
+            running: contactList.loading && (contactList.count === 0)
             visible: running
         }
 
         onContactClicked: {
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
-                           {model: contactList.model, contactId: contactId})
+                           {model: contactList.model, contactId: contact.contactId})
         }
 
         onSelectionDone: {
@@ -86,5 +87,22 @@ Page {
 
             }
         }
+    }
+
+    Connections {
+        target: pageStack
+        onContactRequested: {
+            pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
+                           {model: contactList.model, contactId: contactId})
+        }
+        onCreateContactRequested: {
+            var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", mainPage)
+            var newDetailCode = "import QtContacts 5.0; PhoneNumber{ number: \"%1\"}".arg(phoneNumber)
+            var newDetail = Qt.createQmlObject(newDetailCode, mainPage)
+            newContact.addDetail(newDetail)
+            pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                           {model: contactList.model, contact: newContact})
+        }
+
     }
 }

@@ -1,3 +1,69 @@
+address-book-app (0.2+13.10.20130802-0ubuntu1) saucy; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Renamed application desktop name.
+  * Implemented dbus calls support, and arguments parser.
+  * Call returnToBounds after move the flickable area to avoid scrolling
+    problems.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 38
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 02 Aug 2013 07:01:49 +0000
+
+address-book-app (0.2+13.10.20130801-0ubuntu1) saucy; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Revert the application launching as this adds an extra dependency on
+    telephony-service which is not yet in the build.
+
+  [ Tiago Salem Herrmann ]
+  * add initial version of the new details picker.
+  * fix text size of the detail picker delegate.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 34
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 01 Aug 2013 07:01:52 +0000
+
+address-book-app (0.2+13.10.20130731-0ubuntu1) saucy; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Launch the respective applications when clicking the phone and the
+    messaging icons on the phone number detail.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 30
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 31 Jul 2013 07:01:51 +0000
+
+address-book-app (0.2+13.10.20130730-0ubuntu1) saucy; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * emit full contact on contactClicked() signal.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 28
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 30 Jul 2013 07:01:53 +0000
+
+address-book-app (0.2+13.10.20130729-0ubuntu1) saucy; urgency=low
+
+  [ Ken VanDine ]
+  * Allow for parallel installable versions to handle transitions for
+    API bumps by installing in versioned directories and versioning the
+    package. .
+
+  [ Renato Araujo Oliveira Filho ]
+  * Implemented ContactFavoriteListView.
+  * Update app with the new visual spec.
+  * Added support to swipe to delete.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 26
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 29 Jul 2013 07:45:52 +0000
+
 address-book-app (0.2+13.10.20130718-0ubuntu1) saucy; urgency=low
 
   [ Renato Araujo Oliveira Filho ]

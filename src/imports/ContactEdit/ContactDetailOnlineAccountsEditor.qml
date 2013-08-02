@@ -16,6 +16,7 @@
 
 import QtQuick 2.0
 import QtContacts 5.0 as QtContacts
+import Ubuntu.Contacts 0.1
 
 import "../Common"
 
@@ -24,5 +25,6 @@ ContactDetailGroupWithTypeEditor {
     detailType: QtContacts.ContactDetail.OnlineAccount
     detailQmlTypeName: "OnlineAccount"
     fields: [ QtContacts.OnlineAccount.AccountUri ]
+    placeholderTexts: [ i18n.tr("Enter a social alias") ]
     typeModel: ContactDetailOnlineAccountTypeModel { }
 }

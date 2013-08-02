@@ -22,12 +22,10 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 Page {
     id: contactEditor
 
-    // FIXME: this is necessary due a bug on SDK
-    // Until now is impossible to mix pages with and without title
-    title: i18n.tr("Edit contact")
-
     property QtObject contact: null
     property QtObject model: null
+
+    property QtObject activeItem: null
 
     function save() {
         var changed = false
@@ -47,27 +45,58 @@ Page {
         }
     }
 
+    function makeMeVisible(item) {
+        if (!item) {
+            return
+        }
+
+        activeItem = item
+        var position = scrollArea.contentItem.mapFromItem(item, 0, item.y);
+
+        // check if the item is already visible
+        var bottomY = scrollArea.contentY + scrollArea.height
+        var itemBottom = position.y + item.height
+        if (position.y >= scrollArea.contentY && itemBottom <= bottomY) {
+            return;
+        }
+
+        // if it is not, try to scroll and make it visible
+        var targetY = position.y + item.height - scrollArea.height
+        if (targetY >= 0 && position.y) {
+            scrollArea.contentY = targetY;
+        } else if (position.y < scrollArea.contentY) {
+            // if it is hidden at the top, also show it
+            scrollArea.contentY = position.y;
+        }
+        scrollArea.returnToBounds()
+    }
+
+    flickable: null
     Flickable {
+        id: scrollArea
+
         flickableDirection: Flickable.VerticalFlick
         anchors.fill: parent
         contentHeight: contents.height
         contentWidth: parent.width
         visible: !busyIndicator.visible
 
+        // after add a new field we need to wait for the contentHeight to change to scroll to the correct position
+        onContentHeightChanged: contactEditor.makeMeVisible(contactEditor.activeItem)
+
         Column {
             id: contents
-
-            spacing: units.gu(1)
 
             anchors {
                 top: parent.top
                 left: parent.left
                 right: parent.right
-                margins: units.gu(1)
             }
             height: childrenRect.height
 
             ContactDetailNameEditor {
+                id: nameEditor
+
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
@@ -122,6 +151,8 @@ Page {
             }
         }
     }
+
+    Component.onCompleted: nameEditor.forceActiveFocus()
 
     ActivityIndicator {
         id: busyIndicator

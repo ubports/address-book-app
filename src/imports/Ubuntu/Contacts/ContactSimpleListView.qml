@@ -50,6 +50,13 @@ MultipleSelectionListView {
     */
     property bool showAvatar: true
     /*!
+      \qmlproperty bool swipeToDelete
+
+      This property holds if the swipe to delete contact gesture is enabled or not
+      By default this is set to false.
+    */
+    property bool swipeToDelete: false
+    /*!
       \qmlproperty int titleDetail
 
       This property holds the contact detail which will be used to display the contact title in the delegate
@@ -108,11 +115,36 @@ MultipleSelectionListView {
     */
     property bool multiSelectionEnabled: false
     /*!
+      \qmlproperty string defaultAvatarImage
+
+      This property holds the default image url to be used when the current contact does
+      not contains a photo
+    */
+    property string defaultAvatarImageUrl: "gicon:/avatar-default"
+    /*!
       \qmlproperty bool loading
 
       This property holds when the model still loading new contacts
     */
     readonly property bool loading: busyIndicator.busy
+    /*!
+      \qmlproperty int currentOperation
+
+      This property holds the current fetch request index
+    */
+    property int currentOperation: -1
+    /*!
+      \qmlproperty int detailToPick
+
+      This property holds the detail type to be picked
+    */
+    property int detailToPick: 0
+    /*!
+      \qmlproperty int currentContactExpanded
+
+      This property holds the current contact expanded
+    */
+    property int currentContactExpanded: -1
     /*!
       This handler is called when any error occurs in the contact model
     */
@@ -120,7 +152,11 @@ MultipleSelectionListView {
     /*!
       This handler is called when any contact int the list receives a click.
     */
-    signal contactClicked(string contactId)
+    signal contactClicked(QtObject contact)
+    /*!
+      This handler is called when any contact detail in the list receives a click
+    */
+    signal detailClicked(QtObject contact, QtObject detail)
 
     function formatToDisplay(contact, contactDetail, detailFields) {
         if (!contact) {
@@ -160,29 +196,102 @@ MultipleSelectionListView {
         busyIndicator.ping()
     }
 
-    delegate: ListItem.Subtitled {
-        icon: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
-                  Qt.resolvedUrl(contact.avatar.imageUrl) :
-                  "artwork:/avatar-default.png"
-        text: contactListView.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
-        subText: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
-        selected: contactListView.multiSelectionEnabled && (contactListView.selectedItems.indexOf(index) != -1)
-        onClicked: {
-            if (contactListView.isInSelectionMode) {
-                if (!contactListView.selectItem(index)) {
-                    contactListView.deselectItem(index)
+    delegate: Item {
+        height: delegate.detailsShown ? (delegate.height + pickerLoader.height) : delegate.height
+        width: parent.width
+        clip: true
+
+        Behavior on height {
+            UbuntuNumberAnimation { }
+        }
+
+        Connections {
+            target: contactListView
+            onCurrentContactExpandedChanged: {
+                if (index != currentContactExpanded) {
+                    delegate.detailsShown = false
                 }
-            } else {
-                contactListView.currentIndex = index
-                contactListView.contactClicked(contact.contactId)
             }
         }
 
-        onPressAndHold: {
-            if (contactListView.multiSelectionEnabled) {
-                contactListView.startSelection()
-                contactListView.selectItem(index)
+        ListItem.Subtitled {
+            id: delegate
+            property bool detailsShown: false
+
+            selected: contactListView.multiSelectionEnabled && (contactListView.selectedItems.indexOf(index) != -1)
+            removable: contactListView.swipeToDelete && !detailsShown
+            icon: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
+                      Qt.resolvedUrl(contact.avatar.imageUrl) :
+                      contactListView.defaultAvatarImageUrl
+            text: contactListView.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
+            subText: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
+
+            onClicked: {
+                if (contactListView.isInSelectionMode) {
+                    if (!contactListView.selectItem(index)) {
+                        contactListView.deselectItem(index)
+                    }
+                    return
+                }
+
+                currentContactExpanded = index
+                // check if we should expand and display the details picker
+                if (detailToPick !== 0) {
+                    detailsShown = !detailsShown
+                    return;
+                }
+
+                if (contactListView.currentOperation !== -1) {
+                    return
+                }
+                contactListView.currentIndex = index
+                contactListView.currentOperation = contactsModel.fetchContacts(contact.contactId)
             }
+
+            onPressAndHold: {
+                if (contactListView.multiSelectionEnabled) {
+                    contactListView.startSelection()
+                    contactListView.selectItem(index)
+                }
+            }
+
+            onItemRemoved: {
+                contactsModel.removeContact(contact.contactId)
+            }
+
+            backgroundIndicator: Rectangle {
+                anchors.fill: parent
+                color: Theme.palette.selected.base
+                Label {
+                    text: "Delete"
+                    anchors {
+                        fill: parent
+                        margins: units.gu(2)
+                    }
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment:  delegate.swipingState === "SwipingLeft" ? Text.AlignLeft : Text.AlignRight
+                }
+            }
+        }
+        Loader {
+            id: pickerLoader
+            source: delegate.detailsShown ? Qt.resolvedUrl("ContactDetailPickerDelegate.qml") : ""
+            anchors {
+                top: delegate.bottom
+                left: parent.left
+                right: parent.right
+            }
+            onStatusChanged: {
+                if (status == Loader.Ready) {
+                    item.contactsModel = contactsModel
+                    item.detailType = detailToPick
+                    item.contactId = contact.contactId
+                }
+            }
+        }
+        Connections {
+            target: pickerLoader.item
+            onDetailClicked: detailClicked(contact, detail)
         }
     }
 
@@ -211,6 +320,20 @@ MultipleSelectionListView {
                 contactListView.error(error)
             }
         }
+
+    }
+
+    Connections {
+        target: model
+        onContactsFetched: {
+            if (requestId == contactListView.currentOperation) {
+                contactListView.currentOperation = -1
+                // this fetch request can only return one contact
+                if(fetchedContacts.length !== 1)
+                    return
+                contactListView.contactClicked(fetchedContacts[0])
+            }
+        }
     }
 
     // This is a workaround to make sure the spinner will disappear if the model is empty
@@ -218,7 +341,7 @@ MultipleSelectionListView {
     Item {
         id: busyIndicator
 
-        property bool busy: false
+        property bool busy: timer.running || contactListView.currentOperation !== -1
 
         function ping()
         {
@@ -234,7 +357,6 @@ MultipleSelectionListView {
             interval: 6000
             running: true
             repeat: false
-            onTriggered: busyIndicator.busy = false
         }
     }
 }

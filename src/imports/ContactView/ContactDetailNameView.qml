@@ -24,35 +24,36 @@ ContactDetailBase {
     id: root
 
     detail: root.contact ? root.contact.name : null
-    implicitHeight: label.paintedHeight
+    implicitHeight: label.paintedHeight + (label.anchors.margins * 2)
+
 
     Label {
         id: label
 
-        function isNotEmptyString(string) {
-            return (string && string.length !== 0);
-        }
-
-        function formatNameToDisplay() {
-            if (!root.contact) {
+        function formatNameToDisplay(contact) {
+            if (!contact) {
                 return ""
             }
 
-            if (root.contact.displayLabel && root.contact.displayLabel.label && root.contact.displayLabel.label !== "") {
-                return root.contact.displayLabel.label
-            } else if (detail) {
-               return [detail.prefix, detail.firstName, detail.middleName, detail.lastName, detail.suffix].filter(isNotEmptyString).join(" ")
+            if (contact.name) {
+                var detail = contact.name
+                return detail.firstName + " " + detail.lastName
+            } else if (contact.displayLabel && contact.displayLabel.label && contact.displayLabel.label !== "") {
+                return contact.displayLabel.label
             } else {
                 return ""
             }
         }
 
-        anchors.fill: parent
+        anchors {
+            fill: parent
+            margins: units.gu(2)
+        }
         fontSize: "x-large"
         elide: Text.ElideRight
         color: Qt.rgba(0.4, 0.4, 0.4, 1.0)
         style: Text.Raised
         styleColor: "white"
-        text: formatNameToDisplay()
+        text:  formatNameToDisplay(root.contact)
     }
 }
