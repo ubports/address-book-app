@@ -61,6 +61,11 @@ void AddressBookAppDBus::ShowContact(const QVariant &contactId)
     Q_EMIT request(QString("contact://%1").arg(contactId.toString()));
 }
 
+void AddressBookAppDBus::CreateContact(const QString &phoneNumber)
+{
+    Q_EMIT request(QString("create://%1").arg(phoneNumber));
+}
+
 void AddressBookAppDBus::SendAppMessage(const QString &message)
 {
     qDebug() << "DBUS CALLL" << message;

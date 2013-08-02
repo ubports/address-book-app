@@ -85,6 +85,14 @@ Page {
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
                            {model: contactList.model, contactId: contactId})
         }
+        onCreateContactRequested: {
+            var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", mainPage)
+            var newDetailCode = "import QtContacts 5.0; PhoneNumber{ number: \"%1\"}".arg(phoneNumber)
+            var newDetail = Qt.createQmlObject(newDetailCode, mainPage)
+            newContact.addDetail(newDetail)
+            pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                           {model: contactList.model, contact: newContact})
+        }
 
     }
 }
