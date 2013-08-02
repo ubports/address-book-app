@@ -76,7 +76,7 @@ ListView {
     */
     property alias rejectAction: sheet.rejectAction
     /*!
-      \qmlproperty bool isInSelectionModel
+      \qmlproperty bool isInSelectionMode
 
       This property holds a list with the index of selected items
     */
