@@ -76,7 +76,12 @@ Page {
         id: scrollArea
 
         flickableDirection: Flickable.VerticalFlick
-        anchors.fill: parent
+        anchors {
+            left: parent.left
+            right: parent.right
+            top: parent.top
+            bottom: toolbar.top
+        }
         contentHeight: contents.height
         contentWidth: parent.width
         visible: !busyIndicator.visible
@@ -181,19 +186,25 @@ Page {
         }
     }
 
-    tools: ToolbarItems {
-        locked: true
-        opened: true
-        ToolbarButton {
-            action: Action {
-                text: i18n.tr("Done")
-                iconSource: "artwork:/save.png"
-                onTriggered: {
-                    // wait for contact to be saved or cause a error
-                    contactSaveLock.saving = true
-                    contactEditor.save()
-                }
+    EditToolbar {
+        id: toolbar
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+        height: units.gu(6)
+        acceptAction: Action {
+            text: i18n.tr("Save")
+            onTriggered: {
+                // wait for contact to be saved or cause a error
+                contactSaveLock.saving = true
+                contactEditor.save()
             }
+        }
+        rejectAction: Action {
+            text: i18n.tr("Cancel")
+            onTriggered: pageStack.pop()
         }
     }
 }
