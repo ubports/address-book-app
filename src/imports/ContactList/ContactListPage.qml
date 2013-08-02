@@ -72,9 +72,18 @@ Page {
             }
             contactList.model.removeContacts(ids)
         }
+
+        onIsInSelectionModeChanged: {
+            if (isInSelectionMode) {
+                toolbar.opened = false
+            }
+        }
     }
 
     tools: ToolbarItems {
+        id: toolbar
+
+        locked: contactList.isInSelectionMode
         ToolbarButton {
             action: Action {
                 text: i18n.tr("Add")

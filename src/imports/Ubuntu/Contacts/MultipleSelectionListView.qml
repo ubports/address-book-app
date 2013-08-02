@@ -129,6 +129,12 @@ ListView {
                 }
             }
             listView.selectedItems = newItems
+
+            // Cancel selection if the selected items is empty
+            if (newItems.length == 0) {
+                listView.cancelSelection()
+            }
+
             return true
         } else {
             return false
