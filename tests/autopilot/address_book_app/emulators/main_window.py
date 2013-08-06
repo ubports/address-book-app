@@ -17,7 +17,7 @@ class MainWindow(object):
         return self.app.select_single("QQuickView")
 
     # Help function to debug objects
-    def dup_parent_tree(self, parent):
+    def dump_parent_tree(self, parent):
         print "Parent:", parent
         if "objectName" in parent.get_properties():
             print "ObjName:", parent.get_properties()["objectName"]
