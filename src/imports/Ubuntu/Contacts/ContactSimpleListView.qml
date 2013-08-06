@@ -219,7 +219,7 @@ MultipleSelectionListView {
             property bool detailsShown: false
 
             selected: contactListView.multiSelectionEnabled && (contactListView.selectedItems.indexOf(index) != -1)
-            removable: contactListView.swipeToDelete && !detailsShown
+            removable: contactListView.swipeToDelete && !detailsShown && !isInSelectionMode
             icon: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
                       Qt.resolvedUrl(contact.avatar.imageUrl) :
                       contactListView.defaultAvatarImageUrl
