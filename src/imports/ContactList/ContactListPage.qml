@@ -64,6 +64,7 @@ Page {
     ContactsUI.ContactListView {
         id: contactList
 
+        multiSelectionEnabled: true
         anchors.fill: parent
         onError: PopupUtils.open(dialog, null)
         defaultAvatarImageUrl: "artwork:/avatar-default.svg"
@@ -81,9 +82,27 @@ Page {
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
                            {model: contactList.model, contactId: contact.contactId})
         }
+
+        onSelectionDone: {
+            var ids = []
+            var contacts = model.contacts
+            for (var i=0; i < items.length; i++) {
+                ids.push(contacts[items[i]].contactId)
+            }
+            contactList.model.removeContacts(ids)
+        }
+
+        onIsInSelectionModeChanged: {
+            if (isInSelectionMode) {
+                toolbar.opened = false
+            }
+        }
     }
 
     tools: ToolbarItems {
+        id: toolbar
+
+        locked: contactList.isInSelectionMode
         ToolbarButton {
             action: Action {
                 text: i18n.tr("Add")

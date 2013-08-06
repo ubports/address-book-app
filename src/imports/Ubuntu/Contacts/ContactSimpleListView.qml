@@ -39,7 +39,7 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
     \endqml
 */
 
-ListView {
+MultipleSelectionListView {
     id: contactListView
 
     /*!
@@ -108,12 +108,17 @@ ListView {
     */
     property alias filter: contactsModel.filter
     /*!
+      \qmlproperty bool multiSelectionEnabled
+
+      This property holds if the multi selection mode is enabled or not
+      By default this is set to false
+    */
+    property bool multiSelectionEnabled: false
+    /*!
       \qmlproperty string defaultAvatarImage
 
       This property holds the default image url to be used when the current contact does
       not contains a photo
-
-      \sa Filter
     */
     property string defaultAvatarImageUrl: "gicon:/avatar-default"
     /*!
@@ -183,6 +188,8 @@ ListView {
         }
     }
 
+    acceptAction.text: i18n.tr("Delete")
+
     anchors.fill: parent
     model: contactsModel
     onCountChanged: {
@@ -193,9 +200,11 @@ ListView {
         height: delegate.detailsShown ? (delegate.height + pickerLoader.height) : delegate.height
         width: parent.width
         clip: true
+
         Behavior on height {
             UbuntuNumberAnimation { }
         }
+
         Connections {
             target: contactListView
             onCurrentContactExpandedChanged: {
@@ -204,11 +213,13 @@ ListView {
                 }
             }
         }
+
         ListItem.Subtitled {
             id: delegate
             property bool detailsShown: false
 
-            removable: contactListView.swipeToDelete && !detailsShown
+            selected: contactListView.multiSelectionEnabled && (contactListView.selectedItems.indexOf(index) != -1)
+            removable: contactListView.swipeToDelete && !detailsShown && !isInSelectionMode
             icon: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
                       Qt.resolvedUrl(contact.avatar.imageUrl) :
                       contactListView.defaultAvatarImageUrl
@@ -216,6 +227,13 @@ ListView {
             subText: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
 
             onClicked: {
+                if (contactListView.isInSelectionMode) {
+                    if (!contactListView.selectItem(index)) {
+                        contactListView.deselectItem(index)
+                    }
+                    return
+                }
+
                 currentContactExpanded = index
                 // check if we should expand and display the details picker
                 if (detailToPick !== 0) {
@@ -229,9 +247,18 @@ ListView {
                 contactListView.currentIndex = index
                 contactListView.currentOperation = contactsModel.fetchContacts(contact.contactId)
             }
+
+            onPressAndHold: {
+                if (contactListView.multiSelectionEnabled) {
+                    contactListView.startSelection()
+                    contactListView.selectItem(index)
+                }
+            }
+
             onItemRemoved: {
                 contactsModel.removeContact(contact.contactId)
             }
+
             backgroundIndicator: Rectangle {
                 anchors.fill: parent
                 color: Theme.palette.selected.base
@@ -295,7 +322,7 @@ ListView {
         }
 
     }
-    
+
     Connections {
         target: model
         onContactsFetched: {
