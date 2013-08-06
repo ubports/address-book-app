@@ -21,16 +21,16 @@ import Ubuntu.Components.Popups 0.1 as Popups
     \qmltype ContactSimpleListView
     \inqmlmodule Ubuntu.Contacts 0.1
     \ingroup ubuntu
-    \brief The MiltipleSelectionListView provides a ListView with support to multiple selection
+    \brief The MultipleSelectionListView provides a ListView with support to multiple selection
 
-    The MiltipleSelectionListViewprovides a ListView with support to multiple selection which can be used by any
+    The MultipleSelectionListViewprovides a ListView with support to multiple selection which can be used by any
     application.
 
     Example:
     \qml
         import Ubuntu.Contacts 0.1
 
-        MiltipleSelectionListView {
+        MultipleSelectionListView {
             id: view
             anchors.fill: paret
             model: 100
