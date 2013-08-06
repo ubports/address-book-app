@@ -16,8 +16,15 @@ class MainWindow(object):
         """Get the main QML view"""
         return self.app.select_single("QQuickView")
 
+    # Help function to debug objects
+    def dup_parent_tree(self, parent):
+        print "Parent:", parent
+        if "objectName" in parent.get_properties():
+            print "ObjName:", parent.get_properties()["objectName"]
+        for c in parent.get_children():
+            self.dup_parent_tree(c)
 
-    def get_object(self, typeName, name=None):
+    def get_object(self, typeName, name=None):        
         if name:
             return self.app.select_single(typeName, objectName=name)
         else:
