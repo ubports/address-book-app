@@ -1,3 +1,21 @@
+address-book-app (0.2+13.10.20130807-0ubuntu1) saucy; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Implemented support to create new contact from the command line.
+  * Fixed new contact view to make sure that all fields has a initial
+    default value this will cause the field to appear expanded. (LP:
+    #1206051)
+  * Replaced contact edit toolbar to a sheet component. (LP: #1199122)
+  * * Created MultipleSelectionListView component to handle
+    multiselection in a ListView. * Added support to delete multiple
+    contacts.
+  * Fixed autopilot test. (LP: #1208343)
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 44
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 07 Aug 2013 09:24:54 +0000
+
 address-book-app (0.2+13.10.20130802-0ubuntu1) saucy; urgency=low
 
   [ Renato Araujo Oliveira Filho ]
