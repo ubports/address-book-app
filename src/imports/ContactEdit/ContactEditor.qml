@@ -38,6 +38,22 @@ Page {
             }
         }
 
+        // new contact and there is only two details (name, avatar)
+        // name and avatar, are not removable details, because of that the contact will have at least 2 details
+        if ((contact.contactId === "qtcontacts:::") &&
+            (contact.contactDetails.length === 2)) {
+
+            // if name is empty this means that the contact is empty
+            var nameDetail = contact.detail(ContactDetail.Name)
+            if (nameDetail &&
+                (nameDetail.firstName && nameDetail.firstName != "") ||
+                (nameDetail.lastName && nameDetail.lastName != "")) {
+                // save contact
+            } else {
+                changed  = false
+            }
+        }
+
         if (changed) {
             model.saveContact(contact)
         } else {
