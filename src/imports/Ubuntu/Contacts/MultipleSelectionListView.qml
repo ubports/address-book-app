@@ -62,7 +62,7 @@ ListView {
 
       This property holds the list of selected items
     */
-    readonly property variant selectedItems: visualModel.selectedItems
+    readonly property alias selectedItems: visualModel.selectedItems
     /*!
       \qmlproperty Action acceptAction
 
