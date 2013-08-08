@@ -191,12 +191,14 @@ MultipleSelectionListView {
     acceptAction.text: i18n.tr("Delete")
 
     anchors.fill: parent
-    model: contactsModel
+    listModel: contactsModel
     onCountChanged: {
         busyIndicator.ping()
     }
 
-    delegate: Item {
+    listDelegate: Item {
+        id: item
+
         height: delegate.detailsShown ? (delegate.height + pickerLoader.height) : delegate.height
         width: parent.width
         clip: true
@@ -218,7 +220,7 @@ MultipleSelectionListView {
             id: delegate
             property bool detailsShown: false
 
-            selected: contactListView.multiSelectionEnabled && (contactListView.selectedItems.indexOf(index) != -1)
+            selected: contactListView.multiSelectionEnabled && contactListView.isSelected(item)
             removable: contactListView.swipeToDelete && !detailsShown && !isInSelectionMode
             icon: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
                       Qt.resolvedUrl(contact.avatar.imageUrl) :
@@ -228,8 +230,8 @@ MultipleSelectionListView {
 
             onClicked: {
                 if (contactListView.isInSelectionMode) {
-                    if (!contactListView.selectItem(index)) {
-                        contactListView.deselectItem(index)
+                    if (!contactListView.selectItem(item)) {
+                        contactListView.deselectItem(item)
                     }
                     return
                 }
@@ -251,7 +253,7 @@ MultipleSelectionListView {
             onPressAndHold: {
                 if (contactListView.multiSelectionEnabled) {
                     contactListView.startSelection()
-                    contactListView.selectItem(index)
+                    contactListView.selectItem(item)
                 }
             }
 

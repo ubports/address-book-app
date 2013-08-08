@@ -80,16 +80,15 @@ Page {
 
         onContactClicked: {
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
-                           {model: contactList.model, contactId: contact.contactId})
+                           {model: contactList.listModel, contactId: contact.contactId})
         }
 
         onSelectionDone: {
             var ids = []
-            var contacts = model.contacts
-            for (var i=0; i < items.length; i++) {
-                ids.push(contacts[items[i]].contactId)
+            for (var i=0; i < items.count; i++) {
+                ids.push(items.get(i).model.contact.contactId)
             }
-            contactList.model.removeContacts(ids)
+            contactList.listModel.removeContacts(ids)
         }
 
         onIsInSelectionModeChanged: {
@@ -110,7 +109,7 @@ Page {
                 onTriggered: {
                     var newContact = mainPage.createEmptyContact("")
                     pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                                   {model: contactList.model, contact: newContact})
+                                   {model: contactList.listModel, contact: newContact})
                 }
             }
         }
@@ -120,12 +119,12 @@ Page {
         target: pageStack
         onContactRequested: {
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
-                           {model: contactList.model, contactId: contactId})
+                           {model: contactList.listModel, contactId: contactId})
         }
         onCreateContactRequested: {
             var newContact = mainPage.createEmptyContact(phoneNumber)
             pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                           {model: contactList.model, contact: newContact})
+                           {model: contactList.listModel, contact: newContact})
         }
     }
 }
