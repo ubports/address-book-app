@@ -326,7 +326,7 @@ MultipleSelectionListView {
     }
 
     Connections {
-        target: model
+        target: listModel
         onContactsFetched: {
             if (requestId == contactListView.currentOperation) {
                 contactListView.currentOperation = -1
