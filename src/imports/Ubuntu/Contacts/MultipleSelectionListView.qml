@@ -58,11 +58,11 @@ ListView {
     id: listView
 
     /*!
-      \qmlproperty list<int> selectedItems
+      \qmlproperty model selectedItems
 
-      This property holds the index of selected items
+      This property holds the list of selected items
     */
-    property variant selectedItems: []
+    readonly property alias selectedItems: visualModel.selectedItems
     /*!
       \qmlproperty Action acceptAction
 
@@ -83,6 +83,19 @@ ListView {
     */
     property alias showActionButtons: sheet.enabled
     /*!
+      \qmlproperty model listModel
+
+      This property holds the model providing data for the list.
+    */
+    property alias listModel: visualModel.model
+    /*!
+      \qmlproperty Component listDelegate
+
+      The delegate provides a template defining each item instantiated by the view.
+    */
+    property alias listDelegate: visualModel.delegate
+
+    /*!
       \qmlproperty bool isInSelectionMode
 
       This property holds a list with the index of selected items
@@ -101,44 +114,40 @@ ListView {
         state = "selection"
     }
     /*!
-      Add a index into the list of selected items
+      Check if the item is selected
+      Returns true if the item was marked as selected or false if the item is unselected
+    */
+    function isSelected(item)
+    {
+        return (item.VisualDataModel.inSelected == true)
+    }
+    /*!
+      Mark the item as selected
       Returns true if the item was marked as selected or false if the item is already selected
     */
-    function selectItem(index)
+    function selectItem(item)
     {
-        if (listView.selectedItems.indexOf(index) == -1) {
-            var newItems = listView.selectedItems
-            newItems.push(index)
-            listView.selectedItems = newItems
-            return true
-        } else {
+        if (item.VisualDataModel.inSelected) {
             return false
+        } else {
+            item.VisualDataModel.inSelected = true
+            return true
         }
     }
     /*!
       Remove the index from the selected list
     */
-    function deselectItem(index)
+    function deselectItem(item)
     {
-        if (listView.selectedItems.indexOf(index) != -1) {
-            var newItems = []
-            var oldItems = listView.selectedItems
-            for (var i=0; i < oldItems.length; i++) {
-                if (oldItems[i] != index) {
-                    newItems.push(oldItems[i])
-                }
-            }
-            listView.selectedItems = newItems
-
-            // Cancel selection if the selected items is empty
-            if (newItems.length == 0) {
-                listView.cancelSelection()
-            }
-
-            return true
-        } else {
-            return false
+        var result = false
+        if (item.VisualDataModel.inSelected) {
+            item.VisualDataModel.inSelected = false
+            result = true
         }
+        if (selectedItems.count == 0) {
+            cancelSelection()
+        }
+        return result
     }
     /*!
       Finish the selection mode with sucess
@@ -153,7 +162,9 @@ ListView {
     */
     function cancelSelection()
     {
-        selectedItems = []
+        if (selectedItems.count > 0) {
+            selectedItems.remove(0, selectedItems.count)
+        }
         state = ""
     }
 
@@ -170,6 +181,12 @@ ListView {
             }
         }
     ]
+
+    model: visualModel
+
+    MultipleSelectionVisualModel {
+        id: visualModel
+    }
 
     DialogButtons {
         id: sheet
