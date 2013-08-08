@@ -146,6 +146,13 @@ MultipleSelectionListView {
     */
     property int currentContactExpanded: -1
     /*!
+      \qmlproperty bool showSections
+
+      This property holds if the listview will show or not the section headers
+      By default this is set to true
+    */
+    property bool showSections: true
+    /*!
       This handler is called when any error occurs in the contact model
     */
     signal error(string message)
@@ -180,8 +187,8 @@ MultipleSelectionListView {
     clip: true
     snapMode: ListView.NoSnap
     section {
-        property: "contact.name.firstName"
-        criteria: ViewSection.FirstCharacter
+        property: showSections ? "contact.name.firstName" : ""
+        criteria: showSections ? ViewSection.FirstCharacter : undefined
         delegate: ListItem.Header {
             id: listHeader
             text: section
@@ -190,7 +197,6 @@ MultipleSelectionListView {
 
     acceptAction.text: i18n.tr("Delete")
 
-    anchors.fill: parent
     listModel: contactsModel
     onCountChanged: {
         busyIndicator.ping()

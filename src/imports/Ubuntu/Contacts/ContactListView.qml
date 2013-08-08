@@ -15,6 +15,9 @@
  */
 
 import QtQuick 2.0
+import QtContacts 5.0
+import Ubuntu.Components 0.1
+import Ubuntu.Components.ListItems 0.1 as ListItem
 
 /*!
     \qmltype ContactListView
@@ -38,21 +41,45 @@ import QtQuick 2.0
 ContactSimpleListView {
     id: root
 
-    header: ContactFavoriteListView {
-        anchors {
-            left: parent.left
-            top: parent.top
-            right: parent.right
-        }
-        height: count > 0 ? implicitHeight : 0
-        onContactClicked: root.contactClicked(contact)
-        defaultAvatarImageUrl: root.defaultAvatarImageUrl
+    header: Column {
+        width: parent.width
+        height: childrenRect.height
 
-        // WORKAROUND: Due a bug on the SDK Page component the page is nto correct positioned if it changes
-        // the size dynamically
-        onHeightChanged: {
-            root.contentY = -1000
-            root.returnToBounds()
+        ContactSimpleListView {
+            header: ListItem.Header {
+                text: i18n.tr("Favourites")
+            }
+
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+            height: (count > 0 && !root.isInSelectionMode) ? contentHeight : 0
+            onContactClicked: root.contactClicked(contact)
+            defaultAvatarImageUrl: root.defaultAvatarImageUrl
+            multiSelectionEnabled: false
+            interactive: false
+            showSections: false
+            filter: DetailFilter {
+                detail: ContactDetail.Favorite
+                field: Favorite.Favorite
+                value: true
+                matchFlags: DetailFilter.MatchExactly
+            }
+
+            Behavior on height {
+                UbuntuNumberAnimation {}
+            }
+
+            // WORKAROUND: Due a bug on the SDK Page component the page is nto correct positioned if it changes
+            // the size dynamically
+            onHeightChanged: {
+                root.contentY = -contentHeight * 2
+                root.returnToBounds()
+            }
+        }
+        ListItem.Header {
+            text: i18n.tr("All contacts")
         }
     }
 }
