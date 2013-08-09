@@ -1,3 +1,13 @@
+address-book-app (0.2+13.10.20130809-0ubuntu1) saucy; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Implemented multiple selection using visual data model.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 48
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 09 Aug 2013 07:02:00 +0000
+
 address-book-app (0.2+13.10.20130808-0ubuntu1) saucy; urgency=low
 
   [ Renato Araujo Oliveira Filho ]
