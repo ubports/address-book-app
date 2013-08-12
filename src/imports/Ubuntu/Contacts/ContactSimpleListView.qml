@@ -120,7 +120,7 @@ MultipleSelectionListView {
       This property holds the default image url to be used when the current contact does
       not contains a photo
     */
-    property string defaultAvatarImageUrl: "gicon:/avatar-default"
+    property string defaultAvatarImageUrl: "image://gicon/avatar-default"
     /*!
       \qmlproperty bool loading
 
@@ -145,6 +145,13 @@ MultipleSelectionListView {
       This property holds the current contact expanded
     */
     property int currentContactExpanded: -1
+    /*!
+      \qmlproperty bool showSections
+
+      This property holds if the listview will show or not the section headers
+      By default this is set to true
+    */
+    property bool showSections: true
     /*!
       This handler is called when any error occurs in the contact model
     */
@@ -180,7 +187,7 @@ MultipleSelectionListView {
     clip: true
     snapMode: ListView.NoSnap
     section {
-        property: "contact.name.firstName"
+        property: showSections ? "contact.name.firstName" : ""
         criteria: ViewSection.FirstCharacter
         delegate: ListItem.Header {
             id: listHeader
@@ -190,7 +197,6 @@ MultipleSelectionListView {
 
     acceptAction.text: i18n.tr("Delete")
 
-    anchors.fill: parent
     listModel: contactsModel
     onCountChanged: {
         busyIndicator.ping()
@@ -277,6 +283,7 @@ MultipleSelectionListView {
         }
         Loader {
             id: pickerLoader
+
             source: delegate.detailsShown ? Qt.resolvedUrl("ContactDetailPickerDelegate.qml") : ""
             anchors {
                 top: delegate.bottom
@@ -285,9 +292,9 @@ MultipleSelectionListView {
             }
             onStatusChanged: {
                 if (status == Loader.Ready) {
-                    item.contactsModel = contactsModel
-                    item.detailType = detailToPick
-                    item.contactId = contact.contactId
+                    pickerLoader.item.contactsModel = contactsModel
+                    pickerLoader.item.detailType = detailToPick
+                    pickerLoader.item.contactId = contact.contactId
                 }
             }
         }
