@@ -120,7 +120,7 @@ MultipleSelectionListView {
       This property holds the default image url to be used when the current contact does
       not contains a photo
     */
-    property string defaultAvatarImageUrl: "gicon:/avatar-default"
+    property string defaultAvatarImageUrl: "image://gicon/avatar-default"
     /*!
       \qmlproperty bool loading
 
@@ -188,7 +188,7 @@ MultipleSelectionListView {
     snapMode: ListView.NoSnap
     section {
         property: showSections ? "contact.name.firstName" : ""
-        criteria: showSections ? ViewSection.FirstCharacter : undefined
+        criteria: ViewSection.FirstCharacter
         delegate: ListItem.Header {
             id: listHeader
             text: section
@@ -283,6 +283,7 @@ MultipleSelectionListView {
         }
         Loader {
             id: pickerLoader
+
             source: delegate.detailsShown ? Qt.resolvedUrl("ContactDetailPickerDelegate.qml") : ""
             anchors {
                 top: delegate.bottom
@@ -291,9 +292,9 @@ MultipleSelectionListView {
             }
             onStatusChanged: {
                 if (status == Loader.Ready) {
-                    item.contactsModel = contactsModel
-                    item.detailType = detailToPick
-                    item.contactId = contact.contactId
+                    pickerLoader.item.contactsModel = contactsModel
+                    pickerLoader.item.detailType = detailToPick
+                    pickerLoader.item.contactId = contact.contactId
                 }
             }
         }

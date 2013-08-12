@@ -2,7 +2,6 @@ module Ubuntu.Contacts
 
 ContactDetailOnlineAccountTypeModel 0.1 ContactDetailOnlineAccountTypeModel.qml
 ContactDetailPhoneNumberTypeModel 0.1 ContactDetailPhoneNumberTypeModel.qml
-ContactFavoriteListView 0.1 ContactFavoriteListView.qml
 ContactListView 0.1 ContactListView.qml
 ContactSimpleListView 0.1 ContactSimpleListView.qml
 MultipleSelectionListView 0.1 MultipleSelectionListView.qml
