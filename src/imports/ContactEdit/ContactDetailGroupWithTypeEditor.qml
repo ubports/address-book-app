@@ -28,6 +28,7 @@ ContactDetailGroupWithTypeBase {
     property int currentItem: -1
     property int fieldType: QtContacts.ContactDetail.FieldContext
     property variant placeholderTexts: []
+    property variant inputMethodHints
 
     function save() {
         var changed = false
@@ -137,6 +138,7 @@ ContactDetailGroupWithTypeBase {
         height: implicitHeight
         width: root.width
 
+        inputMethodHints: root.inputMethodHints
         onDetailChanged: updateCombo(false)
 
         // this is necessary due the default property of ListItem.Empty
