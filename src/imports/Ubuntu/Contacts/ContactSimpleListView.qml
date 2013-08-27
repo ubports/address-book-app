@@ -18,6 +18,7 @@ import QtQuick 2.0
 import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Telephony 0.1
 
 /*!
     \qmltype ContactSimpleListView
@@ -279,6 +280,20 @@ MultipleSelectionListView {
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment:  delegate.swipingState === "SwipingLeft" ? Text.AlignLeft : Text.AlignRight
                 }
+            }
+        }
+        Image {
+            width: units.gu(2)
+            height: units.gu(2)
+            anchors.right: parent.right
+            anchors.rightMargin: units.gu(3)
+            anchors.top: parent.top
+            anchors.topMargin: units.gu(2)
+            visible: delegate.detailsShown
+            source: contactListView.defaultAvatarImageUrl
+            MouseArea {
+               anchors.fill: parent
+               onClicked: applicationUtils.switchToAddressbookApp("contact://" + contact.contactId)
             }
         }
         Loader {
