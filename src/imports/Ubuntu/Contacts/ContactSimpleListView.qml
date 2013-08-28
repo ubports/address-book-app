@@ -223,17 +223,52 @@ MultipleSelectionListView {
             }
         }
 
-        ListItem.Subtitled {
+        ListItem.Empty {
             id: delegate
             property bool detailsShown: false
+            height: units.gu(10)
+            showDivider : false
 
             selected: contactListView.multiSelectionEnabled && contactListView.isSelected(item)
             removable: contactListView.swipeToDelete && !detailsShown && !isInSelectionMode
-            icon: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
-                      Qt.resolvedUrl(contact.avatar.imageUrl) :
-                      contactListView.defaultAvatarImageUrl
-            text: contactListView.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
-            subText: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
+            UbuntuShape {
+                id: avatar
+                height: units.gu(7)
+                width: units.gu(7)
+                anchors {
+                    left: parent.left
+                    leftMargin: units.gu(2)
+                    verticalCenter: parent.verticalCenter
+                }
+                image: Image {
+
+                    source: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
+                                    Qt.resolvedUrl(contact.avatar.imageUrl) :
+                                    contactListView.defaultAvatarImageUrl
+                }
+            }
+
+            Row {
+                spacing: units.gu(1)
+                anchors {
+                    left: avatar.right
+                    leftMargin: units.gu(2)
+                    verticalCenter: parent.verticalCenter
+                }
+                Label {
+                    id: name
+                    height: paintedHeight
+                    text: contactListView.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
+                    fontSize: "large"
+                }
+                Label {
+                    id: company
+                    height: paintedHeight
+                    text: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
+                    fontSize: "medium"
+                    opacity: 0.2
+                }
+            }
 
             onClicked: {
                 if (contactListView.isInSelectionMode) {
@@ -313,6 +348,14 @@ MultipleSelectionListView {
                 }
             }
         }
+        ListItem.ThinDivider {
+            anchors {
+                bottom: pickerLoader.bottom
+                right: parent.right
+                left: parent.left
+            }
+        }
+
         Connections {
             target: pickerLoader.item
             onDetailClicked: detailClicked(contact, detail)
