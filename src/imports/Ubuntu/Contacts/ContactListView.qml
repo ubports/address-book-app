@@ -47,6 +47,7 @@ ContactSimpleListView {
 
         ContactSimpleListView {
             header: ListItem.Header {
+                height: units.gu(5)
                 text: i18n.tr("Favourites")
             }
 
@@ -79,6 +80,7 @@ ContactSimpleListView {
             }
         }
         ListItem.Header {
+            height: units.gu(5)
             text: i18n.tr("All contacts")
         }
     }

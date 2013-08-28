@@ -27,40 +27,73 @@ Item {
         id: phoneTypeModel
     }
 
-    height: details.height
+    height: details.height + units.gu(2)
     anchors {
         left: parent.left
         right: parent.right
     }
 
-    Column {
+    UbuntuShape {
         id: details
-        anchors.top: parent.top
         height: childrenRect.height
-        width: parent.width
+        color: Qt.rgba(0,0,0,0.1)
+        anchors {
+            top: parent.top
+            //topMargin: units.gu(2)
+            left: parent.left
+            leftMargin: units.gu(2)
+            right: parent.right
+            rightMargin: units.gu(2)
+        }
 
-        Repeater {
-            model: contact ? contact.phoneNumbers : undefined
-            ListItem.Empty {
-                Column {
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    anchors.leftMargin: units.gu(2)
-                    anchors.rightMargin: units.gu(2)
-                    Label {
-                        id: context
-                        text: phoneTypeModel.get(phoneTypeModel.getTypeIndex(modelData)).label
-                        fontSize: "small"
-                        color: "#a3a3a3"
+        Column {
+            id: detailItems
+            anchors.top: parent.top
+            height: childrenRect.height
+            width: parent.width
+
+            Repeater {
+                model: contact ? contact.phoneNumbers : undefined
+                ListItem.Empty {
+                    showDivider: false
+                    Column {
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        anchors.leftMargin: units.gu(2)
+                        anchors.rightMargin: units.gu(2)
+                        Label {
+                            id: context
+                            text: phoneTypeModel.get(phoneTypeModel.getTypeIndex(modelData)).label
+                            fontSize: "small"
+                            opacity: 0.2
+                        }
+                        Label {
+                            text: number
+                            fontSize: "medium"
+                        }
                     }
-                    Label {
-                        text: number
-                        fontSize: "large"
+
+                    onClicked: detailClicked(modelData)
+                    Image {
+                        height: units.gu(3)
+                        width: units.gu(3)
+                        source: "../assets/dialer_call.png"
+                        fillMode: Image.PreserveAspectFit
+                        anchors {
+                            right: parent.right
+                            verticalCenter: parent.verticalCenter
+                        }
+                    }
+                    ListItem.ThinDivider {
+                        visible: index != 0
+                        anchors {
+                            bottom: parent.top
+                            right: parent.right
+                            left: parent.left
+                        }
                     }
                 }
-
-                onClicked: detailClicked(modelData)
             }
         }
     }
