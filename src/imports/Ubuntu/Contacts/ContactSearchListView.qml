@@ -150,7 +150,7 @@ ListView {
     clip: true
     snapMode: ListView.NoSnap
     orientation: ListView.Horizontal
-    height: units.gu(14)
+    height: units.gu(12)
     spacing: units.gu(1)
 
     model: contactsModel
@@ -192,7 +192,11 @@ ListView {
                 // this fetch request can only return one contact
                 if(fetchedContacts.length !== 1)
                     return
-                contactListView.contactClicked(fetchedContacts[0])
+
+                if (contactListView.detailToPick == 0)
+                    contactListView.contactClicked(fetchedContacts[0])
+                else if (___selectedDetail != "")
+                    contactListView.detailClicked(fetchedContacts[0], ___selectedDetail)
             }
         }
     }
@@ -202,7 +206,7 @@ ListView {
         Row {
             anchors {
                 top: parent.top
-                topMargin: units.gu(1.5)
+                topMargin: units.gu(1)
             }
             height: childrenRect.height
             width: childrenRect.width
@@ -212,7 +216,7 @@ ListView {
             // but if we are only picking the contact itself,
             Repeater {
                 id: numberRepeater
-                model: (contactListView.detailToPick != 0  && contact.details(contactListView.detailToPick).lenght > 0) ?
+                model: (contactListView.detailToPick != 0  && contact.details(contactListView.detailToPick).length > 0) ?
                            contact.details(contactListView.detailToPick) : [""]
                 UbuntuShape {
                     id: img
