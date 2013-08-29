@@ -178,7 +178,10 @@ MultipleSelectionListView {
                 values += " "
             }
             if (detail) {
-                values +=  detail.value(detailFields[i])
+                var value = detail.value(detailFields[i])
+                if (value !== undefined) {
+                    values += value
+                }
             }
         }
 
