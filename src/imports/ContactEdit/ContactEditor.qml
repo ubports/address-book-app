@@ -27,6 +27,12 @@ Page {
 
     property QtObject activeItem: null
 
+    // we use a custom toolbar in this view
+    tools: ToolbarItems {
+        locked: true
+        opened: false
+    }
+
     function save() {
         var changed = false
         for(var i = 0; i < contents.children.length; ++i) {

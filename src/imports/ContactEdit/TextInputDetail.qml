@@ -29,6 +29,8 @@ TextField {
 
     signal removeClicked()
 
+    Component.onCompleted: makeMeVisible(root)
+
     focus: true
     text: originalValue ? originalValue : ""
     style: TextFieldStyle {
