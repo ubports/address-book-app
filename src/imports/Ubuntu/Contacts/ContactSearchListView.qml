@@ -24,7 +24,7 @@ import Ubuntu.Components 0.1
     \ingroup ubuntu
     \brief The ContactSearchListView provides a simple contact list view
 
-    The ContactSimpleListView provide a easy way to show the contact list view
+    The ContactSearchListView provide a easy way to show the contact list view
     with all default visuals defined by Ubuntu system.
 
     Example:
@@ -155,8 +155,6 @@ ListView {
 
     model: contactsModel
     delegate: contactSearchDelegate
-
-    onCountChanged: console.log("Count is now:" + count)
 
     ContactModel {
         id: contactsModel
