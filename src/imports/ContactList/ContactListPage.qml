@@ -104,6 +104,14 @@ Page {
         locked: contactList.isInSelectionMode
         ToolbarButton {
             action: Action {
+                objectName: "selectButton"
+                text: i18n.tr("Select")
+                iconSource: "artwork:/select.png"
+                onTriggered: contactList.startSelection()
+            }
+        }
+        ToolbarButton {
+            action: Action {
                 text: i18n.tr("Add")
                 iconSource: "artwork:/add.png"
                 onTriggered: {
