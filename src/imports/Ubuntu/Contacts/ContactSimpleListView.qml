@@ -190,8 +190,14 @@ MultipleSelectionListView {
 
         return values
     }
-
-
+    
+    // workaround to make list view correctly render the items when expanded
+    onExpandedChanged: {
+        if (expanded) {
+            listModel = null
+            listModel = contactsModel
+        }
+    }
 
     clip: true
     snapMode: ListView.NoSnap
@@ -219,163 +225,183 @@ MultipleSelectionListView {
         dirtyModel.restart()
     }
 
-    listDelegate: Item {
-       id: item
-       property var contact: listModel.contacts[index]
+    listDelegate: Loader {
+        id: loaderDelegate
+        sourceComponent: contactListView.expanded ? delegateItem : null
+        property var contact: contactListView.listModel.contacts[index]
+        property int _index: index
 
-        height: contactListView.expanded ? (delegate.detailsShown ? (delegate.height + pickerLoader.height) : delegate.height) : 0
+        asynchronous: false
+        height: contactListView.expanded ? item.height : 0
         width: parent.width
-        clip: true
-
-        //Behavior on height {
-        //    UbuntuNumberAnimation { }
-        //}
-
-        Connections {
-            target: contactListView
-            onCurrentContactExpandedChanged: {
-                if (index != currentContactExpanded) {
-                    delegate.detailsShown = false
-                }
-            }
+        visible: loaderDelegate.status == Loader.Ready
+        Binding {
+            target: loaderDelegate.item
+            property: "index"
+            value: loaderDelegate._index
+            when: loaderDelegate.status == Loader.Ready
         }
+    }
+    Component {
+       id: delegateItem
+       Item {
+           id: item
 
-        ListItem.Empty {
-            id: delegate
-            property bool detailsShown: false
-            height: units.gu(10)
-            showDivider : false
+            height: delegate.detailsShown ? (delegate.height + pickerLoader.height) : delegate.height
+            width: parent ? parent.width : 0
+            clip: true
+            property int index: -1
 
-            selected: contactListView.multiSelectionEnabled && contactListView.isSelected(item)
-            removable: contactListView.swipeToDelete && !detailsShown && !isInSelectionMode
-            UbuntuShape {
-                id: avatar
-                height: units.gu(7)
-                width: units.gu(7)
-                anchors {
-                    left: parent.left
-                    leftMargin: units.gu(2)
-                    verticalCenter: parent.verticalCenter
-                }
-                image: Image {
-
-                    source: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
-                                    Qt.resolvedUrl(contact.avatar.imageUrl) :
-                                    contactListView.defaultAvatarImageUrl
-                }
+            Behavior on height {
+                UbuntuNumberAnimation { }
             }
 
-            Row {
-                spacing: units.gu(1)
-                anchors {
-                    left: avatar.right
-                    leftMargin: units.gu(2)
-                    verticalCenter: parent.verticalCenter
-                }
-                Label {
-                    id: name
-                    height: paintedHeight
-                    text: contactListView.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
-                    fontSize: "large"
-                }
-                Label {
-                    id: company
-                    height: paintedHeight
-                    text: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
-                    fontSize: "medium"
-                    opacity: 0.2
-                }
-            }
-
-            onClicked: {
-                if (contactListView.isInSelectionMode) {
-                    if (!contactListView.selectItem(item)) {
-                        contactListView.deselectItem(item)
+            Connections {
+                target: contactListView
+                onCurrentContactExpandedChanged: {
+                    if (index != currentContactExpanded) {
+                        delegate.detailsShown = false
                     }
-                    return
-                }
-
-                currentContactExpanded = index
-                // check if we should expand and display the details picker
-                if (detailToPick !== 0) {
-                    detailsShown = !detailsShown
-                    return;
-                }
-
-                if (priv.currentOperation !== -1) {
-                    return
-                }
-                contactListView.currentIndex = index
-                priv.currentOperation = contactsModel.fetchContacts(contact.contactId)
-            }
-
-            onPressAndHold: {
-                if (contactListView.multiSelectionEnabled) {
-                    contactListView.startSelection()
-                    contactListView.selectItem(item)
                 }
             }
 
-            onItemRemoved: {
-                contactsModel.removeContact(contact.contactId)
-            }
+            ListItem.Empty {
+                id: delegate
+                property bool detailsShown: false
+                height: units.gu(10)
+                showDivider : false
 
-            backgroundIndicator: Rectangle {
-                anchors.fill: parent
-                color: Theme.palette.selected.base
-                Label {
-                    text: "Delete"
+                selected: contactListView.multiSelectionEnabled && contactListView.isSelected(item)
+                removable: contactListView.swipeToDelete && !detailsShown && !isInSelectionMode
+                UbuntuShape {
+                    id: avatar
+                    height: units.gu(7)
+                    width: units.gu(7)
                     anchors {
-                        fill: parent
-                        margins: units.gu(2)
+                        left: parent.left
+                        leftMargin: units.gu(2)
+                        verticalCenter: parent.verticalCenter
                     }
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment:  delegate.swipingState === "SwipingLeft" ? Text.AlignLeft : Text.AlignRight
+                    image: Image {
+
+                        source: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
+                                        Qt.resolvedUrl(contact.avatar.imageUrl) :
+                                        contactListView.defaultAvatarImageUrl
+                    }
+                }
+
+                Row {
+                    spacing: units.gu(1)
+                    anchors {
+                        left: avatar.right
+                        leftMargin: units.gu(2)
+                        verticalCenter: parent.verticalCenter
+                    }
+                    Label {
+                        id: name
+                        height: paintedHeight
+                        text: contactListView.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
+                        fontSize: "large"
+                    }
+                    Label {
+                        id: company
+                        height: paintedHeight
+                        text: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
+                        fontSize: "medium"
+                        opacity: 0.2
+                    }
+                }
+
+                onClicked: {
+                    if (contactListView.isInSelectionMode) {
+                        if (!contactListView.selectItem(item)) {
+                            contactListView.deselectItem(item)
+                        }
+                        return
+                    }
+
+                    currentContactExpanded = index
+                    // check if we should expand and display the details picker
+                    if (detailToPick !== 0) {
+                        detailsShown = !detailsShown
+                        return;
+                    }
+
+                    if (priv.currentOperation !== -1) {
+                        return
+                    }
+                    contactListView.currentIndex = index
+                    priv.currentOperation = contactsModel.fetchContacts(contact.contactId)
+                }
+
+                onPressAndHold: {
+                    if (contactListView.multiSelectionEnabled) {
+                        contactListView.startSelection()
+                        contactListView.selectItem(item)
+                    }
+                }
+
+                onItemRemoved: {
+                    contactsModel.removeContact(contact.contactId)
+                }
+
+                backgroundIndicator: Rectangle {
+                    anchors.fill: parent
+                    color: Theme.palette.selected.base
+                    Label {
+                        text: "Delete"
+                        anchors {
+                            fill: parent
+                            margins: units.gu(2)
+                        }
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment:  delegate.swipingState === "SwipingLeft" ? Text.AlignLeft : Text.AlignRight
+                    }
                 }
             }
-        }
-        Image {
-            width: units.gu(2)
-            height: units.gu(2)
-            anchors.right: parent.right
-            anchors.rightMargin: units.gu(3)
-            anchors.top: parent.top
-            anchors.topMargin: units.gu(2)
-            visible: delegate.detailsShown
-            source: contactListView.defaultAvatarImageUrl
-            MouseArea {
-               anchors.fill: parent
-               onClicked: applicationUtils.switchToAddressbookApp("contact://" + contact.contactId)
-            }
-        }
-        Loader {
-            id: pickerLoader
-
-            source: delegate.detailsShown ? Qt.resolvedUrl("ContactDetailPickerDelegate.qml") : ""
-            anchors {
-                top: delegate.bottom
-                left: parent.left
-                right: parent.right
-            }
-            onStatusChanged: {
-                if (status == Loader.Ready) {
-                    pickerLoader.item.contactsModel = contactsModel
-                    pickerLoader.item.detailType = detailToPick
-                    pickerLoader.item.contactId = contact.contactId
+            Image {
+                width: units.gu(2)
+                height: units.gu(2)
+                anchors.right: parent.right
+                anchors.rightMargin: units.gu(3)
+                anchors.top: parent.top
+                anchors.topMargin: units.gu(2)
+                visible: delegate.detailsShown
+                source: contactListView.defaultAvatarImageUrl
+                MouseArea {
+                   anchors.fill: parent
+                   onClicked: applicationUtils.switchToAddressbookApp("contact://" + contact.contactId)
                 }
             }
-        }
-        ListItem.ThinDivider {
-            anchors {
-                bottom: pickerLoader.bottom
-                right: parent.right
-                left: parent.left
-            }
-        }
+            Loader {
+                id: pickerLoader
 
-        Connections {
-            target: pickerLoader.item
-            onDetailClicked: detailClicked(contact, detail)
+                source: delegate.detailsShown ? Qt.resolvedUrl("ContactDetailPickerDelegate.qml") : ""
+                anchors {
+                    top: delegate.bottom
+                    left: parent.left
+                    right: parent.right
+                }
+                onStatusChanged: {
+                    if (status == Loader.Ready) {
+                        pickerLoader.item.contactsModel = contactsModel
+                        pickerLoader.item.detailType = detailToPick
+                        pickerLoader.item.contactId = contact.contactId
+                    }
+                }
+            }
+            ListItem.ThinDivider {
+                anchors {
+                    bottom: pickerLoader.bottom
+                    right: parent.right
+                    left: parent.left
+                }
+            }
+
+            Connections {
+                target: pickerLoader.item
+                onDetailClicked: detailClicked(contact, detail)
+            }
         }
     }
 
@@ -408,9 +434,7 @@ MultipleSelectionListView {
     }
 
     onContentHeightChanged: {
-        if (priv.activeSection !== "") {
-            dirtyHeightTimer.restart()
-        }
+        priv.scrollToSection()
     }
 
     Timer {
@@ -431,47 +455,6 @@ MultipleSelectionListView {
                 if(fetchedContacts.length !== 1)
                     return
                 contactListView.contactClicked(fetchedContacts[0])
-            }
-        }
-    }
-
-    Component {
-        id: contactDelegate
-
-        ListItem.Subtitled {
-            id: delegate
-
-            property int index: -1
-
-            removable: contactListView.swipeToDelete
-            icon: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
-                      Qt.resolvedUrl(contact.avatar.imageUrl) :
-                      contactListView.defaultAvatarImageUrl
-            text: contactListView.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
-            subText: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
-
-            onClicked: {
-                if (priv.currentOperation !== -1) {
-                    return
-                }
-                contactListView.currentIndex = index
-                priv.currentOperation = contactsModel.fetchContacts(contact.contactId)
-            }
-            onItemRemoved: {
-                contactsModel.removeContact(contact.contactId)
-            }
-            backgroundIndicator: Rectangle {
-                anchors.fill: parent
-                color: Theme.palette.selected.base
-                Label {
-                    text: "Delete"
-                    anchors {
-                        fill: parent
-                        margins: units.gu(2)
-                    }
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment:  delegate.swipingState === "SwipingLeft" ? Text.AlignLeft : Text.AlignRight
-                }
             }
         }
     }

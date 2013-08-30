@@ -27,7 +27,7 @@ function sectionValueForContact(contact) {
 }
 
 function initSectionData(list) {
-    if (!list || !list.model) {
+    if (!list || !list.listModel) {
         return;
     }
 
@@ -36,7 +36,7 @@ function initSectionData(list) {
 
     var current = "";
     var item;
-    var contacts = list.model.contacts;
+    var contacts = list.listModel.contacts;
 
     for (var i = 0, count = contacts.length; i < count; i++) {
         item = sectionValueForContact(contacts[i])
