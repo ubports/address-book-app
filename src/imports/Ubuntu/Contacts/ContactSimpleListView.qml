@@ -18,6 +18,7 @@ import QtQuick 2.0
 import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Telephony 0.1
 
 import "ContactList.js" as Sections
 
@@ -41,7 +42,7 @@ import "ContactList.js" as Sections
     \endqml
 */
 
-ListView {
+MultipleSelectionListView {
     id: contactListView
 
     /*!
@@ -117,20 +118,44 @@ ListView {
     */
     property alias filter: contactsModel.filter
     /*!
+      \qmlproperty bool multiSelectionEnabled
+
+      This property holds if the multi selection mode is enabled or not
+      By default this is set to false
+    */
+    property bool multiSelectionEnabled: false
+    /*!
       \qmlproperty string defaultAvatarImage
 
       This property holds the default image url to be used when the current contact does
       not contains a photo
-
-      \sa Filter
     */
-    property string defaultAvatarImageUrl: "gicon:/avatar-default"
+    property string defaultAvatarImageUrl: "image://gicon/avatar-default"
     /*!
       \qmlproperty bool loading
 
       This property holds when the model still loading new contacts
     */
     readonly property bool loading: busyIndicator.busy
+    /*!
+      \qmlproperty int detailToPick
+
+      This property holds the detail type to be picked
+    */
+    property int detailToPick: 0
+    /*!
+      \qmlproperty int currentContactExpanded
+
+      This property holds the current contact expanded
+    */
+    property int currentContactExpanded: -1
+    /*!
+      \qmlproperty bool showSections
+
+      This property holds if the listview will show or not the section headers
+      By default this is set to true
+    */
+    property bool showSections: true
     /*!
       This handler is called when any error occurs in the contact model
     */
@@ -139,6 +164,10 @@ ListView {
       This handler is called when any contact int the list receives a click.
     */
     signal contactClicked(QtObject contact)
+    /*!
+      This handler is called when any contact detail in the list receives a click
+    */
+    signal detailClicked(QtObject contact, QtObject detail)
 
     function formatToDisplay(contact, contactDetail, detailFields) {
         if (!contact) {
@@ -152,7 +181,10 @@ ListView {
                 values += " "
             }
             if (detail) {
-                values +=  detail.value(detailFields[i])
+                var value = detail.value(detailFields[i])
+                if (value !== undefined) {
+                    values += value
+                }
             }
         }
 
@@ -164,7 +196,7 @@ ListView {
     clip: true
     snapMode: ListView.NoSnap
     section {
-        property: "contact.name.firstName"
+        property: showSections ? "contact.name.firstName" : ""
         criteria: ViewSection.FirstCharacter
         delegate: ListItem.Header {
             id: listHeader
@@ -179,29 +211,171 @@ ListView {
         }
     }
 
-    anchors.fill: parent
-    model: contactsModel
+    acceptAction.text: i18n.tr("Delete")
+
+    listModel: contactsModel
     onCountChanged: {
         busyIndicator.ping()
         dirtyModel.restart()
     }
 
-    delegate: Loader {
-        id: loaderDelegate
+    listDelegate: Item {
+       id: item
+       property var contact: listModel.contacts[index]
 
-        property var contact: contactListView.model.contacts[index]
-        property int _index: index
-
-        asynchronous: true
-        height: contactListView.expanded ? units.gu(6) : 0
+        height: contactListView.expanded ? (delegate.detailsShown ? (delegate.height + pickerLoader.height) : delegate.height) : 0
         width: parent.width
-        sourceComponent: contactListView.expanded ? contactDelegate : null
+        clip: true
 
-        Binding {
-            target: loaderDelegate.item
-            property: "index"
-            value: loaderDelegate._index
-            when: loaderDelegate.status == Loader.Ready
+        //Behavior on height {
+        //    UbuntuNumberAnimation { }
+        //}
+
+        Connections {
+            target: contactListView
+            onCurrentContactExpandedChanged: {
+                if (index != currentContactExpanded) {
+                    delegate.detailsShown = false
+                }
+            }
+        }
+
+        ListItem.Empty {
+            id: delegate
+            property bool detailsShown: false
+            height: units.gu(10)
+            showDivider : false
+
+            selected: contactListView.multiSelectionEnabled && contactListView.isSelected(item)
+            removable: contactListView.swipeToDelete && !detailsShown && !isInSelectionMode
+            UbuntuShape {
+                id: avatar
+                height: units.gu(7)
+                width: units.gu(7)
+                anchors {
+                    left: parent.left
+                    leftMargin: units.gu(2)
+                    verticalCenter: parent.verticalCenter
+                }
+                image: Image {
+
+                    source: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
+                                    Qt.resolvedUrl(contact.avatar.imageUrl) :
+                                    contactListView.defaultAvatarImageUrl
+                }
+            }
+
+            Row {
+                spacing: units.gu(1)
+                anchors {
+                    left: avatar.right
+                    leftMargin: units.gu(2)
+                    verticalCenter: parent.verticalCenter
+                }
+                Label {
+                    id: name
+                    height: paintedHeight
+                    text: contactListView.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
+                    fontSize: "large"
+                }
+                Label {
+                    id: company
+                    height: paintedHeight
+                    text: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
+                    fontSize: "medium"
+                    opacity: 0.2
+                }
+            }
+
+            onClicked: {
+                if (contactListView.isInSelectionMode) {
+                    if (!contactListView.selectItem(item)) {
+                        contactListView.deselectItem(item)
+                    }
+                    return
+                }
+
+                currentContactExpanded = index
+                // check if we should expand and display the details picker
+                if (detailToPick !== 0) {
+                    detailsShown = !detailsShown
+                    return;
+                }
+
+                if (priv.currentOperation !== -1) {
+                    return
+                }
+                contactListView.currentIndex = index
+                priv.currentOperation = contactsModel.fetchContacts(contact.contactId)
+            }
+
+            onPressAndHold: {
+                if (contactListView.multiSelectionEnabled) {
+                    contactListView.startSelection()
+                    contactListView.selectItem(item)
+                }
+            }
+
+            onItemRemoved: {
+                contactsModel.removeContact(contact.contactId)
+            }
+
+            backgroundIndicator: Rectangle {
+                anchors.fill: parent
+                color: Theme.palette.selected.base
+                Label {
+                    text: "Delete"
+                    anchors {
+                        fill: parent
+                        margins: units.gu(2)
+                    }
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment:  delegate.swipingState === "SwipingLeft" ? Text.AlignLeft : Text.AlignRight
+                }
+            }
+        }
+        Image {
+            width: units.gu(2)
+            height: units.gu(2)
+            anchors.right: parent.right
+            anchors.rightMargin: units.gu(3)
+            anchors.top: parent.top
+            anchors.topMargin: units.gu(2)
+            visible: delegate.detailsShown
+            source: contactListView.defaultAvatarImageUrl
+            MouseArea {
+               anchors.fill: parent
+               onClicked: applicationUtils.switchToAddressbookApp("contact://" + contact.contactId)
+            }
+        }
+        Loader {
+            id: pickerLoader
+
+            source: delegate.detailsShown ? Qt.resolvedUrl("ContactDetailPickerDelegate.qml") : ""
+            anchors {
+                top: delegate.bottom
+                left: parent.left
+                right: parent.right
+            }
+            onStatusChanged: {
+                if (status == Loader.Ready) {
+                    pickerLoader.item.contactsModel = contactsModel
+                    pickerLoader.item.detailType = detailToPick
+                    pickerLoader.item.contactId = contact.contactId
+                }
+            }
+        }
+        ListItem.ThinDivider {
+            anchors {
+                bottom: pickerLoader.bottom
+                right: parent.right
+                left: parent.left
+            }
+        }
+
+        Connections {
+            target: pickerLoader.item
+            onDetailClicked: detailClicked(contact, detail)
         }
     }
 
@@ -249,10 +423,10 @@ ListView {
     }
 
     Connections {
-        target: model
+        target: listModel
         onContactsFetched: {
             if (requestId == priv.currentOperation) {
-                priv.currentOperation = 0
+                priv.currentOperation = -1
                 // this fetch request can only return one contact
                 if(fetchedContacts.length !== 1)
                     return
@@ -277,7 +451,7 @@ ListView {
             subText: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
 
             onClicked: {
-                if (priv.currentOperation !== 0) {
+                if (priv.currentOperation !== -1) {
                     return
                 }
                 contactListView.currentIndex = index
@@ -307,7 +481,7 @@ ListView {
     Item {
         id: busyIndicator
 
-        property bool busy: timer.running || priv.currentOperation !== 0
+        property bool busy: timer.running || priv.currentOperation !== -1
 
         function ping()
         {
@@ -338,7 +512,7 @@ ListView {
     QtObject {
         id: priv
 
-        property int currentOperation: 0
+        property int currentOperation: -1
         property string activeSection: ""
 
         function scrollToSection() {

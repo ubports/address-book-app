@@ -27,6 +27,12 @@ Page {
 
     property QtObject activeItem: null
 
+    // we use a custom toolbar in this view
+    tools: ToolbarItems {
+        locked: true
+        opened: false
+    }
+
     function save() {
         var changed = false
         for(var i = 0; i < contents.children.length; ++i) {
@@ -35,6 +41,22 @@ Page {
                 if (field.save()) {
                     changed = true
                 }
+            }
+        }
+
+        // new contact and there is only two details (name, avatar)
+        // name and avatar, are not removable details, because of that the contact will have at least 2 details
+        if ((contact.contactId === "qtcontacts:::") &&
+            (contact.contactDetails.length === 2)) {
+
+            // if name is empty this means that the contact is empty
+            var nameDetail = contact.detail(ContactDetail.Name)
+            if (nameDetail &&
+                (nameDetail.firstName && nameDetail.firstName != "") ||
+                (nameDetail.lastName && nameDetail.lastName != "")) {
+                // save contact
+            } else {
+                changed  = false
             }
         }
 
@@ -68,6 +90,7 @@ Page {
             // if it is hidden at the top, also show it
             scrollArea.contentY = position.y;
         }
+        scrollArea.returnToBounds()
     }
 
     flickable: null
@@ -75,7 +98,12 @@ Page {
         id: scrollArea
 
         flickableDirection: Flickable.VerticalFlick
-        anchors.fill: parent
+        anchors {
+            left: parent.left
+            right: parent.right
+            top: parent.top
+            bottom: toolbar.top
+        }
         contentHeight: contents.height
         contentWidth: parent.width
         visible: !busyIndicator.visible
@@ -180,19 +208,25 @@ Page {
         }
     }
 
-    tools: ToolbarItems {
-        locked: true
-        opened: true
-        ToolbarButton {
-            action: Action {
-                text: i18n.tr("Done")
-                iconSource: "artwork:/save.png"
-                onTriggered: {
-                    // wait for contact to be saved or cause a error
-                    contactSaveLock.saving = true
-                    contactEditor.save()
-                }
+    EditToolbar {
+        id: toolbar
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+        height: units.gu(6)
+        acceptAction: Action {
+            text: i18n.tr("Save")
+            onTriggered: {
+                // wait for contact to be saved or cause a error
+                contactSaveLock.saving = true
+                contactEditor.save()
             }
+        }
+        rejectAction: Action {
+            text: i18n.tr("Cancel")
+            onTriggered: pageStack.pop()
         }
     }
 }

@@ -17,13 +17,14 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 
-FocusScope {
+Item {
     id: root
 
     property alias values: listView.model
     property alias currentIndex: listView.currentIndex
-    readonly property bool expanded: activeFocus
+    property bool expanded: false
     readonly property alias text: label.text
+    onExpandedChanged: expanded && timer.start()
 
     function selectItem(text) {
         for(var i=0; i < values.length; i++) {
@@ -35,11 +36,29 @@ FocusScope {
         currentIndex = -1
     }
 
-    focus: true
+    // FIXME: workaround to close list after a while.
+    // we cant rely on focus since it hides the keyboard.
+    MouseArea {
+        anchors.fill: parent
+        visible: expanded
+        onPressed: {
+            mouse.accepted = false
+            timer.restart()
+        }
+        propagateComposedEvents: true
+        z: 1
+    }
+
+    Timer {
+        id: timer
+        interval: 5000
+        onTriggered: expanded = false
+        running: false
+    }
 
     Item {
 
-        visible: !root.activeFocus
+        visible: !expanded
         anchors.fill: parent
 
         Label {
@@ -78,7 +97,7 @@ FocusScope {
         MouseArea {
             anchors.fill: label
             propagateComposedEvents: true
-            onClicked: root.forceActiveFocus()
+            onClicked: expanded = true
         }
     }
 
@@ -87,7 +106,7 @@ FocusScope {
 
         anchors.fill: parent
         orientation: ListView.Horizontal
-        visible: root.activeFocus
+        visible: expanded
 
         delegate: Item {
             anchors {
@@ -129,7 +148,9 @@ FocusScope {
                 opacity: currentIndex == index ? 1.0 : 0.2
 
                 MouseArea {
-                    anchors.fill: parent
+                    width: parent.width + units.gu(0.5)
+                    height: parent.height + units.gu(0.5)
+                    anchors.centerIn: parent
                     onClicked: currentIndex = index
                 }
             }

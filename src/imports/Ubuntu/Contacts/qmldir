@@ -1,9 +1,14 @@
 module Ubuntu.Contacts
 
-ContactFavoriteListView 0.1 ContactFavoriteListView.qml
+ContactDetailOnlineAccountTypeModel 0.1 ContactDetailOnlineAccountTypeModel.qml
+ContactDetailPhoneNumberTypeModel 0.1 ContactDetailPhoneNumberTypeModel.qml
 ContactListView 0.1 ContactListView.qml
 ContactSimpleListView 0.1 ContactSimpleListView.qml
+MultipleSelectionListView 0.1 MultipleSelectionListView.qml
 
+internal ContactDetailPickerDelegate ContactDetailPickerDelegate.qml
+internal ContactDetailPickerPhoneNumberDelegate ContactDetailPickerPhoneNumberDelegate.qml
 internal ContactFavoriteListDelegate ContactFavoriteDelegate.qml
+internal DialogButtons DialogButtons.qml
 internal OrganicView OrganicView.qml
 internal ContactList ContactList.js

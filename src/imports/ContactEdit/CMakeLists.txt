@@ -8,6 +8,7 @@ set(CONTACT_EDIT_QMLS
     ContactDetailPhoneNumbersEditor.qml
     ContactDetailWithTypeEditor.qml
     ContactEditor.qml
+    EditToolbar.qml
     TextInputDetail.qml
     ValueSelector.qml
 )

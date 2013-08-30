@@ -24,6 +24,25 @@ Page {
     id: mainPage
     objectName: "ContactList"
 
+    function createEmptyContact(phoneNumber) {
+        var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
+                        {detail: "EmailAddress", field: "emailAddress", value: ""},
+                        {detail: "OnlineAccount", field: "accountUri", value: ""},
+                        {detail: "Address", field: "street", value: ""}
+                      ]
+
+        var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", mainPage)
+        var detailSourceTemplate = "import QtContacts 5.0; %1{ %2: \"%3\" }"
+        for (var i=0; i < details.length; i++) {
+            var detailMetaData = details[i]
+            var newDetail = Qt.createQmlObject(detailSourceTemplate.arg(detailMetaData.detail)
+                                            .arg(detailMetaData.field)
+                                            .arg(detailMetaData.value), mainPage)
+            newContact.addDetail(newDetail)
+        }
+        return newContact
+    }
+
     title: i18n.tr("Contacts")
     Component {
         id: dialog
@@ -45,6 +64,7 @@ Page {
     ContactsUI.ContactListView {
         id: contactList
 
+        multiSelectionEnabled: true
         anchors.fill: parent
         onError: PopupUtils.open(dialog, null)
         defaultAvatarImageUrl: "artwork:/avatar-default.svg"
@@ -60,22 +80,59 @@ Page {
 
         onContactClicked: {
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
-                           {model: contactList.model, contactId: contact.contactId})
+                           {model: contactList.listModel, contactId: contact.contactId})
+        }
+
+        onSelectionDone: {
+            var ids = []
+            for (var i=0; i < items.count; i++) {
+                ids.push(items.get(i).model.contact.contactId)
+            }
+            contactList.listModel.removeContacts(ids)
+        }
+
+        onIsInSelectionModeChanged: {
+            if (isInSelectionMode) {
+                toolbar.opened = false
+            }
         }
     }
 
     tools: ToolbarItems {
+        id: toolbar
+
+        locked: contactList.isInSelectionMode
+        ToolbarButton {
+            action: Action {
+                objectName: "selectButton"
+                text: i18n.tr("Select")
+                iconSource: "artwork:/select.png"
+                onTriggered: contactList.startSelection()
+            }
+        }
         ToolbarButton {
             action: Action {
                 text: i18n.tr("Add")
                 iconSource: "artwork:/add.png"
                 onTriggered: {
-                    var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", mainPage)
+                    var newContact = mainPage.createEmptyContact("")
                     pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                                   {model: contactList.model, contact: newContact})
+                                   {model: contactList.listModel, contact: newContact})
                 }
-
             }
+        }
+    }
+
+    Connections {
+        target: pageStack
+        onContactRequested: {
+            pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
+                           {model: contactList.listModel, contactId: contactId})
+        }
+        onCreateContactRequested: {
+            var newContact = mainPage.createEmptyContact(phoneNumber)
+            pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                           {model: contactList.listModel, contact: newContact})
         }
     }
 }

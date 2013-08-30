@@ -32,5 +32,5 @@ ContactDetailGroupWithTypeEditor {
                         i18n.tr("Locality"),
                         i18n.tr("Region"),
                         i18n.tr("Post code"),
-                        i18n.tr("Cuntry") ]
+                        i18n.tr("Country") ]
 }

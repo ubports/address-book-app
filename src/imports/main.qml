@@ -25,8 +25,21 @@ MainView {
     height: units.gu(71)
     anchorToKeyboard: true
 
+    signal applicationReady()
+
+    function contact(contactId) {
+        mainStack.contactRequested(contactId)
+    }
+
+    function create(phoneNumber) {
+        mainStack.createContactRequested(phoneNumber)
+    }
+
     PageStack {
         id: mainStack
+
+        signal contactRequested(string contactId)
+        signal createContactRequested(string phoneNumber)
 
         anchors {
             fill: parent
@@ -42,5 +55,6 @@ MainView {
     Component.onCompleted: {
         Theme.name = "Ubuntu.Components.Themes.SuruGradient"
         mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"))
+        mainView.applicationReady()
     }
 }

@@ -14,21 +14,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "config.h"
-#include "addressbookapp.h"
+import QtQuick 2.0
 
-// Qt
-#include <QGuiApplication>
+VisualDataModel {
+    id: contactVisualModel
 
-int main(int argc, char** argv)
-{
-    QGuiApplication::setApplicationName("Address Book App");
-    AddressBookApp application(argc, argv);
+    property alias selectedItems: selectedGroup
 
-    if (!application.setup()) {
-        return 0;
-    }
+    groups: [
+        VisualDataGroup {
+            id: selectedGroup
 
-    return application.exec();
+            name: "selected"
+        }
+    ]
 }
-

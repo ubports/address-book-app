@@ -33,7 +33,7 @@ Page {
 
         if (contact.name) {
             var detail = contact.name
-            return detail.firstName + "\n" + detail.lastName
+            return detail.firstName +" " + detail.lastName
         } else if (contact.displayLabel && contact.displayLabel.label && contact.displayLabel.label !== "") {
             return contact.displayLabel.label
         } else {

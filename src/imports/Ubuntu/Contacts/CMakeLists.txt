@@ -1,10 +1,14 @@
 set(CONTACT_COMPONENTS_QMLS
-    ContactFavoriteDelegate.qml
-    ContactFavoriteListView.qml
     ContactList.js
+    ContactDetailOnlineAccountTypeModel.qml
+    ContactDetailPhoneNumberTypeModel.qml
+    ContactDetailPickerDelegate.qml
+    ContactDetailPickerPhoneNumberDelegate.qml
     ContactListView.qml
     ContactSimpleListView.qml
-    OrganicView.qml
+    DialogButtons.qml
+    MultipleSelectionListView.qml
+    MultipleSelectionVisualModel.qml
     qmldir
 )
 
