@@ -191,14 +191,6 @@ MultipleSelectionListView {
         return values
     }
     
-    // workaround to make list view correctly render the items when expanded
-    onExpandedChanged: {
-        if (expanded) {
-            listModel = null
-            listModel = contactsModel
-        }
-    }
-
     clip: true
     snapMode: ListView.NoSnap
     section {
@@ -227,18 +219,28 @@ MultipleSelectionListView {
 
     listDelegate: Loader {
         id: loaderDelegate
-        sourceComponent: contactListView.expanded ? delegateItem : null
-        property var contact: contactListView.listModel.contacts[index]
+        sourceComponent: height > units.gu(5) ? delegateItem : null
+        property var contact: model.contact
         property int _index: index
+        property variant loaderDelegate: loaderDelegate
 
         asynchronous: false
-        height: contactListView.expanded ? item.height : 0
+        height: contactListView.expanded ? ((currentContactExpanded == index) ? item.childrenRect.height : units.gu(10) ) : 0
         width: parent.width
+        Behavior on height {
+            UbuntuNumberAnimation { }
+        }
         visible: loaderDelegate.status == Loader.Ready
         Binding {
             target: loaderDelegate.item
             property: "index"
             value: loaderDelegate._index
+            when: loaderDelegate.status == Loader.Ready
+        }
+        Binding {
+            target: loaderDelegate.item
+            property: "itemDelegate"
+            value: loaderDelegate.loaderDelegate
             when: loaderDelegate.status == Loader.Ready
         }
     }
@@ -251,6 +253,7 @@ MultipleSelectionListView {
             width: parent ? parent.width : 0
             clip: true
             property int index: -1
+            property variant itemDelegate: null
 
             Behavior on height {
                 UbuntuNumberAnimation { }
@@ -271,8 +274,8 @@ MultipleSelectionListView {
                 height: units.gu(10)
                 showDivider : false
 
-                selected: contactListView.multiSelectionEnabled && contactListView.isSelected(item)
-                removable: contactListView.swipeToDelete && !detailsShown && !isInSelectionMode
+                selected: contactListView.multiSelectionEnabled && contactListView.isSelected(itemDelegate)
+                removable: contactListView.swipeToDelete && !detailsShown && !contactListView.isInSelectionMode
                 UbuntuShape {
                     id: avatar
                     height: units.gu(7)
@@ -314,13 +317,19 @@ MultipleSelectionListView {
 
                 onClicked: {
                     if (contactListView.isInSelectionMode) {
-                        if (!contactListView.selectItem(item)) {
-                            contactListView.deselectItem(item)
+                        if (!contactListView.selectItem(itemDelegate)) {
+                            contactListView.deselectItem(itemDelegate)
                         }
                         return
                     }
 
-                    currentContactExpanded = index
+                    if (currentContactExpanded == index) {
+                        currentContactExpanded = -1
+                        detailsShown = false
+                        return
+                    } else {
+                        currentContactExpanded = index
+                    }
                     // check if we should expand and display the details picker
                     if (detailToPick !== 0) {
                         detailsShown = !detailsShown
@@ -337,7 +346,7 @@ MultipleSelectionListView {
                 onPressAndHold: {
                     if (contactListView.multiSelectionEnabled) {
                         contactListView.startSelection()
-                        contactListView.selectItem(item)
+                        contactListView.selectItem(itemDelegate)
                     }
                 }
 
@@ -434,16 +443,18 @@ MultipleSelectionListView {
     }
 
     onContentHeightChanged: {
-        priv.scrollToSection()
+        if (priv.activeSection !== "") {
+            dirtyHeightTimer.restart()
+        }
     }
 
     Timer {
         id: dirtyHeightTimer
 
-        interval: 200
+        interval: 1
         running: false
         repeat: false
-        onTriggered: priv.scrollToSection(priv.activeSection)
+        onTriggered: priv.scrollToSection()
     }
 
     Connections {
