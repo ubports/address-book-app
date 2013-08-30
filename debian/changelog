@@ -1,3 +1,9 @@
+address-book-app (0.2+13.10.20130830.2-0ubuntu1) saucy; urgency=low
+
+  * Automatic snapshot from revision 58
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 30 Aug 2013 13:26:46 +0000
+
 address-book-app (0.2+13.10.20130829-0ubuntu1) saucy; urgency=low
 
   [ Gustavo Pichorim Boiko ]
