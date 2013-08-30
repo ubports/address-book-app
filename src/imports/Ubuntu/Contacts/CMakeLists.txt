@@ -4,6 +4,7 @@ set(CONTACT_COMPONENTS_QMLS
     ContactDetailPickerDelegate.qml
     ContactDetailPickerPhoneNumberDelegate.qml
     ContactListView.qml
+    ContactSearchListView.qml
     ContactSimpleListView.qml
     DialogButtons.qml
     MultipleSelectionListView.qml
