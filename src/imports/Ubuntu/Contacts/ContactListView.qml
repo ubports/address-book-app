@@ -84,4 +84,12 @@ ContactSimpleListView {
             text: i18n.tr("All contacts")
         }
     }
+
+    // WORKAROUND: part of the big workaround to hide the header when the list is collapsed
+    // whe need notify the pageStack to hide the header when the list is collapsed
+    Binding {
+        target: pageStack
+        property: "showHeader"
+        value: expanded
+    }
 }
