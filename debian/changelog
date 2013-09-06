@@ -1,3 +1,43 @@
+address-book-app (0.2+13.10.20130830.3-0ubuntu1) saucy; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Add a ContactSearchListView component.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 60
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 30 Aug 2013 20:33:17 +0000
+
+address-book-app (0.2+13.10.20130830.2-0ubuntu1) saucy; urgency=low
+
+  * Automatic snapshot from revision 58
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 30 Aug 2013 13:26:46 +0000
+
+address-book-app (0.2+13.10.20130829-0ubuntu1) saucy; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Reapply the code to launch the dialer-app and the messaging-app from
+    the contact details.
+
+  [ Tiago Salem Herrmann ]
+  * add icon to details picker to open contacts app from other apps.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 56
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 29 Aug 2013 03:20:39 +0000
+
+address-book-app (0.2+13.10.20130826-0ubuntu1) saucy; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Use the correct application icon.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 52
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 26 Aug 2013 02:37:36 +0000
+
 address-book-app (0.2+13.10.20130812.1-0ubuntu1) saucy; urgency=low
 
   [ Renato Araujo Oliveira Filho ]

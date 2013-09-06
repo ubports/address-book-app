@@ -96,6 +96,14 @@ ContactDetailBase {
 
             focus: true
             TextInputDetail {
+                id: detail
+                Component.onCompleted: {
+                    if (index == 0) {
+                        focus = true
+                        detail.forceActiveFocus()
+                    }
+                }
+                focus: false
                 detail: root.detail
                 field: modelData
                 placeholderText: root.placeholderTexts[index]

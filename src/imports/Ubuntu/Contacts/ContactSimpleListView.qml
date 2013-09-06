@@ -18,6 +18,7 @@ import QtQuick 2.0
 import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Telephony 0.1
 
 /*!
     \qmltype ContactSimpleListView
@@ -177,7 +178,10 @@ MultipleSelectionListView {
                 values += " "
             }
             if (detail) {
-                values +=  detail.value(detailFields[i])
+                var value = detail.value(detailFields[i])
+                if (value !== undefined) {
+                    values += value
+                }
             }
         }
 
@@ -222,17 +226,52 @@ MultipleSelectionListView {
             }
         }
 
-        ListItem.Subtitled {
+        ListItem.Empty {
             id: delegate
             property bool detailsShown: false
+            height: units.gu(10)
+            showDivider : false
 
             selected: contactListView.multiSelectionEnabled && contactListView.isSelected(item)
             removable: contactListView.swipeToDelete && !detailsShown && !isInSelectionMode
-            icon: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
-                      Qt.resolvedUrl(contact.avatar.imageUrl) :
-                      contactListView.defaultAvatarImageUrl
-            text: contactListView.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
-            subText: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
+            UbuntuShape {
+                id: avatar
+                height: units.gu(7)
+                width: units.gu(7)
+                anchors {
+                    left: parent.left
+                    leftMargin: units.gu(2)
+                    verticalCenter: parent.verticalCenter
+                }
+                image: Image {
+
+                    source: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
+                                    Qt.resolvedUrl(contact.avatar.imageUrl) :
+                                    contactListView.defaultAvatarImageUrl
+                }
+            }
+
+            Row {
+                spacing: units.gu(1)
+                anchors {
+                    left: avatar.right
+                    leftMargin: units.gu(2)
+                    verticalCenter: parent.verticalCenter
+                }
+                Label {
+                    id: name
+                    height: paintedHeight
+                    text: contactListView.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
+                    fontSize: "large"
+                }
+                Label {
+                    id: company
+                    height: paintedHeight
+                    text: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
+                    fontSize: "medium"
+                    opacity: 0.2
+                }
+            }
 
             onClicked: {
                 if (contactListView.isInSelectionMode) {
@@ -281,6 +320,20 @@ MultipleSelectionListView {
                 }
             }
         }
+        Image {
+            width: units.gu(2)
+            height: units.gu(2)
+            anchors.right: parent.right
+            anchors.rightMargin: units.gu(3)
+            anchors.top: parent.top
+            anchors.topMargin: units.gu(2)
+            visible: delegate.detailsShown
+            source: contactListView.defaultAvatarImageUrl
+            MouseArea {
+               anchors.fill: parent
+               onClicked: applicationUtils.switchToAddressbookApp("contact://" + contact.contactId)
+            }
+        }
         Loader {
             id: pickerLoader
 
@@ -298,6 +351,14 @@ MultipleSelectionListView {
                 }
             }
         }
+        ListItem.ThinDivider {
+            anchors {
+                bottom: pickerLoader.bottom
+                right: parent.right
+                left: parent.left
+            }
+        }
+
         Connections {
             target: pickerLoader.item
             onDetailClicked: detailClicked(contact, detail)
