@@ -72,8 +72,9 @@ MainView {
 
         onShowHeaderChanged: {
             if (mainView.headerObject && showHeader) {
-                mainView.headerObject.height = mainView.headerDefaultHeight
+                mainView.headerObject.height =  mainView.headerDefaultHeight
                 mainView.headerObject.visible = true
+                mainView.headerObject.hide()
             } else {
                 mainView.headerObject.height = 0
                 mainView.headerObject.visible = false
