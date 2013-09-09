@@ -190,15 +190,23 @@ MultipleSelectionListView {
 
         return values
     }
-    
+
     clip: true
     snapMode: ListView.NoSnap
     section {
         property: showSections ? "contact.name.firstName" : ""
         criteria: ViewSection.FirstCharacter
+        labelPositioning: ViewSection.InlineLabels | ViewSection.CurrentLabelAtStart
         delegate: ListItem.Header {
             id: listHeader
             text: section
+
+            Rectangle {
+                z: -1
+                anchors.fill: parent
+                color: Theme.palette.normal.background
+            }
+
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
