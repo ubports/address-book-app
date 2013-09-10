@@ -222,8 +222,8 @@ ListView {
                     id: img
 
                     anchors.top: parent.top
-                    width: units.gu(11)
-                    height: units.gu(11)
+                    width: units.gu(10)
+                    height: units.gu(10)
 
                     image: Image {
                         fillMode: Image.PreserveAspectCrop
@@ -241,7 +241,7 @@ ListView {
                             right: parent.right
                             bottom: parent.bottom
                         }
-                        height: units.gu(5.5)
+                        height: units.gu(5)
                         color: "black"
                         opacity: 0.7
                     }
