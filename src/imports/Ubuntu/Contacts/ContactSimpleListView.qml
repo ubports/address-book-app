@@ -166,7 +166,9 @@ MultipleSelectionListView {
     */
     signal detailClicked(QtObject contact, QtObject detail)
 
-
+    /*!
+      Retrieve the contact index inside of the list
+    */
     function getIndex(contact)
     {
         var contacts = listModel.contacts;
@@ -181,6 +183,9 @@ MultipleSelectionListView {
         return -1
     }
 
+    /*!
+      Scroll the list to requested contact if the contact exists in the list
+    */
     function positionViewAtContact(contact)
     {
         positionViewAtIndex(getIndex(contact), ListView.Center)
