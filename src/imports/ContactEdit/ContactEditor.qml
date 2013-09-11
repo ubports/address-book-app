@@ -213,7 +213,7 @@ Page {
         anchors {
             left: parent.left
             right: parent.right
-            bottom: parent.bottom
+            bottom: keyboard.top
         }
         height: units.gu(6)
         acceptAction: Action {
@@ -228,5 +228,9 @@ Page {
             text: i18n.tr("Cancel")
             onTriggered: pageStack.pop()
         }
+    }
+    
+    KeyboardRectangle {
+        id: keyboard
     }
 }
