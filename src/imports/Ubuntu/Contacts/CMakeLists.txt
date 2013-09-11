@@ -1,4 +1,5 @@
 set(CONTACT_COMPONENTS_QMLS
+    ContactList.js
     ContactDetailOnlineAccountTypeModel.qml
     ContactDetailPhoneNumberTypeModel.qml
     ContactDetailPickerDelegate.qml
