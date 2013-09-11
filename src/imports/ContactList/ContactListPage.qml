@@ -135,7 +135,6 @@ Page {
                            {model: contactList.listModel, contact: newContact})
         }
         onContactCreated: {
-            console.debug("Contacto criado:" + contact.contactId)
             contactList.positionViewAtContact(contact)
         }
     }
