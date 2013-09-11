@@ -100,7 +100,6 @@ ContactDetailBase {
                 Component.onCompleted: {
                     if (index == 0) {
                         focus = true
-                        detail.forceActiveFocus()
                     }
                 }
                 focus: false
