@@ -9,6 +9,8 @@ set(CONTACT_EDIT_QMLS
     ContactDetailWithTypeEditor.qml
     ContactEditor.qml
     EditToolbar.qml
+    KeyboardRectangle.qml
+    StandardAnimation.qml
     TextInputDetail.qml
     ValueSelector.qml
 )
