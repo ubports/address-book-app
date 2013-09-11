@@ -3,13 +3,12 @@ set(CONTACT_COMPONENTS_QMLS
     ContactDetailPhoneNumberTypeModel.qml
     ContactDetailPickerDelegate.qml
     ContactDetailPickerPhoneNumberDelegate.qml
-    ContactFavoriteDelegate.qml
-    ContactFavoriteListView.qml
     ContactListView.qml
+    ContactSearchListView.qml
     ContactSimpleListView.qml
     DialogButtons.qml
     MultipleSelectionListView.qml
-    OrganicView.qml
+    MultipleSelectionVisualModel.qml
     qmldir
 )
 

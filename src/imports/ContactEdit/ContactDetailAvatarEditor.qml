@@ -23,6 +23,11 @@ import "../Common"
 ContactDetailBase {
     id: root
 
+    function save() {
+        //TODO: not implemented
+        return false
+    }
+
     detail: contact ? contact.avatar : null
     implicitHeight: units.gu(17)
 

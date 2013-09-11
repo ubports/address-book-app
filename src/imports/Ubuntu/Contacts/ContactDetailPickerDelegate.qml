@@ -19,8 +19,7 @@ import QtContacts 5.0
 
 Item {
     id: detailPickerDelegate
-    width: parent.width
-    height: delegateLoader.status == Loader.Ready ? delegateLoader.item.height : 0
+
     property string contactId
     property QtObject contact: null
     property int currentOperation: -1
@@ -28,6 +27,9 @@ Item {
     property QtObject contactsModel
 
     signal detailClicked(QtObject contact, QtObject detail)
+
+    width: parent.width
+    height: delegateLoader.status == Loader.Ready ? delegateLoader.item.height : 0
 
     onContactIdChanged: {
         currentOperation = contactsModel.fetchContacts(contactId)
@@ -40,7 +42,7 @@ Item {
                 detailPickerDelegate.contact = fetchedContacts[0]
                 // TODO: add more types and delegates
                 switch(detailType) {
-                case ContactDetail.PhoneNumber: 
+                case ContactDetail.PhoneNumber:
                     delegateLoader.source = Qt.resolvedUrl("ContactDetailPickerPhoneNumberDelegate.qml")
                     break
                 default: ""

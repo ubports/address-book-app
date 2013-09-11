@@ -32,6 +32,7 @@ set(ADDRESS_BOOK_APP_ARTWORK
     protocol-twitter.svg
     protocol-yahoo.svg
     save.png
+    select.png
     settings.png
     vertical-div.png
 )

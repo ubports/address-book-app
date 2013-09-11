@@ -18,6 +18,7 @@ import QtQuick 2.0
 import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Telephony 0.1
 
 /*!
     \qmltype ContactSimpleListView
@@ -120,7 +121,7 @@ MultipleSelectionListView {
       This property holds the default image url to be used when the current contact does
       not contains a photo
     */
-    property string defaultAvatarImageUrl: "gicon:/avatar-default"
+    property string defaultAvatarImageUrl: "image://gicon/avatar-default"
     /*!
       \qmlproperty bool loading
 
@@ -146,6 +147,13 @@ MultipleSelectionListView {
     */
     property int currentContactExpanded: -1
     /*!
+      \qmlproperty bool showSections
+
+      This property holds if the listview will show or not the section headers
+      By default this is set to true
+    */
+    property bool showSections: true
+    /*!
       This handler is called when any error occurs in the contact model
     */
     signal error(string message)
@@ -161,7 +169,7 @@ MultipleSelectionListView {
 
     function getIndex(contact)
     {
-        var contacts = model.contacts;
+        var contacts = listModel.contacts;
 
         for (var i = 0, count = contacts.length; i < count; i++) {
             var itemId = contacts[i].contactId
@@ -190,7 +198,10 @@ MultipleSelectionListView {
                 values += " "
             }
             if (detail) {
-                values +=  detail.value(detailFields[i])
+                var value = detail.value(detailFields[i])
+                if (value !== undefined) {
+                    values += value
+                }
             }
         }
 
@@ -200,7 +211,7 @@ MultipleSelectionListView {
     clip: true
     snapMode: ListView.SnapToItem
     section {
-        property: "contact.name.firstName"
+        property: showSections ? "contact.name.firstName" : ""
         criteria: ViewSection.FirstCharacter
         delegate: ListItem.Header {
             id: listHeader
@@ -210,13 +221,14 @@ MultipleSelectionListView {
 
     acceptAction.text: i18n.tr("Delete")
 
-    anchors.fill: parent
-    model: contactsModel
+    listModel: contactsModel
     onCountChanged: {
         busyIndicator.ping()
     }
 
-    delegate: Item {
+    listDelegate: Item {
+        id: item
+
         height: delegate.detailsShown ? (delegate.height + pickerLoader.height) : delegate.height
         width: parent.width
         clip: true
@@ -234,29 +246,57 @@ MultipleSelectionListView {
             }
         }
 
-        ListView.onAdd: {
-            if (!contactListView.active) {
-                console.debug("Added item>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>:" + index )
-                contactListView.currentIndex = index
-            }
-        }
-
-        ListItem.Subtitled {
+        ListItem.Empty {
             id: delegate
             property bool detailsShown: false
+            height: units.gu(10)
+            showDivider : false
 
-            selected: contactListView.multiSelectionEnabled && (contactListView.selectedItems.indexOf(index) != -1)
+            selected: contactListView.multiSelectionEnabled && contactListView.isSelected(item)
             removable: contactListView.swipeToDelete && !detailsShown && !isInSelectionMode
-            icon: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
-                      Qt.resolvedUrl(contact.avatar.imageUrl) :
-                      contactListView.defaultAvatarImageUrl
-            text: contactListView.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
-            subText: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
+            UbuntuShape {
+                id: avatar
+                height: units.gu(7)
+                width: units.gu(7)
+                anchors {
+                    left: parent.left
+                    leftMargin: units.gu(2)
+                    verticalCenter: parent.verticalCenter
+                }
+                image: Image {
+
+                    source: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
+                                    Qt.resolvedUrl(contact.avatar.imageUrl) :
+                                    contactListView.defaultAvatarImageUrl
+                }
+            }
+
+            Row {
+                spacing: units.gu(1)
+                anchors {
+                    left: avatar.right
+                    leftMargin: units.gu(2)
+                    verticalCenter: parent.verticalCenter
+                }
+                Label {
+                    id: name
+                    height: paintedHeight
+                    text: contactListView.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
+                    fontSize: "large"
+                }
+                Label {
+                    id: company
+                    height: paintedHeight
+                    text: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
+                    fontSize: "medium"
+                    opacity: 0.2
+                }
+            }
 
             onClicked: {
                 if (contactListView.isInSelectionMode) {
-                    if (!contactListView.selectItem(index)) {
-                        contactListView.deselectItem(index)
+                    if (!contactListView.selectItem(item)) {
+                        contactListView.deselectItem(item)
                     }
                     return
                 }
@@ -278,7 +318,7 @@ MultipleSelectionListView {
             onPressAndHold: {
                 if (contactListView.multiSelectionEnabled) {
                     contactListView.startSelection()
-                    contactListView.selectItem(index)
+                    contactListView.selectItem(item)
                 }
             }
 
@@ -300,8 +340,23 @@ MultipleSelectionListView {
                 }
             }
         }
+        Image {
+            width: units.gu(2)
+            height: units.gu(2)
+            anchors.right: parent.right
+            anchors.rightMargin: units.gu(3)
+            anchors.top: parent.top
+            anchors.topMargin: units.gu(2)
+            visible: delegate.detailsShown
+            source: contactListView.defaultAvatarImageUrl
+            MouseArea {
+               anchors.fill: parent
+               onClicked: applicationUtils.switchToAddressbookApp("contact://" + contact.contactId)
+            }
+        }
         Loader {
             id: pickerLoader
+
             source: delegate.detailsShown ? Qt.resolvedUrl("ContactDetailPickerDelegate.qml") : ""
             anchors {
                 top: delegate.bottom
@@ -310,12 +365,20 @@ MultipleSelectionListView {
             }
             onStatusChanged: {
                 if (status == Loader.Ready) {
-                    item.contactsModel = contactsModel
-                    item.detailType = detailToPick
-                    item.contactId = contact.contactId
+                    pickerLoader.item.contactsModel = contactsModel
+                    pickerLoader.item.detailType = detailToPick
+                    pickerLoader.item.contactId = contact.contactId
                 }
             }
         }
+        ListItem.ThinDivider {
+            anchors {
+                bottom: pickerLoader.bottom
+                right: parent.right
+                left: parent.left
+            }
+        }
+
         Connections {
             target: pickerLoader.item
             onDetailClicked: detailClicked(contact, detail)
@@ -351,7 +414,7 @@ MultipleSelectionListView {
     }
 
     Connections {
-        target: model
+        target: listModel
         onContactsFetched: {
             if (requestId == contactListView.currentOperation) {
                 contactListView.currentOperation = -1

@@ -15,32 +15,17 @@
  */
 
 import QtQuick 2.0
-import Ubuntu.Components 0.1
 
-//style
-import Ubuntu.Components.Themes.Ambiance 0.1
+VisualDataModel {
+    id: contactVisualModel
 
-TextField {
-    id: root
+    property alias selectedItems: selectedGroup
 
-    property QtObject detail
-    property int field: -1
-    property variant originalValue: root.detail && (root.field >= 0) ? root.detail.value(root.field) : null
+    groups: [
+        VisualDataGroup {
+            id: selectedGroup
 
-    signal removeClicked()
-
-    Component.onCompleted: makeMeVisible(root)
-
-    focus: true
-    text: originalValue ? originalValue : ""
-    style: TextFieldStyle {
-        overlaySpacing: 0
-        frameSpacing: 0
-        background: Item {}
-    }
-    onActiveFocusChanged: {
-        if (activeFocus) {
-            makeMeVisible(root)
+            name: "selected"
         }
-    }
+    ]
 }
