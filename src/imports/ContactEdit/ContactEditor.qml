@@ -176,6 +176,7 @@ Page {
 
         onContactsChanged: {
             if (saving) {
+                pageStack.contactCreated(contactEditor.contact)
                 pageStack.pop()
             }
         }

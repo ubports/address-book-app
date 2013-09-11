@@ -40,6 +40,7 @@ MainView {
 
         signal contactRequested(string contactId)
         signal createContactRequested(string phoneNumber)
+        signal contactCreated(QtObject contact)
 
         anchors {
             fill: parent

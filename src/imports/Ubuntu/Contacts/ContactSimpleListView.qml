@@ -158,6 +158,26 @@ MultipleSelectionListView {
     */
     signal detailClicked(QtObject contact, QtObject detail)
 
+
+    function getIndex(contact)
+    {
+        var contacts = model.contacts;
+
+        for (var i = 0, count = contacts.length; i < count; i++) {
+            var itemId = contacts[i].contactId
+            if (itemId === contact.contactId) {
+                return i
+            }
+        }
+
+        return -1
+    }
+
+    function positionViewAtContact(contact)
+    {
+        positionViewAtIndex(getIndex(contact), ListView.Center)
+    }
+
     function formatToDisplay(contact, contactDetail, detailFields) {
         if (!contact) {
             return ""
@@ -178,7 +198,7 @@ MultipleSelectionListView {
     }
 
     clip: true
-    snapMode: ListView.NoSnap
+    snapMode: ListView.SnapToItem
     section {
         property: "contact.name.firstName"
         criteria: ViewSection.FirstCharacter
@@ -211,6 +231,13 @@ MultipleSelectionListView {
                 if (index != currentContactExpanded) {
                     delegate.detailsShown = false
                 }
+            }
+        }
+
+        ListView.onAdd: {
+            if (!contactListView.active) {
+                console.debug("Added item>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>:" + index )
+                contactListView.currentIndex = index
             }
         }
 

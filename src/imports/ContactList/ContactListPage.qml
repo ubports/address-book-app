@@ -127,5 +127,9 @@ Page {
             pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
                            {model: contactList.model, contact: newContact})
         }
+        onContactCreated: {
+            console.debug("Contacto criado:" + contact.contactId)
+            contactList.positionViewAtContact(contact)
+        }
     }
 }
