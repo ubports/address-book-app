@@ -25,6 +25,7 @@ Item {
     property bool contactIsDirty: false
 
     signal contactFetched(QtObject contact)
+    signal contactRemoved()
 
     function fetchContact(contactId) {
         if (contact && !contactIsDirty) {
@@ -44,6 +45,13 @@ Item {
         onContactsChanged: {
             if (root.contact) {
                 root.contactIsDirty = true
+
+                for (var i=0; i < root.model.contacts.length; i++) {
+                    if (root.model.contacts[i].contactId == root.contact.contactId) {
+                        return
+                    }
+                }
+                contactRemoved()
             }
         }
     }
