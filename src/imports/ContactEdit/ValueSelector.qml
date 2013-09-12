@@ -20,6 +20,7 @@ import Ubuntu.Components 0.1
 Item {
     id: root
 
+    property bool active: false
     property alias values: listView.model
     property alias currentIndex: listView.currentIndex
     property bool expanded: false
@@ -73,7 +74,7 @@ Item {
             text: root.values[root.currentIndex]
 
             // style
-            fontSize: "medium"
+            fontSize: root.active ? "medium" : "small"
             color: "#f3f3e7"
         }
 

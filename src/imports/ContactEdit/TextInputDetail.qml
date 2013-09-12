@@ -43,4 +43,7 @@ TextField {
             makeMeVisible(root)
         }
     }
+
+    // default style
+    font.pixelSize: activeFocus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
 }

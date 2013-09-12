@@ -24,6 +24,7 @@ import "../Common"
 ContactDetailBase {
     id: root
 
+    property bool active: false
     property double itemHeight: units.gu(3)
     property alias types: detailTypeSelector.values
     property int fieldType: -1
@@ -64,11 +65,13 @@ ContactDetailBase {
     // disable listview mouse area
     focus: true
     __mouseArea.visible: false
+
     implicitHeight: detailTypeSelector.height + fieldValues.height + units.gu(2)
 
     ValueSelector {
         id: detailTypeSelector
 
+        active: root.active
         anchors {
             left: parent.left
             leftMargin: units.gu(2)
@@ -77,7 +80,8 @@ ContactDetailBase {
             top: parent.top
             topMargin: units.gu(1)
         }
-        height: units.gu(3)
+
+        height: root.active ? units.gu(4) : units.gu(3)
     }
 
     Column {
@@ -107,12 +111,13 @@ ContactDetailBase {
                 field: modelData
                 placeholderText: root.placeholderTexts[index]
                 inputMethodHints: root.inputMethodHints
+                onActiveFocusChanged: root.active = activeFocus
 
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
-                height: root.itemHeight
+                height: root.active ? root.itemHeight + units.gu(1) : root.itemHeight
                 onRemoveClicked: root.contact.removeDetail(root.detail)
             }
         }

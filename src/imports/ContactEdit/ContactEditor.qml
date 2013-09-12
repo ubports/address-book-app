@@ -130,7 +130,7 @@ Page {
                     left: parent.left
                     right: parent.right
                 }
-                height: implicitHeight + units.gu(2)
+                height: implicitHeight + units.gu(3)
             }
 
             ContactDetailAvatarEditor {
