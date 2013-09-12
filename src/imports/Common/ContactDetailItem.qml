@@ -33,6 +33,7 @@ ContactDetailBase {
             left: parent.left
             right: parent.right
         }
+        spacing: units.gu(2)
 
         height: childrenRect.height
         Repeater {

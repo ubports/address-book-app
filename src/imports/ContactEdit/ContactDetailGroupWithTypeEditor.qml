@@ -76,8 +76,8 @@ ContactDetailGroupWithTypeBase {
 
             // style
             fontSize: "medium"
-            color: "#f3f3e7"
-            opacity: 0.2
+            //color: "#f3f3e7"
+            //opacity: 0.2
         }
 
 
