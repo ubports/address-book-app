@@ -25,4 +25,5 @@ ContactDetailGroupWithTypeEditor {
     detailType: QtContacts.ContactDetail.Email
     fields: [ 0 ]
     placeholderTexts: [ i18n.tr("Enter an email address") ]
+    inputMethodHints: Qt.ImhEmailCharactersOnly
 }

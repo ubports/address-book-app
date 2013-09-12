@@ -29,6 +29,7 @@ ContactDetailBase {
     property int fieldType: -1
     property alias selectedTypeIndex: detailTypeSelector.currentIndex
     property variant placeholderTexts: []
+    property var inputMethodHints
 
     function selectType(type) {
         detailTypeSelector.selectItem(type)
@@ -99,13 +100,13 @@ ContactDetailBase {
                 Component.onCompleted: {
                     if (index == 0) {
                         focus = true
-                        detail.forceActiveFocus()
                     }
                 }
                 focus: false
                 detail: root.detail
                 field: modelData
                 placeholderText: root.placeholderTexts[index]
+                inputMethodHints: root.inputMethodHints
 
                 anchors {
                     left: parent.left
