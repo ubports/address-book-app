@@ -56,6 +56,10 @@ ContactDetailBase {
         }
 
         if (isEmpty) {
+            // unfavorite the contact if the favorite number was removed
+            if (contact.isPreferredDetail("TEL", detail)) {
+                contact.favorite.favorite = false
+            }
             contact.removeDetail(detail)
         }
 

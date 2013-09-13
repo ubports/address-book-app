@@ -233,7 +233,7 @@ MultipleSelectionListView {
     clip: true
     snapMode: ListView.SnapToItem
     section {
-        property: showSections ? "contact.name.firstName" : ""
+        property: showSections ? "contact.tag.tag" : ""
         criteria: ViewSection.FirstCharacter
         labelPositioning: ViewSection.InlineLabels | ViewSection.CurrentLabelAtStart
         delegate: ListItem.Header {
