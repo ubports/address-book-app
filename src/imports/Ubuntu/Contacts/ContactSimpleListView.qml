@@ -231,9 +231,10 @@ MultipleSelectionListView {
         property var contact: model.contact
         property int _index: index
         property variant loaderDelegate: loaderDelegate
+        property int delegateHeight: item.childrenRect.height
 
         asynchronous: false
-        height: contactListView.expanded ? ((currentContactExpanded == index) ? item.childrenRect.height : units.gu(10) ) : 0
+        height: contactListView.expanded ? (((currentContactExpanded == index) && detailToPick != 0) ? delegateHeight : units.gu(10) ) : 0
         width: parent.width
         Behavior on height {
             UbuntuNumberAnimation { }
@@ -330,20 +331,16 @@ MultipleSelectionListView {
                         }
                         return
                     }
-
                     if (currentContactExpanded == index) {
                         currentContactExpanded = -1
                         detailsShown = false
                         return
-                    } else {
-                        currentContactExpanded = index
-                    }
                     // check if we should expand and display the details picker
-                    if (detailToPick !== 0) {
+                    } else if (detailToPick !== 0){
+                        currentContactExpanded = index
                         detailsShown = !detailsShown
-                        return;
+                        return
                     }
-
                     if (priv.currentOperation !== -1) {
                         return
                     }
