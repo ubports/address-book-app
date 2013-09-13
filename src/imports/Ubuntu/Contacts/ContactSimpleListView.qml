@@ -149,6 +149,14 @@ MultipleSelectionListView {
       This property holds the current contact expanded
     */
     property int currentContactExpanded: -1
+
+    /*!
+      \qmlproperty bool animating
+
+      This property holds if the list is on animating state (expanding/collapsing)
+    */
+    readonly property alias animating: priv.animating
+
     /*!
       \qmlproperty bool showSections
 
@@ -191,7 +199,13 @@ MultipleSelectionListView {
     */
     function positionViewAtContact(contact)
     {
-        positionViewAtIndex(getIndex(contact), ListView.Center)
+        if (expanded) {
+            positionViewAtIndex(getIndex(contact), ListView.Center)
+        } else {
+            priv.pendingTargetIndex = getIndex(contact)
+            priv.pendingTargetMode = ListView.Center
+            expanded = true
+        }
     }
 
     function formatToDisplay(contact, contactDetail, detailFields) {
@@ -277,6 +291,15 @@ MultipleSelectionListView {
             when: loaderDelegate.status == Loader.Ready
         }
     }
+
+    onAnimatingChanged: {
+        if (!animating && priv.pendingTargetIndex >= 0) {
+            contactListView.positionViewAtIndex(priv.pendingTargetIndex, priv.pendingTargetMode)
+            priv.pendingTargetIndex = -1
+            priv.pendingTargetMode = null
+        }
+    }
+
     Component {
        id: delegateItem
        Item {
@@ -476,6 +499,7 @@ MultipleSelectionListView {
     }
 
     onContentHeightChanged: {
+        checkAnimation.restart()
         if (priv.activeSection !== "") {
             dirtyHeightTimer.restart()
         }
@@ -488,6 +512,18 @@ MultipleSelectionListView {
         running: false
         repeat: false
         onTriggered: priv.scrollToSection()
+    }
+
+    // This timer will be resposible to update the animating state
+    // this will run during the delegate height chang, and will wait
+    // for "interval" ms, if nothing change during this time then
+    // the property animating will go back to false
+    Timer {
+        id: checkAnimation
+
+        interval: 200
+        running: false
+        repeat: false
     }
 
     Connections {
@@ -541,6 +577,10 @@ MultipleSelectionListView {
 
         property int currentOperation: -1
         property string activeSection: ""
+        property bool animating: checkAnimation.running
+
+        property int pendingTargetIndex: 0
+        property variant pendingTargetMode: null
 
         function scrollToSection() {
             var index = Sections.getIndexFor(activeSection)
