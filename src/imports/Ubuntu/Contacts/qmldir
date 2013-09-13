@@ -12,3 +12,4 @@ internal ContactDetailPickerPhoneNumberDelegate ContactDetailPickerPhoneNumberDe
 internal ContactFavoriteListDelegate ContactFavoriteDelegate.qml
 internal DialogButtons DialogButtons.qml
 internal OrganicView OrganicView.qml
+internal ContactList ContactList.js

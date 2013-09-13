@@ -31,6 +31,7 @@ FocusScope {
     property alias headerDelegate: headerItem.sourceComponent
     property Component detailDelegate
     property int minimumHeight: 0
+    property bool loaded: false
 
     implicitHeight: root.details.length > 0 ? contents.height : minimumHeight
     visible: implicitHeight > 0
@@ -45,6 +46,7 @@ FocusScope {
         onValuesChanged: {
             if (!values) {
                 clear()
+                root.loaded = false
                 return
             }
 
@@ -60,6 +62,10 @@ FocusScope {
                 } else if (get(i) != values[i]) {
                     set(i, {"detail": values[i]})
                 }
+            }
+
+            if (!root.loaded) {
+                loadTimer.restart()
             }
         }
     }
@@ -92,6 +98,24 @@ FocusScope {
                     value: root.details[index]
                 }
             }
+
+            onItemAdded: {
+                if (root.loaded) {
+                    item.forceActiveFocus()
+                }
+            }
+
         }
+    }
+
+    // This timer will help to avoid fields get focus during the page creation
+    // At the first time that the page is loaded the timer will start and all
+    // subsequent details added before the timeout would not receive focus,
+    // after the timeout the new fields will receive focus as default
+    Timer {
+        id: loadTimer
+
+        interval: 500
+        onTriggered: root.loaded = true
     }
 }

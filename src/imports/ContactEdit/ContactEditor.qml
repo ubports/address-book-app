@@ -116,6 +116,7 @@ Page {
 
             anchors {
                 top: parent.top
+                topMargin: units.gu(2)
                 left: parent.left
                 right: parent.right
             }
@@ -129,7 +130,7 @@ Page {
                     left: parent.left
                     right: parent.right
                 }
-                height: implicitHeight
+                height: implicitHeight + units.gu(3)
             }
 
             ContactDetailAvatarEditor {
