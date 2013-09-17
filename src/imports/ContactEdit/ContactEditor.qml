@@ -177,6 +177,15 @@ Page {
                 }
                 height: implicitHeight
             }
+
+            ContactDetailOrganizationsEditor {
+                contact: contactEditor.contact
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                height: implicitHeight
+            }
         }
     }
 

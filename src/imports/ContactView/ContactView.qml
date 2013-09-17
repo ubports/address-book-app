@@ -117,6 +117,15 @@ Page {
                 height: implicitHeight
             }
 
+            ContactDetailOrganizationsView {
+                contact: root.contact
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                height: implicitHeight
+            }
+
         }
     }
 

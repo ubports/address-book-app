@@ -5,6 +5,7 @@ set(CONTACT_EDIT_QMLS
     ContactDetailGroupWithTypeEditor.qml
     ContactDetailNameEditor.qml
     ContactDetailOnlineAccountsEditor.qml
+    ContactDetailOrganizationsEditor.qml
     ContactDetailPhoneNumbersEditor.qml
     ContactDetailWithTypeEditor.qml
     ContactEditor.qml
