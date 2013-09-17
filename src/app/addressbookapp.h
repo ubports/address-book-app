@@ -38,6 +38,8 @@ public Q_SLOTS:
 
 private:
     void parseArgument(const QString &arg);
+    void parseUrl(const QString &arg);
+    void callQMLMethod(const QString name, QStringList args);
 
 private Q_SLOTS:
     void onMessageReceived(const QString &message);

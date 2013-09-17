@@ -20,6 +20,7 @@
 
 #include <QDir>
 #include <QUrl>
+#include <QUrlQuery>
 #include <QDebug>
 #include <QStringList>
 #include <QQuickItem>
@@ -39,6 +40,9 @@ static void printUsage(const QStringList& arguments)
              << arguments.at(0).toUtf8().constData()
              << "[contact://CONTACT_ID]"
              << "[create://PHONE_NUMBER]"
+             << "[addressbook://addphone?id=<contact-id>&phone=<phone-number>"
+             << "[addressbook://contact?id=<contact-id>"
+             << "[addressbook://create?phone=<phone-number>"
              << "[--fullscreen]"
              << "[--help]"
              << "[-testability]";
@@ -81,6 +85,7 @@ bool AddressBookApp::setup()
     if (validSchemes.isEmpty()) {
         validSchemes << "contact";
         validSchemes << "create";
+        validSchemes << "addressbook";
     }
 
     QString contactKey;
@@ -197,9 +202,76 @@ void AddressBookApp::onViewStatusChanged(QQuickView::Status status)
     }
 }
 
+void AddressBookApp::parseUrl(const QString &arg)
+{
+    QUrl url(arg);
+
+    QString methodName = url.host();
+    QStringList args;
+
+    QMap<QString, QStringList> methodsMetaData;
+
+    if (methodsMetaData.isEmpty()) {
+        QStringList args;
+        //edit
+        args << "id" << "phone";
+        methodsMetaData.insert("addphone", args);
+        args.clear();
+
+        //view
+        args << "id";
+        methodsMetaData.insert("contact", args);
+        args.clear();
+
+        //add
+        args << "phone";
+        methodsMetaData.insert("create", args);
+        args.clear();
+    }
+
+    QUrlQuery query(url);
+    QList<QPair<QString, QString> > queryItemsPair = query.queryItems();
+    QMap<QString, QString> queryItems;
+
+    //convert items to map
+    for(int i=0; i < queryItemsPair.count(); i++) {
+        QPair<QString, QString> item = queryItemsPair[i];
+        queryItems.insert(item.first, item.second);
+    }
+
+    if (methodsMetaData.contains(methodName)) {
+        QStringList argsNames = methodsMetaData[methodName];
+
+        if (queryItems.size() != argsNames.size()) {
+            qWarning() << "invalid" << methodName << "arguments size";
+            return;
+        }
+
+        Q_FOREACH(QString arg, argsNames) {
+            if (queryItems.contains(arg)) {
+                args << queryItems[arg];
+            } else {
+                qWarning() << "argument" << arg << "not found in method" << methodName << "call";
+                return;
+            }
+        }
+    } else {
+        qWarning() << "method" << methodName << "not supported";
+        return;
+    }
+
+    callQMLMethod(methodName, args);
+}
+
 void AddressBookApp::parseArgument(const QString &arg)
 {
     if (arg.isEmpty()) {
+        return;
+    }
+
+    // new scheme
+    if (arg.startsWith("addressbook://")) {
+        parseUrl(arg);
         return;
     }
 
@@ -209,20 +281,45 @@ void AddressBookApp::parseArgument(const QString &arg)
     }
 
     QString scheme = args[0];
-    QString value = args[1];
+    QStringList values;
+    values << args[1];
 
+    callQMLMethod(scheme, values);
+}
+
+void AddressBookApp::callQMLMethod(const QString name, QStringList args)
+{
     QQuickItem *mainView = m_view->rootObject();
     if (!mainView) {
         return;
     }
     const QMetaObject *mo = mainView->metaObject();
 
+    // create QML signature: Ex. function(QVariant, QVariant, QVariant)
+    QString argsSignature = QString("QVariant,").repeated(args.size());
+    if (argsSignature.endsWith(",")) {
+        argsSignature = argsSignature.left(argsSignature.size() - 1);
+    }
 
-    QString methodSignature = QString("%1(%2)").arg(scheme).arg(scheme.isEmpty() ? "" : "QVariant");
+    QString methodSignature = QString("%1(%2)").arg(name).arg(argsSignature);
     int index = mo->indexOfMethod(methodSignature.toUtf8().data());
     if (index != -1) {
         QMetaMethod method = mo->method(index);
-        method.invoke(mainView, Q_ARG(QVariant, QVariant(value)));
+        switch(args.count()) {
+        case 0:
+            method.invoke(mainView);
+            break;
+        case 1:
+            method.invoke(mainView, Q_ARG(QVariant, QVariant(args[0])));
+            break;
+        case 2:
+            method.invoke(mainView, Q_ARG(QVariant, QVariant(args[0])),
+                                    Q_ARG(QVariant, QVariant(args[1])));
+            break;
+        default:
+            qWarning() << "Invalid arguments";
+            break;
+        }
     }
 }
 
