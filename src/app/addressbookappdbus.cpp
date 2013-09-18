@@ -71,3 +71,9 @@ void AddressBookAppDBus::SendAppMessage(const QString &message)
     qDebug() << "DBUS CALLL" << message;
     Q_EMIT request(message);
 }
+
+void AddressBookAppDBus::AddPhoneToContact(const QString &contactId, const QString &phoneNumber)
+{
+    Q_EMIT request(QString("addressbook://edit?%1&%2").arg(contactId).arg(phoneNumber));
+}
+

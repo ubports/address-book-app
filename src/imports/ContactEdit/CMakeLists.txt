@@ -9,6 +9,7 @@ set(CONTACT_EDIT_QMLS
     ContactDetailPhoneNumbersEditor.qml
     ContactDetailWithTypeEditor.qml
     ContactEditor.qml
+    ContactFetchError.qml
     EditToolbar.qml
     TextInputDetail.qml
     ValueSelector.qml
