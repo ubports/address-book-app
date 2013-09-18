@@ -24,9 +24,10 @@ import Ubuntu.Contacts 0.1
 ContactDetailGroupWithTypeView {
     id: root
 
-    title: i18n.tr("Profissional details")
+    title: i18n.tr("Professional details")
     defaultIcon: "artwork:/contact-location.png"
     detailType: QtContacts.ContactDetail.Organization
+    typeModel: null
 
     fields: [ QtContacts.Organization.Name,
               QtContacts.Organization.Role,

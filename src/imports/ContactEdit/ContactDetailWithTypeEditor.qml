@@ -75,6 +75,7 @@ ContactDetailBase {
     ValueSelector {
         id: detailTypeSelector
 
+        visible: (currentIndex != -1)
         active: root.active
         anchors {
             left: parent.left
@@ -85,7 +86,7 @@ ContactDetailBase {
             topMargin: units.gu(1)
         }
 
-        height: root.active ? units.gu(4) : units.gu(3)
+        height: visible ? (root.active ? units.gu(4) : units.gu(3)) : 0
     }
 
     Column {

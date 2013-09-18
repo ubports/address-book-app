@@ -116,6 +116,10 @@ ContactDetailGroupWithTypeBase {
                 return;
             }
 
+            if (!root.typeModel) {
+                return;
+            }
+
             comboLoaded = true
             var newTypes = []
             for(var i=0; i < root.typeModel.count; i++) {
