@@ -18,12 +18,18 @@ import QtQuick 2.0
 import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components.Popups 0.1
 
 Page {
     id: contactEditor
 
     property QtObject contact: null
     property QtObject model: null
+
+    // this is used to add a phone number to a existing contact
+    property int currentFetchOperation: -1
+    property string contactId: null
+    property string newPhoneNumber: null
 
     property QtObject activeItem: null
 
@@ -93,6 +99,57 @@ Page {
         scrollArea.returnToBounds()
     }
 
+    ContactFetchError {
+        id: fetchErrorDialog
+    }
+
+    Connections {
+        target: model
+        onContactsFetched: {
+            if (requestId == currentFetchOperation) {
+                currentFetchOperation = -1
+                // this fetch request can only return one contact
+                if(fetchedContacts.length !== 1) {
+                    PopupUtils.open(fetchErrorDialog, null)
+                }
+                contact = fetchedContacts[0]
+            }
+        }
+    }
+
+    onContactIdChanged:  {
+        if (contactId) {
+            currentFetchOperation = model.fetchContacts(contactId)
+        }
+    }
+
+    onContactChanged: {
+        if (contact && (newPhoneNumber.length > 0)) {
+            var detailSourceTemplate = "import QtContacts 5.0; PhoneNumber{ number: \"" + newPhoneNumber + "\" }"
+            var newDetail = Qt.createQmlObject(detailSourceTemplate, contactEditor)
+            if (newDetail) {
+                contact.addDetail(newDetail)
+                // we need to wait for the field be created
+                focusTimer.restart()
+
+            }
+            newPhoneNumber = ""
+
+        }
+    }
+
+    Timer {
+        id: focusTimer
+
+        interval: 200
+        running: false
+        onTriggered: {
+            // get last phone field and set focus
+            var lastPhoneField = phones.detailDelegates[phones.detailDelegates.length - 2].item
+            lastPhoneField.forceActiveFocus()
+        }
+    }
+
     flickable: null
     Flickable {
         id: scrollArea
@@ -143,6 +200,8 @@ Page {
             }
 
             ContactDetailPhoneNumbersEditor {
+                id: phones
+
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
@@ -199,6 +258,13 @@ Page {
 
         onContactsChanged: {
             if (saving) {
+                pageStack.pop()
+            } else if (contactEditor.contact) {
+                for (var i=0; i < contactEditor.model.contacts.length; i++) {
+                    if (contactEditor.model.contacts[i].contactId == contactEditor.contact.contactId) {
+                        return
+                    }
+                }
                 pageStack.pop()
             }
         }
