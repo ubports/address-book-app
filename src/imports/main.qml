@@ -35,11 +35,19 @@ MainView {
         mainStack.createContactRequested(phoneNumber)
     }
 
+    function addphone(contactId, phoneNumber) {
+        mainStack.newPhoneNumber = phoneNumber
+        mainStack.editContatRequested(contactId, phoneNumber)
+    }
+
     PageStack {
         id: mainStack
 
+        property string newPhoneNumber: ""
+
         signal contactRequested(string contactId)
         signal createContactRequested(string phoneNumber)
+        signal editContatRequested(string contactId, string phoneNumber)
         signal contactCreated(QtObject contact)
 
         anchors {
