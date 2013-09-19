@@ -139,6 +139,8 @@ Page {
 
     ContactFetch {
         id: contactFetch
+
+        onContactRemoved: pageStack.pop()
     }
 
     tools: ToolbarItems {
