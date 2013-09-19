@@ -273,6 +273,10 @@ MultipleSelectionListView {
 
         asynchronous: false
         height: contactListView.expanded ? ((currentContactExpanded == index) ? item.childrenRect.height : units.gu(10) ) : 0
+        onHeightChanged: {
+            priv.animating = (height != 0) && (height != units.gu(10))
+        }
+
         width: parent.width
         Behavior on height {
             UbuntuNumberAnimation { }
@@ -499,7 +503,6 @@ MultipleSelectionListView {
     }
 
     onContentHeightChanged: {
-        checkAnimation.restart()
         if (priv.activeSection !== "") {
             dirtyHeightTimer.restart()
         }
@@ -512,18 +515,6 @@ MultipleSelectionListView {
         running: false
         repeat: false
         onTriggered: priv.scrollToSection()
-    }
-
-    // This timer will be resposible to update the animating state
-    // this will run during the delegate height chang, and will wait
-    // for "interval" ms, if nothing change during this time then
-    // the property animating will go back to false
-    Timer {
-        id: checkAnimation
-
-        interval: 200
-        running: false
-        repeat: false
     }
 
     Connections {
@@ -577,7 +568,7 @@ MultipleSelectionListView {
 
         property int currentOperation: -1
         property string activeSection: ""
-        property bool animating: checkAnimation.running
+        property bool animating: false
 
         property int pendingTargetIndex: 0
         property variant pendingTargetMode: null
