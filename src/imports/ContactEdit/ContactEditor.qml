@@ -259,6 +259,13 @@ Page {
         onContactsChanged: {
             if (saving) {
                 pageStack.pop()
+            } else if (contactEditor.contact) {
+                for (var i=0; i < contactEditor.model.contacts.length; i++) {
+                    if (contactEditor.model.contacts[i].contactId == contactEditor.contact.contactId) {
+                        return
+                    }
+                }
+                pageStack.pop()
             }
         }
 
