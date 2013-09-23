@@ -227,19 +227,22 @@ MultipleSelectionListView {
 
     listDelegate: Loader {
         id: loaderDelegate
-        sourceComponent: height > units.gu(5) ? delegateItem : null
+
         property var contact: model.contact
         property int _index: index
         property variant loaderDelegate: loaderDelegate
         property int delegateHeight: item.childrenRect.height
 
+        sourceComponent: height > units.gu(5) ? delegateItem : null
         asynchronous: false
         height: contactListView.expanded ? (((currentContactExpanded == index) && detailToPick != 0) ? delegateHeight : units.gu(10) ) : 0
         width: parent.width
+        visible: loaderDelegate.status == Loader.Ready
+
         Behavior on height {
             UbuntuNumberAnimation { }
         }
-        visible: loaderDelegate.status == Loader.Ready
+
         Binding {
             target: loaderDelegate.item
             property: "index"
@@ -258,11 +261,12 @@ MultipleSelectionListView {
        Item {
            id: item
 
-            height: delegate.detailsShown ? (delegate.height + pickerLoader.height) : delegate.height
-            width: parent ? parent.width : 0
-            clip: true
-            property int index: -1
-            property variant itemDelegate: null
+           property int index: -1
+           property variant itemDelegate: null
+
+           height: delegate.detailsShown ? (delegate.height + pickerLoader.height) : delegate.height
+           width: parent ? parent.width : 0
+           clip: true
 
             Behavior on height {
                 UbuntuNumberAnimation { }
@@ -283,7 +287,7 @@ MultipleSelectionListView {
                 height: units.gu(10)
                 showDivider : false
 
-                selected: contactListView.multiSelectionEnabled && contactListView.isSelected(itemDelegate)
+                selected: contactListView.multiSelectionEnabled && item.itemDelegate && contactListView.isSelected(item.itemDelegate)
                 removable: contactListView.swipeToDelete && !detailsShown && !contactListView.isInSelectionMode
                 UbuntuShape {
                     id: avatar
@@ -295,7 +299,6 @@ MultipleSelectionListView {
                         verticalCenter: parent.verticalCenter
                     }
                     image: Image {
-
                         source: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
                                         Qt.resolvedUrl(contact.avatar.imageUrl) :
                                         contactListView.defaultAvatarImageUrl
@@ -326,8 +329,8 @@ MultipleSelectionListView {
 
                 onClicked: {
                     if (contactListView.isInSelectionMode) {
-                        if (!contactListView.selectItem(itemDelegate)) {
-                            contactListView.deselectItem(itemDelegate)
+                        if (!contactListView.selectItem(item.itemDelegate)) {
+                            contactListView.deselectItem(item.itemDelegate)
                         }
                         return
                     }
@@ -357,6 +360,14 @@ MultipleSelectionListView {
 
                 onItemRemoved: {
                     contactsModel.removeContact(contact.contactId)
+                }
+
+                //WORKAROUND: The theme should paint the correct color when the item is selected
+                Rectangle {
+                    color: UbuntuColors.orange
+                    anchors.fill: parent
+                    opacity: 0.5
+                    visible: delegate.selected
                 }
 
                 backgroundIndicator: Rectangle {
