@@ -29,6 +29,14 @@ ContactDetailGroupWithTypeBase {
     property int fieldType: QtContacts.ContactDetail.FieldContext
     property variant placeholderTexts: []
     property variant inputMethodHints
+    property variant newDetails: []
+
+    function cancel() {
+        for(var i=0; i < root.newDetails.length; i++) {
+            root.contact.removeDetail(root.newDetails[i])
+        }
+        root.newDetails = []
+    }
 
     function save() {
         var changed = false
@@ -54,6 +62,7 @@ ContactDetailGroupWithTypeBase {
         }
         return changed
     }
+
     focus: true
     minimumHeight: units.gu(5)
     headerDelegate: ListItem.Empty {
@@ -97,6 +106,9 @@ ContactDetailGroupWithTypeBase {
                     if (detailQmlTypeName) {
                         var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + detailQmlTypeName + "{}", root)
                         if (newDetail) {
+                            var newDetailsCopy = root.newDetails
+                            newDetailsCopy.push(newDetail)
+                            root.newDetails = newDetailsCopy
                             root.contact.addDetail(newDetail)
                         }
                     }
