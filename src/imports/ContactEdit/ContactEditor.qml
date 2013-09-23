@@ -286,6 +286,7 @@ Page {
         height: units.gu(6)
         acceptAction: Action {
             text: i18n.tr("Save")
+            enabled: !nameEditor.isEmpty
             onTriggered: {
                 // wait for contact to be saved or cause a error
                 contactSaveLock.saving = true

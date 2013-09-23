@@ -1,3 +1,17 @@
+address-book-app (0.2+13.10.20130919.3-0ubuntu1) saucy; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Implemented new app uri support. Add a phone number to a existing
+    contact. addressbook://addphone?id=<contactid>&phone=<phone>. (LP:
+    #1226378)
+  * Cancel contact view/edit if contact removed from contact list. (LP:
+    #1222994)
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 70
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 19 Sep 2013 15:47:13 +0000
+
 address-book-app (0.2+13.10.20130916.1-0ubuntu1) saucy; urgency=low
 
   [ Bill Filler ]

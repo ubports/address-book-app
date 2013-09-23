@@ -23,6 +23,9 @@ import "../Common"
 ContactDetailItem {
     id: root
 
+    property bool isEmpty: (fields == -1) || (emptyFields.length === fields.length)
+    property variant emptyFields: []
+
     function save() {
         var changed = false;
 
@@ -49,11 +52,31 @@ ContactDetailItem {
     fields: [ QtContacts.Name.FirstName, QtContacts.Name.LastName ]
 
     fieldDelegate: TextInputDetail {
+        id: textInputDetail
+
+        function checkIsEmpty() {
+            if (field == -1) {
+                return;
+            }
+
+            var newEmtpyFields = root.emptyFields
+            var indexOf = newEmtpyFields.indexOf(field)
+
+            if ((text.length > 0) && (indexOf !== -1)) {
+                newEmtpyFields.splice(indexOf, 1)
+            } else if ((text.length === 0) && (indexOf === -1)){
+                newEmtpyFields.push(field)
+            }
+            root.emptyFields = newEmtpyFields
+        }
+
         width: root.width - units.gu(4)
         x: units.gu(2)
         detail: root.detail
         height: units.gu(4)
         placeholderText: field == QtContacts.Name.FirstName ? i18n.tr("First name") : i18n.tr("Last name")
+        onTextChanged: checkIsEmpty()
+        onFieldChanged: checkIsEmpty()
 
         //style
         font.pixelSize: FontUtils.sizeToPixels("x-large")
