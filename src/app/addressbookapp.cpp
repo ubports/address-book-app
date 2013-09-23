@@ -72,14 +72,11 @@ static QString importPath(const QString &suffix)
 }
 
 //this is necessary to work on desktop
+//On desktop use: export ADDRESS_BOOK_APP_ICON_THEME=ubuntu-mobile
 static void installIconPath()
 {
     QByteArray iconTheme = qgetenv("ADDRESS_BOOK_APP_ICON_THEME");
-    if (!iconTheme.isEmpty()) {
-        QStringList searchPaths;
-        searchPaths << "/usr/share/icons";
-
-        QIcon::setThemeSearchPaths(searchPaths);
+    if (!iconTheme.isEmpty()) {        
         QIcon::setThemeName(iconTheme);
     }
 }
