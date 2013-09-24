@@ -17,6 +17,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import QtContacts 5.0
+import Ubuntu.Content 0.1
 
 import "../Common"
 
@@ -24,7 +25,10 @@ ContactDetailBase {
     id: root
 
     function save() {
-        //TODO: not implemented
+        if (root.detail.imageUrl != avatarImage.source) {
+            root.detail.imageUrl = avatarImage.source
+            return true
+        }
         return false
     }
 
@@ -32,6 +36,8 @@ ContactDetailBase {
     implicitHeight: units.gu(17)
 
     Image {
+        id: avatarImage
+
         anchors.fill: parent
         source: root.detail && root.detail.imageUrl != "" ? root.detail.imageUrl : "artwork:/avatar-default.svg"
         asynchronous: true
@@ -39,6 +45,8 @@ ContactDetailBase {
 
         AbstractButton {
             id: changeButton
+
+            property var activeTransfer
 
             anchors {
                 right: parent.right
@@ -53,6 +61,37 @@ ContactDetailBase {
                 anchors.fill: parent
                 source: "artwork:/import-image.svg"
                 fillMode: Image.PreserveAspectFit
+            }
+
+            onClicked: {
+                 activeTransfer = ContentHub.importContent(ContentType.Pictures,
+                                                           ContentHub.defaultSourceForType(ContentType.Pictures));
+                activeTransfer.start();
+                return
+
+                var transfer = ContentHub.importContent(ContentType.Pictures,
+                                                        ContentHub.defaultSourceForType(ContentType.Pictures));
+
+                if (transfer != null) {
+                    transfer.selectionType = ContentTransfer.Single;
+                    var store = ContentHub.defaultStoreForType(ContentType.Pictures);
+                    transfer.setStore(store);
+                    activeTransfer = transfer;
+                    activeTransfer.start();
+                }
+            }
+
+            Connections {
+                target: activeTransfer
+                onStateChanged: {
+                    if (activeTransfer.state === ContentTransfer.Charged) {
+                        if (activeTransfer.items.length > 0) {
+                            var imageUrl = activeTransfer.items[0].url;
+                            avatarImage.source = imageUrl;
+                            setUpImages();
+                        }
+                    }
+                }
             }
         }
     }
