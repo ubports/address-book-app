@@ -39,6 +39,16 @@ Page {
         opened: false
     }
 
+    function cancel() {
+        for(var i = 0; i < contents.children.length; ++i) {
+            var field = contents.children[i]
+            if (field.cancel) {
+                field.cancel()
+            }
+        }
+        pageStack.pop()
+    }
+
     function save() {
         var changed = false
         for(var i = 0; i < contents.children.length; ++i) {
@@ -305,7 +315,7 @@ Page {
         }
         rejectAction: Action {
             text: i18n.tr("Cancel")
-            onTriggered: pageStack.pop()
+            onTriggered: contactEditor.cancel()
         }
     }
     

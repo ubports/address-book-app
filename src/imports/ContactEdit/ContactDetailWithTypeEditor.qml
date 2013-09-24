@@ -60,7 +60,7 @@ ContactDetailBase {
             if (contact.isPreferredDetail("TEL", detail)) {
                 contact.favorite.favorite = false
             }
-            contact.removeDetail(detail)
+            contact.removeDetail(input.detail)
         }
 
         return detailchanged
