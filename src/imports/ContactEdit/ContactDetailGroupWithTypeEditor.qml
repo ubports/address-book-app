@@ -93,13 +93,13 @@ ContactDetailGroupWithTypeBase {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    root.forceActiveFocus()
                     if (detailQmlTypeName) {
                         var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + detailQmlTypeName + "{}", root)
                         if (newDetail) {
                             root.contact.addDetail(newDetail)
                         }
                     }
+                    root.forceActiveFocus()
                 }
             }
         }
