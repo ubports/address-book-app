@@ -27,5 +27,5 @@ ListItem.Empty {
     property variant fields: null
 
     highlightWhenPressed: false
-    focus: true
+    focus: false
 }

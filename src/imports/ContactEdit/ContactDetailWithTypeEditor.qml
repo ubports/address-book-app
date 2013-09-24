@@ -66,8 +66,8 @@ ContactDetailBase {
         return detailchanged
     }
 
-    // disable listview mouse area
     focus: true
+    // disable listview mouse area
     __mouseArea.visible: false
 
     implicitHeight: detailTypeSelector.height + fieldValues.height + units.gu(2)
@@ -106,11 +106,7 @@ ContactDetailBase {
             focus: true
             TextInputDetail {
                 id: detail
-                Component.onCompleted: {
-                    if (index == 0) {
-                        focus = true
-                    }
-                }
+                Component.onCompleted: focus = (index === 0)
                 focus: false
                 detail: root.detail
                 field: modelData

@@ -54,6 +54,7 @@ ContactDetailGroupWithTypeBase {
         }
         return changed
     }
+
     focus: true
     minimumHeight: units.gu(5)
     headerDelegate: ListItem.Empty {
@@ -99,7 +100,6 @@ ContactDetailGroupWithTypeBase {
                             root.contact.addDetail(newDetail)
                         }
                     }
-                    root.forceActiveFocus()
                 }
             }
         }
