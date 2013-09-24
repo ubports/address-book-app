@@ -23,7 +23,7 @@ MainView {
 
     width: units.gu(40)
     height: units.gu(71)
-    anchorToKeyboard: true
+    anchorToKeyboard: false
 
     signal applicationReady()
 
@@ -48,6 +48,7 @@ MainView {
         signal contactRequested(string contactId)
         signal createContactRequested(string phoneNumber)
         signal editContatRequested(string contactId, string phoneNumber)
+        signal contactCreated(QtObject contact)
 
         anchors {
             fill: parent

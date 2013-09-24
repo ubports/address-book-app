@@ -268,6 +268,7 @@ Page {
 
         onContactsChanged: {
             if (saving) {
+                pageStack.contactCreated(contactEditor.contact)
                 pageStack.pop()
             } else if (contactEditor.contact) {
                 for (var i=0; i < contactEditor.model.contacts.length; i++) {
@@ -290,11 +291,12 @@ Page {
         anchors {
             left: parent.left
             right: parent.right
-            bottom: parent.bottom
+            bottom: keyboard.top
         }
         height: units.gu(6)
         acceptAction: Action {
             text: i18n.tr("Save")
+            enabled: !nameEditor.isEmpty
             onTriggered: {
                 // wait for contact to be saved or cause a error
                 contactSaveLock.saving = true
@@ -305,5 +307,9 @@ Page {
             text: i18n.tr("Cancel")
             onTriggered: pageStack.pop()
         }
+    }
+    
+    KeyboardRectangle {
+        id: keyboard
     }
 }

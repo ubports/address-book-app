@@ -15,20 +15,8 @@
  */
 
 import QtQuick 2.0
-import Ubuntu.Components 0.1
 
-AbstractButton {
-    id: messageActions
-
-    property QtObject actions
-    property alias iconName: icon.name
-
-    Icon {
-        id: icon
-
-        anchors.centerIn: parent
-        height: units.gu(3)
-        width: height
-        color: UbuntuColors.warmGrey
-    }
+NumberAnimation {
+    duration: 300
+    easing.type: Easing.InOutQuad
 }

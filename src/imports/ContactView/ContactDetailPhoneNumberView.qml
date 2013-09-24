@@ -82,7 +82,7 @@ ContactDetailBase {
             bottom: parent.bottom
         }
         width: height
-        iconSource: "artwork:/contact-call.svg"
+        iconName: "incoming-call"
 
         // FIXME: temporary import to provide the applicationUtils.
         //        this should go away once the new inter-app communication mechanism
@@ -112,7 +112,7 @@ ContactDetailBase {
             bottom: parent.bottom
         }
         width: height
-        iconSource: "artwork:/contact-message.svg"
+        iconName: "messages"
 
         // FIXME: temporary import to provide the applicationUtils.
         //        this should go away once the new inter-app communication mechanism
