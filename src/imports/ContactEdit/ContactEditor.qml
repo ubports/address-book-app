@@ -258,6 +258,7 @@ Page {
 
         onContactsChanged: {
             if (saving) {
+                pageStack.contactCreated(contactEditor.contact)
                 pageStack.pop()
             } else if (contactEditor.contact) {
                 for (var i=0; i < contactEditor.model.contacts.length; i++) {

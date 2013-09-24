@@ -149,6 +149,14 @@ MultipleSelectionListView {
       This property holds the current contact expanded
     */
     property int currentContactExpanded: -1
+
+    /*!
+      \qmlproperty bool animating
+
+      This property holds if the list is on animating state (expanding/collapsing)
+    */
+    readonly property alias animating: priv.animating
+
     /*!
       \qmlproperty bool showSections
 
@@ -168,6 +176,37 @@ MultipleSelectionListView {
       This handler is called when any contact detail in the list receives a click
     */
     signal detailClicked(QtObject contact, QtObject detail)
+
+    /*!
+      Retrieve the contact index inside of the list
+    */
+    function getIndex(contact)
+    {
+        var contacts = listModel.contacts;
+
+        for (var i = 0, count = contacts.length; i < count; i++) {
+            var itemId = contacts[i].contactId
+            if (itemId === contact.contactId) {
+                return i
+            }
+        }
+
+        return -1
+    }
+
+    /*!
+      Scroll the list to requested contact if the contact exists in the list
+    */
+    function positionViewAtContact(contact)
+    {
+        if (expanded) {
+            positionViewAtIndex(getIndex(contact), ListView.Center)
+        } else {
+            priv.pendingTargetIndex = getIndex(contact)
+            priv.pendingTargetMode = ListView.Center
+            expanded = true
+        }
+    }
 
     function formatToDisplay(contact, contactDetail, detailFields) {
         if (!contact) {
@@ -192,7 +231,7 @@ MultipleSelectionListView {
     }
 
     clip: true
-    snapMode: ListView.NoSnap
+    snapMode: ListView.SnapToItem
     section {
         property: showSections ? "contact.tag.tag" : ""
         criteria: ViewSection.FirstCharacter
@@ -236,6 +275,9 @@ MultipleSelectionListView {
         sourceComponent: height > units.gu(5) ? delegateItem : null
         asynchronous: false
         height: contactListView.expanded ? (((currentContactExpanded == index) && detailToPick != 0) ? delegateHeight : units.gu(10) ) : 0
+        onHeightChanged: {
+            priv.animating = (height != 0) && (height != units.gu(10))
+        }
         width: parent.width
         visible: loaderDelegate.status == Loader.Ready
 
@@ -256,6 +298,15 @@ MultipleSelectionListView {
             when: loaderDelegate.status == Loader.Ready
         }
     }
+
+    onAnimatingChanged: {
+        if (!animating && priv.pendingTargetIndex >= 0) {
+            contactListView.positionViewAtIndex(priv.pendingTargetIndex, priv.pendingTargetMode)
+            priv.pendingTargetIndex = -1
+            priv.pendingTargetMode = null
+        }
+    }
+
     Component {
        id: delegateItem
        Item {
@@ -524,6 +575,10 @@ MultipleSelectionListView {
 
         property int currentOperation: -1
         property string activeSection: ""
+        property bool animating: false
+
+        property int pendingTargetIndex: 0
+        property variant pendingTargetMode: null
 
         function scrollToSection() {
             var index = Sections.getIndexFor(activeSection)
