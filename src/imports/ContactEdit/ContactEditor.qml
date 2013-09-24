@@ -160,6 +160,7 @@ Page {
             right: parent.right
             top: parent.top
             bottom: toolbar.top
+            bottomMargin: units.gu(2)
         }
         contentHeight: contents.height
         contentWidth: parent.width
