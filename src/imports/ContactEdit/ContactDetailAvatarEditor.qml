@@ -26,6 +26,7 @@ ContactDetailBase {
 
     function save() {
         if (root.detail.imageUrl != avatarImage.source) {
+            console.debug("Save new image:" + avatarImage.source)
             root.detail.imageUrl = avatarImage.source
             return true
         }
@@ -64,32 +65,21 @@ ContactDetailBase {
             }
 
             onClicked: {
-                 activeTransfer = ContentHub.importContent(ContentType.Pictures,
-                                                           ContentHub.defaultSourceForType(ContentType.Pictures));
-                activeTransfer.start();
-                return
-
-                var transfer = ContentHub.importContent(ContentType.Pictures,
-                                                        ContentHub.defaultSourceForType(ContentType.Pictures));
-
-                if (transfer != null) {
-                    transfer.selectionType = ContentTransfer.Single;
-                    var store = ContentHub.defaultStoreForType(ContentType.Pictures);
-                    transfer.setStore(store);
-                    activeTransfer = transfer;
-                    activeTransfer.start();
+                if (!changeButton.activeTransfer) {
+                    changeButton.activeTransfer = ContentHub.importContent(ContentType.Pictures,
+                                                                           ContentHub.defaultSourceForType(ContentType.Pictures));
+                    changeButton.activeTransfer.start();
                 }
             }
 
             Connections {
-                target: activeTransfer
+                target: changeButton.activeTransfer != null ? changeButton.activeTransfer : null
                 onStateChanged: {
-                    if (activeTransfer.state === ContentTransfer.Charged) {
-                        if (activeTransfer.items.length > 0) {
-                            var imageUrl = activeTransfer.items[0].url;
-                            avatarImage.source = imageUrl;
-                            setUpImages();
+                    if (changeButton.activeTransfer.state === ContentTransfer.Charged) {
+                        if (changeButton.activeTransfer.items.length > 0) {
+                            avatarImage.source = changeButton.activeTransfer.items[0].url;
                         }
+                        changeButton.activeTransfer = null
                     }
                 }
             }
