@@ -342,6 +342,7 @@ MultipleSelectionListView {
                         left: avatar.right
                         leftMargin: units.gu(2)
                         verticalCenter: parent.verticalCenter
+                        right: selectionMark.left
                     }
                     Label {
                         id: name
@@ -355,6 +356,26 @@ MultipleSelectionListView {
                         text: ContactsJS.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
                         fontSize: "medium"
                         opacity: 0.2
+                    }
+                }
+
+                Rectangle {
+                    id: selectionMark
+
+                    anchors {
+                        top: parent.top
+                        bottom: parent.bottom
+                        right: parent.right
+                    }
+
+                    color: "black"
+                    width: delegate.selected ? units.gu(5) : 0
+                    visible: width > 0
+                    Icon {
+                        name: "select"
+                        height: units.gu(3)
+                        width: height
+                        anchors.centerIn: parent
                     }
                 }
 
@@ -391,14 +412,6 @@ MultipleSelectionListView {
 
                 onItemRemoved: {
                     contactsModel.removeContact(contact.contactId)
-                }
-
-                //WORKAROUND: The theme should paint the correct color when the item is selected
-                Rectangle {
-                    color: UbuntuColors.orange
-                    anchors.fill: parent
-                    opacity: 0.5
-                    visible: delegate.selected
                 }
 
                 backgroundIndicator: Rectangle {
