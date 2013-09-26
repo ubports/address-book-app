@@ -21,6 +21,8 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Telephony 0.1
 
 import "ContactList.js" as Sections
+import "Contacts.js" as ContactsJS
+
 
 /*!
     \qmltype ContactSimpleListView
@@ -208,28 +210,6 @@ MultipleSelectionListView {
         }
     }
 
-    function formatToDisplay(contact, contactDetail, detailFields) {
-        if (!contact) {
-            return ""
-        }
-
-        var detail = contact.detail(contactDetail)
-        var values = ""
-        for (var i=0; i < detailFields.length; i++) {
-            if (i > 0 && detail) {
-                values += " "
-            }
-            if (detail) {
-                var value = detail.value(detailFields[i])
-                if (value !== undefined) {
-                    values += value
-                }
-            }
-        }
-
-        return values
-    }
-
     clip: true
     snapMode: ListView.SnapToItem
     section {
@@ -366,13 +346,13 @@ MultipleSelectionListView {
                     Label {
                         id: name
                         height: paintedHeight
-                        text: contactListView.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
+                        text: ContactsJS.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
                         fontSize: "large"
                     }
                     Label {
                         id: company
                         height: paintedHeight
-                        text: contactListView.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
+                        text: ContactsJS.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
                         fontSize: "medium"
                         opacity: 0.2
                     }
