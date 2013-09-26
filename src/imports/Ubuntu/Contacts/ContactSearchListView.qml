@@ -18,6 +18,8 @@ import QtQuick 2.0
 import QtContacts 5.0
 import Ubuntu.Components 0.1
 
+import "Contacts.js" as ContactsJS
+
 /*!
     \qmltype ContactSearchListView
     \inqmlmodule Ubuntu.Contacts 0.1
@@ -124,31 +126,6 @@ ListView {
       This handler is called when any contact detail in the list receives a click
     */
     signal detailClicked(QtObject contact, QtObject detail)
-
-    function formatToDisplay(contact, contactDetail, detailFields, detail) {
-        if (!contact) {
-            return ""
-        }
-
-        if (!detail) {
-            detail = contact.detail(contactDetail)
-        }
-
-        var values = ""
-        for (var i=0; i < detailFields.length; i++) {
-            if (detail) {
-                var value = detail.value(detailFields[i]);
-                if (value) {
-                    if (i > 0 && detail) {
-                        values += " "
-                    }
-                    values += value;
-                }
-            }
-        }
-
-        return values
-    }
 
     clip: true
     snapMode: ListView.NoSnap
@@ -261,7 +238,7 @@ ListView {
                         }
                         height: units.gu(2.5)
                         verticalAlignment: Text.AlignVCenter
-                        text: formatToDisplay(contact, titleDetail, titleFields)
+                        text: ContactsJS.formatToDisplay(contact, titleDetail, titleFields)
                         elide: Text.ElideRight
                         color: "white"
                         fontSize: "medium"
@@ -277,7 +254,7 @@ ListView {
                         }
                         height: units.gu(1)
                         verticalAlignment:  Text.AlignVCenter
-                        text: modelData === "" ? modelData : formatToDisplay(contact, detailToPick, detailFieldsToDisplay, modelData)
+                        text: modelData === "" ? modelData : ContactsJS.formatToDisplay(contact, detailToPick, detailFieldsToDisplay, modelData)
                         elide: Text.ElideRight
                         fontSize: "x-small"
                         color: "white"
