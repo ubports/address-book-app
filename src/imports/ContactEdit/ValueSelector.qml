@@ -25,7 +25,7 @@ Item {
     property alias currentIndex: listView.currentIndex
     property bool expanded: false
     readonly property alias text: label.text
-    onExpandedChanged: expanded && timer.start()
+
 
     function selectItem(text) {
         for(var i=0; i < values.length; i++) {
@@ -36,6 +36,8 @@ Item {
         }
         currentIndex = -1
     }
+
+    onExpandedChanged: expanded && timer.start()
 
     // FIXME: workaround to close list after a while.
     // we cant rely on focus since it hides the keyboard.
@@ -58,9 +60,17 @@ Item {
     }
 
     Item {
+        id: title
 
         visible: !expanded
-        anchors.fill: parent
+        anchors {
+            top: parent.top
+            bottom:  parent.bottom
+        }
+        x: visible && listView.currentItem ? 0 : (listView.currentItem.x - listView.contentX)
+        Behavior on x {
+            UbuntuNumberAnimation { }
+        }
 
         Label {
             id: label
@@ -94,20 +104,22 @@ Item {
             color: "#f3f3e7"
             opacity: 0.2
         }
+    }
 
-        MouseArea {
-            anchors.fill: label
-            propagateComposedEvents: true
-            onClicked: expanded = true
-        }
+    MouseArea {
+        anchors.fill: parent
+        propagateComposedEvents: true
+        onClicked: root.expanded = true
     }
 
     ListView {
         id: listView
 
         anchors.fill: parent
+        clip: true
         orientation: ListView.Horizontal
         visible: expanded
+        snapMode: ListView.SnapToItem
 
         delegate: Item {
             anchors {

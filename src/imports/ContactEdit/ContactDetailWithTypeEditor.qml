@@ -86,6 +86,12 @@ ContactDetailBase {
         }
 
         height: root.active ? units.gu(4) : units.gu(3)
+        onExpandedChanged: {
+            // Make sure that the inputfield get focus when clicking on type selector
+            if (expanded) {
+                root.forceActiveFocus()
+            }
+        }
     }
 
     Column {
