@@ -134,5 +134,12 @@ Page {
             pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
                            {model: contactList.listModel, contact: newContact})
         }
+        onEditContatRequested: {
+            pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                           {model: contactList.listModel, contactId: contactId, newPhoneNumber: phoneNumber })
+        }
+        onContactCreated: {
+            contactList.positionViewAtContact(contact)
+        }
     }
 }

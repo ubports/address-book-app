@@ -1,3 +1,63 @@
+address-book-app (0.2+13.10.20130925-0ubuntu1) saucy; urgency=low
+
+  [ Ted Gould ]
+  * Adding single instance marker to the desktop file.
+
+  [ Tiago Salem Herrmann ]
+  * Do not bind mainview to keyboard, so we dont show the toolbar when
+    dismissing the osk. (LP: #1199122)
+
+  [ Renato Araujo Oliveira Filho ]
+  * Fixed contact disappear from the list when edited. (LP: #1225132)
+  * Removed action button arrow. Used icon theme for phone number
+    actions. (LP: #1227224)
+  * Paint a orange rectangle when item is selected. (LP: #1228371)
+  * Disable save button if the field name is empty. (LP: #1227870)
+  * Move list view to new contact after creation. (LP: #1199983)
+  * Remove the contact detail if this is empty. (LP: #1227361)
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 79
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 25 Sep 2013 06:35:24 +0000
+
+address-book-app (0.2+13.10.20130919.3-0ubuntu1) saucy; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Implemented new app uri support. Add a phone number to a existing
+    contact. addressbook://addphone?id=<contactid>&phone=<phone>. (LP:
+    #1226378)
+  * Cancel contact view/edit if contact removed from contact list. (LP:
+    #1222994)
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 70
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 19 Sep 2013 15:47:13 +0000
+
+address-book-app (0.2+13.10.20130916.1-0ubuntu1) saucy; urgency=low
+
+  [ Bill Filler ]
+  * fix focus on creation.
+
+  [ Gustavo Pichorim Boiko ]
+  * Adjust the delegate sizes per design request.
+
+  [ Tiago Salem Herrmann ]
+  * Implement fastscroll on the ContactListView widget.
+  * Use contact tag to group contacts. (LP: #1208514)
+
+  [ Renato Araujo Oliveira Filho ]
+  * Implement fastscroll on the ContactListView widget.
+  * fix focus on creation.
+  * Fix ui font size based on design spec. (LP: #1217908)
+  * Unfavorite the contact if the favorite number was removed.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 67
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 16 Sep 2013 18:31:08 +0000
+
 address-book-app (0.2+13.10.20130830.3-0ubuntu1) saucy; urgency=low
 
   [ Gustavo Pichorim Boiko ]

@@ -23,7 +23,7 @@ MainView {
 
     width: units.gu(40)
     height: units.gu(71)
-    anchorToKeyboard: true
+    anchorToKeyboard: false
 
     signal applicationReady()
 
@@ -35,11 +35,20 @@ MainView {
         mainStack.createContactRequested(phoneNumber)
     }
 
+    function addphone(contactId, phoneNumber) {
+        mainStack.newPhoneNumber = phoneNumber
+        mainStack.editContatRequested(contactId, phoneNumber)
+    }
+
     PageStack {
         id: mainStack
 
+        property string newPhoneNumber: ""
+
         signal contactRequested(string contactId)
         signal createContactRequested(string phoneNumber)
+        signal editContatRequested(string contactId, string phoneNumber)
+        signal contactCreated(QtObject contact)
 
         anchors {
             fill: parent

@@ -21,41 +21,14 @@ AbstractButton {
     id: messageActions
 
     property QtObject actions
-    property alias iconSource: icon.source
+    property alias iconName: icon.name
 
-    Item {
-        anchors {
-            left: parent.left
-            top: parent.top
-            right: parent.right
-            bottom: arrow.top
-        }
-        Image {
-            id: icon
-            anchors.centerIn: parent
-            fillMode: Image.PreserveAspectFit
-            smooth: true
-            height: units.gu(3)
-            width: height
-        }
-    }
+    Icon {
+        id: icon
 
-    Item {
-        id: arrow
-
-        anchors {
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-        }
-        height: units.gu(2)
-        Image {
-            anchors.centerIn: parent
-            fillMode: Image.PreserveAspectFit
-            smooth: true
-            height: units.gu(2)
-            width: height
-            source: "artwork:/action-list.png"
-        }
+        anchors.centerIn: parent
+        height: units.gu(3)
+        width: height
+        color: UbuntuColors.warmGrey
     }
 }

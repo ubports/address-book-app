@@ -15,17 +15,23 @@
  */
 
 import QtQuick 2.0
-import QtContacts 5.0 as QtContacts
-import Ubuntu.Contacts 0.1
+import Ubuntu.Components 0.1
+import Ubuntu.Components.Popups 0.1
 
-import "../Common"
+Component {
+    Dialog {
+        id: dialogue
 
-ContactDetailGroupWithTypeEditor {
-    title: i18n.tr("IM")
-    detailType: QtContacts.ContactDetail.OnlineAccount
-    detailQmlTypeName: "OnlineAccount"
-    fields: [ QtContacts.OnlineAccount.AccountUri ]
-    placeholderTexts: [ i18n.tr("Enter a social alias") ]
-    typeModel: ContactDetailOnlineAccountTypeModel { }
-    inputMethodHints: Qt.ImhEmailCharactersOnly
+        title: i18n.tr("Error")
+        text: i18n.tr("Contact not found")
+
+        Button {
+            text: "Cancel"
+            gradient: UbuntuColors.greyGradient
+            onClicked: {
+                PopupUtils.close(dialogue)
+                pageStack.pop()
+            }
+        }
+    }
 }

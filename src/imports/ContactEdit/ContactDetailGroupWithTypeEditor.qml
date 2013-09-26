@@ -28,6 +28,15 @@ ContactDetailGroupWithTypeBase {
     property int currentItem: -1
     property int fieldType: QtContacts.ContactDetail.FieldContext
     property variant placeholderTexts: []
+    property variant inputMethodHints
+    property variant newDetails: []
+
+    function cancel() {
+        for(var i=0; i < root.newDetails.length; i++) {
+            root.contact.removeDetail(root.newDetails[i])
+        }
+        root.newDetails = []
+    }
 
     function save() {
         var changed = false
@@ -53,6 +62,7 @@ ContactDetailGroupWithTypeBase {
         }
         return changed
     }
+
     focus: true
     minimumHeight: units.gu(5)
     headerDelegate: ListItem.Empty {
@@ -75,8 +85,6 @@ ContactDetailGroupWithTypeBase {
 
             // style
             fontSize: "medium"
-            color: "#f3f3e7"
-            opacity: 0.2
         }
 
 
@@ -98,6 +106,9 @@ ContactDetailGroupWithTypeBase {
                     if (detailQmlTypeName) {
                         var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + detailQmlTypeName + "{}", root)
                         if (newDetail) {
+                            var newDetailsCopy = root.newDetails
+                            newDetailsCopy.push(newDetail)
+                            root.newDetails = newDetailsCopy
                             root.contact.addDetail(newDetail)
                         }
                     }
@@ -137,6 +148,7 @@ ContactDetailGroupWithTypeBase {
         height: implicitHeight
         width: root.width
 
+        inputMethodHints: root.inputMethodHints
         onDetailChanged: updateCombo(false)
 
         // this is necessary due the default property of ListItem.Empty
