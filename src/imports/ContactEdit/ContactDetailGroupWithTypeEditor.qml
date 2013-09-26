@@ -146,7 +146,8 @@ ContactDetailGroupWithTypeBase {
         contact: root.contact
         fields: root.fields
         height: implicitHeight
-        width: root.width
+        width: root.width - units.gu(1)
+        x: units.gu(1)
 
         inputMethodHints: root.inputMethodHints
         onDetailChanged: updateCombo(false)
