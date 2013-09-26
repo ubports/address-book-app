@@ -136,11 +136,14 @@ ListView {
 
         var values = ""
         for (var i=0; i < detailFields.length; i++) {
-            if (i > 0 && detail) {
-                values += " "
-            }
             if (detail) {
-                values +=  detail.value(detailFields[i])
+                var value = detail.value(detailFields[i]);
+                if (value) {
+                    if (i > 0 && detail) {
+                        values += " "
+                    }
+                    values += value;
+                }
             }
         }
 
