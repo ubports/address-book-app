@@ -102,7 +102,6 @@ ContactDetailGroupWithTypeBase {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    root.forceActiveFocus()
                     if (detailQmlTypeName) {
                         var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + detailQmlTypeName + "{}", root)
                         if (newDetail) {
@@ -125,6 +124,10 @@ ContactDetailGroupWithTypeBase {
         {
             // Does not update the combo info after details change (Ex. a new detail field was created)
             if (!reload && comboLoaded) {
+                return;
+            }
+
+            if (!root.typeModel) {
                 return;
             }
 

@@ -8,6 +8,7 @@ set(CONTACT_VIEW_QMLS
     ContactDetailGroupWithTypeView.qml
     ContactDetailNameView.qml
     ContactDetailOnlineAccountsView.qml
+    ContactDetailOrganizationsView.qml
     ContactDetailPhoneNumbersView.qml
     ContactDetailPhoneNumberView.qml
     ContactDetailWithTypeView.qml

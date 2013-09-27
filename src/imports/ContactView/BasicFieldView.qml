@@ -44,13 +44,14 @@ import "../Common"
     Label {
         id: typeLabel
 
+        visible: text != ""
         anchors {
             left: actionIcon.right
             leftMargin: actionIcon.visible ? units.gu(1) : 0
             top: parent.top
             topMargin: units.gu(1)
         }
-        height: units.gu(2)
+        height: visible ? units.gu(2) : 0
         verticalAlignment: Text.AlignVCenter
 
         // style

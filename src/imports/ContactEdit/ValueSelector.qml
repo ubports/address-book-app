@@ -78,7 +78,7 @@ Item {
             }
             width: contentWidth
 
-            text: root.values[root.currentIndex]
+            text: root.currentIndex >= 0 ? root.values[root.currentIndex] : ""
 
             // style
             fontSize: root.active ? "medium" : "small"
