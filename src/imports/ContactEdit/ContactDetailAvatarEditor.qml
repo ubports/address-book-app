@@ -44,10 +44,12 @@ ContactDetailBase {
         asynchronous: true
         fillMode: Image.PreserveAspectCrop
 
+
         AbstractButton {
             id: changeButton
 
             property var activeTransfer
+            property bool loading: false
 
             anchors {
                 right: parent.right
@@ -65,7 +67,8 @@ ContactDetailBase {
             }
 
             onClicked: {
-                if (!changeButton.activeTransfer) {
+                if (!changeButton.loading) {
+                    changeButton.loading = true
                     changeButton.activeTransfer = ContentHub.importContent(ContentType.Pictures,
                                                                            ContentHub.defaultSourceForType(ContentType.Pictures));
                     changeButton.activeTransfer.start();
@@ -77,9 +80,10 @@ ContactDetailBase {
                 onStateChanged: {
                     if (changeButton.activeTransfer.state === ContentTransfer.Charged) {
                         if (changeButton.activeTransfer.items.length > 0) {
-                            avatarImage.source = changeButton.activeTransfer.items[0].url;
+                            avatarImage.source = application.copyImage(root.contact, changeButton.activeTransfer.items[0].url);
+                            //avatarImage.source = changeButton.activeTransfer.items[0].url
                         }
-                        changeButton.activeTransfer = null
+                        changeButton.loading = false
                     }
                 }
             }

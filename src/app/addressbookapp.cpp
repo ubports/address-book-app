@@ -32,6 +32,7 @@
 #include <QDBusConnectionInterface>
 #include <QLibrary>
 #include <QIcon>
+#include <QTemporaryFile>
 
 #include <QQmlEngine>
 
@@ -76,7 +77,7 @@ static QString importPath(const QString &suffix)
 static void installIconPath()
 {
     QByteArray iconTheme = qgetenv("ADDRESS_BOOK_APP_ICON_THEME");
-    if (!iconTheme.isEmpty()) {        
+    if (!iconTheme.isEmpty()) {
         QIcon::setThemeName(iconTheme);
     }
 }
@@ -352,4 +353,18 @@ void AddressBookApp::activateWindow()
         m_view->raise();
         m_view->requestActivate();
     }
+}
+
+QUrl AddressBookApp::copyImage(QObject *contact, const QUrl &imageUrl)
+{
+    QFile img(imageUrl.toLocalFile());
+    if (img.exists() && img.open(QFile::ReadOnly)) {
+        QTemporaryFile *tmp = new QTemporaryFile(contact);
+        if (tmp->open()) {
+            tmp->write(img.readAll());
+            tmp->flush();
+            return QUrl(tmp->fileName());
+        }
+    }
+    return QUrl();
 }
