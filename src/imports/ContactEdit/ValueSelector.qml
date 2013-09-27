@@ -23,7 +23,7 @@ Item {
     property bool active: false
     property alias values: listView.model
     property alias currentIndex: listView.currentIndex
-    property bool expanded: false
+    readonly property bool expanded: state === "expanded"
     readonly property alias text: label.text
 
 
@@ -55,23 +55,20 @@ Item {
     Timer {
         id: timer
         interval: 5000
-        onTriggered: expanded = false
+        onTriggered: state = ""
         running: false
     }
 
     Item {
         id: title
 
-        visible: !expanded
         anchors {
             top: parent.top
             bottom:  parent.bottom
         }
-        x: visible && listView.currentItem ? 0 : (listView.currentItem.x - listView.contentX)
         Behavior on x {
             UbuntuNumberAnimation { }
         }
-
         Label {
             id: label
 
@@ -109,7 +106,7 @@ Item {
     MouseArea {
         anchors.fill: parent
         propagateComposedEvents: true
-        onClicked: root.expanded = true
+        onClicked: root.state = "expanded"
     }
 
     ListView {
@@ -118,7 +115,7 @@ Item {
         anchors.fill: parent
         clip: true
         orientation: ListView.Horizontal
-        visible: expanded
+        visible: !title.visible
         snapMode: ListView.SnapToItem
 
         delegate: Item {
@@ -169,4 +166,49 @@ Item {
             }
         }
     }
+
+    transitions: [
+        Transition {
+            to: "expanded"
+            SequentialAnimation {
+                UbuntuNumberAnimation {
+                    target: title
+                    property: "x"
+                    to: (listView.currentItem.x - listView.contentX)
+                }
+                PropertyAction {
+                    target: title
+                    property: "visible"
+                    value: false
+                }
+                UbuntuNumberAnimation {
+                    target: listView
+                    property: "opacity"
+                    from: 0.0
+                    to: 1.0
+                }
+            }
+        },
+        Transition {
+            to: ""
+            SequentialAnimation {
+                UbuntuNumberAnimation {
+                    target: listView
+                    property: "opacity"
+                    from: 1.0
+                    to: 0.0
+                }
+                PropertyAction {
+                    target: title
+                    property: "visible"
+                    value: true
+                }
+                UbuntuNumberAnimation {
+                    target: title
+                    property: "x"
+                    to: 0
+                }
+            }
+        }
+    ]
 }
