@@ -28,4 +28,11 @@ ListItem.Empty {
 
     highlightWhenPressed: false
     focus: true
+
+    Rectangle {
+        anchors.fill: parent
+        opacity: 0.1
+        visible: root.selected
+        z: 100
+    }
 }
