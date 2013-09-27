@@ -79,14 +79,20 @@ ContactDetailBase {
         active: root.active
         anchors {
             left: parent.left
-            leftMargin: units.gu(2)
+            leftMargin: units.gu(3)
             right: parent.right
             rightMargin: units.gu(2)
             top: parent.top
             topMargin: units.gu(1)
         }
 
-        height: visible ? (root.active ? units.gu(4) : units.gu(3)) : 0
+        height: root.active ? units.gu(4) : units.gu(3)
+        onExpandedChanged: {
+            // Make sure that the inputfield get focus when clicking on type selector
+            if (expanded) {
+                root.forceActiveFocus()
+            }
+        }
     }
 
     Column {

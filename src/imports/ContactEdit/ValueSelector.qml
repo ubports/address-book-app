@@ -23,9 +23,9 @@ Item {
     property bool active: false
     property alias values: listView.model
     property alias currentIndex: listView.currentIndex
-    property bool expanded: false
+    readonly property bool expanded: state === "expanded"
     readonly property alias text: label.text
-    onExpandedChanged: expanded && timer.start()
+
 
     function selectItem(text) {
         for(var i=0; i < values.length; i++) {
@@ -36,6 +36,8 @@ Item {
         }
         currentIndex = -1
     }
+
+    onExpandedChanged: expanded && timer.start()
 
     // FIXME: workaround to close list after a while.
     // we cant rely on focus since it hides the keyboard.
@@ -53,15 +55,20 @@ Item {
     Timer {
         id: timer
         interval: 5000
-        onTriggered: expanded = false
+        onTriggered: state = ""
         running: false
     }
 
     Item {
+        id: title
 
-        visible: !expanded
-        anchors.fill: parent
-
+        anchors {
+            top: parent.top
+            bottom:  parent.bottom
+        }
+        Behavior on x {
+            UbuntuNumberAnimation { }
+        }
         Label {
             id: label
 
@@ -94,20 +101,22 @@ Item {
             color: "#f3f3e7"
             opacity: 0.2
         }
+    }
 
-        MouseArea {
-            anchors.fill: label
-            propagateComposedEvents: true
-            onClicked: expanded = true
-        }
+    MouseArea {
+        anchors.fill: parent
+        propagateComposedEvents: true
+        onClicked: root.state = "expanded"
     }
 
     ListView {
         id: listView
 
         anchors.fill: parent
+        clip: true
         orientation: ListView.Horizontal
-        visible: expanded
+        visible: !title.visible
+        snapMode: ListView.SnapToItem
 
         delegate: Item {
             anchors {
@@ -157,4 +166,49 @@ Item {
             }
         }
     }
+
+    transitions: [
+        Transition {
+            to: "expanded"
+            SequentialAnimation {
+                UbuntuNumberAnimation {
+                    target: title
+                    property: "x"
+                    to: (listView.currentItem.x - listView.contentX)
+                }
+                PropertyAction {
+                    target: title
+                    property: "visible"
+                    value: false
+                }
+                UbuntuNumberAnimation {
+                    target: listView
+                    property: "opacity"
+                    from: 0.0
+                    to: 1.0
+                }
+            }
+        },
+        Transition {
+            to: ""
+            SequentialAnimation {
+                UbuntuNumberAnimation {
+                    target: listView
+                    property: "opacity"
+                    from: 1.0
+                    to: 0.0
+                }
+                PropertyAction {
+                    target: title
+                    property: "visible"
+                    value: true
+                }
+                UbuntuNumberAnimation {
+                    target: title
+                    property: "x"
+                    to: 0
+                }
+            }
+        }
+    ]
 }

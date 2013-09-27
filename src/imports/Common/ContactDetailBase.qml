@@ -27,5 +27,12 @@ ListItem.Empty {
     property variant fields: null
 
     highlightWhenPressed: false
-    focus: false
+    focus: true
+
+    Rectangle {
+        anchors.fill: parent
+        opacity: 0.1
+        visible: root.selected
+        z: 100
+    }
 }

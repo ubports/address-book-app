@@ -150,6 +150,7 @@ ContactDetailGroupWithTypeBase {
         fields: root.fields
         height: implicitHeight
         width: root.width
+        selected: activeFocus
 
         inputMethodHints: root.inputMethodHints
         onDetailChanged: updateCombo(false)
