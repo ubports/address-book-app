@@ -15,24 +15,21 @@
  */
 
 import QtQuick 2.0
+import QtContacts 5.0 as QtContacts
 import Ubuntu.Components 0.1
-import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Contacts 0.1
 
+//import "../Common"
 
-ListItem.Empty {
+ContactDetailGroupWithTypeView {
     id: root
 
-    property QtObject contact: null
-    property QtObject detail: null
-    property variant fields: null
+    title: i18n.tr("Professional details")
+    defaultIcon: "artwork:/contact-location.png"
+    detailType: QtContacts.ContactDetail.Organization
+    typeModel: null
 
-    highlightWhenPressed: false
-    focus: true
-
-    Rectangle {
-        anchors.fill: parent
-        opacity: 0.1
-        visible: root.selected
-        z: 100
-    }
+    fields: [ QtContacts.Organization.Name,
+              QtContacts.Organization.Role,
+              QtContacts.Organization.Title ]
 }

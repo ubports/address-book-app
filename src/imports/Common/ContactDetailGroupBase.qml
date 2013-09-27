@@ -24,6 +24,7 @@ FocusScope {
     readonly property variant details: contact && contact.contactDetails && detailType ? contact.details(detailType) : []
     readonly property alias detailDelegates: contents.children
 
+    property variant inputFields: []
     property QtObject contact: null
     property int detailType: 0
     property variant fields
@@ -32,6 +33,8 @@ FocusScope {
     property Component detailDelegate
     property int minimumHeight: 0
     property bool loaded: false
+
+    signal newFieldAdded(var index)
 
     implicitHeight: root.details.length > 0 ? contents.height : minimumHeight
     visible: implicitHeight > 0
@@ -46,7 +49,6 @@ FocusScope {
         onValuesChanged: {
             if (!values) {
                 clear()
-                root.loaded = false
                 return
             }
 
@@ -55,17 +57,12 @@ FocusScope {
             }
 
             var modelCount = count
-
             for(var i=0; i < values.length; i++) {
                 if (modelCount < i) {
                     append({"detail": values[i]})
                 } else if (get(i) != values[i]) {
                     set(i, {"detail": values[i]})
                 }
-            }
-
-            if (!root.loaded) {
-                loadTimer.restart()
             }
         }
     }
@@ -97,25 +94,21 @@ FocusScope {
                     property: "detail"
                     value: root.details[index]
                 }
-            }
-
-            onItemAdded: {
-                if (root.loaded) {
-                    item.forceActiveFocus()
+                onStatusChanged: {
+                    if (status === Loader.Ready) {
+                        var newFields = root.inputFields
+                        newFields.push(detailItem.item)
+                        root.newFieldAdded(detailItem.item)
+                        root.inputFields = newFields
+                        if (item.focus && root.loaded) {
+                            console.debug("force focus" + item + "has focus:" + item.focus)
+                            item.forceActiveFocus()
+                        }
+                    }
                 }
             }
-
         }
     }
 
-    // This timer will help to avoid fields get focus during the page creation
-    // At the first time that the page is loaded the timer will start and all
-    // subsequent details added before the timeout would not receive focus,
-    // after the timeout the new fields will receive focus as default
-    Timer {
-        id: loadTimer
-
-        interval: 500
-        onTriggered: root.loaded = true
-    }
+    Component.onCompleted: root.loaded = true
 }

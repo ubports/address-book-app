@@ -15,24 +15,20 @@
  */
 
 import QtQuick 2.0
-import Ubuntu.Components 0.1
-import Ubuntu.Components.ListItems 0.1 as ListItem
+import QtContacts 5.0 as QtContacts
 
+import "../Common"
 
-ListItem.Empty {
-    id: root
-
-    property QtObject contact: null
-    property QtObject detail: null
-    property variant fields: null
-
-    highlightWhenPressed: false
-    focus: true
-
-    Rectangle {
-        anchors.fill: parent
-        opacity: 0.1
-        visible: root.selected
-        z: 100
-    }
+ContactDetailGroupWithTypeEditor {
+    title: i18n.tr("Professional details")
+    typeModel: null
+    detailQmlTypeName: "Organization"
+    detailType: QtContacts.ContactDetail.Organization
+    fields: [ QtContacts.Organization.Name,
+              QtContacts.Organization.Role,
+              QtContacts.Organization.Title ]
+    placeholderTexts: [ i18n.tr("Organization"),
+                        i18n.tr("Role"),
+                        i18n.tr("Title")
+                      ]
 }
