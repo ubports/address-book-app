@@ -361,8 +361,10 @@ QUrl AddressBookApp::copyImage(QObject *contact, const QUrl &imageUrl)
     if (img.exists() && img.open(QFile::ReadOnly)) {
         QTemporaryFile *tmp = new QTemporaryFile(contact);
         if (tmp->open()) {
-            tmp->write(img.readAll());
-            tmp->flush();
+            tmp->close();
+            QImage tmpAvatar = QImage(img.fileName());
+            QImage scaledAvatar = tmpAvatar.scaledToHeight(720, Qt::SmoothTransformation);
+            scaledAvatar.save(tmp->fileName(), "png", 9);
             return QUrl(tmp->fileName());
         }
     }
