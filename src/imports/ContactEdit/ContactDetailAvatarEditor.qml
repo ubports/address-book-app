@@ -18,6 +18,7 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import QtContacts 5.0
 import Ubuntu.Content 0.1
+import Ubuntu.Components.Popups 0.1 as Popups
 
 import "../Common"
 
@@ -44,12 +45,29 @@ ContactDetailBase {
         asynchronous: true
         fillMode: Image.PreserveAspectCrop
 
+        Component {
+            id: loadingDialog
+
+            Popups.Dialog {
+                id: dialogue
+
+                title: i18n.tr("Loading")
+
+                ActivityIndicator {
+                    id: activity
+
+                    anchors.centerIn: parent
+                    running: true
+                    visible: running
+                }
+            }
+        }
 
         AbstractButton {
             id: changeButton
 
             property var activeTransfer
-            property bool loading: false
+            property var loadingDialog: null
 
             anchors {
                 right: parent.right
@@ -67,8 +85,8 @@ ContactDetailBase {
             }
 
             onClicked: {
-                if (!changeButton.loading) {
-                    changeButton.loading = true
+                if (!changeButton.loadingDialog) {
+                    changeButton.loadingDialog = PopupUtils.open(loadingDialog, null)
                     changeButton.activeTransfer = ContentHub.importContent(ContentType.Pictures,
                                                                            ContentHub.defaultSourceForType(ContentType.Pictures));
                     changeButton.activeTransfer.start();
@@ -83,7 +101,11 @@ ContactDetailBase {
                             avatarImage.source = application.copyImage(root.contact, changeButton.activeTransfer.items[0].url);
                             //avatarImage.source = changeButton.activeTransfer.items[0].url
                         }
-                        changeButton.loading = false
+                    }
+                    if ((changeButton.activeTransfer.state === ContentTransfer.Charged) ||
+                        (changeButton.activeTransfer.state === ContentTransfer.Aborted)) {
+                        PopupUtils.close(changeButton.loadingDialog)
+                        changeButton.loadingDialog = null
                     }
                 }
             }
