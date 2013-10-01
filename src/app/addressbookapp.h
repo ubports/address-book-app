@@ -35,6 +35,7 @@ public:
 
 public Q_SLOTS:
     void activateWindow();
+    QUrl copyImage(QObject *contact, const QUrl &imageUrl);
 
 private:
     void parseArgument(const QString &arg);

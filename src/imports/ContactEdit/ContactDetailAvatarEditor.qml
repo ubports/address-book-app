@@ -17,6 +17,8 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import QtContacts 5.0
+import Ubuntu.Content 0.1
+import Ubuntu.Components.Popups 0.1 as Popups
 
 import "../Common"
 
@@ -24,7 +26,11 @@ ContactDetailBase {
     id: root
 
     function save() {
-        //TODO: not implemented
+        if (root.detail.imageUrl != avatarImage.source) {
+            console.debug("Save new image:" + avatarImage.source)
+            root.detail.imageUrl = avatarImage.source
+            return true
+        }
         return false
     }
 
@@ -32,13 +38,36 @@ ContactDetailBase {
     implicitHeight: units.gu(17)
 
     Image {
+        id: avatarImage
+
         anchors.fill: parent
         source: root.detail && root.detail.imageUrl != "" ? root.detail.imageUrl : "artwork:/avatar-default.svg"
         asynchronous: true
         fillMode: Image.PreserveAspectCrop
 
+        Component {
+            id: loadingDialog
+
+            Popups.Dialog {
+                id: dialogue
+
+                title: i18n.tr("Loading")
+
+                ActivityIndicator {
+                    id: activity
+
+                    anchors.centerIn: parent
+                    running: true
+                    visible: running
+                }
+            }
+        }
+
         AbstractButton {
             id: changeButton
+
+            property var activeTransfer
+            property var loadingDialog: null
 
             anchors {
                 right: parent.right
@@ -53,6 +82,32 @@ ContactDetailBase {
                 anchors.fill: parent
                 source: "artwork:/import-image.svg"
                 fillMode: Image.PreserveAspectFit
+            }
+
+            onClicked: {
+                if (!changeButton.loadingDialog) {
+                    changeButton.loadingDialog = PopupUtils.open(loadingDialog, null)
+                    changeButton.activeTransfer = ContentHub.importContent(ContentType.Pictures,
+                                                                           ContentHub.defaultSourceForType(ContentType.Pictures));
+                    changeButton.activeTransfer.start();
+                }
+            }
+
+            Connections {
+                target: changeButton.activeTransfer != null ? changeButton.activeTransfer : null
+                onStateChanged: {
+                    if (changeButton.activeTransfer.state === ContentTransfer.Charged) {
+                        if (changeButton.activeTransfer.items.length > 0) {
+                            avatarImage.source = application.copyImage(root.contact, changeButton.activeTransfer.items[0].url);
+                            //avatarImage.source = changeButton.activeTransfer.items[0].url
+                        }
+                    }
+                    if ((changeButton.activeTransfer.state === ContentTransfer.Charged) ||
+                        (changeButton.activeTransfer.state === ContentTransfer.Aborted)) {
+                        PopupUtils.close(changeButton.loadingDialog)
+                        changeButton.loadingDialog = null
+                    }
+                }
             }
         }
     }
