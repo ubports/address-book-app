@@ -12,6 +12,8 @@ set(ADDRESS_BOOK_APP_SRCS
     addressbookapp.cpp
     addressbookappdbus.h
     addressbookappdbus.cpp
+    imagescalethread.h
+    imagescalethread.cpp
     main.cpp
 )
 
