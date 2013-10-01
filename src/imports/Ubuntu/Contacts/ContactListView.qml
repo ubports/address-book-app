@@ -43,7 +43,7 @@ ContactSimpleListView {
 
     header: Column {
         width: parent.width
-        height: childrenRect.height
+        height: favouritesList.count > 0 ? childrenRect.height : 0
 
         ContactSimpleListView {
             id: favouritesList
