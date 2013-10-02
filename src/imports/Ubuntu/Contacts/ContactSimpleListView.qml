@@ -333,9 +333,16 @@ MultipleSelectionListView {
 
                     image: Image {
                         fillMode: Image.PreserveAspectCrop
-                        source: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
-                                        Qt.resolvedUrl(contact.avatar.imageUrl) :
-                                        contactListView.defaultAvatarImageUrl
+                        source: {
+                            if (contactListView.showAvatar &&
+                                contact &&
+                                contact.avatar &&
+                                (contact.avatar.imageUrl != "")) {
+                                return Qt.resolvedUrl(contact.avatar.imageUrl);
+                            } else {
+                                return contactListView.defaultAvatarImageUrl
+                            }
+                        }
                     }
                 }
 

@@ -51,7 +51,15 @@ void ImageScaleThread::run()
     QFile img(m_imageUrl.toLocalFile());
     if (img.exists() && img.open(QFile::ReadOnly)) {
         QImage tmpAvatar = QImage(img.fileName());
-        QImage scaledAvatar = tmpAvatar.scaledToHeight(720, Qt::SmoothTransformation);
+        QImage scaledAvatar;
+
+        // check image orientation before scale it
+        if ((tmpAvatar.height() > tmpAvatar.width()) && (tmpAvatar.width() > 720)) {
+            scaledAvatar = tmpAvatar.scaledToWidth(720, Qt::FastTransformation);
+        } else if ((tmpAvatar.height() < tmpAvatar.width()) && (tmpAvatar.height() > 720)) {
+            scaledAvatar = tmpAvatar.scaledToHeight(720, Qt::FastTransformation);
+        }
+
         scaledAvatar.save(m_tmpFile->fileName(), "png", 9);
     }
 }
