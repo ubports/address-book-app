@@ -320,8 +320,9 @@ MultipleSelectionListView {
 
                 selected: contactListView.multiSelectionEnabled && item.itemDelegate && contactListView.isSelected(item.itemDelegate)
                 removable: contactListView.swipeToDelete && !detailsShown && !contactListView.isInSelectionMode
-                UbuntuShape {
+                Item {
                     id: avatar
+
                     height: units.gu(7)
                     width: units.gu(7)
                     anchors {
@@ -329,6 +330,19 @@ MultipleSelectionListView {
                         leftMargin: units.gu(2)
                         verticalCenter: parent.verticalCenter
                     }
+
+                    Image {
+                        anchors.fill: parent
+                        fillMode: Image.PreserveAspectFit
+                        source: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
+                                        Qt.resolvedUrl(contact.avatar.imageUrl) :
+                                        contactListView.defaultAvatarImageUrl
+                    }
+                }
+
+                /*
+                UbuntuShape {
+
                     image: Image {
                         fillMode: Image.PreserveAspectFit
                         source: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
@@ -336,6 +350,7 @@ MultipleSelectionListView {
                                         contactListView.defaultAvatarImageUrl
                     }
                 }
+                */
 
                 Row {
                     spacing: units.gu(1)
