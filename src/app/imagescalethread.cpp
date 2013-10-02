@@ -41,7 +41,6 @@ QString ImageScaleThread::outputFile() const
 
 void ImageScaleThread::run()
 {
-    qDebug() << "Start thread" << __LINE__;
     if (!m_tmpFile) {
         m_tmpFile = new QTemporaryFile(this);
         // Create a temporary file
@@ -49,12 +48,10 @@ void ImageScaleThread::run()
         m_tmpFile->close();
 
     }
-    qDebug() << "Start thread" << __LINE__;
     QFile img(m_imageUrl.toLocalFile());
     if (img.exists() && img.open(QFile::ReadOnly)) {
         QImage tmpAvatar = QImage(img.fileName());
         QImage scaledAvatar = tmpAvatar.scaledToHeight(720, Qt::SmoothTransformation);
         scaledAvatar.save(m_tmpFile->fileName(), "png", 9);
     }
-    qDebug() << "Start thread" << __LINE__;
 }
