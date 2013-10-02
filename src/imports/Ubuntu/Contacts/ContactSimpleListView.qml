@@ -330,6 +330,7 @@ MultipleSelectionListView {
                         verticalCenter: parent.verticalCenter
                     }
                     image: Image {
+                        fillMode: Image.PreserveAspectFit
                         source: contactListView.showAvatar && contact && contact.avatar && (contact.avatar.imageUrl != "") ?
                                         Qt.resolvedUrl(contact.avatar.imageUrl) :
                                         contactListView.defaultAvatarImageUrl
