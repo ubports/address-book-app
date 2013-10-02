@@ -1,3 +1,19 @@
+address-book-app (0.2+13.10.20131001.4-0ubuntu1) saucy; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Avoid show "undefined" for empty names. (LP: #1227696)
+  * * Added a animation when closing the type selector. * Force focus on
+    InputField when clicking on the type selector. * Highlight the
+    editable item on contact edit page. * Added a margin for field
+    details. (LP: #1213975)
+  * Added basic organization detail support. (LP: #1207773)
+  * Implemented support for avatar editor. (LP: #1207774)
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 84
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 01 Oct 2013 21:20:42 +0000
+
 address-book-app (0.2+13.10.20130925-0ubuntu1) saucy; urgency=low
 
   [ Ted Gould ]
