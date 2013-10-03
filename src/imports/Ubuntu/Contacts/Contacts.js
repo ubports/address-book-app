@@ -23,3 +23,11 @@ function formatToDisplay(contact, contactDetail, detailFields, detail) {
 
     return values
 }
+
+function getAvatar(contact) {
+    if (contact != null && contact.avatar != null && contact.avatar.imageUrl != "") {
+        return contact.avatar.imageUrl
+    } else {
+        return contactListView.defaultAvatarImageUrl
+    }
+}
