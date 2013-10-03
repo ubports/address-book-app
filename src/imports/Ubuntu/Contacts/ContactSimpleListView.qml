@@ -428,20 +428,6 @@ MultipleSelectionListView {
                     }
                 }
             }
-            Image {
-                width: units.gu(2)
-                height: units.gu(2)
-                anchors.right: parent.right
-                anchors.rightMargin: units.gu(3)
-                anchors.top: parent.top
-                anchors.topMargin: units.gu(2)
-                visible: delegate.detailsShown
-                source: contactListView.defaultAvatarImageUrl
-                MouseArea {
-                   anchors.fill: parent
-                   onClicked: applicationUtils.switchToAddressbookApp("contact://" + contact.contactId)
-                }
-            }
             Loader {
                 id: pickerLoader
 
