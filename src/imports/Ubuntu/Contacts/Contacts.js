@@ -24,14 +24,21 @@ function formatToDisplay(contact, contactDetail, detailFields, detail) {
     return values
 }
 
-function getAvatar(contact) {
+function getAvatar(contact)
+{
+    // use this verbose mode to avoid problems with binding loops
+    var avatarUrl = contactListView.defaultAvatarImageUrl
+
     if (contact === null) {
-        return ""
+        return avatarUrl
     }
 
-    if (contact.avatar != null && contact.avatar.imageUrl != "") {
-        return contact.avatar.imageUrl
-    } else {
-        return contactListView.defaultAvatarImageUrl
+    var avatarDetail = contact.detail(ContactDetail.Avatar)
+    if (avatarDetail) {
+        var avatarValue = avatarDetail.value(Avatar.ImageUrl)
+        if (avatarValue != "") {
+            avatarUrl = avatarValue
+        }
     }
+    return avatarUrl
 }

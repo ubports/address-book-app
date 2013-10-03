@@ -28,7 +28,7 @@ ContactDetailGroupWithTypeBase {
     property int currentItem: -1
     property int fieldType: QtContacts.ContactDetail.FieldContext
     property variant placeholderTexts: []
-    property variant inputMethodHints
+    property int inputMethodHints: Qt.ImhNone
     property variant newDetails: []
 
     function cancel() {
