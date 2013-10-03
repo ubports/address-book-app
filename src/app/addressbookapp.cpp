@@ -363,10 +363,8 @@ QUrl AddressBookApp::copyImage(QObject *contact, const QUrl &imageUrl)
     imgThread->start();
 
     while(imgThread->isRunning()) {
-        qDebug() << "Wait for thread";
-        this->processEvents(QEventLoop::AllEvents, 300);
+        this->processEvents(QEventLoop::AllEvents, 3000);
     }
 
-    qDebug() << "DONE";
     return imgThread->outputFile();
 }
