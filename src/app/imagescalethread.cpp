@@ -17,6 +17,7 @@
 #include "imagescalethread.h"
 
 #include <QImage>
+#include <QImageReader>
 #include <QFile>
 #include <QDebug>
 
@@ -42,24 +43,41 @@ QString ImageScaleThread::outputFile() const
 void ImageScaleThread::run()
 {
     if (!m_tmpFile) {
+        // Create the temporary file
         m_tmpFile = new QTemporaryFile(this);
-        // Create a temporary file
-        m_tmpFile->open();
-        m_tmpFile->close();
-
     }
-    QFile img(m_imageUrl.toLocalFile());
-    if (img.exists() && img.open(QFile::ReadOnly)) {
-        QImage tmpAvatar = QImage(img.fileName());
-        QImage scaledAvatar;
 
-        // check image orientation before scale it
-        if ((tmpAvatar.height() > tmpAvatar.width()) && (tmpAvatar.width() > 720)) {
-            scaledAvatar = tmpAvatar.scaledToWidth(720, Qt::FastTransformation);
-        } else if ((tmpAvatar.height() < tmpAvatar.width()) && (tmpAvatar.height() > 720)) {
-            scaledAvatar = tmpAvatar.scaledToHeight(720, Qt::FastTransformation);
+    if (!m_tmpFile->open()) {
+        return;
+    }
+
+    // try using the Qt's image reader to speedup the scaling
+    QImage scaledAvatar;
+    QImageReader reader(m_imageUrl.toLocalFile());
+    if (reader.canRead()) {
+        QSize size = reader.size();
+        if (size.width() > 720 && size.height() > 720) {
+            size = size.scaled(720, 720, Qt::KeepAspectRatio);
         }
-
-        scaledAvatar.save(m_tmpFile->fileName(), "png", 9);
+        reader.setScaledSize(size);
+        scaledAvatar = reader.read();
     }
+
+    // fallback to use a QImage to load the avatar if the image reader failed
+    if (scaledAvatar.isNull()) {
+        QImage img(m_imageUrl.toLocalFile());
+        if (!img.isNull()) {
+            if (img.width() > 720 && img.height() > 720) {
+                scaledAvatar = img.scaled(720, 720, Qt::KeepAspectRatio, Qt::FastTransformation);
+            } else {
+                scaledAvatar = img;
+            }
+        }
+    }
+
+    // and finally, save the image
+    if (!scaledAvatar.isNull()) {
+        scaledAvatar.save(m_tmpFile, "png");
+    }
+    m_tmpFile->close();
 }
