@@ -28,11 +28,17 @@ Item {
 
     signal detailClicked(QtObject contact, QtObject detail)
 
-    width: parent.width
-    height: delegateLoader.status == Loader.Ready ? delegateLoader.item.height : 0
+    width: parent ? parent.width : 0
+    height: (delegateLoaderPicker.status === Loader.Ready) && delegateLoaderPicker.item ? delegateLoaderPicker.item.height : 0
 
     onContactIdChanged: {
         currentOperation = contactsModel.fetchContacts(contactId)
+    }
+
+    Loader {
+        id: delegateLoaderPicker
+        anchors.left: parent.left
+        anchors.right: parent.right
     }
 
     Connections {
@@ -43,23 +49,17 @@ Item {
                 // TODO: add more types and delegates
                 switch(detailType) {
                 case ContactDetail.PhoneNumber:
-                    delegateLoader.source = Qt.resolvedUrl("ContactDetailPickerPhoneNumberDelegate.qml")
+                    delegateLoaderPicker.source = Qt.resolvedUrl("ContactDetailPickerPhoneNumberDelegate.qml")
                     break
-                default: ""
+                default:
                 }
-                delegateLoader.item.contact = contact
+                delegateLoaderPicker.item.contact = contact
             }
         }
     }
 
-    Loader {
-        id: delegateLoader
-        anchors.left: parent.left
-        anchors.right: parent.right
-    }
-
     Connections {
-        target: delegateLoader.item
+        target: delegateLoaderPicker.item
         onDetailClicked: detailClicked(contact, detail)
     }
 }

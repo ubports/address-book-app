@@ -27,7 +27,7 @@ Item {
    property int index: -1
    property variant itemDelegate: null
 
-   height: delegate.detailsShown ? (delegate.height + pickerLoader.height) : delegate.height
+   implicitHeight: delegate.height + (delegate.detailsShown ? pickerLoader.item.height : 0)
    width: parent ? parent.width : 0
    clip: true
 

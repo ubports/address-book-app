@@ -247,12 +247,12 @@ MultipleSelectionListView {
         property var contact: model.contact
         property int _index: index
         property variant loaderDelegate: loaderDelegate
-        property int delegateHeight: item ? item.height : 0
+        property int delegateHeight: item ? item.implicitHeight : 0
 
         source: Qt.resolvedUrl("ContactDelegate.qml")
         active: height > units.gu(5)
         asynchronous: false
-        height: ((currentContactExpanded == index) && detailToPick != 0) ? delegateHeight : units.gu(10)
+        height: ((currentContactExpanded == index) && detailToPick != 0) ?  delegateHeight : units.gu(10)
         width: parent.width
         visible: loaderDelegate.status == Loader.Ready
 
