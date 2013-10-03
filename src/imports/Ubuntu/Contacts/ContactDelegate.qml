@@ -62,6 +62,7 @@ Item {
                 verticalCenter: parent.verticalCenter
             }
             image: Image {
+                asynchronous: true
                 source: ContactsJS.getAvatar(contact)
             }
         }

@@ -25,7 +25,11 @@ function formatToDisplay(contact, contactDetail, detailFields, detail) {
 }
 
 function getAvatar(contact) {
-    if (contact != null && contact.avatar != null && contact.avatar.imageUrl != "") {
+    if (contact === null) {
+        return ""
+    }
+
+    if (contact.avatar != null && contact.avatar.imageUrl != "") {
         return contact.avatar.imageUrl
     } else {
         return contactListView.defaultAvatarImageUrl
