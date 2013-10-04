@@ -56,8 +56,7 @@ void ImageScaleThread::run()
     QImageReader reader(m_imageUrl.toLocalFile());
     if (reader.canRead()) {
         QSize size = reader.size();
-        // scale only if image bigger than 720p (1280x720)
-        if ((size.height() > 1280) || (size.width() > 1280)) {
+        if ((size.height() > 720) && (size.width() > 720)) {
             size.scale(720, 720,  Qt::KeepAspectRatioByExpanding);
         }
         reader.setScaledSize(size);
@@ -68,8 +67,7 @@ void ImageScaleThread::run()
     if (scaledAvatar.isNull()) {
         QImage img(m_imageUrl.toLocalFile());
         if (!img.isNull()) {
-            // scale only if image bigger than 720p (1280x720)
-            if ((img.height() > 1280) || (img.width() > 1280)) {
+            if ((img.height() > 720) && (img.width() > 720)) {
                 scaledAvatar = img.scaled(720, 720, Qt::KeepAspectRatioByExpanding, Qt::FastTransformation);
             } else {
                 scaledAvatar = img;
