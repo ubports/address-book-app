@@ -56,13 +56,10 @@ void ImageScaleThread::run()
     QImageReader reader(m_imageUrl.toLocalFile());
     if (reader.canRead()) {
         QSize size = reader.size();
-        // check image orientation before scale it
-        if ((size.height() > size.width()) && (size.width() > 720)) {
-            size.scale(720, size.height(), Qt::KeepAspectRatio);
-        } else if ((size.height() < size.width()) && (size.height() > 720)) {
-            size.scale(size.width(), 720, Qt::KeepAspectRatio);
+        // scale only if image bigger than 720p (1280x720)
+        if ((size.height() > 1280) || (size.width() > 1280)) {
+            size.scale(720, 720,  Qt::KeepAspectRatioByExpanding);
         }
-
         reader.setScaledSize(size);
         scaledAvatar = reader.read();
     }
@@ -71,11 +68,9 @@ void ImageScaleThread::run()
     if (scaledAvatar.isNull()) {
         QImage img(m_imageUrl.toLocalFile());
         if (!img.isNull()) {
-            // check image orientation before scale it
-            if ((img.height() > img.width()) && (img.width() > 720)) {
-                scaledAvatar = img.scaledToWidth(720, Qt::FastTransformation);
-            } else if ((img.height() < img.width()) && (img.height() > 720)) {
-                scaledAvatar = img.scaledToHeight(720, Qt::FastTransformation);
+            // scale only if image bigger than 720p (1280x720)
+            if ((img.height() > 1280) || (img.width() > 1280)) {
+                scaledAvatar = img.scaled(720, 720, Qt::KeepAspectRatioByExpanding, Qt::FastTransformation);
             } else {
                 scaledAvatar = img;
             }
