@@ -18,7 +18,6 @@ import QtQuick 2.0
 import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
-import Ubuntu.Telephony 0.1
 
 import "ContactList.js" as Sections
 import "Contacts.js" as ContactsJS
@@ -439,7 +438,7 @@ MultipleSelectionListView {
                 source: contactListView.defaultAvatarImageUrl
                 MouseArea {
                    anchors.fill: parent
-                   onClicked: applicationUtils.switchToAddressbookApp("contact://" + contact.contactId)
+                   onClicked: Qt.openUrlExternally("addressbook:///contact?id=" + encodeURIComponent(contact.contactId))
                 }
             }
             Loader {
