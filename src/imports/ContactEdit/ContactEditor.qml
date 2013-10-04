@@ -318,8 +318,14 @@ Page {
             onTriggered: contactEditor.cancel()
         }
     }
-    
+
     KeyboardRectangle {
         id: keyboard
+
+        onHeightChanged: {
+            if (activeItem) {
+                makeMeVisible(activeItem)
+            }
+        }
     }
 }
