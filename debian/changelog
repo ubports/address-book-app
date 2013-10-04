@@ -1,3 +1,14 @@
+address-book-app (0.2+13.10.20131004.1-0ubuntu1) saucy; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Hide "All contacts" title if favorites list is empty. (LP: #1226177)
+  * Fixed focus for new fields.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 87
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 04 Oct 2013 07:23:24 +0000
+
 address-book-app (0.2+13.10.20131001.4-0ubuntu1) saucy; urgency=low
 
   [ Renato Araujo Oliveira Filho ]
