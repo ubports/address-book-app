@@ -278,6 +278,7 @@ Page {
 
         onContactsChanged: {
             if (saving) {
+                saving = false
                 pageStack.contactCreated(contactEditor.contact)
                 pageStack.pop()
             } else if (contactEditor.contact) {
@@ -286,6 +287,7 @@ Page {
                         return
                     }
                 }
+                contactEditor.contact = null
                 pageStack.pop()
             }
         }
@@ -318,7 +320,7 @@ Page {
             onTriggered: contactEditor.cancel()
         }
     }
-    
+
     KeyboardRectangle {
         id: keyboard
     }

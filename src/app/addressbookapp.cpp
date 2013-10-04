@@ -17,6 +17,7 @@
 #include "config.h"
 #include "addressbookapp.h"
 #include "addressbookappdbus.h"
+#include "imagescalethread.h"
 
 #include <QDir>
 #include <QUrl>
@@ -357,16 +358,21 @@ void AddressBookApp::activateWindow()
 
 QUrl AddressBookApp::copyImage(QObject *contact, const QUrl &imageUrl)
 {
-    QFile img(imageUrl.toLocalFile());
-    if (img.exists() && img.open(QFile::ReadOnly)) {
-        QTemporaryFile *tmp = new QTemporaryFile(contact);
-        if (tmp->open()) {
-            tmp->close();
-            QImage tmpAvatar = QImage(img.fileName());
-            QImage scaledAvatar = tmpAvatar.scaledToHeight(720, Qt::SmoothTransformation);
-            scaledAvatar.save(tmp->fileName(), "png", 9);
-            return QUrl(tmp->fileName());
-        }
+    // keep track of threads to avoid memory leeak
+    ImageScaleThread *imgThread;
+    QVariant oldThread = contact->property("IMAGE_SCALE_THREAD");
+    if (!oldThread.isNull()) {
+        imgThread = oldThread.value<ImageScaleThread *>();
+    } else {
+        imgThread = new ImageScaleThread(imageUrl, contact);
+        contact->setProperty("IMAGE_SCALE_THREAD", QVariant::fromValue<ImageScaleThread*>(imgThread));
     }
-    return QUrl();
+
+    imgThread->start();
+
+    while(imgThread->isRunning()) {
+        this->processEvents(QEventLoop::AllEvents, 3000);
+    }
+
+    return imgThread->outputFile();
 }
