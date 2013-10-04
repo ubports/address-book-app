@@ -25,23 +25,40 @@ import "../Common"
 ContactDetailBase {
     id: root
 
+    readonly property string defaultAvatar: "image://theme/avatar-default"
+
     function save() {
-        if (root.detail.imageUrl != avatarImage.source) {
-            console.debug("Save new image:" + avatarImage.source)
+        if ((avatarImage.source != root.defaultAvatar) &&
+            root.detail &&
+            (root.detail.imageUrl !== avatarImage.source)) {
             root.detail.imageUrl = avatarImage.source
             return true
         }
         return false
     }
 
-    detail: contact ? contact.avatar : null
+    function getAvatar(avatarDetail)
+    {
+        // use this verbose mode to avoid problems with binding loops
+        var avatarUrl = root.defaultAvatar
+
+        if (avatarDetail) {
+            var avatarValue = avatarDetail.value(Avatar.ImageUrl)
+            if (avatarValue != "") {
+                avatarUrl = avatarValue
+            }
+        }
+        return avatarUrl
+    }
+
+    detail: contact ? contact.detail(ContactDetail.Avatar) : null
     implicitHeight: units.gu(17)
 
     Image {
         id: avatarImage
 
         anchors.fill: parent
-        source: root.detail && root.detail.imageUrl != "" ? root.detail.imageUrl : "artwork:/avatar-default.svg"
+        source: root.getAvatar(root.detail)
         asynchronous: true
         fillMode: Image.PreserveAspectCrop
 

@@ -129,7 +129,7 @@ MultipleSelectionListView {
       This property holds the default image url to be used when the current contact does
       not contains a photo
     */
-    property string defaultAvatarImageUrl: "image://gicon/avatar-default"
+    property string defaultAvatarImageUrl: "image://theme/avatar-default"
     /*!
       \qmlproperty bool loading
 
