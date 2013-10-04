@@ -358,7 +358,15 @@ void AddressBookApp::activateWindow()
 
 QUrl AddressBookApp::copyImage(QObject *contact, const QUrl &imageUrl)
 {
-    ImageScaleThread *imgThread = new ImageScaleThread(imageUrl, contact);
+    // keep track of threads to avoid memory leeak
+    ImageScaleThread *imgThread;
+    QVariant oldThread = contact->property("IMAGE_SCALE_THREAD");
+    if (!oldThread.isNull()) {
+        imgThread = oldThread.value<ImageScaleThread *>();
+    } else {
+        imgThread = new ImageScaleThread(imageUrl, contact);
+        contact->setProperty("IMAGE_SCALE_THREAD", QVariant::fromValue<ImageScaleThread*>(imgThread));
+    }
 
     imgThread->start();
 

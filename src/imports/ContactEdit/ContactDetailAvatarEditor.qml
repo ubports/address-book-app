@@ -102,7 +102,6 @@ ContactDetailBase {
                     if (changeButton.activeTransfer.state === ContentTransfer.Charged) {
                         if (changeButton.activeTransfer.items.length > 0) {
                             avatarImage.source = application.copyImage(root.contact, changeButton.activeTransfer.items[0].url);
-                            //avatarImage.source = changeButton.activeTransfer.items[0].url
                         }
                     }
 

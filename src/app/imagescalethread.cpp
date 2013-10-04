@@ -44,7 +44,7 @@ void ImageScaleThread::run()
 {
     if (!m_tmpFile) {
         // Create the temporary file
-        m_tmpFile = new QTemporaryFile(this);
+        m_tmpFile = new QTemporaryFile();
     }
 
     if (!m_tmpFile->open()) {
@@ -56,9 +56,13 @@ void ImageScaleThread::run()
     QImageReader reader(m_imageUrl.toLocalFile());
     if (reader.canRead()) {
         QSize size = reader.size();
-        if (size.width() > 720 && size.height() > 720) {
-            size = size.scaled(720, 720, Qt::KeepAspectRatio);
+        // check image orientation before scale it
+        if ((size.height() > size.width()) && (size.width() > 720)) {
+            size.scale(720, size.height(), Qt::KeepAspectRatio);
+        } else if ((size.height() < size.width()) && (size.height() > 720)) {
+            size.scale(size.width(), 720, Qt::KeepAspectRatio);
         }
+
         reader.setScaledSize(size);
         scaledAvatar = reader.read();
     }
@@ -67,8 +71,11 @@ void ImageScaleThread::run()
     if (scaledAvatar.isNull()) {
         QImage img(m_imageUrl.toLocalFile());
         if (!img.isNull()) {
-            if (img.width() > 720 && img.height() > 720) {
-                scaledAvatar = img.scaled(720, 720, Qt::KeepAspectRatio, Qt::FastTransformation);
+            // check image orientation before scale it
+            if ((img.height() > img.width()) && (img.width() > 720)) {
+                scaledAvatar = img.scaledToWidth(720, Qt::FastTransformation);
+            } else if ((img.height() < img.width()) && (img.height() > 720)) {
+                scaledAvatar = img.scaledToHeight(720, Qt::FastTransformation);
             } else {
                 scaledAvatar = img;
             }
