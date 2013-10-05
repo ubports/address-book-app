@@ -323,5 +323,11 @@ Page {
 
     KeyboardRectangle {
         id: keyboard
+
+        onHeightChanged: {
+            if (activeItem) {
+                makeMeVisible(activeItem)
+            }
+        }
     }
 }
