@@ -46,12 +46,15 @@ Item {
         property bool detailsShown: false
 
         height: units.gu(10)
-        showDivider : false
+        showDivider: false
         selected: contactListView.multiSelectionEnabled &&
                   item.itemDelegate &&
                   contactListView.isSelected &&
                   contactListView.isSelected(item.itemDelegate)
-        removable: contactListView && contactListView.swipeToDelete && !detailsShown && !contactListView.isInSelectionMode
+        removable: contactListView &&
+                   contactListView.swipeToDelete &&
+                   !detailsShown &&
+                   !contactListView.isInSelectionMode
 
         UbuntuShape {
             id: avatar

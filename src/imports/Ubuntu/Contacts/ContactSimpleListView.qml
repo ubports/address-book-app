@@ -226,8 +226,10 @@ MultipleSelectionListView {
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    priv.activeSection = listHeader.text
-                    contactListView.expanded = !contactListView.expanded
+                    if (!priv.animating) {
+                        priv.activeSection = listHeader.text
+                        contactListView.expanded = !contactListView.expanded
+                    }
                 }
             }
         }
@@ -244,53 +246,85 @@ MultipleSelectionListView {
     listDelegate: Loader {
         id: loaderDelegate
 
+        property bool loaded: false
         property var contact: model.contact
         property int _index: index
         property variant loaderDelegate: loaderDelegate
         property int delegateHeight: item ? item.implicitHeight : 0
+        property int targetHeight: ((currentContactExpanded == index) && detailToPick != 0) ?  delegateHeight : units.gu(10)
 
         source: Qt.resolvedUrl("ContactDelegate.qml")
-        active: height > units.gu(5)
-        asynchronous: false
-        height: ((currentContactExpanded == index) && detailToPick != 0) ?  delegateHeight : units.gu(10)
+        active: true
+        height: targetHeight
         width: parent.width
         visible: loaderDelegate.status == Loader.Ready
-
         state: contactListView.expanded ? "" : "collapsed"
-        onHeightChanged: {
-            priv.animating = (height != 0) && (height != units.gu(10))
-        }
-
-        Behavior on height {
-            UbuntuNumberAnimation { }
-        }
 
         Binding {
             target: loaderDelegate.item
             property: "index"
             value: loaderDelegate._index
-            when: loaderDelegate.status == Loader.Ready
+            when: (loaderDelegate.status == Loader.Ready)
         }
 
         Binding {
             target: loaderDelegate.item
             property: "itemDelegate"
             value: loaderDelegate.loaderDelegate
-            when: loaderDelegate.status == Loader.Ready
+            when: (loaderDelegate.status == Loader.Ready)
+        }
+
+        Timer {
+            id: dirtyItem
+
+            interval: 100
+            running: false
+            repeat: false
+            onTriggered: loaderDelegate.active = (state == "")
         }
 
         states: [
             State {
                 name: "collapsed"
-                PropertyChanges { target: loaderDelegate; contact: null }
-                PropertyChanges { target: loaderDelegate; delegateHeight: 0 }
-                PropertyChanges { target: loaderDelegate; height: 0 }
+                PropertyChanges {
+                    target: loaderDelegate
+                    height: 0
+                    restoreEntryValues: false
+                }
+                PropertyChanges {
+                    target: loaderDelegate
+                    active: false
+                    restoreEntryValues: false
+                }
+            }
+        ]
+
+        transitions: [
+            Transition {
+                to: "collapsed"
+                onRunningChanged: priv.animating = running
+            },
+            Transition {
+                to: ""
+                onRunningChanged: priv.animating = running
+                SequentialAnimation {
+                    PropertyAction {
+                        target: loaderDelegate
+                        property: "height"
+                        value: targetHeight
+                    }
+                    ScriptAction {
+                        // wait for list get fully expanded and cached delegates updated
+                        script: dirtyItem.restart()
+                    }
+                }
+
             }
         ]
     }
 
     onAnimatingChanged: {
-        if (!animating && priv.pendingTargetIndex >= 0) {
+        if ((priv.activeSection !== "") && (priv.pendingTargetIndex >= 0)) {
             contactListView.positionViewAtIndex(priv.pendingTargetIndex, priv.pendingTargetMode)
             priv.pendingTargetIndex = -1
             priv.pendingTargetMode = null
@@ -337,7 +371,7 @@ MultipleSelectionListView {
         interval: 1
         running: false
         repeat: false
-        onTriggered: priv.scrollToSection()
+        onTriggered:priv.scrollToSection()
     }
 
     Connections {
@@ -397,9 +431,10 @@ MultipleSelectionListView {
         property variant pendingTargetMode: null
 
         function scrollToSection() {
-            var index = Sections.getIndexFor(activeSection)
-            contactListView.positionViewAtIndex(index, ListView.Beginning)
+            var targetSection = activeSection
             activeSection = ""
+            var index = Sections.getIndexFor(targetSection)
+            contactListView.positionViewAtIndex(index, ListView.Beginning)
         }
     }
 }

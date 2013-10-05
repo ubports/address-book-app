@@ -29,7 +29,7 @@ function getAvatar(contact)
     // use this verbose mode to avoid problems with binding loops
     var avatarUrl = contactListView.defaultAvatarImageUrl
 
-    if (contact === null) {
+    if (!contact) {
         return avatarUrl
     }
 
