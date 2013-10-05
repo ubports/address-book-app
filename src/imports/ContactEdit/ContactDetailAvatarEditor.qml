@@ -113,14 +113,16 @@ ContactDetailBase {
             Connections {
                 target: changeButton.activeTransfer != null ? changeButton.activeTransfer : null
                 onStateChanged: {
+                    var done = ((changeButton.activeTransfer.state === ContentTransfer.Charged) ||
+                                (changeButton.activeTransfer.state === ContentTransfer.Aborted));
+
                     if (changeButton.activeTransfer.state === ContentTransfer.Charged) {
                         if (changeButton.activeTransfer.items.length > 0) {
                             avatarImage.source = application.copyImage(root.contact, changeButton.activeTransfer.items[0].url);
-                            //avatarImage.source = changeButton.activeTransfer.items[0].url
                         }
                     }
-                    if ((changeButton.activeTransfer.state === ContentTransfer.Charged) ||
-                        (changeButton.activeTransfer.state === ContentTransfer.Aborted)) {
+
+                    if (done) {
                         PopupUtils.close(changeButton.loadingDialog)
                         changeButton.loadingDialog = null
                     }
