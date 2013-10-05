@@ -204,6 +204,7 @@ MultipleSelectionListView {
             priv.pendingTargetIndex = getIndex(contact)
             priv.pendingTargetMode = ListView.Center
             expanded = true
+            dirtyHeightTimer.restart()
         }
     }
 
@@ -323,14 +324,6 @@ MultipleSelectionListView {
         ]
     }
 
-    onAnimatingChanged: {
-        if ((priv.activeSection !== "") && (priv.pendingTargetIndex >= 0)) {
-            contactListView.positionViewAtIndex(priv.pendingTargetIndex, priv.pendingTargetMode)
-            priv.pendingTargetIndex = -1
-            priv.pendingTargetMode = null
-        }
-    }
-
     ContactModel {
         id: contactsModel
 
@@ -371,7 +364,7 @@ MultipleSelectionListView {
         interval: 1
         running: false
         repeat: false
-        onTriggered:priv.scrollToSection()
+        onTriggered: priv.scrollList()
     }
 
     Connections {
@@ -430,11 +423,17 @@ MultipleSelectionListView {
         property int pendingTargetIndex: 0
         property variant pendingTargetMode: null
 
-        function scrollToSection() {
-            var targetSection = activeSection
-            activeSection = ""
-            var index = Sections.getIndexFor(targetSection)
-            contactListView.positionViewAtIndex(index, ListView.Beginning)
+        function scrollList() {
+            if (activeSection) {
+                var targetSection = activeSection
+                activeSection = ""
+                var index = Sections.getIndexFor(targetSection)
+                contactListView.positionViewAtIndex(index, ListView.Beginning)
+            } else if (priv.pendingTargetIndex != -1) {
+                contactListView.positionViewAtIndex(priv.pendingTargetIndex, priv.pendingTargetMode)
+                priv.pendingTargetIndex = -1
+                priv.pendingTargetMode = null
+            }
         }
     }
 }
