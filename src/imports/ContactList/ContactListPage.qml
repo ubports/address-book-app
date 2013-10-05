@@ -23,7 +23,6 @@ import Ubuntu.Contacts 0.1 as ContactsUI
 Page {
     id: mainPage
     objectName: "ContactList"
-    flickable: null
 
     function createEmptyContact(phoneNumber) {
         var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
