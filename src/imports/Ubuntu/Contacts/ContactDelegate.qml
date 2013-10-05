@@ -68,6 +68,7 @@ Item {
                 verticalCenter: parent.verticalCenter
             }
             image: Image {
+                fillMode: Image.PreserveAspectCrop
                 asynchronous: true
                 source: ContactsJS.getAvatar(contact)
             }
