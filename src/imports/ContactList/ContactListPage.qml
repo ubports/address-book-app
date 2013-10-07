@@ -67,13 +67,9 @@ Page {
 
         multiSelectionEnabled: true
         anchors {
-            left: parent.left
-            top: prant.top
-            right: parent.right
-            bottom: parent.bottom
             bottomMargin: units.gu(2)
+            fill: parent
         }
-        anchors.fill: parent
         onError: PopupUtils.open(dialog, null)
         defaultAvatarImageUrl: "artwork:/avatar-default.svg"
         swipeToDelete: true
