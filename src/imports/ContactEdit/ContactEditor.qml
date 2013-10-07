@@ -28,8 +28,8 @@ Page {
 
     // this is used to add a phone number to a existing contact
     property int currentFetchOperation: -1
-    property string contactId: null
-    property string newPhoneNumber: null
+    property string contactId: ""
+    property string newPhoneNumber: ""
 
     property QtObject activeItem: null
 

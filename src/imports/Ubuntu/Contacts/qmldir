@@ -13,3 +13,4 @@ internal ContactFavoriteListDelegate ContactFavoriteDelegate.qml
 internal DialogButtons DialogButtons.qml
 internal OrganicView OrganicView.qml
 internal ContactList ContactList.js
+internal ContactJs Contacts.js
