@@ -53,6 +53,7 @@ Item {
             width: parent.width
 
             Repeater {
+                id: phoneNumberEntries
                 model: contact ? contact.phoneNumbers : undefined
                 ListItem.Empty {
                     showDivider: false
@@ -75,13 +76,15 @@ Item {
                     }
 
                     onClicked: detailClicked(modelData)
-                    Image {
-                        height: units.gu(3)
-                        width: units.gu(3)
-                        source: "../assets/dialer_call.png"
-                        fillMode: Image.PreserveAspectFit
+                    Icon {
+                        height: units.gu(2)
+                        width: units.gu(2)
+                        name: "call-start"
+                        color: "white"
+                        rotation: 90
                         anchors {
                             right: parent.right
+                            rightMargin: units.gu(2)
                             verticalCenter: parent.verticalCenter
                         }
                     }
@@ -92,6 +95,40 @@ Item {
                             right: parent.right
                             left: parent.left
                         }
+                    }
+                }
+            }
+            ListItem.Empty {
+                showDivider: false
+                height: units.gu(5)
+                Column {
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.leftMargin: units.gu(2)
+                    anchors.rightMargin: units.gu(2)
+                    Label {
+                        text: i18n.tr("View contact's profile")
+                        fontSize: "medium"
+                    }
+                }
+                onClicked: applicationUtils.switchToAddressbookApp("contact://" + contact.contactId)
+                Icon {
+                    height: units.gu(2)
+                    width: units.gu(2)
+                    name: "contact"
+                    anchors {
+                        right: parent.right
+                        rightMargin: units.gu(2)
+                        verticalCenter: parent.verticalCenter
+                    }
+                }
+                ListItem.ThinDivider {
+                    visible: phoneNumberEntries.count !== 0
+                    anchors {
+                        bottom: parent.top
+                        right: parent.right
+                        left: parent.left
                     }
                 }
             }
