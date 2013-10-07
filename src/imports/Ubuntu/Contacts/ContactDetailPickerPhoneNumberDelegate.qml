@@ -53,6 +53,7 @@ Item {
             width: parent.width
 
             Repeater {
+                id: phoneNumberEntries
                 model: contact ? contact.phoneNumbers : undefined
                 ListItem.Empty {
                     showDivider: false
@@ -123,6 +124,7 @@ Item {
                     }
                 }
                 ListItem.ThinDivider {
+                    visible: phoneNumberEntries.count !== 0
                     anchors {
                         bottom: parent.top
                         right: parent.right
