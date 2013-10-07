@@ -332,15 +332,17 @@ MultipleSelectionListView {
             SortOrder {
                 id: sortOrder
 
-                detail: ContactDetail.Name
-                field: Name.FirstName
+                detail: ContactDetail.DisplayLabel
+                field: DisplayLabel.Label
                 direction: Qt.AscendingOrder
+                blankPolicy: SortOrder.BlanksLast
+                caseSensitivity: Qt.CaseInsensitive
             }
         ]
 
         fetchHint: FetchHint {
-            detailTypesHint: root.showAvatar ? [contactListView.titleDetail, contactListView.subTitleDetail, ContactDetail.Avatar] :
-                                               [contactListView.titleDetail, contactListView.subTitleDetail]
+            detailTypesHint: root.showAvatar ? [contactListView.titleDetail, contactListView.subTitleDetail, ContactDetail.DisplayLabel, ContactDetail.Avatar] :
+                                               [contactListView.titleDetail, contactListView.subTitleDetail, ContactDetail.DisplayLabel]
         }
 
         onErrorChanged: {
