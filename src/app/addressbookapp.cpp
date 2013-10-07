@@ -16,6 +16,7 @@
 
 #include "config.h"
 #include "addressbookapp.h"
+#include "imagescalethread.h"
 
 #include <QDir>
 #include <QUrl>
@@ -28,6 +29,7 @@
 #include <QQuickView>
 #include <QLibrary>
 #include <QIcon>
+#include <QTemporaryFile>
 
 #include <QQmlEngine>
 
@@ -276,4 +278,25 @@ void AddressBookApp::activateWindow()
         m_view->raise();
         m_view->requestActivate();
     }
+}
+
+QUrl AddressBookApp::copyImage(QObject *contact, const QUrl &imageUrl)
+{
+    // keep track of threads to avoid memory leeak
+    ImageScaleThread *imgThread;
+    QVariant oldThread = contact->property("IMAGE_SCALE_THREAD");
+    if (!oldThread.isNull()) {
+        imgThread = oldThread.value<ImageScaleThread *>();
+    } else {
+        imgThread = new ImageScaleThread(imageUrl, contact);
+        contact->setProperty("IMAGE_SCALE_THREAD", QVariant::fromValue<ImageScaleThread*>(imgThread));
+    }
+
+    imgThread->start();
+
+    while(imgThread->isRunning()) {
+        this->processEvents(QEventLoop::AllEvents, 3000);
+    }
+
+    return imgThread->outputFile();
 }

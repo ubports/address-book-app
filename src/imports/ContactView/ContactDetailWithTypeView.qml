@@ -28,8 +28,6 @@ ContactDetailBase {
     property string typeIcon: null
     property alias lineHeight: view.lineHeight
 
-    implicitHeight: view.implicitHeight
-
     function populateValues()
     {
         if (fields && detail) {
@@ -43,6 +41,7 @@ ContactDetailBase {
 
     onFieldsChanged: populateValues()
     onDetailChanged: populateValues()
+    implicitHeight: view.implicitHeight
 
     BasicFieldView {
         id: view
@@ -52,7 +51,6 @@ ContactDetailBase {
             rightMargin: units.gu(2)
             top: parent.top
             left: parent.left
-            bottom: parent.bottom
             leftMargin: units.gu(2)
         }
         iconSource: typeIcon ? typeIcon : (root.action ? root.action.iconSource : "")

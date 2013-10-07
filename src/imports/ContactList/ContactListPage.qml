@@ -28,7 +28,8 @@ Page {
         var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
                         {detail: "EmailAddress", field: "emailAddress", value: ""},
                         {detail: "OnlineAccount", field: "accountUri", value: ""},
-                        {detail: "Address", field: "street", value: ""}
+                        {detail: "Address", field: "street", value: ""},
+                        {detail: "Name", field: "firstName", value: "" }
                       ]
 
         var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", mainPage)
@@ -65,7 +66,10 @@ Page {
         id: contactList
 
         multiSelectionEnabled: true
-        anchors.fill: parent
+        anchors {
+            bottomMargin: units.gu(2)
+            fill: parent
+        }
         onError: PopupUtils.open(dialog, null)
         defaultAvatarImageUrl: "artwork:/avatar-default.svg"
         swipeToDelete: true

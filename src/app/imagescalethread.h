@@ -14,33 +14,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ADDRESSBOOK_APP_H
-#define ADDRESSBOOK_APP_H
+#ifndef IMAGESCALETHREAD_H
+#define IMAGESCALETHREAD_H
 
 #include <QObject>
-#include <QQuickView>
-#include <QGuiApplication>
+#include <QThread>
+#include <QUrl>
+#include <QTemporaryFile>
 
-class AddressBookApp : public QGuiApplication
+class ImageScaleThread : public QThread
 {
     Q_OBJECT
-
 public:
-    AddressBookApp(int &argc, char **argv);
-    virtual ~AddressBookApp();
+    ImageScaleThread(const QUrl &imageUrl, QObject *parent=0);
+    ~ImageScaleThread();
 
-    bool setup();
+    QString outputFile() const;
 
-public Q_SLOTS:
-    void activateWindow();
-    QUrl copyImage(QObject *contact, const QUrl &imageUrl);
 
-private:
-    void parseUrl(const QString &arg);
-    void callQMLMethod(const QString name, QStringList args);
+protected:
+    virtual void run();
 
 private:
-    QQuickView *m_view;
+    QUrl m_imageUrl;
+    QTemporaryFile *m_tmpFile;
 };
 
 #endif

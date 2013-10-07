@@ -36,7 +36,7 @@ FocusScope {
 
     signal newFieldAdded(var index)
 
-    implicitHeight: root.details.length > 0 ? contents.height : minimumHeight
+    implicitHeight: root.details.length > 0 ? contents.implicitHeight : minimumHeight
     visible: implicitHeight > 0
 
     // This model is used to avoid rebuild the repeater every time that the details change
@@ -75,7 +75,6 @@ FocusScope {
             right: parent.right
         }
 
-        height: childrenRect.height
         Loader {
             id: headerItem
         }
@@ -84,6 +83,7 @@ FocusScope {
             id: detailFields
 
             model: detailsModel
+
             Loader {
                 id: detailItem
 
@@ -101,7 +101,6 @@ FocusScope {
                         root.newFieldAdded(detailItem.item)
                         root.inputFields = newFields
                         if (item.focus && root.loaded) {
-                            console.debug("force focus" + item + "has focus:" + item.focus)
                             item.forceActiveFocus()
                         }
                     }

@@ -43,9 +43,11 @@ ContactSimpleListView {
 
     header: Column {
         width: parent.width
-        height: childrenRect.height
+        height: favouritesList.count > 0 ? childrenRect.height : 0
 
         ContactSimpleListView {
+            id: favouritesList
+
             header: ListItem.Header {
                 height: units.gu(5)
                 text: i18n.tr("Favourites")
@@ -80,7 +82,8 @@ ContactSimpleListView {
             }
         }
         ListItem.Header {
-            height: units.gu(5)
+            height: favouritesList.count > 0 ? units.gu(5) : 0
+            visible: height > 0
             text: i18n.tr("All contacts")
         }
     }

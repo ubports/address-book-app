@@ -20,7 +20,7 @@ var _sections = [];
 
 function sectionValueForContact(contact) {
     if (contact) {
-        return contact.name && contact.name.firstName ? contact.name.firstName[0] : ""
+        return contact.tag.tag
     } else {
         return null
     }
@@ -40,8 +40,8 @@ function initSectionData(list) {
 
     for (var i = 0, count = contacts.length; i < count; i++) {
         item = sectionValueForContact(contacts[i])
-        if (item[0] !== current) {
-            current = item[0];
+        if (item !== current) {
+            current = item;
             _sections.push(current);
             sectionData.push({ index: i, header: current});
         }

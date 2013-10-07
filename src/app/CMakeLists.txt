@@ -10,6 +10,8 @@ include_directories(
 set(ADDRESS_BOOK_APP_SRCS
     addressbookapp.h
     addressbookapp.cpp
+    imagescalethread.h
+    imagescalethread.cpp
     main.cpp
 )
 
