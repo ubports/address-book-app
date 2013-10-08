@@ -44,7 +44,7 @@ Item {
 
         property bool detailsShown: false
 
-        height: units.gu(10)
+        height: units.gu(6)
         showDivider: false
         selected: contactListView.multiSelectionEnabled &&
                   item.itemDelegate &&
@@ -58,9 +58,10 @@ Item {
         UbuntuShape {
             id: avatar
 
-            height: units.gu(7)
-            width: contactListView.showAvatar ? units.gu(7) : 0
+            height: units.gu(4)
+            width: contactListView.showAvatar ? units.gu(4) : 0
             visible: width > 0
+            radius: "medium"
             anchors {
                 left: parent.left
                 leftMargin: units.gu(2)
@@ -85,15 +86,15 @@ Item {
                 id: name
                 height: paintedHeight
                 text: ContactsJS.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
-                fontSize: "large"
-            }
-            Label {
-                id: company
-                height: paintedHeight
-                text: ContactsJS.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
                 fontSize: "medium"
-                opacity: 0.2
             }
+//            Label {
+//                id: company
+//                height: paintedHeight
+//                text: ContactsJS.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
+//                fontSize: "medium"
+//                opacity: 0.2
+//            }
         }
 
         Rectangle {

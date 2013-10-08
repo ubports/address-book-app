@@ -25,7 +25,7 @@ import "../Common"
 ContactDetailBase {
     id: root
 
-    readonly property string defaultAvatar: "image://theme/avatar-default"
+    readonly property string defaultAvatar: Qt.resolvedUrl("../../artwork/contact-default-profile.png")
 
     function save() {
         if ((avatarImage.source != root.defaultAvatar) &&
@@ -80,27 +80,26 @@ ContactDetailBase {
             }
         }
 
-        AbstractButton {
+        Icon {
+            anchors {
+                right: parent.right
+                rightMargin: units.gu(1.5)
+                bottom: parent.bottom
+                bottomMargin: units.gu(2)
+            }
+            width: units.gu(3)
+            height: width
+            name: "import-image"
+            color: "white"
+        }
+
+        MouseArea {
             id: changeButton
 
             property var activeTransfer
             property var loadingDialog: null
 
-            anchors {
-                right: parent.right
-                bottom: parent.bottom
-                margins: units.gu(1)
-            }
-
-            width: units.gu(3)
-            height: units.gu(3)
-
-            Image {
-                anchors.fill: parent
-                source: "artwork:/import-image.svg"
-                fillMode: Image.PreserveAspectFit
-            }
-
+            anchors.fill: parent
             onClicked: {
                 if (!changeButton.loadingDialog) {
                     changeButton.loadingDialog = PopupUtils.open(loadingDialog, null)

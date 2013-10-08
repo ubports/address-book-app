@@ -148,9 +148,6 @@ ListView {
             item.VisualDataModel.inSelected = false
             result = true
         }
-        if (selectedItems.count == 0) {
-            cancelSelection()
-        }
         return result
     }
     /*!

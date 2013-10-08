@@ -26,9 +26,8 @@ ContactDetailBase {
     function getAvatar(avatarDetail)
     {
         // use this verbose mode to avoid problems with binding loops
-        var avatarUrl = "image://theme/avatar-default"
-
-            if (avatarDetail) {
+        var avatarUrl = Qt.resolvedUrl("../../artwork/contact-default-profile.png")
+        if (avatarDetail) {
             var avatarValue = avatarDetail.value(Avatar.ImageUrl)
             if (avatarValue != "") {
                 avatarUrl = avatarValue

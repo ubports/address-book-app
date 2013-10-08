@@ -27,11 +27,6 @@ set (GETTEXT_PACKAGE "address-book-app")
 # Tests
 enable_testing()
 
-add_subdirectory(data)
-add_subdirectory(src)
-add_subdirectory(po)
-add_subdirectory(tests)
-
 # uninstall target
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
                "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
@@ -43,3 +38,16 @@ add_custom_target(uninstall "${CMAKE_COMMAND}"
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/config.h.in"
                "${CMAKE_CURRENT_BINARY_DIR}/config.h"
                IMMEDIATE @ONLY)
+
+# components PATH
+execute_process(
+    COMMAND qmake -query QT_INSTALL_QML
+    OUTPUT_VARIABLE QT_IMPORTS_DIR
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+set(QMLPLUGIN_INSTALL_PREFIX "${QT_IMPORTS_DIR}/Ubuntu/Contacts.${API_VERSION}/")
+
+add_subdirectory(data)
+add_subdirectory(src)
+add_subdirectory(po)
+add_subdirectory(tests)

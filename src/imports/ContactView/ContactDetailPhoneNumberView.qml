@@ -82,7 +82,7 @@ ContactDetailBase {
             bottom: parent.bottom
         }
         width: height
-        iconName: "incoming-call"
+        iconName: "call-start"
 
         // FIXME: temporary import to provide the applicationUtils.
         //        this should go away once the new inter-app communication mechanism

@@ -129,7 +129,7 @@ MultipleSelectionListView {
       This property holds the default image url to be used when the current contact does
       not contains a photo
     */
-    property string defaultAvatarImageUrl: "image://theme/avatar-default"
+    property string defaultAvatarImageUrl: Qt.resolvedUrl("./artwork/contact-default.png")
     /*!
       \qmlproperty bool loading
 
@@ -217,6 +217,7 @@ MultipleSelectionListView {
         delegate: ListItem.Header {
             id: listHeader
             text: section
+            height: units.gu(4)
 
             Rectangle {
                 z: -1
@@ -252,7 +253,7 @@ MultipleSelectionListView {
         property int _index: index
         property variant loaderDelegate: loaderDelegate
         property int delegateHeight: item ? item.implicitHeight : 0
-        property int targetHeight: ((currentContactExpanded == index) && detailToPick != 0) ?  delegateHeight : units.gu(10)
+        property int targetHeight: ((currentContactExpanded == index) && detailToPick != 0) ?  delegateHeight : units.gu(6)
 
         source: Qt.resolvedUrl("ContactDelegate.qml")
         active: true

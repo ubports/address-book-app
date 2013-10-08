@@ -47,7 +47,7 @@ import "../Common"
         visible: text != ""
         anchors {
             left: actionIcon.right
-            leftMargin: actionIcon.visible ? units.gu(1) : 0
+            leftMargin: actionIcon.visible ? units.gu(2) : 0
             top: parent.top
             topMargin: units.gu(1)
         }
