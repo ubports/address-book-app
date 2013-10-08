@@ -70,6 +70,11 @@ ContactSimpleListView {
                 matchFlags: DetailFilter.MatchExactly
             }
 
+            listDelegate: FavoriteDelegate {
+                defaultAvatarUrl: favouritesList.defaultAvatarImageUrl
+                onContactClicked: _fetchContact(index, contact)
+            }
+
             Behavior on height {
                 UbuntuNumberAnimation {}
             }

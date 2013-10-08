@@ -208,6 +208,19 @@ MultipleSelectionListView {
         }
     }
 
+    /*!
+      private
+      Fetch contact and emit contact clicked signal
+    */
+    function _fetchContact(index, contact)
+    {
+        if (priv.currentOperation !== -1) {
+            return
+        }
+        contactListView.currentIndex = index
+        priv.currentOperation = contactsModel.fetchContacts(contact.contactId)
+    }
+
     clip: true
     snapMode: ListView.SnapToItem
     section {
@@ -251,9 +264,9 @@ MultipleSelectionListView {
         property bool loaded: false
         property var contact: model.contact
         property int _index: index
-        property variant loaderDelegate: loaderDelegate
         property int delegateHeight: item ? item.implicitHeight : 0
         property int targetHeight: ((currentContactExpanded == index) && detailToPick != 0) ?  delegateHeight : units.gu(6)
+        property bool detailsShown: false
 
         source: Qt.resolvedUrl("ContactDelegate.qml")
         active: true
@@ -261,6 +274,15 @@ MultipleSelectionListView {
         width: parent.width
         visible: loaderDelegate.status == Loader.Ready
         state: contactListView.expanded ? "" : "collapsed"
+
+        Connections {
+            target: contactListView
+            onCurrentContactExpandedChanged: {
+                if (index != currentContactExpanded) {
+                    loaderDelegate.detailsShown = false
+                }
+            }
+        }
 
         Binding {
             target: loaderDelegate.item
@@ -271,9 +293,65 @@ MultipleSelectionListView {
 
         Binding {
             target: loaderDelegate.item
-            property: "itemDelegate"
-            value: loaderDelegate.loaderDelegate
+            property: "selected"
+            value: contactListView.multiSelectionEnabled &&
+                   contactListView.isSelected &&
+                   contactListView.isSelected(loaderDelegate)
             when: (loaderDelegate.status == Loader.Ready)
+        }
+
+        Binding {
+            target: loaderDelegate.item
+            property: "removable"
+            value: contactListView &&
+                   contactListView.swipeToDelete &&
+                   !detailsShown &&
+                   !contactListView.isInSelectionMode
+            when: (loaderDelegate.status == Loader.Ready)
+        }
+
+        Binding {
+            target: loaderDelegate.item
+            property: "defaultAvatarUrl"
+            value: contactListView.defaultAvatarImageUrl
+            when: (loaderDelegate.status == Loader.Ready)
+        }
+
+        Binding {
+            target: loaderDelegate.item
+            property: "detailsShown"
+            value: loaderDelegate.detailsShown
+            when: (loaderDelegate.status == Loader.Ready)
+        }
+
+        Connections {
+            target: loaderDelegate.item
+            onContactClicked: {
+                if (contactListView.isInSelectionMode) {
+                    if (!contactListView.selectItem(loaderDelegate)) {
+                        contactListView.deselectItem(loaderDelegate)
+                    }
+                    return
+                }
+                if (contactListView.currentContactExpanded == index) {
+                    contactListView.currentContactExpanded = -1
+                    loaderDelegate.detailsShown = false
+                    return
+                // check if we should expand and display the details picker
+                } else if (detailToPick !== 0) {
+                    contactListView.currentContactExpanded = index
+                    loaderDelegate.detailsShown = !detailsShown
+                    return
+                }
+
+                contactListView._fetchContact(index, contact)
+            }
+            onPressAndHold: {
+                if (contactListView.multiSelectionEnabled) {
+                    contactListView.startSelection()
+                    contactListView.selectItem(loaderDelegate)
+                }
+            }
         }
 
         Timer {
