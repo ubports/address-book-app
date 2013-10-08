@@ -67,7 +67,10 @@ Page {
 
         multiSelectionEnabled: true
         anchors {
-            bottomMargin: units.gu(2)
+            // This extra margin is necessary because the toolbar area overlaps the last item in the view
+            // in the selection mode we remove it to avoid visual problems due the selection bar appears
+            // inside of the listview
+            bottomMargin: contactList.isInSelectionMode ? 0 : units.gu(2)
             fill: parent
         }
         onError: PopupUtils.open(dialog, null)
