@@ -80,20 +80,6 @@ MultipleSelectionListView {
     */
     property variant titleFields: [ Name.FirstName, Name.LastName ]
     /*!
-      \qmlproperty int subTitleDetail
-
-      This property holds the contact detail which will be used to display the contact subtitle in the delegate
-      By default this is set to ContactDetail.Organization
-    */
-    property int subTitleDetail: ContactDetail.Organization
-    /*!
-      \qmlproperty list<int> subTitleFields
-
-      This property holds the list of all fields which will be used to display the contact subtitle in the delegate
-      By default this is set to [ Organization.Name ]
-    */
-    property variant subTitleFields: [ Organization.Name ]
-    /*!
       \qmlproperty list<SortOrder> sortOrders
 
       This property holds a list of sort orders used by the contacts model.
@@ -418,8 +404,14 @@ MultipleSelectionListView {
         ]
 
         fetchHint: FetchHint {
-            detailTypesHint: root.showAvatar ? [contactListView.titleDetail, contactListView.subTitleDetail, ContactDetail.Avatar] :
-                                               [contactListView.titleDetail, contactListView.subTitleDetail]
+            detailTypesHint: {
+                var hints = [ contactListView.titleDetail, ContactDetail.Tag ]
+
+                if (contactListView.showAvatar) {
+                    hints.push(ContactDetail.Avatar)
+                }
+                return hints
+            }
         }
 
         onErrorChanged: {
