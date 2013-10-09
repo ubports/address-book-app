@@ -33,7 +33,14 @@ ListItem.Empty {
 
     implicitHeight: units.gu(8)
     width: parent ? parent.width : 0
-    clip: true
+
+    Rectangle {
+        anchors {
+            fill: parent
+            bottomMargin: units.dp(1)
+        }
+        color: UbuntuColors.coolGrey
+    }
 
     UbuntuShape {
         id: avatar
