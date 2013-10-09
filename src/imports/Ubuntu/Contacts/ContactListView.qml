@@ -57,12 +57,22 @@ ContactSimpleListView {
                 left: parent.left
                 right: parent.right
             }
+
             height: (count > 0 && !root.isInSelectionMode) ? contentHeight : 0
             onContactClicked: root.contactClicked(contact)
             defaultAvatarImageUrl: root.defaultAvatarImageUrl
             multiSelectionEnabled: false
             interactive: false
             showSections: false
+
+            fetchHint: FetchHint {
+                optimizationHints: FetchHint.AllRequired
+                detailTypesHint: [ ContactDetail.Avatar,
+                                   ContactDetail.Favorite,
+                                   ContactDetail.Name,
+                                   ContactDetail.PhoneNumber ]
+            }
+
             filter: DetailFilter {
                 detail: ContactDetail.Favorite
                 field: Favorite.Favorite

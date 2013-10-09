@@ -1,4 +1,6 @@
 
+var phoneTypeModel = null
+
 // Format contact name to be displayed
 function formatToDisplay(contact, contactDetail, detailFields, detail) {
     if (!contact) {
@@ -42,4 +44,25 @@ function getAvatar(contact, defaultValue)
         }
     }
     return avatarUrl
+}
+
+function getFavoritePhoneLabel(contact, defaultValue)
+{
+    var phoneLabel = defaultValue
+    if (!contact) {
+        return phoneLabel
+    }
+
+    if (!phoneTypeModel) {
+        phoneTypeModel = Qt.createQmlObject("import Ubuntu.Contacts 0.1; ContactDetailPhoneNumberTypeModel {}",
+                                            parent,
+                                            "getFavoritePhoneLabel")
+
+    }
+
+    var prefDetail = contact.preferredDetail("TEL")
+    if (prefDetail) {
+        phoneLabel = phoneTypeModel.get(phoneTypeModel.getTypeIndex(prefDetail)).label
+    }
+    return phoneLabel
 }

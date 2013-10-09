@@ -56,19 +56,42 @@ ListItem.Empty {
         }
     }
 
-    Label {
-        id: name
-
+    Column {
         anchors {
+            top: parent.top
+            topMargin:  units.gu(2)
             left: avatar.right
             leftMargin: units.gu(2)
-            verticalCenter: parent.verticalCenter
             right: parent.right
+            bottom: parent.bottom
         }
 
-        height: paintedHeight
-        text: ContactsJS.formatToDisplay(contact, favoriteItem.titleDetail, favoriteItem.titleFields)
-        fontSize: "medium"
+        Label {
+            id: name
+
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+
+            height: paintedHeight
+            text: ContactsJS.formatToDisplay(contact, favoriteItem.titleDetail, favoriteItem.titleFields)
+            fontSize: "medium"
+        }
+
+        Label {
+            id: label
+
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+
+            opacity: 0.2
+            height: paintedHeight
+            text: contact.phoneNumbers ? ContactsJS.getFavoritePhoneLabel(contact, "") : ""
+            fontSize: "medium"
+        }
     }
 
     onClicked: favoriteItem.contactClicked(index, contact)
