@@ -397,15 +397,17 @@ MultipleSelectionListView {
             SortOrder {
                 id: sortOrder
 
-                detail: ContactDetail.Name
-                field: Name.FirstName
+                detail: ContactDetail.DisplayLabel
+                field: DisplayLabel.Label
                 direction: Qt.AscendingOrder
+                blankPolicy: SortOrder.BlanksLast
+                caseSensitivity: Qt.CaseInsensitive
             }
         ]
 
         fetchHint: FetchHint {
             detailTypesHint: {
-                var hints = [ contactListView.titleDetail, ContactDetail.Tag ]
+                var hints = [ contactListView.titleDetail, ContactDetail.Tag, ContactDetail.DisplayLabel ]
 
                 if (contactListView.showAvatar) {
                     hints.push(ContactDetail.Avatar)

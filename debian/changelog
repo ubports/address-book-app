@@ -1,3 +1,25 @@
+address-book-app (0.2+13.10.20131009-0ubuntu1) saucy; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Scale the image using a thread to avoid UI freeze.
+
+  [ Tiago Salem Herrmann ]
+  * add "view profile" item. - fix icons for expansible items. (LP:
+    #1231440)
+  * Use display label so we can correctly sort contacts that have no
+    first name.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Scale the image using a thread to avoid UI freeze.
+  * Fixed input field visibility when keyboard appears. (LP: #1235262)
+  * Optimized contact list expand and collapse animation. (LP: #1234484)
+  * Remove extra bottom margin when in select mode.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 94
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 09 Oct 2013 06:04:31 +0000
+
 address-book-app (0.2+13.10.20131004.1-0ubuntu1) saucy; urgency=low
 
   [ Renato Araujo Oliveira Filho ]
