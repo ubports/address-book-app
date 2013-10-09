@@ -139,6 +139,9 @@ bool AddressBookApp::setup()
     QDir::addSearchPath("artwork", fullPath("/artwork"));
 
     m_view = new QQuickView();
+    m_viewReady = false;
+    QObject::connect(m_view, SIGNAL(statusChanged(QQuickView::Status)),
+                     this, SLOT(onViewStatusChanged(QQuickView::Status)));
     QObject::connect(m_view->engine(), SIGNAL(quit()), SLOT(quit()));
 
     m_view->setResizeMode(QQuickView::SizeRootObjectToView);
@@ -157,7 +160,11 @@ bool AddressBookApp::setup()
     }
 
     if (arguments.size() == 2) {
-        parseUrl(arguments.at(1));
+        if (!m_viewReady) {
+            m_initialArg = arguments.at(1);
+        } else {
+            parseUrl(arguments.at(1));
+        }
     }
 
     return true;
@@ -170,10 +177,20 @@ AddressBookApp::~AddressBookApp()
     }
 }
 
+void AddressBookApp::onViewStatusChanged(QQuickView::Status status)
+{
+    if (status == QQuickView::Ready) {
+        m_viewReady = true;
+        if (!m_initialArg.isEmpty()) {
+            parseUrl(m_initialArg);
+            m_initialArg.clear();
+        }
+    }
+}
+
 void AddressBookApp::parseUrl(const QString &arg)
 {
-    QUrl url(arg);
-
+    QUrl url = QUrl::fromPercentEncoding(arg.toUtf8());
     if (url.scheme() != "addressbook") {
         return;
     }
@@ -259,11 +276,11 @@ void AddressBookApp::callQMLMethod(const QString name, QStringList args)
             method.invoke(mainView);
             break;
         case 1:
-            method.invoke(mainView, Q_ARG(QVariant, QVariant(QUrl::fromPercentEncoding(args[0].toUtf8()))));
+            method.invoke(mainView, Q_ARG(QVariant, QVariant(args[0].toUtf8())));
             break;
         case 2:
-            method.invoke(mainView, Q_ARG(QVariant, QVariant(QUrl::fromPercentEncoding(args[0].toUtf8()))),
-                                    Q_ARG(QVariant, QVariant(QUrl::fromPercentEncoding(args[1].toUtf8()))));
+            method.invoke(mainView, Q_ARG(QVariant, QVariant(args[0].toUtf8())),
+                                    Q_ARG(QVariant, QVariant(args[1].toUtf8())));
             break;
         default:
             qWarning() << "Invalid arguments";

@@ -35,12 +35,15 @@ public Q_SLOTS:
     void activateWindow();
     QUrl copyImage(QObject *contact, const QUrl &imageUrl);
     void parseUrl(const QString &arg);
+    void onViewStatusChanged(QQuickView::Status status);
 
 private:
     void callQMLMethod(const QString name, QStringList args);
 
 private:
     QQuickView *m_view;
+    QString m_initialArg;
+    bool m_viewReady;
 };
 
 #endif

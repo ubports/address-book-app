@@ -281,7 +281,8 @@ Page {
                 saving = false
                 pageStack.contactCreated(contactEditor.contact)
                 pageStack.pop()
-            } else if (contactEditor.contact) {
+            } else if (contactEditor.contact &&
+                       (contactEditor.contact.contactId != "qtcontacts:::")) {
                 for (var i=0; i < contactEditor.model.contacts.length; i++) {
                     if (contactEditor.model.contacts[i].contactId == contactEditor.contact.contactId) {
                         return
