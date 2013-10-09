@@ -101,6 +101,8 @@ ContactDetailBase {
 
             anchors.fill: parent
             onClicked: {
+                // make sure the OSK disappear
+                root.forceActiveFocus()
                 if (!changeButton.loadingDialog) {
                     changeButton.loadingDialog = PopupUtils.open(loadingDialog, null)
                     changeButton.activeTransfer = ContentHub.importContent(ContentType.Pictures,
