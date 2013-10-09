@@ -7,6 +7,7 @@ set(ADDRESS_BOOK_APP_ARTWORK
     add-detail.svg
     add.png
     address-book-app.png
+    address-book-app-preview.png
     avatar-default.svg
     birthday-cake.svg
     combo-indicator.png
