@@ -45,7 +45,8 @@ TextField {
     }
 
     // default style
-    font.pixelSize: activeFocus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
-    color: "#f3f3e7"
-    opacity: activeFocus ? 1.0 : 0.2
+    font {
+        family: "Ubuntu"
+        pixelSize: activeFocus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
+    }
 }
