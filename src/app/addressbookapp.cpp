@@ -16,7 +16,6 @@
 
 #include "config.h"
 #include "addressbookapp.h"
-#include "addressbookappdbus.h"
 #include "imagescalethread.h"
 
 #include <QDir>
@@ -28,9 +27,6 @@
 #include <QQmlComponent>
 #include <QQmlContext>
 #include <QQuickView>
-#include <QDBusInterface>
-#include <QDBusReply>
-#include <QDBusConnectionInterface>
 #include <QLibrary>
 #include <QIcon>
 #include <QTemporaryFile>
@@ -41,11 +37,9 @@ static void printUsage(const QStringList& arguments)
 {
     qDebug() << "usage:"
              << arguments.at(0).toUtf8().constData()
-             << "[contact://CONTACT_ID]"
-             << "[create://PHONE_NUMBER]"
-             << "[addressbook://addphone?id=<contact-id>&phone=<phone-number>"
-             << "[addressbook://contact?id=<contact-id>"
-             << "[addressbook://create?phone=<phone-number>"
+             << "[addressbook:///addphone?id=<contact-id>&phone=<phone-number>"
+             << "[addressbook:///contact?id=<contact-id>"
+             << "[addressbook:///create?phone=<phone-number>"
              << "[--fullscreen]"
              << "[--help]"
              << "[-testability]";
@@ -84,23 +78,15 @@ static void installIconPath()
 }
 
 AddressBookApp::AddressBookApp(int &argc, char **argv)
-    : QGuiApplication(argc, argv), m_view(0), m_applicationIsReady(false)
+    : QGuiApplication(argc, argv), m_view(0)
 {
     setApplicationName("AddressBookApp");
-    m_dbus = new AddressBookAppDBus(this);
 }
 
 bool AddressBookApp::setup()
 {
     installIconPath();
-    static QList<QString> validSchemes;
     bool fullScreen = false;
-
-    if (validSchemes.isEmpty()) {
-        validSchemes << "contact";
-        validSchemes << "create";
-        validSchemes << "addressbook";
-    }
 
     QString contactKey;
     QStringList arguments = this->arguments();
@@ -148,33 +134,14 @@ bool AddressBookApp::setup()
         }
     }
 
-    if (arguments.size() == 2) {
-        QUrl uri(arguments.at(1));
-        if (validSchemes.contains(uri.scheme())) {
-            m_arg = arguments.at(1);
-        }
-    }
-
-    // check if the app is already running, if it is, send the message to the running instance
-    QDBusReply<bool> reply = QDBusConnection::sessionBus().interface()->isServiceRegistered(AddressBookAppDBus::serviceName());
-    if (reply.isValid() && reply.value()) {
-        QDBusInterface appInterface(AddressBookAppDBus::serviceName(),
-                                    AddressBookAppDBus::objectPath(),
-                                    AddressBookAppDBus::interfaceName());
-        appInterface.call("SendAppMessage", m_arg);
-        return false;
-    }
-
-    if (!m_dbus->connectToBus()) {
-        qWarning() << "Failed to expose" << AddressBookAppDBus::interfaceName() << "on DBUS.";
-    }
-
     /* Configure "artwork:" prefix so that any access to a file whose name starts
        with that prefix resolves properly. */
     QDir::addSearchPath("artwork", fullPath("/artwork"));
 
     m_view = new QQuickView();
-    QObject::connect(m_view, SIGNAL(statusChanged(QQuickView::Status)), this, SLOT(onViewStatusChanged(QQuickView::Status)));
+    m_viewReady = false;
+    QObject::connect(m_view, SIGNAL(statusChanged(QQuickView::Status)),
+                     this, SLOT(onViewStatusChanged(QQuickView::Status)));
     QObject::connect(m_view->engine(), SIGNAL(quit()), SLOT(quit()));
 
     m_view->setResizeMode(QQuickView::SizeRootObjectToView);
@@ -182,7 +149,6 @@ bool AddressBookApp::setup()
     m_view->engine()->addImportPath(importPath("/imports/"));
     m_view->rootContext()->setContextProperty("application", this);
     m_view->rootContext()->setContextProperty("contactKey", contactKey);
-    m_view->rootContext()->setContextProperty("dbus", m_dbus);
 
     QUrl source(fullPath("/imports/main.qml"));
     m_view->setSource(source);
@@ -193,9 +159,13 @@ bool AddressBookApp::setup()
         m_view->show();
     }
 
-    connect(m_dbus,
-            SIGNAL(request(QString)),
-            SLOT(onMessageReceived(QString)));
+    if (arguments.size() == 2) {
+        if (!m_viewReady) {
+            m_initialArg = arguments.at(1);
+        } else {
+            parseUrl(arguments.at(1));
+        }
+    }
 
     return true;
 }
@@ -210,17 +180,23 @@ AddressBookApp::~AddressBookApp()
 void AddressBookApp::onViewStatusChanged(QQuickView::Status status)
 {
     if (status == QQuickView::Ready) {
-        m_applicationIsReady = true;
-        parseArgument(m_arg);
-        m_arg.clear();
+        m_viewReady = true;
+        if (!m_initialArg.isEmpty()) {
+            parseUrl(m_initialArg);
+            m_initialArg.clear();
+        }
     }
 }
 
 void AddressBookApp::parseUrl(const QString &arg)
 {
-    QUrl url(arg);
+    QUrl url = QUrl::fromPercentEncoding(arg.toUtf8());
+    if (url.scheme() != "addressbook") {
+        return;
+    }
 
-    QString methodName = url.host();
+    // Remove the first "/"
+    QString methodName = url.path().right(url.path().length() -1);
     QStringList args;
 
     QMap<QString, QStringList> methodsMetaData;
@@ -277,30 +253,6 @@ void AddressBookApp::parseUrl(const QString &arg)
     callQMLMethod(methodName, args);
 }
 
-void AddressBookApp::parseArgument(const QString &arg)
-{
-    if (arg.isEmpty()) {
-        return;
-    }
-
-    // new scheme
-    if (arg.startsWith("addressbook://")) {
-        parseUrl(arg);
-        return;
-    }
-
-    QStringList args = arg.split("://");
-    if (args.size() != 2) {
-        return;
-    }
-
-    QString scheme = args[0];
-    QStringList values;
-    values << args[1];
-
-    callQMLMethod(scheme, values);
-}
-
 void AddressBookApp::callQMLMethod(const QString name, QStringList args)
 {
     QQuickItem *mainView = m_view->rootObject();
@@ -324,27 +276,16 @@ void AddressBookApp::callQMLMethod(const QString name, QStringList args)
             method.invoke(mainView);
             break;
         case 1:
-            method.invoke(mainView, Q_ARG(QVariant, QVariant(QUrl::fromPercentEncoding(args[0].toUtf8()))));
+            method.invoke(mainView, Q_ARG(QVariant, QVariant(args[0].toUtf8())));
             break;
         case 2:
-            method.invoke(mainView, Q_ARG(QVariant, QVariant(QUrl::fromPercentEncoding(args[0].toUtf8()))),
-                                    Q_ARG(QVariant, QVariant(QUrl::fromPercentEncoding(args[1].toUtf8()))));
+            method.invoke(mainView, Q_ARG(QVariant, QVariant(args[0].toUtf8())),
+                                    Q_ARG(QVariant, QVariant(args[1].toUtf8())));
             break;
         default:
             qWarning() << "Invalid arguments";
             break;
         }
-    }
-}
-
-void AddressBookApp::onMessageReceived(const QString &message)
-{
-    if (m_applicationIsReady) {
-        parseArgument(message);
-        m_arg.clear();
-        activateWindow();
-    } else {
-        m_arg = message;
     }
 }
 

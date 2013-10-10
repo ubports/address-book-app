@@ -66,4 +66,13 @@ MainView {
         mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"))
         mainView.applicationReady()
     }
+
+    Connections {
+        target: UriHandler
+        onOpened: {
+            for (var i = 0; i < uris.length; ++i) {
+                application.parseUrl(uris[i])
+            }
+        }
+    }
 }
