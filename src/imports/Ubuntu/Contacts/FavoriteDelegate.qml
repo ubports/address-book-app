@@ -28,6 +28,7 @@ ListItem.Empty {
     property string defaultAvatarUrl: ""
     property int titleDetail: ContactDetail.Name
     property variant titleFields: [ Name.FirstName, Name.LastName ]
+    property bool showPhoneLabel: true
 
     signal contactClicked(var index, var contact)
 
@@ -39,7 +40,8 @@ ListItem.Empty {
             fill: parent
             bottomMargin: units.dp(1)
         }
-        color: UbuntuColors.coolGrey
+        color: UbuntuColors.warmGrey
+        opacity: 0.07
     }
 
     UbuntuShape {
@@ -81,7 +83,8 @@ ListItem.Empty {
                 right: parent.right
             }
 
-            height: paintedHeight
+            height: favoriteItem.showPhoneLabel ? paintedHeight : paintedHeight * 2
+            verticalAlignment: Text.AlignVCenter
             text: ContactsJS.formatToDisplay(contact, favoriteItem.titleDetail, favoriteItem.titleFields)
             fontSize: "medium"
         }
@@ -95,8 +98,8 @@ ListItem.Empty {
             }
 
             opacity: 0.2
-            height: paintedHeight
-            text: contact.phoneNumbers ? ContactsJS.getFavoritePhoneLabel(contact, "") : ""
+            height: favoriteItem.showPhoneLabel ? paintedHeight : 0
+            text: favoriteItem.showPhoneLabel && contact.phoneNumbers ? ContactsJS.getFavoritePhoneLabel(contact, "") : ""
             fontSize: "medium"
         }
     }
