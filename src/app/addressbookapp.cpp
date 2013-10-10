@@ -324,11 +324,11 @@ void AddressBookApp::callQMLMethod(const QString name, QStringList args)
             method.invoke(mainView);
             break;
         case 1:
-            method.invoke(mainView, Q_ARG(QVariant, QVariant(args[0])));
+            method.invoke(mainView, Q_ARG(QVariant, QVariant(QUrl::fromPercentEncoding(args[0].toUtf8()))));
             break;
         case 2:
-            method.invoke(mainView, Q_ARG(QVariant, QVariant(args[0])),
-                                    Q_ARG(QVariant, QVariant(args[1])));
+            method.invoke(mainView, Q_ARG(QVariant, QVariant(QUrl::fromPercentEncoding(args[0].toUtf8()))),
+                                    Q_ARG(QVariant, QVariant(QUrl::fromPercentEncoding(args[1].toUtf8()))));
             break;
         default:
             qWarning() << "Invalid arguments";
