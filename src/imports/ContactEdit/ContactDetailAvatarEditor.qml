@@ -28,11 +28,17 @@ ContactDetailBase {
     readonly property string defaultAvatar: Qt.resolvedUrl("../../artwork/contact-default-profile.png")
 
     function save() {
-        if ((avatarImage.source != root.defaultAvatar) &&
-            root.detail &&
-            (root.detail.imageUrl !== avatarImage.source)) {
-            root.detail.imageUrl = avatarImage.source
-            return true
+        if (avatarImage.source != root.defaultAvatar) {
+            if (root.detail && (root.detail === avatarImage.source)) {
+                return false
+            } else {
+                // create the avatar detail
+                if (!root.detail) {
+                    root.detail = root.contact.avatar
+                }
+                root.detail.imageUrl = avatarImage.source
+                return true
+            }
         }
         return false
     }

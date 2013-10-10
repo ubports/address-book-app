@@ -44,7 +44,7 @@ Item {
 
         height: units.gu(6)
         showDivider: false
-
+        confirmRemoval: removable
         UbuntuShape {
             id: avatar
 
@@ -104,20 +104,6 @@ Item {
 
         onItemRemoved: {
             contactsModel.removeContact(contact.contactId)
-        }
-
-        backgroundIndicator: Rectangle {
-            anchors.fill: parent
-            color: Theme.palette.selected.base
-            Label {
-                text: "Delete"
-                anchors {
-                    fill: parent
-                    margins: units.gu(2)
-                }
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment:  delegate.swipingState === "SwipingLeft" ? Text.AlignLeft : Text.AlignRight
-            }
         }
     }
 

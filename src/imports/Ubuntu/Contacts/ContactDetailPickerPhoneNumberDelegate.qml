@@ -112,7 +112,7 @@ Item {
                         fontSize: "medium"
                     }
                 }
-                onClicked: applicationUtils.switchToAddressbookApp("contact://" + contact.contactId)
+                onClicked: Qt.openUrlExternally("addressbook:///contact?id=" + encodeURIComponent(contact.contactId))
                 Icon {
                     height: units.gu(2)
                     width: units.gu(2)

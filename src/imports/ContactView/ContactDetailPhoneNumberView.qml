@@ -18,12 +18,6 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import QtContacts 5.0
 import Ubuntu.Components.ListItems 0.1 as ListItem
-
-// FIXME: temporary import to provide the applicationUtils.
-//        this should go away once the new inter-app communication mechanism
-//        is in place.
-import Ubuntu.Telephony 0.1
-
 import "../Common"
 
 ContactDetailBase {
@@ -83,11 +77,7 @@ ContactDetailBase {
         }
         width: height
         iconName: "call-start"
-
-        // FIXME: temporary import to provide the applicationUtils.
-        //        this should go away once the new inter-app communication mechanism
-        //        is in place.
-        onClicked: applicationUtils.switchToDialerApp("call://" + view.values[0])
+        onClicked: Qt.openUrlExternally("tel:///" + encodeURIComponent(view.values[0]))
     }
 
     Image {
@@ -113,10 +103,6 @@ ContactDetailBase {
         }
         width: height
         iconName: "messages"
-
-        // FIXME: temporary import to provide the applicationUtils.
-        //        this should go away once the new inter-app communication mechanism
-        //        is in place.
-        onClicked: applicationUtils.switchToMessagingApp("messages://" + view.values[0])
+        onClicked: Qt.openUrlExternally("message:///" + encodeURIComponent(view.values[0]))
     }
 }
