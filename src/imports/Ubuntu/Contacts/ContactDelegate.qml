@@ -27,6 +27,7 @@ Item {
    property bool showAvatar: true
    property alias selected: delegate.selected
    property alias removable: delegate.removable
+   property bool selectMode: false
    property string defaultAvatarUrl: ""
    property int titleDetail: ContactDetail.Name
    property variant titleFields: [ Name.FirstName, Name.LastName ]
@@ -89,13 +90,19 @@ Item {
             }
 
             color: "black"
-            width: delegate.selected ? units.gu(5) : 0
+            width: item.selectMode ? units.gu(5) : 0
             visible: width > 0
-            Icon {
-                name: "select"
+
+            Behavior on width {
+                UbuntuNumberAnimation { }
+            }
+
+            Image {
                 height: units.gu(3)
                 width: height
                 anchors.centerIn: parent
+                source: Qt.resolvedUrl("./artwork/tick-dark.png")
+                opacity: item.selected ? 1.0 : 0.2
             }
         }
 

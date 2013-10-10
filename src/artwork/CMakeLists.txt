@@ -4,6 +4,7 @@ set(ADDRESS_BOOK_APP_ICON
 
 set(ADDRESS_BOOK_COMPONENTS_ARTWORK
     contact-default@27.png
+    tick-dark@30.png
 )
 
 set(ADDRESS_BOOK_APP_ARTWORK

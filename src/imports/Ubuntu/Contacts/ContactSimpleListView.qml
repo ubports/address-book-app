@@ -310,6 +310,13 @@ MultipleSelectionListView {
             when: (loaderDelegate.status == Loader.Ready)
         }
 
+        Binding {
+            target: loaderDelegate.item
+            property: "selectMode"
+            value: contactListView.isInSelectionMode
+            when: (loaderDelegate.status == Loader.Ready)
+        }
+
         Connections {
             target: loaderDelegate.item
             onContactClicked: {
