@@ -12,6 +12,7 @@ set(ADDRESS_BOOK_APP_ARTWORK
     add-detail.svg
     add.png
     address-book-app.png
+    address-book-app-preview.png
     birthday-cake.svg
     combo-indicator.png
     contact-call.svg
@@ -53,7 +54,4 @@ install(FILES ${ADDRESS_BOOK_APP_ARTWORK}
 install(FILES ${ADDRESS_BOOK_COMPONENTS_ARTWORK}
     DESTINATION ${QMLPLUGIN_INSTALL_PREFIX}/artwork
 )
-
-
-
 
