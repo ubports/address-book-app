@@ -59,9 +59,13 @@ ListItem.Empty {
         visible: favoriteItem.showAvatar
         radius: "medium"
         image: Image {
+            property bool isDefaultAvatar: (source == favoriteItem.defaultAvatarUrl)
+
             fillMode: Image.PreserveAspectCrop
             asynchronous: true
             source: ContactsJS.getAvatar(contact, favoriteItem.defaultAvatarUrl)
+            sourceSize.width: isDefaultAvatar ? undefined : width * 1.5
+            sourceSize.height: isDefaultAvatar ? undefined : height * 1.5
         }
     }
 
