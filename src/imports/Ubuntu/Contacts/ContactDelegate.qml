@@ -137,7 +137,7 @@ Item {
 
     ListItem.ThinDivider {
         anchors {
-            bottom: pickerLoader.bottom
+            bottom: parent.bottom
             right: parent.right
             left: parent.left
         }

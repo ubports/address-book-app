@@ -256,10 +256,14 @@ MultipleSelectionListView {
 
         source: Qt.resolvedUrl("ContactDelegate.qml")
         active: true
-        height: targetHeight
         width: parent.width
         visible: loaderDelegate.status == Loader.Ready
         state: contactListView.expanded ? "" : "collapsed"
+        
+        Behavior on height {
+            enabled: currentContactExpanded == index || detailsShown
+            UbuntuNumberAnimation {}
+        }
 
         Connections {
             target: contactListView
@@ -317,6 +321,14 @@ MultipleSelectionListView {
             when: (loaderDelegate.status == Loader.Ready)
         }
 
+        // this will avoid the binding to be broken during the PropertyAction
+        Binding {
+            target: loaderDelegate
+            property: "height"
+            value: targetHeight
+            when: loaderDelegate.state == ""
+        }
+
         Connections {
             target: loaderDelegate.item
             onContactClicked: {
@@ -372,20 +384,24 @@ MultipleSelectionListView {
             }
         ]
 
+        // control the property change order
         transitions: [
             Transition {
                 to: "collapsed"
                 onRunningChanged: priv.animating = running
             },
+
             Transition {
                 to: ""
                 onRunningChanged: priv.animating = running
                 SequentialAnimation {
+                    // expand the item
                     PropertyAction {
                         target: loaderDelegate
                         property: "height"
                         value: targetHeight
                     }
+                    // give some time to listview to destroy the cache and load the delegate on the remaning items
                     ScriptAction {
                         // wait for list get fully expanded and cached delegates updated
                         script: dirtyItem.restart()
