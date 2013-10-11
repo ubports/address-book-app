@@ -23,12 +23,25 @@ import "../Common"
 ContactDetailBase {
     id: root
 
-    detail: contact ? contact.avatar : null
+    function getAvatar(avatarDetail)
+    {
+        // use this verbose mode to avoid problems with binding loops
+        var avatarUrl = Qt.resolvedUrl("../../artwork/contact-default-profile.png")
+        if (avatarDetail) {
+            var avatarValue = avatarDetail.value(Avatar.ImageUrl)
+            if (avatarValue != "") {
+                avatarUrl = avatarValue
+            }
+        }
+        return avatarUrl
+    }
+
+    detail: contact ? contact.detail(ContactDetail.Avatar) : null
     implicitHeight: units.gu(17)
 
     Image {
         anchors.fill: parent
-        source: root.detail && root.detail.imageUrl != "" ? root.detail.imageUrl : "artwork:/avatar-default.svg"
+        source: root.getAvatar(root.detail)
         asynchronous: true
         smooth: true
         fillMode: Image.PreserveAspectCrop

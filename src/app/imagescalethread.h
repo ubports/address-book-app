@@ -14,21 +14,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
-import Ubuntu.Components 0.1
+#ifndef IMAGESCALETHREAD_H
+#define IMAGESCALETHREAD_H
 
-AbstractButton {
-    id: messageActions
+#include <QObject>
+#include <QThread>
+#include <QUrl>
+#include <QTemporaryFile>
 
-    property QtObject actions
-    property alias iconName: icon.name
+class ImageScaleThread : public QThread
+{
+    Q_OBJECT
+public:
+    ImageScaleThread(const QUrl &imageUrl, QObject *parent=0);
+    ~ImageScaleThread();
 
-    Icon {
-        id: icon
+    QString outputFile() const;
 
-        anchors.centerIn: parent
-        height: units.gu(3)
-        width: height
-        color: "white"
-    }
-}
+
+protected:
+    virtual void run();
+
+private:
+    QUrl m_imageUrl;
+    QTemporaryFile *m_tmpFile;
+};
+
+#endif

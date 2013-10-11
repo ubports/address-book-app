@@ -41,11 +41,21 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 ContactSimpleListView {
     id: root
 
+    /*!
+      \qmlproperty bool showFavoritePhoneLabel
+
+      This property holds if the phone label should appear on favorite contact or not
+      By default this is set to true.
+    */
+    property bool showFavoritePhoneLabel: true
+
     header: Column {
         width: parent.width
-        height: childrenRect.height
+        height: favouritesList.count > 0 ? childrenRect.height : 0
 
         ContactSimpleListView {
+            id: favouritesList
+
             header: ListItem.Header {
                 height: units.gu(5)
                 text: i18n.tr("Favourites")
@@ -55,17 +65,33 @@ ContactSimpleListView {
                 left: parent.left
                 right: parent.right
             }
+
             height: (count > 0 && !root.isInSelectionMode) ? contentHeight : 0
             onContactClicked: root.contactClicked(contact)
             defaultAvatarImageUrl: root.defaultAvatarImageUrl
             multiSelectionEnabled: false
             interactive: false
             showSections: false
+
+            fetchHint: FetchHint {
+                optimizationHints: FetchHint.AllRequired
+                detailTypesHint: [ ContactDetail.Avatar,
+                                   ContactDetail.Favorite,
+                                   ContactDetail.Name,
+                                   ContactDetail.PhoneNumber ]
+            }
+
             filter: DetailFilter {
                 detail: ContactDetail.Favorite
                 field: Favorite.Favorite
                 value: true
                 matchFlags: DetailFilter.MatchExactly
+            }
+
+            listDelegate: FavoriteDelegate {
+                showPhoneLabel: root.showFavoritePhoneLabel
+                defaultAvatarUrl: favouritesList.defaultAvatarImageUrl
+                onContactClicked: _fetchContact(index, contact)
             }
 
             Behavior on height {
@@ -80,7 +106,8 @@ ContactSimpleListView {
             }
         }
         ListItem.Header {
-            height: units.gu(5)
+            height: favouritesList.count > 0 ? units.gu(5) : 0
+            visible: height > 0
             text: i18n.tr("All contacts")
         }
     }

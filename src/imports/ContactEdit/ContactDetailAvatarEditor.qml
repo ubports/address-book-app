@@ -17,42 +17,123 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import QtContacts 5.0
+import Ubuntu.Content 0.1
+import Ubuntu.Components.Popups 0.1 as Popups
 
 import "../Common"
 
 ContactDetailBase {
     id: root
 
+    readonly property string defaultAvatar: Qt.resolvedUrl("../../artwork/contact-default-profile.png")
+
     function save() {
-        //TODO: not implemented
+        if (avatarImage.source != root.defaultAvatar) {
+            if (root.detail && (root.detail === avatarImage.source)) {
+                return false
+            } else {
+                // create the avatar detail
+                if (!root.detail) {
+                    root.detail = root.contact.avatar
+                }
+                root.detail.imageUrl = avatarImage.source
+                return true
+            }
+        }
         return false
     }
 
-    detail: contact ? contact.avatar : null
+    function getAvatar(avatarDetail)
+    {
+        // use this verbose mode to avoid problems with binding loops
+        var avatarUrl = root.defaultAvatar
+
+        if (avatarDetail) {
+            var avatarValue = avatarDetail.value(Avatar.ImageUrl)
+            if (avatarValue != "") {
+                avatarUrl = avatarValue
+            }
+        }
+        return avatarUrl
+    }
+
+    detail: contact ? contact.detail(ContactDetail.Avatar) : null
     implicitHeight: units.gu(17)
 
     Image {
+        id: avatarImage
+
         anchors.fill: parent
-        source: root.detail && root.detail.imageUrl != "" ? root.detail.imageUrl : "artwork:/avatar-default.svg"
+        source: root.getAvatar(root.detail)
         asynchronous: true
         fillMode: Image.PreserveAspectCrop
 
-        AbstractButton {
-            id: changeButton
+        Component {
+            id: loadingDialog
 
+            Popups.Dialog {
+                id: dialogue
+
+                title: i18n.tr("Loading")
+
+                ActivityIndicator {
+                    id: activity
+
+                    anchors.centerIn: parent
+                    running: true
+                    visible: running
+                }
+            }
+        }
+
+        Icon {
             anchors {
                 right: parent.right
+                rightMargin: units.gu(1.5)
                 bottom: parent.bottom
-                margins: units.gu(1)
+                bottomMargin: units.gu(2)
+            }
+            width: units.gu(3)
+            height: width
+            name: "import-image"
+            color: "white"
+        }
+
+        MouseArea {
+            id: changeButton
+
+            property var activeTransfer
+            property var loadingDialog: null
+
+            anchors.fill: parent
+            onClicked: {
+                // make sure the OSK disappear
+                root.forceActiveFocus()
+                if (!changeButton.loadingDialog) {
+                    changeButton.loadingDialog = PopupUtils.open(loadingDialog, null)
+                    changeButton.activeTransfer = ContentHub.importContent(ContentType.Pictures,
+                                                                           ContentHub.defaultSourceForType(ContentType.Pictures));
+                    changeButton.activeTransfer.start();
+                }
             }
 
-            width: units.gu(3)
-            height: units.gu(3)
+            Connections {
+                target: changeButton.activeTransfer != null ? changeButton.activeTransfer : null
+                onStateChanged: {
+                    var done = ((changeButton.activeTransfer.state === ContentTransfer.Charged) ||
+                                (changeButton.activeTransfer.state === ContentTransfer.Aborted));
 
-            Image {
-                anchors.fill: parent
-                source: "artwork:/import-image.svg"
-                fillMode: Image.PreserveAspectFit
+                    if (changeButton.activeTransfer.state === ContentTransfer.Charged) {
+                        if (changeButton.activeTransfer.items.length > 0) {
+                            avatarImage.source = application.copyImage(root.contact, changeButton.activeTransfer.items[0].url);
+                        }
+                    }
+
+                    if (done) {
+                        PopupUtils.close(changeButton.loadingDialog)
+                        changeButton.loadingDialog = null
+                    }
+                }
             }
         }
     }

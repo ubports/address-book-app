@@ -28,7 +28,7 @@ ContactDetailGroupWithTypeBase {
     property int currentItem: -1
     property int fieldType: QtContacts.ContactDetail.FieldContext
     property variant placeholderTexts: []
-    property variant inputMethodHints
+    property int inputMethodHints: Qt.ImhNone
     property variant newDetails: []
 
     function cancel() {
@@ -88,17 +88,16 @@ ContactDetailGroupWithTypeBase {
         }
 
 
-        Image {
+        Icon {
             anchors {
                 verticalCenter: parent.verticalCenter
                 right: parent.right
                 rightMargin: units.gu(2)
             }
-            width: units.gu(3)
-            height: units.gu(3)
-
-            source: "artwork:/add-detail.svg"
-            fillMode: Image.PreserveAspectFit
+            width: units.gu(2)
+            height: units.gu(2)
+            color: "white"
+            name: "add"
             MouseArea {
                 anchors.fill: parent
                 onClicked: {

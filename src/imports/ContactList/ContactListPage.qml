@@ -28,7 +28,8 @@ Page {
         var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
                         {detail: "EmailAddress", field: "emailAddress", value: ""},
                         {detail: "OnlineAccount", field: "accountUri", value: ""},
-                        {detail: "Address", field: "street", value: ""}
+                        {detail: "Address", field: "street", value: ""},
+                        {detail: "Name", field: "firstName", value: "" }
                       ]
 
         var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", mainPage)
@@ -64,10 +65,16 @@ Page {
     ContactsUI.ContactListView {
         id: contactList
 
+        showFavoritePhoneLabel: false
         multiSelectionEnabled: true
-        anchors.fill: parent
+        anchors {
+            // This extra margin is necessary because the toolbar area overlaps the last item in the view
+            // in the selection mode we remove it to avoid visual problems due the selection bar appears
+            // inside of the listview
+            bottomMargin: contactList.isInSelectionMode ? 0 : units.gu(2)
+            fill: parent
+        }
         onError: PopupUtils.open(dialog, null)
-        defaultAvatarImageUrl: "artwork:/avatar-default.svg"
         swipeToDelete: true
 
         ActivityIndicator {

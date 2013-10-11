@@ -85,21 +85,18 @@ Item {
             color: "#f3f3e7"
         }
 
-        Label {
-            id: arrowIndicator
+        Icon {
+            name: "chevron"
+            color: "white"
+            height: units.gu(1)
+            width: height
 
             anchors {
                 verticalCenter: parent.verticalCenter
+                verticalCenterOffset: units.dp(2)
                 left: label.right
+                leftMargin: units.gu(0.5)
             }
-            width: units.gu(2)
-            horizontalAlignment: Text.AlignHCenter
-            text: ">"
-
-            // style
-            fontSize: "medium"
-            color: "#f3f3e7"
-            opacity: 0.2
         }
     }
 
@@ -123,45 +120,45 @@ Item {
                 top: parent.top
                 bottom: parent.bottom
             }
-            width: arrow.width + listLabel.paintedWidth// + units.gu(2)
+            width: arrow.width + listLabel.paintedWidth + units.gu(1)
+            opacity: currentIndex == index ? 1.0 : 0.2
 
-            Label {
-                id: arrow
-
-                anchors {
-                    verticalCenter: parent.verticalCenter
-                    left: parent.left
-                }
-                width: visible ? units.gu(2) : 0
-                text: ">"
-                horizontalAlignment: Text.AlignHCenter
-                visible: index > 0
-
-                // style
-                fontSize: "medium"
-                color: "#f3f3e7"
-                opacity: 0.2
-            }
             Label {
                 id: listLabel
 
                 anchors {
                     verticalCenter: parent.verticalCenter
-                    left: arrow.right
-                    right: parent.right
+                    left: parent.left
                 }
+                width: paintedWidth
                 text: modelData
 
                 // style
                 fontSize: "medium"
                 color: "#f3f3e7"
-                opacity: currentIndex == index ? 1.0 : 0.2
 
                 MouseArea {
                     width: parent.width + units.gu(0.5)
                     height: parent.height + units.gu(0.5)
                     anchors.centerIn: parent
                     onClicked: currentIndex = index
+                }
+            }
+
+            Icon {
+                id: arrow
+
+                name: "chevron"
+                color: "white"
+                height: visible ? units.gu(1) : 0
+                width: height
+                visible: index < (listView.count - 1)
+
+                anchors {
+                    verticalCenter: listLabel.verticalCenter
+                    verticalCenterOffset: units.dp(2)
+                    left: listLabel.right
+                    leftMargin: units.gu(0.5)
                 }
             }
         }

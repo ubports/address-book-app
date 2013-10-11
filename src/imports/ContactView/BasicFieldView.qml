@@ -27,7 +27,7 @@ import "../Common"
     property alias iconSource: actionIcon.source
     property double lineHeight: units.gu(3)
 
-    implicitHeight: typeLabel.height  + fieldValues.childrenRect.height + units.gu(2)
+    implicitHeight: typeLabel.height + (root.lineHeight * valueList.count) + units.gu(2)
 
     Image {
         id: actionIcon
@@ -47,7 +47,7 @@ import "../Common"
         visible: text != ""
         anchors {
             left: actionIcon.right
-            leftMargin: actionIcon.visible ? units.gu(1) : 0
+            leftMargin: actionIcon.visible ? units.gu(2) : 0
             top: parent.top
             topMargin: units.gu(1)
         }
@@ -67,7 +67,7 @@ import "../Common"
             left: typeLabel.left
             top: typeLabel.bottom
             right: parent.right
-            bottom: parent.bottom
+            bottom:  parent.bottom
         }
 
         Repeater {
@@ -75,13 +75,14 @@ import "../Common"
 
             Label {
                 id: label
+
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
                 height: root.lineHeight
                 verticalAlignment: Text.AlignVCenter
-                text: modelData
+                text: modelData ? modelData : ""
 
                 // style
                 fontSize: "medium"

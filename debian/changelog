@@ -1,3 +1,70 @@
+address-book-app (0.2+13.10.20131011-0ubuntu1) saucy; urgency=low
+
+  [ Tiago Salem Herrmann ]
+  * Use url decoding before using values. (LP: #1234234)
+
+  [ Renato Araujo Oliveira Filho ]
+  * Ask for confirmation during the contact removal. (LP: #1213046)
+  * Removed trick to make the font gray when text does not have focus.
+    (LP: #1228227)
+  * Fixed save avatar function.
+  * Initial implementation for UriHandler. (LP: #1230404)
+  * Added preview image.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 101
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 11 Oct 2013 08:47:20 +0000
+
+address-book-app (0.2+13.10.20131009-0ubuntu1) saucy; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Scale the image using a thread to avoid UI freeze.
+
+  [ Tiago Salem Herrmann ]
+  * add "view profile" item. - fix icons for expansible items. (LP:
+    #1231440)
+  * Use display label so we can correctly sort contacts that have no
+    first name.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Scale the image using a thread to avoid UI freeze.
+  * Fixed input field visibility when keyboard appears. (LP: #1235262)
+  * Optimized contact list expand and collapse animation. (LP: #1234484)
+  * Remove extra bottom margin when in select mode.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 94
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 09 Oct 2013 06:04:31 +0000
+
+address-book-app (0.2+13.10.20131004.1-0ubuntu1) saucy; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Hide "All contacts" title if favorites list is empty. (LP: #1226177)
+  * Fixed focus for new fields.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 87
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 04 Oct 2013 07:23:24 +0000
+
+address-book-app (0.2+13.10.20131001.4-0ubuntu1) saucy; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Avoid show "undefined" for empty names. (LP: #1227696)
+  * * Added a animation when closing the type selector. * Force focus on
+    InputField when clicking on the type selector. * Highlight the
+    editable item on contact edit page. * Added a margin for field
+    details. (LP: #1213975)
+  * Added basic organization detail support. (LP: #1207773)
+  * Implemented support for avatar editor. (LP: #1207774)
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 84
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 01 Oct 2013 21:20:42 +0000
+
 address-book-app (0.2+13.10.20130925-0ubuntu1) saucy; urgency=low
 
   [ Ted Gould ]

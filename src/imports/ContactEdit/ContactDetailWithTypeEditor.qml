@@ -30,7 +30,7 @@ ContactDetailBase {
     property int fieldType: -1
     property alias selectedTypeIndex: detailTypeSelector.currentIndex
     property variant placeholderTexts: []
-    property var inputMethodHints
+    property int inputMethodHints: Qt.ImhNone
 
     function selectType(type) {
         detailTypeSelector.selectItem(type)
@@ -86,7 +86,7 @@ ContactDetailBase {
             topMargin: units.gu(1)
         }
 
-        height: root.active ? units.gu(4) : units.gu(3)
+        height: visible ? (root.active ? units.gu(4) : units.gu(3)) : 0
         onExpandedChanged: {
             // Make sure that the inputfield get focus when clicking on type selector
             if (expanded) {

@@ -119,7 +119,11 @@ ListView {
     */
     function isSelected(item)
     {
-        return (item.VisualDataModel.inSelected == true)
+        if (item && item.VisualDataModel) {
+            return (item.VisualDataModel.inSelected === true)
+        } else {
+            return false
+        }
     }
     /*!
       Mark the item as selected
@@ -143,9 +147,6 @@ ListView {
         if (item.VisualDataModel.inSelected) {
             item.VisualDataModel.inSelected = false
             result = true
-        }
-        if (selectedItems.count == 0) {
-            cancelSelection()
         }
         return result
     }

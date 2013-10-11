@@ -21,8 +21,6 @@
 #include <QQuickView>
 #include <QGuiApplication>
 
-class AddressBookAppDBus;
-
 class AddressBookApp : public QGuiApplication
 {
     Q_OBJECT
@@ -35,21 +33,17 @@ public:
 
 public Q_SLOTS:
     void activateWindow();
-
-private:
-    void parseArgument(const QString &arg);
+    QUrl copyImage(QObject *contact, const QUrl &imageUrl);
     void parseUrl(const QString &arg);
-    void callQMLMethod(const QString name, QStringList args);
-
-private Q_SLOTS:
-    void onMessageReceived(const QString &message);
     void onViewStatusChanged(QQuickView::Status status);
 
 private:
+    void callQMLMethod(const QString name, QStringList args);
+
+private:
     QQuickView *m_view;
-    AddressBookAppDBus *m_dbus;
-    QString m_arg;
-    bool m_applicationIsReady;
+    QString m_initialArg;
+    bool m_viewReady;
 };
 
 #endif
