@@ -260,6 +260,9 @@ MultipleSelectionListView {
         width: parent.width
         visible: loaderDelegate.status == Loader.Ready
         state: contactListView.expanded ? "" : "collapsed"
+        // WORKAROUND: for some unknown reason, after collapsing the contact list
+        // the delegate height auto update will not work anymore.
+        onTargetHeightChanged: height = targetHeight
 
         Connections {
             target: contactListView
