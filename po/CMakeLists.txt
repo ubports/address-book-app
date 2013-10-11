@@ -21,6 +21,12 @@ find_program(XGETTEXT_EXECUTABLE xgettext)
 if(XGETTEXT_EXECUTABLE)
     add_custom_target(${POT_FILE})
     add_custom_command(TARGET ${POT_FILE}
-        COMMAND ${XGETTEXT_EXECUTABLE} --c++ --qt --add-comments=TRANSLATORS --keyword=tr --keyword=tr:1,2 -D ${CMAKE_SOURCE_DIR} -s -p ${CMAKE_CURRENT_SOURCE_DIR} -o ${POT_FILE} ${I18N_SRCS}
+        COMMAND ${XGETTEXT_EXECUTABLE} -o ${POT_FILE}
+                --c++ --qt --add-comments=TRANSLATORS
+                --keyword=tr --keyword=tr:1,2
+                --package-name=${DOMAIN}
+                --copyright-holder='Canonical Ltd.'
+                -D ${CMAKE_SOURCE_DIR} -s 
+                -p ${CMAKE_CURRENT_SOURCE_DIR}  ${I18N_SRCS}
     )
 endif()
