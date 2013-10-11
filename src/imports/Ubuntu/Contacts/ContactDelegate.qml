@@ -59,9 +59,12 @@ Item {
                 verticalCenter: parent.verticalCenter
             }
             image: Image {
+                property bool isDefaultAvatar: (source == item.defaultAvatarUrl)
                 fillMode: Image.PreserveAspectCrop
                 asynchronous: true
                 source: ContactsJS.getAvatar(contact, item.defaultAvatarUrl)
+                sourceSize.width: isDefaultAvatar ? undefined : width * 1.5
+                sourceSize.height: isDefaultAvatar ? undefined : height * 1.5
             }
         }
 
