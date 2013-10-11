@@ -76,7 +76,7 @@ ContactDetailBase {
             bottom: parent.bottom
         }
         width: height
-        iconName: "incoming-call"
+        iconName: "call-start"
         onClicked: Qt.openUrlExternally("tel:///" + encodeURIComponent(view.values[0]))
     }
 

@@ -65,6 +65,7 @@ Page {
     ContactsUI.ContactListView {
         id: contactList
 
+        showFavoritePhoneLabel: false
         multiSelectionEnabled: true
         anchors {
             // This extra margin is necessary because the toolbar area overlaps the last item in the view
@@ -74,7 +75,6 @@ Page {
             fill: parent
         }
         onError: PopupUtils.open(dialog, null)
-        defaultAvatarImageUrl: "artwork:/avatar-default.svg"
         swipeToDelete: true
 
         ActivityIndicator {

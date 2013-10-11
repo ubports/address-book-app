@@ -40,6 +40,7 @@ Rectangle {
             leftMargin: units.gu(1)
             verticalCenter: parent.verticalCenter
         }
+        color: UbuntuColors.warmGrey
         onClicked: root.reject()
     }
 

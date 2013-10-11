@@ -24,76 +24,63 @@ Item {
    id: item
 
    property int index: -1
-   property variant itemDelegate: null
+   property bool showAvatar: true
+   property alias selected: delegate.selected
+   property alias removable: delegate.removable
+   property bool selectMode: false
+   property string defaultAvatarUrl: ""
+   property int titleDetail: ContactDetail.Name
+   property variant titleFields: [ Name.FirstName, Name.LastName ]
+   property bool detailsShown: false
 
-   implicitHeight: delegate.height + (delegate.detailsShown ? pickerLoader.item.height : 0)
+   signal contactClicked(var index, var contact)
+   signal pressAndHold(var index, var contact)
+
+   implicitHeight: delegate.height + (item.detailsShown ? pickerLoader.item.height : 0)
    width: parent ? parent.width : 0
    clip: true
-
-    Connections {
-        target: contactListView
-        onCurrentContactExpandedChanged: {
-            if (index != currentContactExpanded) {
-                delegate.detailsShown = false
-            }
-        }
-    }
 
     ListItem.Empty {
         id: delegate
 
-        property bool detailsShown: false
-
-        height: units.gu(10)
+        height: units.gu(6)
         showDivider: false
-        selected: contactListView.multiSelectionEnabled &&
-                  item.itemDelegate &&
-                  contactListView.isSelected &&
-                  contactListView.isSelected(item.itemDelegate)
-        removable: contactListView &&
-                   contactListView.swipeToDelete &&
-                   !detailsShown &&
-                   !contactListView.isInSelectionMode
         confirmRemoval: removable
         UbuntuShape {
             id: avatar
 
-            height: units.gu(7)
-            width: contactListView.showAvatar ? units.gu(7) : 0
+            height: units.gu(4)
+            width: item.showAvatar ? units.gu(4) : 0
             visible: width > 0
+            radius: "medium"
             anchors {
                 left: parent.left
                 leftMargin: units.gu(2)
                 verticalCenter: parent.verticalCenter
             }
             image: Image {
+                property bool isDefaultAvatar: (source == item.defaultAvatarUrl)
                 fillMode: Image.PreserveAspectCrop
                 asynchronous: true
-                source: ContactsJS.getAvatar(contact)
+                source: ContactsJS.getAvatar(contact, item.defaultAvatarUrl)
+                sourceSize.width: isDefaultAvatar ? undefined : width * 1.5
+                sourceSize.height: isDefaultAvatar ? undefined : height * 1.5
             }
         }
 
-        Row {
-            spacing: units.gu(1)
+        Label {
+            id: name
+
             anchors {
                 left: avatar.right
                 leftMargin: units.gu(2)
                 verticalCenter: parent.verticalCenter
                 right: selectionMark.left
             }
-            Label {
-                id: name
-                height: paintedHeight
-                text: ContactsJS.formatToDisplay(contact, contactListView.titleDetail, contactListView.titleFields)
-                fontSize: "large"
-            }
-            Label {
-                id: company
-                height: paintedHeight
-                text: ContactsJS.formatToDisplay(contact, contactListView.subTitleDetail, contactListView.subTitleFields)
-                fontSize: "medium"
-                opacity: 0.2
-            }
+
+            height: paintedHeight
+            text: ContactsJS.formatToDisplay(contact, item.titleDetail, item.titleFields)
+            fontSize: "medium"
         }
 
         Rectangle {
@@ -106,46 +93,24 @@ Item {
             }
 
             color: "black"
-            width: delegate.selected ? units.gu(5) : 0
+            width: item.selectMode ? units.gu(5) : 0
             visible: width > 0
-            Icon {
-                name: "select"
+
+            Behavior on width {
+                UbuntuNumberAnimation { }
+            }
+
+            Image {
                 height: units.gu(3)
                 width: height
                 anchors.centerIn: parent
+                source: Qt.resolvedUrl("./artwork/tick-dark.png")
+                opacity: item.selected ? 1.0 : 0.2
             }
         }
 
-        onClicked: {
-            if (contactListView.isInSelectionMode) {
-                if (!contactListView.selectItem(item.itemDelegate)) {
-                    contactListView.deselectItem(item.itemDelegate)
-                }
-                return
-            }
-            if (currentContactExpanded == index) {
-                currentContactExpanded = -1
-                detailsShown = false
-                return
-            // check if we should expand and display the details picker
-            } else if (detailToPick !== 0){
-                currentContactExpanded = index
-                detailsShown = !detailsShown
-                return
-            }
-            if (priv.currentOperation !== -1) {
-                return
-            }
-            contactListView.currentIndex = index
-            priv.currentOperation = contactsModel.fetchContacts(contact.contactId)
-        }
-
-        onPressAndHold: {
-            if (contactListView.multiSelectionEnabled) {
-                contactListView.startSelection()
-                contactListView.selectItem(itemDelegate)
-            }
-        }
+        onClicked: item.contactClicked(index, contact)
+        onPressAndHold: item.pressAndHold(index, contact)
 
         onItemRemoved: {
             contactsModel.removeContact(contact.contactId)
@@ -155,7 +120,7 @@ Item {
     Loader {
         id: pickerLoader
 
-        source: delegate.detailsShown ? Qt.resolvedUrl("ContactDetailPickerDelegate.qml") : ""
+        source: item.detailsShown ? Qt.resolvedUrl("ContactDetailPickerDelegate.qml") : ""
         anchors {
             top: delegate.bottom
             left: parent.left

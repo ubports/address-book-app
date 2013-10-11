@@ -80,20 +80,6 @@ MultipleSelectionListView {
     */
     property variant titleFields: [ Name.FirstName, Name.LastName ]
     /*!
-      \qmlproperty int subTitleDetail
-
-      This property holds the contact detail which will be used to display the contact subtitle in the delegate
-      By default this is set to ContactDetail.Organization
-    */
-    property int subTitleDetail: ContactDetail.Organization
-    /*!
-      \qmlproperty list<int> subTitleFields
-
-      This property holds the list of all fields which will be used to display the contact subtitle in the delegate
-      By default this is set to [ Organization.Name ]
-    */
-    property variant subTitleFields: [ Organization.Name ]
-    /*!
       \qmlproperty list<SortOrder> sortOrders
 
       This property holds a list of sort orders used by the contacts model.
@@ -129,7 +115,7 @@ MultipleSelectionListView {
       This property holds the default image url to be used when the current contact does
       not contains a photo
     */
-    property string defaultAvatarImageUrl: "image://theme/avatar-default"
+    property string defaultAvatarImageUrl: Qt.resolvedUrl("./artwork/contact-default.png")
     /*!
       \qmlproperty bool loading
 
@@ -208,6 +194,19 @@ MultipleSelectionListView {
         }
     }
 
+    /*!
+      private
+      Fetch contact and emit contact clicked signal
+    */
+    function _fetchContact(index, contact)
+    {
+        if (priv.currentOperation !== -1) {
+            return
+        }
+        contactListView.currentIndex = index
+        priv.currentOperation = contactsModel.fetchContacts(contact.contactId)
+    }
+
     clip: true
     snapMode: ListView.SnapToItem
     section {
@@ -217,6 +216,7 @@ MultipleSelectionListView {
         delegate: ListItem.Header {
             id: listHeader
             text: section
+            height: units.gu(4)
 
             Rectangle {
                 z: -1
@@ -250,9 +250,9 @@ MultipleSelectionListView {
         property bool loaded: false
         property var contact: model.contact
         property int _index: index
-        property variant loaderDelegate: loaderDelegate
         property int delegateHeight: item ? item.implicitHeight : 0
-        property int targetHeight: ((currentContactExpanded == index) && detailToPick != 0) ?  delegateHeight : units.gu(10)
+        property int targetHeight: ((currentContactExpanded == index) && detailToPick != 0) ?  delegateHeight : units.gu(6)
+        property bool detailsShown: false
 
         source: Qt.resolvedUrl("ContactDelegate.qml")
         active: true
@@ -260,6 +260,15 @@ MultipleSelectionListView {
         width: parent.width
         visible: loaderDelegate.status == Loader.Ready
         state: contactListView.expanded ? "" : "collapsed"
+
+        Connections {
+            target: contactListView
+            onCurrentContactExpandedChanged: {
+                if (index != currentContactExpanded) {
+                    loaderDelegate.detailsShown = false
+                }
+            }
+        }
 
         Binding {
             target: loaderDelegate.item
@@ -270,9 +279,72 @@ MultipleSelectionListView {
 
         Binding {
             target: loaderDelegate.item
-            property: "itemDelegate"
-            value: loaderDelegate.loaderDelegate
+            property: "selected"
+            value: contactListView.multiSelectionEnabled &&
+                   contactListView.isSelected &&
+                   contactListView.isSelected(loaderDelegate)
             when: (loaderDelegate.status == Loader.Ready)
+        }
+
+        Binding {
+            target: loaderDelegate.item
+            property: "removable"
+            value: contactListView &&
+                   contactListView.swipeToDelete &&
+                   !detailsShown &&
+                   !contactListView.isInSelectionMode
+            when: (loaderDelegate.status == Loader.Ready)
+        }
+
+        Binding {
+            target: loaderDelegate.item
+            property: "defaultAvatarUrl"
+            value: contactListView.defaultAvatarImageUrl
+            when: (loaderDelegate.status == Loader.Ready)
+        }
+
+        Binding {
+            target: loaderDelegate.item
+            property: "detailsShown"
+            value: loaderDelegate.detailsShown
+            when: (loaderDelegate.status == Loader.Ready)
+        }
+
+        Binding {
+            target: loaderDelegate.item
+            property: "selectMode"
+            value: contactListView.isInSelectionMode
+            when: (loaderDelegate.status == Loader.Ready)
+        }
+
+        Connections {
+            target: loaderDelegate.item
+            onContactClicked: {
+                if (contactListView.isInSelectionMode) {
+                    if (!contactListView.selectItem(loaderDelegate)) {
+                        contactListView.deselectItem(loaderDelegate)
+                    }
+                    return
+                }
+                if (contactListView.currentContactExpanded == index) {
+                    contactListView.currentContactExpanded = -1
+                    loaderDelegate.detailsShown = false
+                    return
+                // check if we should expand and display the details picker
+                } else if (detailToPick !== 0) {
+                    contactListView.currentContactExpanded = index
+                    loaderDelegate.detailsShown = !detailsShown
+                    return
+                }
+
+                contactListView._fetchContact(index, contact)
+            }
+            onPressAndHold: {
+                if (contactListView.multiSelectionEnabled) {
+                    contactListView.startSelection()
+                    contactListView.selectItem(loaderDelegate)
+                }
+            }
         }
 
         Timer {
@@ -341,8 +413,14 @@ MultipleSelectionListView {
         ]
 
         fetchHint: FetchHint {
-            detailTypesHint: root.showAvatar ? [contactListView.titleDetail, contactListView.subTitleDetail, ContactDetail.DisplayLabel, ContactDetail.Avatar] :
-                                               [contactListView.titleDetail, contactListView.subTitleDetail, ContactDetail.DisplayLabel]
+            detailTypesHint: {
+                var hints = [ contactListView.titleDetail, ContactDetail.Tag, ContactDetail.DisplayLabel ]
+
+                if (contactListView.showAvatar) {
+                    hints.push(ContactDetail.Avatar)
+                }
+                return hints
+            }
         }
 
         onErrorChanged: {
