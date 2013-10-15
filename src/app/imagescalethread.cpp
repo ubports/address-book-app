@@ -35,6 +35,14 @@ ImageScaleThread::~ImageScaleThread()
     }
 }
 
+void ImageScaleThread::updateImageUrl(const QUrl &imageUrl)
+{
+    if (isRunning()) {
+        wait();
+    }
+    m_imageUrl = imageUrl;
+}
+
 QString ImageScaleThread::outputFile() const
 {
     return m_tmpFile->fileName();
@@ -42,11 +50,14 @@ QString ImageScaleThread::outputFile() const
 
 void ImageScaleThread::run()
 {
-    if (!m_tmpFile) {
-        // Create the temporary file
-        m_tmpFile = new QTemporaryFile();
+    // make sure that the old image get deleted
+    if (m_tmpFile) {
+        m_tmpFile->close();
+        delete m_tmpFile;
     }
 
+    // Create the temporary file
+    m_tmpFile = new QTemporaryFile();
     if (!m_tmpFile->open()) {
         return;
     }

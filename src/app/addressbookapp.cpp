@@ -304,6 +304,7 @@ QUrl AddressBookApp::copyImage(QObject *contact, const QUrl &imageUrl)
     QVariant oldThread = contact->property("IMAGE_SCALE_THREAD");
     if (!oldThread.isNull()) {
         imgThread = oldThread.value<ImageScaleThread *>();
+        imgThread->updateImageUrl(imageUrl);
     } else {
         imgThread = new ImageScaleThread(imageUrl, contact);
         contact->setProperty("IMAGE_SCALE_THREAD", QVariant::fromValue<ImageScaleThread*>(imgThread));
