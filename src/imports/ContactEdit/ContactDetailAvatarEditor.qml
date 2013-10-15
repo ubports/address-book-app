@@ -67,6 +67,10 @@ ContactDetailBase {
         source: root.getAvatar(root.detail)
         asynchronous: true
         fillMode: Image.PreserveAspectCrop
+        // When updating the avatar using the content picker the temporary file returned
+        // can contain the same name as the previous one and if the cache is enabled this
+        // will cause the image to not be updated
+        cache: false
 
         Component {
             id: loadingDialog
@@ -125,6 +129,11 @@ ContactDetailBase {
 
                     if (changeButton.activeTransfer.state === ContentTransfer.Charged) {
                         if (changeButton.activeTransfer.items.length > 0) {
+                            // remove the previous image, this is nessary to make sure that the new image
+                            // get updated otherwise if the new image has the same name the image will not
+                            // be updated
+                            avatarImage.source = ""
+                            // Update with the new valu
                             avatarImage.source = application.copyImage(root.contact, changeButton.activeTransfer.items[0].url);
                         }
                     }

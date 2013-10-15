@@ -29,8 +29,8 @@ public:
     ImageScaleThread(const QUrl &imageUrl, QObject *parent=0);
     ~ImageScaleThread();
 
+    void updateImageUrl(const QUrl &imageUrl);
     QString outputFile() const;
-
 
 protected:
     virtual void run();
