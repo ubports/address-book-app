@@ -532,4 +532,13 @@ MultipleSelectionListView {
             }
         }
     }
+
+    Connections {
+        target: Qt.application
+        onActiveChanged: {
+            if (!Qt.application.active) {
+                currentContactExpanded = -1
+            }
+        }
+    }
 }
