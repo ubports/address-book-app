@@ -33,10 +33,11 @@ FocusScope {
     property Component detailDelegate
     property int minimumHeight: 0
     property bool loaded: false
+    property bool showEmpty: true
 
     signal newFieldAdded(var index)
 
-    implicitHeight: root.details.length > 0 ? contents.implicitHeight : minimumHeight
+    implicitHeight: detailsModel.values.length > 0 ? contents.implicitHeight : minimumHeight
     visible: implicitHeight > 0
 
     // This model is used to avoid rebuild the repeater every time that the details change
@@ -44,7 +45,25 @@ FocusScope {
     ListModel {
         id: detailsModel
 
-        property var values: root.details
+        property var values: root.showEmpty ? root.details : filterDetails(root.details)
+
+        function filterDetails(details) {
+            var result = []
+            for(var d in details) {
+                var isEmpty = true
+                for(var f in root.fields) {
+                    var fieldValue = details[d].value(root.fields[f])
+                    if (fieldValue && (String(fieldValue) !== "")) {
+                        isEmpty = false
+                        break;
+                    }
+                }
+                if (!isEmpty) {
+                    result.push(details[d])
+                }
+            }
+            return result
+        }
 
         onValuesChanged: {
             if (!values) {

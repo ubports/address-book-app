@@ -27,6 +27,7 @@ ContactDetailGroupWithTypeBase {
     property Action defaultAction
     signal actionTrigerred(string action, QtObject detail)
 
+    showEmpty: false
     headerDelegate: ListItem.Empty {
         highlightWhenPressed: false
 
