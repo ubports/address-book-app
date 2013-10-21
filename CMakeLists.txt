@@ -27,18 +27,6 @@ set (GETTEXT_PACKAGE "address-book-app")
 # Tests
 enable_testing()
 
-# uninstall target
-configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
-               "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
-               IMMEDIATE @ONLY)
-add_custom_target(uninstall "${CMAKE_COMMAND}"
-                  -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake")
-
-# config file
-configure_file("${CMAKE_CURRENT_SOURCE_DIR}/config.h.in"
-               "${CMAKE_CURRENT_BINARY_DIR}/config.h"
-               IMMEDIATE @ONLY)
-
 # components PATH
 execute_process(
     COMMAND qmake -query QT_INSTALL_QML
@@ -51,3 +39,15 @@ add_subdirectory(data)
 add_subdirectory(src)
 add_subdirectory(po)
 add_subdirectory(tests)
+
+# uninstall target
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
+               "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+               IMMEDIATE @ONLY)
+add_custom_target(uninstall "${CMAKE_COMMAND}"
+                  -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake")
+
+# config file
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/config.h.in"
+               "${CMAKE_CURRENT_BINARY_DIR}/config.h"
+               IMMEDIATE @ONLY)

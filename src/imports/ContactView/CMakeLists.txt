@@ -12,7 +12,6 @@ set(CONTACT_VIEW_QMLS
     ContactDetailPhoneNumbersView.qml
     ContactDetailPhoneNumberView.qml
     ContactDetailWithTypeView.qml
-    ContactFetch.qml
     ContactHeaderView.qml
     ContactView.qml
 )

@@ -24,17 +24,35 @@ Item {
     property QtObject contact: null
     property bool contactIsDirty: false
 
+    property string _pendingId: ""
+    property bool _ready: false
+
     signal contactFetched(QtObject contact)
     signal contactRemoved()
 
     function fetchContact(contactId) {
+        if (root._ready) {
+            root._fetchContact(contactId)
+        } else {
+            root._pendingId = contactId
+        }
+    }
+
+    function _fetchContact(contactId) {
         if (contact && !contactIsDirty) {
             contactFetched(contact)
         } else {
             running = true
-            connections.currentQueryId = model.fetchContacts([contactId])
-            if (connections.currentQueryId === -1) {
-                running = false
+            if (model.manager === "memory") {
+                // memory backend emit contact fetched before return from "fetchContacts" we will use operation = "-2"
+                // to say that we are wainting for a operation from memory manager
+                connections.currentQueryId = -2
+                model.fetchContacts([contactId])
+            } else {
+                connections.currentQueryId = model.fetchContacts([contactId])
+                if (connections.currentQueryId === -1) {
+                    running = false
+                }
             }
         }
     }
@@ -62,13 +80,22 @@ Item {
         property int currentQueryId: -1
 
         onContactsFetched: {
-            if (requestId == currentQueryId) {
+            // currentQueryId == -2 is used during a fetch using "memory" manager
+            if ((currentQueryId == -2) || (requestId == currentQueryId)) {
                 root.contactIsDirty = false
                 root.running = false
                 currentQueryId = -1
-                root.contactFetched(fetchedContacts[0])
                 root.contact = fetchedContacts[0]
+                root.contactFetched(fetchedContacts[0])
             }
+        }
+    }
+
+    Component.onCompleted: {
+        root._ready = true
+        if (root._pendingId != "") {
+            root._fetchContact(root._pendingId)
+            root._pendingId = ""
         }
     }
 }

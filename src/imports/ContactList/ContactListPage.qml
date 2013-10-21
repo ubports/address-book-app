@@ -65,6 +65,7 @@ Page {
     ContactsUI.ContactListView {
         id: contactList
 
+        manager: DEFAULT_CONTACT_MANAGER
         showFavoritePhoneLabel: false
         multiSelectionEnabled: true
         anchors {

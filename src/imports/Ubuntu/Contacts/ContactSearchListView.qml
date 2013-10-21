@@ -111,6 +111,13 @@ ListView {
     */
     property variant detailFieldsToDisplay: [ PhoneNumber.Number ]
     /*!
+      \qmlproperty string manager
+
+      This property holds the manager uri of the contact backend engine.
+      By default this is set to "galera"
+    */
+    property alias manager: contactsModel.manager
+    /*!
       \internal \qmlproperty variant ___selectedDetail
     */
     property variant ___selectedDetail: null
