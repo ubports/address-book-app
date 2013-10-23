@@ -56,6 +56,7 @@ ContactSimpleListView {
         ContactSimpleListView {
             id: favouritesList
 
+            manager: root.manager
             header: ListItem.Header {
                 height: units.gu(5)
                 text: i18n.tr("Favourites")
