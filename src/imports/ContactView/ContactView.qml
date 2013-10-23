@@ -18,6 +18,7 @@ import QtQuick 2.0
 import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Contacts 0.1 as ContactsUI
 
 Page {
     id: root
@@ -137,7 +138,7 @@ Page {
         anchors.centerIn: parent
     }
 
-    ContactFetch {
+    ContactsUI.ContactFetch {
         id: contactFetch
 
         onContactRemoved: pageStack.pop()

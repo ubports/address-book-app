@@ -149,6 +149,15 @@ MultipleSelectionListView {
       By default this is set to true
     */
     property bool showSections: true
+
+    /*!
+      \qmlproperty string manager
+
+      This property holds the manager uri of the contact backend engine.
+      By default this is set to "galera"
+    */
+    property alias manager: contactsModel.manager
+
     /*!
       This handler is called when any error occurs in the contact model
     */
@@ -200,11 +209,8 @@ MultipleSelectionListView {
     */
     function _fetchContact(index, contact)
     {
-        if (priv.currentOperation !== -1) {
-            return
-        }
         contactListView.currentIndex = index
-        priv.currentOperation = contactsModel.fetchContacts(contact.contactId)
+        contactFetch.fetchContact(contact.contactId)
     }
 
     clip: true
@@ -259,7 +265,7 @@ MultipleSelectionListView {
         width: parent.width
         visible: loaderDelegate.status == Loader.Ready
         state: contactListView.expanded ? "" : "collapsed"
-        
+
         Behavior on height {
             enabled: currentContactExpanded == index || detailsShown
             UbuntuNumberAnimation {}
@@ -349,6 +355,7 @@ MultipleSelectionListView {
                     return
                 }
 
+                console.debug("Will fetch" + contact)
                 contactListView._fetchContact(index, contact)
             }
             onPressAndHold: {
@@ -463,17 +470,11 @@ MultipleSelectionListView {
         onTriggered: priv.scrollList()
     }
 
-    Connections {
-        target: listModel
-        onContactsFetched: {
-            if (requestId == priv.currentOperation) {
-                priv.currentOperation = -1
-                // this fetch request can only return one contact
-                if(fetchedContacts.length !== 1)
-                    return
-                contactListView.contactClicked(fetchedContacts[0])
-            }
-        }
+    ContactFetch {
+        id: contactFetch
+
+        model: contactsModel
+        onContactFetched: contactListView.contactClicked(contact)
     }
 
     // This is a workaround to make sure the spinner will disappear if the model is empty

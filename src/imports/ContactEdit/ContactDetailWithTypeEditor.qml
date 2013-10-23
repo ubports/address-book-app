@@ -45,10 +45,12 @@ ContactDetailBase {
             var input = fieldValues.children[i]
             if (input.detail && (input.field >= 0)) {
                 var originalValue = input.detail.value(input.field)
-                if (input.text != "") {
+                originalValue = originalValue ? String(originalValue) : ""
+                if (input.text !== "") {
                     isEmpty = false
                 }
-                if (originalValue != input.text) {
+
+                if (originalValue !== input.text) {
                     input.detail.setValue(input.field, input.text)
                     detailchanged  = true
                 }
