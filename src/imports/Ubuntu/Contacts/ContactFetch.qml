@@ -39,9 +39,11 @@ Item {
     }
 
     function _fetchContact(contactId) {
-        if (contact && !contactIsDirty) {
+        if (contact && !contactIsDirty && contact.contacId == contactId) {
             contactFetched(contact)
         } else {
+            contact = null
+            contactIsDirty = true
             running = true
             if (model.manager === "memory") {
                 // memory backend emit contact fetched before return from "fetchContacts" we will use operation = "-2"

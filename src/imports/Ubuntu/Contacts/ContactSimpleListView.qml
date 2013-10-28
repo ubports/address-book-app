@@ -355,7 +355,6 @@ MultipleSelectionListView {
                     return
                 }
 
-                console.debug("Will fetch" + contact)
                 contactListView._fetchContact(index, contact)
             }
             onPressAndHold: {
