@@ -1,3 +1,28 @@
+address-book-app (0.2+14.04.20131029.3-0ubuntu1) trusty; urgency=low
+
+  [ Bill Filler ]
+  * Collapse items when the app becomes inactive.
+
+  [ Tiago Salem Herrmann ]
+  * Workaround to fix the height of delegates after collapsing the
+    contact list.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Replaced default avatar image. Resized contact delegate height.
+    Replaced ValueSelector images. Updated contact favorite delegate
+    visuals. (LP: #1227218)
+  * Make sure that the avatar get update even if the new image has the
+    same name.
+  * Added missing dep.
+  * Allow change the application QtContact backend, using env variable
+    (QTCONTACTS_MANAGER_OVERRIDE).
+  * Fixed contact fetch information.
+
+  [ Ubuntu daily release ]
+  * Automatic snapshot from revision 109
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 29 Oct 2013 21:34:21 +0000
+
 address-book-app (0.2+13.10.20131011-0ubuntu1) saucy; urgency=low
 
   [ Tiago Salem Herrmann ]
