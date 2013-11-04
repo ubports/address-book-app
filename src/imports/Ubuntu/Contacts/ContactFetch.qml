@@ -42,7 +42,6 @@ Item {
         if (contact && !contactIsDirty && contact.contacId == contactId) {
             contactFetched(contact)
         } else {
-            contact = null
             contactIsDirty = true
             running = true
             if (model.manager === "memory") {
