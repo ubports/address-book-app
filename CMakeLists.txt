@@ -22,7 +22,7 @@ set(API_VERSION 0.1)
 
 # for dh_translations to extract the domain
 # (regarding syntax consistency, see http://pad.lv/1181187)
-set (GETTEXT_PACKAGE "address-book-app")
+set(GETTEXT_PACKAGE "address-book-app")
 
 # Tests
 enable_testing()

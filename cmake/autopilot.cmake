@@ -33,6 +33,6 @@ function(declare_autopilot_test ENVIROMENT TEST_NAME WORKING_DIR)
     if(AUTOPILOT_BIN)
         add_custom_command(TARGET autopilot
             COMMAND ${ENVIROMENT} autopilot run ${TEST_NAME} ${AUTOPILOT_TESTS_ARGS}
-            WORKING_DIRECTORY ${WORKING_DIR}) 
+            WORKING_DIRECTORY ${WORKING_DIR})
     endif()
 endfunction()

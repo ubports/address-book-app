@@ -8,7 +8,7 @@ install(DIRECTORY ${AUTOPILOT_DIR}
     )
 
 include(${CMAKE_SOURCE_DIR}/cmake/autopilot.cmake)
-declare_autopilot_test("AUTOPILOT_APP=${address-book-main-app_BINARY_DIR}/address-book-app"
-                       ${AUTOPILOT_DIR}
+set(AUTOPILOT_ENV "AUTOPILOT_APP=${address-book-main-app_BINARY_DIR}/address-book-app\;QTCONTACTS_MANAGER_OVERRIDE=memory")
+declare_autopilot_test(${AUTOPILOT_ENV}
+                       address_book_app
                        ${CMAKE_CURRENT_SOURCE_DIR})
-
