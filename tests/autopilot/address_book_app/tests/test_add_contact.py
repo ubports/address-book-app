@@ -5,12 +5,9 @@
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
 
-"""Tests for the Mediaplayer App"""
+"""Tests for the Addressbook App"""
 
 from __future__ import absolute_import
-
-from autopilot.matchers import Eventually
-from testtools.matchers import Equals
 
 from address_book_app.tests import AddressBookAppTestCase
 
@@ -19,11 +16,10 @@ import time
 import os
 from os import path
 
+class TestAddContact(AddressBookAppTestCase):
+    """Tests the Add contact"""
 
-class TestContactList(AddressBookAppTestCase):
-    """Tests the contact list features"""
-
-    def test_contact_list(self):
-        contact_list = self.main_window.get_contact_list()
-        self.assertThat(contact_list.visible, Eventually(Equals(True)))
-        pass
+    def test_add_contact_with_name(self):
+        toolbar = self.main_window.get_toolbar()
+        toolbar.open()
+        toolbar.click_button("Add")        

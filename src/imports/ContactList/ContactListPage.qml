@@ -119,6 +119,7 @@ Page {
             }
         }
         ToolbarButton {
+            objectName: "Add"
             action: Action {
                 text: i18n.tr("Add")
                 iconSource: "artwork:/add.png"

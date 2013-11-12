@@ -1,5 +1,5 @@
 set(ADDRESS_BOOK_APP_QMLS
-    main.qml
+    MainWindow.qml
 )
 
 install(FILES ${ADDRESS_BOOK_APP_QMLS}

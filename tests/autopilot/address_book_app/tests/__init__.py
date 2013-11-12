@@ -18,6 +18,7 @@ from autopilot.matchers import Eventually
 from testtools.matchers import Equals
 
 from address_book_app.emulators.main_window import MainWindow
+from ubuntuuitoolkit import emulators as toolkit_emulators
 
 
 class AddressBookAppTestCase(AutopilotTestCase):
@@ -26,22 +27,15 @@ class AddressBookAppTestCase(AutopilotTestCase):
 
     """
     DEFAULT_DEV_LOCATION = "../../src/app/address-book-app"
-
-    if model() == 'Desktop':
-        scenarios = [
-            ('with mouse', dict(input_device_class=Mouse))]
-    else:
-        scenarios = [
-            ('with touch', dict(input_device_class=Touch))]
-
+   
     def setUp(self):
-        self.pointing_device = Pointer(self.input_device_class.create())
+        self.pointing_device = toolkit_emulators.get_pointing_device()        
         super(AddressBookAppTestCase, self).setUp()
 
         if 'AUTOPILOT_APP' in os.environ:
             self.app_bin = os.environ['AUTOPILOT_APP']
         else:
-            self.app_bin  = AddressBookAppTestCase.DEFAULT_DEV_LOCATION
+            self.app_bin = AddressBookAppTestCase.DEFAULT_DEV_LOCATION
 
         print "Running from: %s" % (self.app_bin)
             
@@ -50,8 +44,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
         else:
             self.launch_test_local()
 
-        main_view = self.main_window.get_qml_view()
-        self.assertThat(main_view.visible, Eventually(Equals(True)))         
+        self.main_window.visible.wait_for(True)
 
     def launch_test_local(self):            
         self.app = self.launch_test_application(self.app_bin, app_type='qt')
@@ -63,4 +56,4 @@ class AddressBookAppTestCase(AutopilotTestCase):
 
     @property
     def main_window(self):
-        return MainWindow(self.app)
+        return self.app.select_single(MainWindow)
