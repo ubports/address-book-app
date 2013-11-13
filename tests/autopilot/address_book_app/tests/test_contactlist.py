@@ -14,11 +14,6 @@ from testtools.matchers import Equals
 
 from address_book_app.tests import AddressBookAppTestCase
 
-import unittest
-import time
-import os
-from os import path
-
 
 class TestContactList(AddressBookAppTestCase):
     """Tests the contact list features"""

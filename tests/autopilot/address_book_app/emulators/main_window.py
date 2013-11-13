@@ -9,10 +9,12 @@ from ubuntuuitoolkit import emulators as uitk
 
 
 class MainWindow(uitk.MainView):
-    """An emulator class that makes it easy to interact with the address-book-app."""
+    """An emulator class that makes it easy to interact with the app."""
 
     def get_contact_list(self):
-        return self.select_single("ContactListPage", objectName="contactListPage")
+        return self.select_single("ContactListPage",
+                                  objectName="contactListPage")
 
     def get_contact_edit_page(self):
-        return self.select_single("ContactEditor", objectName="contactEditorPage")
+        return self.select_single("ContactEditor",
+                                  objectName="contactEditorPage")

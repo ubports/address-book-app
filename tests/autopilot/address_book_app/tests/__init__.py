@@ -7,12 +7,9 @@
 
 """address-book-app autopilot tests."""
 
-from os import remove
 import os.path
 import os
 
-from autopilot.input import Mouse, Touch, Pointer
-from autopilot.platform import model
 from autopilot.testcase import AutopilotTestCase
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals
@@ -26,7 +23,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
     address-book-app tests.
     """
     DEFAULT_DEV_LOCATION = "../../src/app/address-book-app"
-   
+
     def setUp(self):
         self.pointing_device = toolkit_emulators.get_pointing_device()
         super(AddressBookAppTestCase, self).setUp()
@@ -46,14 +43,17 @@ class AddressBookAppTestCase(AutopilotTestCase):
 
         self.main_window.visible.wait_for(True)
 
-    def launch_test_local(self): 
-        self.app = self.launch_test_application(self.app_bin,
-             app_type='qt',
-             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
+    def launch_test_local(self):
+        self.app = self.launch_test_application(
+            self.app_bin,
+            app_type='qt',
+            emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
     def launch_test_installed(self):
-        self.app = self.launch_test_application("address-book-app",
-            "--desktop_file_hint=/usr/share/applications/address-book-app.desktop",
+        df = "/usr/share/applications/address-book-app.desktop"
+        self.app = self.launch_test_application(
+            "address-book-app",
+            "--desktop_file_hint=" + df,
             app_type='qt',
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
@@ -62,12 +62,17 @@ class AddressBookAppTestCase(AutopilotTestCase):
         return self.app.select_single(MainWindow)
 
     def type_on_field(self, field, text):
-        #xw,yw,ww,hw = self.main_window.globalRect
         x, y, w, h = field.globalRect
 
+        """ Drag start possition """
+        px = x + (w / 2)
+        py = y + h + 3
+
         """ Make sure that the field is visible """
-        flickable = self.main_window.get_contact_edit_page().select_single("QQuickFlickable", objectName="scrollArea")
-        self.pointing_device.drag(x + (x/2), y + h + 3, x + (x/2), 0)
+        flickable = self.main_window.get_contact_edit_page().select_single(
+            "QQuickFlickable",
+            objectName="scrollArea")
+        self.pointing_device.drag(px, py, px, 0)
         self.assertThat(flickable.flicking, Eventually(Equals(False)))
 
         self.pointing_device.click_object(field)
@@ -79,4 +84,3 @@ class AddressBookAppTestCase(AutopilotTestCase):
         clear_button = field.select_single("AbstractButton")
         self.pointing_device.click_object(clear_button)
         self.assertThat(field.text, Eventually(Equals("")))
-
