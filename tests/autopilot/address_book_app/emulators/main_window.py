@@ -12,4 +12,7 @@ class MainWindow(uitk.MainView):
     """An emulator class that makes it easy to interact with the address-book-app."""
 
     def get_contact_list(self):
-        return self.select_single("ContactListPage", "ContactList")
+        return self.select_single("ContactListPage", objectName="contactListPage")
+
+    def get_contact_edit_page(self):
+        return self.select_single("ContactEditor", objectName="contactEditorPage")

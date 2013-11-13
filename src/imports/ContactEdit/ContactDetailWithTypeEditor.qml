@@ -114,6 +114,8 @@ ContactDetailBase {
             focus: true
             TextInputDetail {
                 id: detail
+                objectName: detailToString(root.detail.type, modelData) + "_" + root.index
+
                 Component.onCompleted: focus = (index === 0)
                 focus: false
                 detail: root.detail

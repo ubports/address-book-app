@@ -113,6 +113,13 @@ FocusScope {
                     property: "detail"
                     value: root.details[index]
                 }
+
+                Binding {
+                    target: detailItem.item
+                    property: "index"
+                    value: index
+                }
+
                 onStatusChanged: {
                     if (status === Loader.Ready) {
                         var newFields = root.inputFields

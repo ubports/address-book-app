@@ -53,6 +53,7 @@ ContactDetailItem {
 
     fieldDelegate: TextInputDetail {
         id: textInputDetail
+        objectName: detailToString(QtContacts.ContactDetail.Name, field)
 
         function checkIsEmpty() {
             if (field == -1) {

@@ -22,7 +22,7 @@ import Ubuntu.Contacts 0.1 as ContactsUI
 
 Page {
     id: mainPage
-    objectName: "ContactList"
+    objectName: "contactListPage"
 
     function createEmptyContact(phoneNumber) {
         var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
@@ -64,6 +64,7 @@ Page {
 
     ContactsUI.ContactListView {
         id: contactList
+        objectName: "contactListView"
 
         manager: DEFAULT_CONTACT_MANAGER
         showFavoritePhoneLabel: false

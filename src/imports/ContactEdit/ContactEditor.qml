@@ -22,6 +22,7 @@ import Ubuntu.Components.Popups 0.1
 
 Page {
     id: contactEditor
+    objectName: "contactEditorPage"
 
     property QtObject contact: null
     property QtObject model: null
@@ -163,6 +164,7 @@ Page {
     flickable: null
     Flickable {
         id: scrollArea
+        objectName: "scrollArea"
 
         flickableDirection: Flickable.VerticalFlick
         anchors {
