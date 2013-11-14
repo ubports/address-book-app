@@ -46,6 +46,9 @@ ContactDetailBase {
     BasicFieldView {
         id: view
 
+        detail: root.detail
+        fields: root.fields
+
         anchors {
             right: parent.right
             rightMargin: units.gu(2)

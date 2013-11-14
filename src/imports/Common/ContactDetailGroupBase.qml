@@ -23,6 +23,7 @@ FocusScope {
 
     readonly property variant details: contact && contact.contactDetails && detailType ? contact.details(detailType) : []
     readonly property alias detailDelegates: contents.children
+    readonly property int detailsCount: detailsModel.count
 
     property variant inputFields: []
     property QtObject contact: null

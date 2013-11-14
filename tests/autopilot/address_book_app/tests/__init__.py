@@ -84,3 +84,85 @@ class AddressBookAppTestCase(AutopilotTestCase):
         clear_button = field.select_single("AbstractButton")
         self.pointing_device.click_object(clear_button)
         self.assertThat(field.text, Eventually(Equals("")))
+
+    def create_new_detail(self, detailGroup):
+        detCount = detailGroup.detailsCount
+        add_button = detailGroup.select_single("Icon", objectName="newDetailButton")
+        self.pointing_device.click_object(add_button)
+        self.assertThat(detailGroup.detailsCount, Eventually(Equals(detCount + 1)))
+
+    def add_contact(self,
+        first_name,
+        last_name,
+        phone_number = None,
+        email_address = None,
+        im_address = None ,
+        street_address = None,
+        locality_address = None,
+        region_address = None,
+        postcode_address = None,
+        country_address = None):
+        """ execute add new contact """
+        self.main_window.open_toolbar().click_button("Add")
+
+        first_name_field = self.main_window.select_single(
+            "TextInputDetail",
+            objectName="firstName")
+        last_name_field = self.main_window.select_single(
+            "TextInputDetail",
+            objectName="lastName")
+        self.type_on_field(first_name_field, first_name)
+        self.type_on_field(last_name_field, last_name)
+
+        if (phone_number):
+            phone_number_0 = self.main_window.select_single(
+                "TextInputDetail",
+                objectName="phoneNumber_0")
+            self.type_on_field(phone_number_0, phone_number)
+
+        if (email_address):
+            email_0 = self.main_window.select_single(
+                "TextInputDetail",
+                objectName="emailAddress_0")
+            self.type_on_field(email_0, email_address)
+
+        if (im_address):
+            im_0 = self.main_window.select_single(
+                "TextInputDetail",
+                objectName="imUri_0")
+            self.type_on_field(im_0, im_address)
+
+        if (street_address):
+            street_0 = self.main_window.selepostcode_addressct_single(
+                "TextInputDetail",
+                objectName="streetAddress_0")
+            self.type_on_field(street_0, street_address)
+
+        if (locality_address):
+            locality_0 = self.main_window.select_single(
+                "TextInputDetail",
+                objectName="localityAddress_0")
+            self.type_on_field(locality_0, locality_address)
+
+        if (region_address):
+            region_0 = self.main_window.select_single(
+                "TextInputDetail",
+                objectName="regionAddress_0")
+            self.type_on_field(region_0, region_address)
+
+        if (postcode_address):
+            postcode_0 = self.main_window.select_single(
+                "TextInputDetail",
+                objectName="postcodeAddress_0")
+            self.type_on_field(postcode_0, postcode_address)
+
+        if (country_address):
+            country_0 = self.main_window.select_single(
+                "TextInputDetail",
+                objectName="countryAddress_0")
+            self.type_on_field(country_0, country_address)
+
+        acceptButton = self.main_window.select_single(
+            "Button",
+            objectName="accept")
+        self.pointing_device.click_object(acceptButton)

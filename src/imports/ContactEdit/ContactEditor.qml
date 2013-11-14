@@ -214,6 +214,7 @@ Page {
 
             ContactDetailPhoneNumbersEditor {
                 id: phones
+                objectName: "phones"
 
                 contact: contactEditor.contact
                 anchors {
