@@ -115,5 +115,28 @@ class TestEditContact(AddressBookAppTestCase):
             objectName="label_emailAddress_0.0")
         self.assertThat(phone_label_1.text, Eventually(Equals("fulano@internet.com.br")))
 
+    def test_remove_email(self):
+        self.add_contact("Fulano", "de Tal", None, ["fulano@email.com"])
+        edit_page = self.edit_contact(0)
+
+        """ clear email """
+        email_address_0 = self.main_window.select_single(
+            "TextInputDetail",
+            objectName="emailAddress_0")
+        self.clear_text_on_field(email_address_0)
+
+        """ Save contact """
+        acceptButton = self.main_window.select_single(
+            "Button",
+            objectName="accept")
+        self.pointing_device.click_object(acceptButton)
+
+        """ check if the email list is empty """
+        view_page = self.main_window.get_contact_view_page()
+        emails_group = view_page.select_single(
+            "ContactDetailGroupWithTypeView",
+            objectName="emails")
+        self.assertThat(emails_group.detailsCount, Eventually(Equals(0)))
+
 
 

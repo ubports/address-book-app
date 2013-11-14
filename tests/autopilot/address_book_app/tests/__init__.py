@@ -148,17 +148,23 @@ class AddressBookAppTestCase(AutopilotTestCase):
                 if (idx > 0):
                     self.create_new_detail(phoneGroup)
 
-                print "IDX:" + str(idx)
                 phone_number_input = self.main_window.select_single(
                     "TextInputDetail",
                     objectName="phoneNumber_" + str(idx))
                 self.type_on_field(phone_number_input, number)
 
         if (email_address):
-            email_0 = self.main_window.select_single(
-                "TextInputDetail",
-                objectName="emailAddress_0")
-            self.type_on_field(email_0, email_address)
+            emailGroup = self.main_window.select_single(
+                "ContactDetailGroupWithTypeEditor",
+                objectName="emails")
+            for idx, address in enumerate(email_address):
+                if (idx > 0):
+                    self.create_new_detail(emailGroup)
+
+                email_address_input = self.main_window.select_single(
+                    "TextInputDetail",
+                    objectName="emailAddress_" + str(idx))
+                self.type_on_field(email_address_input, address)
 
         if (im_address):
             im_0 = self.main_window.select_single(
