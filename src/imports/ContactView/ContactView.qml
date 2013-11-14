@@ -95,6 +95,8 @@ Page {
             }
 
             ContactDetailEmailsView {
+                objectName: "emails"
+
                 contact: root.contact
                 anchors {
                     left: parent.left

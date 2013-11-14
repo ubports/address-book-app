@@ -79,7 +79,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
 
         self.pointing_device.click_object(field)
         self.assertThat(field.activeFocus, Eventually(Equals(True)))
-        self.keyboard.type(text)
+        self.keyboard.type(text, delay=0)
         self.assertThat(field.text, Eventually(Equals(text)))
 
     def clear_text_on_field(self, field):
@@ -140,18 +140,19 @@ class AddressBookAppTestCase(AutopilotTestCase):
         self.type_on_field(first_name_field, first_name)
         self.type_on_field(last_name_field, last_name)
 
-        phoneGroup = self.main_window.select_single(
-            "ContactDetailGroupWithTypeEditor",
-            objectName="phones")
-        for idx, number in enumerate(phone_numbers):
-            if (idx > 0):
-                self.create_new_detail(phoneGroup)
+        if (phone_numbers):
+            phoneGroup = self.main_window.select_single(
+                "ContactDetailGroupWithTypeEditor",
+                objectName="phones")
+            for idx, number in enumerate(phone_numbers):
+                if (idx > 0):
+                    self.create_new_detail(phoneGroup)
 
-            print "IDX:" + str(idx)
-            phone_number_input = self.main_window.select_single(
-                "TextInputDetail",
-                objectName="phoneNumber_" + str(idx))
-            self.type_on_field(phone_number_input, number)
+                print "IDX:" + str(idx)
+                phone_number_input = self.main_window.select_single(
+                    "TextInputDetail",
+                    objectName="phoneNumber_" + str(idx))
+                self.type_on_field(phone_number_input, number)
 
         if (email_address):
             email_0 = self.main_window.select_single(

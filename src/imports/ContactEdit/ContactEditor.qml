@@ -225,6 +225,8 @@ Page {
             }
 
             ContactDetailEmailsEditor {
+                objectName: "emails"
+
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left

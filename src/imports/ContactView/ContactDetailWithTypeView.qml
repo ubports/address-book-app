@@ -48,6 +48,7 @@ ContactDetailBase {
 
         detail: root.detail
         fields: root.fields
+        parentIndex: root.index
 
         anchors {
             right: parent.right
