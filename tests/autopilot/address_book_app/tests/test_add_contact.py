@@ -19,7 +19,7 @@ class TestAddContact(AddressBookAppTestCase):
     """Tests the Add contact"""
 
     def test_add_and_cancel_contact(self):
-        list_page = self.main_window.get_contact_list()
+        list_page = self.main_window.get_contact_list_page()
 
         """ execute add new contact """
         self.main_window.open_toolbar().click_button("Add")
@@ -92,7 +92,7 @@ class TestAddContact(AddressBookAppTestCase):
         self.pointing_device.click_object(acceptButton)
 
         """ Check if the contact editor still visbile """
-        list_page = self.main_window.get_contact_list()
+        list_page = self.main_window.get_contact_list_page()
         self.assertThat(list_page.visible, Eventually(Equals(False)))
         self.assertThat(edit_page.visible, Eventually(Equals(True)))
 
@@ -126,7 +126,7 @@ class TestAddContact(AddressBookAppTestCase):
         self.pointing_device.click_object(acceptButton)
 
         """ Check if the contact list is visible again """
-        list_page = self.main_window.get_contact_list()
+        list_page = self.main_window.get_contact_list_page()
         self.assertThat(list_page.visible, Eventually(Equals(True)))
 
         """ Check if contact was added """

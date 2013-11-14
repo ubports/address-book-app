@@ -8,7 +8,7 @@
 """Tests for the Addressbook App"""
 
 from __future__ import absolute_import
-
+import time
 from testtools.matchers import Equals
 from autopilot.matchers import Eventually
 
@@ -19,24 +19,8 @@ class TestEditContact(AddressBookAppTestCase):
     """Tests the edit contact"""
 
     def test_add_new_phone(self):
-        self.add_contact("Fulano", "de Tal", "3321 2300")
-
-        """ View contact """
-        contacts = self.main_window.select_many("ContactDelegate")
-        self.pointing_device.click_object(contacts[0])
-
-        list_page = self.main_window.get_contact_list_page()
-        self.assertThat(list_page.visible, Eventually(Equals(False)))
-
-        view_page = self.main_window.get_contact_view_page()
-        self.assertThat(view_page.visible, Eventually(Equals(True)))
-
-        """ Edit contact """
-        self.main_window.open_toolbar().click_button("edit")
-        self.assertThat(view_page.visible, Eventually(Equals(False)))
-
-        edit_page = self.main_window.get_contact_edit_page()
-        self.assertThat(edit_page.visible, Eventually(Equals(True)))
+        self.add_contact("Fulano", "de Tal", ["3321 2300"])
+        edit_page = self.edit_contact(0)
 
         """ Add a new phone """
         phoneGroup = edit_page.select_single(
@@ -56,6 +40,7 @@ class TestEditContact(AddressBookAppTestCase):
         self.pointing_device.click_object(acceptButton)
 
         """ go back to view page """
+        view_page = self.main_window.get_contact_view_page()
         self.assertThat(view_page.visible, Eventually(Equals(True)))
 
         """ check if we have two phones """
@@ -69,3 +54,35 @@ class TestEditContact(AddressBookAppTestCase):
             "Label",
             objectName="label_phoneNumber_1.0")
         self.assertThat(phone_label_1.text, Eventually(Equals("22 2222 2222")))
+
+    def test_remove_phone(self):
+        self.add_contact("Fulano", "de Tal", ["3321 2300", "3321 2301"])
+        edit_page = self.edit_contact(0)
+
+        """ clear phone 1 """
+        phone_number_1 = self.main_window.select_single(
+            "TextInputDetail",
+            objectName="phoneNumber_1")
+        self.clear_text_on_field(phone_number_1)
+
+        """ Save contact """
+        acceptButton = self.main_window.select_single(
+            "Button",
+            objectName="accept")
+        self.pointing_device.click_object(acceptButton)
+
+        """ check if we have onlye one phone """
+        view_page = self.main_window.get_contact_view_page()
+        phone_group = view_page.select_single(
+            "ContactDetailGroupWithTypeView",
+            objectName="phones")
+        self.assertThat(phone_group.detailsCount, Eventually(Equals(1)))
+
+        """ check if the new value is correct """
+        phone_label_1 = view_page.select_single(
+            "Label",
+            objectName="label_phoneNumber_0.0")
+        self.assertThat(phone_label_1.text, Eventually(Equals("3321 2300")))
+
+
+

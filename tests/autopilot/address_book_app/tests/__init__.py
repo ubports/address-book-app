@@ -9,6 +9,7 @@
 
 import os.path
 import os
+import time
 
 from autopilot.testcase import AutopilotTestCase
 from autopilot.matchers import Eventually
@@ -67,12 +68,13 @@ class AddressBookAppTestCase(AutopilotTestCase):
         """ Drag start possition """
         px = x + (w / 2)
         py = y + h + 3
+        endY = y - (h * 0.30)
 
         """ Make sure that the field is visible """
         flickable = self.main_window.get_contact_edit_page().select_single(
             "QQuickFlickable",
             objectName="scrollArea")
-        self.pointing_device.drag(px, py, px, 0)
+        self.pointing_device.drag(px, py, px, endY)
         self.assertThat(flickable.flicking, Eventually(Equals(False)))
 
         self.pointing_device.click_object(field)
@@ -81,6 +83,11 @@ class AddressBookAppTestCase(AutopilotTestCase):
         self.assertThat(field.text, Eventually(Equals(text)))
 
     def clear_text_on_field(self, field):
+        """ Make sure the field has focus """
+        self.pointing_device.click_object(field)
+        self.assertThat(field.activeFocus, Eventually(Equals(True)))
+
+        """ click on clear button """
         clear_button = field.select_single("AbstractButton")
         self.pointing_device.click_object(clear_button)
         self.assertThat(field.text, Eventually(Equals("")))
@@ -91,10 +98,29 @@ class AddressBookAppTestCase(AutopilotTestCase):
         self.pointing_device.click_object(add_button)
         self.assertThat(detailGroup.detailsCount, Eventually(Equals(detCount + 1)))
 
+    def edit_contact(self, index):
+        contacts = self.main_window.select_many("ContactDelegate")
+        self.pointing_device.click_object(contacts[index])
+
+        list_page = self.main_window.get_contact_list_page()
+        self.assertThat(list_page.visible, Eventually(Equals(False)))
+
+        view_page = self.main_window.get_contact_view_page()
+        self.assertThat(view_page.visible, Eventually(Equals(True)))
+
+        """ Edit contact """
+        self.main_window.open_toolbar().click_button("edit")
+        self.assertThat(view_page.visible, Eventually(Equals(False)))
+
+        edit_page = self.main_window.get_contact_edit_page()
+        self.assertThat(edit_page.visible, Eventually(Equals(True)))
+
+        return edit_page
+
     def add_contact(self,
         first_name,
         last_name,
-        phone_number = None,
+        phone_numbers = None,
         email_address = None,
         im_address = None ,
         street_address = None,
@@ -114,11 +140,18 @@ class AddressBookAppTestCase(AutopilotTestCase):
         self.type_on_field(first_name_field, first_name)
         self.type_on_field(last_name_field, last_name)
 
-        if (phone_number):
-            phone_number_0 = self.main_window.select_single(
+        phoneGroup = self.main_window.select_single(
+            "ContactDetailGroupWithTypeEditor",
+            objectName="phones")
+        for idx, number in enumerate(phone_numbers):
+            if (idx > 0):
+                self.create_new_detail(phoneGroup)
+
+            print "IDX:" + str(idx)
+            phone_number_input = self.main_window.select_single(
                 "TextInputDetail",
-                objectName="phoneNumber_0")
-            self.type_on_field(phone_number_0, phone_number)
+                objectName="phoneNumber_" + str(idx))
+            self.type_on_field(phone_number_input, number)
 
         if (email_address):
             email_0 = self.main_window.select_single(
@@ -162,7 +195,13 @@ class AddressBookAppTestCase(AutopilotTestCase):
                 objectName="countryAddress_0")
             self.type_on_field(country_0, country_address)
 
-        acceptButton = self.main_window.select_single(
+        edit_page = self.main_window.get_contact_edit_page()
+        accept_button = edit_page.select_single(
             "Button",
             objectName="accept")
-        self.pointing_device.click_object(acceptButton)
+        self.pointing_device.click_object(accept_button)
+
+        """ wait for contact list to be visible again """
+        list_page = self.main_window.get_contact_list_page()
+        self.assertThat(list_page.visible, Eventually(Equals(True)))
+
