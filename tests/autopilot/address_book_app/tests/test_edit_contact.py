@@ -43,7 +43,12 @@ class TestEditContact(AddressBookAppTestCase):
         view_page = self.main_window.get_contact_view_page()
         self.assertThat(view_page.visible, Eventually(Equals(True)))
 
-        """ check if we have two phones """
+        """ check if we have two phones         firstNameField = self.main_window.select_single(
+            "TextInputDetail",
+            objectName="firstName")
+        lastNameField = self.main_window.select_single(
+            "TextInputDetail",
+            objectName="lastName")"""
         phone_group = view_page.select_single(
             "ContactDetailGroupWithTypeView",
             objectName="phones")
@@ -137,6 +142,38 @@ class TestEditContact(AddressBookAppTestCase):
             "ContactDetailGroupWithTypeView",
             objectName="emails")
         self.assertThat(emails_group.detailsCount, Eventually(Equals(0)))
+
+    def test_clear_names(self):
+        self.add_contact("Fulano", "de Tal")
+        edit_page = self.edit_contact(0)
+
+        first_name_field = self.main_window.select_single(
+            "TextInputDetail",
+            objectName="firstName")
+        last_name_field = self.main_window.select_single(
+            "TextInputDetail",
+            objectName="lastName")
+
+        """ clear names """
+        self.clear_text_on_field(first_name_field)
+        self.clear_text_on_field(last_name_field)
+
+        """ check if is possible to save a contact without name """
+        accept_button = self.main_window.select_single(
+            "Button",
+            objectName="accept")
+        self.assertThat(accept_button.enabled, Eventually(Equals(False)))
+
+        """ Cancel edit """
+        cancel_button = self.main_window.select_single(
+            "Button",
+            objectName="reject")
+        self.pointing_device.click_object(cancel_button)
+
+        """ Check if the names still there """
+        view_page = self.main_window.get_contact_view_page()
+        self.assertThat(view_page.title, Eventually(Equals("Fulano de Tal")))
+
 
 
 
