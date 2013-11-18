@@ -43,12 +43,7 @@ class TestEditContact(AddressBookAppTestCase):
         view_page = self.main_window.get_contact_view_page()
         self.assertThat(view_page.visible, Eventually(Equals(True)))
 
-        """ check if we have two phones         firstNameField = self.main_window.select_single(
-            "TextInputDetail",
-            objectName="firstName")
-        lastNameField = self.main_window.select_single(
-            "TextInputDetail",
-            objectName="lastName")"""
+        """ check if we have two phones"""
         phone_group = view_page.select_single(
             "ContactDetailGroupWithTypeView",
             objectName="phones")
@@ -174,6 +169,33 @@ class TestEditContact(AddressBookAppTestCase):
         view_page = self.main_window.get_contact_view_page()
         self.assertThat(view_page.title, Eventually(Equals("Fulano de Tal")))
 
+    def test_im_type(self):
+        self.add_contact("Fulano", "de Tal", im_address = ["im@account.com"])
+        edit_page = self.edit_contact(0)
+
+        # Change Im type
+        im_value_selector = self.main_window.select_single(
+            "ValueSelector",
+            objectName="type_onlineAccount_0")
+        self.pointing_device.click_object(im_value_selector)
+        self.assertThat(im_value_selector.expanded, Eventually(Equals(True)))
+
+        # select a diff type
+        value_type = im_value_selector.select_single("QQuickItem", objectName = "item_0")
+        self.pointing_device.click_object(value_type)
+
+        # save contact
+        accept_button = edit_page.select_single(
+            "Button",
+            objectName="accept")
+        self.pointing_device.click_object(accept_button)
+
+        view_page = self.main_window.get_contact_view_page()
+        # check if the type was saved correct
+        im_type = view_page.select_single(
+            "Label",
+            objectName="type_onlineAccount_0")
+        self.assertThat(im_type.text, Eventually(Equals("Aim")))
 
 
 

@@ -236,6 +236,8 @@ Page {
             }
 
             ContactDetailOnlineAccountsEditor {
+                objectName: "ims"
+
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left

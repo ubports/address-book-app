@@ -23,9 +23,8 @@ Item {
     property bool active: false
     property alias values: listView.model
     property alias currentIndex: listView.currentIndex
-    readonly property bool expanded: state === "expanded"
+    readonly property bool expanded: (state === "expanded") && listView.opacity == 1.0
     readonly property alias text: label.text
-
 
     function selectItem(text) {
         for(var i=0; i < values.length; i++) {
@@ -108,6 +107,7 @@ Item {
 
     ListView {
         id: listView
+        objectName: "valuesListView"
 
         anchors.fill: parent
         clip: true
@@ -116,6 +116,8 @@ Item {
         snapMode: ListView.SnapToItem
 
         delegate: Item {
+            objectName: "item_" + index
+
             anchors {
                 top: parent.top
                 bottom: parent.bottom

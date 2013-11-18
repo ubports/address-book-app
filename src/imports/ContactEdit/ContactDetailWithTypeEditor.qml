@@ -76,6 +76,7 @@ ContactDetailBase {
 
     ValueSelector {
         id: detailTypeSelector
+        objectName: detail ? "type_" + detailToString(detail.type, -1) + "_" + index : ""
 
         visible: (currentIndex != -1)
         active: root.active

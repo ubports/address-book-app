@@ -167,10 +167,17 @@ class AddressBookAppTestCase(AutopilotTestCase):
                 self.type_on_field(email_address_input, address)
 
         if (im_address):
-            im_0 = self.main_window.select_single(
-                "TextInputDetail",
-                objectName="imUri_0")
-            self.type_on_field(im_0, im_address)
+            imGroup = self.main_window.select_single(
+                "ContactDetailGroupWithTypeEditor",
+                objectName="ims")
+            for idx, address in enumerate(im_address):
+                if (idx > 0):
+                    self.create_new_detail(imGroup)
+
+                im_address_input = self.main_window.select_single(
+                    "TextInputDetail",
+                    objectName="imUri_" + str(idx))
+                self.type_on_field(im_address_input, address)
 
         if (street_address):
             street_0 = self.main_window.selepostcode_addressct_single(

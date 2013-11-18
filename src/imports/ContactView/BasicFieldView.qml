@@ -46,6 +46,7 @@ import "../Common"
 
     Label {
         id: typeLabel
+        objectName: detail ? "type_" + detailToString(detail.type, -1) + "_" + root.parentIndex : ""
 
         visible: text != ""
         anchors {
