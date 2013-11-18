@@ -7,7 +7,6 @@ install(DIRECTORY ${AUTOPILOT_DIR}
     DESTINATION ${PYTHON_PACKAGE_DIR}
     )
 
-include(${CMAKE_SOURCE_DIR}/cmake/autopilot.cmake)
 set(AUTOPILOT_ENV "AUTOPILOT_APP=${address-book-main-app_BINARY_DIR}/address-book-app\;QTCONTACTS_MANAGER_OVERRIDE=memory")
 declare_autopilot_test(${AUTOPILOT_ENV}
                        address_book_app

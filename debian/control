@@ -64,6 +64,7 @@ Depends: ${misc:Depends},
          libautopilot-qt,
          libqt5test5,
          libqt5widgets5,
+         ubuntu-ui-toolkit-autopilot,
          address-book-app (>= ${binary:Version}),
 Description: Test package for address-book-app
  Autopilot tests for the address-book-app package
