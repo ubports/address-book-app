@@ -1,6 +1,6 @@
 project(address-book-app)
 cmake_minimum_required(VERSION 2.8.9)
-set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -10,6 +10,7 @@ set(CMAKE_AUTOMOC ON)
 
 # Standard install paths
 include(GNUInstallDirs)
+include(autopilot)
 
 find_package(Qt5Qml)
 find_package(Qt5Quick)

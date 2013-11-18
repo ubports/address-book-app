@@ -1,4 +1,3 @@
-add_custom_target(autopilot)
 
 option(ENABLE_AUTOPILOT "Enable or Disable autopilot tests" On)
 option(AUTOPILOT_RECORD "Enable or Disable autopilot record tests" OFF)
@@ -30,9 +29,8 @@ if(AUTOPILOT_RECORD OR AUTOPILOT_RECORD_PATH)
 endif()
 
 function(declare_autopilot_test ENVIROMENT TEST_NAME WORKING_DIR)
-    if(AUTOPILOT_BIN)
-        add_custom_command(TARGET autopilot
-            COMMAND ${ENVIROMENT} autopilot run ${TEST_NAME} ${AUTOPILOT_TESTS_ARGS}
-            WORKING_DIRECTORY ${WORKING_DIR})
-    endif()
+    add_custom_target(autopilot)
+    add_custom_command(TARGET autopilot
+        COMMAND ${ENVIROMENT} autopilot run ${TEST_NAME} ${AUTOPILOT_TESTS_ARGS}
+        WORKING_DIRECTORY ${WORKING_DIR})
 endfunction()

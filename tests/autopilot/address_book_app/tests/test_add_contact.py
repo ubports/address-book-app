@@ -16,7 +16,7 @@ from address_book_app.tests import AddressBookAppTestCase
 
 
 class TestAddContact(AddressBookAppTestCase):
-   """ Tests the Add contact """
+    """ Tests the Add contact """
 
     def test_add_and_cancel_contact(self):
         list_page = self.main_window.get_contact_list()
