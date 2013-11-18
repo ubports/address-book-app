@@ -9,7 +9,6 @@
 
 import os.path
 import os
-import time
 
 from autopilot.testcase import AutopilotTestCase
 from autopilot.matchers import Eventually
@@ -94,9 +93,11 @@ class AddressBookAppTestCase(AutopilotTestCase):
 
     def create_new_detail(self, detailGroup):
         detCount = detailGroup.detailsCount
-        add_button = detailGroup.select_single("Icon", objectName="newDetailButton")
+        add_button = detailGroup.select_single("Icon",
+                                               objectName="newDetailButton")
         self.pointing_device.click_object(add_button)
-        self.assertThat(detailGroup.detailsCount, Eventually(Equals(detCount + 1)))
+        self.assertThat(detailGroup.detailsCount,
+                        Eventually(Equals(detCount + 1)))
 
     def edit_contact(self, index):
         contacts = self.main_window.select_many("ContactDelegate")
@@ -118,16 +119,16 @@ class AddressBookAppTestCase(AutopilotTestCase):
         return edit_page
 
     def add_contact(self,
-        first_name,
-        last_name,
-        phone_numbers = None,
-        email_address = None,
-        im_address = None ,
-        street_address = None,
-        locality_address = None,
-        region_address = None,
-        postcode_address = None,
-        country_address = None):
+                    first_name,
+                    last_name,
+                    phone_numbers=None,
+                    email_address=None,
+                    im_address=None,
+                    street_address=None,
+                    locality_address=None,
+                    region_address=None,
+                    postcode_address=None,
+                    country_address=None):
         # execute add new contact
         self.main_window.open_toolbar().click_button("Add")
 
@@ -218,4 +219,3 @@ class AddressBookAppTestCase(AutopilotTestCase):
         # wait for contact list to be visible again
         list_page = self.main_window.get_contact_list_page()
         self.assertThat(list_page.visible, Eventually(Equals(True)))
-

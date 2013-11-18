@@ -8,7 +8,6 @@
 """Tests for the Addressbook App"""
 
 from __future__ import absolute_import
-import time
 from testtools.matchers import Equals
 from autopilot.matchers import Eventually
 
@@ -57,7 +56,7 @@ class TestEditContact(AddressBookAppTestCase):
 
     def test_remove_phone(self):
         self.add_contact("Fulano", "de Tal", ["3321 2300", "3321 2301"])
-        edit_page = self.edit_contact(0)
+        self.edit_contact(0)
 
         # clear phone 1
         phone_number_1 = self.main_window.select_single(
@@ -86,7 +85,7 @@ class TestEditContact(AddressBookAppTestCase):
 
     def test_add_email(self):
         self.add_contact("Fulano", "")
-        edit_page = self.edit_contact(0)
+        self.edit_contact(0)
 
         # fill email address
         email_field = self.main_window.select_single(
@@ -113,11 +112,12 @@ class TestEditContact(AddressBookAppTestCase):
         phone_label_1 = view_page.select_single(
             "Label",
             objectName="label_emailAddress_0.0")
-        self.assertThat(phone_label_1.text, Eventually(Equals("fulano@internet.com.br")))
+        self.assertThat(phone_label_1.text,
+                        Eventually(Equals("fulano@internet.com.br")))
 
     def test_remove_email(self):
         self.add_contact("Fulano", "de Tal", None, ["fulano@email.com"])
-        edit_page = self.edit_contact(0)
+        self.edit_contact(0)
 
         # clear email
         email_address_0 = self.main_window.select_single(
@@ -140,7 +140,7 @@ class TestEditContact(AddressBookAppTestCase):
 
     def test_clear_names(self):
         self.add_contact("Fulano", "de Tal")
-        edit_page = self.edit_contact(0)
+        self.edit_contact(0)
 
         first_name_field = self.main_window.select_single(
             "TextInputDetail",
@@ -170,7 +170,7 @@ class TestEditContact(AddressBookAppTestCase):
         self.assertThat(view_page.title, Eventually(Equals("Fulano de Tal")))
 
     def test_im_type(self):
-        self.add_contact("Fulano", "de Tal", im_address = ["im@account.com"])
+        self.add_contact("Fulano", "de Tal", im_address=["im@account.com"])
         edit_page = self.edit_contact(0)
 
         # Change Im type
@@ -181,7 +181,9 @@ class TestEditContact(AddressBookAppTestCase):
         self.assertThat(im_value_selector.expanded, Eventually(Equals(True)))
 
         # select a diff type
-        value_type = im_value_selector.select_single("QQuickItem", objectName = "item_0")
+        value_type = im_value_selector.select_single(
+            "QQuickItem",
+            objectName="item_0")
         self.pointing_device.click_object(value_type)
 
         # save contact
