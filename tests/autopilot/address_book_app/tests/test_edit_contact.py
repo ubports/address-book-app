@@ -16,19 +16,19 @@ from address_book_app.tests import AddressBookAppTestCase
 
 
 class TestEditContact(AddressBookAppTestCase):
-    """Tests the edit contact"""
+   """Tests edit a contact"""
 
     def test_add_new_phone(self):
         self.add_contact("Fulano", "de Tal", ["3321 2300"])
         edit_page = self.edit_contact(0)
 
-        """ Add a new phone """
+        # Add a new phone
         phoneGroup = edit_page.select_single(
             "ContactDetailGroupWithTypeEditor",
             objectName="phones")
         self.create_new_detail(phoneGroup)
 
-        """ fill phone number """
+        # fill phone number
         phone_number_1 = self.main_window.select_single(
             "TextInputDetail",
             objectName="phoneNumber_1")
@@ -39,17 +39,17 @@ class TestEditContact(AddressBookAppTestCase):
             objectName="accept")
         self.pointing_device.click_object(acceptButton)
 
-        """ go back to view page """
+        # go back to view page
         view_page = self.main_window.get_contact_view_page()
         self.assertThat(view_page.visible, Eventually(Equals(True)))
 
-        """ check if we have two phones"""
+        # check if we have two phones"""
         phone_group = view_page.select_single(
             "ContactDetailGroupWithTypeView",
             objectName="phones")
         self.assertThat(phone_group.detailsCount, Eventually(Equals(2)))
 
-        """ check if the new value is correct """
+        # check if the new value is correct
         phone_label_1 = view_page.select_single(
             "Label",
             objectName="label_phoneNumber_1.0")
@@ -59,26 +59,26 @@ class TestEditContact(AddressBookAppTestCase):
         self.add_contact("Fulano", "de Tal", ["3321 2300", "3321 2301"])
         edit_page = self.edit_contact(0)
 
-        """ clear phone 1 """
+        # clear phone 1
         phone_number_1 = self.main_window.select_single(
             "TextInputDetail",
             objectName="phoneNumber_1")
         self.clear_text_on_field(phone_number_1)
 
-        """ Save contact """
+        # Save contact
         acceptButton = self.main_window.select_single(
             "Button",
             objectName="accept")
         self.pointing_device.click_object(acceptButton)
 
-        """ check if we have onlye one phone """
+        # check if we have onlye one phone
         view_page = self.main_window.get_contact_view_page()
         phone_group = view_page.select_single(
             "ContactDetailGroupWithTypeView",
             objectName="phones")
         self.assertThat(phone_group.detailsCount, Eventually(Equals(1)))
 
-        """ check if the new value is correct """
+        # check if the new value is correct
         phone_label_1 = view_page.select_single(
             "Label",
             objectName="label_phoneNumber_0.0")
@@ -88,7 +88,7 @@ class TestEditContact(AddressBookAppTestCase):
         self.add_contact("Fulano", "")
         edit_page = self.edit_contact(0)
 
-        """ fill email address """
+        # fill email address
         email_field = self.main_window.select_single(
             "TextInputDetail",
             objectName="emailAddress_0")
@@ -99,17 +99,17 @@ class TestEditContact(AddressBookAppTestCase):
             objectName="accept")
         self.pointing_device.click_object(acceptButton)
 
-        """ go back to view page """
+        # go back to view page
         view_page = self.main_window.get_contact_view_page()
         self.assertThat(view_page.visible, Eventually(Equals(True)))
 
-        """ check if we have a new email """
+        # check if we have a new email
         email_group = view_page.select_single(
             "ContactDetailGroupWithTypeView",
             objectName="emails")
         self.assertThat(email_group.detailsCount, Eventually(Equals(1)))
 
-        """ check if the new value is correct """
+        # check if the new value is correct
         phone_label_1 = view_page.select_single(
             "Label",
             objectName="label_emailAddress_0.0")
@@ -119,19 +119,19 @@ class TestEditContact(AddressBookAppTestCase):
         self.add_contact("Fulano", "de Tal", None, ["fulano@email.com"])
         edit_page = self.edit_contact(0)
 
-        """ clear email """
+        # clear email
         email_address_0 = self.main_window.select_single(
             "TextInputDetail",
             objectName="emailAddress_0")
         self.clear_text_on_field(email_address_0)
 
-        """ Save contact """
+        # Save contact
         acceptButton = self.main_window.select_single(
             "Button",
             objectName="accept")
         self.pointing_device.click_object(acceptButton)
 
-        """ check if the email list is empty """
+        # check if the email list is empty
         view_page = self.main_window.get_contact_view_page()
         emails_group = view_page.select_single(
             "ContactDetailGroupWithTypeView",
@@ -149,23 +149,23 @@ class TestEditContact(AddressBookAppTestCase):
             "TextInputDetail",
             objectName="lastName")
 
-        """ clear names """
+        # clear names
         self.clear_text_on_field(first_name_field)
         self.clear_text_on_field(last_name_field)
 
-        """ check if is possible to save a contact without name """
+        # check if is possible to save a contact without name
         accept_button = self.main_window.select_single(
             "Button",
             objectName="accept")
         self.assertThat(accept_button.enabled, Eventually(Equals(False)))
 
-        """ Cancel edit """
+        # Cancel edit
         cancel_button = self.main_window.select_single(
             "Button",
             objectName="reject")
         self.pointing_device.click_object(cancel_button)
 
-        """ Check if the names still there """
+        # Check if the names still there
         view_page = self.main_window.get_contact_view_page()
         self.assertThat(view_page.title, Eventually(Equals("Fulano de Tal")))
 
@@ -191,11 +191,9 @@ class TestEditContact(AddressBookAppTestCase):
         self.pointing_device.click_object(accept_button)
 
         view_page = self.main_window.get_contact_view_page()
+
         # check if the type was saved correct
         im_type = view_page.select_single(
             "Label",
             objectName="type_onlineAccount_0")
         self.assertThat(im_type.text, Eventually(Equals("Aim")))
-
-
-
