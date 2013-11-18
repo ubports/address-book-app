@@ -16,7 +16,7 @@ from address_book_app.tests import AddressBookAppTestCase
 
 
 class TestEditContact(AddressBookAppTestCase):
-   """Tests edit a contact"""
+    """Tests edit a contact"""
 
     def test_add_new_phone(self):
         self.add_contact("Fulano", "de Tal", ["3321 2300"])

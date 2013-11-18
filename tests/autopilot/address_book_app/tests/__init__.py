@@ -64,13 +64,12 @@ class AddressBookAppTestCase(AutopilotTestCase):
 
     def type_on_field(self, field, text):
         x, y, w, h = field.globalRect
-
-        """ Drag start possition """
+        # Drag start possition
         px = x + (w / 2)
         py = y + h + 3
         endY = y - (h * 0.30)
 
-        """ Make sure that the field is visible """
+        # Make sure that the field is visible
         flickable = self.main_window.get_contact_edit_page().select_single(
             "QQuickFlickable",
             objectName="scrollArea")
@@ -79,15 +78,16 @@ class AddressBookAppTestCase(AutopilotTestCase):
 
         self.pointing_device.click_object(field)
         self.assertThat(field.activeFocus, Eventually(Equals(True)))
+
         self.keyboard.type(text, delay=0)
         self.assertThat(field.text, Eventually(Equals(text)))
 
     def clear_text_on_field(self, field):
-        """ Make sure the field has focus """
+        # Make sure the field has focus
         self.pointing_device.click_object(field)
         self.assertThat(field.activeFocus, Eventually(Equals(True)))
 
-        """ click on clear button """
+        # click on clear button
         clear_button = field.select_single("AbstractButton")
         self.pointing_device.click_object(clear_button)
         self.assertThat(field.text, Eventually(Equals("")))
@@ -108,7 +108,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
         view_page = self.main_window.get_contact_view_page()
         self.assertThat(view_page.visible, Eventually(Equals(True)))
 
-        """ Edit contact """
+        # Edit contact
         self.main_window.open_toolbar().click_button("edit")
         self.assertThat(view_page.visible, Eventually(Equals(False)))
 
@@ -128,7 +128,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
         region_address = None,
         postcode_address = None,
         country_address = None):
-        """ execute add new contact """
+        # execute add new contact
         self.main_window.open_toolbar().click_button("Add")
 
         first_name_field = self.main_window.select_single(
@@ -215,7 +215,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
             objectName="accept")
         self.pointing_device.click_object(accept_button)
 
-        """ wait for contact list to be visible again """
+        # wait for contact list to be visible again
         list_page = self.main_window.get_contact_list_page()
         self.assertThat(list_page.visible, Eventually(Equals(True)))
 
