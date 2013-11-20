@@ -37,6 +37,8 @@ ContactDetailBase {
 
         height: childrenRect.height
         Repeater {
+            id: fieldRepeater
+
             model: root.fields
             Loader {
                 id: field
@@ -55,6 +57,9 @@ ContactDetailBase {
                     property: "detail"
                     value: root.detail
                 }
+
+                KeyNavigation.backtab : index > 0 ? fieldRepeater.itemAt(index - 1) : null
+                KeyNavigation.tab: index < repeater.count - 1 ? fieldRepeater.itemAt(index + 1) : null
             }
         }
     }
