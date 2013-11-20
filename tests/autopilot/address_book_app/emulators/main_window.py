@@ -18,3 +18,6 @@ class MainWindow(uitk.MainView):
     def get_contact_edit_page(self):
         return self.select_single("ContactEditor",
                                   objectName="contactEditorPage")
+
+    def get_keyboard_rectangle(self):
+        return self.select_single("KeyboardRectangle")

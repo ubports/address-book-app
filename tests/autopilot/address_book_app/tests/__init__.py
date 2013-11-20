@@ -9,9 +9,12 @@
 
 import os.path
 import os
+import time
+import subprocess
 
 from autopilot.testcase import AutopilotTestCase
 from autopilot.matchers import Eventually
+from autopilot.platform import model
 from testtools.matchers import Equals
 
 from address_book_app.emulators.main_window import MainWindow
@@ -28,6 +31,10 @@ class AddressBookAppTestCase(AutopilotTestCase):
         self.pointing_device = toolkit_emulators.get_pointing_device()
         super(AddressBookAppTestCase, self).setUp()
 
+        # stop vkb
+        if model() != "Desktop":
+             subprocess.check_call(["/sbin/initctl", "stop", "maliit-server"])
+
         if 'AUTOPILOT_APP' in os.environ:
             self.app_bin = os.environ['AUTOPILOT_APP']
         else:
@@ -42,6 +49,13 @@ class AddressBookAppTestCase(AutopilotTestCase):
             self.launch_test_local()
 
         self.main_window.visible.wait_for(True)
+
+    def tearDown(self):
+        super(AddressBookAppTestCase, self).tearDown()
+
+        # start the vkb
+        if model() != "Desktop":
+             subprocess.check_call(["/sbin/initctl", "start", "maliit-server"])
 
     def launch_test_local(self):
         self.app = self.launch_test_application(
@@ -62,20 +76,19 @@ class AddressBookAppTestCase(AutopilotTestCase):
         return self.app.select_single(MainWindow)
 
     def type_on_field(self, field, text):
-        x, y, w, h = field.globalRect
-
-        """ Drag start possition """
-        px = x + (w / 2)
-        py = y + h + 3
-
-        """ Make sure that the field is visible """
-        flickable = self.main_window.get_contact_edit_page().select_single(
+        flickable = self.main_window.get_contact_edit_page().wait_select_single(
             "QQuickFlickable",
             objectName="scrollArea")
-        self.pointing_device.drag(px, py, px, 0)
         self.assertThat(flickable.flicking, Eventually(Equals(False)))
 
-        self.pointing_device.click_object(field)
+        while (field.activeFocus != True):
+            # wait flicking stops to move to the next field
+            self.assertThat(flickable.flicking, Eventually(Equals(False)))
+
+            # use tab to move to the next field
+            self.keyboard.press_and_release("Tab")
+            time.sleep(0.1)
+
         self.assertThat(field.activeFocus, Eventually(Equals(True)))
         self.keyboard.type(text)
         self.assertThat(field.text, Eventually(Equals(text)))

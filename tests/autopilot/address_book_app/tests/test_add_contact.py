@@ -199,7 +199,7 @@ class TestAddContact(AddressBookAppTestCase):
         phone_number_0 = self.main_window.select_single(
             "TextInputDetail",
             objectName="phoneNumber_0")
-        self.type_on_field(phone_number_0, "+55 81 8777 7755")
+        self.type_on_field(phone_number_0, "55 81 8777 7755")
 
         # Save contact
         acceptButton = self.main_window.select_single(
@@ -237,13 +237,13 @@ class TestAddContact(AddressBookAppTestCase):
         email_0 = self.main_window.select_single(
             "TextInputDetail",
             objectName="emailAddress_0")
-        self.type_on_field(email_0, "holmes@sherlock.uk")
+        self.type_on_field(email_0, "holmes.sherlock.uk")
 
         # fill im
         im_0 = self.main_window.select_single(
             "TextInputDetail",
             objectName="imUri_0")
-        self.type_on_field(im_0, "sh@im.com.br")
+        self.type_on_field(im_0, "sh.im.com.br")
 
         # fill address
         street_0 = self.main_window.select_single(
