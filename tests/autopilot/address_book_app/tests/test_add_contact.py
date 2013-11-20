@@ -30,7 +30,7 @@ class TestAddContact(AddressBookAppTestCase):
         self.assertThat(edit_page.visible, Eventually(Equals(True)))
 
         # cancel new contact without save
-        cancelButton = self.main_window.select_single(
+        cancelButton = self.main_window.wait_select_single(
             "Button",
             objectName="reject")
         self.pointing_device.click_object(cancelButton)
@@ -39,7 +39,7 @@ class TestAddContact(AddressBookAppTestCase):
         self.assertThat(list_page.visible, Eventually(Equals(True)))
 
         # Check if the contact list still empty
-        list_view = self.main_window.select_single(
+        list_view = self.main_window.wait_select_single(
             "ContactListView",
             objectName="contactListView")
         self.assertThat(list_view.count, Eventually(Equals(0)))
@@ -50,17 +50,17 @@ class TestAddContact(AddressBookAppTestCase):
         edit_page = self.main_window.get_contact_edit_page()
 
         # Try to save a empty contact
-        acceptButton = self.main_window.select_single(
+        acceptButton = self.main_window.wait_select_single(
             "Button",
             objectName="accept")
 
         # Save button must be disabled
         self.assertThat(acceptButton.enabled, Eventually(Equals(False)))
 
-        firstNameField = self.main_window.select_single(
+        firstNameField = self.main_window.wait_select_single(
             "TextInputDetail",
             objectName="firstName")
-        lastNameField = self.main_window.select_single(
+        lastNameField = self.main_window.wait_select_single(
             "TextInputDetail",
             objectName="lastName")
 
@@ -97,7 +97,7 @@ class TestAddContact(AddressBookAppTestCase):
         self.assertThat(edit_page.visible, Eventually(Equals(True)))
 
         # Check if the contact list still empty
-        list_view = self.main_window.select_single(
+        list_view = self.main_window.wait_select_single(
             "ContactListView",
             objectName="contactListView")
         self.assertThat(list_view.count, Eventually(Equals(0)))
@@ -106,10 +106,10 @@ class TestAddContact(AddressBookAppTestCase):
         # execute add new contact
         self.main_window.open_toolbar().click_button("Add")
 
-        firstNameField = self.main_window.select_single(
+        firstNameField = self.main_window.wait_select_single(
             "TextInputDetail",
             objectName="firstName")
-        lastNameField = self.main_window.select_single(
+        lastNameField = self.main_window.wait_select_single(
             "TextInputDetail",
             objectName="lastName")
 
@@ -120,7 +120,7 @@ class TestAddContact(AddressBookAppTestCase):
         self.type_on_field(lastNameField, "de Tal")
 
         # Save contact
-        acceptButton = self.main_window.select_single(
+        acceptButton = self.main_window.wait_select_single(
             "Button",
             objectName="accept")
         self.pointing_device.click_object(acceptButton)
@@ -130,7 +130,7 @@ class TestAddContact(AddressBookAppTestCase):
         self.assertThat(list_page.visible, Eventually(Equals(True)))
 
         # Check if contact was added
-        list_view = self.main_window.select_single(
+        list_view = self.main_window.wait_select_single(
             "ContactListView",
             objectName="contactListView")
         self.assertThat(list_view.count, Eventually(Equals(1)))
@@ -139,7 +139,7 @@ class TestAddContact(AddressBookAppTestCase):
         # execute add new contact
         self.main_window.open_toolbar().click_button("Add")
 
-        firstNameField = self.main_window.select_single(
+        firstNameField = self.main_window.wait_select_single(
             "TextInputDetail",
             objectName="firstName")
 
@@ -147,13 +147,13 @@ class TestAddContact(AddressBookAppTestCase):
         self.type_on_field(firstNameField, "Fulano")
 
         # Save contact
-        acceptButton = self.main_window.select_single(
+        acceptButton = self.main_window.wait_select_single(
             "Button",
             objectName="accept")
         self.pointing_device.click_object(acceptButton)
 
         # Check if contact was added
-        list_view = self.main_window.select_single(
+        list_view = self.main_window.wait_select_single(
             "ContactListView",
             objectName="contactListView")
         self.assertThat(list_view.count, Eventually(Equals(1)))
@@ -162,7 +162,7 @@ class TestAddContact(AddressBookAppTestCase):
         # execute add new contact
         self.main_window.open_toolbar().click_button("Add")
 
-        lastNameField = self.main_window.select_single(
+        lastNameField = self.main_window.wait_select_single(
             "TextInputDetail",
             objectName="lastName")
 
@@ -170,13 +170,13 @@ class TestAddContact(AddressBookAppTestCase):
         self.type_on_field(lastNameField, "de Tal")
 
         # Save contact
-        acceptButton = self.main_window.select_single(
+        acceptButton = self.main_window.wait_select_single(
             "Button",
             objectName="accept")
         self.pointing_device.click_object(acceptButton)
 
         # Check if contact was added
-        list_view = self.main_window.select_single(
+        list_view = self.main_window.wait_select_single(
             "ContactListView",
             objectName="contactListView")
         self.assertThat(list_view.count, Eventually(Equals(1)))
@@ -186,29 +186,29 @@ class TestAddContact(AddressBookAppTestCase):
         self.main_window.open_toolbar().click_button("Add")
 
         # fill name
-        firstNameField = self.main_window.select_single(
+        firstNameField = self.main_window.wait_select_single(
             "TextInputDetail",
             objectName="firstName")
-        lastNameField = self.main_window.select_single(
+        lastNameField = self.main_window.wait_select_single(
             "TextInputDetail",
             objectName="lastName")
         self.type_on_field(firstNameField, "Fulano")
         self.type_on_field(lastNameField, "de Tal")
 
         # fill phone number
-        phone_number_0 = self.main_window.select_single(
+        phone_number_0 = self.main_window.wait_select_single(
             "TextInputDetail",
             objectName="phoneNumber_0")
         self.type_on_field(phone_number_0, "55 81 8777 7755")
 
         # Save contact
-        acceptButton = self.main_window.select_single(
+        acceptButton = self.main_window.wait_select_single(
             "Button",
             objectName="accept")
         self.pointing_device.click_object(acceptButton)
 
         # Check if contact was added
-        list_view = self.main_window.select_single(
+        list_view = self.main_window.wait_select_single(
             "ContactListView",
             objectName="contactListView")
         self.assertThat(list_view.count, Eventually(Equals(1)))
@@ -218,63 +218,63 @@ class TestAddContact(AddressBookAppTestCase):
         self.main_window.open_toolbar().click_button("Add")
 
         # fill name
-        firstNameField = self.main_window.select_single(
+        firstNameField = self.main_window.wait_select_single(
             "TextInputDetail",
             objectName="firstName")
-        lastNameField = self.main_window.select_single(
+        lastNameField = self.main_window.wait_select_single(
             "TextInputDetail",
             objectName="lastName")
         self.type_on_field(firstNameField, "Sherlock")
         self.type_on_field(lastNameField, "Holmes")
 
         # fill phone number
-        phone_number_0 = self.main_window.select_single(
+        phone_number_0 = self.main_window.wait_select_single(
             "TextInputDetail",
             objectName="phoneNumber_0")
         self.type_on_field(phone_number_0, "81 8777 7755")
 
         # fill email
-        email_0 = self.main_window.select_single(
+        email_0 = self.main_window.wait_select_single(
             "TextInputDetail",
             objectName="emailAddress_0")
         self.type_on_field(email_0, "holmes.sherlock.uk")
 
         # fill im
-        im_0 = self.main_window.select_single(
+        im_0 = self.main_window.wait_select_single(
             "TextInputDetail",
             objectName="imUri_0")
         self.type_on_field(im_0, "sh.im.com.br")
 
         # fill address
-        street_0 = self.main_window.select_single(
+        street_0 = self.main_window.wait_select_single(
             "TextInputDetail",
             objectName="streetAddress_0")
         self.type_on_field(street_0, "221B Baker Street")
-        locality_0 = self.main_window.select_single(
+        locality_0 = self.main_window.wait_select_single(
             "TextInputDetail",
             objectName="localityAddress_0")
         self.type_on_field(locality_0, "West End")
-        region_0 = self.main_window.select_single(
+        region_0 = self.main_window.wait_select_single(
             "TextInputDetail",
             objectName="regionAddress_0")
         self.type_on_field(region_0, "London")
-        postcode_0 = self.main_window.select_single(
+        postcode_0 = self.main_window.wait_select_single(
             "TextInputDetail",
             objectName="postcodeAddress_0")
         self.type_on_field(postcode_0, "7777")
-        country_0 = self.main_window.select_single(
+        country_0 = self.main_window.wait_select_single(
             "TextInputDetail",
             objectName="countryAddress_0")
         self.type_on_field(country_0, "united kingdom")
 
         # Save contact
-        acceptButton = self.main_window.select_single(
+        acceptButton = self.main_window.wait_select_single(
             "Button",
             objectName="accept")
         self.pointing_device.click_object(acceptButton)
 
         # Check if contact was added
-        list_view = self.main_window.select_single(
+        list_view = self.main_window.wait_select_single(
             "ContactListView",
             objectName="contactListView")
         self.assertThat(list_view.count, Eventually(Equals(1)))
