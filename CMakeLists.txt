@@ -1,6 +1,6 @@
 project(address-book-app)
 cmake_minimum_required(VERSION 2.8.9)
-set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -10,6 +10,7 @@ set(CMAKE_AUTOMOC ON)
 
 # Standard install paths
 include(GNUInstallDirs)
+include(autopilot)
 
 find_package(Qt5Qml)
 find_package(Qt5Quick)
@@ -22,7 +23,7 @@ set(API_VERSION 0.1)
 
 # for dh_translations to extract the domain
 # (regarding syntax consistency, see http://pad.lv/1181187)
-set (GETTEXT_PACKAGE "address-book-app")
+set(GETTEXT_PACKAGE "address-book-app")
 
 # Tests
 enable_testing()

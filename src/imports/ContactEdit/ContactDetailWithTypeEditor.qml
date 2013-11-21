@@ -109,11 +109,14 @@ ContactDetailBase {
         height: childrenRect.height
 
         Repeater {
+            id: fieldRepeater
             model: root.fields
 
             focus: true
             TextInputDetail {
                 id: detail
+                objectName: detailToString(root.detail.type, modelData) + "_" + root.index
+
                 Component.onCompleted: focus = (index === 0)
                 focus: false
                 detail: root.detail
@@ -128,6 +131,9 @@ ContactDetailBase {
                 }
                 height: root.active ? root.itemHeight + units.gu(1) : root.itemHeight
                 onRemoveClicked: root.contact.removeDetail(root.detail)
+
+                KeyNavigation.backtab : index > 0 ? fieldRepeater.itemAt(index - 1) : null
+                KeyNavigation.tab: index < repeater.count - 1 ? fieldRepeater.itemAt(index + 1) : null
             }
         }
     }

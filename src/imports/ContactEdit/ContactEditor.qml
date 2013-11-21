@@ -22,6 +22,7 @@ import Ubuntu.Components.Popups 0.1
 
 Page {
     id: contactEditor
+    objectName: "contactEditorPage"
 
     property QtObject contact: null
     property QtObject model: null
@@ -163,6 +164,7 @@ Page {
     flickable: null
     Flickable {
         id: scrollArea
+        objectName: "scrollArea"
 
         flickableDirection: Flickable.VerticalFlick
         anchors {
@@ -199,19 +201,24 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight + units.gu(3)
+                KeyNavigation.tab: avatarEditor
             }
 
             ContactDetailAvatarEditor {
+                id: avatarEditor
+
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
                 height: implicitHeight
+                KeyNavigation.backtab : nameEditor
+                KeyNavigation.tab: phonesEditor
             }
 
             ContactDetailPhoneNumbersEditor {
-                id: phones
+                id: phonesEditor
 
                 contact: contactEditor.contact
                 anchors {
@@ -219,42 +226,59 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                KeyNavigation.backtab : avatarEditor
+                KeyNavigation.tab: emailsEditor
             }
 
             ContactDetailEmailsEditor {
+                id: emailsEditor
+
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
                 height: implicitHeight
+                KeyNavigation.backtab : phonesEditor
+                KeyNavigation.tab: accountsEditor
             }
 
             ContactDetailOnlineAccountsEditor {
+                id: accountsEditor
+
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
                 height: implicitHeight
+                KeyNavigation.backtab : emailsEditor
+                KeyNavigation.tab: addressesEditor
             }
 
             ContactDetailAddressesEditor {
+                id: addressesEditor
+
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
                 height: implicitHeight
+                KeyNavigation.backtab : accountsEditor
+                KeyNavigation.tab: organizationsEditor
             }
 
             ContactDetailOrganizationsEditor {
+                id: organizationsEditor
+
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
                 height: implicitHeight
+                KeyNavigation.backtab : addressesEditor
             }
         }
     }

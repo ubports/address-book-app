@@ -159,7 +159,7 @@ bool AddressBookApp::setup()
     m_view->rootContext()->setContextProperty("application", this);
     m_view->rootContext()->setContextProperty("contactKey", contactKey);
 
-    QUrl source(fullPath("/imports/main.qml"));
+    QUrl source(fullPath("/imports/MainWindow.qml"));
     m_view->setSource(source);
 
     if (fullScreen) {

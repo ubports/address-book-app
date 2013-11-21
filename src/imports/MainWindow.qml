@@ -19,7 +19,7 @@ import QtContacts 5.0
 import Ubuntu.Components 0.1
 
 MainView {
-    id: mainView
+    id: mainWindow
 
     width: units.gu(40)
     height: units.gu(71)
@@ -64,7 +64,7 @@ MainView {
     Component.onCompleted: {
         Theme.name = "Ubuntu.Components.Themes.SuruGradient"
         mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"))
-        mainView.applicationReady()
+        mainWindow.applicationReady()
     }
 
     Connections {

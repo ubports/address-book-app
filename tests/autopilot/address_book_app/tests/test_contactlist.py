@@ -14,15 +14,11 @@ from testtools.matchers import Equals
 
 from address_book_app.tests import AddressBookAppTestCase
 
-import unittest
-import time
-import os
-from os import path
-
 
 class TestContactList(AddressBookAppTestCase):
     """Tests the contact list features"""
 
     def test_contact_list(self):
-        contact_list = self.main_window.get_object("ContactListPage", "ContactList")
+        contact_list = self.main_window.get_contact_list()
         self.assertThat(contact_list.visible, Eventually(Equals(True)))
+        pass
