@@ -27,6 +27,17 @@ Item {
         StandardAnimation { }
     }
 
+    states: [
+        State {
+            name: "hidden"
+            when: keyboardRect.height == 0
+        },
+        State {
+            name: "shown"
+            when: keyboardRect.height == Qt.inputMethod.keyboardRectangle.height
+        }
+    ]
+
     function recursiveFindFocusedItem(parent) {
         if (parent.activeFocus) {
             return parent;

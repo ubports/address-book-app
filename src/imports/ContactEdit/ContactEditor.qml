@@ -156,7 +156,7 @@ Page {
         running: false
         onTriggered: {
             // get last phone field and set focus
-            var lastPhoneField = phones.detailDelegates[phones.detailDelegates.length - 2].item
+            var lastPhoneField = phonesEditor.detailDelegates[phonesEditor.detailDelegates.length - 2].item
             lastPhoneField.forceActiveFocus()
         }
     }
@@ -201,19 +201,24 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight + units.gu(3)
+                KeyNavigation.tab: avatarEditor
             }
 
             ContactDetailAvatarEditor {
+                id: avatarEditor
+
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
                 height: implicitHeight
+                KeyNavigation.backtab : nameEditor
+                KeyNavigation.tab: phonesEditor
             }
 
             ContactDetailPhoneNumbersEditor {
-                id: phones
+                id: phonesEditor
                 objectName: "phones"
 
                 contact: contactEditor.contact
@@ -222,9 +227,12 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                KeyNavigation.backtab : avatarEditor
+                KeyNavigation.tab: emailsEditor
             }
 
             ContactDetailEmailsEditor {
+                id: emailsEditor
                 objectName: "emails"
 
                 contact: contactEditor.contact
@@ -233,9 +241,12 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                KeyNavigation.backtab : phonesEditor
+                KeyNavigation.tab: accountsEditor
             }
 
             ContactDetailOnlineAccountsEditor {
+                id: accountsEditor
                 objectName: "ims"
 
                 contact: contactEditor.contact
@@ -244,24 +255,33 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                KeyNavigation.backtab : emailsEditor
+                KeyNavigation.tab: addressesEditor
             }
 
             ContactDetailAddressesEditor {
+                id: addressesEditor
+
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
                 height: implicitHeight
+                KeyNavigation.backtab : accountsEditor
+                KeyNavigation.tab: organizationsEditor
             }
 
             ContactDetailOrganizationsEditor {
+                id: organizationsEditor
+
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
                 height: implicitHeight
+                KeyNavigation.backtab : addressesEditor
             }
         }
     }
