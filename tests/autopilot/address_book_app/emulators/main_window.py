@@ -22,4 +22,3 @@ class MainWindow(uitk.MainView):
     def get_contact_view_page(self):
         return self.wait_select_single("ContactView",
                                        objectName="contactViewPage")
-

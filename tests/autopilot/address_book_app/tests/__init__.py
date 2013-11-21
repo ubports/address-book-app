@@ -33,7 +33,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
 
         # stop vkb
         if model() != "Desktop":
-             subprocess.check_call(["/sbin/initctl", "stop", "maliit-server"])
+            subprocess.check_call(["/sbin/initctl", "stop", "maliit-server"])
 
         if 'AUTOPILOT_APP' in os.environ:
             self.app_bin = os.environ['AUTOPILOT_APP']
@@ -55,7 +55,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
 
         # start the vkb
         if model() != "Desktop":
-             subprocess.check_call(["/sbin/initctl", "start", "maliit-server"])
+            subprocess.check_call(["/sbin/initctl", "start", "maliit-server"])
 
     def launch_test_local(self):
         self.app = self.launch_test_application(
@@ -76,11 +76,12 @@ class AddressBookAppTestCase(AutopilotTestCase):
         return self.app.select_single(MainWindow)
 
     def type_on_field(self, field, text):
-        flickable = self.main_window.get_contact_edit_page().wait_select_single(
+        edit_page = self.main_window.get_contact_edit_page()
+        flickable = edit_page.wait_select_single(
             "QQuickFlickable",
             objectName="scrollArea")
 
-        while (field.activeFocus != True):
+        while (not field.activeFocus):
             # wait flicking stops to move to the next field
             self.assertThat(flickable.flicking, Eventually(Equals(False)))
 
