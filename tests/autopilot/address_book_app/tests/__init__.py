@@ -75,6 +75,15 @@ class AddressBookAppTestCase(AutopilotTestCase):
     def main_window(self):
         return self.app.select_single(MainWindow)
 
+    def select_a_value(self, field, value_selector, value):
+        # Make sure the field has focus
+        self.pointing_device.click_object(field)
+        self.assertThat(field.activeFocus, Eventually(Equals(True)))
+
+        while(value_selector.currentIndex != value):
+            self.keyboard.press_and_release("Shift+Right")
+            time.sleep(0.1)
+
     def type_on_field(self, field, text):
         edit_page = self.main_window.get_contact_edit_page()
         flickable = edit_page.wait_select_single(
@@ -91,7 +100,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
 
         self.assertThat(field.activeFocus, Eventually(Equals(True)))
 
-        self.keyboard.type(text, delay=0)
+        self.keyboard.type(text)
         self.assertThat(field.text, Eventually(Equals(text)))
 
     def clear_text_on_field(self, field):

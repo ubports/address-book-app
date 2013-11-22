@@ -180,11 +180,12 @@ class TestEditContact(AddressBookAppTestCase):
         self.pointing_device.click_object(im_value_selector)
         self.assertThat(im_value_selector.expanded, Eventually(Equals(True)))
 
-        # select a diff type
-        value_type = im_value_selector.select_single(
-            "QQuickItem",
-            objectName="item_0")
-        self.pointing_device.click_object(value_type)
+        im_address_0 = self.main_window.select_single(
+            "TextInputDetail",
+            objectName="imUri_0")
+
+        # select the type with index = 0
+        self.select_a_value(im_address_0, im_value_selector, 0)
 
         # save contact
         accept_button = edit_page.select_single(
