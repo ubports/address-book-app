@@ -137,6 +137,16 @@ ContactDetailBase {
                 KeyNavigation.tab: index < repeater.count - 1 ? fieldRepeater.itemAt(index + 1) : null
             }
         }
+        Keys.onReleased: {
+            if ((event.key == Qt.Key_Right) && (event.modifiers & Qt.ShiftModifier)) {
+                detailTypeSelector.moveNext()
+                event.accepted = true
+            } else if ((event.key == Qt.Key_Left) && (event.modifiers & Qt.ShiftModifier)) {
+                detailTypeSelector.movePrevious()
+                event.accepted = true
+            }
+        }
     }
+
 
 }

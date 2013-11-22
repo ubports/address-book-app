@@ -26,7 +26,8 @@ Item {
     readonly property bool expanded: (state === "expanded") && listView.opacity == 1.0
     readonly property alias text: label.text
 
-    function selectItem(text) {
+    function selectItem(text)
+    {
         for(var i=0; i < values.length; i++) {
             if (values[i] == text) {
                 currentIndex = i
@@ -36,6 +37,23 @@ Item {
         currentIndex = -1
     }
 
+    function moveNext()
+    {
+        if (currentIndex < (values.length-1)) {
+            currentIndex++
+        } else {
+            currentIndex = 0
+        }
+    }
+
+    function movePrevious()
+    {
+        if (currentIndex > 0) {
+            currentIndex--
+        } else {
+            currentIndex = values.length - 1
+        }
+    }
     onExpandedChanged: expanded && timer.start()
 
     // FIXME: workaround to close list after a while.
