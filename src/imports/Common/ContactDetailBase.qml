@@ -22,6 +22,7 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 
 ListItem.Empty {
     id: root
+    objectName: detail ? "base_" + detailToString(detail.type, -1) + "_" + index : ""
 
     property QtObject contact: null
     property QtObject detail: null
@@ -68,8 +69,18 @@ ListItem.Empty {
         detailMap[QtContacts.ContactDetail.Address] = addressMap
         detailMap[QtContacts.ContactDetail.OnlineAccount] = imMap
 
+        // detail name
+        var detailNameMap = {}
+        detailNameMap[QtContacts.ContactDetail.Name] = "name"
+        detailNameMap[QtContacts.ContactDetail.PhoneNumber] = "phoneNumber"
+        detailNameMap[QtContacts.ContactDetail.Email] = "email"
+        detailNameMap[QtContacts.ContactDetail.Address] = "address"
+        detailNameMap[QtContacts.ContactDetail.OnlineAccount] = "onlineAccount"
+
         if ((detail in detailMap) && (field in detailMap[detail])) {
             return detailMap[detail][field]
+        } else if ((detail in detailNameMap) && (field == -1)){
+            return detailNameMap[detail]
         } else {
             console.debug("Unknown : [" + detail + "] [" + field + "]")
             return "unknown"

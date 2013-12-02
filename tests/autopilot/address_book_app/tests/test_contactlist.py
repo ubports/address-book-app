@@ -19,6 +19,6 @@ class TestContactList(AddressBookAppTestCase):
     """Tests the contact list features"""
 
     def test_contact_list(self):
-        contact_list = self.main_window.get_contact_list()
+        contact_list = self.main_window.get_contact_list_page()
         self.assertThat(contact_list.visible, Eventually(Equals(True)))
         pass

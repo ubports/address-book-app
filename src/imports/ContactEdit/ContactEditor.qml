@@ -156,7 +156,7 @@ Page {
         running: false
         onTriggered: {
             // get last phone field and set focus
-            var lastPhoneField = phones.detailDelegates[phones.detailDelegates.length - 2].item
+            var lastPhoneField = phonesEditor.detailDelegates[phonesEditor.detailDelegates.length - 2].item
             lastPhoneField.forceActiveFocus()
         }
     }
@@ -219,6 +219,7 @@ Page {
 
             ContactDetailPhoneNumbersEditor {
                 id: phonesEditor
+                objectName: "phones"
 
                 contact: contactEditor.contact
                 anchors {
@@ -232,6 +233,7 @@ Page {
 
             ContactDetailEmailsEditor {
                 id: emailsEditor
+                objectName: "emails"
 
                 contact: contactEditor.contact
                 anchors {
@@ -245,6 +247,7 @@ Page {
 
             ContactDetailOnlineAccountsEditor {
                 id: accountsEditor
+                objectName: "ims"
 
                 contact: contactEditor.contact
                 anchors {

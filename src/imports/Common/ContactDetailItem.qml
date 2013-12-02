@@ -59,7 +59,7 @@ ContactDetailBase {
                 }
 
                 KeyNavigation.backtab : index > 0 ? fieldRepeater.itemAt(index - 1) : null
-                KeyNavigation.tab: index < repeater.count - 1 ? fieldRepeater.itemAt(index + 1) : null
+                KeyNavigation.tab: index < fieldRepeater.count - 1 ? fieldRepeater.itemAt(index + 1) : null
             }
         }
     }

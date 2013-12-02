@@ -89,6 +89,8 @@ ContactDetailGroupWithTypeBase {
 
 
         Icon {
+            objectName: "newDetailButton"
+
             anchors {
                 verticalCenter: parent.verticalCenter
                 right: parent.right

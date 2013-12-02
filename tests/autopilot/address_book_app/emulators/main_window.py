@@ -11,13 +11,14 @@ from ubuntuuitoolkit import emulators as uitk
 class MainWindow(uitk.MainView):
     """An emulator class that makes it easy to interact with the app."""
 
-    def get_contact_list(self):
-        return self.select_single("ContactListPage",
-                                  objectName="contactListPage")
+    def get_contact_list_page(self):
+        return self. wait_select_single("ContactListPage",
+                                        objectName="contactListPage")
 
     def get_contact_edit_page(self):
-        return self.select_single("ContactEditor",
-                                  objectName="contactEditorPage")
+        return self.wait_select_single("ContactEditor",
+                                       objectName="contactEditorPage")
 
-    def get_keyboard_rectangle(self):
-        return self.select_single("KeyboardRectangle")
+    def get_contact_view_page(self):
+        return self.wait_select_single("ContactView",
+                                       objectName="contactViewPage")

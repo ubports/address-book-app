@@ -50,11 +50,14 @@ ContactSimpleListView {
     property bool showFavoritePhoneLabel: true
 
     header: Column {
+        objectName: "listHeader"
+
         width: parent.width
         height: favouritesList.count > 0 ? childrenRect.height : 0
 
         ContactSimpleListView {
             id: favouritesList
+            objectName: "favouritesList"
 
             manager: root.manager
             header: ListItem.Header {

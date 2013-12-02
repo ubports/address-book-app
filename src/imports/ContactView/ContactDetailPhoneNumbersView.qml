@@ -39,6 +39,8 @@ ContactDetailGroupWithTypeView {
         property bool isPreferred: root.contact && root.contact.preferredDetails && detail && root.contact.isPreferredDetail("TEL", detail)
 
         action: Action {
+            objectName: "favoriteAction"
+
             text: i18n.tr("Favorite")
             iconSource: (contact.favorite.favorite && isPreferred) ? "artwork:/favorite-selected.svg" : "artwork:/favorite-unselected.svg"
         }

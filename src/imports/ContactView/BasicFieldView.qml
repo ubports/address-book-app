@@ -26,6 +26,9 @@ import "../Common"
     property alias values: valueList.model
     property alias iconSource: actionIcon.source
     property double lineHeight: units.gu(3)
+    property QtObject detail: null
+    property variant fields: null
+    property int parentIndex: -1
 
     implicitHeight: typeLabel.height + (root.lineHeight * valueList.count) + units.gu(2)
 
@@ -43,6 +46,7 @@ import "../Common"
 
     Label {
         id: typeLabel
+        objectName: detail ? "type_" + detailToString(detail.type, -1) + "_" + root.parentIndex : ""
 
         visible: text != ""
         anchors {
@@ -75,6 +79,7 @@ import "../Common"
 
             Label {
                 id: label
+                objectName: detail && fields ? "label_" + detailToString(detail.type, fields[index]) + "_" + root.parentIndex + "." + index : ""
 
                 anchors {
                     left: parent.left

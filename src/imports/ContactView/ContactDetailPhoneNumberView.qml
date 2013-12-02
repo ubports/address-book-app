@@ -44,6 +44,10 @@ ContactDetailBase {
     BasicFieldView {
         id: view
 
+        parentIndex: root.index
+        detail: root.detail
+        fields: root.fields
+
         anchors {
             left: parent.left
             top: parent.top

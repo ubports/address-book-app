@@ -22,6 +22,7 @@ import Ubuntu.Contacts 0.1 as ContactsUI
 
 Page {
     id: root
+    objectName: "contactViewPage"
 
     readonly property alias contact: contactFetch.contact
     property variant contactId: null
@@ -83,6 +84,8 @@ Page {
             }
 
             ContactDetailPhoneNumbersView {
+                objectName: "phones"
+
                 contact: root.contact
                 anchors {
                     left: parent.left
@@ -92,6 +95,8 @@ Page {
             }
 
             ContactDetailEmailsView {
+                objectName: "emails"
+
                 contact: root.contact
                 anchors {
                     left: parent.left
@@ -146,6 +151,8 @@ Page {
 
     tools: ToolbarItems {
         ToolbarButton {
+            objectName: "delete"
+
             action: Action {
                 text: i18n.tr("Delete")
                 iconSource: "artwork:/delete.png"
@@ -156,6 +163,8 @@ Page {
             }
         }
         ToolbarButton {
+            objectName: "edit"
+
             action: Action {
                 text: i18n.tr("Edit")
                 iconSource: "artwork:/edit.png"
