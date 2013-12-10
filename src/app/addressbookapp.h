@@ -21,6 +21,8 @@
 #include <QQuickView>
 #include <QGuiApplication>
 
+class ContentCommunicator;
+
 class AddressBookApp : public QGuiApplication
 {
     Q_OBJECT
@@ -42,8 +44,10 @@ private:
 
 private:
     QQuickView *m_view;
+    ContentCommunicator *m_contentComm;
     QString m_initialArg;
     bool m_viewReady;
+    bool m_pickingMode;
 };
 
 #endif

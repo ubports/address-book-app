@@ -93,11 +93,23 @@ Page {
         }
 
         onSelectionDone: {
-            var ids = []
-            for (var i=0; i < items.count; i++) {
-                ids.push(items.get(i).model.contact.contactId)
+            if (contentHub.active) {
+                var contacts = []
+                for (var i=0; i < items.count; i++) {
+                    contacts.push(items.get(i).model.contact)
+                }
+                var tempFile = contentHub.createTemporaryFile();
+                contactList.listModel.exportContacts(application.createTemporaryFile(),
+                                                     ["Sync"],
+                                                     contacts);
+                contentHub.returnContacts(tempFile);
+            } else {
+                var ids = []
+                for (var i=0; i < items.count; i++) {
+                    ids.push(items.get(i).model.contact.contactId)
+                }
+                contactList.listModel.removeContacts(ids)
             }
-            contactList.listModel.removeContacts(ids)
         }
 
         onIsInSelectionModeChanged: {
@@ -150,6 +162,20 @@ Page {
         }
         onContactCreated: {
             contactList.positionViewAtContact(contact)
+        }
+    }
+
+    Connections {
+        target: contentHub
+        onActiveChanged: {
+            if (contentHub.active) {
+                // remove any page
+                while(pageStack.depth > 1) {
+                    pageStack.pop()
+                }
+                // enter in selection mode
+                contactList.startSelection();
+            }
         }
     }
 }

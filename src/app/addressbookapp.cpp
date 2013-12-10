@@ -17,7 +17,7 @@
 #include "config.h"
 #include "addressbookapp.h"
 #include "imagescalethread.h"
-
+#include "contentcommunicator.h"
 
 #include <QDir>
 #include <QUrl>
@@ -30,7 +30,6 @@
 #include <QQuickView>
 #include <QLibrary>
 #include <QIcon>
-#include <QTemporaryFile>
 
 #include <QQmlEngine>
 
@@ -43,7 +42,8 @@ static void printUsage(const QStringList& arguments)
              << "[addressbook:///create?phone=<phone-number>"
              << "[--fullscreen]"
              << "[--help]"
-             << "[-testability]";
+             << "[-testability]"
+             << "[--pick-mode]";
 }
 
 static QString fullPath(const QString &fileName)
@@ -79,9 +79,12 @@ static void installIconPath()
 }
 
 AddressBookApp::AddressBookApp(int &argc, char **argv)
-    : QGuiApplication(argc, argv), m_view(0)
+    : QGuiApplication(argc, argv),
+      m_view(0),
+      m_pickingMode(false)
 {
     setApplicationName("AddressBookApp");
+    m_contentComm = new ContentCommunicator(this);
 }
 
 bool AddressBookApp::setup()
@@ -156,6 +159,7 @@ bool AddressBookApp::setup()
     m_view->setTitle("AddressBook");
     m_view->engine()->addImportPath(importPath("/imports/"));
     m_view->rootContext()->setContextProperty("DEFAULT_CONTACT_MANAGER", defaultManager);
+    m_view->rootContext()->setContextProperty("contentHub", m_contentComm);
     m_view->rootContext()->setContextProperty("application", this);
     m_view->rootContext()->setContextProperty("contactKey", contactKey);
 
@@ -183,6 +187,10 @@ AddressBookApp::~AddressBookApp()
 {
     if (m_view) {
         delete m_view;
+    }
+
+    if (m_contentComm) {
+        delete m_contentComm;
     }
 }
 

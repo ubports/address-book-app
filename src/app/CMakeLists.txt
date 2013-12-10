@@ -4,12 +4,14 @@ set(ADDRESS_BOOK_APP_BIN address-book-app)
 
 include_directories(
     ${CMAKE_BINARY_DIR}
+    ${CONTENTHUB_INCLUDE_DIRS}
 )
-
 
 set(ADDRESS_BOOK_APP_SRCS
     addressbookapp.h
     addressbookapp.cpp
+    contentcommunicator.h
+    contentcommunicator.cpp
     imagescalethread.h
     imagescalethread.cpp
     main.cpp
@@ -19,7 +21,11 @@ add_executable(${ADDRESS_BOOK_APP_BIN}
     ${ADDRESS_BOOK_APP_SRCS}
 )
 
-qt5_use_modules(${ADDRESS_BOOK_APP_BIN} Gui Core Qml Quick)
+qt5_use_modules(${ADDRESS_BOOK_APP_BIN} Gui Core Qml Quick Versit)
+
+target_link_libraries(${ADDRESS_BOOK_APP_BIN}
+    ${CONTENTHUB_LIBRARIES}
+)
 
 install(TARGETS ${ADDRESS_BOOK_APP_BIN}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
