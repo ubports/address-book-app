@@ -24,7 +24,7 @@ Page {
     id: mainPage
     objectName: "contactListPage"
 
-    property bool pickMode: true
+    property bool pickMode: false
 
     function createEmptyContact(phoneNumber) {
         var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
@@ -44,6 +44,15 @@ Page {
             newContact.addDetail(newDetail)
         }
         return newContact
+    }
+
+    function saveVCardForContact(contacts) {
+        var tempFile = contentHub.createTemporaryFile()
+        contactList.listModel.exportContacts(tempFile,
+                                             ["Sync"],
+                                             contacts)
+        console.debug("VCARD FILE:" + tempFile)
+        return tempFile
     }
 
     title: i18n.tr("Contacts")
@@ -92,8 +101,15 @@ Page {
         }
 
         onContactClicked: {
-            pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
-                           {model: contactList.listModel, contactId: contact.contactId})
+            if (pickMode) {
+                var contacts = [contact]
+                var tempFile = saveVCardForContact(contacts)
+                contentHub.returnContacts(tempFile)
+                pageStack.pop(contacts)
+            } else {
+                pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
+                               {model: contactList.listModel, contactId: contact.contactId})
+            }
         }
 
         onSelectionDone: {
@@ -102,11 +118,9 @@ Page {
                 for (var i=0; i < items.count; i++) {
                     contacts.push(items.get(i).model.contact)
                 }
-                var tempFile = contentHub.createTemporaryFile();
-                contactList.listModel.exportContacts(application.createTemporaryFile(),
-                                                     ["Sync"],
-                                                     contacts);
-                contentHub.returnContacts(tempFile);
+                var tempFile = saveVCardForContact(contacts)
+                contentHub.returnContacts(tempFile)
+                pageStack.pop()
             } else {
                 var ids = []
                 for (var i=0; i < items.count; i++) {
@@ -115,10 +129,10 @@ Page {
                 contactList.listModel.removeContacts(ids)
             }
         }
-
         onSelectionCanceled: {
             if (pickMode) {
                 contentHub.cancelTransfer()
+                pageStack.pop()
             }
         }
 
@@ -176,7 +190,7 @@ Page {
     }
 
     Component.onCompleted: {
-        if (pickMode) {
+        if (pickMode && contentHub.isMultipleItems) {
             contactList.startSelection()
         }
     }

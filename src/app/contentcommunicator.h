@@ -32,6 +32,7 @@ class ContentCommunicator : public content::ImportExportHandler
 {
     Q_OBJECT
     Q_PROPERTY(bool active READ isActive NOTIFY activeChanged)
+    Q_PROPERTY(bool multipleItems READ isMultipleItems NOTIFY multipleItemsChanged)
 
 public:
     ContentCommunicator(QObject *parent = 0);
@@ -41,6 +42,7 @@ public:
 
     void cancelTransfer();
     bool isActive() const;
+    bool isMultipleItems() const;
 
 public Q_SLOTS:
     void returnContacts(const QUrl &contactsFile);
@@ -49,6 +51,7 @@ public Q_SLOTS:
 Q_SIGNALS:
     void contactRequested();
     void activeChanged();
+    void multipleItemsChanged();
 
 private:
     content::Transfer *m_transfer;

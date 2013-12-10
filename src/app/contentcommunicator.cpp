@@ -19,6 +19,7 @@
 
 #include <QDebug>
 #include <QTemporaryFile>
+#include <QDir>
 
 #include <com/ubuntu/content/hub.h>
 #include <com/ubuntu/content/item.h>
@@ -58,6 +59,8 @@ void ContentCommunicator::handle_export(content::Transfer *transfer)
     }
 
     m_transfer = transfer;
+    connect(m_transfer, SIGNAL(selectionTypeChanged()), SIGNAL(multipleItemsChanged()));
+    Q_EMIT multipleItemsChanged();
     Q_EMIT contactRequested();
     Q_EMIT activeChanged();
 }
@@ -101,9 +104,14 @@ bool ContentCommunicator::isActive() const
     return (m_transfer != 0);
 }
 
+bool ContentCommunicator::isMultipleItems() const
+{
+    return m_transfer ? m_transfer->selectionType() == Transfer::multiple : false;
+}
+
 QUrl ContentCommunicator::createTemporaryFile() const
 {
-    QTemporaryFile tmp("vcard_XXXXXX.vcf");
+    QTemporaryFile tmp(QDir::tempPath() + "/vcard_XXXXXX.vcf");
     tmp.setAutoRemove(false);
     Q_ASSERT(tmp.open());
     return QUrl::fromLocalFile(tmp.fileName());
