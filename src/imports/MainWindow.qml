@@ -75,4 +75,14 @@ MainView {
             }
         }
     }
+
+    Connections {
+        target: contentHub
+        onActiveChanged: {
+            if (contentHub.active) {
+                // enter in pick mode
+                mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"), {pickMode: true})
+            }
+        }
+    }
 }

@@ -24,6 +24,8 @@ Page {
     id: mainPage
     objectName: "contactListPage"
 
+    property bool pickMode: false
+
     function createEmptyContact(phoneNumber) {
         var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
                         {detail: "EmailAddress", field: "emailAddress", value: ""},
@@ -45,6 +47,8 @@ Page {
     }
 
     title: i18n.tr("Contacts")
+
+
     Component {
         id: dialog
 
@@ -69,6 +73,8 @@ Page {
         manager: DEFAULT_CONTACT_MANAGER
         showFavoritePhoneLabel: false
         multiSelectionEnabled: true
+        acceptAction.text: pickMode ? i18n.tr("Select") : i18n.tr("Delete")
+
         anchors {
             // This extra margin is necessary because the toolbar area overlaps the last item in the view
             // in the selection mode we remove it to avoid visual problems due the selection bar appears
@@ -77,7 +83,7 @@ Page {
             fill: parent
         }
         onError: PopupUtils.open(dialog, null)
-        swipeToDelete: true
+        swipeToDelete: !pickMode
 
         ActivityIndicator {
             id: activity
@@ -93,7 +99,7 @@ Page {
         }
 
         onSelectionDone: {
-            if (contentHub.active) {
+            if (pickMode) {
                 var contacts = []
                 for (var i=0; i < items.count; i++) {
                     contacts.push(items.get(i).model.contact)
@@ -109,6 +115,12 @@ Page {
                     ids.push(items.get(i).model.contact.contactId)
                 }
                 contactList.listModel.removeContacts(ids)
+            }
+        }
+
+        onSelectionCanceled: {
+            if (pickMode) {
+                contentHub.cancelTransfer()
             }
         }
 
@@ -162,20 +174,6 @@ Page {
         }
         onContactCreated: {
             contactList.positionViewAtContact(contact)
-        }
-    }
-
-    Connections {
-        target: contentHub
-        onActiveChanged: {
-            if (contentHub.active) {
-                // remove any page
-                while(pageStack.depth > 1) {
-                    pageStack.pop()
-                }
-                // enter in selection mode
-                contactList.startSelection();
-            }
         }
     }
 }

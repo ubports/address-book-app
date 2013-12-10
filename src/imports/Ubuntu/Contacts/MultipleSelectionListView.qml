@@ -105,6 +105,10 @@ ListView {
       This handler is called when the selection mode is finished without be canceled
     */
     signal selectionDone(var items)
+    /*!
+      This handler is called when the selection mode is canceled
+    */
+    signal selectionCanceled(var items)
 
     /*!
       Start the selection mode on the list view.
