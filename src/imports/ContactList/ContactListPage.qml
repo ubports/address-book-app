@@ -24,7 +24,7 @@ Page {
     id: mainPage
     objectName: "contactListPage"
 
-    property bool pickMode: false
+    property bool pickMode: true
 
     function createEmptyContact(phoneNumber) {
         var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
@@ -47,8 +47,6 @@ Page {
     }
 
     title: i18n.tr("Contacts")
-
-
     Component {
         id: dialog
 
@@ -174,6 +172,12 @@ Page {
         }
         onContactCreated: {
             contactList.positionViewAtContact(contact)
+        }
+    }
+
+    Component.onCompleted: {
+        if (pickMode) {
+            contactList.startSelection()
         }
     }
 }
