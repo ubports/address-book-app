@@ -59,9 +59,6 @@ void ContentCommunicator::handle_export(content::Transfer *transfer)
     }
 
     m_transfer = transfer;
-    m_tempFile.setFileTemplate(QDir::tempPath() + "/vcard_XXXXXX.vcf");
-    m_tempFile.open();
-    m_tempFile.setAutoRemove(false);
     connect(m_transfer, SIGNAL(selectionTypeChanged()), SIGNAL(multipleItemsChanged()));
     Q_EMIT contactRequested();
     Q_EMIT activeChanged();
@@ -95,9 +92,6 @@ void ContentCommunicator::returnContacts(const QUrl &contactsFile)
         return;
     }
 
-    m_tempFile.flush();
-    m_tempFile.close();
-
     QVector<Item> items;
     items << contactsFile;
     m_transfer->charge(items);
@@ -117,5 +111,8 @@ bool ContentCommunicator::isMultipleItems() const
 
 QUrl ContentCommunicator::createTemporaryFile() const
 {
-    return QUrl::fromLocalFile(m_tempFile.fileName());
+    QTemporaryFile tmp(QDir::tempPath() + "/vcard_XXXXXX.vcf");
+    tmp.setAutoRemove(false);
+    Q_ASSERT(tmp.open());
+    return QUrl::fromLocalFile(tmp.fileName());
 }

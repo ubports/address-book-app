@@ -21,7 +21,7 @@
 #include <com/ubuntu/content/import_export_handler.h>
 #include <com/ubuntu/content/transfer.h>
 
-#include <QTemporaryFile>
+#include <QStringList>
 
 using namespace com::ubuntu;
 
@@ -55,7 +55,6 @@ Q_SIGNALS:
 
 private:
     content::Transfer *m_transfer;
-    QTemporaryFile m_tempFile;
 };
 
 #endif // CONTENTCOMMUNICATOR_H
