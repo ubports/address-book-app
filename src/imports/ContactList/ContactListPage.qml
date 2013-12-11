@@ -59,9 +59,9 @@ Page {
 
     // control the pick mode single/multiple
     onPickMultipleModeChanged: {
-        if (pickMultipleMode) {
+        if (mainPage.pickMultipleMode) {
             contactList.startSelection()
-        } else if (pickMode) {
+        } else if (mainPage.pickMode) {
             contactList.cancelSelection()
         }
     }
@@ -196,6 +196,12 @@ Page {
         }
         onContactCreated: {
             contactList.positionViewAtContact(contact)
+        }
+    }
+
+    Component.onCompleted: {
+        if (pickMultipleMode) {
+            contactList.startSelection()
         }
     }
 }

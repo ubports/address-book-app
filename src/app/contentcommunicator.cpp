@@ -60,9 +60,9 @@ void ContentCommunicator::handle_export(content::Transfer *transfer)
 
     m_transfer = transfer;
     connect(m_transfer, SIGNAL(selectionTypeChanged()), SIGNAL(multipleItemsChanged()));
-    Q_EMIT multipleItemsChanged();
     Q_EMIT contactRequested();
     Q_EMIT activeChanged();
+    Q_EMIT multipleItemsChanged();
 }
 
 /*!
@@ -106,7 +106,7 @@ bool ContentCommunicator::isActive() const
 
 bool ContentCommunicator::isMultipleItems() const
 {
-    return m_transfer ? m_transfer->selectionType() == Transfer::multiple : false;
+    return (m_transfer && m_transfer->selectionType() == Transfer::multiple);
 }
 
 QUrl ContentCommunicator::createTemporaryFile() const
