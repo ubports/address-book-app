@@ -115,7 +115,7 @@ Page {
                 var contacts = [contact]
                 var tempFile = saveVCardForContact(contacts)
                 contentHub.returnContacts(tempFile)
-                pageStack.pop(contacts)
+                pageStack.pop()
             } else {
                 pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
                                {model: contactList.listModel, contactId: contact.contactId})
