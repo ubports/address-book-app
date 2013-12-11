@@ -113,6 +113,11 @@ QUrl ContentCommunicator::createTemporaryFile() const
 {
     QTemporaryFile tmp(QDir::tempPath() + "/vcard_XXXXXX.vcf");
     tmp.setAutoRemove(false);
-    Q_ASSERT(tmp.open());
-    return QUrl::fromLocalFile(tmp.fileName());
+    if (!tmp.open()) {
+        qWarning() << "Fail to create temporary file for vcard.";
+        return QUrl();
+    }
+    QString tmpFileName = tmp.fileName();
+    tmp.close();
+    return tmpFileName;
 }
