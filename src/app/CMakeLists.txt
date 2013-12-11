@@ -6,7 +6,6 @@ include_directories(
     ${CMAKE_BINARY_DIR}
 )
 
-
 set(ADDRESS_BOOK_APP_SRCS
     addressbookapp.h
     addressbookapp.cpp

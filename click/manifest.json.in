@@ -1,0 +1,21 @@
+{
+    "description":
+        "Address Book application to manager contacts",
+    "framework": "ubuntu-sdk-13.10",
+    "architecture": "armhf",
+    "hooks": {
+        "address-book": {
+            "apparmor": "address-book-apparmor.json",
+            "desktop": "@CMAKE_INSTALL_DATADIR@/applications/@DESKTOP_FILE@"
+        }
+    },
+    "icon": "share/icons/ubuntu-mobile/app/144/contacts-app.png",
+    "maintainer": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
+    "name": "@APP_PACKAGE_NAME@",
+    "title": "Address Book",
+    "version": "2.9.1",
+    "x-source": {
+        "vcs-bzr": "lp:address-book-app",
+        "vcs-bzr-revno": "@BZR_REVNO@"
+    }
+}

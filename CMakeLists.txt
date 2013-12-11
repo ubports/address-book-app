@@ -25,6 +25,14 @@ set(API_VERSION 0.1)
 # (regarding syntax consistency, see http://pad.lv/1181187)
 set(GETTEXT_PACKAGE "address-book-app")
 
+option(CLICK_MODE "Installs to a contained location" off)
+if(CLICK_MODE)
+    set(APP_PACKAGE_NAME "com.ubuntu.address-book")
+    set(CMAKE_INSTALL_PREFIX /)
+    set(CMAKE_INSTALL_BINDIR /)
+    set(CLICK_TAG click)
+endif(CLICK_MODE)
+
 # Tests
 enable_testing()
 
@@ -40,6 +48,7 @@ add_subdirectory(data)
 add_subdirectory(src)
 add_subdirectory(po)
 add_subdirectory(tests)
+add_subdirectory(click)
 
 # uninstall target
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
