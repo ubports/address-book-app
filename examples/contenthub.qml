@@ -49,7 +49,7 @@ Rectangle {
       target: root.activeTransfer ? root.activeTransfer : null
       onStateChanged: {
           if (root.activeTransfer.state === ContentTransfer.Charged) {
-              var fileName = root.activeTransfer.items[0]
+              var fileName = root.activeTransfer.items[0].url
               textArea.text = "Check vcard file:" + fileName
           }
       }

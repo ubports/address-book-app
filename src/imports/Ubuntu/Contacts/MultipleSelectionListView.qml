@@ -108,7 +108,7 @@ ListView {
     /*!
       This handler is called when the selection mode is canceled
     */
-    signal selectionCanceled(var items)
+    signal selectionCanceled()
 
     /*!
       Start the selection mode on the list view.
@@ -160,17 +160,26 @@ ListView {
     function endSelection()
     {
         selectionDone(listView.selectedItems)
-        cancelSelection()
+        clearSelection()
+        state = ""
     }
     /*!
       Cancel the selection
     */
     function cancelSelection()
     {
+        selectionCanceled()
+        clearSelection()
+        state = ""
+    }
+    /*!
+      Remove any selected item from the selection list
+    */
+    function clearSelection()
+    {
         if (selectedItems.count > 0) {
             selectedItems.remove(0, selectedItems.count)
         }
-        state = ""
     }
 
     states: [

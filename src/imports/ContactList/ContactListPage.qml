@@ -25,6 +25,7 @@ Page {
     objectName: "contactListPage"
 
     property bool pickMode: false
+    readonly property bool pickMultipleMode: pickMode && contentHub.isMultipleItems
 
     function createEmptyContact(phoneNumber) {
         var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
@@ -51,11 +52,20 @@ Page {
         contactList.listModel.exportContacts(tempFile,
                                              ["Sync"],
                                              contacts)
-        console.debug("VCARD FILE:" + tempFile)
         return tempFile
     }
 
     title: i18n.tr("Contacts")
+
+    // control the pick mode single/multiple
+    onPickMultipleModeChanged: {
+        if (pickMultipleMode) {
+            contactList.startSelection()
+        } else if (pickMode) {
+            contactList.cancelSelection()
+        }
+    }
+
     Component {
         id: dialog
 
@@ -186,12 +196,6 @@ Page {
         }
         onContactCreated: {
             contactList.positionViewAtContact(contact)
-        }
-    }
-
-    Component.onCompleted: {
-        if (pickMode && contentHub.isMultipleItems) {
-            contactList.startSelection()
         }
     }
 }
