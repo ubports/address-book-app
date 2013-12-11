@@ -42,8 +42,7 @@ static void printUsage(const QStringList& arguments)
              << "[addressbook:///create?phone=<phone-number>"
              << "[--fullscreen]"
              << "[--help]"
-             << "[-testability]"
-             << "[--pick-mode]";
+             << "[-testability]";
 }
 
 static QString fullPath(const QString &fileName)
