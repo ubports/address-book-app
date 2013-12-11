@@ -50,17 +50,7 @@ Rectangle {
       onStateChanged: {
           if (root.activeTransfer.state === ContentTransfer.Charged) {
               var fileName = root.activeTransfer.items[0]
-              fh = fopen(fileName, 0)
-              if(fh!=-1) {
-                length = flength(fh)
-                var str = fread(fh, length)
-                fclose(fh)
-                console.debug("VCARD FILE: " + str)
-                textArea.text = str
-              } else {
-                console.debug("Fail to open file:" + fileName)
-                textArea.text = "Fail to open file:" + fileName
-              }
+              textArea.text = "Check vcard file:" + fileName
           }
       }
   }
