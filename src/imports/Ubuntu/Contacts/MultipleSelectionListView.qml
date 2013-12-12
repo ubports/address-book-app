@@ -64,6 +64,13 @@ ListView {
     */
     readonly property alias selectedItems: visualModel.selectedItems
     /*!
+      \qmlproperty bool multipleSelection
+
+      This property holds if the selection will accept multiple items or single items
+    */
+    property bool multipleSelection: true
+
+    /*!
       \qmlproperty Action acceptAction
 
       This property holds the action used into the accept button
@@ -138,6 +145,9 @@ ListView {
         if (item.VisualDataModel.inSelected) {
             return false
         } else {
+            if (!multipleSelection) {
+                clearSelection()
+            }
             item.VisualDataModel.inSelected = true
             return true
         }
