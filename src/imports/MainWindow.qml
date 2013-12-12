@@ -40,6 +40,11 @@ MainView {
         mainStack.editContatRequested(contactId, phoneNumber)
     }
 
+    function pick(single) {
+        var isSingle = (single == "true")
+        mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"), { pickMode: true, pickMultipleContacts: !isSingle})
+    }
+
     PageStack {
         id: mainStack
 

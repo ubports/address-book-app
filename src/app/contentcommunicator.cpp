@@ -58,6 +58,7 @@ void ContentCommunicator::handle_export(content::Transfer *transfer)
         return;
     }
 
+
     m_transfer = transfer;
     connect(m_transfer, SIGNAL(selectionTypeChanged()), SIGNAL(multipleItemsChanged()));
     Q_EMIT contactRequested();

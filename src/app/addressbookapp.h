@@ -38,6 +38,7 @@ public Q_SLOTS:
     QUrl copyImage(QObject *contact, const QUrl &imageUrl);
     void parseUrl(const QString &arg);
     void onViewStatusChanged(QQuickView::Status status);
+    void returnVcard(const QUrl &url);
 
 private:
     void callQMLMethod(const QString name, QStringList args);

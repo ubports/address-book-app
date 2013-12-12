@@ -85,6 +85,7 @@ Item {
 
         Rectangle {
             id: selectionMark
+            objectName: "selectionMark"
 
             anchors {
                 top: parent.top
@@ -101,6 +102,8 @@ Item {
             }
 
             Image {
+                id: tickImage
+
                 height: units.gu(3)
                 width: height
                 anchors.centerIn: parent

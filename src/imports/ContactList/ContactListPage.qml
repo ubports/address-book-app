@@ -26,6 +26,7 @@ Page {
     objectName: "contactListPage"
 
     property bool pickMode: false
+    property bool pickMultipleContacts: false
 
     function createEmptyContact(phoneNumber) {
         var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
@@ -75,7 +76,7 @@ Page {
         showFavoritePhoneLabel: false
         multiSelectionEnabled: true
         acceptAction.text: pickMode ? i18n.tr("Select") : i18n.tr("Delete")
-        multipleSelection: pickMode && contentHub.multipleItems
+        multipleSelection: pickMode && (contentHub.multipleItems || mainPage.pickMultipleContacts)
         anchors {
             // This extra margin is necessary because the toolbar area overlaps the last item in the view
             // in the selection mode we remove it to avoid visual problems due the selection bar appears
@@ -120,6 +121,7 @@ Page {
             if (pickMode) {
                 contentHub.cancelTransfer()
                 pageStack.pop()
+                application.returnVcard("")
             }
         }
 
@@ -187,12 +189,16 @@ Page {
                 contentHub.cancelTransfer()
             }
             pageStack.pop()
+            application.returnVcard(exporter.outputFile)
         }
     }
 
     Component.onCompleted: {
         if (pickMode) {
             contactList.startSelection()
+        }
+        if (TEST_DATA != "") {
+            contactList.listModel.importContacts("file://" + TEST_DATA)
         }
     }
 }

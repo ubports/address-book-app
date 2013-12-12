@@ -40,6 +40,7 @@ static void printUsage(const QStringList& arguments)
              << "[addressbook:///addphone?id=<contact-id>&phone=<phone-number>"
              << "[addressbook:///contact?id=<contact-id>"
              << "[addressbook:///create?phone=<phone-number>"
+             << "[addressbook:///pick?single=<true/false>"
              << "[--fullscreen]"
              << "[--help]"
              << "[-testability]";
@@ -94,11 +95,15 @@ bool AddressBookApp::setup()
     QString contactKey;
     QStringList arguments = this->arguments();
     QByteArray defaultManager("galera");
+    QByteArray testData;
 
     // use galare as default QtContacts Manager
     if (qEnvironmentVariableIsSet("QTCONTACTS_MANAGER_OVERRIDE")) {
         defaultManager = qgetenv("QTCONTACTS_MANAGER_OVERRIDE");
     }
+
+    testData = qgetenv("ADDRESS_BOOK_TEST_DATA");
+
     qDebug() << "Using contact manager:" << defaultManager;
 
     if (arguments.contains("--help")) {
@@ -161,6 +166,7 @@ bool AddressBookApp::setup()
     m_view->rootContext()->setContextProperty("contentHub", m_contentComm);
     m_view->rootContext()->setContextProperty("application", this);
     m_view->rootContext()->setContextProperty("contactKey", contactKey);
+    m_view->rootContext()->setContextProperty("TEST_DATA", testData);
 
     QUrl source(fullPath("/imports/MainWindow.qml"));
     m_view->setSource(source);
@@ -204,6 +210,14 @@ void AddressBookApp::onViewStatusChanged(QQuickView::Status status)
     }
 }
 
+void AddressBookApp::returnVcard(const QUrl &url)
+{
+    if (m_pickingMode) {
+        printf("%s\n", qPrintable(url.toString()));
+        this->quit();
+    }
+}
+
 void AddressBookApp::parseUrl(const QString &arg)
 {
     QUrl url = QUrl::fromPercentEncoding(arg.toUtf8());
@@ -232,6 +246,11 @@ void AddressBookApp::parseUrl(const QString &arg)
         //add
         args << "phone";
         methodsMetaData.insert("create", args);
+        args.clear();
+
+        //pick
+        args << "single";
+        methodsMetaData.insert("pick", args);
         args.clear();
     }
 
@@ -300,9 +319,10 @@ void AddressBookApp::callQMLMethod(const QString name, QStringList args)
             break;
         default:
             qWarning() << "Invalid arguments";
-            break;
+            return;
         }
     }
+    m_pickingMode = (name == "pick");
 }
 
 void AddressBookApp::activateWindow()
