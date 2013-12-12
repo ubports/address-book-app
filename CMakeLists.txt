@@ -25,6 +25,7 @@ set(API_VERSION 0.1)
 # (regarding syntax consistency, see http://pad.lv/1181187)
 set(GETTEXT_PACKAGE "address-book-app")
 
+option(INSTALL_TESTS "Install the tests on make install" on)
 option(CLICK_MODE "Installs to a contained location" off)
 if(CLICK_MODE)
     set(APP_PACKAGE_NAME "com.ubuntu.address-book")
