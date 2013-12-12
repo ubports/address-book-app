@@ -19,6 +19,7 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1 as Popups
 import Ubuntu.Contacts 0.1 as ContactsUI
+import QtContacts 5.0
 
 Page {
     id: mainPage
@@ -46,13 +47,7 @@ Page {
         return newContact
     }
 
-    function saveVCardForContact(contacts) {
-        var tempFile = contentHub.createTemporaryFile()
-        contactList.listModel.exportContacts(tempFile,
-                                             ["Sync"],
-                                             contacts)
-        return tempFile
-    }
+
 
     title: i18n.tr("Contacts")
     Component {
@@ -80,7 +75,7 @@ Page {
         showFavoritePhoneLabel: false
         multiSelectionEnabled: true
         acceptAction.text: pickMode ? i18n.tr("Select") : i18n.tr("Delete")
-
+        multipleSelection: pickMode && contentHub.multipleItems
         anchors {
             // This extra margin is necessary because the toolbar area overlaps the last item in the view
             // in the selection mode we remove it to avoid visual problems due the selection bar appears
@@ -100,15 +95,8 @@ Page {
         }
 
         onContactClicked: {
-            if (pickMode) {
-                var contacts = [contact]
-                var tempFile = saveVCardForContact(contacts)
-                contentHub.returnContacts(tempFile)
-                pageStack.pop()
-            } else {
-                pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
-                               {model: contactList.listModel, contactId: contact.contactId})
-            }
+            pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
+                           {model: contactList.listModel, contactId: contact.contactId})
         }
 
         onSelectionDone: {
@@ -117,9 +105,9 @@ Page {
                 for (var i=0; i < items.count; i++) {
                     contacts.push(items.get(i).model.contact)
                 }
-                var tempFile = saveVCardForContact(contacts)
-                contentHub.returnContacts(tempFile)
-                pageStack.pop()
+                exporter.contactModel = contactList.listModel
+                exporter.contacts = contacts
+                exporter.start()
             } else {
                 var ids = []
                 for (var i=0; i < items.count; i++) {
@@ -188,8 +176,22 @@ Page {
         }
     }
 
+    ContactExporter {
+        id: exporter
+        contactModel: contactList.listModel ? contactList.listModel : null
+        outputFile: contentHub.createTemporaryFile()
+        onCompleted: {
+            if (error == ContactModel.ExportNoError) {
+                contentHub.returnContacts(exporter.outputFile)
+            } else {
+                contentHub.cancelTransfer()
+            }
+            pageStack.pop()
+        }
+    }
+
     Component.onCompleted: {
-        if (contentHub.multipleItems) {
+        if (pickMode) {
             contactList.startSelection()
         }
     }
