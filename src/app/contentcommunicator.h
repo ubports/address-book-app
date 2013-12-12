@@ -40,11 +40,12 @@ public:
     virtual void handle_import(content::Transfer*);
     virtual void handle_export(content::Transfer *transfer);
 
-    void cancelTransfer();
+
     bool isActive() const;
     bool isMultipleItems() const;
 
 public Q_SLOTS:
+    void cancelTransfer();
     void returnContacts(const QUrl &contactsFile);
     QUrl createTemporaryFile() const;
 

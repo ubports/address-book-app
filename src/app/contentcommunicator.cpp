@@ -119,5 +119,5 @@ QUrl ContentCommunicator::createTemporaryFile() const
     }
     QString tmpFileName = tmp.fileName();
     tmp.close();
-    return tmpFileName;
+    return QUrl::fromLocalFile(tmpFileName);
 }
