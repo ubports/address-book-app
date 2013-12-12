@@ -26,6 +26,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
     address-book-app tests.
     """
     DEFAULT_DEV_LOCATION = "../../src/app/address-book-app"
+    DEB_LOCALTION = "/usr/bin/address-book-app"
 
     def setUp(self):
         self.pointing_device = toolkit_emulators.get_pointing_device()
@@ -43,10 +44,12 @@ class AddressBookAppTestCase(AutopilotTestCase):
         print "Running from: %s" % (self.app_bin)
         os.environ['QTCONTACTS_MANAGER_OVERRIDE'] = 'memory'
 
-        if not os.path.exists(self.app_bin):
+        if os.path.exists(self.app_bin):
+            self.launch_test_local()
+        elif os.path.exists(self.DEB_LOCALTION):
             self.launch_test_installed()
         else:
-            self.launch_test_local()
+            self.launch_click_installed()
 
         self.main_window.visible.wait_for(True)
 
@@ -70,6 +73,10 @@ class AddressBookAppTestCase(AutopilotTestCase):
             "--desktop_file_hint=" + df,
             app_type='qt',
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
+
+    def launch_click_installed(self):
+        self.app = self.launch_click_package(
+            "com.ubuntu.address-book")
 
     @property
     def main_window(self):
