@@ -6,6 +6,9 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 
 Rectangle {
   id: root
+
+  property var activeTransfer
+
   height: 500
   width: 500
 
@@ -43,27 +46,28 @@ Rectangle {
       Button {
           text: "Import a single contact"
            onClicked: {
-               activeTransfer = ContentHub.importContent(ContentType.Contacts);
-               activeTransfer.selectionType = ContentTransfer.Single;
-               activeTransfer.start();
+               root.activeTransfer = ContentHub.importContent(ContentType.Contacts);
+               root.activeTransfer.selectionType = ContentTransfer.Single;
+               root.activeTransfer.start();
           }
       }
       Button {
           text: "Import multiple contacts"
            onClicked: {
-               activeTransfer = ContentHub.importContent(ContentType.Contacts);
-               activeTransfer.selectionType = ContentTransfer.Multiple;
-               activeTransfer.start();
+               root.activeTransfer = ContentHub.importContent(ContentType.Contacts);
+               root.activeTransfer.selectionType = ContentTransfer.Multiple;
+               root.activeTransfer.start();
           }
       }
   }
 
   ContentImportHint {
       id: importHint
+
       anchors.fill: parent
       activeTransfer: root.activeTransfer
   }
-  property var activeTransfer
+
   Connections {
       target: root.activeTransfer ? root.activeTransfer : null
       onStateChanged: {
