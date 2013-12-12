@@ -13,7 +13,7 @@
     "maintainer": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
     "name": "@APP_PACKAGE_NAME@",
     "title": "Address Book",
-    "version": "2.9.1",
+    "version": "1.0.1",
     "x-source": {
         "vcs-bzr": "lp:address-book-app",
         "vcs-bzr-revno": "@BZR_REVNO@"
