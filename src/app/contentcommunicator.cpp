@@ -36,7 +36,11 @@ ContentCommunicator::ContentCommunicator(QObject *parent)
       m_transfer(0)
 {
     Hub *hub = Hub::Client::instance();
-    hub->register_import_export_handler(this);
+    if (hub) {
+        hub->register_import_export_handler(this);
+    } else {
+        qWarning() << "Fail to get Hub client instance";
+    }
 }
 
 /*!
@@ -55,12 +59,16 @@ void ContentCommunicator::handle_export(content::Transfer *transfer)
     if (m_transfer != 0) {
         qWarning() << "address book app does only one content export at a time";
         transfer->abort();
+        m_transfer = 0;
         return;
     }
 
-
-    m_transfer = transfer;
-    connect(m_transfer, SIGNAL(selectionTypeChanged()), SIGNAL(multipleItemsChanged()));
+    if (transfer) {
+        m_transfer = transfer;
+        connect(m_transfer, SIGNAL(selectionTypeChanged()), SIGNAL(multipleItemsChanged()));
+    } else {
+        qWarning() << "Transfer pointer is null in handle_export";
+    }
     Q_EMIT contactRequested();
     Q_EMIT activeChanged();
     Q_EMIT multipleItemsChanged();
