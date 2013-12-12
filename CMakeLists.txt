@@ -27,12 +27,6 @@ set(GETTEXT_PACKAGE "address-book-app")
 
 option(INSTALL_TESTS "Install the tests on make install" on)
 option(CLICK_MODE "Installs to a contained location" off)
-if(CLICK_MODE)
-    set(APP_PACKAGE_NAME "com.ubuntu.address-book")
-    set(CMAKE_INSTALL_PREFIX /)
-    set(CMAKE_INSTALL_BINDIR /)
-    set(CLICK_TAG click)
-endif(CLICK_MODE)
 
 # Tests
 enable_testing()
@@ -43,6 +37,13 @@ execute_process(
     OUTPUT_VARIABLE QT_IMPORTS_DIR
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
+if(CLICK_MODE)
+    set(APP_PACKAGE_NAME "com.ubuntu.address-book")
+    set(CMAKE_INSTALL_PREFIX /)
+    set(CMAKE_INSTALL_BINDIR /)
+    set(CLICK_TAG click)
+    STRING(REPLACE "/usr/" "/"  QT_IMPORTS_DIR  ${QT_IMPORTS_DIR})
+endif(CLICK_MODE)
 set(QMLPLUGIN_INSTALL_PREFIX "${QT_IMPORTS_DIR}/Ubuntu/Contacts.${API_VERSION}/")
 
 add_subdirectory(data)
