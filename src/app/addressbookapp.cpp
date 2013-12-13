@@ -81,10 +81,10 @@ static void installIconPath()
 AddressBookApp::AddressBookApp(int &argc, char **argv)
     : QGuiApplication(argc, argv),
       m_view(0),
+      m_contentComm(0),
       m_pickingMode(false)
 {
     setApplicationName("AddressBookApp");
-    m_contentComm = new ContentCommunicator(this);
 }
 
 bool AddressBookApp::setup()
@@ -132,6 +132,8 @@ bool AddressBookApp::setup()
         } else {
             qCritical("Library qttestability load failed!");
         }
+    } else {
+        m_contentComm = new ContentCommunicator(this);
     }
 
     /* Ubuntu APP Manager gathers info on the list of running applications from the .desktop
@@ -163,7 +165,7 @@ bool AddressBookApp::setup()
     m_view->setTitle("AddressBook");
     m_view->engine()->addImportPath(importPath("/imports/"));
     m_view->rootContext()->setContextProperty("DEFAULT_CONTACT_MANAGER", defaultManager);
-    m_view->rootContext()->setContextProperty("contentHub", m_contentComm);
+    m_view->rootContext()->setContextProperty("contactContentHub", m_contentComm);
     m_view->rootContext()->setContextProperty("application", this);
     m_view->rootContext()->setContextProperty("contactKey", contactKey);
     m_view->rootContext()->setContextProperty("TEST_DATA", testData);

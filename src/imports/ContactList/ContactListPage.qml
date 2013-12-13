@@ -76,7 +76,8 @@ Page {
         showFavoritePhoneLabel: false
         multiSelectionEnabled: true
         acceptAction.text: pickMode ? i18n.tr("Select") : i18n.tr("Delete")
-        multipleSelection: pickMode && (contentHub.multipleItems || mainPage.pickMultipleContacts)
+        multipleSelection: pickMode &&
+                           ((contactContentHub && contactContentHub.multipleItems) || mainPage.pickMultipleContacts)
         anchors {
             // This extra margin is necessary because the toolbar area overlaps the last item in the view
             // in the selection mode we remove it to avoid visual problems due the selection bar appears
@@ -119,7 +120,9 @@ Page {
         }
         onSelectionCanceled: {
             if (pickMode) {
-                contentHub.cancelTransfer()
+                if (contactContentHub) {
+                    contactContentHub.cancelTransfer()
+                }
                 pageStack.pop()
                 application.returnVcard("")
             }
@@ -181,12 +184,14 @@ Page {
     ContactExporter {
         id: exporter
         contactModel: contactList.listModel ? contactList.listModel : null
-        outputFile: contentHub.createTemporaryFile()
+        outputFile: contactContentHub ? contactContentHub.createTemporaryFile() : "/tmp/vcard_address_book_app.vcf"
         onCompleted: {
-            if (error == ContactModel.ExportNoError) {
-                contentHub.returnContacts(exporter.outputFile)
-            } else {
-                contentHub.cancelTransfer()
+            if (contactContentHub) {
+                if (error == ContactModel.ExportNoError) {
+                    contactContentHub.returnContacts(exporter.outputFile)
+                } else {
+                    contactContentHub.cancelTransfer()
+                }
             }
             pageStack.pop()
             application.returnVcard(exporter.outputFile)
