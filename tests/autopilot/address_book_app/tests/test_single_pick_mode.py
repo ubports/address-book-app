@@ -19,8 +19,8 @@ class TestSinglePickerMode(AddressBookAppTestCase):
     """ Tests app in single picker mode"""
 
     def setUp(self):
-        self.ARGS.append("addressbook:///pick?single=true")
-        self.ENVIROMENT["ADDRESS_BOOK_TEST_DATA"] = "/usr/share/address-book-app/vcards/vcard.vcf"
+        AddressBookAppTestCase.ARGS.append("addressbook:///pick?single=true")
+        AddressBookAppTestCase.PRELOAD_VCARD = True
         super(TestSinglePickerMode, self).setUp()
 
     def test_select_single_contact(self):

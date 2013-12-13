@@ -15,13 +15,13 @@ from autopilot.matchers import Eventually
 from address_book_app.tests import AddressBookAppTestCase
 
 
-class TestSinglePickerMode(AddressBookAppTestCase):
+class TestMultiplePickerMode(AddressBookAppTestCase):
     """ Tests app in single picker mode"""
 
     def setUp(self):
         self.ARGS.append("addressbook:///pick?single=false")
-        self.ENVIROMENT["ADDRESS_BOOK_TEST_DATA"] = "/usr/share/address-book-app/vcards/vcard.vcf"
-        super(TestSinglePickerMode, self).setUp()
+        AddressBookAppTestCase.PRELOAD_VCARD = True
+        super(TestMultiplePickerMode, self).setUp()
 
     def test_select_contacts(self):
         pick_page = self.main_window.get_contact_list_pick_page()
