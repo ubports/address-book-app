@@ -50,10 +50,12 @@ static QString fullPath(const QString &fileName)
 {
     QString result;
     QString appPath = QCoreApplication::applicationDirPath();
-    if (appPath == ADDRESS_BOOK_APP_BINDIR) {
-        result = QString(ADDRESS_BOOK_APP_INSTALL_DATADIR) + fileName;
-    } else {
+    if (appPath.startsWith(ADDRESS_BOOK_DEV_BINDIR)) {
         result = QString(ADDRESS_BOOK_APP_DEV_DATADIR) + fileName;
+    } else if (QString(ADDRESS_BOOK_APP_CLICK_PACKAGE).toLower() == "on") {
+        result = appPath + QStringLiteral("/share/address-book-app/") + fileName;
+    } else {
+        result = QString(ADDRESS_BOOK_APP_INSTALL_DATADIR) + fileName;
     }
     return result;
 }
