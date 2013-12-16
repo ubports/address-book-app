@@ -2,7 +2,8 @@
     "policy_groups": ["accounts",
                       "contacts",
                       "content_exchange",
-                      "content_exchange_source"
+                      "content_exchange_source",
+                      "networking"
                       ],
     "policy_version": 1.0
 }
