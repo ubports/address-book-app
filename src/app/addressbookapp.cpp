@@ -61,8 +61,10 @@ static QString fullPath(const QString &fileName)
 static QString importPath(const QString &suffix)
 {
     QString appPath = QCoreApplication::applicationDirPath();
-    if (appPath != ADDRESS_BOOK_APP_BINDIR) {
+    if (appPath.startsWith(ADDRESS_BOOK_DEV_BINDIR)) {
         return QString(ADDRESS_BOOK_APP_DEV_DATADIR) + suffix;
+    } else if (QT_EXTRA_IMPORTS_DIR != ""){
+        return QString(QT_EXTRA_IMPORTS_DIR) + suffix;
     } else {
         return "";
     }
