@@ -76,7 +76,7 @@ Page {
         showFavoritePhoneLabel: false
         multiSelectionEnabled: true
         acceptAction.text: pickMode ? i18n.tr("Select") : i18n.tr("Delete")
-        multipleSelection: pickMode &&
+        multipleSelection: !pickMode ||
                            ((contactContentHub && contactContentHub.multipleItems) || mainPage.pickMultipleContacts)
         anchors {
             // This extra margin is necessary because the toolbar area overlaps the last item in the view
