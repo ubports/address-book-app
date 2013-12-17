@@ -84,7 +84,7 @@ MainView {
     Connections {
         target: contactContentHub
         onActiveChanged: {
-            if (contactContentHub && contentHub.active) {
+            if (contactContentHub && contactContentHub.active) {
                 // enter in pick mode
                 mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"), {pickMode: true})
             }
