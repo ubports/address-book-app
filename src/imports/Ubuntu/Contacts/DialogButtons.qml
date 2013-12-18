@@ -31,6 +31,7 @@ Rectangle {
 
     Button {
         id: reject
+        objectName: "DialogButtons.rejectButton"
 
         action: Action {
             text: i18n.tr("Cancel")
@@ -46,6 +47,7 @@ Rectangle {
 
     Button {
         id: accept
+        objectName: "DialogButtons.acceptButton"
 
         action: Action {
             text: i18n.tr("Done")

@@ -19,10 +19,14 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1 as Popups
 import Ubuntu.Contacts 0.1 as ContactsUI
+import QtContacts 5.0
 
 Page {
     id: mainPage
     objectName: "contactListPage"
+
+    property bool pickMode: false
+    property bool pickMultipleContacts: false
 
     function createEmptyContact(phoneNumber) {
         var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
@@ -43,6 +47,8 @@ Page {
         }
         return newContact
     }
+
+
 
     title: i18n.tr("Contacts")
     Component {
@@ -69,6 +75,9 @@ Page {
         manager: DEFAULT_CONTACT_MANAGER
         showFavoritePhoneLabel: false
         multiSelectionEnabled: true
+        acceptAction.text: pickMode ? i18n.tr("Select") : i18n.tr("Delete")
+        multipleSelection: !pickMode ||
+                           ((contactContentHub && contactContentHub.multipleItems) || mainPage.pickMultipleContacts)
         anchors {
             // This extra margin is necessary because the toolbar area overlaps the last item in the view
             // in the selection mode we remove it to avoid visual problems due the selection bar appears
@@ -77,7 +86,7 @@ Page {
             fill: parent
         }
         onError: PopupUtils.open(dialog, null)
-        swipeToDelete: true
+        swipeToDelete: !pickMode
 
         ActivityIndicator {
             id: activity
@@ -93,11 +102,30 @@ Page {
         }
 
         onSelectionDone: {
-            var ids = []
-            for (var i=0; i < items.count; i++) {
-                ids.push(items.get(i).model.contact.contactId)
+            if (pickMode) {
+                var contacts = []
+                for (var i=0; i < items.count; i++) {
+                    contacts.push(items.get(i).model.contact)
+                }
+                exporter.contactModel = contactList.listModel
+                exporter.contacts = contacts
+                exporter.start()
+            } else {
+                var ids = []
+                for (var i=0; i < items.count; i++) {
+                    ids.push(items.get(i).model.contact.contactId)
+                }
+                contactList.listModel.removeContacts(ids)
             }
-            contactList.listModel.removeContacts(ids)
+        }
+        onSelectionCanceled: {
+            if (pickMode) {
+                if (contactContentHub) {
+                    contactContentHub.cancelTransfer()
+                }
+                pageStack.pop()
+                application.returnVcard("")
+            }
         }
 
         onIsInSelectionModeChanged: {
@@ -150,6 +178,32 @@ Page {
         }
         onContactCreated: {
             contactList.positionViewAtContact(contact)
+        }
+    }
+
+    ContactExporter {
+        id: exporter
+        contactModel: contactList.listModel ? contactList.listModel : null
+        outputFile: contactContentHub ? contactContentHub.createTemporaryFile() : "/tmp/vcard_address_book_app.vcf"
+        onCompleted: {
+            if (contactContentHub) {
+                if (error == ContactModel.ExportNoError) {
+                    contactContentHub.returnContacts(exporter.outputFile)
+                } else {
+                    contactContentHub.cancelTransfer()
+                }
+            }
+            pageStack.pop()
+            application.returnVcard(exporter.outputFile)
+        }
+    }
+
+    Component.onCompleted: {
+        if (pickMode) {
+            contactList.startSelection()
+        }
+        if (TEST_DATA != "") {
+            contactList.listModel.importContacts("file://" + TEST_DATA)
         }
     }
 }

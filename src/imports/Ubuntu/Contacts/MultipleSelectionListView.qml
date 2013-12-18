@@ -64,6 +64,13 @@ ListView {
     */
     readonly property alias selectedItems: visualModel.selectedItems
     /*!
+      \qmlproperty bool multipleSelection
+
+      This property holds if the selection will accept multiple items or single items
+    */
+    property bool multipleSelection: true
+
+    /*!
       \qmlproperty Action acceptAction
 
       This property holds the action used into the accept button
@@ -105,6 +112,10 @@ ListView {
       This handler is called when the selection mode is finished without be canceled
     */
     signal selectionDone(var items)
+    /*!
+      This handler is called when the selection mode is canceled
+    */
+    signal selectionCanceled()
 
     /*!
       Start the selection mode on the list view.
@@ -134,6 +145,9 @@ ListView {
         if (item.VisualDataModel.inSelected) {
             return false
         } else {
+            if (!multipleSelection) {
+                clearSelection()
+            }
             item.VisualDataModel.inSelected = true
             return true
         }
@@ -156,17 +170,26 @@ ListView {
     function endSelection()
     {
         selectionDone(listView.selectedItems)
-        cancelSelection()
+        clearSelection()
+        state = ""
     }
     /*!
       Cancel the selection
     */
     function cancelSelection()
     {
+        selectionCanceled()
+        clearSelection()
+        state = ""
+    }
+    /*!
+      Remove any selected item from the selection list
+    */
+    function clearSelection()
+    {
         if (selectedItems.count > 0) {
             selectedItems.remove(0, selectedItems.count)
         }
-        state = ""
     }
 
     states: [

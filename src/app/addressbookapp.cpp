@@ -17,7 +17,7 @@
 #include "config.h"
 #include "addressbookapp.h"
 #include "imagescalethread.h"
-
+#include "contentcommunicator.h"
 
 #include <QDir>
 #include <QUrl>
@@ -30,7 +30,6 @@
 #include <QQuickView>
 #include <QLibrary>
 #include <QIcon>
-#include <QTemporaryFile>
 
 #include <QQmlEngine>
 
@@ -41,6 +40,7 @@ static void printUsage(const QStringList& arguments)
              << "[addressbook:///addphone?id=<contact-id>&phone=<phone-number>"
              << "[addressbook:///contact?id=<contact-id>"
              << "[addressbook:///create?phone=<phone-number>"
+             << "[addressbook:///pick?single=<true/false>"
              << "[--fullscreen]"
              << "[--help]"
              << "[-testability]";
@@ -79,7 +79,10 @@ static void installIconPath()
 }
 
 AddressBookApp::AddressBookApp(int &argc, char **argv)
-    : QGuiApplication(argc, argv), m_view(0)
+    : QGuiApplication(argc, argv),
+      m_view(0),
+      m_contentComm(0),
+      m_pickingMode(false)
 {
     setApplicationName("AddressBookApp");
 }
@@ -92,11 +95,15 @@ bool AddressBookApp::setup()
     QString contactKey;
     QStringList arguments = this->arguments();
     QByteArray defaultManager("galera");
+    QByteArray testData;
 
     // use galare as default QtContacts Manager
     if (qEnvironmentVariableIsSet("QTCONTACTS_MANAGER_OVERRIDE")) {
         defaultManager = qgetenv("QTCONTACTS_MANAGER_OVERRIDE");
     }
+
+    testData = qgetenv("ADDRESS_BOOK_TEST_DATA");
+
     qDebug() << "Using contact manager:" << defaultManager;
 
     if (arguments.contains("--help")) {
@@ -125,6 +132,8 @@ bool AddressBookApp::setup()
         } else {
             qCritical("Library qttestability load failed!");
         }
+    } else {
+        m_contentComm = new ContentCommunicator(this);
     }
 
     /* Ubuntu APP Manager gathers info on the list of running applications from the .desktop
@@ -156,8 +165,10 @@ bool AddressBookApp::setup()
     m_view->setTitle("AddressBook");
     m_view->engine()->addImportPath(importPath("/imports/"));
     m_view->rootContext()->setContextProperty("DEFAULT_CONTACT_MANAGER", defaultManager);
+    m_view->rootContext()->setContextProperty("contactContentHub", m_contentComm);
     m_view->rootContext()->setContextProperty("application", this);
     m_view->rootContext()->setContextProperty("contactKey", contactKey);
+    m_view->rootContext()->setContextProperty("TEST_DATA", testData);
 
     QUrl source(fullPath("/imports/MainWindow.qml"));
     m_view->setSource(source);
@@ -184,6 +195,10 @@ AddressBookApp::~AddressBookApp()
     if (m_view) {
         delete m_view;
     }
+
+    if (m_contentComm) {
+        delete m_contentComm;
+    }
 }
 
 void AddressBookApp::onViewStatusChanged(QQuickView::Status status)
@@ -194,6 +209,14 @@ void AddressBookApp::onViewStatusChanged(QQuickView::Status status)
             parseUrl(m_initialArg);
             m_initialArg.clear();
         }
+    }
+}
+
+void AddressBookApp::returnVcard(const QUrl &url)
+{
+    if (m_pickingMode) {
+        printf("%s\n", qPrintable(url.toString()));
+        this->quit();
     }
 }
 
@@ -225,6 +248,11 @@ void AddressBookApp::parseUrl(const QString &arg)
         //add
         args << "phone";
         methodsMetaData.insert("create", args);
+        args.clear();
+
+        //pick
+        args << "single";
+        methodsMetaData.insert("pick", args);
         args.clear();
     }
 
@@ -293,9 +321,10 @@ void AddressBookApp::callQMLMethod(const QString name, QStringList args)
             break;
         default:
             qWarning() << "Invalid arguments";
-            break;
+            return;
         }
     }
+    m_pickingMode = (name == "pick");
 }
 
 void AddressBookApp::activateWindow()
