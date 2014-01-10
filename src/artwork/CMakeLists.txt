@@ -1,7 +1,3 @@
-set(ADDRESS_BOOK_APP_ICON
-    address-book-app.png
-)
-
 set(ADDRESS_BOOK_COMPONENTS_ARTWORK
     contact-default@27.png
     tick-dark@30.png
@@ -11,7 +7,6 @@ set(ADDRESS_BOOK_APP_ARTWORK
     action-list.png
     add-detail.svg
     add.png
-    address-book-app.png
     address-book-app-preview.png
     birthday-cake.svg
     combo-indicator.png
@@ -43,9 +38,11 @@ set(ADDRESS_BOOK_APP_ARTWORK
     vertical-div.png
 )
 
-install(FILES ${ADDRESS_BOOK_APP_ICON}
-    DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/48x48/apps
-)
+if(CLICK_MODE)
+    install(FILES contacts-app.svg
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps
+    )
+endif()
 
 install(FILES ${ADDRESS_BOOK_APP_ARTWORK}
     DESTINATION ${ADDRESS_BOOK_APP_DIR}/artwork
