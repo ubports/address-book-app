@@ -1,5 +1,6 @@
 set(CONTACT_LIST_QMLS
     ContactListPage.qml
+    ContactExporter.qml
 )
 
 install(FILES ${CONTACT_LIST_QMLS}

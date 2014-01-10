@@ -40,6 +40,11 @@ MainView {
         mainStack.editContatRequested(contactId, phoneNumber)
     }
 
+    function pick(single) {
+        var isSingle = (single == "true")
+        mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"), { pickMode: true, pickMultipleContacts: !isSingle})
+    }
+
     PageStack {
         id: mainStack
 
@@ -72,6 +77,16 @@ MainView {
         onOpened: {
             for (var i = 0; i < uris.length; ++i) {
                 application.parseUrl(uris[i])
+            }
+        }
+    }
+
+    Connections {
+        target: contactContentHub
+        onActiveChanged: {
+            if (contactContentHub && contactContentHub.active) {
+                // enter in pick mode
+                mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"), {pickMode: true})
             }
         }
     }

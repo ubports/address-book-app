@@ -27,6 +27,8 @@ class AddressBookAppTestCase(AutopilotTestCase):
     """
     DEFAULT_DEV_LOCATION = "../../src/app/address-book-app"
     DEB_LOCALTION = "/usr/bin/address-book-app"
+    ARGS = []
+    PRELOAD_VCARD = False
 
     def setUp(self):
         self.pointing_device = toolkit_emulators.get_pointing_device()
@@ -43,6 +45,10 @@ class AddressBookAppTestCase(AutopilotTestCase):
 
         print "Running from: %s" % (self.app_bin)
         os.environ['QTCONTACTS_MANAGER_OVERRIDE'] = 'memory'
+        if AddressBookAppTestCase.PRELOAD_VCARD:
+            os.environ["ADDRESS_BOOK_TEST_DATA"] = "/usr/share/address-book-app/vcards/vcard.vcf"
+        else:
+            os.environ["ADDRESS_BOOK_TEST_DATA"] = ""
 
         if os.path.exists(self.app_bin):
             self.launch_test_local()
@@ -51,6 +57,8 @@ class AddressBookAppTestCase(AutopilotTestCase):
         else:
             self.launch_click_installed()
 
+        AddressBookAppTestCase.ARGS = []
+        AddressBookAppTestCase.PRELOAD_VCARD = False
         self.main_window.visible.wait_for(True)
 
     def tearDown(self):
@@ -63,14 +71,18 @@ class AddressBookAppTestCase(AutopilotTestCase):
     def launch_test_local(self):
         self.app = self.launch_test_application(
             self.app_bin,
+            *AddressBookAppTestCase.ARGS,
             app_type='qt',
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
     def launch_test_installed(self):
         df = "/usr/share/applications/address-book-app.desktop"
+        self.ARGS.append("--desktop_file_hint=" + df)
+        print "ARGS:", AddressBookAppTestCase.ARGS
+        print "ENV:", os.environ["ADDRESS_BOOK_TEST_DATA"]
         self.app = self.launch_test_application(
             "address-book-app",
-            "--desktop_file_hint=" + df,
+            *AddressBookAppTestCase.ARGS,
             app_type='qt',
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 

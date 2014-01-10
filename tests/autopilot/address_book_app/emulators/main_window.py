@@ -22,3 +22,12 @@ class MainWindow(uitk.MainView):
     def get_contact_view_page(self):
         return self.wait_select_single("ContactView",
                                        objectName="contactViewPage")
+
+    def get_contact_list_pick_page(self):
+        pages = self.select_many("ContactListPage",
+                                 objectName="contactListPage")
+        for p in pages:
+            if p.pickMode:
+                return p
+        return None
+

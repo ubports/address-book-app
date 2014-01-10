@@ -21,6 +21,8 @@
 #include <QQuickView>
 #include <QGuiApplication>
 
+class ContentCommunicator;
+
 class AddressBookApp : public QGuiApplication
 {
     Q_OBJECT
@@ -36,14 +38,17 @@ public Q_SLOTS:
     QUrl copyImage(QObject *contact, const QUrl &imageUrl);
     void parseUrl(const QString &arg);
     void onViewStatusChanged(QQuickView::Status status);
+    void returnVcard(const QUrl &url);
 
 private:
     void callQMLMethod(const QString name, QStringList args);
 
 private:
     QQuickView *m_view;
+    ContentCommunicator *m_contentComm;
     QString m_initialArg;
     bool m_viewReady;
+    bool m_pickingMode;
 };
 
 #endif
