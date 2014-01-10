@@ -5,5 +5,8 @@
                       "content_exchange_source",
                       "networking"
                       ],
+    "read_path": [
+      "@{HOME}/.local/share/evolution/addressbook/system/photos/"
+    ],
     "policy_version": 1.0
 }
