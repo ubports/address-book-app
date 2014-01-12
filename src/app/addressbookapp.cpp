@@ -50,10 +50,12 @@ static QString fullPath(const QString &fileName)
 {
     QString result;
     QString appPath = QCoreApplication::applicationDirPath();
-    if (appPath == ADDRESS_BOOK_APP_BINDIR) {
-        result = QString(ADDRESS_BOOK_APP_INSTALL_DATADIR) + fileName;
-    } else {
+    if (appPath.startsWith(ADDRESS_BOOK_DEV_BINDIR)) {
         result = QString(ADDRESS_BOOK_APP_DEV_DATADIR) + fileName;
+    } else if (QString(ADDRESS_BOOK_APP_CLICK_PACKAGE).toLower() == "on") {
+        result = appPath + QStringLiteral("/share/address-book-app/") + fileName;
+    } else {
+        result = QString(ADDRESS_BOOK_APP_INSTALL_DATADIR) + fileName;
     }
     return result;
 }
@@ -61,8 +63,10 @@ static QString fullPath(const QString &fileName)
 static QString importPath(const QString &suffix)
 {
     QString appPath = QCoreApplication::applicationDirPath();
-    if (appPath != ADDRESS_BOOK_APP_BINDIR) {
+    if (appPath.startsWith(ADDRESS_BOOK_DEV_BINDIR)) {
         return QString(ADDRESS_BOOK_APP_DEV_DATADIR) + suffix;
+    } else if (QT_EXTRA_IMPORTS_DIR != ""){
+        return QString(QT_EXTRA_IMPORTS_DIR) + suffix;
     } else {
         return "";
     }
@@ -118,7 +122,8 @@ bool AddressBookApp::setup()
 
     // The testability driver is only loaded by QApplication but not by QGuiApplication.
     // However, QApplication depends on QWidget which would add some unneeded overhead => Let's load the testability driver on our own.
-    if (arguments.contains("-testability")) {
+    if (arguments.contains(QLatin1String("-testability")) ||
+        qgetenv("QT_LOAD_TESTABILITY") == "1") {
         arguments.removeAll("-testability");
         QLibrary testLib(QLatin1String("qttestability"));
         if (testLib.load()) {

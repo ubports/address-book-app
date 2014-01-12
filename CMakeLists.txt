@@ -27,6 +27,10 @@ set(API_VERSION 0.1)
 # (regarding syntax consistency, see http://pad.lv/1181187)
 set(GETTEXT_PACKAGE "address-book-app")
 
+option(INSTALL_TESTS "Install the tests on make install" on)
+option(INSTALL_COMPONENTS "Install the Ubuntu contact components" on)
+option(CLICK_MODE "Installs to a contained location" off)
+
 # Tests
 enable_testing()
 
@@ -36,13 +40,31 @@ execute_process(
     OUTPUT_VARIABLE QT_IMPORTS_DIR
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
+if(CLICK_MODE)
+    set(APP_PACKAGE_NAME "com.ubuntu.address-book")
+    set(CMAKE_INSTALL_PREFIX /)
+    set(CMAKE_INSTALL_BINDIR /)
+    set(CLICK_TAG click)
+    set(ADDRESS_BOOK_APP_BINDIR ".")
+    set(QT_EXTRA_IMPORTS_DIR ${QT_IMPORTS_DIR})
+    set(INSTALL_TESTS off)
+    set(INSTALL_COMPONENTS off)
+    STRING(REPLACE "/usr/" "/"  QT_IMPORTS_DIR  ${QT_IMPORTS_DIR})
+else(CLICK_MODE)
+    set(ADDRESS_BOOK_APP_BINDIR ${CMAKE_INSTALL_FULL_BINDIR})
+    set(QT_EXTRA_IMPORTS_DIR "")
+endif(CLICK_MODE)
+
+set(DESKTOP_EXEC "${ADDRESS_BOOK_APP_BINDIR}/address-book-app")
 set(QMLPLUGIN_INSTALL_PREFIX "${QT_IMPORTS_DIR}/Ubuntu/Contacts.${API_VERSION}/")
+set(ADDRESS_BOOK_APP_DESKTOP_FILE address-book-app.desktop)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
 
 add_subdirectory(data)
 add_subdirectory(src)
 add_subdirectory(po)
 add_subdirectory(tests)
+add_subdirectory(click)
 
 # uninstall target
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"

@@ -26,6 +26,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
     address-book-app tests.
     """
     DEFAULT_DEV_LOCATION = "../../src/app/address-book-app"
+    DEB_LOCALTION = "/usr/bin/address-book-app"
     ARGS = []
     PRELOAD_VCARD = False
 
@@ -49,10 +50,12 @@ class AddressBookAppTestCase(AutopilotTestCase):
         else:
             os.environ["ADDRESS_BOOK_TEST_DATA"] = ""
 
-        if not os.path.exists(self.app_bin):
+        if os.path.exists(self.app_bin):
+            self.launch_test_local()
+        elif os.path.exists(self.DEB_LOCALTION):
             self.launch_test_installed()
         else:
-            self.launch_test_local()
+            self.launch_click_installed()
 
         AddressBookAppTestCase.ARGS = []
         AddressBookAppTestCase.PRELOAD_VCARD = False
@@ -82,6 +85,10 @@ class AddressBookAppTestCase(AutopilotTestCase):
             *AddressBookAppTestCase.ARGS,
             app_type='qt',
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
+
+    def launch_click_installed(self):
+        self.app = self.launch_click_package(
+            "com.ubuntu.address-book")
 
     @property
     def main_window(self):

@@ -17,11 +17,9 @@ set(CONTACT_COMPONENTS_QMLS
     qmldir
 )
 
-install(FILES ${CONTACT_COMPONENTS_QMLS}
-    DESTINATION ${ADDRESS_BOOK_APP_DIR}/imports/Components
-)
-
 # make the files visible on qtcreator
 add_custom_target(contact_components_QmlFiles ALL SOURCES ${CONTACT_COMPONENTS_QMLS})
-install(FILES ${CONTACT_COMPONENTS_QMLS} DESTINATION ${QMLPLUGIN_INSTALL_PREFIX})
+if(INSTALL_COMPONENTS)
+    install(FILES ${CONTACT_COMPONENTS_QMLS} DESTINATION ${QMLPLUGIN_INSTALL_PREFIX})
+endif()
 
