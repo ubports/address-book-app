@@ -40,7 +40,7 @@ ContactDetailGroupBase {
     }
 
     typeModel: ListModel {
-
+        property bool ready: false
         signal loaded()
 
         function getTypeIndex(detail) {
@@ -116,6 +116,7 @@ ContactDetailGroupBase {
             append({"value": QtContacts.ContactDetail.ContextHome, "label": i18n.tr("Home"), "icon": null})
             append({"value": QtContacts.ContactDetail.ContextWork, "label": i18n.tr("Work"), "icon": null})
             append({"value": QtContacts.ContactDetail.ContextOther, "label": i18n.tr("Other"), "icon": null})
+            ready = true
             loaded()
         }
     }
