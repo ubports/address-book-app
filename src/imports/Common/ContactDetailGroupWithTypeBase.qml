@@ -61,7 +61,7 @@ ContactDetailGroupBase {
                 return 0
             } else if (context === QtContacts.ContactDetail.ContextWork) {
                 return 1
-            } else if (subType === QtContacts.ContactDetail.ContextOther) {
+            } else if (context === QtContacts.ContactDetail.ContextOther) {
                 return 2
             } else {
                 return 0 // default value is "Home"
@@ -100,12 +100,6 @@ ContactDetailGroupBase {
         function updateDetail(detail, index) {
             var modelData = get(index)
             if (!modelData) {
-                return false
-            }
-
-            // WORKAROUND: in EDS empty context is equal to QtContacts.ContactDetail.ContextOther
-            // this will avoid call contact update if the context has not changed
-            if ((detail.contexts.length === 0) && (modelData.value === QtContacts.ContactDetail.ContextOther)) {
                 return false
             }
 
