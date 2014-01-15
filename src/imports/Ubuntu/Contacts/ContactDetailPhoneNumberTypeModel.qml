@@ -20,6 +20,7 @@ import QtContacts 5.0 as QtContacts
 ListModel {
     id: typeModel
 
+    property bool ready: false
     signal loaded()
 
     function getTypeIndex(detail) {
@@ -38,7 +39,9 @@ ListModel {
             } else {
                 return 1
             }
-        } else{
+        } else if (contexts.indexOf(QtContacts.ContactDetail.ContextOther) > -1) {
+            return 4
+        } else {
             return 2 // Default value is "Mobile"
         }
     }
@@ -69,21 +72,11 @@ ListModel {
             return false
         }
 
-//        // WORKAROUND: in EDS empty context is equal to QtContacts.ContactDetail.ContextOther
-//        // this will avoid call contact update if the context has not changed
-//        if ((detail.contexts.length === 0) && (modelData.value === "Other")) {
-//            return
-//        }
-
         var newSubTypes = []
         var newContext = []
 
         newContext.push(modelData.context)
-        if (modelData.subType !== -1) {
-            newSubTypes.push(modelData.subType)
-        }
-        // All current labels is voice type
-        newSubTypes.push(QtContacts.PhoneNumber.Voice)
+        newSubTypes.push(modelData.subType)
 
         var changed  = false
         if (!compareList(newContext, detail.contexts)) {
@@ -108,7 +101,8 @@ ListModel {
         append({"value": "Mobile-Work", "label": i18n.tr("Work Mobile"), "icon": null,
                 "context": QtContacts.ContactDetail.ContextWork, "subType": QtContacts.PhoneNumber.Mobile })
         append({"value": "Other", "label": i18n.tr("Other"), "icon": null,
-                "context": QtContacts.ContactDetail.ContextOther, "subType": -1 })
+                "context": QtContacts.ContactDetail.ContextOther, "subType": QtContacts.PhoneNumber.Landline })
         loaded()
+        ready = true
     }
 }

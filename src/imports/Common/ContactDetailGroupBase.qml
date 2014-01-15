@@ -112,7 +112,7 @@ FocusScope {
                 Binding {
                     target: detailItem.item
                     property: "detail"
-                    value: root.details[index]
+                    value: root.contact && root.details ? root.details[index] : null
                 }
 
                 Binding {
