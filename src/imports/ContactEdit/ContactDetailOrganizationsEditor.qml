@@ -31,4 +31,5 @@ ContactDetailGroupWithTypeEditor {
                         i18n.tr("Role"),
                         i18n.tr("Title")
                       ]
+    inputMethodHints: Qt.ImhNoPredictiveText
 }
