@@ -2,3 +2,4 @@ usr/bin/address-book-app
 usr/share/address-book-app/artwork
 usr/share/address-book-app/imports
 usr/share/applications/address-book-app.desktop
+usr/share/locale/*/LC_MESSAGES/address-book-app.mo
