@@ -76,6 +76,7 @@ ContactDetailItem {
         detail: root.detail
         height: units.gu(4)
         placeholderText: field == QtContacts.Name.FirstName ? i18n.tr("First name") : i18n.tr("Last name")
+        inputMethodHints: Qt.ImhNoPredictiveText
         onTextChanged: checkIsEmpty()
         onFieldChanged: checkIsEmpty()
 

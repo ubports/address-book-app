@@ -33,4 +33,5 @@ ContactDetailGroupWithTypeEditor {
                         i18n.tr("Region"),
                         i18n.tr("Post code"),
                         i18n.tr("Country") ]
+    inputMethodHints: Qt.ImhNoPredictiveText
 }

@@ -1,5 +1,5 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2013 Canonical Ltd.
+# Copyright (C) YEAR Canonical Ltd.
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 16:16-0300\n"
+"POT-Creation-Date: 2014-01-24 11:48-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/imports/ContactList/ContactListPage.qml:122
+#: src/imports/ContactList/ContactListPage.qml:153
 msgid "Add"
 msgstr ""
 
@@ -26,17 +26,17 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:61
+#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:63
 msgid "Aim"
 msgstr ""
 
-#: src/imports/Ubuntu/Contacts/ContactListView.qml:111
+#: src/imports/Ubuntu/Contacts/ContactListView.qml:115
 msgid "All contacts"
 msgstr ""
 
-#: src/imports/ContactEdit/ContactEditor.qml:320
-#: src/imports/ContactEdit/EditToolbar.qml:36
-#: src/imports/Ubuntu/Contacts/DialogButtons.qml:36
+#: src/imports/ContactEdit/ContactEditor.qml:347
+#: src/imports/ContactEdit/EditToolbar.qml:37
+#: src/imports/Ubuntu/Contacts/DialogButtons.qml:37
 msgid "Cancel"
 msgstr ""
 
@@ -45,7 +45,7 @@ msgid "Contact not found"
 msgstr ""
 
 #: data/address-book-app.desktop.in:6 data/address-book-app.desktop.in:7
-#: src/imports/ContactList/ContactListPage.qml:47
+#: src/imports/ContactList/ContactListPage.qml:53
 msgid "Contacts"
 msgstr ""
 
@@ -57,17 +57,18 @@ msgstr ""
 msgid "Country"
 msgstr ""
 
-#: src/imports/ContactView/ContactView.qml:149
-#: src/imports/Ubuntu/Contacts/ContactSimpleListView.qml:239
+#: src/imports/ContactList/ContactListPage.qml:78
+#: src/imports/ContactView/ContactView.qml:157
+#: src/imports/Ubuntu/Contacts/ContactSimpleListView.qml:245
 msgid "Delete"
 msgstr ""
 
-#: src/imports/ContactEdit/EditToolbar.qml:50
-#: src/imports/Ubuntu/Contacts/DialogButtons.qml:51
+#: src/imports/ContactEdit/EditToolbar.qml:52
+#: src/imports/Ubuntu/Contacts/DialogButtons.qml:53
 msgid "Done"
 msgstr ""
 
-#: src/imports/ContactView/ContactView.qml:159
+#: src/imports/ContactView/ContactView.qml:169
 msgid "Edit"
 msgstr ""
 
@@ -90,33 +91,33 @@ msgid "Enter an email address"
 msgstr ""
 
 #: src/imports/ContactEdit/ContactFetchError.qml:25
-#: src/imports/ContactList/ContactListPage.qml:54
+#: src/imports/ContactList/ContactListPage.qml:60
 msgid "Error"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:55
+#: src/imports/ContactList/ContactListPage.qml:61
 msgid "Fail to Load contacts"
 msgstr ""
 
 #: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:33
-#: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:42
+#: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:44
 msgid "Favorite"
 msgstr ""
 
-#: src/imports/Ubuntu/Contacts/ContactListView.qml:61
+#: src/imports/Ubuntu/Contacts/ContactListView.qml:65
 msgid "Favourites"
 msgstr ""
 
-#: src/imports/ContactEdit/ContactDetailNameEditor.qml:77
+#: src/imports/ContactEdit/ContactDetailNameEditor.qml:78
 msgid "First name"
 msgstr ""
 
-#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:122
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:102
+#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:116
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:95
 msgid "Home"
 msgstr ""
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
+#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
 msgid "ICQ"
 msgstr ""
 
@@ -124,15 +125,15 @@ msgstr ""
 msgid "IM"
 msgstr ""
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
+#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:66
 msgid "Jabber"
 msgstr ""
 
-#: src/imports/ContactEdit/ContactDetailNameEditor.qml:77
+#: src/imports/ContactEdit/ContactDetailNameEditor.qml:78
 msgid "Last name"
 msgstr ""
 
-#: src/imports/ContactEdit/ContactDetailAvatarEditor.qml:77
+#: src/imports/ContactEdit/ContactDetailAvatarEditor.qml:81
 msgid "Loading"
 msgstr ""
 
@@ -140,11 +141,11 @@ msgstr ""
 msgid "Locality"
 msgstr ""
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
+#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
 msgid "MSN"
 msgstr ""
 
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:106
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:99
 msgid "Mobile"
 msgstr ""
 
@@ -152,8 +153,8 @@ msgstr ""
 msgid "Organization"
 msgstr ""
 
-#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:124
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:110
+#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:118
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:103
 msgid "Other"
 msgstr ""
 
@@ -179,15 +180,16 @@ msgstr ""
 msgid "Role"
 msgstr ""
 
-#: src/imports/ContactEdit/ContactEditor.qml:311
+#: src/imports/ContactEdit/ContactEditor.qml:338
 msgid "Save"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:115
+#: src/imports/ContactList/ContactListPage.qml:78
+#: src/imports/ContactList/ContactListPage.qml:145
 msgid "Select"
 msgstr ""
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
+#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
 msgid "Skype"
 msgstr ""
 
@@ -211,15 +213,15 @@ msgstr ""
 msgid "View contact's profile"
 msgstr ""
 
-#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:123
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:104
+#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:117
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:97
 msgid "Work"
 msgstr ""
 
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:108
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:101
 msgid "Work Mobile"
 msgstr ""
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
+#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:70
 msgid "Yahoo"
 msgstr ""
