@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-10-11 16:16-0300\n"
+"POT-Creation-Date: 2014-01-24 11:48-0500\n"
 "PO-Revision-Date: 2014-01-14 20:34+0000\n"
 "Last-Translator: Tadeáš Pařík <tadeas.parik@gmail.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-01-23 05:59+0000\n"
-"X-Generator: Launchpad (build 16901)\n"
+"X-Launchpad-Export-Date: 2014-01-26 05:18+0000\n"
+"X-Generator: Launchpad (build 16914)\n"
 
-#: src/imports/ContactList/ContactListPage.qml:122
+#: src/imports/ContactList/ContactListPage.qml:153
 msgid "Add"
 msgstr "Přidat"
 
@@ -26,17 +26,17 @@ msgstr "Přidat"
 msgid "Address"
 msgstr "Adresa"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:61
+#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:63
 msgid "Aim"
 msgstr "Cíl"
 
-#: src/imports/Ubuntu/Contacts/ContactListView.qml:111
+#: src/imports/Ubuntu/Contacts/ContactListView.qml:115
 msgid "All contacts"
 msgstr "Všechny kontakty"
 
-#: src/imports/ContactEdit/ContactEditor.qml:320
-#: src/imports/ContactEdit/EditToolbar.qml:36
-#: src/imports/Ubuntu/Contacts/DialogButtons.qml:36
+#: src/imports/ContactEdit/ContactEditor.qml:347
+#: src/imports/ContactEdit/EditToolbar.qml:37
+#: src/imports/Ubuntu/Contacts/DialogButtons.qml:37
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -45,7 +45,7 @@ msgid "Contact not found"
 msgstr "Kontakt nenalezen"
 
 #: data/address-book-app.desktop.in:6 data/address-book-app.desktop.in:7
-#: src/imports/ContactList/ContactListPage.qml:47
+#: src/imports/ContactList/ContactListPage.qml:53
 msgid "Contacts"
 msgstr "Kontakty"
 
@@ -57,17 +57,18 @@ msgstr "Seznam kontaktů"
 msgid "Country"
 msgstr "Země"
 
-#: src/imports/ContactView/ContactView.qml:149
-#: src/imports/Ubuntu/Contacts/ContactSimpleListView.qml:239
+#: src/imports/ContactList/ContactListPage.qml:78
+#: src/imports/ContactView/ContactView.qml:157
+#: src/imports/Ubuntu/Contacts/ContactSimpleListView.qml:245
 msgid "Delete"
 msgstr "Vymazat"
 
-#: src/imports/ContactEdit/EditToolbar.qml:50
-#: src/imports/Ubuntu/Contacts/DialogButtons.qml:51
+#: src/imports/ContactEdit/EditToolbar.qml:52
+#: src/imports/Ubuntu/Contacts/DialogButtons.qml:53
 msgid "Done"
 msgstr "Hotovo"
 
-#: src/imports/ContactView/ContactView.qml:159
+#: src/imports/ContactView/ContactView.qml:169
 msgid "Edit"
 msgstr "Upravit"
 
@@ -90,33 +91,33 @@ msgid "Enter an email address"
 msgstr "Zadejte emailovou adresu"
 
 #: src/imports/ContactEdit/ContactFetchError.qml:25
-#: src/imports/ContactList/ContactListPage.qml:54
+#: src/imports/ContactList/ContactListPage.qml:60
 msgid "Error"
 msgstr "Chyba"
 
-#: src/imports/ContactList/ContactListPage.qml:55
+#: src/imports/ContactList/ContactListPage.qml:61
 msgid "Fail to Load contacts"
 msgstr "Chyba při načítání kontaktů"
 
 #: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:33
-#: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:42
+#: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:44
 msgid "Favorite"
 msgstr "Oblíbené"
 
-#: src/imports/Ubuntu/Contacts/ContactListView.qml:61
+#: src/imports/Ubuntu/Contacts/ContactListView.qml:65
 msgid "Favourites"
 msgstr "Oblíbené"
 
-#: src/imports/ContactEdit/ContactDetailNameEditor.qml:77
+#: src/imports/ContactEdit/ContactDetailNameEditor.qml:78
 msgid "First name"
 msgstr "Jméno"
 
-#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:122
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:102
+#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:116
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:95
 msgid "Home"
 msgstr "Domů"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
+#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
 msgid "ICQ"
 msgstr "ICQ"
 
@@ -124,15 +125,15 @@ msgstr "ICQ"
 msgid "IM"
 msgstr "IM"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
+#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:66
 msgid "Jabber"
 msgstr "Jabber"
 
-#: src/imports/ContactEdit/ContactDetailNameEditor.qml:77
+#: src/imports/ContactEdit/ContactDetailNameEditor.qml:78
 msgid "Last name"
 msgstr "Příjmení"
 
-#: src/imports/ContactEdit/ContactDetailAvatarEditor.qml:77
+#: src/imports/ContactEdit/ContactDetailAvatarEditor.qml:81
 msgid "Loading"
 msgstr "Načítání"
 
@@ -140,11 +141,11 @@ msgstr "Načítání"
 msgid "Locality"
 msgstr "Lokalita"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
+#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
 msgid "MSN"
 msgstr "MSN"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:106
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:99
 msgid "Mobile"
 msgstr "Mobil"
 
@@ -152,8 +153,8 @@ msgstr "Mobil"
 msgid "Organization"
 msgstr "Organizace"
 
-#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:124
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:110
+#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:118
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:103
 msgid "Other"
 msgstr "Další"
 
@@ -179,15 +180,16 @@ msgstr "Oblast"
 msgid "Role"
 msgstr "Role"
 
-#: src/imports/ContactEdit/ContactEditor.qml:311
+#: src/imports/ContactEdit/ContactEditor.qml:338
 msgid "Save"
 msgstr "Uložit"
 
-#: src/imports/ContactList/ContactListPage.qml:115
+#: src/imports/ContactList/ContactListPage.qml:78
+#: src/imports/ContactList/ContactListPage.qml:145
 msgid "Select"
 msgstr "Vybrat"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
+#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
 msgid "Skype"
 msgstr "Skype"
 
@@ -211,15 +213,15 @@ msgstr "Dotek"
 msgid "View contact's profile"
 msgstr "Zobrazit profil kontaktu"
 
-#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:123
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:104
+#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:117
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:97
 msgid "Work"
 msgstr "Práce"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:108
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:101
 msgid "Work Mobile"
 msgstr "Pracovní mobil"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
+#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:70
 msgid "Yahoo"
 msgstr "Yahoo"

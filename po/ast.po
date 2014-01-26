@@ -1,4 +1,4 @@
-# Dutch translation for address-book-app
+# Asturian translation for address-book-app
 # Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the address-book-app package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-01-24 11:48-0500\n"
-"PO-Revision-Date: 2014-01-14 21:48+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Dutch <nl@li.org>\n"
+"PO-Revision-Date: 2014-01-26 03:40+0000\n"
+"Last-Translator: Xuacu Saturio <xuacusk8@gmail.com>\n"
+"Language-Team: Asturian <ast@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,49 +19,49 @@ msgstr ""
 
 #: src/imports/ContactList/ContactListPage.qml:153
 msgid "Add"
-msgstr ""
+msgstr "Amestar"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
 #: src/imports/ContactView/ContactDetailAddressesView.qml:24
 msgid "Address"
-msgstr ""
+msgstr "Direición"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:63
 msgid "Aim"
-msgstr ""
+msgstr "Propósitu"
 
 #: src/imports/Ubuntu/Contacts/ContactListView.qml:115
 msgid "All contacts"
-msgstr ""
+msgstr "Tolos contautos"
 
 #: src/imports/ContactEdit/ContactEditor.qml:347
 #: src/imports/ContactEdit/EditToolbar.qml:37
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:37
 msgid "Cancel"
-msgstr ""
+msgstr "Encaboxar"
 
 #: src/imports/ContactEdit/ContactFetchError.qml:26
 msgid "Contact not found"
-msgstr ""
+msgstr "Nun s'alcontró'l contautu"
 
 #: data/address-book-app.desktop.in:6 data/address-book-app.desktop.in:7
 #: src/imports/ContactList/ContactListPage.qml:53
 msgid "Contacts"
-msgstr ""
+msgstr "Contautos"
 
 #: data/address-book-app.desktop.in:8
 msgid "Contacts Address Book"
-msgstr ""
+msgstr "Llibreta de direiciones"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
-msgstr ""
+msgstr "País"
 
 #: src/imports/ContactList/ContactListPage.qml:78
 #: src/imports/ContactView/ContactView.qml:157
 #: src/imports/Ubuntu/Contacts/ContactSimpleListView.qml:245
 msgid "Delete"
-msgstr ""
+msgstr "Desaniciar"
 
 #: src/imports/ContactEdit/EditToolbar.qml:52
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:53
