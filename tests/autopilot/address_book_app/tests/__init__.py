@@ -46,7 +46,10 @@ class AddressBookAppTestCase(AutopilotTestCase):
         print "Running from: %s" % (self.app_bin)
         os.environ['QTCONTACTS_MANAGER_OVERRIDE'] = 'memory'
         if AddressBookAppTestCase.PRELOAD_VCARD:
-            os.environ["ADDRESS_BOOK_TEST_DATA"] = "/usr/share/address-book-app/vcards/vcard.vcf"
+            if self.app_bin == AddressBookAppTestCase.DEFAULT_DEV_LOCATION:
+                os.environ["ADDRESS_BOOK_TEST_DATA"] = os.path.abspath("../data/vcard.vcf")
+            else:
+                os.environ["ADDRESS_BOOK_TEST_DATA"] = "/usr/share/address-book-app/vcards/vcard.vcf"
         else:
             os.environ["ADDRESS_BOOK_TEST_DATA"] = ""
 
