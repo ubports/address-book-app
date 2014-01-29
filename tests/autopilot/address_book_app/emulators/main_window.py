@@ -6,6 +6,7 @@
 # by the Free Software Foundation.
 
 from ubuntuuitoolkit import emulators as uitk
+from toolbar import Toolbar
 
 
 class MainWindow(uitk.MainView):
@@ -30,4 +31,3 @@ class MainWindow(uitk.MainView):
             if p.pickMode:
                 return p
         return None
-
