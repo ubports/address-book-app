@@ -48,23 +48,23 @@ class AddressBookAppTestCase(AutopilotTestCase):
         os.environ['QTCONTACTS_MANAGER_OVERRIDE'] = 'memory'
         vcard_data = ""
         if AddressBookAppTestCase.PRELOAD_VCARD:
-            # Defaults to vcard from source tree if running from checkout
-            if self.app_bin == AddressBookAppTestCase.DEFAULT_DEV_LOCATION:
+            # Use vcard from source tree and fallback on installed vcard (from
+            #  address-book-app-autopilot package)
+            if os.path.exists(AddressBookAppTestCase.VCARD_PATH_DEV):
                 vcard_data = AddressBookAppTestCase.VCARD_PATH_DEV
             else:
                 vcard_data = AddressBookAppTestCase.VCARD_PATH_BIN
 
+        os.environ["ADDRESS_BOOK_TEST_DATA"] = vcard_data
+        if vcard_data != "": print "Using vcard %s" % vcard_data
         if os.path.exists(self.app_bin):
             print "Running from: %s" % (self.app_bin)
-            os.environ["ADDRESS_BOOK_TEST_DATA"] = vcard_data
             self.launch_test_local()
         elif os.path.exists(self.DEB_LOCALTION):
             print "Running from: %s" % (self.DEB_LOCALTION)
-            os.environ["ADDRESS_BOOK_TEST_DATA"] = vcard_data
             self.launch_test_installed()
         else:
             print "Running from click package: address-book-app"
-            os.environ["ADDRESS_BOOK_TEST_DATA"] = vcard_data
             self.launch_click_installed()
 
         AddressBookAppTestCase.ARGS = []
