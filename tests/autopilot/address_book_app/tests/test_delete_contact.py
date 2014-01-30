@@ -1,19 +1,19 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-# Copyright 2013 Canonical
+
+"""Tests for the Addressbook App"""
+
+# Copyright 2014 Canonical
 #
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
-
-"""Tests for the Addressbook App"""
-
 from __future__ import absolute_import
 
 from testtools.matchers import Equals
-from autopilot.matchers import Eventually
 
 from address_book_app.tests import AddressBookAppTestCase
 from address_book_app.emulators.contact_list_page import ContactListPage
+from address_book_app.emulators.toolbar import Toolbar
 
 
 class TestDeleteSelectContact(AddressBookAppTestCase):
