@@ -2,15 +2,17 @@
 
 """ ContactListPage emulator for Addressbook App tests """
 
-# Copyright 2013 Canonical
+# Copyright 2014 Canonical
 #
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
 
-from ubuntuuitoolkit import emulators as uitk
-from autopilot.introspection.dbus import StateNotFoundError
 import logging
+
+from autopilot.introspection.dbus import StateNotFoundError
+from ubuntuuitoolkit import emulators as uitk
+
 LOGGER = logging.getLogger(__name__)
 from time import sleep
 
@@ -36,7 +38,7 @@ class ContactListPage(uitk.UbuntuUIToolkitEmulatorBase):
             if contact.visible:
                 mark = contact.select_single("QQuickRectangle",
                                              objectName="selectionMark")
-                self.selection_marks.append(mark)
+            self.selection_marks.append(mark)
         return self.contacts
 
     def select_contacts_by_index(self, indices):
@@ -44,15 +46,22 @@ class ContactListPage(uitk.UbuntuUIToolkitEmulatorBase):
 
         :param indices: List of integers
         """
-        # Unselect all
-        for mark in self.selected_marks:
-            self.pointing_device.click_object(mark)
-        self.selected_marks = []
+        self.deselect_all()
 
         # Select matching indices
         for idx in indices:
             self.selected_marks.append(self.selection_marks[idx])
             self.pointing_device.click_object(self.selection_marks[idx])
+
+    def deselect_all(self):
+        """Deselect every contacts"""
+        contacts = self.select_many("ContactDelegate")
+        self.selected_marks = []
+        for contact in contacts:
+            if contact.selected:
+                mark = contact.select_single("QQuickRectangle",
+                                             objectName="selectionMark")
+                self.pointing_device.click_object(mark)
 
     def click_button(self, objectname):
         """Press a button that matches objectname
