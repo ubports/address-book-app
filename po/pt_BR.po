@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-01-24 11:48-0500\n"
-"PO-Revision-Date: 2014-01-18 23:56+0000\n"
-"Last-Translator: Fábio Nogueira <deb-user-ba@ubuntu.com>\n"
+"PO-Revision-Date: 2014-02-05 12:23+0000\n"
+"Last-Translator: Pablo Diego Moço <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-01-27 05:48+0000\n"
-"X-Generator: Launchpad (build 16914)\n"
+"X-Launchpad-Export-Date: 2014-02-06 06:27+0000\n"
+"X-Generator: Launchpad (build 16916)\n"
 
 #: src/imports/ContactList/ContactListPage.qml:153
 msgid "Add"
@@ -51,7 +51,7 @@ msgstr "Contatos"
 
 #: data/address-book-app.desktop.in:8
 msgid "Contacts Address Book"
-msgstr ""
+msgstr "Agenda de contatos"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
@@ -84,7 +84,7 @@ msgstr "Insira um número"
 
 #: src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:28
 msgid "Enter a social alias"
-msgstr ""
+msgstr "Digite um apelido"
 
 #: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:27
 msgid "Enter an email address"
@@ -211,7 +211,7 @@ msgstr "Toque"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:111
 msgid "View contact's profile"
-msgstr ""
+msgstr "Visualizar perfil do contato"
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:117
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:97
