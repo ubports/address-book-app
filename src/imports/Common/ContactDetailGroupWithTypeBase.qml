@@ -40,7 +40,7 @@ ContactDetailGroupBase {
     }
 
     typeModel: ListModel {
-
+        property bool ready: false
         signal loaded()
 
         function getTypeIndex(detail) {
@@ -61,7 +61,7 @@ ContactDetailGroupBase {
                 return 0
             } else if (context === QtContacts.ContactDetail.ContextWork) {
                 return 1
-            } else if (subType === QtContacts.ContactDetail.ContextOther) {
+            } else if (context === QtContacts.ContactDetail.ContextOther) {
                 return 2
             } else {
                 return 0 // default value is "Home"
@@ -103,12 +103,6 @@ ContactDetailGroupBase {
                 return false
             }
 
-            // WORKAROUND: in EDS empty context is equal to QtContacts.ContactDetail.ContextOther
-            // this will avoid call contact update if the context has not changed
-            if ((detail.contexts.length === 0) && (modelData.value === QtContacts.ContactDetail.ContextOther)) {
-                return false
-            }
-
             var newContext = detail.contexts.filter(isNotAModelValue)
             newContext.push(modelData.value)
             if (!compareList(newContext, detail.contexts)) {
@@ -122,6 +116,7 @@ ContactDetailGroupBase {
             append({"value": QtContacts.ContactDetail.ContextHome, "label": i18n.tr("Home"), "icon": null})
             append({"value": QtContacts.ContactDetail.ContextWork, "label": i18n.tr("Work"), "icon": null})
             append({"value": QtContacts.ContactDetail.ContextOther, "label": i18n.tr("Other"), "icon": null})
+            ready = true
             loaded()
         }
     }

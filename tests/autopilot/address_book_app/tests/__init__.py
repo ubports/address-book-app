@@ -78,8 +78,6 @@ class AddressBookAppTestCase(AutopilotTestCase):
     def launch_test_installed(self):
         df = "/usr/share/applications/address-book-app.desktop"
         self.ARGS.append("--desktop_file_hint=" + df)
-        print "ARGS:", AddressBookAppTestCase.ARGS
-        print "ENV:", os.environ["ADDRESS_BOOK_TEST_DATA"]
         self.app = self.launch_test_application(
             "address-book-app",
             *AddressBookAppTestCase.ARGS,
@@ -159,6 +157,50 @@ class AddressBookAppTestCase(AutopilotTestCase):
 
         return edit_page
 
+    def set_phone_number(self, idx, phone_number, phone_type=-1):
+        phoneGroup = self.main_window.select_single(
+            "ContactDetailGroupWithTypeEditor",
+            objectName="phones")
+
+        if (idx > 0):
+            self.create_new_detail(phoneGroup)
+
+        phone_number_input = self.main_window.select_single(
+            "TextInputDetail",
+            objectName="phoneNumber_" + str(idx))
+        self.type_on_field(phone_number_input, phone_number)
+
+        if (phone_type != -1):
+            phone_value_selector = self.main_window.select_single(
+                "ValueSelector",
+                objectName="type_phoneNumber_" + str(idx))
+            self.pointing_device.click_object(phone_value_selector)
+            self.select_a_value(phone_number_input,
+                                phone_value_selector,
+                                phone_type)
+
+    def set_email_address(self, idx, email_address, email_type=-1):
+        emailGroup = self.main_window.select_single(
+            "ContactDetailGroupWithTypeEditor",
+            objectName="emails")
+
+        if (idx > 0):
+            self.create_new_detail(emailGroup)
+
+        email_address_input = self.main_window.select_single(
+            "TextInputDetail",
+            objectName="emailAddress_" + str(idx))
+        self.type_on_field(email_address_input, email_address)
+
+        if (email_type != -1):
+            email_value_selector = self.main_window.select_single(
+                "ValueSelector",
+                objectName="type_email_" + str(idx))
+            self.pointing_device.click_object(email_value_selector)
+            self.select_a_value(email_address_input,
+                                email_value_selector,
+                                email_type)
+
     def add_contact(self,
                     first_name,
                     last_name,
@@ -187,26 +229,14 @@ class AddressBookAppTestCase(AutopilotTestCase):
                 "ContactDetailGroupWithTypeEditor",
                 objectName="phones")
             for idx, number in enumerate(phone_numbers):
-                if (idx > 0):
-                    self.create_new_detail(phoneGroup)
-
-                phone_number_input = self.main_window.select_single(
-                    "TextInputDetail",
-                    objectName="phoneNumber_" + str(idx))
-                self.type_on_field(phone_number_input, number)
+                self.set_phone_number(idx, number)
 
         if (email_address):
             emailGroup = self.main_window.select_single(
                 "ContactDetailGroupWithTypeEditor",
                 objectName="emails")
             for idx, address in enumerate(email_address):
-                if (idx > 0):
-                    self.create_new_detail(emailGroup)
-
-                email_address_input = self.main_window.select_single(
-                    "TextInputDetail",
-                    objectName="emailAddress_" + str(idx))
-                self.type_on_field(email_address_input, address)
+                self.set_email_address(idx, address)
 
         if (im_address):
             imGroup = self.main_window.select_single(

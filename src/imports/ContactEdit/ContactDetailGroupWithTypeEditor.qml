@@ -160,7 +160,7 @@ ContactDetailGroupWithTypeBase {
         Item {
             Connections {
                 target: root.typeModel
-                onLoaded: updateCombo(true)
+                onReadyChanged: updateCombo(true)
             }
         }
     }

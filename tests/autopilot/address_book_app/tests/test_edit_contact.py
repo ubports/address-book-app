@@ -109,10 +109,10 @@ class TestEditContact(AddressBookAppTestCase):
         self.assertThat(email_group.detailsCount, Eventually(Equals(1)))
 
         # check if the new value is correct
-        phone_label_1 = view_page.select_single(
+        email_label_1 = view_page.select_single(
             "Label",
             objectName="label_emailAddress_0.0")
-        self.assertThat(phone_label_1.text,
+        self.assertThat(email_label_1.text,
                         Eventually(Equals("fulano@internet.com.br")))
 
     def test_remove_email(self):

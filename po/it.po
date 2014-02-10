@@ -1,0 +1,227 @@
+# Italian translation for address-book-app
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# This file is distributed under the same license as the address-book-app package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: address-book-app\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2014-01-24 11:48-0500\n"
+"PO-Revision-Date: 2014-01-22 09:12+0000\n"
+"Last-Translator: Claudio Arseni <claudio.arseni@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2014-01-27 05:48+0000\n"
+"X-Generator: Launchpad (build 16914)\n"
+
+#: src/imports/ContactList/ContactListPage.qml:153
+msgid "Add"
+msgstr "Aggiungi"
+
+#: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
+#: src/imports/ContactView/ContactDetailAddressesView.qml:24
+msgid "Address"
+msgstr "Indirizzo"
+
+#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:63
+msgid "Aim"
+msgstr "Aim"
+
+#: src/imports/Ubuntu/Contacts/ContactListView.qml:115
+msgid "All contacts"
+msgstr "Tutti i contatti"
+
+#: src/imports/ContactEdit/ContactEditor.qml:347
+#: src/imports/ContactEdit/EditToolbar.qml:37
+#: src/imports/Ubuntu/Contacts/DialogButtons.qml:37
+msgid "Cancel"
+msgstr "Annulla"
+
+#: src/imports/ContactEdit/ContactFetchError.qml:26
+msgid "Contact not found"
+msgstr "Contatto non trovato"
+
+#: data/address-book-app.desktop.in:6 data/address-book-app.desktop.in:7
+#: src/imports/ContactList/ContactListPage.qml:53
+msgid "Contacts"
+msgstr "Contatti"
+
+#: data/address-book-app.desktop.in:8
+msgid "Contacts Address Book"
+msgstr "Rubrica"
+
+#: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
+msgid "Country"
+msgstr "Paese"
+
+#: src/imports/ContactList/ContactListPage.qml:78
+#: src/imports/ContactView/ContactView.qml:157
+#: src/imports/Ubuntu/Contacts/ContactSimpleListView.qml:245
+msgid "Delete"
+msgstr "Elimina"
+
+#: src/imports/ContactEdit/EditToolbar.qml:52
+#: src/imports/Ubuntu/Contacts/DialogButtons.qml:53
+msgid "Done"
+msgstr "Fatto"
+
+#: src/imports/ContactView/ContactView.qml:169
+msgid "Edit"
+msgstr "Modifica"
+
+#: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:23
+#: src/imports/ContactView/ContactDetailEmailsView.qml:23
+#: src/imports/ContactView/ContactDetailEmailsView.qml:26
+msgid "Email"
+msgstr "Email"
+
+#: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:28
+msgid "Enter a number"
+msgstr "Inserire un numero"
+
+#: src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:28
+msgid "Enter a social alias"
+msgstr "Inserire soprannome"
+
+#: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:27
+msgid "Enter an email address"
+msgstr "Inserire indirizzo email"
+
+#: src/imports/ContactEdit/ContactFetchError.qml:25
+#: src/imports/ContactList/ContactListPage.qml:60
+msgid "Error"
+msgstr "Errore"
+
+#: src/imports/ContactList/ContactListPage.qml:61
+msgid "Fail to Load contacts"
+msgstr "Impossibile caricare i contatti"
+
+#: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:33
+#: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:44
+msgid "Favorite"
+msgstr "Preferito"
+
+#: src/imports/Ubuntu/Contacts/ContactListView.qml:65
+msgid "Favourites"
+msgstr "Preferiti"
+
+#: src/imports/ContactEdit/ContactDetailNameEditor.qml:78
+msgid "First name"
+msgstr "Nome"
+
+#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:116
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:95
+msgid "Home"
+msgstr "Casa"
+
+#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
+msgid "ICQ"
+msgstr "ICQ"
+
+#: src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:24
+msgid "IM"
+msgstr "Messaggistica istantanea"
+
+#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:66
+msgid "Jabber"
+msgstr "Jabber"
+
+#: src/imports/ContactEdit/ContactDetailNameEditor.qml:78
+msgid "Last name"
+msgstr "Cognome"
+
+#: src/imports/ContactEdit/ContactDetailAvatarEditor.qml:81
+msgid "Loading"
+msgstr "Caricamento"
+
+#: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:32
+msgid "Locality"
+msgstr "Località"
+
+#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
+msgid "MSN"
+msgstr "MSN"
+
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:99
+msgid "Mobile"
+msgstr "Cellulare"
+
+#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
+msgid "Organization"
+msgstr "Società"
+
+#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:118
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:103
+msgid "Other"
+msgstr "Altro"
+
+#: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:24
+#: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:30
+msgid "Phone"
+msgstr "Telefono"
+
+#: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:34
+msgid "Post code"
+msgstr "CAP"
+
+#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:23
+#: src/imports/ContactView/ContactDetailOrganizationsView.qml:27
+msgid "Professional details"
+msgstr "Dettagli professione"
+
+#: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:33
+msgid "Region"
+msgstr "Provincia"
+
+#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:31
+msgid "Role"
+msgstr "Ruolo"
+
+#: src/imports/ContactEdit/ContactEditor.qml:338
+msgid "Save"
+msgstr "Salva"
+
+#: src/imports/ContactList/ContactListPage.qml:78
+#: src/imports/ContactList/ContactListPage.qml:145
+msgid "Select"
+msgstr "Seleziona"
+
+#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
+msgid "Skype"
+msgstr "Skype"
+
+#: src/imports/ContactView/ContactDetailOnlineAccountsView.qml:27
+msgid "Social"
+msgstr "Social"
+
+#: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:31
+msgid "Street"
+msgstr "Via"
+
+#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:32
+msgid "Title"
+msgstr "Titolo"
+
+#: src/imports/ContactView/ContactDetailOnlineAccountsView.qml:30
+msgid "Touch"
+msgstr "Touch"
+
+#: src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:111
+msgid "View contact's profile"
+msgstr "Visualizza profilo del contatto"
+
+#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:117
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:97
+msgid "Work"
+msgstr "Lavoro"
+
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:101
+msgid "Work Mobile"
+msgstr "Cellulare lavoro"
+
+#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:70
+msgid "Yahoo"
+msgstr "Yahoo!"
