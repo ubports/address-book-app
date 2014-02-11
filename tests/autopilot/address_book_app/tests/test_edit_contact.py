@@ -33,10 +33,7 @@ class TestEditContact(AddressBookAppTestCase):
             objectName="phoneNumber_1")
         self.type_on_field(phone_number_1, "22 2222 2222")
 
-        acceptButton = self.main_window.select_single(
-            "Button",
-            objectName="accept")
-        self.pointing_device.click_object(acceptButton)
+        self.main_window.save()
 
         # go back to view page
         view_page = self.main_window.get_contact_view_page()
@@ -65,10 +62,7 @@ class TestEditContact(AddressBookAppTestCase):
         self.clear_text_on_field(phone_number_1)
 
         # Save contact
-        acceptButton = self.main_window.select_single(
-            "Button",
-            objectName="accept")
-        self.pointing_device.click_object(acceptButton)
+        self.main_window.save()
 
         # check if we have onlye one phone
         view_page = self.main_window.get_contact_view_page()
@@ -93,10 +87,7 @@ class TestEditContact(AddressBookAppTestCase):
             objectName="emailAddress_0")
         self.type_on_field(email_field, "fulano@internet.com.br")
 
-        acceptButton = self.main_window.select_single(
-            "Button",
-            objectName="accept")
-        self.pointing_device.click_object(acceptButton)
+        self.main_window.save()
 
         # go back to view page
         view_page = self.main_window.get_contact_view_page()
@@ -126,10 +117,7 @@ class TestEditContact(AddressBookAppTestCase):
         self.clear_text_on_field(email_address_0)
 
         # Save contact
-        acceptButton = self.main_window.select_single(
-            "Button",
-            objectName="accept")
-        self.pointing_device.click_object(acceptButton)
+        self.main_window.save()
 
         # check if the email list is empty
         view_page = self.main_window.get_contact_view_page()
@@ -154,16 +142,11 @@ class TestEditContact(AddressBookAppTestCase):
         self.clear_text_on_field(last_name_field)
 
         # check if is possible to save a contact without name
-        accept_button = self.main_window.select_single(
-            "Button",
-            objectName="accept")
+        accept_button = self.main_window.get_button("accept")
         self.assertThat(accept_button.enabled, Eventually(Equals(False)))
 
         # Cancel edit
-        cancel_button = self.main_window.select_single(
-            "Button",
-            objectName="reject")
-        self.pointing_device.click_object(cancel_button)
+        self.main_window.cancel()
 
         # Check if the names still there
         view_page = self.main_window.get_contact_view_page()
@@ -188,10 +171,7 @@ class TestEditContact(AddressBookAppTestCase):
         self.select_a_value(im_address_0, im_value_selector, 0)
 
         # save contact
-        accept_button = edit_page.select_single(
-            "Button",
-            objectName="accept")
-        self.pointing_device.click_object(accept_button)
+        self.main_window.save()
 
         view_page = self.main_window.get_contact_view_page()
 
