@@ -6,6 +6,7 @@
 # by the Free Software Foundation.
 
 from ubuntuuitoolkit import emulators as uitk
+from toolbar import Toolbar
 
 
 class MainWindow(uitk.MainView):
@@ -58,5 +59,3 @@ class MainWindow(uitk.MainView):
         Press the 'Save' button
         """
         self.pointing_device.click_object(self.get_button("accept"))
-
-
