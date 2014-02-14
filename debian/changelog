@@ -1,3 +1,16 @@
+address-book-app (0.2+14.04.20140211-0ubuntu1) trusty; urgency=low
+
+  [ Jean-Baptiste Lallement ]
+  * tests/autopilot:. - Moved Save and Cancel actions to autopilot
+    emulators to make code more concise - Use vcard from source tree
+    when autopilot tests are executed from a code checkout - Display the
+    right binary used for the test
+
+  [ Ted Gould ]
+  * Add URL Dispatcher configuration
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 11 Feb 2014 15:19:57 +0000
+
 address-book-app (0.2+14.04.20140127-0ubuntu1) trusty; urgency=low
 
   [ Bill Filler ]

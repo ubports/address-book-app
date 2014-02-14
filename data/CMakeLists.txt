@@ -17,3 +17,7 @@ endforeach(LINE)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${ADDRESS_BOOK_APP_DESKTOP_FILE}
     DESTINATION ${CMAKE_INSTALL_DATADIR}/applications
 )
+
+install(FILES "address-book-app.url-dispatcher"
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/url-dispatcher/urls
+)

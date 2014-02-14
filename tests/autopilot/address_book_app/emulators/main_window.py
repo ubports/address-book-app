@@ -31,3 +31,32 @@ class MainWindow(uitk.MainView):
                 return p
         return None
 
+    def get_contact_list_view(self):
+        """
+        Returns a ContactListView iobject for the current window
+        """
+        return self.wait_select_single( "ContactListView",
+                                       objectName="contactListView")
+
+    def get_button(self, name):
+        """
+        Returns a Button object matching 'name'
+
+        Arguments:
+            name: Name of the button
+        """
+        return self.wait_select_single( "Button", objectName=name)
+
+    def cancel(self):
+        """
+        Press the 'Cancel' button
+        """
+        self.pointing_device.click_object(self.get_button("reject"))
+
+    def save(self):
+        """
+        Press the 'Save' button
+        """
+        self.pointing_device.click_object(self.get_button("accept"))
+
+
