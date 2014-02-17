@@ -1,12 +1,15 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-# Copyright 2013 Canonical
+# Copyright 2013, 2014 Canonical
 #
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
 
+import logging
 from ubuntuuitoolkit import emulators as uitk
+from autopilot import logging as autopilot_logging
 
+logger = logging.getLogger(__name__)
 
 class MainWindow(uitk.MainView):
     """An emulator class that makes it easy to interact with the app."""
@@ -59,4 +62,8 @@ class MainWindow(uitk.MainView):
         """
         self.pointing_device.click_object(self.get_button("accept"))
 
-
+    @autopilot_logging.log_action(logger.info)
+    def go_to_add_contact(self):
+        toolbar = self.open_toolbar()
+        toolbar.click_button(object_name="Add")
+        return self.get_contact_edit_page()
