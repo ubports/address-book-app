@@ -72,7 +72,10 @@ Page {
         OnlineAccountsMessage {
             id: onlineAccountsMessage
             onCanceled: PopupUtils.close(onlineAccountsMessage)
-            onAccepted: Qt.openUrlExternally("application:///online-accounts-ui.desktop")
+            onAccepted: {
+                Qt.openUrlExternally("application:///ubuntu-system-settings.desktop")
+                PopupUtils.close(onlineAccountsMessage)
+            }
         }
     }
 
