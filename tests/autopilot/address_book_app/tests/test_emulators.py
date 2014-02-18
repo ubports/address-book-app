@@ -17,13 +17,14 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from autopilot.introspection import dbus
-from address_book_app import tests
 
+from address_book_app import tests
+from address_book_app.emulators import main_window
 
 class EmulatorsTestCase(tests.AddressBookAppTestCase):
     
     def test_go_to_add_contact(self):
         self.assertRaises(dbus.StateNotFoundError, self.main_window.get_contact_edit_page)
         contact_editor = self.main_window.go_to_add_contact()
-        self.assertTrue(contact_editor.visible)
+        self.assertIsInstance(contact_editor, main_window.ContactEditor)
 

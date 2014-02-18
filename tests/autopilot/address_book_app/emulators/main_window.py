@@ -19,7 +19,7 @@ class MainWindow(uitk.MainView):
                                         objectName="contactListPage")
 
     def get_contact_edit_page(self):
-        return self.wait_select_single("ContactEditor",
+        return self.wait_select_single(ContactEditor,
                                        objectName="contactEditorPage")
 
     def get_contact_view_page(self):
@@ -67,3 +67,6 @@ class MainWindow(uitk.MainView):
         toolbar = self.open_toolbar()
         toolbar.click_button(object_name="Add")
         return self.get_contact_edit_page()
+
+class ContactEditor(uitk.UbuntuUIToolkitEmulatorBase):
+    pass
