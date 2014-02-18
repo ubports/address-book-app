@@ -66,19 +66,6 @@ Page {
         }
     }
 
-    Component {
-        id: onlineAccountsDialog
-
-        OnlineAccountsMessage {
-            id: onlineAccountsMessage
-            onCanceled: PopupUtils.close(onlineAccountsMessage)
-            onAccepted: {
-                Qt.openUrlExternally("settings:///system/online-accounts")
-                PopupUtils.close(onlineAccountsMessage)
-            }
-        }
-    }
-
     ContactsUI.ContactListView {
         id: contactList
         objectName: "contactListView"
@@ -142,6 +129,23 @@ Page {
         onIsInSelectionModeChanged: {
             if (isInSelectionMode) {
                 toolbar.opened = false
+            }
+        }
+    }
+
+    Component {
+        id: onlineAccountsDialog
+
+        OnlineAccountsMessage {
+            id: onlineAccountsMessage
+            onCanceled: {
+                PopupUtils.close(onlineAccountsMessage)
+                application.unsetFirstRun()
+            }
+            onAccepted: {
+                Qt.openUrlExternally("settings:///system/online-accounts")
+                PopupUtils.close(onlineAccountsMessage)
+                application.unsetFirstRun()
             }
         }
     }

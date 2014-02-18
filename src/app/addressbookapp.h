@@ -41,6 +41,7 @@ public Q_SLOTS:
     void onViewStatusChanged(QQuickView::Status status);
     void returnVcard(const QUrl &url);
     bool isFirstRun() const;
+    void unsetFirstRun() const;
 
 private:
     void callQMLMethod(const QString name, QStringList args);

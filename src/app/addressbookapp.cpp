@@ -200,10 +200,7 @@ bool AddressBookApp::setup()
 
 AddressBookApp::~AddressBookApp()
 {
-    // update first run flag
-    QSettings settings;
-    settings.setValue(ADDRESS_BOOK_FIRST_RUN_KEY, false);
-    settings.sync();
+    unsetFirstRun();
 
     if (m_view) {
         delete m_view;
@@ -237,6 +234,14 @@ bool AddressBookApp::isFirstRun() const
 {
     QSettings settings;
     return settings.value(ADDRESS_BOOK_FIRST_RUN_KEY, true).toBool();
+}
+
+void AddressBookApp::unsetFirstRun() const
+{
+    // mark first run as false
+    QSettings settings;
+    settings.setValue(ADDRESS_BOOK_FIRST_RUN_KEY, false);
+    settings.sync();
 }
 
 void AddressBookApp::parseUrl(const QString &arg)
