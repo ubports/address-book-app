@@ -11,6 +11,7 @@ from autopilot import logging as autopilot_logging
 
 logger = logging.getLogger(__name__)
 
+
 class MainWindow(uitk.MainView):
     """An emulator class that makes it easy to interact with the app."""
 
@@ -67,6 +68,7 @@ class MainWindow(uitk.MainView):
         toolbar = self.open_toolbar()
         toolbar.click_button(object_name="Add")
         return self.get_contact_edit_page()
+
 
 class ContactEditor(uitk.UbuntuUIToolkitEmulatorBase):
     pass
