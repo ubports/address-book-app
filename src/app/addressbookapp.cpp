@@ -30,8 +30,11 @@
 #include <QQuickView>
 #include <QLibrary>
 #include <QIcon>
+#include <QSettings>
 
 #include <QQmlEngine>
+
+#define ADDRESS_BOOK_FIRST_RUN_KEY          "first-run"
 
 static void printUsage(const QStringList& arguments)
 {
@@ -197,6 +200,11 @@ bool AddressBookApp::setup()
 
 AddressBookApp::~AddressBookApp()
 {
+    // update first run flag
+    QSettings settings;
+    settings.setValue(ADDRESS_BOOK_FIRST_RUN_KEY, false);
+    settings.sync();
+
     if (m_view) {
         delete m_view;
     }
@@ -223,6 +231,12 @@ void AddressBookApp::returnVcard(const QUrl &url)
         printf("%s\n", qPrintable(url.toString()));
         this->quit();
     }
+}
+
+bool AddressBookApp::isFirstRun() const
+{
+    QSettings settings;
+    return settings.value(ADDRESS_BOOK_FIRST_RUN_KEY, true).toBool();
 }
 
 void AddressBookApp::parseUrl(const QString &arg)

@@ -26,6 +26,7 @@ class ContentCommunicator;
 class AddressBookApp : public QGuiApplication
 {
     Q_OBJECT
+    Q_PROPERTY(bool firstRun READ isFirstRun CONSTANT)
 
 public:
     AddressBookApp(int &argc, char **argv);
@@ -39,6 +40,7 @@ public Q_SLOTS:
     void parseUrl(const QString &arg);
     void onViewStatusChanged(QQuickView::Status status);
     void returnVcard(const QUrl &url);
+    bool isFirstRun() const;
 
 private:
     void callQMLMethod(const QString name, QStringList args);

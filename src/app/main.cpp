@@ -18,11 +18,14 @@
 #include "addressbookapp.h"
 
 // Qt
-#include <QGuiApplication>
+#include <QCoreApplication>
 
 int main(int argc, char** argv)
 {
-    QGuiApplication::setApplicationName("Address Book App");
+    QCoreApplication::setOrganizationName("Canonical");
+    QCoreApplication::setOrganizationDomain("canonical.com");
+    QCoreApplication::setApplicationName("Address Book App");
+
     AddressBookApp application(argc, argv);
 
     if (!application.setup()) {

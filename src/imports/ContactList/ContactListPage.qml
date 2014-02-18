@@ -48,11 +48,9 @@ Page {
         return newContact
     }
 
-
-
     title: i18n.tr("Contacts")
     Component {
-        id: dialog
+        id: errorDialog
 
         Popups.Dialog {
             id: dialogue
@@ -65,6 +63,16 @@ Page {
                 gradient: UbuntuColors.greyGradient
                 onClicked: PopupUtils.close(dialogue)
             }
+        }
+    }
+
+    Component {
+        id: onlineAccountsDialog
+
+        OnlineAccountsMessage {
+            id: onlineAccountsMessage
+            onCanceled: PopupUtils.close(onlineAccountsMessage)
+            onAccepted: Qt.openUrlExternally("application:///online-accounts-ui.desktop")
         }
     }
 
@@ -85,7 +93,7 @@ Page {
             bottomMargin: contactList.isInSelectionMode ? 0 : units.gu(2)
             fill: parent
         }
-        onError: PopupUtils.open(dialog, null)
+        onError: PopupUtils.open(errorDialog, null)
         swipeToDelete: !pickMode
 
         ActivityIndicator {
@@ -201,7 +209,10 @@ Page {
     Component.onCompleted: {
         if (pickMode) {
             contactList.startSelection()
+        } else if ((contactList.count === 0) && application.firstRun) {
+            PopupUtils.open(onlineAccountsDialog, null)
         }
+
         if (TEST_DATA != "") {
             contactList.listModel.importContacts("file://" + TEST_DATA)
         }
