@@ -1,3 +1,11 @@
+address-book-app (0.2+14.04.20140218-0ubuntu1) trusty; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Use QTCONTACTS_MANAGER_OVERRIDE variable to override the contact
+    manager used by contactlist component.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 18 Feb 2014 21:41:00 +0000
+
 address-book-app (0.2+14.04.20140211-0ubuntu1) trusty; urgency=low
 
   [ Jean-Baptiste Lallement ]
