@@ -79,7 +79,7 @@ Page {
 
         if (changed) {
             // backend error will be handled by the root page (contact list)
-            contact.save()
+            contactEditor.model.saveContact(contact)
         }
         pageStack.pop()
     }
