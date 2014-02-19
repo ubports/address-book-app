@@ -33,7 +33,7 @@ Popups.Dialog {
             right: parent.right
             margins: units.gu(1)
         }
-        text: "Yes"
+        text: i18n.tr("Yes")
         onClicked: accepted()
     }
 
@@ -45,7 +45,7 @@ Popups.Dialog {
             margins: units.gu(1)
         }
         gradient: UbuntuColors.greyGradient
-        text: "No"
+        text: i18n.tr("No")
         onClicked: canceled()
     }
 }

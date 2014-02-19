@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-19 15:30-0300\n"
+"POT-Creation-Date: 2014-02-19 16:03-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -149,6 +149,10 @@ msgstr ""
 msgid "Mobile"
 msgstr ""
 
+#: src/imports/ContactList/OnlineAccountsMessage.qml:48
+msgid "No"
+msgstr ""
+
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Organization"
 msgstr ""
@@ -230,6 +234,10 @@ msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:70
 msgid "Yahoo"
+msgstr ""
+
+#: src/imports/ContactList/OnlineAccountsMessage.qml:36
+msgid "Yes"
 msgstr ""
 
 #: src/imports/ContactList/OnlineAccountsMessage.qml:27
