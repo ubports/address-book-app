@@ -27,6 +27,7 @@ Page {
 
     property bool pickMode: false
     property bool pickMultipleContacts: false
+    property var onlineAccountsMessageDialog: null
     // used for autopilot test to check when the dialog is open or not
     property bool onlineAccountsMessageVisible: false
 
@@ -74,12 +75,14 @@ Page {
         OnlineAccountsMessage {
             id: onlineAccountsMessage
             onCanceled: {
+                mainPage.onlineAccountsMessageDialog = null
                 PopupUtils.close(onlineAccountsMessage)
                 application.unsetFirstRun()
                 mainPage.onlineAccountsMessageVisible = false
             }
             onAccepted: {
                 Qt.openUrlExternally("settings:///system/online-accounts")
+                mainPage.onlineAccountsMessageDialog = null
                 PopupUtils.close(onlineAccountsMessage)
                 application.unsetFirstRun()
                 mainPage.onlineAccountsMessageVisible = false
@@ -104,15 +107,17 @@ Page {
             bottomMargin: contactList.isInSelectionMode ? 0 : units.gu(2)
             fill: parent
         }
-        onError: PopupUtils.open(errorDialog, null)
         swipeToDelete: !pickMode
 
-        ActivityIndicator {
-            id: activity
+        onError: PopupUtils.open(errorDialog, null)
 
-            anchors.centerIn: parent
-            running: contactList.loading && (contactList.count === 0)
-            visible: running
+        onCountChanged: {
+            if ((count > 0) && mainPage.onlineAccountsMessageVisible) {
+                // Because of some contacts can take longer to arrive due the dbus delay,
+                // we need to destroy the online account dialog if this happen
+                PopupUtils.close(mainPage.onlineAccountsMessageDialog)
+                application.unsetFirstRun()
+            }
         }
 
         onContactClicked: {
@@ -137,6 +142,7 @@ Page {
                 contactList.listModel.removeContacts(ids)
             }
         }
+
         onSelectionCanceled: {
             if (pickMode) {
                 if (contactContentHub) {
@@ -151,6 +157,14 @@ Page {
             if (isInSelectionMode) {
                 toolbar.opened = false
             }
+        }
+
+        ActivityIndicator {
+            id: activity
+
+            anchors.centerIn: parent
+            running: contactList.loading && (contactList.count === 0)
+            visible: running
         }
     }
 
@@ -221,7 +235,7 @@ Page {
         if (pickMode) {
             contactList.startSelection()
         } else if ((contactList.count === 0) && application.firstRun) {
-            PopupUtils.open(onlineAccountsDialog, null)
+            mainPage.onlineAccountsMessageDialog = PopupUtils.open(onlineAccountsDialog, null)
             mainPage.onlineAccountsMessageVisible = true
         }
 
