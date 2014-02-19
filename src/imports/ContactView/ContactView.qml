@@ -24,15 +24,14 @@ Page {
     id: root
     objectName: "contactViewPage"
 
-    readonly property alias contact: contactFetch.contact
-    property variant contactId: null
+    property QtObject contact: null
+    property string contactId: ""
     property alias model: contactFetch.model
 
     function formatNameToDisplay(contact) {
         if (!contact) {
             return ""
         }
-
         if (contact.name) {
             var detail = contact.name
             return detail.firstName +" " + detail.lastName
@@ -43,12 +42,10 @@ Page {
         }
     }
 
-
     title: formatNameToDisplay(contact)
     onActiveChanged: {
         if (active) {
             contactFetch.fetchContact(root.contactId)
-
             //WORKAROUND: to correct scroll back the page
             flickable.contentY = -100
             flickable.returnToBounds()
@@ -131,14 +128,13 @@ Page {
                 }
                 height: implicitHeight
             }
-
         }
     }
 
     ActivityIndicator {
         id: busyIndicator
 
-        running: contactFetch.running
+        running: (root.contact === null) && contactFetch.running
         visible: running
         anchors.centerIn: parent
     }
@@ -147,6 +143,15 @@ Page {
         id: contactFetch
 
         onContactRemoved: pageStack.pop()
+        onContactFetched: {
+            root.contact = contact
+            root.contactId = contact.contactId
+        }
+        onContactIsDirtyChanged: {
+            if (contactIsDirty && root.active) {
+                contactFetch.fetchContact(root.contactId)
+            }
+        }
     }
 
     tools: ToolbarItems {

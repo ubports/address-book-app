@@ -63,9 +63,7 @@ Item {
 
         onContactsChanged: {
             if (root.contact) {
-                root.contactIsDirty = true
-
-                for (var i=0; i < root.model.contacts.length; i++) {
+               for (var i=0; i < root.model.contacts.length; i++) {
                     if (root.model.contacts[i].contactId == root.contact.contactId) {
                         return
                     }
@@ -73,6 +71,13 @@ Item {
                 contactRemoved()
             }
         }
+    }
+
+    Connections {
+        target: root.contact
+
+        // queue all simultaneous changes to notify only once
+        onContactChanged: changeTimeout.restart()
     }
 
     Connections {
@@ -90,6 +95,15 @@ Item {
                 root.contactFetched(fetchedContacts[0])
             }
         }
+    }
+
+    Timer {
+        id: changeTimeout
+
+        repeat: false
+        interval: 500
+        running: false
+        onTriggered: root.contactIsDirty = true
     }
 
     Component.onCompleted: {

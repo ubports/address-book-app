@@ -17,9 +17,12 @@
 import QtQuick 2.0
 import QtContacts 5.0
 import Ubuntu.Components 0.1
+import Ubuntu.Components.Popups 0.1 as Popups
 
 MainView {
     id: mainWindow
+
+    property string modelErrorMessage: ""
 
     width: units.gu(40)
     height: units.gu(71)
@@ -54,6 +57,7 @@ MainView {
         signal createContactRequested(string phoneNumber)
         signal editContatRequested(string contactId, string phoneNumber)
         signal contactCreated(QtObject contact)
+        signal contactModelError(string errorMessage)
 
         anchors {
             fill: parent
@@ -64,12 +68,34 @@ MainView {
                 }
             }
        }
+
+       onContactModelError: {
+           modelErrorMessage = error
+           PopupUtils.open(errorDialog, null)
+       }
     }
 
     Component.onCompleted: {
         Theme.name = "Ubuntu.Components.Themes.SuruGradient"
         mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"))
         mainWindow.applicationReady()
+    }
+
+    Component {
+        id: errorDialog
+
+        Popups.Dialog {
+            id: dialogue
+
+            title: i18n.tr("Error")
+            text: mainWindow.modelErrorMessage
+
+            Button {
+                text: "Cancel"
+                gradient: UbuntuColors.greyGradient
+                onClicked: PopupUtils.close(dialogue)
+            }
+        }
     }
 
     Connections {
