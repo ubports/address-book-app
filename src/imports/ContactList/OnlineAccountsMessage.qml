@@ -27,6 +27,7 @@ Popups.Dialog {
     title: "You have no contacts."
     text: "Would you like to sync contacts\nfrom online accounts now?"
     Button {
+        objectName: "onlineAccountsDialog.yesButton"
         anchors {
             left: parent.left
             right: parent.right
@@ -37,6 +38,7 @@ Popups.Dialog {
     }
 
     Button {
+        objectName: "onlineAccountsDialog.noButton"
         anchors {
             left: parent.left
             right: parent.right

@@ -12,7 +12,7 @@ class MainWindow(uitk.MainView):
     """An emulator class that makes it easy to interact with the app."""
 
     def get_contact_list_page(self):
-        return self. wait_select_single("ContactListPage",
+        return self.wait_select_single("ContactListPage",
                                         objectName="contactListPage")
 
     def get_contact_edit_page(self):

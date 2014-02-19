@@ -27,6 +27,8 @@ Page {
 
     property bool pickMode: false
     property bool pickMultipleContacts: false
+    // used for autopilot test to check when the dialog is open or not
+    property bool onlineAccountsMessageVisible: false
 
     function createEmptyContact(phoneNumber) {
         var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
@@ -62,6 +64,25 @@ Page {
                 text: "Cancel"
                 gradient: UbuntuColors.greyGradient
                 onClicked: PopupUtils.close(dialogue)
+            }
+        }
+    }
+
+    Component {
+        id: onlineAccountsDialog
+
+        OnlineAccountsMessage {
+            id: onlineAccountsMessage
+            onCanceled: {
+                PopupUtils.close(onlineAccountsMessage)
+                application.unsetFirstRun()
+                mainPage.onlineAccountsMessageVisible = false
+            }
+            onAccepted: {
+                Qt.openUrlExternally("settings:///system/online-accounts")
+                PopupUtils.close(onlineAccountsMessage)
+                application.unsetFirstRun()
+                mainPage.onlineAccountsMessageVisible = false
             }
         }
     }
@@ -129,23 +150,6 @@ Page {
         onIsInSelectionModeChanged: {
             if (isInSelectionMode) {
                 toolbar.opened = false
-            }
-        }
-    }
-
-    Component {
-        id: onlineAccountsDialog
-
-        OnlineAccountsMessage {
-            id: onlineAccountsMessage
-            onCanceled: {
-                PopupUtils.close(onlineAccountsMessage)
-                application.unsetFirstRun()
-            }
-            onAccepted: {
-                Qt.openUrlExternally("settings:///system/online-accounts")
-                PopupUtils.close(onlineAccountsMessage)
-                application.unsetFirstRun()
             }
         }
     }
@@ -218,6 +222,7 @@ Page {
             contactList.startSelection()
         } else if ((contactList.count === 0) && application.firstRun) {
             PopupUtils.open(onlineAccountsDialog, null)
+            mainPage.onlineAccountsMessageVisible = true
         }
 
         if (TEST_DATA != "") {
