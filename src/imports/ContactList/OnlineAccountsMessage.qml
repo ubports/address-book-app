@@ -24,8 +24,8 @@ Popups.Dialog {
 
     signal canceled()
     signal accepted()
-    title: "You have no contacts."
-    text: "Would you like to sync contacts\nfrom online accounts now?"
+    title: i18n.tr("You have no contacts.")
+    text: i18n.tr("Would you like to sync contacts\nfrom online accounts now?")
     Button {
         objectName: "onlineAccountsDialog.yesButton"
         anchors {
