@@ -142,6 +142,7 @@ Page {
     ContactsUI.ContactFetch {
         id: contactFetch
 
+        checkForRemoval: true
         onContactRemoved: pageStack.pop()
         onContactFetched: {
             root.contact = contact

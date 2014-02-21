@@ -70,7 +70,7 @@ MainView {
        }
 
        onContactModelError: {
-           modelErrorMessage = error
+           modelErrorMessage = errorMessage
            PopupUtils.open(errorDialog, null)
        }
     }

@@ -23,6 +23,7 @@ Item {
     property bool running: false
     property QtObject contact: null
     property bool contactIsDirty: false
+    property bool checkForRemoval: false
 
     property string _pendingId: ""
     property bool _ready: false
@@ -59,32 +60,12 @@ Item {
     }
 
     Connections {
-        target: root.model
-
-        onContactsChanged: {
-            if (root.contact) {
-               for (var i=0; i < root.model.contacts.length; i++) {
-                    if (root.model.contacts[i].contactId == root.contact.contactId) {
-                        return
-                    }
-                }
-                contactRemoved()
-            }
-        }
-    }
-
-    Connections {
-        target: root.contact
-
-        // queue all simultaneous changes to notify only once
-        onContactChanged: changeTimeout.restart()
-    }
-
-    Connections {
         id: connections
 
         property int currentQueryId: -1
 
+        // wait for changes to finish before mark as dirty, this can save some queries
+        onContactsChanged: changeTimeout.restart()
         onContactsFetched: {
             // currentQueryId == -2 is used during a fetch using "memory" manager
             if ((currentQueryId == -2) || (requestId == currentQueryId)) {
@@ -101,9 +82,32 @@ Item {
         id: changeTimeout
 
         repeat: false
-        interval: 500
         running: false
-        onTriggered: root.contactIsDirty = true
+        interval: 300
+        onTriggered:  {
+            if (root.contact) {
+                if (root.checkForRemoval) {
+                    var found = false
+                    var contacts = root.model.contacts
+                    for (var i=0; i < contacts.length; i++) {
+                        if (contacts[i].contactId === root.contact.contactId) {
+                            found = true
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        // if the contact was not found on contact list this was removed
+                        contactRemoved()
+                        return
+                    }
+                }
+                // there is no way to know which contact has changed,
+                // (unless you compare all the details and this will take longer)
+                // to be safe we will consider that our contact has changed
+                root.contactIsDirty = true
+            }
+
+        }
     }
 
     Component.onCompleted: {
