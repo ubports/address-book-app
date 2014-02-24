@@ -65,26 +65,7 @@ Item {
         property int currentQueryId: -1
 
         // wait for changes to finish before mark as dirty, this can save some queries
-        onContactsChanged: changeTimeout.restart()
-        onContactsFetched: {
-            // currentQueryId == -2 is used during a fetch using "memory" manager
-            if ((currentQueryId == -2) || (requestId == currentQueryId)) {
-                root.contactIsDirty = false
-                root.running = false
-                currentQueryId = -1
-                root.contact = fetchedContacts[0]
-                root.contactFetched(fetchedContacts[0])
-            }
-        }
-    }
-
-    Timer {
-        id: changeTimeout
-
-        repeat: false
-        running: false
-        interval: 300
-        onTriggered:  {
+        onContactsChanged: {
             if (root.contact) {
                 if (root.checkForRemoval) {
                     var found = false
@@ -106,7 +87,17 @@ Item {
                 // to be safe we will consider that our contact has changed
                 root.contactIsDirty = true
             }
+        }
 
+        onContactsFetched: {
+            // currentQueryId == -2 is used during a fetch using "memory" manager
+            if ((currentQueryId == -2) || (requestId == currentQueryId)) {
+                root.contactIsDirty = false
+                root.running = false
+                currentQueryId = -1
+                root.contact = fetchedContacts[0]
+                root.contactFetched(fetchedContacts[0])
+            }
         }
     }
 

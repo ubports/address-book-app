@@ -24,8 +24,8 @@ Page {
     id: root
     objectName: "contactViewPage"
 
-    property QtObject contact: null
     property string contactId: ""
+    property alias contact: contactFetch.contact
     property alias model: contactFetch.model
 
     function formatNameToDisplay(contact) {
@@ -45,10 +45,15 @@ Page {
     title: formatNameToDisplay(contact)
     onActiveChanged: {
         if (active) {
-            contactFetch.fetchContact(root.contactId)
+            if ((contact == null) || (contactFetch.contactIsDirty)) {
+                contactFetch.fetchContact(root.contactId)
+            }
+
             //WORKAROUND: to correct scroll back the page
-            flickable.contentY = -100
-            flickable.returnToBounds()
+            if (model.count > 10) {
+                flickable.contentY = -100
+                flickable.returnToBounds()
+            }
         }
     }
 

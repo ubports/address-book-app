@@ -21,7 +21,6 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 FocusScope {
     id: root
 
-    readonly property variant details: contact && contact.contactDetails && detailType ? contact.details(detailType) : []
     readonly property alias detailDelegates: contents.children
     readonly property int detailsCount: detailsModel.count
 
@@ -38,15 +37,22 @@ FocusScope {
 
     signal newFieldAdded(var index)
 
-    implicitHeight: detailsModel.values.length > 0 ? contents.implicitHeight : minimumHeight
+    function reload() {
+        detailsModel.clear()
+        inputFields = []
+
+        if (root.contact) {
+            detailsModel.refresh(root.contact.details(detailType), root.showEmpty)
+        }
+    }
+
+    implicitHeight: detailsCount > 0 ? contents.implicitHeight : minimumHeight
     visible: implicitHeight > 0
 
     // This model is used to avoid rebuild the repeater every time that the details change
     // With this model the changed info on the fields will remain after add a new field
     ListModel {
         id: detailsModel
-
-        property var values: root.showEmpty ? root.details : filterDetails(root.details)
 
         function filterDetails(details) {
             var result = []
@@ -66,26 +72,42 @@ FocusScope {
             return result
         }
 
-        onValuesChanged: {
-            if (!values) {
+        function refresh(details, showEmpty) {
+            if (!details) {
                 clear()
                 return
             }
 
-            while (count > values.length) {
-                remove(count - 1)
+            var modelCount = count
+            for(var i=0; i < details.length; i++) {
+                var detailObj = details[i]
+                if (modelCount <= i) {
+                    append({"detail": detailObj})
+                } else {
+                    set(i, {"detail": detailObj})
+                }
             }
 
-            var modelCount = count
-            for(var i=0; i < values.length; i++) {
-                if (modelCount < i) {
-                    append({"detail": values[i]})
-                } else if (get(i) != values[i]) {
-                    set(i, {"detail": values[i]})
-                }
+            var diff = count - details.length
+            for(var i=0; i < diff; i++) {
+                remove(count - 1)
             }
         }
     }
+
+    // this check for contact details changes
+    Connections {
+        target: root.contact
+
+        onContactChanged: {
+            detailsModel.refresh(root.contact.details(detailType), root.showEmpty)
+        }
+    }
+
+    // this check for contact property object change
+    onContactChanged: reload()
+    onDetailTypeChanged: reload()
+    onShowEmptyChanged: reload()
 
     Column {
         id: contents
@@ -112,7 +134,7 @@ FocusScope {
                 Binding {
                     target: detailItem.item
                     property: "detail"
-                    value: root.contact && root.details ? root.details[index] : null
+                    value: model.detail
                 }
 
                 Binding {
