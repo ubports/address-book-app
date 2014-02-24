@@ -21,58 +21,33 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 FocusScope {
     id: root
 
+    readonly property variant details: contact && contact.contactDetails && detailType ? contact.details(detailType) : []
     readonly property alias detailDelegates: contents.children
     readonly property int detailsCount: detailsModel.count
 
-    property alias contact: detailsModel.contact
-    property alias detailType: detailsModel.detailType
-    property alias showEmpty: detailsModel.showEmpty
-
     property variant inputFields: []
+    property QtObject contact: null
+    property int detailType: 0
     property variant fields
     property string title: null
     property alias headerDelegate: headerItem.sourceComponent
     property Component detailDelegate
     property int minimumHeight: 0
     property bool loaded: false
+    property bool showEmpty: true
 
     signal newFieldAdded(var index)
 
     implicitHeight: detailsCount > 0 ? contents.implicitHeight : minimumHeight
     visible: implicitHeight > 0
+    onContactChanged: root.inputFields = []
 
     // This model is used to avoid rebuild the repeater every time that the details change
     // With this model the changed info on the fields will remain after add a new field
     ListModel {
         id: detailsModel
 
-        property QtObject contact: null
-        property int detailType: -1
-        property bool showEmpty: true
-        property variant contactDetails: []
-
-        property QtObject _lastContact: null
-        property int _lastDetailType: -1
-        property bool _lastShowEmpty: true
-        property variant allContactDetails: contact ? contact.contactDetails : []
-
-        function reload() {
-            if ((contact != _lastContact) ||
-                (detailType != _lastDetailType) ||
-                (showEmpty != _lastShowEmpty)) {
-                clear()
-                root.inputFields = []
-
-                _lastContact = contact
-                _lastDetailType = detailType
-                _lastShowEmpty = showEmpty
-            }
-
-            if ((contact != null) && (detailType != -1)) {
-                contactDetails = contact.details(detailType)
-            }
-            refresh(contactDetails)
-        }
+        property var values: root.showEmpty ? root.details : filterDetails(root.details)
 
         function filterDetails(details) {
             var result = []
@@ -92,32 +67,26 @@ FocusScope {
             return result
         }
 
-        function refresh(details) {
-            var values = details
-            if (!showEmpty)  {
-                values = filterDetails(details)
+        onValuesChanged: {
+            if (!values) {
+                root.inputFields = []
+                clear()
+                return
             }
 
-            var diff = count - values.length
-            for(var i=0; i < diff; i++) {
+            while (count > values.length) {
                 remove(count - 1)
             }
 
             var modelCount = count
             for(var i=0; i < values.length; i++) {
-                var detailObj = values[i]
                 if (modelCount <= i) {
-                    append({"detail": detailObj})
-                } else {
-                    set(i, {"detail": detailObj})
+                    append({"detail": values[i]})
+                } else if (get(i) != values[i]) {
+                    set(i, {"detail": values[i]})
                 }
             }
         }
-
-        onShowEmptyChanged: reload()
-        onDetailTypeChanged: reload()
-        onContactChanged: reload()
-        onAllContactDetailsChanged: reload()
     }
 
     Column {
