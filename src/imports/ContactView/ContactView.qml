@@ -182,6 +182,7 @@ Page {
                 onTriggered: {
                     pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
                                    { model: root.model, contact: root.contact})
+                    root.contact = null
                 }
             }
         }
