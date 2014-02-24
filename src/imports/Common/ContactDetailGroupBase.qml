@@ -24,27 +24,19 @@ FocusScope {
     readonly property alias detailDelegates: contents.children
     readonly property int detailsCount: detailsModel.count
 
+    property alias contact: detailsModel.contact
+    property alias detailType: detailsModel.detailType
+    property alias showEmpty: detailsModel.showEmpty
+
     property variant inputFields: []
-    property QtObject contact: null
-    property int detailType: 0
     property variant fields
     property string title: null
     property alias headerDelegate: headerItem.sourceComponent
     property Component detailDelegate
     property int minimumHeight: 0
     property bool loaded: false
-    property bool showEmpty: true
 
     signal newFieldAdded(var index)
-
-    function reload() {
-        detailsModel.clear()
-        inputFields = []
-
-        if (root.contact) {
-            detailsModel.refresh(root.contact.details(detailType), root.showEmpty)
-        }
-    }
 
     implicitHeight: detailsCount > 0 ? contents.implicitHeight : minimumHeight
     visible: implicitHeight > 0
@@ -53,6 +45,34 @@ FocusScope {
     // With this model the changed info on the fields will remain after add a new field
     ListModel {
         id: detailsModel
+
+        property QtObject contact: null
+        property int detailType: -1
+        property bool showEmpty: true
+        property variant contactDetails: []
+
+        property QtObject _lastContact: null
+        property int _lastDetailType: -1
+        property bool _lastShowEmpty: true
+        property variant allContactDetails: contact ? contact.contactDetails : []
+
+        function reload() {
+            if ((contact != _lastContact) ||
+                (detailType != _lastDetailType) ||
+                (showEmpty != _lastShowEmpty)) {
+                clear()
+                root.inputFields = []
+
+                _lastContact = contact
+                _lastDetailType = detailType
+                _lastShowEmpty = showEmpty
+            }
+
+            if ((contact != null) && (detailType != -1)) {
+                contactDetails = contact.details(detailType)
+            }
+            refresh(contactDetails)
+        }
 
         function filterDetails(details) {
             var result = []
@@ -72,42 +92,33 @@ FocusScope {
             return result
         }
 
-        function refresh(details, showEmpty) {
-            if (!details) {
-                clear()
-                return
+        function refresh(details) {
+            var values = details
+            if (!showEmpty)  {
+                values = filterDetails(details)
+            }
+
+            var diff = count - values.length
+            for(var i=0; i < diff; i++) {
+                remove(count - 1)
             }
 
             var modelCount = count
-            for(var i=0; i < details.length; i++) {
-                var detailObj = details[i]
+            for(var i=0; i < values.length; i++) {
+                var detailObj = values[i]
                 if (modelCount <= i) {
                     append({"detail": detailObj})
                 } else {
                     set(i, {"detail": detailObj})
                 }
             }
-
-            var diff = count - details.length
-            for(var i=0; i < diff; i++) {
-                remove(count - 1)
-            }
         }
+
+        onShowEmptyChanged: reload()
+        onDetailTypeChanged: reload()
+        onContactChanged: reload()
+        onAllContactDetailsChanged: reload()
     }
-
-    // this check for contact details changes
-    Connections {
-        target: root.contact
-
-        onContactChanged: {
-            detailsModel.refresh(root.contact.details(detailType), root.showEmpty)
-        }
-    }
-
-    // this check for contact property object change
-    onContactChanged: reload()
-    onDetailTypeChanged: reload()
-    onShowEmptyChanged: reload()
 
     Column {
         id: contents
