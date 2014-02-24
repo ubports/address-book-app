@@ -23,6 +23,7 @@ ContactDetailGroupBase {
 
     property string defaultIcon : "artwork:/protocol-other.png"
     property ListModel typeModel
+    property bool typeModelReady: false
 
     function getType(detail) {
         if (typeModel) {
@@ -40,7 +41,6 @@ ContactDetailGroupBase {
     }
 
     typeModel: ListModel {
-        property bool ready: false
         signal loaded()
 
         function getTypeIndex(detail) {
@@ -116,8 +116,12 @@ ContactDetailGroupBase {
             append({"value": QtContacts.ContactDetail.ContextHome, "label": i18n.tr("Home"), "icon": null})
             append({"value": QtContacts.ContactDetail.ContextWork, "label": i18n.tr("Work"), "icon": null})
             append({"value": QtContacts.ContactDetail.ContextOther, "label": i18n.tr("Other"), "icon": null})
-            ready = true
             loaded()
         }
+    }
+    onTypeModelChanged: root.typeModelReady = false
+    Connections {
+        target: root.typeModel
+        onLoaded: root.typeModelReady = true
     }
 }

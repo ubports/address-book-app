@@ -51,7 +51,7 @@ ContactDetailGroupWithTypeBase {
     }
 
     detailDelegate: ContactDetailWithTypeView {
-        property variant detailType: detail && root.contact && root.typeModel.ready ? root.getType(detail) : null
+        property variant detailType: detail && root.contact && root.typeModelReady ? root.getType(detail) : ""
 
         action: root.defaultAction
         contact: root.contact

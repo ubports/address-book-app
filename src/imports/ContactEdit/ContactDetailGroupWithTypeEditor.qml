@@ -145,7 +145,6 @@ ContactDetailGroupWithTypeBase {
                 }
             }
         }
-
         placeholderTexts: root.placeholderTexts
         contact: root.contact
         fields: root.fields
@@ -160,7 +159,7 @@ ContactDetailGroupWithTypeBase {
         Item {
             Connections {
                 target: root.typeModel
-                onReadyChanged: updateCombo(true)
+                onLoaded: updateCombo(true)
             }
         }
     }

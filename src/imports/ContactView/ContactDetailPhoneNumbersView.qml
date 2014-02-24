@@ -35,7 +35,7 @@ ContactDetailGroupWithTypeView {
     }
 
     detailDelegate: ContactDetailPhoneNumberView {
-        property variant detailType: detail && root.contact && root.typeModel.ready ? root.getType(detail) : null
+        property variant detailType: detail && root.contact && root.typeModelReady ? root.getType(detail) : null
         property bool isPreferred: root.contact && root.contact.preferredDetails && detail && root.contact.isPreferredDetail("TEL", detail)
 
         action: Action {
