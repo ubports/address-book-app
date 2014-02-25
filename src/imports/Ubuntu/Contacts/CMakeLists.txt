@@ -11,7 +11,6 @@ set(CONTACT_COMPONENTS_QMLS
     ContactSearchListView.qml
     ContactSimpleListView.qml
     DialogButtons.qml
-    FavoriteDelegate.qml
     MultipleSelectionListView.qml
     MultipleSelectionVisualModel.qml
     qmldir
