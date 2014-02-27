@@ -16,6 +16,7 @@ from autopilot.introspection import dbus
 from address_book_app.tests import AddressBookAppTestCase
 from address_book_app.emulators import main_window
 
+
 class TestAddContact(AddressBookAppTestCase):
     """ Tests the Add contact """
 
