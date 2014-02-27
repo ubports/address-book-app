@@ -65,10 +65,14 @@ class MainWindow(uitk.MainView):
 
     @autopilot_logging.log_action(logger.info)
     def go_to_add_contact(self):
+        """
+        Press the 'Add' button and return the contact editor page
+        """
         toolbar = self.open_toolbar()
         toolbar.click_button(object_name="Add")
         return self.get_contact_edit_page()
 
 
 class ContactEditor(uitk.UbuntuUIToolkitEmulatorBase):
+    """ An emulator class for the Contact Editor."""
     pass

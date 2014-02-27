@@ -11,12 +11,20 @@ from __future__ import absolute_import
 
 from testtools.matchers import Equals
 from autopilot.matchers import Eventually
+from autopilot.introspection import dbus
 
 from address_book_app.tests import AddressBookAppTestCase
-
+from address_book_app.emulators import main_window
 
 class TestAddContact(AddressBookAppTestCase):
     """ Tests the Add contact """
+
+    def test_go_to_add_contact(self):
+        # use the emulator method to launch the add contact screen
+        self.assertRaises(
+            dbus.StateNotFoundError, self.main_window.get_contact_edit_page)
+        contact_editor = self.main_window.go_to_add_contact()
+        self.assertIsInstance(contact_editor, main_window.ContactEditor)
 
     def test_add_and_cancel_contact(self):
         list_page = self.main_window.get_contact_list_page()
