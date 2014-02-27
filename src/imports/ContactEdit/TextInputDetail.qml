@@ -31,6 +31,7 @@ TextField {
 
     Component.onCompleted: makeMeVisible(root)
 
+    readOnly: detail ? detail.readOnly : true
     focus: true
     text: originalValue ? originalValue : ""
     style: TextFieldStyle {
