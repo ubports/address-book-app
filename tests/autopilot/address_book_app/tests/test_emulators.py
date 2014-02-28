@@ -23,6 +23,7 @@ from address_book_app.emulators import main_window
 class ContactEditorTestCase(tests.AddressBookAppTestCase):
 
     def test_fill_form(self):
+        """Test that the form can be filled with contact information."""
         test_form_values = {
             'first_name': 'Test first name',
             'last_name': 'Test last name'
@@ -35,6 +36,7 @@ class ContactEditorTestCase(tests.AddressBookAppTestCase):
         self.assertEqual(test_form_values, form_values)
 
     def test_fill_form_with_unknown_field_must_raise_error(self):
+        """Test the error when you fill the form with an unknown field."""
         test_form_values = {'unknown': 'dummy'}
 
         contact_editor = self.main_window.go_to_add_contact()
