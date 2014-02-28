@@ -421,7 +421,7 @@ MultipleSelectionListView {
     ContactModel {
         id: contactsModel
 
-        manager: "galera"
+        manager: QTCONTACTS_MANAGER_OVERRIDE && QTCONTACTS_MANAGER_OVERRIDE != "" ? QTCONTACTS_MANAGER_OVERRIDE : "galera"
         sortOrders: [
             SortOrder {
                 id: sortOrder
