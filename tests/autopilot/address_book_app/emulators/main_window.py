@@ -103,11 +103,11 @@ class ContactEditor(uitk.UbuntuUIToolkitEmulatorBase):
         text_field.write(value)
 
     def _get_text_field(self, field):
-        try:
-            object_name = self.TEXT_FIELD_OBJECT_NAMES[field]
-            return self.select_single(TextInputDetail, objectName=object_name)
-        except KeyError:
+        if field not in self.TEXT_FIELD_OBJECT_NAMES:
             raise AddressBookAppError('Unknown field: {}.'.format(field))
+
+        object_name = self.TEXT_FIELD_OBJECT_NAMES[field]
+        return self.select_single(TextInputDetail, objectName=object_name)
 
     def _get_form_values(self):
         information = dict()
