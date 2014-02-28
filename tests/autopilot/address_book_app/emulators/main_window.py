@@ -12,7 +12,7 @@ from autopilot import logging as autopilot_logging
 logger = logging.getLogger(__name__)
 
 
-class AddressBookAppEmulatorException(uitk.ToolkitEmulatorException):
+class AddressBookAppError(uitk.ToolkitEmulatorException):
     """Exception raised when there is an error with the emulator."""
     
 
@@ -69,6 +69,9 @@ class MainWindow(uitk.MainView):
 
     @autopilot_logging.log_action(logger.info)
     def go_to_add_contact(self):
+        """
+        Press the 'Add' button and return the contact editor page
+        """
         toolbar = self.open_toolbar()
         toolbar.click_button(object_name="Add")
         return self.get_contact_edit_page()
@@ -94,8 +97,7 @@ class ContactEditor(uitk.UbuntuUIToolkitEmulatorBase):
             last_name_text_field = self._get_last_name_text_field()
             last_name_text_field.write(value)
         else:
-            raise AddressBookAppEmulatorException(
-                'Unknown field: {}.'.format(field))
+            raise AddressBookAppError('Unknown field: {}.'.format(field))
             
     def _get_first_name_text_field(self):
         return self.select_single(TextInputDetail, objectName='firstName')
@@ -111,4 +113,4 @@ class ContactEditor(uitk.UbuntuUIToolkitEmulatorBase):
 
 
 class TextInputDetail(uitk.TextField):
-    pass
+    """ An custom proxy object for the Contact Editor."""
