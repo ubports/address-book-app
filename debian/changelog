@@ -1,3 +1,19 @@
+address-book-app (0.2+14.04.20140227-0ubuntu1) trusty; urgency=low
+
+  [ Jean-Baptiste Lallement ]
+  * tests/autopilot: Added 'delete contact' test case with pick mode
+    enabled
+
+  [ CI bot ]
+  * Resync trunk
+
+  [ Renato Araujo Oliveira Filho ]
+  * The mouse area that intercept the click to add a new field detail
+    now uses all detail group header space.
+  * Handle read-only fields. (LP: #1233785)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 27 Feb 2014 02:29:27 +0000
+
 address-book-app (0.2+14.04.20140218-0ubuntu1) trusty; urgency=low
 
   [ Renato Araujo Oliveira Filho ]

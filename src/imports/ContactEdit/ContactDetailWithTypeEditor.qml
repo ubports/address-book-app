@@ -71,13 +71,14 @@ ContactDetailBase {
     focus: true
     // disable listview mouse area
     __mouseArea.visible: false
-
+    enabled: root.detail ? !root.detail.readOnly : false
     implicitHeight: detailTypeSelector.height + fieldValues.height + units.gu(2)
-
+    opacity: enabled ? 1.0 : 0.5
     ValueSelector {
         id: detailTypeSelector
         objectName: detail ? "type_" + detailToString(detail.type, -1) + "_" + index : ""
 
+        readOnly: root.detail ? root.detail.readOnly : false
         visible: (currentIndex != -1)
         active: root.active
         anchors {
