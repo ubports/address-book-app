@@ -79,7 +79,12 @@ class MainWindow(uitk.MainView):
 
 class ContactEditor(uitk.UbuntuUIToolkitEmulatorBase):
     """Custom proxy object for the Contact Editor."""
-    
+
+    TEXT_FIELD_OBJECT_NAMES = {
+        'first_name': 'firstName',
+        'last_name': 'lastName'
+    }
+
     @autopilot_logging.log_action(logger.info)
     def fill_form(self, contact_information):
         """Fill the edit contact form.
@@ -88,7 +93,7 @@ class ContactEditor(uitk.UbuntuUIToolkitEmulatorBase):
         :type contact_information: dict
         :raises AddressBookAppError: If one of the keys doesn't correspond to
             any of the fields.
-        
+
         """
         for field, value in contact_information.iteritems():
             self._fill_field(field, value)
@@ -98,12 +103,8 @@ class ContactEditor(uitk.UbuntuUIToolkitEmulatorBase):
         text_field.write(value)
 
     def _get_text_field(self, field):
-        text_field_object_names = {
-            'first_name': 'firstName',
-            'last_name': 'lastName'
-        }
         try:
-            object_name = text_field_object_names[field]
+            object_name = self.TEXT_FIELD_OBJECT_NAMES[field]
             return self.select_single(TextInputDetail, objectName=object_name)
         except KeyError:
             raise AddressBookAppError('Unknown field: {}.'.format(field))
