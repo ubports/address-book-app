@@ -75,4 +75,3 @@ class MainWindow(uitk.MainView):
 
 class ContactEditor(uitk.UbuntuUIToolkitEmulatorBase):
     """ An emulator class for the Contact Editor."""
-    pass
