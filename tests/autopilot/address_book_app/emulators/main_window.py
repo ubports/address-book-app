@@ -78,7 +78,8 @@ class MainWindow(uitk.MainView):
 
 
 class ContactEditor(uitk.UbuntuUIToolkitEmulatorBase):
-
+    """Custom proxy object for the Contact Editor."""
+    
     @autopilot_logging.log_action(logger.info)
     def fill_form(self, contact_information):
         """Fill the edit contact form.
@@ -113,4 +114,4 @@ class ContactEditor(uitk.UbuntuUIToolkitEmulatorBase):
 
 
 class TextInputDetail(uitk.TextField):
-    """ An custom proxy object for the Contact Editor."""
+    """Custom proxy object for the Text Input Detail field."""
