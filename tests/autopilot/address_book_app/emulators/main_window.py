@@ -84,8 +84,11 @@ class ContactEditor(uitk.UbuntuUIToolkitEmulatorBase):
     def fill_form(self, contact_information):
         """Fill the edit contact form.
 
-        :parameter contact_information: A dictionary with the values of the
-           contact that will be used to fill the form.
+        :param contact_information: Values of the contact to fill the form.
+        :type contact_information: dict
+        :raises AddressBookAppError: If one of the keys doesn't correspond to
+            any of the fields.
+        
         """
         for field, value in contact_information.iteritems():
             self._fill_field(field, value)
