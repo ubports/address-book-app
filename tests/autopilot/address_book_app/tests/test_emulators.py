@@ -27,10 +27,10 @@ class ContactEditorTestCase(tests.AddressBookAppTestCase):
             'first_name': 'Test first name',
             'last_name': 'Test last name'
         }
-        
+
         contact_editor = self.main_window.go_to_add_contact()
         contact_editor.fill_form(test_form_values)
-        
+
         form_values = contact_editor._get_form_values()
         self.assertEqual(test_form_values, form_values)
 
@@ -39,6 +39,6 @@ class ContactEditorTestCase(tests.AddressBookAppTestCase):
 
         contact_editor = self.main_window.go_to_add_contact()
         error = self.assertRaises(
-            main_window.AddressBookAppEmulatorException,
+            main_window.AddressBookAppError,
             contact_editor.fill_form, test_form_values)
         self.assertEqual('Unknown field: unknown.', str(error))

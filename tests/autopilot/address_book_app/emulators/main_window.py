@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 class AddressBookAppError(uitk.ToolkitEmulatorException):
     """Exception raised when there is an error with the emulator."""
-    
+
 
 class MainWindow(uitk.MainView):
     """An emulator class that makes it easy to interact with the app."""
@@ -91,25 +91,24 @@ class ContactEditor(uitk.UbuntuUIToolkitEmulatorBase):
             self._fill_field(field, value)
 
     def _fill_field(self, field, value):
-        if field == 'first_name':
-            first_name_text_field = self._get_first_name_text_field()
-            first_name_text_field.write(value)
-        elif field == 'last_name':
-            last_name_text_field = self._get_last_name_text_field()
-            last_name_text_field.write(value)
-        else:
-            raise AddressBookAppError('Unknown field: {}.'.format(field))
-            
-    def _get_first_name_text_field(self):
-        return self.select_single(TextInputDetail, objectName='firstName')
+        text_field = self._get_text_field(field)
+        text_field.write(value)
 
-    def _get_last_name_text_field(self):
-        return self.select_single(TextInputDetail, objectName='lastName')
+    def _get_text_field(self, field):
+        text_field_object_names = {
+            'first_name': 'firstName',
+            'last_name': 'lastName'
+        }
+        try:
+            object_name = text_field_object_names[field]
+            return self.select_single(TextInputDetail, objectName=object_name)
+        except KeyError:
+            raise AddressBookAppError('Unknown field: {}.'.format(field))
 
     def _get_form_values(self):
         information = dict()
-        information['first_name'] = self._get_first_name_text_field().text
-        information['last_name'] = self._get_last_name_text_field().text
+        information['first_name'] = self._get_text_field('first_name').text
+        information['last_name'] = self._get_text_field('last_name').text
         return information
 
 
