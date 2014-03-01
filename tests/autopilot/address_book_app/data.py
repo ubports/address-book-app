@@ -52,7 +52,7 @@ class Phone(EqualityMixin):
     @classmethod
     def make(cls):
         """Return a Phone data object."""
-        return cls(type_='Mobile', number='123')
+        return cls(type_='Mobile', number='81 8777 7755')
 
 
 class Email(EqualityMixin):
