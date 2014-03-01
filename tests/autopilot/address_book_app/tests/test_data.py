@@ -42,7 +42,7 @@ class MakePhoneTestCase(testtools.TestCase):
         phone = data.Phone.make()
 
         self.assertEqual(phone.type, 'Mobile')
-        self.assertEqual(phone.number, '123')
+        self.assertEqual(phone.number, '81 8777 7755')
 
     def test_make_phone_with_unknown_type(self):
         """Test the error when we try to create a phone with a wrong type."""
