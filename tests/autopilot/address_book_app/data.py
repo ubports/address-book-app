@@ -166,8 +166,8 @@ class Contact(EqualityMixin):
     """Contact data object for user acceptance tests."""
 
     def __init__(
-            self, first_name, last_name, phones, emails, social_aliases,
-            addresses, professional_details):
+            self, first_name=None, last_name=None, phones=None, emails=None,
+            social_aliases=None, addresses=None, professional_details=None):
         self.first_name = first_name
         self.last_name = last_name
         self.phones = phones
