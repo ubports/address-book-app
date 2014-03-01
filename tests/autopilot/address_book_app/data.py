@@ -24,13 +24,23 @@ class AddressBookAppDataError(Exception):
     """Exception raised when there is an error with the data."""
 
 
-class Phone(object):
+class EqualityMixin(object):
+
+    def __eq__(self, other):
+        return (isinstance(other, self.__class__) and
+                self.__dict__ == other.__dict__)
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+
+class Phone(EqualityMixin):
     """Phone data object for user acceptance tests."""
 
-    PHONE_TYPES = ('Home', 'Work', 'Mobile', 'Work Mobile', 'Other')
+    TYPES = ('Home', 'Work', 'Mobile', 'Work Mobile', 'Other')
 
     def __init__(self, type_, number):
-        if type_ not in self.PHONE_TYPES:
+        if type_ not in self.TYPES:
             raise AddressBookAppDataError(
                 'Unknown phone type: {}.'.format(type_))
         self.type = type_
@@ -45,13 +55,13 @@ class Phone(object):
         return cls(type_='Mobile', number='123')
 
 
-class Email(object):
+class Email(EqualityMixin):
     """Email data object for user acceptance tests."""
 
-    EMAIL_TYPES = ('Home', 'Work', 'Other')
+    TYPES = ('Home', 'Work', 'Other')
 
     def __init__(self, type_, address):
-        if type_ not in self.EMAIL_TYPES:
+        if type_ not in self.TYPES:
             raise AddressBookAppDataError(
                 'Unknown email type: {}.'.format(type_))
         self.type = type_
@@ -70,13 +80,13 @@ class Email(object):
         return cls(type_=type_, address=address)
 
 
-class SocialAlias(object):
+class SocialAlias(EqualityMixin):
     """Social Alias data object for user acceptance tests."""
 
-    SOCIAL_ALIAS_TYPES = ('Aim', 'ICQ', 'Jabber', 'MSN', 'Skype', 'Yahoo')
+    TYPES = ('Aim', 'ICQ', 'Jabber', 'MSN', 'Skype', 'Yahoo')
 
     def __init__(self, type_, alias):
-        if type_ not in self.SOCIAL_ALIAS_TYPES:
+        if type_ not in self.TYPES:
             raise AddressBookAppDataError(
                 'Unknown social alias type: {}.'.format(type_))
         self.type = type_
@@ -94,13 +104,14 @@ class SocialAlias(object):
         alias = 'Test alias {}'.format(unique_id)
         return cls(type_=type_, alias=alias)
 
-class Address(object):
+
+class Address(EqualityMixin):
     """Address data object for user acceptance tests."""
 
-    ADDRESS_TYPES = ('Home', 'Work', 'Other')
+    TYPES = ('Home', 'Work', 'Other')
 
     def __init__(self, type_, street, locality, region, postal_code, country):
-        if type_ not in self.ADDRESS_TYPES:
+        if type_ not in self.TYPES:
             raise AddressBookAppDataError(
                 'Unknown address type: {}.'.format(type_))
         self.type = type_
@@ -118,7 +129,7 @@ class Address(object):
         """Return a unique address data object."""
         if unique_id is None:
             unique_id = str(uuid.uuid1())
-        type_='Home'
+        type_ = 'Home'
         street = 'Test street {}'.format(unique_id)
         locality = 'Test locality {}'.format(unique_id)
         region = 'Test region {}'.format(unique_id)
@@ -129,7 +140,7 @@ class Address(object):
             postal_code=postal_code, country=country)
 
 
-class ProfessionalDetails(object):
+class ProfessionalDetails(EqualityMixin):
     """Professional Details data objects for user acceptance tests."""
 
     def __init__(self, organization, role, title):
@@ -151,7 +162,7 @@ class ProfessionalDetails(object):
         return cls(organization=organization, role=role, title=title)
 
 
-class Contact(object):
+class Contact(EqualityMixin):
     """Contact data object for user acceptance tests."""
 
     def __init__(
