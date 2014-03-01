@@ -117,9 +117,9 @@ class ContactEditor(uitk.UbuntuUIToolkitEmulatorBase):
              professional_details
 
         """
-        if contact_information.first_name:
+        if not contact_information.first_name is None:
             self._fill_first_name(contact_information.first_name)
-        if contact_information.last_name:
+        if not contact_information.last_name is None:
             self._fill_last_name(contact_information.last_name)
 
         groups = collections.OrderedDict()
