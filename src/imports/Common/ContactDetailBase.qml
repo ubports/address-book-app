@@ -61,6 +61,10 @@ ListItem.Empty {
         imMap[QtContacts.OnlineAccount.Protocol] = "imProtocol"
         imMap[QtContacts.OnlineAccount.Capabilities] = "imCaps"
 
+        // SyncTarget
+        var syncTargetMap = {}
+        syncTargetMap[QtContacts.SyncTarget.SyncTarget] = "syncTarget"
+
         // all
         var detailMap = {}
         detailMap[QtContacts.ContactDetail.Name] = nameMap
@@ -68,6 +72,7 @@ ListItem.Empty {
         detailMap[QtContacts.ContactDetail.Email] = emailMap
         detailMap[QtContacts.ContactDetail.Address] = addressMap
         detailMap[QtContacts.ContactDetail.OnlineAccount] = imMap
+        detailMap[QtContacts.ContactDetail.SyncTarget] = syncTargetMap
 
         // detail name
         var detailNameMap = {}
@@ -76,6 +81,7 @@ ListItem.Empty {
         detailNameMap[QtContacts.ContactDetail.Email] = "email"
         detailNameMap[QtContacts.ContactDetail.Address] = "address"
         detailNameMap[QtContacts.ContactDetail.OnlineAccount] = "onlineAccount"
+        detailNameMap[QtContacts.ContactDetail.SyncTarget] = "syncTarget"
 
         if ((detail in detailMap) && (field in detailMap[detail])) {
             return detailMap[detail][field]
