@@ -36,33 +36,32 @@ ContactDetailBase {
         detailTypeSelector.selectItem(type)
     }
 
+    function isEmpty() {
+        for (var i=0; i < fieldValues.children.length; i++) {
+            var input = fieldValues.children[i]
+            if (input.text && (input.text !== "")) {
+                return false
+            }
+        }
+        return true
+    }
+
     function save() {
         var detailchanged  = false
 
         // save field values
-        var isEmpty = true
         for (var i=0; i < fieldValues.children.length; i++) {
             var input = fieldValues.children[i]
             if (input.detail && (input.field >= 0)) {
-                var originalValue = input.detail.value(input.field)
-                originalValue = originalValue ? String(originalValue) : ""
                 if (input.text !== "") {
-                    isEmpty = false
-                }
-
-                if (originalValue !== input.text) {
-                    input.detail.setValue(input.field, input.text)
-                    detailchanged  = true
+                    var originalValue = input.detail.value(input.field)
+                    originalValue = originalValue ? String(originalValue) : ""
+                    if (originalValue !== input.text) {
+                        root.detail.setValue(input.field, input.text)
+                        detailchanged  = true
+                    }
                 }
             }
-        }
-
-        if (isEmpty) {
-            // unfavorite the contact if the favorite number was removed
-            if (contact.isPreferredDetail("TEL", detail)) {
-                contact.favorite.favorite = false
-            }
-            contact.removeDetail(input.detail)
         }
 
         return detailchanged

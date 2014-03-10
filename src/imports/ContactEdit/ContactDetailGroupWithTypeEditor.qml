@@ -40,6 +40,7 @@ ContactDetailGroupWithTypeBase {
 
     function save() {
         var changed = false
+        var removedDetails = []
         for(var i=0; i < detailDelegates.length; i++) {
             var delegate = detailDelegates[i]
 
@@ -49,17 +50,30 @@ ContactDetailGroupWithTypeBase {
             }
 
             if (delegate.save) {
-                // save type
-                if (updateDetail(delegate.detail, delegate.selectedTypeIndex)) {
+                // check if was removed
+                if (delegate.isEmpty()) {
+                    removedDetails.push(delegate.detail)
                     changed = true
-                }
+                } else {
+                    if (updateDetail(delegate.detail, delegate.selectedTypeIndex)) {
+                        changed = true
+                    }
 
-                // save fields
-                if (delegate.save()) {
-                    changed = true
+                    // save field changes
+                    if (delegate.save()) {
+                        changed = true
+                    }
                 }
             }
         }
+
+        for(var i=0; i < removedDetails.length; i++) {
+            if (contact.isPreferredDetail("TEL", removedDetails[i])) {
+                contact.favorite.favorite = false
+            }
+            contact.removeDetail(removedDetails[i])
+        }
+
         return changed
     }
 

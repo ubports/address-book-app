@@ -24,9 +24,10 @@ Page {
     id: root
     objectName: "contactViewPage"
 
-    property string contactId: ""
-    property alias contact: contactFetch.contact
+    property QtObject contact: null
     property alias model: contactFetch.model
+    // used by main page to open the contact view on app startup
+    property string contactId: ""
 
     function formatNameToDisplay(contact) {
         if (!contact) {
@@ -45,15 +46,8 @@ Page {
     title: formatNameToDisplay(contact)
     onActiveChanged: {
         if (active) {
-            if ((contact == null) || (contactFetch.contactIsDirty)) {
-                contactFetch.fetchContact(root.contactId)
-            }
-
             //WORKAROUND: to correct scroll back the page
-            if (model.count > 10) {
-                flickable.contentY = -100
-                flickable.returnToBounds()
-            }
+            flickable.returnToBounds()
         }
     }
 
@@ -147,16 +141,16 @@ Page {
     ContactsUI.ContactFetch {
         id: contactFetch
 
-        checkForRemoval: true
-        onContactRemoved: pageStack.pop()
+        onContactRemoved: {
+            pageStack.pop()
+        }
+
+        onContactNotFound: {
+            pageStack.pop()
+        }
+
         onContactFetched: {
             root.contact = contact
-            root.contactId = contact.contactId
-        }
-        onContactIsDirtyChanged: {
-            if (contactIsDirty && root.active) {
-                contactFetch.fetchContact(root.contactId)
-            }
         }
     }
 
@@ -182,9 +176,16 @@ Page {
                 onTriggered: {
                     pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
                                    { model: root.model, contact: root.contact})
-                    root.contact = null
                 }
             }
+        }
+    }
+
+    // This will load the contact information when the app was launched with
+    // the URI: addressbook:///contact?id=<id>
+    Component.onCompleted: {
+        if (contactId !== "") {
+            contactFetch.fetchContact(contactId)
         }
     }
 }

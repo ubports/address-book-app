@@ -27,6 +27,10 @@ ContactDetailBase {
 
     readonly property string defaultAvatar: Qt.resolvedUrl("../../artwork/contact-default-profile.png")
 
+    function isEmpty() {
+        return false;
+    }
+
     function save() {
         if (avatarImage.source != root.defaultAvatar) {
             if (root.detail && (root.detail === avatarImage.source)) {

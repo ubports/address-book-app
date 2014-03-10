@@ -79,8 +79,7 @@ Page {
         onContactClicked: {
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
                            {model: contactList.listModel,
-                            contact: contact,
-                            contactId: contact.contactId})
+                            contact: contact})
         }
 
         onSelectionDone: {
