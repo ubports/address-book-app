@@ -103,6 +103,13 @@ ContactDetailBase {
             color: "white"
         }
 
+        ContentPeer {
+            id: defaultSource
+            contentType: ContentType.Pictures
+            handler: ContentHandler.Source
+            selectionType: ContentTransfer.Single
+        }
+
         MouseArea {
             id: changeButton
 
@@ -115,9 +122,7 @@ ContactDetailBase {
                 root.forceActiveFocus()
                 if (!changeButton.loadingDialog) {
                     changeButton.loadingDialog = PopupUtils.open(loadingDialog, null)
-                    changeButton.activeTransfer = ContentHub.importContent(ContentType.Pictures,
-                                                                           ContentHub.defaultSourceForType(ContentType.Pictures));
-                    changeButton.activeTransfer.start();
+                    changeButton.activeTransfer = defaultSource.request();
                 }
             }
 
