@@ -7,7 +7,6 @@
 
 """address-book-app autopilot tests."""
 
-import os.path
 import os
 import time
 import subprocess
@@ -56,15 +55,16 @@ class AddressBookAppTestCase(AutopilotTestCase):
                 vcard_data = AddressBookAppTestCase.VCARD_PATH_BIN
 
         os.environ["ADDRESS_BOOK_TEST_DATA"] = vcard_data
-        if vcard_data != "": print "Using vcard %s" % vcard_data
+        if vcard_data != "":
+            print("Using vcard %s" % vcard_data)
         if os.path.exists(self.app_bin):
-            print "Running from: %s" % (self.app_bin)
+            print("Running from: %s" % (self.app_bin))
             self.launch_test_local()
         elif os.path.exists(self.DEB_LOCALTION):
-            print "Running from: %s" % (self.DEB_LOCALTION)
+            print("Running from: %s" % (self.DEB_LOCALTION))
             self.launch_test_installed()
         else:
-            print "Running from click package: address-book-app"
+            print("Running from click package: address-book-app")
             self.launch_click_installed()
 
         AddressBookAppTestCase.ARGS = []
