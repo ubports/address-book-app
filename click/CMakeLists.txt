@@ -7,4 +7,6 @@ if(CLICK_MODE)
             DESTINATION ${CMAKE_INSTALL_PREFIX})
     install(FILES address-book-apparmor.json
             DESTINATION ${CMAKE_INSTALL_PREFIX})
+    install(FILES address-book-content.json
+            DESTINATION ${CMAKE_INSTALL_PREFIX})
 endif(CLICK_MODE)
