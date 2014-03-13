@@ -11,6 +11,11 @@
 from testtools.matchers import Equals
 
 from address_book_app.tests import AddressBookAppTestCase
+# Even though these classes aren't used anywhere here, by import side effect
+# they register themselves with the autopilot infrastructure.  This allows
+# open_toolbar() to find our package's Toolbar subclass.
+from address_book_app.emulators.contact_list_page import ContactListPage
+from address_book_app.emulators.toolbar import Toolbar
 
 
 class TestDeleteSelectContact(AddressBookAppTestCase):
