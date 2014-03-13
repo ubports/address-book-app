@@ -2,6 +2,7 @@ address-book-app (0.2+14.04.20140227-0ubuntu2) UNRELEASED; urgency=medium
 
   * Port emulators to Python 2/3.
   * Port autopilot tests to Python 3.
+  * d/control: Add explicit dependency on python3-autopilot.
 
  -- Barry Warsaw <barry@ubuntu.com>  Wed, 12 Mar 2014 10:40:35 -0400
 

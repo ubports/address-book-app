@@ -64,6 +64,7 @@ Package: address-book-app-autopilot
 Architecture: all
 Depends: ${misc:Depends},
          ${shlibs:Depends},
+         python3-autopilot,
          libautopilot-qt,
          libqt5test5,
          libqt5widgets5,
