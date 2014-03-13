@@ -5,6 +5,8 @@
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
 
+from address_book_app.emulators.contact_list_page import ContactListPage
+from address_book_app.emulators.toolbar import Toolbar
 from ubuntuuitoolkit import emulators as uitk
 
 
@@ -12,7 +14,7 @@ class MainWindow(uitk.MainView):
     """An emulator class that makes it easy to interact with the app."""
 
     def get_contact_list_page(self):
-        return self. wait_select_single("ContactListPage",
+        return self. wait_select_single(ContactListPage,
                                         objectName="contactListPage")
 
     def get_contact_edit_page(self):
@@ -58,3 +60,7 @@ class MainWindow(uitk.MainView):
         Press the 'Save' button
         """
         self.pointing_device.click_object(self.get_button("accept"))
+
+    def open_toolbar(self):
+        """Override base class  so we get our expected Toolbar subclass."""
+        return self.select_single(Toolbar)
