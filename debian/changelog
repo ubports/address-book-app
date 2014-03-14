@@ -1,3 +1,8 @@
+address-book-app (0.2+14.04.20140307-0ubuntu1) trusty; urgency=low
+
+  * New rebuild forced
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>   Fri, 07 Mar 2014 08:43:59 +0000
+
 address-book-app (0.2+14.04.20140227-0ubuntu1) trusty; urgency=low
 
   [ Jean-Baptiste Lallement ]
