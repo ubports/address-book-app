@@ -28,6 +28,11 @@ MainView {
     height: units.gu(71)
     anchorToKeyboard: false
 
+    // workaround to change the application theme.
+    // Looks like SDK use this property to guess which theme to load.
+    // See bug #1277647
+    backgroundColor: "#221E1C"
+
     signal applicationReady()
 
     function contact(contactId) {
@@ -76,7 +81,6 @@ MainView {
     }
 
     Component.onCompleted: {
-        Theme.name = "Ubuntu.Components.Themes.SuruGradient"
         mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"))
         mainWindow.applicationReady()
     }

@@ -1,5 +1,5 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-# Copyright 2013 Canonical
+# Copyright 2013, 2014 Canonical
 #
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License version 3, as published
@@ -11,12 +11,22 @@ from __future__ import absolute_import
 
 from testtools.matchers import Equals
 from autopilot.matchers import Eventually
+from autopilot.introspection import dbus
 
 from address_book_app.tests import AddressBookAppTestCase
+from address_book_app.emulators import main_window
 
 
 class TestAddContact(AddressBookAppTestCase):
     """ Tests the Add contact """
+
+    def test_go_to_add_contact(self):
+        """Test to launch the add contact screen using emulator method"""
+        self.assertRaises(
+            dbus.StateNotFoundError, self.main_window.get_contact_edit_page)
+        contact_editor = self.main_window.go_to_add_contact()
+        self.assertTrue(contact_editor.visible)
+        self.assertIsInstance(contact_editor, main_window.ContactEditor)
 
     def test_add_and_cancel_contact(self):
         list_page = self.main_window.get_contact_list_page()

@@ -20,6 +20,7 @@ import Ubuntu.Components 0.1
 Item {
     id: root
 
+    property bool readOnly: false
     property bool active: false
     property alias values: listView.model
     property alias currentIndex: listView.currentIndex
@@ -120,7 +121,7 @@ Item {
     MouseArea {
         anchors.fill: parent
         propagateComposedEvents: true
-        onClicked: root.state = "expanded"
+        onClicked: if (!readOnly) root.state = "expanded"
     }
 
     ListView {

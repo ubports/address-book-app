@@ -1,3 +1,46 @@
+address-book-app (0.2+14.04.20140318.3-0ubuntu1) trusty; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Richard Huddie ]
+  * A new emulator method go_to_add_contact() to launch the add contact
+    screen, and a new test to validate its use.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Refactory contact list. To switch between the favorite list and all
+    contacts list you will use the header.
+  * Refactory contact favorite selection. In this new version you
+    favorite the contact instead of phone number.
+  * Avoid change the "Theme.name" during the component complete, this
+    was causing a lot of properties binding loops. (LP: #1277647)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 18 Mar 2014 18:15:39 +0000
+
+address-book-app (0.2+14.04.20140227-0ubuntu1) trusty; urgency=low
+
+  [ Jean-Baptiste Lallement ]
+  * tests/autopilot: Added 'delete contact' test case with pick mode
+    enabled
+
+  [ CI bot ]
+  * Resync trunk
+
+  [ Renato Araujo Oliveira Filho ]
+  * The mouse area that intercept the click to add a new field detail
+    now uses all detail group header space.
+  * Handle read-only fields. (LP: #1233785)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 27 Feb 2014 02:29:27 +0000
+
+address-book-app (0.2+14.04.20140218-0ubuntu1) trusty; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Use QTCONTACTS_MANAGER_OVERRIDE variable to override the contact
+    manager used by contactlist component.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 18 Feb 2014 21:41:00 +0000
+
 address-book-app (0.2+14.04.20140211-0ubuntu1) trusty; urgency=low
 
   [ Jean-Baptiste Lallement ]
