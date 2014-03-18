@@ -101,7 +101,6 @@ ContactDetailGroupWithTypeBase {
             fontSize: "medium"
         }
 
-
         Icon {
             objectName: "newDetailButton"
 
@@ -114,17 +113,19 @@ ContactDetailGroupWithTypeBase {
             height: units.gu(2)
             color: "white"
             name: "add"
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    if (detailQmlTypeName) {
-                        var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + detailQmlTypeName + "{}", root)
-                        if (newDetail) {
-                            var newDetailsCopy = root.newDetails
-                            newDetailsCopy.push(newDetail)
-                            root.newDetails = newDetailsCopy
-                            root.contact.addDetail(newDetail)
-                        }
+        }
+
+        // Mouse area fill all title area to avoid problems with swipe from the right gesture
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                if (detailQmlTypeName) {
+                    var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + detailQmlTypeName + "{}", root)
+                    if (newDetail) {
+                        var newDetailsCopy = root.newDetails
+                        newDetailsCopy.push(newDetail)
+                        root.newDetails = newDetailsCopy
+                        root.contact.addDetail(newDetail)
                     }
                 }
             }

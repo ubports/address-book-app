@@ -1,11 +1,15 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-# Copyright 2013 Canonical
+# Copyright 2013, 2014 Canonical
 #
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
 
+import logging
 from ubuntuuitoolkit import emulators as uitk
+from autopilot import logging as autopilot_logging
+
+logger = logging.getLogger(__name__)
 
 
 class MainWindow(uitk.MainView):
@@ -16,7 +20,7 @@ class MainWindow(uitk.MainView):
                                         objectName="contactListPage")
 
     def get_contact_edit_page(self):
-        return self.wait_select_single("ContactEditor",
+        return self.wait_select_single(ContactEditor,
                                        objectName="contactEditorPage")
 
     def get_contact_view_page(self):
@@ -59,4 +63,15 @@ class MainWindow(uitk.MainView):
         """
         self.pointing_device.click_object(self.get_button("accept"))
 
+    @autopilot_logging.log_action(logger.info)
+    def go_to_add_contact(self):
+        """
+        Press the 'Add' button and return the contact editor page
+        """
+        toolbar = self.open_toolbar()
+        toolbar.click_button(object_name="Add")
+        return self.get_contact_edit_page()
 
+
+class ContactEditor(uitk.UbuntuUIToolkitEmulatorBase):
+    """ An emulator class for the Contact Editor."""

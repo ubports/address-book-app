@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-01-24 11:48-0500\n"
-"PO-Revision-Date: 2014-02-08 16:13+0000\n"
-"Last-Translator: Rouxel <vincent.rouxel@mailoo.org>\n"
+"PO-Revision-Date: 2014-03-11 07:41+0000\n"
+"Last-Translator: Fohanno Thierry <thierry.fohanno@ofis-bzh.org>\n"
 "Language-Team: Breton <br@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-02-19 05:43+0000\n"
-"X-Generator: Launchpad (build 16916)\n"
+"X-Launchpad-Export-Date: 2014-03-12 05:31+0000\n"
+"X-Generator: Launchpad (build 16963)\n"
 
 #: src/imports/ContactList/ContactListPage.qml:153
 msgid "Add"
@@ -28,11 +28,11 @@ msgstr "Chomlec'h"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:63
 msgid "Aim"
-msgstr "Aim"
+msgstr "Palioù"
 
 #: src/imports/Ubuntu/Contacts/ContactListView.qml:115
 msgid "All contacts"
-msgstr "an holl darempred"
+msgstr "An holl zarempredoù"
 
 #: src/imports/ContactEdit/ContactEditor.qml:347
 #: src/imports/ContactEdit/EditToolbar.qml:37
@@ -51,7 +51,7 @@ msgstr "Darempredoù"
 
 #: data/address-book-app.desktop.in:8
 msgid "Contacts Address Book"
-msgstr "roll an darempredoù"
+msgstr "Roll an darempredoù"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
@@ -61,7 +61,7 @@ msgstr "Bro"
 #: src/imports/ContactView/ContactView.qml:157
 #: src/imports/Ubuntu/Contacts/ContactSimpleListView.qml:245
 msgid "Delete"
-msgstr "Dilemel"
+msgstr "Diverkañ"
 
 #: src/imports/ContactEdit/EditToolbar.qml:52
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:53
@@ -70,7 +70,7 @@ msgstr "Graet eo"
 
 #: src/imports/ContactView/ContactView.qml:169
 msgid "Edit"
-msgstr "Embann"
+msgstr "Aozañ"
 
 #: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:23
 #: src/imports/ContactView/ContactDetailEmailsView.qml:23
@@ -80,15 +80,15 @@ msgstr "Postel"
 
 #: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:28
 msgid "Enter a number"
-msgstr "Lakit un niverenn"
+msgstr "Lakait un niverenn"
 
 #: src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:28
 msgid "Enter a social alias"
-msgstr "lakit ho lesanv"
+msgstr "Lakait ul lesanv"
 
 #: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:27
 msgid "Enter an email address"
-msgstr "lakit ar postel"
+msgstr "Lakait ur chomlec'h postel"
 
 #: src/imports/ContactEdit/ContactFetchError.qml:25
 #: src/imports/ContactList/ContactListPage.qml:60
@@ -97,16 +97,16 @@ msgstr "Fazi"
 
 #: src/imports/ContactList/ContactListPage.qml:61
 msgid "Fail to Load contacts"
-msgstr ""
+msgstr "N'eus ket bet gallet kargañ an darempredoù"
 
 #: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:33
 #: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:44
 msgid "Favorite"
-msgstr ""
+msgstr "Gwellañ-deuet"
 
 #: src/imports/Ubuntu/Contacts/ContactListView.qml:65
 msgid "Favourites"
-msgstr ""
+msgstr "Gwellañ-deuet"
 
 #: src/imports/ContactEdit/ContactDetailNameEditor.qml:78
 msgid "First name"
@@ -115,7 +115,7 @@ msgstr "Anv-bihan"
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:116
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:95
 msgid "Home"
-msgstr "Ker"
+msgstr "Er gêr"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
 msgid "ICQ"
@@ -123,19 +123,19 @@ msgstr "ICQ"
 
 #: src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:24
 msgid "IM"
-msgstr ""
+msgstr "Tamm flap"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:66
 msgid "Jabber"
-msgstr "Jabber"
+msgstr "Flapañ"
 
 #: src/imports/ContactEdit/ContactDetailNameEditor.qml:78
 msgid "Last name"
-msgstr "Anv-bras"
+msgstr "Anv"
 
 #: src/imports/ContactEdit/ContactDetailAvatarEditor.qml:81
 msgid "Loading"
-msgstr "Emaon o kargañ"
+msgstr "O kargañ"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:32
 msgid "Locality"
@@ -143,11 +143,11 @@ msgstr "Lec'hiadur"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:99
 msgid "Mobile"
-msgstr "Mobile"
+msgstr "Pellgomzer hezoug"
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Organization"
@@ -156,7 +156,7 @@ msgstr "Aozadur"
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:118
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:103
 msgid "Other"
-msgstr "All"
+msgstr "Tra all"
 
 #: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:24
 #: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:30
@@ -165,12 +165,12 @@ msgstr "Pellgomz"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
-msgstr ""
+msgstr "Kod-post"
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:23
 #: src/imports/ContactView/ContactDetailOrganizationsView.qml:27
 msgid "Professional details"
-msgstr ""
+msgstr "Titouroù micherel"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -178,7 +178,7 @@ msgstr "Rannvro"
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:31
 msgid "Role"
-msgstr "Roll"
+msgstr "Karg"
 
 #: src/imports/ContactEdit/ContactEditor.qml:338
 msgid "Save"
@@ -187,7 +187,7 @@ msgstr "Enrollañ"
 #: src/imports/ContactList/ContactListPage.qml:78
 #: src/imports/ContactList/ContactListPage.qml:145
 msgid "Select"
-msgstr "Dibabit"
+msgstr "Diuzañ"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
 msgid "Skype"
@@ -195,11 +195,11 @@ msgstr "Skype"
 
 #: src/imports/ContactView/ContactDetailOnlineAccountsView.qml:27
 msgid "Social"
-msgstr "sokial"
+msgstr "Sokial"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:31
 msgid "Street"
-msgstr "stread"
+msgstr "Straed"
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:32
 msgid "Title"
@@ -207,11 +207,11 @@ msgstr "Titl"
 
 #: src/imports/ContactView/ContactDetailOnlineAccountsView.qml:30
 msgid "Touch"
-msgstr ""
+msgstr "Touch"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:111
 msgid "View contact's profile"
-msgstr ""
+msgstr "Gwelet profil an darempred"
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:117
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:97
@@ -220,7 +220,7 @@ msgstr "Labour"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:101
 msgid "Work Mobile"
-msgstr ""
+msgstr "Pellgomzer hezoug labour"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:70
 msgid "Yahoo"
