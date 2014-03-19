@@ -20,8 +20,6 @@ import QtContacts 5.0 as QtContacts
 ListModel {
     id: typeModel
 
-    property bool ready: false
-
     signal loaded()
 
     function getTypeIndex(detail) {
@@ -69,6 +67,5 @@ ListModel {
         /*4*/   append({"value": 7, "label": i18n.tr("Skype"), "icon": "artwork:/protocol-skype.svg"})
         /*5*/   append({"value": 8, "label": i18n.tr("Yahoo"), "icon": "artwork:/protocol-yahoo.svg"})
         loaded()
-        ready = true
     }
 }
