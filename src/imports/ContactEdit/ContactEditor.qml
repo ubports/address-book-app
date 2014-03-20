@@ -162,18 +162,6 @@ Page {
             }
             height: childrenRect.height
 
-            ContactDetailSyncTargetEditor {
-                id: syncTargetEditor
-
-                contact: contactEditor.contact
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-                height: implicitHeight
-                KeyNavigation.tab: nameEditor
-            }
-
             ContactDetailNameEditor {
                 id: nameEditor
 
@@ -265,6 +253,20 @@ Page {
                 }
                 height: implicitHeight
                 KeyNavigation.backtab : addressesEditor
+                KeyNavigation.tab: syncTargetEditor
+            }
+
+            ContactDetailSyncTargetEditor {
+                id: syncTargetEditor
+
+                contact: contactEditor.contact
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                height: implicitHeight
+                KeyNavigation.backtab : organizationsEditor
+                KeyNavigation.tab: nameEditor
             }
         }
     }

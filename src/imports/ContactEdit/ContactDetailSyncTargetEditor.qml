@@ -15,8 +15,9 @@
  */
 
 import QtQuick 2.0
-import Ubuntu.Components 0.1
 import QtContacts 5.0
+import Ubuntu.Components 0.1
+import Ubuntu.Components.ListItems 0.1 as ListItem
 
 import "../Common"
 
@@ -41,9 +42,10 @@ ContactDetailBase {
     }
 
     property bool isNewContact: contact && contact.contactId === "qtcontacts:::"
+    property real myHeight: sources.containerHeight + units.gu(4) + label.height
 
     detail: contact ? contact.detail(ContactDetail.SyncTarget) : null
-    implicitHeight: isNewContact ? units.gu(5) : 0
+    implicitHeight: isNewContact ? myHeight : 0
 
     ContactModel {
         id: sourceModel
@@ -57,16 +59,40 @@ ContactDetailBase {
         }
     }
 
+    Label {
+        id: label
+
+        text: i18n.tr("Addressbook")
+        anchors {
+            left: parent.left
+            top: parent.top
+            right: parent.right
+            margins: units.gu(2)
+        }
+        height: root.active ? units.gu(4) : units.gu(3)
+    }
+
     OptionSelector {
         id: sources
 
-        anchors.fill: parent
+        anchors {
+            left: parent.left
+            leftMargin: units.gu(2)
+            top: label.bottom
+            topMargin: units.gu(1)
+            right: parent.right
+            rightMargin: units.gu(2)
+            bottom: parent.bottom
+            bottomMargin: units.gu(2)
+        }
+
         model: sourceModel
         delegate: OptionSelectorDelegate {
             text: contact.displayLabel.label
+            height: units.gu(5)
         }
 
-        containerHeight: itemHeight * 4
+        containerHeight: sourceModel.contacts.length > 4 ? itemHeight * 4 : itemHeight * sourceModel.contacts.length
     }
     z: 1000
 }

@@ -41,10 +41,33 @@ ContactDetailBase {
     detail: contact ? contact.detail(ContactDetail.Avatar) : null
     implicitHeight: units.gu(17)
 
+    // update the contact detail in case of the contact change
+    Connections {
+        target: root.contact
+        onContactChanged: {
+            if (root.contact)
+                root.detail = contact.detail(ContactDetail.Avatar)
+            else
+                root.detail = null
+        }
+    }
+
+    // avoid change the avatar if the contact detail changes but the value still the same
+    onDetailChanged: {
+        if (detail && contact) {
+            var newAvatar = root.getAvatar(root.detail)
+            if (newAvatar != avatar.source) {
+                avatar.source = newAvatar
+            }
+        } else {
+            avatar.source = root.defaultAvatar
+        }
+    }
+
     Image {
+        id: avatar
+
         anchors.fill: parent
-        // make sure that the avatar changes if the contact changes
-        source: root.contact ? root.getAvatar(root.detail) : root.defaultAvatar
         asynchronous: true
         smooth: true
         fillMode: Image.PreserveAspectCrop
