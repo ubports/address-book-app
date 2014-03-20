@@ -70,6 +70,7 @@ ContactDetailBase {
         anchors.fill: parent
         asynchronous: true
         smooth: true
+        source: root.defaultAvatar
         fillMode: Image.PreserveAspectCrop
     }
 }
