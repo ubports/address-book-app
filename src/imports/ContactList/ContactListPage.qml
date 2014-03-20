@@ -72,7 +72,6 @@ Page {
         id: contactList
         objectName: "contactListView"
 
-        showFavoritePhoneLabel: false
         multiSelectionEnabled: true
         acceptAction.text: pickMode ? i18n.tr("Select") : i18n.tr("Delete")
         multipleSelection: !pickMode ||

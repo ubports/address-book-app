@@ -1,3 +1,22 @@
+address-book-app (0.2+14.04.20140318.3-0ubuntu1) trusty; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Richard Huddie ]
+  * A new emulator method go_to_add_contact() to launch the add contact
+    screen, and a new test to validate its use.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Refactory contact list. To switch between the favorite list and all
+    contacts list you will use the header.
+  * Refactory contact favorite selection. In this new version you
+    favorite the contact instead of phone number.
+  * Avoid change the "Theme.name" during the component complete, this
+    was causing a lot of properties binding loops. (LP: #1277647)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 18 Mar 2014 18:15:39 +0000
+
 address-book-app (0.2+14.04.20140227-0ubuntu1) trusty; urgency=low
 
   [ Jean-Baptiste Lallement ]

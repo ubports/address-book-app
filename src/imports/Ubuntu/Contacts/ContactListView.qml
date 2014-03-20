@@ -41,78 +41,75 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 ContactSimpleListView {
     id: root
 
-    /*!
-      \qmlproperty bool showFavoritePhoneLabel
+    property bool showFavourites: false
 
-      This property holds if the phone label should appear on favorite contact or not
-      By default this is set to true.
-    */
-    property bool showFavoritePhoneLabel: true
+    header: Rectangle {
+        id: itemHeader
 
-    header: Column {
-        objectName: "listHeader"
-
-        width: parent.width
-        height: favouritesList.count > 0 ? childrenRect.height : 0
-
-        ContactSimpleListView {
-            id: favouritesList
-            objectName: "favouritesList"
-
-            manager: root.manager
-            header: ListItem.Header {
-                height: units.gu(5)
-                text: i18n.tr("Favourites")
-            }
-
-            anchors {
-                left: parent.left
-                right: parent.right
-            }
-
-            height: (count > 0 && !root.isInSelectionMode) ? contentHeight : 0
-            onContactClicked: root.contactClicked(contact)
-            defaultAvatarImageUrl: root.defaultAvatarImageUrl
-            multiSelectionEnabled: false
-            interactive: false
-            showSections: false
-
-            fetchHint: FetchHint {
-                optimizationHints: FetchHint.AllRequired
-                detailTypesHint: [ ContactDetail.Avatar,
-                                   ContactDetail.Favorite,
-                                   ContactDetail.Name,
-                                   ContactDetail.PhoneNumber ]
-            }
-
-            filter: DetailFilter {
-                detail: ContactDetail.Favorite
-                field: Favorite.Favorite
-                value: true
-                matchFlags: DetailFilter.MatchExactly
-            }
-
-            listDelegate: FavoriteDelegate {
-                showPhoneLabel: root.showFavoritePhoneLabel
-                defaultAvatarUrl: favouritesList.defaultAvatarImageUrl
-                onContactClicked: _fetchContact(index, contact)
-            }
-
-            Behavior on height {
-                UbuntuNumberAnimation {}
-            }
-
-            // WORKAROUND: Due a bug on the SDK Page component the page is nto correct positioned if it changes
-            // the size dynamically
-            onHeightChanged: {
-                root.contentY = -contentHeight * 2
-                root.returnToBounds()
-            }
+        height: units.gu(4)
+        anchors {
+            left: parent.left
+            right: parent.right
         }
-        ListItem.Header {
-            height: favouritesList.count > 0 ? units.gu(5) : 0
-            visible: height > 0
-            text: i18n.tr("All contacts")
+        color: UbuntuColors.coolGrey
+
+        Row {
+            anchors.fill: parent
+            Label {
+                id: lblAll
+
+                anchors {
+                    top: parent.top
+                    bottom: parent.bottom
+                }
+                width: parent.width / 2
+                text: i18n.tr("All")
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                color: root.showFavourites ? UbuntuColors.warmGrey : UbuntuColors.orange
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: root.showFavourites = false
+                }
+            }
+
+            Rectangle {
+                anchors {
+                    top: parent.top
+                    bottom: parent.bottom
+                    margins: units.gu(1)
+                }
+                width: 1
+            }
+
+            Label {
+                id: lblFavourites
+
+                anchors {
+                    top: parent.top
+                    bottom: parent.bottom
+                }
+                width: parent.width / 2
+                text: i18n.tr("Favourites")
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                color: root.showFavourites ? UbuntuColors.orange : UbuntuColors.warmGrey
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: root.showFavourites = true
+                }
+            }
         }
     }
+
+    DetailFilter {
+        id: favouritesFilter
+
+        detail: ContactDetail.Favorite
+        field: Favorite.Favorite
+        value: true
+        matchFlags: DetailFilter.MatchExactly
+    }
+
+    filter: showFavourites ? favouritesFilter : null
 }
