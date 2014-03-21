@@ -88,6 +88,7 @@ AddressBookApp::AddressBookApp(int &argc, char **argv)
       m_contentComm(0),
       m_pickingMode(false)
 {
+    setOrganizationName("com.ubuntu.address-book");
     setApplicationName("AddressBookApp");
 }
 
