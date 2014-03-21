@@ -29,8 +29,11 @@ ContactDetailBase {
         if (!isNewContact) {
             return;
         }
-
         var activeSource = getSelectedSource()
+        if (!activeSource) {
+            return;
+        }
+
         if (!root.detail) {
             root.detail = root.contact.syncTarget
         }
@@ -38,7 +41,12 @@ ContactDetailBase {
     }
 
     function getSelectedSource() {
-        return sourceModel.contacts[sources.selectedIndex].guid.guid
+        var selectedContact = sourceModel.contacts[sources.selectedIndex]
+        if (selectedContact) {
+            return selectedContact.guid.guid
+        } else {
+            return -1
+        }
     }
 
     property bool isNewContact: contact && contact.contactId === "qtcontacts:::"
