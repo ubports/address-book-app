@@ -21,7 +21,7 @@ add_executable(${ADDRESS_BOOK_APP_BIN}
     ${ADDRESS_BOOK_APP_SRCS}
 )
 
-qt5_use_modules(${ADDRESS_BOOK_APP_BIN} Gui Core Qml Quick)
+qt5_use_modules(${ADDRESS_BOOK_APP_BIN} Gui Core Qml Quick DBus)
 
 target_link_libraries(${ADDRESS_BOOK_APP_BIN}
     ${CONTENTHUB_LIBRARIES}
