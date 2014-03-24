@@ -60,4 +60,4 @@ class TestCreateNewContactFromURI(AddressBookAppTestCase):
             "Label",
             objectName="label_phoneNumber_0.0")
         self.assertThat(phone_label.text, Eventually(Equals("1234567890")))
-        self.assertThat(phone_type.text, Eventually(Equals("Other")))
+        self.assertThat(phone_type.text, Eventually(Equals("Mobile")))
