@@ -81,6 +81,16 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                ContactDetailFavoriteView {
+                    contact: root.contact
+                    anchors {
+                        left: parent.left
+                        bottom: parent.bottom
+                        margins: units.gu(2)
+                    }
+                    width: units.gu(4)
+                    height: units.gu(4)
+                }
             }
 
             ContactDetailPhoneNumbersView {

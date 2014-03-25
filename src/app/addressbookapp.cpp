@@ -91,6 +91,7 @@ AddressBookApp::AddressBookApp(int &argc, char **argv)
       m_contentComm(0),
       m_pickingMode(false)
 {
+    setOrganizationName("com.ubuntu.address-book");
     setApplicationName("AddressBookApp");
 }
 
@@ -172,7 +173,7 @@ bool AddressBookApp::setup()
     m_view->setResizeMode(QQuickView::SizeRootObjectToView);
     m_view->setTitle("AddressBook");
     m_view->engine()->addImportPath(importPath("/imports/"));
-    m_view->rootContext()->setContextProperty("DEFAULT_CONTACT_MANAGER", defaultManager);
+    m_view->rootContext()->setContextProperty("QTCONTACTS_MANAGER_OVERRIDE", defaultManager);
     m_view->rootContext()->setContextProperty("contactContentHub", m_contentComm);
     m_view->rootContext()->setContextProperty("application", this);
     m_view->rootContext()->setContextProperty("contactKey", contactKey);
