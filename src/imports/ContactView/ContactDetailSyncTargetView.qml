@@ -22,8 +22,7 @@ ContactDetailGroupWithTypeView {
     id: root
 
     title: i18n.tr("Addressbook")
-    //defaultIcon: "image://theme/language-chooser"
-    defaultIcon: "artwork:/contact-location.png"
+    defaultIcon: "image://theme/contact-group"
     detailType: QtContacts.ContactDetail.SyncTarget
     typeModel: null
 

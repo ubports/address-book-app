@@ -102,6 +102,5 @@ ContactDetailBase {
 
         containerHeight: sourceModel.contacts.length > 4 ? itemHeight * 4 : itemHeight * sourceModel.contacts.length
     }
-    z: 1000
 }
 
