@@ -78,10 +78,10 @@ Page {
         }
 
         if (changed) {
-            model.saveContact(contact)
-        } else {
-            pageStack.pop()
+            // backend error will be handled by the root page (contact list)
+            contactEditor.model.saveContact(contact)
         }
+        pageStack.pop()
     }
 
     function makeMeVisible(item) {
@@ -142,10 +142,8 @@ Page {
                 contact.addDetail(newDetail)
                 // we need to wait for the field be created
                 focusTimer.restart()
-
             }
             newPhoneNumber = ""
-
         }
     }
 
@@ -176,7 +174,6 @@ Page {
         }
         contentHeight: contents.height
         contentWidth: parent.width
-        visible: !busyIndicator.visible
 
         // after add a new field we need to wait for the contentHeight to change to scroll to the correct position
         onContentHeightChanged: contactEditor.makeMeVisible(contactEditor.activeItem)
@@ -288,44 +285,6 @@ Page {
 
     Component.onCompleted: nameEditor.forceActiveFocus()
 
-    ActivityIndicator {
-        id: busyIndicator
-
-        running: contactSaveLock.saving
-        visible: running
-        anchors.centerIn: parent
-    }
-
-    Connections {
-        id: contactSaveLock
-
-        property bool saving: false
-
-        target: contactEditor.model
-
-        onContactsChanged: {
-            if (saving) {
-                saving = false
-                pageStack.contactCreated(contactEditor.contact)
-                pageStack.pop()
-            } else if (contactEditor.contact &&
-                       (contactEditor.contact.contactId != "qtcontacts:::")) {
-                for (var i=0; i < contactEditor.model.contacts.length; i++) {
-                    if (contactEditor.model.contacts[i].contactId == contactEditor.contact.contactId) {
-                        return
-                    }
-                }
-                contactEditor.contact = null
-                pageStack.pop()
-            }
-        }
-
-        onErrorChanged: {
-            //TODO: show a dialog
-            console.debug("Save error:" + contactEditor.model.error)
-        }
-    }
-
     EditToolbar {
         id: toolbar
         anchors {
@@ -337,11 +296,7 @@ Page {
         acceptAction: Action {
             text: i18n.tr("Save")
             enabled: !nameEditor.isEmpty
-            onTriggered: {
-                // wait for contact to be saved or cause a error
-                contactSaveLock.saving = true
-                contactEditor.save()
-            }
+            onTriggered: contactEditor.save()
         }
         rejectAction: Action {
             text: i18n.tr("Cancel")

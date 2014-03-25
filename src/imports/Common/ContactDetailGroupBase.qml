@@ -38,8 +38,9 @@ FocusScope {
 
     signal newFieldAdded(var index)
 
-    implicitHeight: detailsModel.values.length > 0 ? contents.implicitHeight : minimumHeight
+    implicitHeight: detailsCount > 0 ? contents.implicitHeight : minimumHeight
     visible: implicitHeight > 0
+    onContactChanged: root.inputFields = []
 
     // This model is used to avoid rebuild the repeater every time that the details change
     // With this model the changed info on the fields will remain after add a new field
@@ -68,6 +69,7 @@ FocusScope {
 
         onValuesChanged: {
             if (!values) {
+                root.inputFields = []
                 clear()
                 return
             }
@@ -78,7 +80,7 @@ FocusScope {
 
             var modelCount = count
             for(var i=0; i < values.length; i++) {
-                if (modelCount < i) {
+                if (modelCount <= i) {
                     append({"detail": values[i]})
                 } else if (get(i) != values[i]) {
                     set(i, {"detail": values[i]})
@@ -112,7 +114,7 @@ FocusScope {
                 Binding {
                     target: detailItem.item
                     property: "detail"
-                    value: root.contact && root.details ? root.details[index] : null
+                    value: model.detail
                 }
 
                 Binding {

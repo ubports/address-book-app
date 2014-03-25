@@ -17,7 +17,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
-import Ubuntu.Components.Popups 0.1 as Popups
 import Ubuntu.Contacts 0.1 as ContactsUI
 import QtContacts 5.0
 
@@ -48,25 +47,7 @@ Page {
         return newContact
     }
 
-
-
     title: i18n.tr("Contacts")
-    Component {
-        id: dialog
-
-        Popups.Dialog {
-            id: dialogue
-
-            title: i18n.tr("Error")
-            text: i18n.tr("Fail to Load contacts")
-
-            Button {
-                text: "Cancel"
-                gradient: UbuntuColors.greyGradient
-                onClicked: PopupUtils.close(dialogue)
-            }
-        }
-    }
 
     ContactsUI.ContactListView {
         id: contactList
@@ -83,7 +64,6 @@ Page {
             bottomMargin: contactList.isInSelectionMode ? 0 : units.gu(2)
             fill: parent
         }
-        onError: PopupUtils.open(dialog, null)
         swipeToDelete: !pickMode
 
         ActivityIndicator {
@@ -96,7 +76,9 @@ Page {
 
         onContactClicked: {
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
-                           {model: contactList.listModel, contactId: contact.contactId})
+                           {model: contactList.listModel,
+                            contact: contact,
+                            contactId: contact.contactId})
         }
 
         onSelectionDone: {
@@ -116,6 +98,7 @@ Page {
                 contactList.listModel.removeContacts(ids)
             }
         }
+
         onSelectionCanceled: {
             if (pickMode) {
                 if (contactContentHub) {
@@ -131,6 +114,8 @@ Page {
                 toolbar.opened = false
             }
         }
+
+        onError: pageStack.contactModelError(error)
     }
 
     tools: ToolbarItems {
