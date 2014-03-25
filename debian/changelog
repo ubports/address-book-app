@@ -1,3 +1,14 @@
+address-book-app (0.2+14.04.20140321-0ubuntu1) trusty; urgency=low
+
+  [ Michael Sheldon ]
+  * Update to use new content hub C++ and QML APIs, and fix importing
+    contact images within containment.
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 21 Mar 2014 00:35:47 +0000
+
 address-book-app (0.2+14.04.20140318.3-0ubuntu1) trusty; urgency=low
 
   [ Ubuntu daily release ]

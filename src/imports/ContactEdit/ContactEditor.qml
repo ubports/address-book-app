@@ -118,6 +118,11 @@ Page {
         id: contactFetch
 
         onContactNotFound: PopupUtils.open(fetchErrorDialog, null)
+        onContactFetched: {
+            if (contactEditor.contact == null) {
+                contactEditor.contact = contact
+            }
+        }
     }
 
     Timer {

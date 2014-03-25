@@ -143,6 +143,12 @@ Page {
         }
     }
 
+    // WORKAROUND: Avoid the gap btw the header and the contact list when the list moves
+    // see bug #1296764
+    onActiveChanged: {
+        contactList.returnToBounds()
+    }
+
     Connections {
         target: pageStack
         onContactRequested: {

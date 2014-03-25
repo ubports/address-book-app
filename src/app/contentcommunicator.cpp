@@ -75,6 +75,14 @@ void ContentCommunicator::handle_export(content::Transfer *transfer)
 }
 
 /*!
+ * \brief \reimp
+ */
+void ContentCommunicator::handle_share(content::Transfer *)
+{
+    qDebug() << Q_FUNC_INFO << "address book app does not share content";
+}
+
+/*!
  * \brief ContentCommunicator::cancelTransfer aborts the current transfer
  */
 void ContentCommunicator::cancelTransfer()
