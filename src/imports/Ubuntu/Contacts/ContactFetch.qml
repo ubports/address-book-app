@@ -19,17 +19,19 @@ import QtQuick 2.0
 Item {
     id: root
 
+    readonly property alias contact: connections.contact
+    readonly property alias contactId: connections.contactId
     property alias model: connections.target
+
     property bool running: false
-    property QtObject contact: null
     property bool contactIsDirty: false
-    property bool checkForRemoval: false
 
     property string _pendingId: ""
     property bool _ready: false
 
     signal contactFetched(QtObject contact)
     signal contactRemoved()
+    signal contactNotFound()
 
     function fetchContact(contactId) {
         if (root._ready) {
@@ -59,35 +61,18 @@ Item {
         }
     }
 
+    onContactChanged: {
+        if (contact == null) {
+            contactRemoved()
+        }
+    }
+
     Connections {
         id: connections
 
         property int currentQueryId: -1
-
-        // wait for changes to finish before mark as dirty, this can save some queries
-        onContactsChanged: {
-            if (root.contact) {
-                if (root.checkForRemoval) {
-                    var found = false
-                    var contacts = root.model.contacts
-                    for (var i=0; i < contacts.length; i++) {
-                        if (contacts[i].contactId === root.contact.contactId) {
-                            found = true
-                            break;
-                        }
-                    }
-                    if (!found) {
-                        // if the contact was not found on contact list this was removed
-                        contactRemoved()
-                        return
-                    }
-                }
-                // there is no way to know which contact has changed,
-                // (unless you compare all the details and this will take longer)
-                // to be safe we will consider that our contact has changed
-                root.contactIsDirty = true
-            }
-        }
+        property QtObject contact: null
+        property string contactId: contact ? contact.contactId : ""
 
         onContactsFetched: {
             // currentQueryId == -2 is used during a fetch using "memory" manager
@@ -95,8 +80,12 @@ Item {
                 root.contactIsDirty = false
                 root.running = false
                 currentQueryId = -1
-                root.contact = fetchedContacts[0]
-                root.contactFetched(fetchedContacts[0])
+                if (fetchedContacts.length > 0) {
+                    contact = fetchedContacts[0]
+                    root.contactFetched(fetchedContacts[0])
+                } else {
+                    contactNotFound()
+                }
             }
         }
     }

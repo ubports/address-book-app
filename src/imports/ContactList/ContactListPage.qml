@@ -77,8 +77,7 @@ Page {
         onContactClicked: {
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
                            {model: contactList.listModel,
-                            contact: contact,
-                            contactId: contact.contactId})
+                            contact: contact})
         }
 
         onSelectionDone: {
@@ -142,6 +141,12 @@ Page {
                 }
             }
         }
+    }
+
+    // WORKAROUND: Avoid the gap btw the header and the contact list when the list moves
+    // see bug #1296764
+    onActiveChanged: {
+        contactList.returnToBounds()
     }
 
     Connections {

@@ -19,16 +19,16 @@ import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
+import Ubuntu.Contacts 0.1 as ContactsUI
 
 Page {
     id: contactEditor
     objectName: "contactEditorPage"
 
     property QtObject contact: null
-    property QtObject model: null
+    property alias model: contactFetch.model
 
     // this is used to add a phone number to a existing contact
-    property int currentFetchOperation: -1
     property string contactId: ""
     property string newPhoneNumber: ""
 
@@ -114,36 +114,14 @@ Page {
         id: fetchErrorDialog
     }
 
-    Connections {
-        target: model
-        onContactsFetched: {
-            if (requestId == currentFetchOperation) {
-                currentFetchOperation = -1
-                // this fetch request can only return one contact
-                if(fetchedContacts.length !== 1) {
-                    PopupUtils.open(fetchErrorDialog, null)
-                }
-                contact = fetchedContacts[0]
-            }
-        }
-    }
+    ContactsUI.ContactFetch {
+        id: contactFetch
 
-    onContactIdChanged:  {
-        if (contactId) {
-            currentFetchOperation = model.fetchContacts(contactId)
-        }
-    }
-
-    onContactChanged: {
-        if (contact && (newPhoneNumber.length > 0)) {
-            var detailSourceTemplate = "import QtContacts 5.0; PhoneNumber{ number: \"" + newPhoneNumber + "\" }"
-            var newDetail = Qt.createQmlObject(detailSourceTemplate, contactEditor)
-            if (newDetail) {
-                contact.addDetail(newDetail)
-                // we need to wait for the field be created
-                focusTimer.restart()
+        onContactNotFound: PopupUtils.open(fetchErrorDialog, null)
+        onContactFetched: {
+            if (contactEditor.contact == null) {
+                contactEditor.contact = contact
             }
-            newPhoneNumber = ""
         }
     }
 
@@ -283,8 +261,6 @@ Page {
         }
     }
 
-    Component.onCompleted: nameEditor.forceActiveFocus()
-
     EditToolbar {
         id: toolbar
         anchors {
@@ -312,5 +288,27 @@ Page {
                 makeMeVisible(activeItem)
             }
         }
+    }
+
+    // This will load the contact information and add the new phone number
+    // when the app was launched with the URI: addressbook:///addphone?id=<contact-id>&phone=<phone-number>
+    onContactChanged: {
+        if (contact && (newPhoneNumber.length > 0)) {
+            var detailSourceTemplate = "import QtContacts 5.0; PhoneNumber{ number: \"" + newPhoneNumber + "\" }"
+            var newDetail = Qt.createQmlObject(detailSourceTemplate, contactEditor)
+            if (newDetail) {
+                contact.addDetail(newDetail)
+                // we need to wait for the field be created
+                focusTimer.restart()
+            }
+            newPhoneNumber = ""
+        }
+    }
+
+    Component.onCompleted: {
+        if (contactId !== "") {
+            contactFetch.fetchContact(contactId)
+        }
+        nameEditor.forceActiveFocus()
     }
 }

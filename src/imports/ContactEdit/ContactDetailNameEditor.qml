@@ -26,6 +26,10 @@ ContactDetailItem {
     property bool isEmpty: (fields == -1) || (emptyFields.length === fields.length)
     property variant emptyFields: []
 
+    function isEmpty() {
+        return false
+    }
+
     function save() {
         var changed = false;
 

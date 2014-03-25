@@ -21,7 +21,7 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 FocusScope {
     id: root
 
-    readonly property variant details: contact && contact.contactDetails && detailType ? contact.details(detailType) : []
+    property var details: []
     readonly property alias detailDelegates: contents.children
     readonly property int detailsCount: detailsModel.count
 
@@ -38,16 +38,35 @@ FocusScope {
 
     signal newFieldAdded(var index)
 
+    function reloadDetails(clearFields)
+    {
+        if (clearFields) {
+            root.inputFields = []
+        }
+
+        if (contact && detailType) {
+            root.details = contact.details(detailType)
+        } else {
+            root.details = []
+        }
+    }
+
+    onContactChanged: reloadDetails(true)
+    onDetailTypeChanged: reloadDetails(true)
+    Connections {
+        target: root.contact
+        onContactChanged: reloadDetails(false)
+    }
+
     implicitHeight: detailsCount > 0 ? contents.implicitHeight : minimumHeight
     visible: implicitHeight > 0
-    onContactChanged: root.inputFields = []
 
     // This model is used to avoid rebuild the repeater every time that the details change
     // With this model the changed info on the fields will remain after add a new field
     ListModel {
         id: detailsModel
 
-        property var values: root.showEmpty ? root.details : filterDetails(root.details)
+        property var values: root.showEmpty && root.details ? root.details : filterDetails(root.details)
 
         function filterDetails(details) {
             var result = []
