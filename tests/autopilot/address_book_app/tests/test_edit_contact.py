@@ -78,7 +78,12 @@ class TestEditContact(AddressBookAppTestCase):
 
     def test_add_email(self):
         self.add_contact("Fulano", "")
-        self.edit_contact(0)
+        edit_page = self.edit_contact(0)
+
+        emailGroup = edit_page.select_single(
+            "ContactDetailGroupWithTypeEditor",
+            objectName="emails")
+        self.create_new_detail(emailGroup)
 
         # fill email address
         email_field = self.main_window.select_single(

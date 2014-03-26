@@ -24,15 +24,20 @@ ContactDetailBase {
     id: root
 
     detail: root.contact ? root.contact.favorite : null
-    Image {
+    showDivider: false
+
+    Icon {
+        id: icon
+
         anchors.fill: parent
-        source: root.detail && root.detail.favorite ? "artwork:/favorite-selected.png" : "artwork:/favorite-unselected.png"
+        name: root.detail && root.detail.favorite ? "favorite-selected" : "favorite-unselected"
+        color: UbuntuColors.orange
         MouseArea {
-           anchors.fill: parent
-           onClicked: {
-               root.detail.favorite = !root.detail.favorite
-               //TODO: save favorite if not in edit mode
-           }
+            anchors.fill: parent
+            onClicked: {
+                   root.detail.favorite = !root.detail.favorite
+                   root.contact.save()
+            }
         }
-   }
+    }
 }

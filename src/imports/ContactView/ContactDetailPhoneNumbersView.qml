@@ -35,29 +35,13 @@ ContactDetailGroupWithTypeView {
     }
 
     detailDelegate: ContactDetailPhoneNumberView {
-        property variant detailType: detail && root.contact && root.typeModel.ready ? root.getType(detail) : null
-        property bool isPreferred: root.contact && root.contact.preferredDetails && detail && root.contact.isPreferredDetail("TEL", detail)
+        property variant detailType: detail && root.contact && root.typeModelReady ? root.getType(detail) : null
 
-        action: Action {
-            objectName: "favoriteAction"
-
-            text: i18n.tr("Favorite")
-            iconSource: (contact.favorite.favorite && isPreferred) ? "artwork:/favorite-selected.svg" : "artwork:/favorite-unselected.svg"
-        }
         contact: root.contact
         fields: root.fields
         typeLabel: detailType ? detailType.label : ""
 
         height: implicitHeight
         width: root.width
-        onClicked: {
-            if (isPreferred && contact.favorite.favorite) {
-                contact.favorite.favorite = false
-            } else {
-                root.contact.setPreferredDetail("TEL", detail)
-                contact.favorite.favorite = true
-            }
-            contact.save()
-        }
     }
 }

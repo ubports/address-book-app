@@ -39,6 +39,7 @@ public:
 
     virtual void handle_import(content::Transfer*);
     virtual void handle_export(content::Transfer *transfer);
+    virtual void handle_share(content::Transfer*);
 
     bool isActive() const;
     bool isMultipleItems() const;

@@ -25,10 +25,11 @@ ContactDetailBase {
 
     property alias typeLabel: view.typeLabel
     property alias lineHeight: view.lineHeight
+    readonly property bool isReady: (fields != null) && (detail != null)
 
     function populateValues()
     {
-        if (fields && detail) {
+        if (isReady) {
             var values = []
             for(var i=0; i < fields.length; i++) {
                 values.push(detail.value(fields[i]))
@@ -38,8 +39,11 @@ ContactDetailBase {
     }
 
     implicitHeight: view.implicitHeight
-    onFieldsChanged: populateValues()
-    onDetailChanged: populateValues()
+    onIsReadyChanged: populateValues()
+    Connections {
+        target: root.detail
+        onDetailChanged: populateValues()
+    }
 
     BasicFieldView {
         id: view

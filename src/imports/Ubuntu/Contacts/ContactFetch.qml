@@ -19,9 +19,11 @@ import QtQuick 2.0
 Item {
     id: root
 
+    readonly property alias contact: connections.contact
+    readonly property alias contactId: connections.contactId
     property alias model: connections.target
+
     property bool running: false
-    property QtObject contact: null
     property bool contactIsDirty: false
 
     property string _pendingId: ""
@@ -29,6 +31,7 @@ Item {
 
     signal contactFetched(QtObject contact)
     signal contactRemoved()
+    signal contactNotFound()
 
     function fetchContact(contactId) {
         if (root._ready) {
@@ -58,20 +61,9 @@ Item {
         }
     }
 
-    Connections {
-        target: root.model
-
-        onContactsChanged: {
-            if (root.contact) {
-                root.contactIsDirty = true
-
-                for (var i=0; i < root.model.contacts.length; i++) {
-                    if (root.model.contacts[i].contactId == root.contact.contactId) {
-                        return
-                    }
-                }
-                contactRemoved()
-            }
+    onContactChanged: {
+        if (contact == null) {
+            contactRemoved()
         }
     }
 
@@ -79,6 +71,8 @@ Item {
         id: connections
 
         property int currentQueryId: -1
+        property QtObject contact: null
+        property string contactId: contact ? contact.contactId : ""
 
         onContactsFetched: {
             // currentQueryId == -2 is used during a fetch using "memory" manager
@@ -86,8 +80,12 @@ Item {
                 root.contactIsDirty = false
                 root.running = false
                 currentQueryId = -1
-                root.contact = fetchedContacts[0]
-                root.contactFetched(fetchedContacts[0])
+                if (fetchedContacts.length > 0) {
+                    contact = fetchedContacts[0]
+                    root.contactFetched(fetchedContacts[0])
+                } else {
+                    contactNotFound()
+                }
             }
         }
     }

@@ -6,6 +6,7 @@
     "hooks": {
         "address-book": {
             "apparmor": "address-book-apparmor.json",
+            "content-hub": "address-book-content.json",
             "desktop": "@CMAKE_INSTALL_DATADIR@/applications/@ADDRESS_BOOK_APP_DESKTOP_FILE@"
         }
     },
