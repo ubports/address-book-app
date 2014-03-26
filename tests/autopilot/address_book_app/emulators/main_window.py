@@ -102,7 +102,7 @@ class ContactEditor(uitk.UbuntuUIToolkitEmulatorBase):
             any of the fields.
 
         """
-        for field, value in contact_information.iteritems():
+        for field, value in contact_information.items():
             self._fill_field(field, value)
 
     def _fill_field(self, field, value):
