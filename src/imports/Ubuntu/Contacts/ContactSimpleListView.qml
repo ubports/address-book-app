@@ -191,16 +191,32 @@ MultipleSelectionListView {
     signal detailClicked(QtObject contact, QtObject detail)
 
     /*!
-      Retrieve the contact index inside of the list
+      Retrieve the contact index inside of the list based on contact id or contact name if the id is empty
     */
     function getIndex(contact)
     {
-        var contacts = listModel.contacts;
+        var contacts = listModel.contacts
+        var contactId = null
+        var firstName
+        var middleName
+        var lastName
+
+        if (contact.contactId !== "qtcontacts:::") {
+            contactId = contact.contactId
+        } else {
+            firstName = contact.name.firstName
+            middleName = contact.name.middleName
+            lastName = contact.name.lastName
+        }
 
         for (var i = 0, count = contacts.length; i < count; i++) {
-            var itemId = contacts[i].contactId
-            if (itemId === contact.contactId) {
+            var c = contacts[i]
+            if (contactId && (c.contactId === contactId)) {
                 return i
+            } else if ((c.name.firstName === firstName) &&
+                       (c.name.middleName === middleName) &&
+                       (c.name.lastName === lastName)) {
+                    return i
             }
         }
 
