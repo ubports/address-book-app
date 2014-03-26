@@ -1,3 +1,19 @@
+address-book-app (0.2+14.04.20140325.2-0ubuntu1) trusty; urgency=low
+
+  [ Leo Arias ]
+  * Added an autopilot helper to fill the contact editor form.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Optimize contact loading. Use the same contact object retrieved on
+    contact list to show and edit. This save the use some queries and
+    make the ui more responsive.
+  * Optimize contact loading. *Use the same contact object retrieved on
+    contact list to show and edit. *Avoid go through all contacts to see
+    if the contact get remove. (Fix on QtPin was necessary) (LP:
+    #1276679)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 25 Mar 2014 13:35:41 +0000
+
 address-book-app (0.2+14.04.20140321-0ubuntu1) trusty; urgency=low
 
   [ Michael Sheldon ]
