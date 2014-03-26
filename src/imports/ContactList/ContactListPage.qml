@@ -174,7 +174,7 @@ Page {
     Connections {
         target: mainPage.contactModel
         onContactsChanged: {
-            if (contactIndex && contactIndex.contactId != "contact:qtcontacts:::") {
+            if (contactIndex && (contactIndex.contactId != "qtcontacts:::")) {
                 contactList.positionViewAtContact(mainPage.contactIndex)
                 mainPage.contactIndex = null
             }
