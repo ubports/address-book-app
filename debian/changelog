@@ -1,3 +1,10 @@
+address-book-app (0.2+14.04.20140327-0ubuntu1) trusty; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Implemented support to create contacts in different sources.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 27 Mar 2014 18:19:51 +0000
+
 address-book-app (0.2+14.04.20140325.2-0ubuntu1) trusty; urgency=low
 
   [ Leo Arias ]
