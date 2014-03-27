@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-24 11:48-0500\n"
+"POT-Creation-Date: 2014-03-12 14:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/imports/ContactList/ContactListPage.qml:153
+#: src/imports/ContactList/ContactListPage.qml:152
 msgid "Add"
 msgstr ""
 
@@ -57,7 +57,7 @@ msgstr ""
 msgid "Country"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:78
+#: src/imports/ContactList/ContactListPage.qml:77
 #: src/imports/ContactView/ContactView.qml:157
 #: src/imports/Ubuntu/Contacts/ContactSimpleListView.qml:245
 msgid "Delete"
@@ -184,8 +184,8 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:78
-#: src/imports/ContactList/ContactListPage.qml:145
+#: src/imports/ContactList/ContactListPage.qml:77
+#: src/imports/ContactList/ContactListPage.qml:144
 msgid "Select"
 msgstr ""
 
