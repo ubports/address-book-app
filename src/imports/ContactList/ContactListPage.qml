@@ -26,6 +26,8 @@ Page {
 
     property bool pickMode: false
     property bool pickMultipleContacts: false
+    property QtObject contactIndex: null
+    property var contactModel: contactList.listModel ? contactList.listModel : null
 
     function createEmptyContact(phoneNumber) {
         var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
@@ -165,7 +167,17 @@ Page {
                            {model: contactList.listModel, contactId: contactId, newPhoneNumber: phoneNumber })
         }
         onContactCreated: {
-            contactList.positionViewAtContact(contact)
+            mainPage.contactIndex = contact
+        }
+    }
+
+    Connections {
+        target: mainPage.contactModel
+        onContactsChanged: {
+            if (contactIndex) {
+                contactList.positionViewAtContact(mainPage.contactIndex)
+                mainPage.contactIndex = null
+            }
         }
     }
 
@@ -185,6 +197,7 @@ Page {
             application.returnVcard(exporter.outputFile)
         }
     }
+
 
     Component.onCompleted: {
         if (pickMode) {
