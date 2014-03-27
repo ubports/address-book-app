@@ -21,7 +21,7 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 FocusScope {
     id: root
 
-    readonly property variant details: contact && contact.contactDetails && detailType ? contact.details(detailType) : []
+    property var details: []
     readonly property alias detailDelegates: contents.children
     readonly property int detailsCount: detailsModel.count
 
@@ -38,7 +38,27 @@ FocusScope {
 
     signal newFieldAdded(var index)
 
-    implicitHeight: detailsModel.values.length > 0 ? contents.implicitHeight : minimumHeight
+    function reloadDetails(clearFields)
+    {
+        if (clearFields) {
+            root.inputFields = []
+        }
+
+        if (contact && detailType) {
+            root.details = contact.details(detailType)
+        } else {
+            root.details = []
+        }
+    }
+
+    onContactChanged: reloadDetails(true)
+    onDetailTypeChanged: reloadDetails(true)
+    Connections {
+        target: root.contact
+        onContactChanged: reloadDetails(false)
+    }
+
+    implicitHeight: detailsCount > 0 ? contents.implicitHeight : minimumHeight
     visible: implicitHeight > 0
 
     // This model is used to avoid rebuild the repeater every time that the details change
@@ -46,7 +66,7 @@ FocusScope {
     ListModel {
         id: detailsModel
 
-        property var values: root.showEmpty ? root.details : filterDetails(root.details)
+        property var values: root.showEmpty && root.details ? root.details : filterDetails(root.details)
 
         function filterDetails(details) {
             var result = []
@@ -68,6 +88,7 @@ FocusScope {
 
         onValuesChanged: {
             if (!values) {
+                root.inputFields = []
                 clear()
                 return
             }
@@ -78,7 +99,7 @@ FocusScope {
 
             var modelCount = count
             for(var i=0; i < values.length; i++) {
-                if (modelCount < i) {
+                if (modelCount <= i) {
                     append({"detail": values[i]})
                 } else if (get(i) != values[i]) {
                     set(i, {"detail": values[i]})
@@ -112,7 +133,7 @@ FocusScope {
                 Binding {
                     target: detailItem.item
                     property: "detail"
-                    value: root.contact && root.details ? root.details[index] : null
+                    value: model.detail
                 }
 
                 Binding {

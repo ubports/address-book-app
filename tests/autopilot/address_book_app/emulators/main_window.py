@@ -295,21 +295,20 @@ class ContactDetailWithTypeEditor(uitk.UbuntuUIToolkitEmulatorBase):
             return data.Phone(
                 type_=data.Phone.TYPES[self._get_selected_type_index()],
                 number=self._get_single_field_value())
-        elif field == 'emails':
+        if field == 'emails':
             return data.Email(
                 type_=data.Email.TYPES[self._get_selected_type_index()],
                 address=self._get_single_field_value())
-        elif field == 'ims':
+        if field == 'ims':
             return data.SocialAlias(
                 type_=data.SocialAlias.TYPES[self._get_selected_type_index()],
                 alias=self._get_single_field_value())
-        elif field == 'addresses':
+        if field == 'addresses':
             return self._get_address_value(index)
-        elif field == 'professionalDetails':
+        if field == 'professionalDetails':
             # TODO --elopio - 2014-03-01
             return None
-        else:
-            raise AddressBookAppError('Unknown field: {}.'.format(field))
+        raise AddressBookAppError('Unknown field: {}.'.format(field))
 
     def _get_single_field_value(self):
         return self.select_single(TextInputDetail).text
