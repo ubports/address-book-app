@@ -24,7 +24,11 @@ class AddressBookAppDataError(Exception):
     """Exception raised when there is an error with the data."""
 
 
-class EqualityMixin(object):
+class DataMixin(object):
+    """Mixin with common methods for data objects."""
+
+    def __repr__(self):
+        return '%s(%r)' % (self.__class__, self.__dict__)
 
     def __eq__(self, other):
         return (isinstance(other, self.__class__) and
@@ -34,7 +38,7 @@ class EqualityMixin(object):
         return not self.__eq__(other)
 
 
-class Phone(EqualityMixin):
+class Phone(DataMixin):
     """Phone data object for user acceptance tests."""
 
     TYPES = ('Home', 'Work', 'Mobile', 'Work Mobile', 'Other')
@@ -46,16 +50,13 @@ class Phone(EqualityMixin):
         self.type = type_
         self.number = number
 
-    def __repr__(self):
-        return '%s(%r)' % (self.__class__, self.__dict__)
-
     @classmethod
     def make(cls):
         """Return a Phone data object."""
         return cls(type_='Mobile', number='81 8777 7755')
 
 
-class Email(EqualityMixin):
+class Email(DataMixin):
     """Email data object for user acceptance tests."""
 
     TYPES = ('Home', 'Work', 'Other')
@@ -67,9 +68,6 @@ class Email(EqualityMixin):
         self.type = type_
         self.address = address
 
-    def __repr__(self):
-        return '%s(%r)' % (self.__class__, self.__dict__)
-
     @classmethod
     def make_unique(cls, unique_id=None):
         """Return a unique Email data object."""
@@ -80,7 +78,7 @@ class Email(EqualityMixin):
         return cls(type_=type_, address=address)
 
 
-class SocialAlias(EqualityMixin):
+class SocialAlias(DataMixin):
     """Social Alias data object for user acceptance tests."""
 
     TYPES = ('Aim', 'ICQ', 'Jabber', 'MSN', 'Skype', 'Yahoo')
@@ -92,9 +90,6 @@ class SocialAlias(EqualityMixin):
         self.type = type_
         self.alias = alias
 
-    def __repr__(self):
-        return '%s(%r)' % (self.__class__, self.__dict__)
-
     @classmethod
     def make_unique(cls, unique_id=None):
         """Return a unique Social Alias data object."""
@@ -105,7 +100,7 @@ class SocialAlias(EqualityMixin):
         return cls(type_=type_, alias=alias)
 
 
-class Address(EqualityMixin):
+class Address(DataMixin):
     """Address data object for user acceptance tests."""
 
     TYPES = ('Home', 'Work', 'Other')
@@ -120,9 +115,6 @@ class Address(EqualityMixin):
         self.region = region
         self.postal_code = postal_code
         self.country = country
-
-    def __repr__(self):
-        return '%s(%r)' % (self.__class__, self.__dict__)
 
     @classmethod
     def make_unique(cls, unique_id=None):
@@ -140,16 +132,13 @@ class Address(EqualityMixin):
             postal_code=postal_code, country=country)
 
 
-class ProfessionalDetails(EqualityMixin):
+class ProfessionalDetails(DataMixin):
     """Professional Details data objects for user acceptance tests."""
 
     def __init__(self, organization, role, title):
         self.organization = organization
         self.role = role
         self.title = title
-
-    def __repr__(self):
-        return '%s(%r)' % (self.__class__, self.__dict__)
 
     @classmethod
     def make_unique(cls, unique_id=None):
@@ -162,7 +151,7 @@ class ProfessionalDetails(EqualityMixin):
         return cls(organization=organization, role=role, title=title)
 
 
-class Contact(EqualityMixin):
+class Contact(DataMixin):
     """Contact data object for user acceptance tests."""
 
     def __init__(
@@ -175,9 +164,6 @@ class Contact(EqualityMixin):
         self.social_aliases = social_aliases
         self.addresses = addresses
         self.professional_details = professional_details
-
-    def __repr__(self):
-        return '%s(%r)' % (self.__class__, self.__dict__)
 
     @classmethod
     def make_unique(cls, unique_id=None):
