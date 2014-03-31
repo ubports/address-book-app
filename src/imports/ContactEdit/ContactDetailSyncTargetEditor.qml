@@ -53,7 +53,7 @@ ContactDetailBase {
     property real myHeight: sources.containerHeight + units.gu(4) + label.height
 
     detail: contact ? contact.detail(ContactDetail.SyncTarget) : null
-    implicitHeight: isNewContact ? myHeight : 0
+    implicitHeight: isNewContact && (sourceModel.contacts.length > 1) ? myHeight : 0
 
     ContactModel {
         id: sourceModel
