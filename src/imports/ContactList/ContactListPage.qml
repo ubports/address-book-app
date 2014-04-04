@@ -171,10 +171,19 @@ Page {
 
         locked: contactList.isInSelectionMode
         ToolbarButton {
+            objectName: "Sync"
+            action: Action {
+                text: application.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
+                iconName: "reload"
+                enabled: !application.syncing
+                onTriggered: application.startSync()
+            }
+        }
+        ToolbarButton {
             action: Action {
                 objectName: "selectButton"
                 text: i18n.tr("Select")
-                iconSource: "artwork:/select.png"
+                iconName: "select"
                 onTriggered: contactList.startSelection()
             }
         }
@@ -182,7 +191,7 @@ Page {
             objectName: "Add"
             action: Action {
                 text: i18n.tr("Add")
-                iconSource: "artwork:/add.png"
+                iconName: "add"
                 onTriggered: {
                     var newContact = mainPage.createEmptyContact("")
                     pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),

@@ -17,9 +17,10 @@
 #ifndef ADDRESSBOOK_APP_H
 #define ADDRESSBOOK_APP_H
 
-#include <QObject>
-#include <QQuickView>
-#include <QGuiApplication>
+#include <QtCore/QObject>
+#include <QtDBus/QDBusInterface>
+#include <QtGui/QGuiApplication>
+#include <QtQuick/QQuickView>
 
 class ContentCommunicator;
 
@@ -27,12 +28,17 @@ class AddressBookApp : public QGuiApplication
 {
     Q_OBJECT
     Q_PROPERTY(bool firstRun READ isFirstRun CONSTANT)
+    Q_PROPERTY(bool syncing READ isSyncing NOTIFY syncingChanged)
 
 public:
     AddressBookApp(int &argc, char **argv);
     virtual ~AddressBookApp();
 
     bool setup();
+    bool isSyncing() const;
+
+Q_SIGNALS:
+    void syncingChanged();
 
 public Q_SLOTS:
     void activateWindow();
@@ -43,12 +49,17 @@ public Q_SLOTS:
     bool isFirstRun() const;
     void unsetFirstRun() const;
 
+    // sync monitor
+    void startSync() const;
+
 private:
     void callQMLMethod(const QString name, QStringList args);
+    void connectWithSyncMonitor();
 
 private:
     QQuickView *m_view;
     ContentCommunicator *m_contentComm;
+    QDBusInterface *m_syncMonitor;
     QString m_initialArg;
     bool m_viewReady;
     bool m_pickingMode;

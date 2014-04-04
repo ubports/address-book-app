@@ -89,10 +89,11 @@ AddressBookApp::AddressBookApp(int &argc, char **argv)
     : QGuiApplication(argc, argv),
       m_view(0),
       m_contentComm(0),
+      m_syncMonitor(0),
       m_pickingMode(false)
 {
     setOrganizationName("com.ubuntu.address-book");
-    setApplicationName("AddressBookApp");
+    setApplicationName("AddressBookApp");    
 }
 
 bool AddressBookApp::setup()
@@ -196,6 +197,7 @@ bool AddressBookApp::setup()
         }
     }
 
+    connectWithSyncMonitor();
     return true;
 }
 
@@ -380,4 +382,31 @@ QUrl AddressBookApp::copyImage(QObject *contact, const QUrl &imageUrl)
     }
 
     return imgThread->outputFile();
+}
+
+void AddressBookApp::connectWithSyncMonitor()
+{
+    m_syncMonitor = new QDBusInterface("com.canonical.SyncMonitor",
+                                       "/com/canonical/SyncMonitor",
+                                       "com.canonical.SyncMonitor");
+    if (m_syncMonitor->lastError().isValid()) {
+        qWarning() << "Fail to connect with sync monitor:" << m_syncMonitor->lastError();
+    }
+    connect(m_syncMonitor, SIGNAL(stateChanged()), SIGNAL(syncingChanged()));
+}
+
+void AddressBookApp::startSync() const
+{
+    if (m_syncMonitor && !isSyncing()) {
+        m_syncMonitor->call("sync", QStringList() << "contacts");
+    }
+}
+
+bool AddressBookApp::isSyncing() const
+{
+    if (m_syncMonitor) {
+        return (m_syncMonitor->property("state").toString() == "syncing");
+    } else {
+        return false;
+    }
 }
