@@ -20,7 +20,6 @@ import QtContacts 5.0 as QtContacts
 ListModel {
     id: typeModel
 
-    property bool ready: false
     signal loaded()
 
     function getTypeIndex(detail) {
@@ -103,6 +102,5 @@ ListModel {
         append({"value": "Other", "label": i18n.tr("Other"), "icon": null,
                 "context": QtContacts.ContactDetail.ContextOther, "subType": QtContacts.PhoneNumber.Landline })
         loaded()
-        ready = true
     }
 }

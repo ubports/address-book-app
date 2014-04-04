@@ -17,7 +17,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
-import Ubuntu.Components.Popups 0.1 as Popups
 import Ubuntu.Contacts 0.1 as ContactsUI
 import QtContacts 5.0
 
@@ -30,6 +29,8 @@ Page {
     property var onlineAccountsMessageDialog: null
     // used for autopilot test to check when the dialog is open or not
     property bool onlineAccountsMessageVisible: false
+    property QtObject contactIndex: null
+    property var contactModel: contactList.listModel ? contactList.listModel : null
 
     function createEmptyContact(phoneNumber) {
         var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
@@ -52,22 +53,6 @@ Page {
     }
 
     title: i18n.tr("Contacts")
-    Component {
-        id: errorDialog
-
-        Popups.Dialog {
-            id: dialogue
-
-            title: i18n.tr("Error")
-            text: i18n.tr("Fail to Load contacts")
-
-            Button {
-                text: "Cancel"
-                gradient: UbuntuColors.greyGradient
-                onClicked: PopupUtils.close(dialogue)
-            }
-        }
-    }
 
     Component {
         id: onlineAccountsDialog
@@ -107,8 +92,6 @@ Page {
         }
         swipeToDelete: !pickMode
 
-        onError: PopupUtils.open(errorDialog, null)
-
         onCountChanged: {
             if ((count > 0) && mainPage.onlineAccountsMessageVisible) {
                 // Because of some contacts can take longer to arrive due the dbus delay,
@@ -120,7 +103,8 @@ Page {
 
         onContactClicked: {
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
-                           {model: contactList.listModel, contactId: contact.contactId})
+                           {model: contactList.listModel,
+                            contact: contact})
         }
 
         onSelectionDone: {
@@ -157,13 +141,7 @@ Page {
             }
         }
 
-        ActivityIndicator {
-            id: activity
-
-            anchors.centerIn: parent
-            running: contactList.loading && (contactList.count === 0)
-            visible: running
-        }
+        onError: pageStack.contactModelError(error)
     }
 
     tools: ToolbarItems {
@@ -201,6 +179,12 @@ Page {
         }
     }
 
+    // WORKAROUND: Avoid the gap btw the header and the contact list when the list moves
+    // see bug #1296764
+    onActiveChanged: {
+        contactList.returnToBounds()
+    }
+
     Connections {
         target: pageStack
         onContactRequested: {
@@ -217,7 +201,17 @@ Page {
                            {model: contactList.listModel, contactId: contactId, newPhoneNumber: phoneNumber })
         }
         onContactCreated: {
-            contactList.positionViewAtContact(contact)
+            mainPage.contactIndex = contact
+        }
+    }
+
+    Connections {
+        target: mainPage.contactModel
+        onContactsChanged: {
+            if (contactIndex) {
+                contactList.positionViewAtContact(mainPage.contactIndex)
+                mainPage.contactIndex = null
+            }
         }
     }
 
@@ -237,6 +231,7 @@ Page {
             application.returnVcard(exporter.outputFile)
         }
     }
+
 
     Component.onCompleted: {
         if (pickMode) {

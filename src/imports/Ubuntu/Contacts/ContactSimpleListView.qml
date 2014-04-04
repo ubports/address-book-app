@@ -85,7 +85,17 @@ MultipleSelectionListView {
       This property holds a list of sort orders used by the contacts model.
       \sa SortOrder
     */
-    property alias sortOrders: contactsModel.sortOrders
+    property list<SortOrder> sortOrders : [
+        SortOrder {
+            id: sortOrder
+
+            detail: ContactDetail.DisplayLabel
+            field: DisplayLabel.Label
+            direction: Qt.AscendingOrder
+            blankPolicy: SortOrder.BlanksLast
+            caseSensitivity: Qt.CaseInsensitive
+        }
+    ]
     /*!
       \qmlproperty FetchHint fetchHint
 
@@ -93,7 +103,16 @@ MultipleSelectionListView {
 
       \sa FetchHint
     */
-    property alias fetchHint: contactsModel.fetchHint
+    property var fetchHint : FetchHint {
+        detailTypesHint: {
+            var hints = [ contactListView.titleDetail, ContactDetail.Tag, ContactDetail.DisplayLabel ]
+
+            if (contactListView.showAvatar) {
+                hints.push(ContactDetail.Avatar)
+            }
+            return hints
+        }
+    }
     /*!
       \qmlproperty Filter filter
 
@@ -101,7 +120,7 @@ MultipleSelectionListView {
 
       \sa Filter
     */
-    property alias filter: contactsModel.filter
+    property var filter
     /*!
       \qmlproperty bool multiSelectionEnabled
 
@@ -156,7 +175,7 @@ MultipleSelectionListView {
       This property holds the manager uri of the contact backend engine.
       By default this is set to "galera"
     */
-    property alias manager: contactsModel.manager
+    property string manager: QTCONTACTS_MANAGER_OVERRIDE && QTCONTACTS_MANAGER_OVERRIDE != "" ? QTCONTACTS_MANAGER_OVERRIDE : "galera"
 
     /*!
       This handler is called when any error occurs in the contact model
@@ -172,16 +191,32 @@ MultipleSelectionListView {
     signal detailClicked(QtObject contact, QtObject detail)
 
     /*!
-      Retrieve the contact index inside of the list
+      Retrieve the contact index inside of the list based on contact id or contact name if the id is empty
     */
     function getIndex(contact)
     {
-        var contacts = listModel.contacts;
+        var contacts = listModel.contacts
+        var contactId = null
+        var firstName
+        var middleName
+        var lastName
+
+        if (contact.contactId !== "qtcontacts:::") {
+            contactId = contact.contactId
+        } else {
+            firstName = contact.name.firstName
+            middleName = contact.name.middleName
+            lastName = contact.name.lastName
+        }
 
         for (var i = 0, count = contacts.length; i < count; i++) {
-            var itemId = contacts[i].contactId
-            if (itemId === contact.contactId) {
+            var c = contacts[i]
+            if (contactId && (c.contactId === contactId)) {
                 return i
+            } else if ((c.name.firstName === firstName) &&
+                       (c.name.middleName === middleName) &&
+                       (c.name.lastName === lastName)) {
+                    return i
             }
         }
 
@@ -418,42 +453,6 @@ MultipleSelectionListView {
         ]
     }
 
-    ContactModel {
-        id: contactsModel
-
-        manager: QTCONTACTS_MANAGER_OVERRIDE && QTCONTACTS_MANAGER_OVERRIDE != "" ? QTCONTACTS_MANAGER_OVERRIDE : "galera"
-        sortOrders: [
-            SortOrder {
-                id: sortOrder
-
-                detail: ContactDetail.DisplayLabel
-                field: DisplayLabel.Label
-                direction: Qt.AscendingOrder
-                blankPolicy: SortOrder.BlanksLast
-                caseSensitivity: Qt.CaseInsensitive
-            }
-        ]
-
-        fetchHint: FetchHint {
-            detailTypesHint: {
-                var hints = [ contactListView.titleDetail, ContactDetail.Tag, ContactDetail.DisplayLabel ]
-
-                if (contactListView.showAvatar) {
-                    hints.push(ContactDetail.Avatar)
-                }
-                return hints
-            }
-        }
-
-        onErrorChanged: {
-            if (error) {
-                busyIndicator.busy = false
-                contactListView.error(error)
-            }
-        }
-
-    }
-
     onContentHeightChanged: {
         if (priv.activeSection !== "") {
             dirtyHeightTimer.restart()
@@ -472,7 +471,7 @@ MultipleSelectionListView {
     ContactFetch {
         id: contactFetch
 
-        model: contactsModel
+        model: contactListView.listModel
         onContactFetched: contactListView.contactClicked(contact)
     }
 

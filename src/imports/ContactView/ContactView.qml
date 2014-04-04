@@ -24,15 +24,15 @@ Page {
     id: root
     objectName: "contactViewPage"
 
-    readonly property alias contact: contactFetch.contact
-    property variant contactId: null
+    property QtObject contact: null
     property alias model: contactFetch.model
+    // used by main page to open the contact view on app startup
+    property string contactId: ""
 
     function formatNameToDisplay(contact) {
         if (!contact) {
             return ""
         }
-
         if (contact.name) {
             var detail = contact.name
             return detail.firstName +" " + detail.lastName
@@ -43,14 +43,10 @@ Page {
         }
     }
 
-
     title: formatNameToDisplay(contact)
     onActiveChanged: {
         if (active) {
-            contactFetch.fetchContact(root.contactId)
-
             //WORKAROUND: to correct scroll back the page
-            flickable.contentY = -100
             flickable.returnToBounds()
         }
     }
@@ -142,13 +138,21 @@ Page {
                 height: implicitHeight
             }
 
+            ContactDetailSyncTargetView {
+                contact: root.contact
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                height: implicitHeight
+            }
         }
     }
 
     ActivityIndicator {
         id: busyIndicator
 
-        running: contactFetch.running
+        running: (root.contact === null) && contactFetch.running
         visible: running
         anchors.centerIn: parent
     }
@@ -156,7 +160,17 @@ Page {
     ContactsUI.ContactFetch {
         id: contactFetch
 
-        onContactRemoved: pageStack.pop()
+        onContactRemoved: {
+            pageStack.pop()
+        }
+
+        onContactNotFound: {
+            pageStack.pop()
+        }
+
+        onContactFetched: {
+            root.contact = contact
+        }
     }
 
     tools: ToolbarItems {
@@ -183,6 +197,14 @@ Page {
                                    { model: root.model, contact: root.contact})
                 }
             }
+        }
+    }
+
+    // This will load the contact information when the app was launched with
+    // the URI: addressbook:///contact?id=<id>
+    Component.onCompleted: {
+        if (contactId !== "") {
+            contactFetch.fetchContact(contactId)
         }
     }
 }

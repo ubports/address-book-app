@@ -12,6 +12,10 @@ from autopilot import logging as autopilot_logging
 logger = logging.getLogger(__name__)
 
 
+class AddressBookAppError(uitk.ToolkitEmulatorException):
+    """Exception raised when there is an error with the emulator."""
+
+
 class MainWindow(uitk.MainView):
     """An emulator class that makes it easy to interact with the app."""
 
@@ -83,4 +87,43 @@ class MainWindow(uitk.MainView):
 
 
 class ContactEditor(uitk.UbuntuUIToolkitEmulatorBase):
-    """ An emulator class for the Contact Editor."""
+    """Custom proxy object for the Contact Editor."""
+
+    TEXT_FIELD_OBJECT_NAMES = {
+        'first_name': 'firstName',
+        'last_name': 'lastName'
+    }
+
+    @autopilot_logging.log_action(logger.info)
+    def fill_form(self, contact_information):
+        """Fill the edit contact form.
+
+        :param contact_information: Values of the contact to fill the form.
+        :type contact_information: dict
+        :raises AddressBookAppError: If one of the keys doesn't correspond to
+            any of the fields.
+
+        """
+        for field, value in contact_information.iteritems():
+            self._fill_field(field, value)
+
+    def _fill_field(self, field, value):
+        text_field = self._get_text_field(field)
+        text_field.write(value)
+
+    def _get_text_field(self, field):
+        if field not in self.TEXT_FIELD_OBJECT_NAMES:
+            raise AddressBookAppError('Unknown field: {}.'.format(field))
+
+        object_name = self.TEXT_FIELD_OBJECT_NAMES[field]
+        return self.select_single(TextInputDetail, objectName=object_name)
+
+    def _get_form_values(self):
+        information = dict()
+        information['first_name'] = self._get_text_field('first_name').text
+        information['last_name'] = self._get_text_field('last_name').text
+        return information
+
+
+class TextInputDetail(uitk.TextField):
+    """Custom proxy object for the Text Input Detail field."""

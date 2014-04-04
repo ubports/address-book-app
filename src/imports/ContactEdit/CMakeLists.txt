@@ -7,6 +7,7 @@ set(CONTACT_EDIT_QMLS
     ContactDetailOnlineAccountsEditor.qml
     ContactDetailOrganizationsEditor.qml
     ContactDetailPhoneNumbersEditor.qml
+    ContactDetailSyncTargetEditor.qml
     ContactDetailWithTypeEditor.qml
     ContactEditor.qml
     ContactFetchError.qml
