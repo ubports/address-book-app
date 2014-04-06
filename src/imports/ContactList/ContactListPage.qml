@@ -15,10 +15,12 @@
  */
 
 import QtQuick 2.0
+import QtContacts 5.0
+
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Contacts 0.1 as ContactsUI
-import QtContacts 5.0
+import Ubuntu.Components.Popups 0.1 as Popups
 
 Page {
     id: mainPage
@@ -27,8 +29,6 @@ Page {
     property bool pickMode: false
     property bool pickMultipleContacts: false
     property var onlineAccountsMessageDialog: null
-    // used for autopilot test to check when the dialog is open or not
-    property bool onlineAccountsMessageVisible: false
     property QtObject contactIndex: null
     property var contactModel: contactList.listModel ? contactList.listModel : null
 
@@ -63,14 +63,12 @@ Page {
                 mainPage.onlineAccountsMessageDialog = null
                 PopupUtils.close(onlineAccountsMessage)
                 application.unsetFirstRun()
-                mainPage.onlineAccountsMessageVisible = false
             }
             onAccepted: {
                 Qt.openUrlExternally("settings:///system/online-accounts")
                 mainPage.onlineAccountsMessageDialog = null
                 PopupUtils.close(onlineAccountsMessage)
                 application.unsetFirstRun()
-                mainPage.onlineAccountsMessageVisible = false
             }
         }
     }
@@ -238,7 +236,6 @@ Page {
             contactList.startSelection()
         } else if ((contactList.count === 0) && application.firstRun) {
             mainPage.onlineAccountsMessageDialog = PopupUtils.open(onlineAccountsDialog, null)
-            mainPage.onlineAccountsMessageVisible = true
         }
 
         if (TEST_DATA != "") {

@@ -70,7 +70,6 @@ class AddressBookAppTestCase(AutopilotTestCase):
         AddressBookAppTestCase.ARGS = []
         AddressBookAppTestCase.PRELOAD_VCARD = False
         self.main_window.visible.wait_for(True)
-        self.close_initial_dialog_if_necessary()
 
     def tearDown(self):
         super(AddressBookAppTestCase, self).tearDown()
@@ -102,14 +101,6 @@ class AddressBookAppTestCase(AutopilotTestCase):
     @property
     def main_window(self):
         return self.app.select_single(MainWindow)
-
-    def close_initial_dialog_if_necessary(self):
-        contact_list_page = self.main_window.get_contact_list_page()
-        if (contact_list_page.onlineAccountsMessageVisible):
-            cancel_dialog_button = self.main_window.wait_select_single(
-                "Button",
-                objectName="onlineAccountsDialog.noButton")
-            self.pointing_device.click_object(cancel_dialog_button)
 
     def select_a_value(self, field, value_selector, value):
         # Make sure the field has focus

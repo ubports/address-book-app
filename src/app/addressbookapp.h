@@ -63,6 +63,7 @@ private:
     QString m_initialArg;
     bool m_viewReady;
     bool m_pickingMode;
+    bool m_testMode;
 };
 
 #endif

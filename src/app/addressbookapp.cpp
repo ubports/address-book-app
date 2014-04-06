@@ -90,10 +90,11 @@ AddressBookApp::AddressBookApp(int &argc, char **argv)
       m_view(0),
       m_contentComm(0),
       m_syncMonitor(0),
-      m_pickingMode(false)
+      m_pickingMode(false),
+      m_testMode(false)
 {
     setOrganizationName("com.ubuntu.address-book");
-    setApplicationName("AddressBookApp");    
+    setApplicationName("AddressBookApp");
 }
 
 bool AddressBookApp::setup()
@@ -142,6 +143,7 @@ bool AddressBookApp::setup()
         } else {
             qCritical("Library qttestability load failed!");
         }
+        m_testMode = true;
     } else {
         m_contentComm = new ContentCommunicator(this);
     }
@@ -235,8 +237,12 @@ void AddressBookApp::returnVcard(const QUrl &url)
 
 bool AddressBookApp::isFirstRun() const
 {
-    QSettings settings;
-    return settings.value(ADDRESS_BOOK_FIRST_RUN_KEY, true).toBool();
+    if (m_testMode) {
+        return false;
+    } else {
+        QSettings settings;
+        return settings.value(ADDRESS_BOOK_FIRST_RUN_KEY, true).toBool();
+    }
 }
 
 void AddressBookApp::unsetFirstRun() const
