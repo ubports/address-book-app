@@ -91,7 +91,7 @@ Page {
         swipeToDelete: !pickMode
 
         onCountChanged: {
-            if ((count > 0) && mainPage.onlineAccountsMessageVisible) {
+            if ((count > 0) && mainPage.onlineAccountsMessageDialog) {
                 // Because of some contacts can take longer to arrive due the dbus delay,
                 // we need to destroy the online account dialog if this happen
                 PopupUtils.close(mainPage.onlineAccountsMessageDialog)
