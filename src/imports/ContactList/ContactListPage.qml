@@ -95,6 +95,7 @@ Page {
                 // Because of some contacts can take longer to arrive due the dbus delay,
                 // we need to destroy the online account dialog if this happen
                 PopupUtils.close(mainPage.onlineAccountsMessageDialog)
+                mainPage.onlineAccountsMessageDialog = null
                 application.unsetFirstRun()
             }
         }
@@ -140,6 +141,26 @@ Page {
         }
 
         onError: pageStack.contactModelError(error)
+
+
+        Column {
+            id: indicator
+
+            anchors.centerIn: parent
+            spacing: units.gu(2)
+            visible: (contactList.loading || application.syncing) && (contactList.count === 0)
+
+            ActivityIndicator {
+                id: activity
+
+                anchors.horizontalCenter: parent.horizontalCenter
+                running: indicator.visible
+            }
+            Label {
+                anchors.horizontalCenter: activity.horizontalCenter
+                text: contactList.loading ?  i18n.tr("Loading...") : i18n.tr("Syncing...")
+            }
+        }
     }
 
     tools: ToolbarItems {
