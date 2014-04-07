@@ -148,6 +148,7 @@ Page {
         locked: contactList.isInSelectionMode
         ToolbarButton {
             objectName: "Sync"
+            visible: application.syncEnabled
             action: Action {
                 text: application.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
                 iconName: "reload"

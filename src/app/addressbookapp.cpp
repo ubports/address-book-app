@@ -399,6 +399,9 @@ void AddressBookApp::connectWithSyncMonitor()
         qWarning() << "Fail to connect with sync monitor:" << m_syncMonitor->lastError();
     }
     connect(m_syncMonitor, SIGNAL(stateChanged()), SIGNAL(syncingChanged()));
+    connect(m_syncMonitor, SIGNAL(enabledServicesChanged()), SIGNAL(syncEnabledChanged()));
+    Q_EMIT syncEnabledChanged();
+    Q_EMIT syncingChanged();
 }
 
 void AddressBookApp::startSync() const
@@ -415,4 +418,17 @@ bool AddressBookApp::isSyncing() const
     } else {
         return false;
     }
+}
+
+bool AddressBookApp::syncEnabled() const
+{
+    if (m_syncMonitor) {
+        QStringList enabledServices = m_syncMonitor->property("enabledServices").toStringList();
+        Q_FOREACH(const QString &value, enabledServices) {
+            if (value == "contacts") {
+                return true;
+            }
+        }
+    }
+    return false;
 }

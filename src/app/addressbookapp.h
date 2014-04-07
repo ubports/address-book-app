@@ -29,6 +29,7 @@ class AddressBookApp : public QGuiApplication
     Q_OBJECT
     Q_PROPERTY(bool firstRun READ isFirstRun CONSTANT)
     Q_PROPERTY(bool syncing READ isSyncing NOTIFY syncingChanged)
+    Q_PROPERTY(bool syncEnabled READ syncEnabled NOTIFY syncEnabledChanged)
 
 public:
     AddressBookApp(int &argc, char **argv);
@@ -36,9 +37,11 @@ public:
 
     bool setup();
     bool isSyncing() const;
+    bool syncEnabled() const;
 
 Q_SIGNALS:
     void syncingChanged();
+    void syncEnabledChanged();
 
 public Q_SLOTS:
     void activateWindow();
