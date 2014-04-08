@@ -256,7 +256,9 @@ Page {
     Component.onCompleted: {
         if (pickMode) {
             contactList.startSelection()
-        } else if ((contactList.count === 0) && application.firstRun) {
+        } else if ((contactList.count === 0) &&
+                   application.firstRun &&
+                   !application.syncEnabled) {
             mainPage.onlineAccountsMessageDialog = PopupUtils.open(onlineAccountsDialog, null)
         }
 
