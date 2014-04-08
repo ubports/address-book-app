@@ -16,15 +16,51 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
-import QtContacts 5.0 as QtContacts
+import QtContacts 5.0
 
 ContactDetailGroupWithTypeView {
     id: root
 
+    // does not show the field if there is only one addressbook
+    function filterDetails(details) {
+        var result = []
+
+        if (sourceModel.contacts.length <= 1) {
+            return result;
+        }
+
+        for(var d in details) {
+            var isEmpty = true
+            for(var f in root.fields) {
+                var fieldValue = details[d].value(root.fields[f])
+                if (fieldValue && (String(fieldValue) !== "")) {
+                    isEmpty = false
+                    break;
+                }
+            }
+            if (!isEmpty) {
+                result.push(details[d])
+            }
+        }
+        return result
+    }
+
     title: i18n.tr("Addressbook")
     defaultIcon: "image://theme/contact-group"
-    detailType: QtContacts.ContactDetail.SyncTarget
+    detailType: ContactDetail.SyncTarget
     typeModel: null
 
-    fields: [ QtContacts.SyncTarget.SyncTarget ]
+    fields: [ SyncTarget.SyncTarget ]
+
+    ContactModel {
+        id: sourceModel
+
+        manager: QTCONTACTS_MANAGER_OVERRIDE && QTCONTACTS_MANAGER_OVERRIDE != "" ? QTCONTACTS_MANAGER_OVERRIDE : "galera"
+        filter:  DetailFilter {
+            detail: ContactDetail.Type
+            field: Type.TypeField
+            value: Type.Group
+            matchFlags: DetailFilter.MatchExactly
+        }
+    }
 }

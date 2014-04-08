@@ -15,10 +15,12 @@
  */
 
 import QtQuick 2.0
+import QtContacts 5.0
+
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Contacts 0.1 as ContactsUI
-import QtContacts 5.0
+import Ubuntu.Components.Popups 0.1 as Popups
 
 Page {
     id: mainPage
@@ -26,7 +28,9 @@ Page {
 
     property bool pickMode: false
     property bool pickMultipleContacts: false
+    property var onlineAccountsMessageDialog: null
     property QtObject contactIndex: null
+    property bool syncEnabled: application.syncEnabled
     property var contactModel: contactList.listModel ? contactList.listModel : null
 
     function createEmptyContact(phoneNumber) {
@@ -51,6 +55,25 @@ Page {
 
     title: i18n.tr("Contacts")
 
+    Component {
+        id: onlineAccountsDialog
+
+        OnlineAccountsMessage {
+            id: onlineAccountsMessage
+            onCanceled: {
+                mainPage.onlineAccountsMessageDialog = null
+                PopupUtils.close(onlineAccountsMessage)
+                application.unsetFirstRun()
+            }
+            onAccepted: {
+                Qt.openUrlExternally("settings:///system/online-accounts")
+                mainPage.onlineAccountsMessageDialog = null
+                PopupUtils.close(onlineAccountsMessage)
+                application.unsetFirstRun()
+            }
+        }
+    }
+
     ContactsUI.ContactListView {
         id: contactList
         objectName: "contactListView"
@@ -68,12 +91,14 @@ Page {
         }
         swipeToDelete: !pickMode
 
-        ActivityIndicator {
-            id: activity
-
-            anchors.centerIn: parent
-            running: contactList.loading && (contactList.count === 0)
-            visible: running
+        onCountChanged: {
+            if ((count > 0) && mainPage.onlineAccountsMessageDialog) {
+                // Because of some contacts can take longer to arrive due the dbus delay,
+                // we need to destroy the online account dialog if this happen
+                PopupUtils.close(mainPage.onlineAccountsMessageDialog)
+                mainPage.onlineAccountsMessageDialog = null
+                application.unsetFirstRun()
+            }
         }
 
         onContactClicked: {
@@ -117,6 +142,26 @@ Page {
         }
 
         onError: pageStack.contactModelError(error)
+
+
+        Column {
+            id: indicator
+
+            anchors.centerIn: parent
+            spacing: units.gu(2)
+            visible: (contactList.loading || application.syncing) && (contactList.count === 0)
+
+            ActivityIndicator {
+                id: activity
+
+                anchors.horizontalCenter: parent.horizontalCenter
+                running: indicator.visible
+            }
+            Label {
+                anchors.horizontalCenter: activity.horizontalCenter
+                text: contactList.loading ?  i18n.tr("Loading...") : i18n.tr("Syncing...")
+            }
+        }
     }
 
     tools: ToolbarItems {
@@ -124,10 +169,20 @@ Page {
 
         locked: contactList.isInSelectionMode
         ToolbarButton {
+            objectName: "Sync"
+            visible: mainPage.syncEnabled
+            action: Action {
+                text: application.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
+                iconName: "reload"
+                enabled: !application.syncing
+                onTriggered: application.startSync()
+            }
+        }
+        ToolbarButton {
             action: Action {
                 objectName: "selectButton"
                 text: i18n.tr("Select")
-                iconSource: "artwork:/select.png"
+                iconName: "select"
                 onTriggered: contactList.startSelection()
             }
         }
@@ -135,7 +190,7 @@ Page {
             objectName: "Add"
             action: Action {
                 text: i18n.tr("Add")
-                iconSource: "artwork:/add.png"
+                iconName: "add"
                 onTriggered: {
                     var newContact = mainPage.createEmptyContact("")
                     pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
@@ -149,6 +204,16 @@ Page {
     // see bug #1296764
     onActiveChanged: {
         contactList.returnToBounds()
+    }
+
+    onSyncEnabledChanged: {
+        // close online account dialog if any account get registered
+        // while the app is running
+        if (syncEnabled && mainPage.onlineAccountsMessageDialog) {
+            PopupUtils.close(mainPage.onlineAccountsMessageDialog)
+            mainPage.onlineAccountsMessageDialog = null
+            application.unsetFirstRun()
+        }
     }
 
     Connections {
@@ -202,7 +267,12 @@ Page {
     Component.onCompleted: {
         if (pickMode) {
             contactList.startSelection()
+        } else if ((contactList.count === 0) &&
+                   application.firstRun &&
+                   !mainPage.syncEnabled) {
+            mainPage.onlineAccountsMessageDialog = PopupUtils.open(onlineAccountsDialog, null)
         }
+
         if (TEST_DATA != "") {
             contactList.listModel.importContacts("file://" + TEST_DATA)
         }

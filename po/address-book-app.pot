@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-12 14:11+0000\n"
+"POT-Creation-Date: 2014-02-19 16:03-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/imports/ContactList/ContactListPage.qml:152
+#: src/imports/ContactList/ContactListPage.qml:186
 msgid "Add"
 msgstr ""
 
@@ -45,7 +45,7 @@ msgid "Contact not found"
 msgstr ""
 
 #: data/address-book-app.desktop.in:6 data/address-book-app.desktop.in:7
-#: src/imports/ContactList/ContactListPage.qml:53
+#: src/imports/ContactList/ContactListPage.qml:54
 msgid "Contacts"
 msgstr ""
 
@@ -57,7 +57,7 @@ msgstr ""
 msgid "Country"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:77
+#: src/imports/ContactList/ContactListPage.qml:100
 #: src/imports/ContactView/ContactView.qml:157
 #: src/imports/Ubuntu/Contacts/ContactSimpleListView.qml:245
 msgid "Delete"
@@ -91,11 +91,11 @@ msgid "Enter an email address"
 msgstr ""
 
 #: src/imports/ContactEdit/ContactFetchError.qml:25
-#: src/imports/ContactList/ContactListPage.qml:60
+#: src/imports/ContactList/ContactListPage.qml:61
 msgid "Error"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:61
+#: src/imports/ContactList/ContactListPage.qml:62
 msgid "Fail to Load contacts"
 msgstr ""
 
@@ -149,6 +149,10 @@ msgstr ""
 msgid "Mobile"
 msgstr ""
 
+#: src/imports/ContactList/OnlineAccountsMessage.qml:48
+msgid "No"
+msgstr ""
+
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Organization"
 msgstr ""
@@ -184,8 +188,8 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:77
-#: src/imports/ContactList/ContactListPage.qml:144
+#: src/imports/ContactList/ContactListPage.qml:100
+#: src/imports/ContactList/ContactListPage.qml:178
 msgid "Select"
 msgstr ""
 
@@ -222,6 +226,20 @@ msgstr ""
 msgid "Work Mobile"
 msgstr ""
 
+#: src/imports/ContactList/OnlineAccountsMessage.qml:28
+msgid ""
+"Would you like to sync contacts\n"
+"from online accounts now?"
+msgstr ""
+
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:70
 msgid "Yahoo"
+msgstr ""
+
+#: src/imports/ContactList/OnlineAccountsMessage.qml:36
+msgid "Yes"
+msgstr ""
+
+#: src/imports/ContactList/OnlineAccountsMessage.qml:27
+msgid "You have no contacts."
 msgstr ""
