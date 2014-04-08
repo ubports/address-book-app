@@ -30,6 +30,7 @@ Page {
     property bool pickMultipleContacts: false
     property var onlineAccountsMessageDialog: null
     property QtObject contactIndex: null
+    property bool syncEnabled: application.syncEnabled
     property var contactModel: contactList.listModel ? contactList.listModel : null
 
     function createEmptyContact(phoneNumber) {
@@ -169,7 +170,7 @@ Page {
         locked: contactList.isInSelectionMode
         ToolbarButton {
             objectName: "Sync"
-            visible: application.syncEnabled
+            visible: mainPage.syncEnabled
             action: Action {
                 text: application.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
                 iconName: "reload"
@@ -203,6 +204,16 @@ Page {
     // see bug #1296764
     onActiveChanged: {
         contactList.returnToBounds()
+    }
+
+    onSyncEnabledChanged: {
+        // close online account dialog if any account get registered
+        // while the app is running
+        if (syncEnabled && mainPage.onlineAccountsMessageDialog) {
+            PopupUtils.close(mainPage.onlineAccountsMessageDialog)
+            mainPage.onlineAccountsMessageDialog = null
+            application.unsetFirstRun()
+        }
     }
 
     Connections {
@@ -258,7 +269,7 @@ Page {
             contactList.startSelection()
         } else if ((contactList.count === 0) &&
                    application.firstRun &&
-                   !application.syncEnabled) {
+                   !mainPage.syncEnabled) {
             mainPage.onlineAccountsMessageDialog = PopupUtils.open(onlineAccountsDialog, null)
         }
 
