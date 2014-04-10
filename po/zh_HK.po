@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-03-12 14:11+0000\n"
+"POT-Creation-Date: 2014-02-19 16:03-0300\n"
 "PO-Revision-Date: 2014-01-26 08:31+0000\n"
 "Last-Translator: Daniel Cheung <daniel.2345@hotmail.com>\n"
 "Language-Team: Chinese (Hong Kong) <zh_HK@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-04-02 06:50+0000\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Launchpad-Export-Date: 2014-04-10 06:54+0000\n"
+"X-Generator: Launchpad (build 16976)\n"
 
-#: src/imports/ContactList/ContactListPage.qml:152
+#: src/imports/ContactList/ContactListPage.qml:186
 msgid "Add"
 msgstr "新增"
 
@@ -45,7 +45,7 @@ msgid "Contact not found"
 msgstr "找不到聯絡人"
 
 #: data/address-book-app.desktop.in:6 data/address-book-app.desktop.in:7
-#: src/imports/ContactList/ContactListPage.qml:53
+#: src/imports/ContactList/ContactListPage.qml:54
 msgid "Contacts"
 msgstr "聯絡人"
 
@@ -57,7 +57,7 @@ msgstr "聯絡人地址簿"
 msgid "Country"
 msgstr "國家"
 
-#: src/imports/ContactList/ContactListPage.qml:77
+#: src/imports/ContactList/ContactListPage.qml:100
 #: src/imports/ContactView/ContactView.qml:157
 #: src/imports/Ubuntu/Contacts/ContactSimpleListView.qml:245
 msgid "Delete"
@@ -91,11 +91,11 @@ msgid "Enter an email address"
 msgstr "輸入電郵地址"
 
 #: src/imports/ContactEdit/ContactFetchError.qml:25
-#: src/imports/ContactList/ContactListPage.qml:60
+#: src/imports/ContactList/ContactListPage.qml:61
 msgid "Error"
 msgstr "錯誤"
 
-#: src/imports/ContactList/ContactListPage.qml:61
+#: src/imports/ContactList/ContactListPage.qml:62
 msgid "Fail to Load contacts"
 msgstr "載入聯絡資料失敗"
 
@@ -149,6 +149,10 @@ msgstr "MSN"
 msgid "Mobile"
 msgstr "手提電話"
 
+#: src/imports/ContactList/OnlineAccountsMessage.qml:48
+msgid "No"
+msgstr ""
+
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Organization"
 msgstr "組織"
@@ -184,8 +188,8 @@ msgstr "職位"
 msgid "Save"
 msgstr "儲存"
 
-#: src/imports/ContactList/ContactListPage.qml:77
-#: src/imports/ContactList/ContactListPage.qml:144
+#: src/imports/ContactList/ContactListPage.qml:100
+#: src/imports/ContactList/ContactListPage.qml:178
 msgid "Select"
 msgstr "選擇"
 
@@ -222,6 +226,20 @@ msgstr "工作資料"
 msgid "Work Mobile"
 msgstr "商務手提電話"
 
+#: src/imports/ContactList/OnlineAccountsMessage.qml:28
+msgid ""
+"Would you like to sync contacts\n"
+"from online accounts now?"
+msgstr ""
+
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:70
 msgid "Yahoo"
 msgstr "Yahoo"
+
+#: src/imports/ContactList/OnlineAccountsMessage.qml:36
+msgid "Yes"
+msgstr ""
+
+#: src/imports/ContactList/OnlineAccountsMessage.qml:27
+msgid "You have no contacts."
+msgstr ""
