@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-02-19 16:03-0300\n"
-"PO-Revision-Date: 2014-03-11 07:41+0000\n"
+"PO-Revision-Date: 2014-04-14 06:13+0000\n"
 "Last-Translator: Fohanno Thierry <thierry.fohanno@ofis-bzh.org>\n"
 "Language-Team: Breton <br@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-04-10 06:54+0000\n"
+"X-Launchpad-Export-Date: 2014-04-15 07:57+0000\n"
 "X-Generator: Launchpad (build 16976)\n"
 
 #: src/imports/ContactList/ContactListPage.qml:186
@@ -151,7 +151,7 @@ msgstr "Pellgomzer hezoug"
 
 #: src/imports/ContactList/OnlineAccountsMessage.qml:48
 msgid "No"
-msgstr ""
+msgstr "Ket"
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Organization"
@@ -231,6 +231,8 @@ msgid ""
 "Would you like to sync contacts\n"
 "from online accounts now?"
 msgstr ""
+"Ha fellout a ra deoc'h sinkronelaat an darempredoù\n"
+"eus kontoù enlinenn bremañ ?"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:70
 msgid "Yahoo"
@@ -238,8 +240,8 @@ msgstr "Yahoo"
 
 #: src/imports/ContactList/OnlineAccountsMessage.qml:36
 msgid "Yes"
-msgstr ""
+msgstr "Ya"
 
 #: src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
-msgstr ""
+msgstr "N'ho peus darempred ebet."
