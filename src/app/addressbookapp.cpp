@@ -30,8 +30,11 @@
 #include <QQuickView>
 #include <QLibrary>
 #include <QIcon>
+#include <QSettings>
 
 #include <QQmlEngine>
+
+#define ADDRESS_BOOK_FIRST_RUN_KEY          "first-run"
 
 static void printUsage(const QStringList& arguments)
 {
@@ -86,7 +89,9 @@ AddressBookApp::AddressBookApp(int &argc, char **argv)
     : QGuiApplication(argc, argv),
       m_view(0),
       m_contentComm(0),
-      m_pickingMode(false)
+      m_syncMonitor(0),
+      m_pickingMode(false),
+      m_testMode(false)
 {
     setOrganizationName("com.ubuntu.address-book");
     setApplicationName("AddressBookApp");
@@ -138,6 +143,7 @@ bool AddressBookApp::setup()
         } else {
             qCritical("Library qttestability load failed!");
         }
+        m_testMode = true;
     } else {
         m_contentComm = new ContentCommunicator(this);
     }
@@ -193,11 +199,14 @@ bool AddressBookApp::setup()
         }
     }
 
+    connectWithSyncMonitor();
     return true;
 }
 
 AddressBookApp::~AddressBookApp()
 {
+    unsetFirstRun();
+
     if (m_view) {
         delete m_view;
     }
@@ -224,6 +233,24 @@ void AddressBookApp::returnVcard(const QUrl &url)
         printf("%s\n", qPrintable(url.toString()));
         this->quit();
     }
+}
+
+bool AddressBookApp::isFirstRun() const
+{
+    if (m_testMode) {
+        return false;
+    } else {
+        QSettings settings;
+        return settings.value(ADDRESS_BOOK_FIRST_RUN_KEY, true).toBool();
+    }
+}
+
+void AddressBookApp::unsetFirstRun() const
+{
+    // mark first run as false
+    QSettings settings;
+    settings.setValue(ADDRESS_BOOK_FIRST_RUN_KEY, false);
+    settings.sync();
 }
 
 void AddressBookApp::parseUrl(const QString &arg)
@@ -361,4 +388,47 @@ QUrl AddressBookApp::copyImage(QObject *contact, const QUrl &imageUrl)
     }
 
     return imgThread->outputFile();
+}
+
+void AddressBookApp::connectWithSyncMonitor()
+{
+    m_syncMonitor = new QDBusInterface("com.canonical.SyncMonitor",
+                                       "/com/canonical/SyncMonitor",
+                                       "com.canonical.SyncMonitor");
+    if (m_syncMonitor->lastError().isValid()) {
+        qWarning() << "Fail to connect with sync monitor:" << m_syncMonitor->lastError();
+    }
+    connect(m_syncMonitor, SIGNAL(stateChanged()), SIGNAL(syncingChanged()));
+    connect(m_syncMonitor, SIGNAL(enabledServicesChanged()), SIGNAL(syncEnabledChanged()));
+    Q_EMIT syncEnabledChanged();
+    Q_EMIT syncingChanged();
+}
+
+void AddressBookApp::startSync() const
+{
+    if (m_syncMonitor && !isSyncing()) {
+        m_syncMonitor->call("sync", QStringList() << "contacts");
+    }
+}
+
+bool AddressBookApp::isSyncing() const
+{
+    if (m_syncMonitor) {
+        return (m_syncMonitor->property("state").toString() == "syncing");
+    } else {
+        return false;
+    }
+}
+
+bool AddressBookApp::syncEnabled() const
+{
+    if (m_syncMonitor) {
+        QStringList enabledServices = m_syncMonitor->property("enabledServices").toStringList();
+        Q_FOREACH(const QString &value, enabledServices) {
+            if (value == "contacts") {
+                return true;
+            }
+        }
+    }
+    return false;
 }

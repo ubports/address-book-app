@@ -116,7 +116,7 @@ Item {
         onPressAndHold: item.pressAndHold(index, contact)
 
         onItemRemoved: {
-            contactsModel.removeContact(contact.contactId)
+            listModel.removeContact(contact.contactId)
         }
     }
 
@@ -131,7 +131,7 @@ Item {
         }
         onStatusChanged: {
             if (status == Loader.Ready) {
-                pickerLoader.item.contactsModel = contactsModel
+                pickerLoader.item.contactsModel = listModel
                 pickerLoader.item.detailType = detailToPick
                 pickerLoader.item.contactId = contact.contactId
             }

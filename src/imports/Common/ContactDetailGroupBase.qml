@@ -51,6 +51,24 @@ FocusScope {
         }
     }
 
+    function filterDetails(details) {
+        var result = []
+        for(var d in details) {
+            var isEmpty = true
+            for(var f in root.fields) {
+                var fieldValue = details[d].value(root.fields[f])
+                if (fieldValue && (String(fieldValue) !== "")) {
+                    isEmpty = false
+                    break;
+                }
+            }
+            if (!isEmpty) {
+                result.push(details[d])
+            }
+        }
+        return result
+    }
+
     onContactChanged: reloadDetails(true)
     onDetailTypeChanged: reloadDetails(true)
     Connections {
@@ -67,24 +85,6 @@ FocusScope {
         id: detailsModel
 
         property var values: root.showEmpty && root.details ? root.details : filterDetails(root.details)
-
-        function filterDetails(details) {
-            var result = []
-            for(var d in details) {
-                var isEmpty = true
-                for(var f in root.fields) {
-                    var fieldValue = details[d].value(root.fields[f])
-                    if (fieldValue && (String(fieldValue) !== "")) {
-                        isEmpty = false
-                        break;
-                    }
-                }
-                if (!isEmpty) {
-                    result.push(details[d])
-                }
-            }
-            return result
-        }
 
         onValuesChanged: {
             if (!values) {

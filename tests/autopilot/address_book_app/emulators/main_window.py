@@ -47,8 +47,17 @@ class MainWindow(uitk.MainView):
     """An emulator class that makes it easy to interact with the app."""
 
     def get_contact_list_page(self):
-        return self. wait_select_single("ContactListPage",
-                                        objectName="contactListPage")
+        # ContactListPage is the only page that can appears multiple times
+        # Ex.: During the pick mode we alway push a new contactListPage, to preserve
+        # the current application status
+        pages = self.select_many("ContactListPage",
+                                 objectName="contactListPage")
+        
+        # alway return the page without pickMode
+        for p in pages:
+            if not p.pickMode:
+                return p
+        return None
 
     def get_contact_edit_page(self):
         return self.wait_select_single(ContactEditor,
