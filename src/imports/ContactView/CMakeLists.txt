@@ -11,6 +11,7 @@ set(CONTACT_VIEW_QMLS
     ContactDetailOrganizationsView.qml
     ContactDetailPhoneNumbersView.qml
     ContactDetailPhoneNumberView.qml
+    ContactDetailSyncTargetView.qml
     ContactDetailWithTypeView.qml
     ContactHeaderView.qml
     ContactView.qml

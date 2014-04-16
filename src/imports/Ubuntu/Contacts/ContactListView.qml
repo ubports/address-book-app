@@ -102,14 +102,44 @@ ContactSimpleListView {
         }
     }
 
-    DetailFilter {
-        id: favouritesFilter
+    ContactModel {
+        id: allContactsModel
 
-        detail: ContactDetail.Favorite
-        field: Favorite.Favorite
-        value: true
-        matchFlags: DetailFilter.MatchExactly
+        manager: root.manager
+        sortOrders: root.sortOrders
+        fetchHint: root.fetchHint
+
+        onErrorChanged: {
+            if (error) {
+                busyIndicator.busy = false
+                contactListView.error(error)
+            }
+        }
     }
 
-    filter: showFavourites ? favouritesFilter : null
+    ContactModel {
+        id: favouritesContactsModel
+
+        manager: root.manager
+        sortOrders: root.sortOrders
+        fetchHint: root.fetchHint
+        filter: DetailFilter {
+            id: favouritesFilter
+
+            detail: ContactDetail.Favorite
+            field: Favorite.Favorite
+            value: true
+            matchFlags: DetailFilter.MatchExactly
+        }
+
+        onErrorChanged: {
+            if (error) {
+                busyIndicator.busy = false
+                contactListView.error(error)
+            }
+        }
+
+    }
+
+    listModel: showFavourites ? favouritesContactsModel : allContactsModel
 }
