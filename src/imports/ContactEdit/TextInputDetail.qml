@@ -50,4 +50,11 @@ TextField {
         family: "Ubuntu"
         pixelSize: activeFocus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
     }
+
+
+    inputMethodExtensions: {
+       'enterKeyText': 'Next',
+    }
+
+    Keys.onReturnPressed: application.sendTabEvent();
 }

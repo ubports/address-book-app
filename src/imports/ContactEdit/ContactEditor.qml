@@ -180,7 +180,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight + units.gu(3)
-                KeyNavigation.tab: avatarEditor
+                KeyNavigation.tab: phonesEditor
                 KeyNavigation.backtab : syncTargetEditor
             }
 
