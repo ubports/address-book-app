@@ -39,7 +39,7 @@ TextField {
     readonly property string formatSmall: i18n.tr("####-#")
     // TRANSLATORS: This regex is used to detect long phone number format, if true the long format mask will be used
     readonly property string regexLong: i18n.tr("^\\d{4}-\\d{5}$")
-    // TRANSLATORS: This small mask will be applied for phones that match with long regex
+    // TRANSLATORS: This long mask will be applied for phones that match with long regex
     readonly property string formatLong: i18n.tr("## ####-#")
 
     property var formatSmallDetails: null
