@@ -30,6 +30,7 @@ ContactDetailGroupWithTypeBase {
     property variant placeholderTexts: []
     property int inputMethodHints: Qt.ImhNone
     property variant newDetails: []
+    property bool useInputMask: false
 
     function cancel() {
         for(var i=0; i < root.newDetails.length; i++) {
@@ -169,6 +170,7 @@ ContactDetailGroupWithTypeBase {
 
         inputMethodHints: root.inputMethodHints
         onDetailChanged: updateCombo(false)
+        useInputMask: root.useInputMask
 
         // this is necessary due the default property of ListItem.Empty
         Item {
