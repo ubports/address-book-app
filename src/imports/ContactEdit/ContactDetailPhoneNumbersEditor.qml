@@ -28,5 +28,5 @@ ContactDetailGroupWithTypeEditor {
     placeholderTexts: [ i18n.tr("Enter a number") ]
     typeModel: ContactDetailPhoneNumberTypeModel { }
     inputMethodHints: Qt.ImhDialableCharactersOnly
-    useInputMask: true
+    usePhoneFormat: true
 }

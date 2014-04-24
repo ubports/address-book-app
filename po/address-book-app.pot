@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-22 16:37-0300\n"
+"POT-Creation-Date: 2014-04-24 11:12-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,16 +16,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#. TRANSLATORS: This small mask will be applied for phones that match with long regex
-#: src/imports/ContactEdit/TextInputDetail.qml:43
-msgid "## ####-#"
-msgstr ""
-
-#. TRANSLATORS: This small mask will be applied for phones that match with small regex
-#: src/imports/ContactEdit/TextInputDetail.qml:39
-msgid "####-#"
-msgstr ""
 
 #: src/imports/ContactList/ContactListPage.qml:192
 msgid "Add"
@@ -239,6 +229,12 @@ msgstr ""
 msgid "Touch"
 msgstr ""
 
+#. TRANSLATORS: This value is used as default value for phone number format, when no coutry code is provided
+#. the supported values can be found in: https://www.iso.org/obp/ui/#search
+#: src/imports/ContactEdit/TextInputDetail.qml:34
+msgid "US"
+msgstr ""
+
 #: src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:111
 msgid "View contact's profile"
 msgstr ""
@@ -268,14 +264,4 @@ msgstr ""
 
 #: src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
-msgstr ""
-
-#. TRANSLATORS: This regex is used to detect long phone number format, if true the long format mask will be used
-#: src/imports/ContactEdit/TextInputDetail.qml:41
-msgid "^\\d{4}-\\d{5}$"
-msgstr ""
-
-#. TRANSLATORS: This regex is used to detect small phone number format, if true the small format mask will be used
-#: src/imports/ContactEdit/TextInputDetail.qml:37
-msgid "^\\d{5}$"
 msgstr ""
