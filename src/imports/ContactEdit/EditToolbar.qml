@@ -29,6 +29,11 @@ Rectangle {
 
     color: "gray"
 
+    // WORKAROUND: avoid the mouse click get stolen by the Flickable area
+    MouseArea {
+        anchors.fill: parent
+    }
+
     Button {
         id: reject
         objectName: "reject"
