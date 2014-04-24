@@ -48,12 +48,14 @@ import "../Common"
         id: typeLabel
         objectName: detail ? "type_" + detailToString(detail.type, -1) + "_" + root.parentIndex : ""
 
+        elide: Text.ElideRight
         visible: text != ""
         anchors {
             left: actionIcon.right
             leftMargin: actionIcon.visible ? units.gu(2) : 0
             top: parent.top
             topMargin: units.gu(1)
+            right: root.right
         }
         height: visible ? units.gu(2) : 0
         verticalAlignment: Text.AlignVCenter
@@ -82,12 +84,13 @@ import "../Common"
                 objectName: detail && fields ? "label_" + detailToString(detail.type, fields[index]) + "_" + root.parentIndex + "." + index : ""
 
                 anchors {
-                    left: parent.left
-                    right: parent.right
+                    left: parent ? parent.left : null
+                    right: parent ? parent.right : null
                 }
                 height: root.lineHeight
                 verticalAlignment: Text.AlignVCenter
                 text: modelData ? modelData : ""
+                elide: Text.ElideRight
 
                 // style
                 fontSize: "medium"
