@@ -20,7 +20,7 @@ import Ubuntu.Telephony.PhoneNumber 0.1
 //style
 import Ubuntu.Components.Themes.Ambiance 0.1
 
-PhoneNumberInput {
+PhoneNumberField {
     id: root
 
     property QtObject detail
@@ -53,6 +53,4 @@ PhoneNumberInput {
         family: "Ubuntu"
         pixelSize: activeFocus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
     }
-
-    onTextChanged: application.formatPhoneNumber(text)
 }
