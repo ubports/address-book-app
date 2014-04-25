@@ -89,8 +89,8 @@ MultipleSelectionListView {
         SortOrder {
             id: sortOrder
 
-            detail: ContactDetail.DisplayLabel
-            field: DisplayLabel.Label
+            detail: ContactDetail.Tag
+            field: Tag.Tag
             direction: Qt.AscendingOrder
             blankPolicy: SortOrder.BlanksLast
             caseSensitivity: Qt.CaseInsensitive
@@ -251,7 +251,7 @@ MultipleSelectionListView {
     clip: true
     snapMode: ListView.SnapToItem
     section {
-        property: showSections ? "contact.displayLabel.label" : ""
+        property: showSections ? "contact.tag.tag" : ""
         criteria: ViewSection.FirstCharacter
         labelPositioning: ViewSection.InlineLabels | ViewSection.CurrentLabelAtStart
         delegate: ListItem.Header {
