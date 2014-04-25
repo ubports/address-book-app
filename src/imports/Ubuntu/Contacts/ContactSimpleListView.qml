@@ -71,14 +71,14 @@ MultipleSelectionListView {
       This property holds the contact detail which will be used to display the contact title in the delegate
       By default this is set to ContactDetail.Name.
     */
-    property int titleDetail: ContactDetail.Name
+    property int titleDetail: ContactDetail.DisplayLabel
     /*!
       \qmlproperty list<int> titleFields
 
       This property holds the list of all fields which will be used to display the contact title in the delegate
       By default this is set to [ Name.FirstName, Name.LastName ]
     */
-    property variant titleFields: [ Name.FirstName, Name.LastName ]
+    property variant titleFields: [ DisplayLabel.Label ]
     /*!
       \qmlproperty list<SortOrder> sortOrders
 
@@ -105,7 +105,7 @@ MultipleSelectionListView {
     */
     property var fetchHint : FetchHint {
         detailTypesHint: {
-            var hints = [ contactListView.titleDetail, ContactDetail.Tag, ContactDetail.DisplayLabel ]
+            var hints = [ contactListView.titleDetail ]
 
             if (contactListView.showAvatar) {
                 hints.push(ContactDetail.Avatar)
@@ -251,7 +251,7 @@ MultipleSelectionListView {
     clip: true
     snapMode: ListView.SnapToItem
     section {
-        property: showSections ? "contact.tag.tag" : ""
+        property: showSections ? "contact.displayLabel.label" : ""
         criteria: ViewSection.FirstCharacter
         labelPositioning: ViewSection.InlineLabels | ViewSection.CurrentLabelAtStart
         delegate: ListItem.Header {
@@ -359,6 +359,20 @@ MultipleSelectionListView {
             target: loaderDelegate.item
             property: "selectMode"
             value: contactListView.isInSelectionMode
+            when: (loaderDelegate.status == Loader.Ready)
+        }
+
+        Binding {
+            target: loaderDelegate.item
+            property: "titleDetail"
+            value: contactListView.titleDetail
+            when: (loaderDelegate.status == Loader.Ready)
+        }
+
+        Binding {
+            target: loaderDelegate.item
+            property: "titleFields"
+            value: contactListView.titleFields
             when: (loaderDelegate.status == Loader.Ready)
         }
 
