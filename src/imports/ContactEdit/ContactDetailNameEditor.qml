@@ -23,11 +23,10 @@ import "../Common"
 ContactDetailItem {
     id: root
 
-    property bool isEmpty: (fields == -1) || (emptyFields.length === fields.length)
     property variant emptyFields: []
 
     function isEmpty() {
-        return false
+        return (fields == -1) || (emptyFields.length === fields.length)
     }
 
     function save() {
