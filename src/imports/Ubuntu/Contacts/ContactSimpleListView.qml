@@ -94,6 +94,14 @@ MultipleSelectionListView {
             direction: Qt.AscendingOrder
             blankPolicy: SortOrder.BlanksLast
             caseSensitivity: Qt.CaseInsensitive
+        },
+        // empty tags will be sorted by display Label
+        SortOrder {
+            detail: ContactDetail.DisplayLabel
+            field: DisplayLabel.Label
+            direction: Qt.AscendingOrder
+            blankPolicy: SortOrder.BlanksLast
+            caseSensitivity: Qt.CaseInsensitive
         }
     ]
     /*!
@@ -256,7 +264,7 @@ MultipleSelectionListView {
         labelPositioning: ViewSection.InlineLabels | ViewSection.CurrentLabelAtStart
         delegate: ListItem.Header {
             id: listHeader
-            text: section
+            text: section != "" ? section : "#"
             height: units.gu(4)
 
             Rectangle {
