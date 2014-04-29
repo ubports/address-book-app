@@ -172,7 +172,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
             "ContactDetailGroupWithTypeEditor",
             objectName="phones")
 
-        if (idx > 0):
+        if idx > 0:
             self.create_new_detail(phoneGroup)
 
         phone_number_input = self.main_window.select_single(
@@ -180,7 +180,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
             objectName="phoneNumber_" + str(idx))
         self.type_on_field(phone_number_input, phone_number)
 
-        if (phone_type != -1):
+        if phone_type != -1:
             phone_value_selector = self.main_window.select_single(
                 "ValueSelector",
                 objectName="type_phoneNumber_" + str(idx))
@@ -194,7 +194,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
             "ContactDetailGroupWithTypeEditor",
             objectName="emails")
 
-        if (idx > 0):
+        if idx > 0:
             self.create_new_detail(emailGroup)
 
         email_address_input = self.main_window.select_single(
@@ -202,7 +202,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
             objectName="emailAddress_" + str(idx))
         self.type_on_field(email_address_input, email_address)
 
-        if (email_type != -1):
+        if email_type != -1:
             email_value_selector = self.main_window.select_single(
                 "ValueSelector",
                 objectName="type_email_" + str(idx))
@@ -234,26 +234,26 @@ class AddressBookAppTestCase(AutopilotTestCase):
         self.type_on_field(first_name_field, first_name)
         self.type_on_field(last_name_field, last_name)
 
-        if (phone_numbers):
+        if phone_numbers:
             phoneGroup = self.main_window.select_single(
                 "ContactDetailGroupWithTypeEditor",
                 objectName="phones")
             for idx, number in enumerate(phone_numbers):
                 self.set_phone_number(idx, number)
 
-        if (email_address):
+        if email_address:
             emailGroup = self.main_window.select_single(
                 "ContactDetailGroupWithTypeEditor",
                 objectName="emails")
             for idx, address in enumerate(email_address):
                 self.set_email_address(idx, address)
 
-        if (im_address):
+        if im_address:
             imGroup = self.main_window.select_single(
                 "ContactDetailGroupWithTypeEditor",
                 objectName="ims")
             for idx, address in enumerate(im_address):
-                if (idx > 0):
+                if idx > 0:
                     self.create_new_detail(imGroup)
 
                 im_address_input = self.main_window.select_single(
@@ -261,31 +261,31 @@ class AddressBookAppTestCase(AutopilotTestCase):
                     objectName="imUri_" + str(idx))
                 self.type_on_field(im_address_input, address)
 
-        if (street_address):
+        if street_address:
             street_0 = self.main_window.selepostcode_addressct_single(
                 "TextInputDetail",
                 objectName="streetAddress_0")
             self.type_on_field(street_0, street_address)
 
-        if (locality_address):
+        if locality_address:
             locality_0 = self.main_window.select_single(
                 "TextInputDetail",
                 objectName="localityAddress_0")
             self.type_on_field(locality_0, locality_address)
 
-        if (region_address):
+        if region_address:
             region_0 = self.main_window.select_single(
                 "TextInputDetail",
                 objectName="regionAddress_0")
             self.type_on_field(region_0, region_address)
 
-        if (postcode_address):
+        if postcode_address:
             postcode_0 = self.main_window.select_single(
                 "TextInputDetail",
                 objectName="postcodeAddress_0")
             self.type_on_field(postcode_0, postcode_address)
 
-        if (country_address):
+        if country_address:
             country_0 = self.main_window.select_single(
                 "TextInputDetail",
                 objectName="countryAddress_0")
