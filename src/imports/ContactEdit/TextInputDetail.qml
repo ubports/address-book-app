@@ -16,6 +16,7 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import Ubuntu.Keyboard 0.1
 
 //style
 import Ubuntu.Components.Themes.Ambiance 0.1
@@ -30,6 +31,8 @@ TextField {
     signal removeClicked()
 
     Component.onCompleted: makeMeVisible(root)
+    // Ubuntu.Keyboard
+    InputMethod.extensions: { 'enterKeyText': 'Next' }
 
     readOnly: detail ? detail.readOnly : true
     focus: true
@@ -49,11 +52,6 @@ TextField {
     font {
         family: "Ubuntu"
         pixelSize: activeFocus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
-    }
-
-
-    inputMethodExtensions: {
-       'enterKeyText': 'Next',
     }
 
     Keys.onReturnPressed: application.sendTabEvent();
