@@ -137,6 +137,15 @@ Page {
                 }
                 height: implicitHeight
             }
+
+            ContactDetailSyncTargetView {
+                contact: root.contact
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                height: implicitHeight
+            }
         }
     }
 

@@ -1,3 +1,27 @@
+address-book-app (0.2+14.04.20140408.3-0ubuntu2) trusty; urgency=medium
+
+  * debian/control:
+    - Remove arch constraints in gl/gles build-deps
+    - Alternatively depend on the OpenGLES version of
+      qtdeclarative5-ubuntu-ui-toolkit-plugin
+
+ -- Ricardo Salveti de Araujo <ricardo.salveti@canonical.com>  Mon, 14 Apr 2014 15:48:06 -0300
+
+address-book-app (0.2+14.04.20140408.3-0ubuntu1) trusty; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Implemented support to run online accounts dialog during the first
+    run.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 08 Apr 2014 20:44:57 +0000
+
+address-book-app (0.2+14.04.20140327-0ubuntu1) trusty; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Implemented support to create contacts in different sources.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 27 Mar 2014 18:19:51 +0000
+
 address-book-app (0.2+14.04.20140325.2-0ubuntu1) trusty; urgency=low
 
   [ Leo Arias ]

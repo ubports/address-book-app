@@ -79,7 +79,11 @@ Page {
 
         if (changed) {
             // backend error will be handled by the root page (contact list)
+            var newContact = (contact.model == null)
             contactEditor.model.saveContact(contact)
+            if (newContact) {
+                pageStack.contactCreated(contact)
+            }
         }
         pageStack.pop()
     }
@@ -177,6 +181,7 @@ Page {
                 }
                 height: implicitHeight + units.gu(3)
                 KeyNavigation.tab: avatarEditor
+                KeyNavigation.backtab : syncTargetEditor
             }
 
             ContactDetailAvatarEditor {
@@ -257,6 +262,20 @@ Page {
                 }
                 height: implicitHeight
                 KeyNavigation.backtab : addressesEditor
+                KeyNavigation.tab: syncTargetEditor
+            }
+
+            ContactDetailSyncTargetEditor {
+                id: syncTargetEditor
+
+                contact: contactEditor.contact
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                height: implicitHeight
+                KeyNavigation.backtab : organizationsEditor
+                KeyNavigation.tab: nameEditor
             }
         }
     }
