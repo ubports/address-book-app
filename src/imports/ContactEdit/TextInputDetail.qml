@@ -32,7 +32,7 @@ TextField {
 
     Component.onCompleted: makeMeVisible(root)
     // Ubuntu.Keyboard
-    InputMethod.extensions: { 'enterKeyText': 'Next' }
+    InputMethod.extensions: { "enterKeyText": i18n.tr("Next") }
 
     readOnly: detail ? detail.readOnly : true
     focus: true
