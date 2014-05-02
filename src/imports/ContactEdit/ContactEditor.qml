@@ -241,6 +241,7 @@ Page {
 
             ContactDetailAddressesEditor {
                 id: addressesEditor
+                objectName: "addresses"
 
                 contact: contactEditor.contact
                 anchors {
@@ -254,6 +255,7 @@ Page {
 
             ContactDetailOrganizationsEditor {
                 id: organizationsEditor
+                objectName: "professionalDetails"
 
                 contact: contactEditor.contact
                 anchors {
