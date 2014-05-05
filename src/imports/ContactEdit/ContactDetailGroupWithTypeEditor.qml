@@ -77,7 +77,13 @@ ContactDetailGroupWithTypeBase {
         return changed
     }
 
-    focus: true
+    onActiveFocusChanged: {
+        // skip focus if the group is empty
+        if (detailsCount === 0) {
+            root.KeyNavigation.tab.forceActiveFocus()
+        }
+    }
+    focus: detailsCount > 0
     minimumHeight: units.gu(5)
     headerDelegate: ListItem.Empty {
         id: header

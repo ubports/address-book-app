@@ -71,6 +71,7 @@ FocusScope {
 
     onContactChanged: reloadDetails(true)
     onDetailTypeChanged: reloadDetails(true)
+
     Connections {
         target: root.contact
         onContactChanged: reloadDetails(false)
@@ -148,7 +149,7 @@ FocusScope {
                         newFields.push(detailItem.item)
                         root.newFieldAdded(detailItem.item)
                         root.inputFields = newFields
-                        if (item.focus && root.loaded) {
+                        if (item.focus && root.loaded && root.focus) {
                             item.forceActiveFocus()
                         }
                     }
