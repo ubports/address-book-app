@@ -38,7 +38,8 @@ Page {
                         {detail: "EmailAddress", field: "emailAddress", value: ""},
                         {detail: "OnlineAccount", field: "accountUri", value: ""},
                         {detail: "Address", field: "street", value: ""},
-                        {detail: "Name", field: "firstName", value: "" }
+                        {detail: "Name", field: "firstName", value: ""},
+                        {detail: "Organization", field: "name", value: ""}
                       ]
 
         var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", mainPage)
