@@ -125,7 +125,6 @@ ContactDetailBase {
                 placeholderText: root.placeholderTexts[index]
                 inputMethodHints: root.inputMethodHints
                 onActiveFocusChanged: root.active = activeFocus
-
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -148,5 +147,12 @@ ContactDetailBase {
         }
     }
 
-
+    // reset focus back to first field
+    onActiveFocusChanged: {
+        if (!activeFocus) {
+            for(var i=0; i < fieldRepeater.count; i++) {
+                fieldRepeater.itemAt(i).focus = (i === 0)
+            }
+        }
+    }
 }

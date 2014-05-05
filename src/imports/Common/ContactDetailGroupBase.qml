@@ -153,9 +153,21 @@ FocusScope {
                         }
                     }
                 }
+
+                KeyNavigation.backtab : index > 0 ? detailFields.itemAt(index - 1) : null
+                KeyNavigation.tab: index < detailFields.count - 1 ? detailFields.itemAt(index + 1) : null
             }
         }
     }
 
     Component.onCompleted: root.loaded = true
+
+    // reset focus back to first field
+    onActiveFocusChanged: {
+        if (!activeFocus) {
+            for(var i=0; i < detailFields.count; i++) {
+                detailFields.itemAt(i).focus = (i === 0)
+            }
+        }
+    }
 }
