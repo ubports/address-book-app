@@ -79,7 +79,6 @@ Page {
         objectName: "contactListView"
 
         multiSelectionEnabled: true
-        acceptAction.text: pickMode ? i18n.tr("Select") : i18n.tr("Delete")
         multipleSelection: !pickMode ||
                            ((contactContentHub && contactContentHub.multipleItems) || mainPage.pickMultipleContacts)
         anchors {
@@ -163,23 +162,58 @@ Page {
         }
     }
 
-    tools: ToolbarItems {
-        id: toolbar
+    ToolbarItems {
+        id: toolbarItemsSelectionMode
 
-        locked: contactList.isInSelectionMode
+        visible: false
+        back: ToolbarButton {
+            action: Action {
+                text: i18n.tr("Cancel selection")
+                iconName: "cancel"
+                onTriggered: contactList.cancelSelection()
+            }
+        }
+
+        ToolbarButton {
+            objectName: "SelectAll"
+
+            action: Action {
+                text: i18n.tr("Select All")
+                iconName: "filter"
+                onTriggered: contactList.selectAll()
+                visible: contactList.isInSelectionMode
+            }
+        }
+
+        ToolbarButton {
+            objectName: "DoneSelection"
+
+            action: Action {
+                text: mainPage.pickMode ? i18n.tr("Select") : i18n.tr("Delete")
+                iconName: mainPage.pickMode ? "select" : "delete"
+                onTriggered: contactList.endSelection()
+                visible: contactList.isInSelectionMode
+            }
+        }
+    }
+
+    ToolbarItems {
+        id: toolbarItemsNormalMode
+
+        visible: false
         ToolbarButton {
             objectName: "Sync"
             action: Action {
+                visible: mainPage.syncEnabled
                 text: application.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
                 iconName: "reload"
                 enabled: !application.syncing
                 onTriggered: application.startSync()
-                visible: mainPage.syncEnabled
             }
         }
         ToolbarButton {
+            objectName: "selectButton"
             action: Action {
-                objectName: "selectButton"
                 text: i18n.tr("Select")
                 iconName: "select"
                 onTriggered: contactList.startSelection()
@@ -198,6 +232,8 @@ Page {
             }
         }
     }
+
+    tools: contactList.isInSelectionMode ? toolbarItemsSelectionMode : toolbarItemsNormalMode
 
     // WORKAROUND: Avoid the gap btw the header and the contact list when the list moves
     // see bug #1296764

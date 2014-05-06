@@ -285,8 +285,6 @@ MultipleSelectionListView {
         }
     }
 
-    acceptAction.text: i18n.tr("Delete")
-
     listModel: contactsModel
     onCountChanged: {
         busyIndicator.ping()
