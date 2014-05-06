@@ -27,6 +27,7 @@ MainView {
     width: units.gu(40)
     height: units.gu(71)
     anchorToKeyboard: false
+    useDeprecatedToolbar: false
 
     // workaround to change the application theme.
     // Looks like SDK use this property to guess which theme to load.

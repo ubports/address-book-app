@@ -143,7 +143,6 @@ Page {
 
         onError: pageStack.contactModelError(error)
 
-
         Column {
             id: indicator
 
@@ -170,12 +169,12 @@ Page {
         locked: contactList.isInSelectionMode
         ToolbarButton {
             objectName: "Sync"
-            visible: mainPage.syncEnabled
             action: Action {
                 text: application.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
                 iconName: "reload"
                 enabled: !application.syncing
                 onTriggered: application.startSync()
+                visible: mainPage.syncEnabled
             }
         }
         ToolbarButton {

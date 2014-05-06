@@ -27,18 +27,11 @@ Page {
 
     property QtObject contact: null
     property alias model: contactFetch.model
+    property QtObject activeItem: null
 
     // this is used to add a phone number to a existing contact
     property string contactId: ""
     property string newPhoneNumber: ""
-
-    property QtObject activeItem: null
-
-    // we use a custom toolbar in this view
-    tools: ToolbarItems {
-        locked: true
-        opened: false
-    }
 
     function cancel() {
         for(var i = 0; i < contents.children.length; ++i) {
@@ -114,6 +107,7 @@ Page {
         scrollArea.returnToBounds()
     }
 
+    title: i18n.tr("Edit")
     ContactFetchError {
         id: fetchErrorDialog
     }
@@ -141,19 +135,13 @@ Page {
         }
     }
 
-    flickable: null
     Flickable {
         id: scrollArea
         objectName: "scrollArea"
 
         flickableDirection: Flickable.VerticalFlick
-        anchors {
-            left: parent.left
-            right: parent.right
-            top: parent.top
-            bottom: toolbar.top
-            bottomMargin: units.gu(2)
-        }
+        anchors.fill: parent
+        anchors.bottomMargin: keyboard.height
         contentHeight: contents.height
         contentWidth: parent.width
 
@@ -165,7 +153,6 @@ Page {
 
             anchors {
                 top: parent.top
-                topMargin: units.gu(2)
                 left: parent.left
                 right: parent.right
             }
@@ -282,31 +269,32 @@ Page {
         }
     }
 
-    EditToolbar {
-        id: toolbar
-        anchors {
-            left: parent.left
-            right: parent.right
-            bottom: keyboard.top
-        }
-        height: units.gu(6)
-        acceptAction: Action {
-            text: i18n.tr("Save")
-            enabled: !nameEditor.isEmpty
-            onTriggered: contactEditor.save()
-        }
-        rejectAction: Action {
-            text: i18n.tr("Cancel")
-            onTriggered: contactEditor.cancel()
-        }
-    }
-
     KeyboardRectangle {
         id: keyboard
 
         onHeightChanged: {
             if (activeItem) {
                 makeMeVisible(activeItem)
+            }
+        }
+    }
+
+    tools: ToolbarItems {
+        id: toolbar
+
+        back: ToolbarButton {
+            action: Action {
+                iconName: "cancel"
+                text: i18n.tr("Cancel")
+                onTriggered: contactEditor.cancel()
+            }
+        }
+
+        ToolbarButton {
+            action: Action {
+                iconName: "save"
+                text: i18n.tr("Save")
+                onTriggered: contactEditor.save()
             }
         }
     }
