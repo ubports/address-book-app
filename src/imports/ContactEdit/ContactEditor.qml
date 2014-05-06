@@ -293,7 +293,7 @@ Page {
         height: units.gu(6)
         acceptAction: Action {
             text: i18n.tr("Save")
-            enabled: !nameEditor.isEmpty
+            enabled: !nameEditor.isEmpty() || !phonesEditor.isEmpty()
             onTriggered: contactEditor.save()
         }
         rejectAction: Action {
