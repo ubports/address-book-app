@@ -179,10 +179,6 @@ Page {
                     return nameEditor.save()
                 }
 
-                function cancel() {
-                    return nameEditor.cancel()
-                }
-
                 function isEmpty() {
                     return nameEditor.cancel()
                 }
