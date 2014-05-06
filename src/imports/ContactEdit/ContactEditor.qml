@@ -171,7 +171,7 @@ Page {
             }
             height: childrenRect.height
 
-            // WORKAROUND: SKD does not support QtQuick 2.2 properties yet, because of that we need create
+            // WORKAROUND: SDK does not support QtQuick 2.2 properties yet, because of that we need create
             // a external element and that allow us to use activeFocusOnTab
             // FIXME: Remove FocusScope element as soon as the SDK get support for QtQuick 2.2
             FocusScope {
