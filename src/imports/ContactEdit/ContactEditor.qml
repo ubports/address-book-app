@@ -175,6 +175,18 @@ Page {
             // a external element and that allow us to use activeFocusOnTab
             // FIXME: Remove FocusScope element as soon as the SDK get support for QtQuick 2.2
             FocusScope {
+                function save() {
+                    return nameEditor.save()
+                }
+
+                function cancel() {
+                    return nameEditor.cancel()
+                }
+
+                function isEmpty() {
+                    return nameEditor.cancel()
+                }
+
                 activeFocusOnTab: true
                 anchors {
                     left: parent.left
