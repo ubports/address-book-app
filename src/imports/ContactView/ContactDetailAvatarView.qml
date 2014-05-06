@@ -44,7 +44,7 @@ ContactDetailBase {
     // update the contact detail in case of the contact change
     Connections {
         target: root.contact
-        onContactChanged: {            
+        onContactChanged: {
             if (root.contact) {
                 root.detail = contact.detail(ContactDetail.Avatar)
             } else {
@@ -53,7 +53,14 @@ ContactDetailBase {
         }
     }
 
-    onDetailChanged: updateAvatar.restart()
+    onDetailChanged: {
+        var newAvatar = root.getAvatar(root.detail)
+        if (newAvatar !== defaultAvatar) {
+            avatar.source = newAvatar
+        } else {
+            updateAvatar.restart()
+        }
+    }
 
     // Wait some milliseconds before update the avatar, in some cases the avatac get update later and this cause the image flick
     Timer {
