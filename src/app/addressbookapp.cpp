@@ -91,7 +91,8 @@ AddressBookApp::AddressBookApp(int &argc, char **argv)
       m_contentComm(0),
       m_syncMonitor(0),
       m_pickingMode(false),
-      m_testMode(false)
+      m_testMode(false),
+      m_withArgs(false)
 {
     setOrganizationName("com.ubuntu.address-book");
     setApplicationName("AddressBookApp");
@@ -162,6 +163,8 @@ bool AddressBookApp::setup()
             arguments.removeAt(i);
         }
     }
+
+    m_withArgs = arguments.size() > 1;
 
     /* Configure "artwork:" prefix so that any access to a file whose name starts
        with that prefix resolves properly. */
@@ -237,7 +240,8 @@ void AddressBookApp::returnVcard(const QUrl &url)
 
 bool AddressBookApp::isFirstRun() const
 {
-    if (m_testMode) {
+    // if the app is running on test mode or with arguments we will not show the welcome screen
+    if (m_testMode || m_withArgs) {
         return false;
     } else {
         QSettings settings;

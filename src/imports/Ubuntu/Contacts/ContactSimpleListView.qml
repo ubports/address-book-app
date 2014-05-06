@@ -71,14 +71,14 @@ MultipleSelectionListView {
       This property holds the contact detail which will be used to display the contact title in the delegate
       By default this is set to ContactDetail.Name.
     */
-    property int titleDetail: ContactDetail.Name
+    property int titleDetail: ContactDetail.DisplayLabel
     /*!
       \qmlproperty list<int> titleFields
 
       This property holds the list of all fields which will be used to display the contact title in the delegate
       By default this is set to [ Name.FirstName, Name.LastName ]
     */
-    property variant titleFields: [ Name.FirstName, Name.LastName ]
+    property variant titleFields: [ DisplayLabel.Label ]
     /*!
       \qmlproperty list<SortOrder> sortOrders
 
@@ -89,6 +89,14 @@ MultipleSelectionListView {
         SortOrder {
             id: sortOrder
 
+            detail: ContactDetail.Tag
+            field: Tag.Tag
+            direction: Qt.AscendingOrder
+            blankPolicy: SortOrder.BlanksLast
+            caseSensitivity: Qt.CaseInsensitive
+        },
+        // empty tags will be sorted by display Label
+        SortOrder {
             detail: ContactDetail.DisplayLabel
             field: DisplayLabel.Label
             direction: Qt.AscendingOrder
@@ -105,7 +113,7 @@ MultipleSelectionListView {
     */
     property var fetchHint : FetchHint {
         detailTypesHint: {
-            var hints = [ contactListView.titleDetail, ContactDetail.Tag, ContactDetail.DisplayLabel ]
+            var hints = [ ContactDetail.Tag, contactListView.titleDetail ]
 
             if (contactListView.showAvatar) {
                 hints.push(ContactDetail.Avatar)
@@ -256,7 +264,7 @@ MultipleSelectionListView {
         labelPositioning: ViewSection.InlineLabels | ViewSection.CurrentLabelAtStart
         delegate: ListItem.Header {
             id: listHeader
-            text: section
+            text: section != "" ? section : "#"
             height: units.gu(4)
 
             Rectangle {
@@ -359,6 +367,20 @@ MultipleSelectionListView {
             target: loaderDelegate.item
             property: "selectMode"
             value: contactListView.isInSelectionMode
+            when: (loaderDelegate.status == Loader.Ready)
+        }
+
+        Binding {
+            target: loaderDelegate.item
+            property: "titleDetail"
+            value: contactListView.titleDetail
+            when: (loaderDelegate.status == Loader.Ready)
+        }
+
+        Binding {
+            target: loaderDelegate.item
+            property: "titleFields"
+            value: contactListView.titleFields
             when: (loaderDelegate.status == Loader.Ready)
         }
 

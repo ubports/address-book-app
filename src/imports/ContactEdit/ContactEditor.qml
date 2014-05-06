@@ -28,6 +28,7 @@ Page {
     property QtObject contact: null
     property alias model: contactFetch.model
     property QtObject activeItem: null
+    readonly property  bool isNewContact: contact && (contact.contactId === "qtcontacts:::")
 
     // this is used to add a phone number to a existing contact
     property string contactId: ""
@@ -56,7 +57,7 @@ Page {
 
         // new contact and there is only two details (name, avatar)
         // name and avatar, are not removable details, because of that the contact will have at least 2 details
-        if ((contact.contactId === "qtcontacts:::") &&
+        if (isNewContact &&
             (contact.contactDetails.length === 2)) {
 
             // if name is empty this means that the contact is empty
@@ -294,6 +295,7 @@ Page {
             action: Action {
                 iconName: "save"
                 text: i18n.tr("Save")
+                enabled: !nameEditor.isEmpty() || !phonesEditor.isEmpty()
                 onTriggered: contactEditor.save()
             }
         }
@@ -317,7 +319,8 @@ Page {
     Component.onCompleted: {
         if (contactId !== "") {
             contactFetch.fetchContact(contactId)
+        } else if (isNewContact) {
+            nameEditor.forceActiveFocus()
         }
-        nameEditor.forceActiveFocus()
     }
 }
