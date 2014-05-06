@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 
@@ -154,9 +154,7 @@ FocusScope {
                         }
                     }
                 }
-
-                KeyNavigation.backtab : index > 0 ? detailFields.itemAt(index - 1) : null
-                KeyNavigation.tab: index < detailFields.count - 1 ? detailFields.itemAt(index + 1) : null
+                activeFocusOnTab: true
             }
         }
     }
