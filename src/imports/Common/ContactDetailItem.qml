@@ -63,4 +63,13 @@ ContactDetailBase {
             }
         }
     }
+
+    // reset focus back to first field
+    onActiveFocusChanged: {
+        if (!activeFocus) {
+            for(var i=0; i < fieldRepeater.count; i++) {
+                fieldRepeater.itemAt(i).focus = (i === 0)
+            }
+        }
+    }
 }

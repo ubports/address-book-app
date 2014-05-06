@@ -171,15 +171,23 @@ Page {
             }
             height: childrenRect.height
 
-            ContactDetailNameEditor {
-                id: nameEditor
-
-                contact: contactEditor.contact
+            // WORKAROUND: SKD does not support QtQuick 2.2 properties yet, because of that we need create
+            // a external element and that allow us to use activeFocusOnTab
+            // FIXME: Remove FocusScope element as soon as the SDK get support for QtQuick 2.2
+            FocusScope {
+                activeFocusOnTab: true
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
-                height: implicitHeight + units.gu(3)
+                height: nameEditor.implicitHeight + units.gu(3)
+
+                ContactDetailNameEditor {
+                    id: nameEditor
+
+                    contact: contactEditor.contact
+                    anchors.fill: parent
+                }
             }
 
             ContactDetailAvatarEditor {
