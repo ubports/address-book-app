@@ -55,6 +55,7 @@ Page {
     property alias bottomEdgePageComponent: edgeLoader.sourceComponent
     property alias bottomEdgePageSource: edgeLoader.source
     property alias bottomEdgeTitle: tipLabel.text
+    property alias bottomEdgeEnabled: bottomEdge.visible
 
     onActiveChanged: {
         if (active) {

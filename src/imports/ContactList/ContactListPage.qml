@@ -54,7 +54,7 @@ PageWithBottomEdge {
         return newContact
     }
 
-    title: i18n.tr("Contacts")
+    title: contactList.isInSelectionMode ? i18n.tr("Select Contacts") : i18n.tr("Contacts")
 
     //bottom edge page
     Component {
@@ -67,6 +67,7 @@ PageWithBottomEdge {
     }
     bottomEdgePageComponent: createContactPage
     bottomEdgeTitle: i18n.tr("Create New")
+    bottomEdgeEnabled: !contactList.isInSelectionMode
 
     Component {
         id: onlineAccountsDialog
