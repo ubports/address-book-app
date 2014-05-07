@@ -46,7 +46,7 @@
 
 */
 
-import QtQuick 2.2
+import QtQuick 2.0
 import Ubuntu.Components 0.1
 
 Page {
@@ -56,6 +56,13 @@ Page {
     property alias bottomEdgePageSource: edgeLoader.source
     property alias bottomEdgeTitle: tipLabel.text
     property alias bottomEdgeEnabled: bottomEdge.visible
+    property int bottomEdgeExpandThreshold: page.height * 0.3
+    property int bottomEdgeExposedArea: page.height - bottomEdge.y - tip.height
+
+    readonly property alias bottomEdgePage: edgeLoader.item
+    readonly property bool isReady: (tip.opacity === 0.0)
+
+    signal bottomEdgeReleased()
 
     onActiveChanged: {
         if (active) {
@@ -65,9 +72,10 @@ Page {
 
     Item {
         id: bottomEdge
+        objectName: "bottomEdge"
 
         z: 1
-        height: page.height + tip.height
+        height: (edgeLoader.item && edgeLoader.item.flickable) ? page.height + tip.height : page.height + tip.height - header.height
         y: page.height - tip.height
         clip: true
         anchors {
@@ -77,6 +85,7 @@ Page {
 
         Item {
             id: tip
+            objectName: "bottomEdgeTip"
 
             anchors {
                 left: parent.left
@@ -98,7 +107,7 @@ Page {
                 height: units.gu(1)
                 gradient: Gradient {
                     GradientStop { position: 0.0; color: "transparent" }
-                    GradientStop { position: 1.0; color: Qt.rgba(0, 0, 0, 0.3) }
+                    GradientStop { position: 1.0; color: Qt.rgba(0, 0, 0, 0.7) }
                 }
                 opacity: bottomEdge.state != "collapsed" ? 1.0 : 0.0
                 Behavior on opacity {
@@ -124,7 +133,8 @@ Page {
                 drag.target: bottomEdge
 
                 onReleased: {
-                    if (bottomEdge.y < (page.height * 0.7)) {
+                    page.bottomEdgeReleased()
+                    if (bottomEdge.y < (page.height - bottomEdgeExpandThreshold - tip.height)) {
                         bottomEdge.state = "expanded"
                     } else {
                         bottomEdge.state = "collapsed"
@@ -208,6 +218,7 @@ Page {
                             page.title = title
                             // fix for a bug in the sdk header
                             activeLeafNode = page
+                            edgePageBackground.anchors.topMargin = 0
                         }
                     }
                 }
@@ -225,6 +236,14 @@ Page {
                 top: tip.bottom
                 bottom: parent.bottom
             }
+
+            Binding {
+                target: edgePageBackground
+                property: "anchors.topMargin"
+                value: edgeLoader.item && edgeLoader.item.flickable ? edgeLoader.item.flickable.contentY : 0
+                when: (edgeLoader.status === Loader.Ready && !page.isReady)
+            }
+
             color: Theme.palette.normal.background
 
             Loader {
@@ -232,7 +251,6 @@ Page {
 
                 active: false
                 anchors.fill: parent
-                anchors.topMargin: (edgeLoader.status === Loader.Ready ? edgeLoader.item.flickable.contentY : 0)
 
                 onStatusChanged: {
                     if (status === Loader.Ready) {
