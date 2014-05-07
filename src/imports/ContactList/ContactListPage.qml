@@ -21,8 +21,9 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Contacts 0.1 as ContactsUI
 import Ubuntu.Components.Popups 0.1 as Popups
+import "../ContactEdit"
 
-Page {
+PageWithBottomEdge {
     id: mainPage
     objectName: "contactListPage"
 
@@ -54,6 +55,18 @@ Page {
     }
 
     title: i18n.tr("Contacts")
+
+    //bottom edge page
+    Component {
+        id: createContactPage
+
+        ContactEditor {
+            model: contactList.listModel
+            contact: mainPage.createEmptyContact("")
+        }
+    }
+    bottomEdgePageComponent: createContactPage
+    bottomEdgeTitle: i18n.tr("Create New")
 
     Component {
         id: onlineAccountsDialog
@@ -217,18 +230,6 @@ Page {
                 text: i18n.tr("Select")
                 iconName: "select"
                 onTriggered: contactList.startSelection()
-            }
-        }
-        ToolbarButton {
-            objectName: "Add"
-            action: Action {
-                text: i18n.tr("Add")
-                iconName: "add"
-                onTriggered: {
-                    var newContact = mainPage.createEmptyContact("")
-                    pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                                   {model: contactList.listModel, contact: newContact})
-                }
             }
         }
     }

@@ -108,6 +108,13 @@ Page {
         scrollArea.returnToBounds()
     }
 
+    function ready()
+    {
+        if (isNewContact) {
+            nameEditor.forceActiveFocus()
+        }
+    }
+
     title: i18n.tr("Edit")
     ContactFetchError {
         id: fetchErrorDialog
@@ -319,8 +326,6 @@ Page {
     Component.onCompleted: {
         if (contactId !== "") {
             contactFetch.fetchContact(contactId)
-        } else if (isNewContact) {
-            nameEditor.forceActiveFocus()
         }
     }
 }
