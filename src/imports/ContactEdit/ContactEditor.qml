@@ -318,7 +318,7 @@ Page {
 
         back: ToolbarButton {
             action: Action {
-                iconName: "cancel"
+                iconName: "close"
                 text: i18n.tr("Cancel")
                 onTriggered: contactEditor.cancel()
             }

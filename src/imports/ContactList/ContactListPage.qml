@@ -183,7 +183,7 @@ PageWithBottomEdge {
         back: ToolbarButton {
             action: Action {
                 text: i18n.tr("Cancel selection")
-                iconName: "cancel"
+                iconName: "close"
                 onTriggered: contactList.cancelSelection()
             }
         }
