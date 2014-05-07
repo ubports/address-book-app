@@ -13,6 +13,7 @@ from ubuntuuitoolkit import emulators as uitk
 from autopilot import logging as autopilot_logging
 
 from address_book_app import data
+from address_book_app.emulators.page_with_bottom_edge import ContactListPage
 
 
 logger = logging.getLogger(__name__)
@@ -79,37 +80,28 @@ class MainWindow(uitk.MainView):
         """
         Returns a ContactListView iobject for the current window
         """
-        return self.wait_select_single( "ContactListView",
+        return self.wait_select_single("ContactListView",
                                        objectName="contactListView")
-
-    def get_button(self, name):
-        """
-        Returns a Button object matching 'name'
-
-        Arguments:
-            name: Name of the button
-        """
-        return self.wait_select_single( "Button", objectName=name)
 
     def cancel(self):
         """
         Press the 'Cancel' button
         """
-        self.pointing_device.click_object(self.get_button("reject"))
+        self.get_header().click_custom_back_button()
 
     def save(self):
         """
         Press the 'Save' button
         """
-        self.pointing_device.click_object(self.get_button("accept"))
+        self.get_header().click_action_button("save")
 
     @autopilot_logging.log_action(logger.info)
     def go_to_add_contact(self):
         """
         Press the 'Add' button and return the contact editor page
         """
-        toolbar = self.open_toolbar()
-        toolbar.click_button(object_name="Add")
+        bottom_swipe_page = self.wait_select_single(ContactListPage, objectName='contactListPage')
+        bottom_swipe_page.revel_bottom_edge_page()
         return self.get_contact_edit_page()
 
 
