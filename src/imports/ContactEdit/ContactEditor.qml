@@ -274,6 +274,32 @@ Page {
                 KeyNavigation.backtab : organizationsEditor
                 KeyNavigation.tab: nameEditor
             }
+
+            Item {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                height: deleteButton.height + units.gu(2)
+
+                Button {
+                    id: deleteButton
+
+                    text: i18n.tr("Delete")
+                    visible: !contactEditor.isNewContact
+                    anchors {
+                        margins: units.gu(2)
+                        top: parent.top
+                        left: parent.left
+                        right: parent.right
+                    }
+                    onClicked: {
+                        contactEditor.model.removeContact(contactEditor.contact.contactId)
+                        pageStack.pop() // editor page
+                        pageStack.pop() // view page
+                    }
+                }
+            }
         }
     }
 

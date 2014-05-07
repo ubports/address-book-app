@@ -175,18 +175,6 @@ Page {
 
     tools: ToolbarItems {
         ToolbarButton {
-            objectName: "delete"
-
-            action: Action {
-                text: i18n.tr("Delete")
-                iconSource: "artwork:/delete.png"
-                onTriggered: {
-                    root.model.removeContact(root.contact.contactId)
-                    pageStack.pop()
-                }
-            }
-        }
-        ToolbarButton {
             objectName: "edit"
 
             action: Action {
