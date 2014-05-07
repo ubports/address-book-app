@@ -116,6 +116,7 @@ Page {
     }
 
     title: i18n.tr("Edit")
+
     ContactFetchError {
         id: fetchErrorDialog
     }

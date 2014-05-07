@@ -190,6 +190,10 @@ Page {
                             if (edgeLoader.item.ready)
                                 edgeLoader.item.ready()
                             edgeLoader.item.forceActiveFocus()
+                            if (edgeLoader.item.flickable) {
+                                edgeLoader.item.flickable.contentY = -page.header.height
+                                edgeLoader.item.flickable.returnToBounds()
+                            }
                         }
                     }
                 }
@@ -218,7 +222,6 @@ Page {
                             page.title = title
                             // fix for a bug in the sdk header
                             activeLeafNode = page
-                            edgePageBackground.anchors.topMargin = 0
                         }
                     }
                 }
@@ -237,13 +240,6 @@ Page {
                 bottom: parent.bottom
             }
 
-            Binding {
-                target: edgePageBackground
-                property: "anchors.topMargin"
-                value: edgeLoader.item && edgeLoader.item.flickable ? edgeLoader.item.flickable.contentY : 0
-                when: (edgeLoader.status === Loader.Ready && !page.isReady)
-            }
-
             color: Theme.palette.normal.background
 
             Loader {
@@ -251,11 +247,19 @@ Page {
 
                 active: false
                 anchors.fill: parent
+                asynchronous: true
 
                 onStatusChanged: {
                     if (status === Loader.Ready) {
-                        item.active = false;
+                        item.active = false
                     }
+                }
+
+                Binding {
+                    target: edgeLoader.item ? edgeLoader.item.flickable : null
+                    property: "contentY"
+                    value: 0
+                    when: (edgeLoader.status === Loader.Ready && !page.isReady)
                 }
             }
         }
