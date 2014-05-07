@@ -1,3 +1,12 @@
+address-book-app (0.2+14.10.20140430-0ubuntu1) utopic; urgency=low
+
+  [ Leo Arias ]
+  * Added more helpers to fill the full contact editor form, except
+    professional details.
+  * Updated the add contacts tests with the new fill form helpers.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 30 Apr 2014 16:32:16 +0000
+
 address-book-app (0.2+14.04.20140408.3-0ubuntu2) trusty; urgency=medium
 
   * debian/control:
