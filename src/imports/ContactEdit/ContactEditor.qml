@@ -168,31 +168,15 @@ Page {
             }
             height: childrenRect.height
 
-            // WORKAROUND: SDK does not support QtQuick 2.2 properties yet, because of that we need create
-            // a external element and that allow us to use activeFocusOnTab
-            // FIXME: Remove FocusScope element as soon as the SDK get support for QtQuick 2.2
-            FocusScope {
-                function save() {
-                    return nameEditor.save()
-                }
+            ContactDetailNameEditor {
+                id: nameEditor
 
-                function isEmpty() {
-                    return nameEditor.cancel()
-                }
-
-                activeFocusOnTab: true
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
                 height: nameEditor.implicitHeight + units.gu(3)
-
-                ContactDetailNameEditor {
-                    id: nameEditor
-
-                    contact: contactEditor.contact
-                    anchors.fill: parent
-                }
+                contact: contactEditor.contact
             }
 
             ContactDetailAvatarEditor {

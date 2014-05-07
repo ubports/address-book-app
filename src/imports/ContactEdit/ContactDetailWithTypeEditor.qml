@@ -67,7 +67,6 @@ ContactDetailBase {
         return detailchanged
     }
 
-    focus: true
     // disable listview mouse area
     __mouseArea.visible: false
     enabled: root.detail ? !root.detail.readOnly : false
@@ -106,20 +105,16 @@ ContactDetailBase {
             right: detailTypeSelector.right
             top: detailTypeSelector.bottom
         }
-        focus: true
         height: childrenRect.height
 
         Repeater {
             id: fieldRepeater
-            model: root.fields
 
-            focus: true
+            model: root.fields
             TextInputDetail {
                 id: detail
                 objectName: root.detail ? detailToString(root.detail.type, modelData) + "_" + root.index : ""
 
-                Component.onCompleted: focus = (index === 0)
-                focus: false
                 detail: root.detail
                 field: modelData
                 placeholderText: root.placeholderTexts[index]
@@ -143,15 +138,6 @@ ContactDetailBase {
             } else if ((event.key == Qt.Key_Left) && (event.modifiers & Qt.ShiftModifier)) {
                 detailTypeSelector.movePrevious()
                 event.accepted = true
-            }
-        }
-    }
-
-    // reset focus back to first field
-    onActiveFocusChanged: {
-        if (!activeFocus) {
-            for(var i=0; i < fieldRepeater.count; i++) {
-                fieldRepeater.itemAt(i).focus = (i === 0)
             }
         }
     }

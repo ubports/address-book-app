@@ -19,7 +19,6 @@ import QtContacts 5.0 as QtContacts
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 
-
 ListItem.Empty {
     id: root
     objectName: detail ? "base_" + detailToString(detail.type, -1) + "_" + index : ""

@@ -94,8 +94,6 @@ ContactDetailGroupWithTypeBase {
 
         return changed
     }
-
-    activeFocusOnTab: detailsCount > 0
     minimumHeight: units.gu(5)
     headerDelegate: ListItem.Empty {
         id: header

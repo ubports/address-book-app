@@ -21,38 +21,64 @@ import Ubuntu.Keyboard 0.1
 //style
 import Ubuntu.Components.Themes.Ambiance 0.1
 
-TextField {
+FocusScope {
     id: root
 
     property QtObject detail
     property int field: -1
     property variant originalValue: root.detail && (root.field >= 0) ? root.detail.value(root.field) : null
 
+    // proxy textField
+    property alias font: field.font
+    property alias placeholderText: field.placeholderText
+    property alias inputMethodHints: field.inputMethodHints
+    property alias text: field.text
+
     signal removeClicked()
 
-    Component.onCompleted: makeMeVisible(root)
-    // Ubuntu.Keyboard
-    InputMethod.extensions: { "enterKeyText": i18n.tr("Next") }
 
-    readOnly: detail ? detail.readOnly : true
-    focus: true
-    text: originalValue ? originalValue : ""
-    style: TextFieldStyle {
-        overlaySpacing: 0
-        frameSpacing: 0
-        background: Item {}
-    }
+    activeFocusOnTab: true
+
+
     onActiveFocusChanged: {
         if (activeFocus) {
-            makeMeVisible(root)
+            //field.forceActiveFocus()
         }
     }
 
-    // default style
-    font {
-        family: "Ubuntu"
-        pixelSize: activeFocus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
-    }
+    TextField {
+        id: field
 
-    Keys.onReturnPressed: application.sendTabEvent();
+        Component.onCompleted: {
+            makeMeVisible(root)
+        }
+        focus: true
+
+        // WORKAROUND: For some reason TextField.focus property get reset to false
+        // we need do a deep investigation on that
+        onFocusChanged: focus = true
+
+        // Ubuntu.Keyboard
+        InputMethod.extensions: { "enterKeyText": i18n.tr("Next") }
+
+        readOnly: root.detail ? root.detail.readOnly : true
+        text: root.originalValue ? root.originalValue : ""
+        style: TextFieldStyle {
+            overlaySpacing: 0
+            frameSpacing: 0
+            background: Item {}
+        }
+        onActiveFocusChanged: {
+            if (activeFocus) {
+                makeMeVisible(root)
+            }
+        }
+
+        // default style
+        font {
+            family: "Ubuntu"
+            pixelSize: activeFocus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
+        }
+        Keys.onReturnPressed: application.sendTabEvent();
+    }
 }
