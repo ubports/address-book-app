@@ -225,14 +225,6 @@ PageWithBottomEdge {
                 onTriggered: application.startSync()
             }
         }
-        ToolbarButton {
-            objectName: "selectButton"
-            action: Action {
-                text: i18n.tr("Select")
-                iconName: "select"
-                onTriggered: contactList.startSelection()
-            }
-        }
     }
 
     tools: contactList.isInSelectionMode ? toolbarItemsSelectionMode : toolbarItemsNormalMode

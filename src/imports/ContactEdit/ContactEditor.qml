@@ -148,8 +148,10 @@ Page {
         objectName: "scrollArea"
 
         flickableDirection: Flickable.VerticalFlick
-        anchors.fill: parent
-        anchors.bottomMargin: keyboard.height
+        anchors {
+            fill: parent
+            bottomMargin: keyboard.height
+        }
         contentHeight: contents.height
         contentWidth: parent.width
 
@@ -317,6 +319,8 @@ Page {
         id: toolbar
 
         back: ToolbarButton {
+            objectName: "cancel"
+
             action: Action {
                 iconName: "close"
                 text: i18n.tr("Cancel")
@@ -326,6 +330,7 @@ Page {
 
         ToolbarButton {
             action: Action {
+                objectName: "save"
                 iconName: "save"
                 text: i18n.tr("Save")
                 enabled: !nameEditor.isEmpty() || !phonesEditor.isEmpty()
