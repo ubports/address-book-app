@@ -24,6 +24,8 @@ import Ubuntu.Components.Themes.Ambiance 0.1
 FocusScope {
     id: root
 
+
+
     property QtObject detail
     property int field: -1
     property variant originalValue: root.detail && (root.field >= 0) ? root.detail.value(root.field) : null
@@ -36,15 +38,8 @@ FocusScope {
 
     signal removeClicked()
 
-
+    //FIXME: Move this property to TextField as soon as the SDK get ported to QtQuick 2.2
     activeFocusOnTab: true
-
-
-    onActiveFocusChanged: {
-        if (activeFocus) {
-            //field.forceActiveFocus()
-        }
-    }
 
     TextField {
         id: field

@@ -88,7 +88,7 @@ Page {
         }
 
         activeItem = item
-        var position = scrollArea.contentItem.mapFromItem(item, 0, item.y);
+        var position = scrollArea.contentItem.mapFromItem(item, 0, 0);
 
         // check if the item is already visible
         var bottomY = scrollArea.contentY + scrollArea.height

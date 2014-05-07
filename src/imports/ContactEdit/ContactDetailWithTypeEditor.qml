@@ -126,9 +126,6 @@ ContactDetailBase {
                 }
                 height: root.active ? root.itemHeight + units.gu(1) : root.itemHeight
                 onRemoveClicked: root.contact.removeDetail(root.detail)
-                // FIXME: SDK still using QtQuick 2.0 change this to activeFocusOnTab: true on version 2.2
-                KeyNavigation.backtab : index > 0 ? fieldRepeater.itemAt(index - 1) : null
-                KeyNavigation.tab: index < fieldRepeater.count - 1 ? fieldRepeater.itemAt(index + 1) : null
             }
         }
         Keys.onReleased: {
