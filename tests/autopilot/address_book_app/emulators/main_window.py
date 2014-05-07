@@ -9,8 +9,10 @@ import collections
 import logging
 import time
 
-from ubuntuuitoolkit import emulators as uitk
+from address_book_app.emulators.contact_list_page import ContactListPage
+from address_book_app.emulators.toolbar import Toolbar
 from autopilot import logging as autopilot_logging
+from ubuntuuitoolkit import emulators as uitk
 
 from address_book_app import data
 from address_book_app.emulators.page_with_bottom_edge import ContactListPage
@@ -49,11 +51,11 @@ class MainWindow(uitk.MainView):
 
     def get_contact_list_page(self):
         # ContactListPage is the only page that can appears multiple times
-        # Ex.: During the pick mode we alway push a new contactListPage, to preserve
-        # the current application status
-        pages = self.select_many("ContactListPage",
+        # Ex.: During the pick mode we alway push a new contactListPage, to
+        # preserve the current application status.
+        pages = self.select_many(ContactListPage,
                                  objectName="contactListPage")
-        
+
         # alway return the page without pickMode
         for p in pages:
             if not p.pickMode:
@@ -94,6 +96,10 @@ class MainWindow(uitk.MainView):
         Press the 'Save' button
         """
         self.get_header().click_action_button("save")
+
+    def get_toolbar(self):
+        """Override base class so we get our expected Toolbar subclass."""
+        return self.select_single(Toolbar)
 
     @autopilot_logging.log_action(logger.info)
     def go_to_add_contact(self):
