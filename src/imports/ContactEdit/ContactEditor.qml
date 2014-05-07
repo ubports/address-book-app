@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
@@ -168,17 +168,31 @@ Page {
             }
             height: childrenRect.height
 
-            ContactDetailNameEditor {
-                id: nameEditor
+            // WORKAROUND: SDK does not support QtQuick 2.2 properties yet, because of that we need create
+            // a external element and that allow us to use activeFocusOnTab
+            // FIXME: Remove FocusScope element as soon as the SDK get support for QtQuick 2.2
+            FocusScope {
+                function save() {
+                    return nameEditor.save()
+                }
 
-                contact: contactEditor.contact
+                function isEmpty() {
+                    return nameEditor.cancel()
+                }
+
+                activeFocusOnTab: true
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
-                height: implicitHeight + units.gu(3)
-                KeyNavigation.tab: avatarEditor
-                KeyNavigation.backtab : syncTargetEditor
+                height: nameEditor.implicitHeight + units.gu(3)
+
+                ContactDetailNameEditor {
+                    id: nameEditor
+
+                    contact: contactEditor.contact
+                    anchors.fill: parent
+                }
             }
 
             ContactDetailAvatarEditor {
@@ -190,8 +204,6 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
-                KeyNavigation.backtab : nameEditor
-                KeyNavigation.tab: phonesEditor
             }
 
             ContactDetailPhoneNumbersEditor {
@@ -204,8 +216,6 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
-                KeyNavigation.backtab : avatarEditor
-                KeyNavigation.tab: emailsEditor
             }
 
             ContactDetailEmailsEditor {
@@ -218,8 +228,6 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
-                KeyNavigation.backtab : phonesEditor
-                KeyNavigation.tab: accountsEditor
             }
 
             ContactDetailOnlineAccountsEditor {
@@ -232,8 +240,6 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
-                KeyNavigation.backtab : emailsEditor
-                KeyNavigation.tab: addressesEditor
             }
 
             ContactDetailAddressesEditor {
@@ -246,8 +252,6 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
-                KeyNavigation.backtab : accountsEditor
-                KeyNavigation.tab: organizationsEditor
             }
 
             ContactDetailOrganizationsEditor {
@@ -260,8 +264,6 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
-                KeyNavigation.backtab : addressesEditor
-                KeyNavigation.tab: syncTargetEditor
             }
 
             ContactDetailSyncTargetEditor {
@@ -273,8 +275,6 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
-                KeyNavigation.backtab : organizationsEditor
-                KeyNavigation.tab: nameEditor
             }
 
             Item {

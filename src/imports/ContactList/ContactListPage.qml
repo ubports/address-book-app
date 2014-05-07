@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import QtContacts 5.0
 
 import Ubuntu.Components 0.1
@@ -39,7 +39,8 @@ PageWithBottomEdge {
                         {detail: "EmailAddress", field: "emailAddress", value: ""},
                         {detail: "OnlineAccount", field: "accountUri", value: ""},
                         {detail: "Address", field: "street", value: ""},
-                        {detail: "Name", field: "firstName", value: "" }
+                        {detail: "Name", field: "firstName", value: ""},
+                        {detail: "Organization", field: "name", value: ""}
                       ]
 
         var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", mainPage)

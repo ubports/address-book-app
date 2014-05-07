@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import Ubuntu.Components 0.1
 import QtContacts 5.0
 import Ubuntu.Components.ListItems 0.1 as ListItem
@@ -125,14 +125,13 @@ ContactDetailBase {
                 placeholderText: root.placeholderTexts[index]
                 inputMethodHints: root.inputMethodHints
                 onActiveFocusChanged: root.active = activeFocus
-
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
                 height: root.active ? root.itemHeight + units.gu(1) : root.itemHeight
                 onRemoveClicked: root.contact.removeDetail(root.detail)
-
+                // FIXME: SDK still using QtQuick 2.0 change this to activeFocusOnTab: true on version 2.2
                 KeyNavigation.backtab : index > 0 ? fieldRepeater.itemAt(index - 1) : null
                 KeyNavigation.tab: index < fieldRepeater.count - 1 ? fieldRepeater.itemAt(index + 1) : null
             }
@@ -148,5 +147,12 @@ ContactDetailBase {
         }
     }
 
-
+    // reset focus back to first field
+    onActiveFocusChanged: {
+        if (!activeFocus) {
+            for(var i=0; i < fieldRepeater.count; i++) {
+                fieldRepeater.itemAt(i).focus = (i === 0)
+            }
+        }
+    }
 }

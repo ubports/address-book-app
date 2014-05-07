@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import Ubuntu.Components 0.1
 import QtContacts 5.0 as QtContacts
 import Ubuntu.Components.ListItems 0.1 as ListItem
@@ -95,7 +95,7 @@ ContactDetailGroupWithTypeBase {
         return changed
     }
 
-    focus: true
+    activeFocusOnTab: detailsCount > 0
     minimumHeight: units.gu(5)
     headerDelegate: ListItem.Empty {
         id: header
