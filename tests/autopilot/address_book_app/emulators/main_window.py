@@ -227,8 +227,10 @@ class ContactDetailGroupWithTypeEditor(uitk.UbuntuUIToolkitEmulatorBase):
         values = []
         for index in range(self.detailsCount):
             detail_editor = self._get_detail_editor_by_index(index)
-            values.append(
-                detail_editor.get_values(field=object_name, index=index))
+            value = detail_editor.get_values(field=object_name, index=index)
+            if (value):
+                values.append(value)
+
         return values
 
 
