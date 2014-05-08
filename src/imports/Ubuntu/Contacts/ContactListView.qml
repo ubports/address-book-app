@@ -112,43 +112,30 @@ ContactSimpleListView {
     }
 
     ContactModel {
-        id: allContactsModel
-
-        manager: root.manager
-        sortOrders: root.sortOrders
-        fetchHint: root.fetchHint
-        filter: root.filter
-        onErrorChanged: {
-            if (error) {
-                busyIndicator.busy = false
-                contactListView.error(error)
-            }
-        }
-    }
-
-    ContactModel {
-        id: favouritesContactsModel
+        id: contactsModel
 
         manager: root.manager
         sortOrders: root.sortOrders
         fetchHint: root.fetchHint
         filter: IntersectionFilter {
             filters: {
-                var filters = [favouritesFilter]
-                if (root.filter)
+                var filters = []
+                if (root.showFavourites) {
+                    filters.push(favouritesFilter)
+                }
+                if (root.filter) {
                     filters.push(root.filter)
+                }
                 return filters
             }
         }
-
         onErrorChanged: {
             if (error) {
                 busyIndicator.busy = false
                 contactListView.error(error)
             }
         }
-
     }
 
-    listModel: showFavourites ? favouritesContactsModel : allContactsModel
+    listModel: contactsModel
 }

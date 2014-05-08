@@ -120,7 +120,7 @@ PageWithBottomEdge {
 
             detail: ContactDetail.DisplayLabel
             field: DisplayLabel.Label
-            value: ""
+            value: searchField.text
             matchFlags: DetailFilter.MatchContains
         }
 
@@ -262,32 +262,31 @@ PageWithBottomEdge {
             action: Action {
                 text: i18n.tr("Search")
                 iconName: "search"
-                onTriggered: mainPage.searching = !mainPage.searching
+                onTriggered: {
+                    mainPage.searching = !mainPage.searching
+                    if (mainPage.searching) {
+                        searchField.forceActiveFocus()
+                    } else {
+                        searchField.text = ""
+                    }
+                }
             }
         }
     }
-
-    __customHeaderContents: TextField {
+    TextField {
         id: searchField
 
         visible: mainPage.searching
-        onVisibleChanged: {
-            if (visible) {
-                searchField.forceActiveFocus()
-            } else {
-                searchField.text = ""
-            }
-        }
-
         anchors {
             left: parent.left
             topMargin: units.gu(1.5)
             bottomMargin: units.gu(1.5)
             verticalCenter: parent.verticalCenter
         }
-
         onTextChanged: nameFilter.value = text
     }
+
+    __customHeaderContents: mainPage.searching ? searchField : null
 
     tools: contactList.isInSelectionMode ? toolbarItemsSelectionMode : toolbarItemsNormalMode
 
