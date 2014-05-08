@@ -34,6 +34,9 @@ Page {
     property string contactId: ""
     property string newPhoneNumber: ""
 
+    // priv
+    property bool _edgeReady: false
+
     function cancel() {
         for(var i = 0; i < contents.children.length; ++i) {
             var field = contents.children[i]
@@ -83,7 +86,7 @@ Page {
     }
 
     function makeMeVisible(item) {
-        if (!item) {
+        if (!_edgeReady || !item) {
             return
         }
 
@@ -111,6 +114,7 @@ Page {
     function ready()
     {
         if (isNewContact) {
+            _edgeReady = true
             nameEditor.forceActiveFocus()
         }
     }
@@ -144,6 +148,7 @@ Page {
         }
     }
 
+    //flickable: null
     Flickable {
         id: scrollArea
         objectName: "scrollArea"
@@ -156,7 +161,8 @@ Page {
         contentHeight: contents.height
         contentWidth: parent.width
 
-        // after add a new field we need to wait for the contentHeight to change to scroll to the correct position
+
+        //after add a new field we need to wait for the contentHeight to change to scroll to the correct position
         onContentHeightChanged: contactEditor.makeMeVisible(contactEditor.activeItem)
 
         Column {

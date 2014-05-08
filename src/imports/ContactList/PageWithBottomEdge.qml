@@ -241,6 +241,13 @@ Page {
             }
 
             color: Theme.palette.normal.background
+            //WORKAROUND: The SDK move the page contents down to allocate space for the header we need to avoid that during the page dragging
+            Binding {
+                target: edgePageBackground
+                property: "anchors.topMargin"
+                value: edgeLoader.item && edgeLoader.item.flickable ? edgeLoader.item.flickable.contentY : 0
+                when: (edgeLoader.status === Loader.Ready && !page.isReady)
+            }
 
             Loader {
                 id: edgeLoader
@@ -253,13 +260,6 @@ Page {
                     if (status === Loader.Ready) {
                         item.active = false
                     }
-                }
-
-                Binding {
-                    target: edgeLoader.item ? edgeLoader.item.flickable : null
-                    property: "contentY"
-                    value: 0
-                    when: (edgeLoader.status === Loader.Ready && !page.isReady)
                 }
             }
         }
