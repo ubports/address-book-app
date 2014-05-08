@@ -141,10 +141,7 @@ Page {
                     }
                 }
 
-                onPressed: {
-                    bottomEdge.state = "floating"
-                    edgeLoader.active = true
-                }
+                onPressed: bottomEdge.state = "floating"
             }
         }
 
@@ -215,13 +212,18 @@ Page {
                     }
                     ScriptAction {
                         script: {
+                            // destroy current bottom page
                             edgeLoader.active = false
+
                             // FIXME: this is ugly, but the header is not updating the title correctly
                             var title = page.title
                             page.title = "Something else"
                             page.title = title
                             // fix for a bug in the sdk header
                             activeLeafNode = page
+
+                            // keep bottom page in memory
+                            edgeLoader.active = true
                         }
                     }
                 }
@@ -241,6 +243,7 @@ Page {
             }
 
             color: Theme.palette.normal.background
+
             //WORKAROUND: The SDK move the page contents down to allocate space for the header we need to avoid that during the page dragging
             Binding {
                 target: edgePageBackground
@@ -252,15 +255,11 @@ Page {
             Loader {
                 id: edgeLoader
 
-                active: false
+                active: true
                 anchors.fill: parent
                 asynchronous: true
 
-                onStatusChanged: {
-                    if (status === Loader.Ready) {
-                        item.active = false
-                    }
-                }
+                onLoaded: item.active = false
             }
         }
     }

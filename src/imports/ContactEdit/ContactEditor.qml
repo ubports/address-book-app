@@ -161,7 +161,6 @@ Page {
         contentHeight: contents.height
         contentWidth: parent.width
 
-
         //after add a new field we need to wait for the contentHeight to change to scroll to the correct position
         onContentHeightChanged: contactEditor.makeMeVisible(contactEditor.activeItem)
 

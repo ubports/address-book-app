@@ -58,15 +58,10 @@ PageWithBottomEdge {
     title: contactList.isInSelectionMode ? i18n.tr("Select Contacts") : i18n.tr("Contacts")
 
     //bottom edge page
-    Component {
-        id: createContactPage
-
-        ContactEditor {
-            model: contactList.listModel
-            contact: mainPage.createEmptyContact("")
-        }
+    bottomEdgePageComponent: ContactEditor {
+        model: contactList.listModel
+        contact: mainPage.createEmptyContact("")
     }
-    bottomEdgePageComponent: createContactPage
     bottomEdgeTitle: i18n.tr("Create New")
     bottomEdgeEnabled: !contactList.isInSelectionMode
 
