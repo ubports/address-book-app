@@ -68,6 +68,7 @@ private:
     bool m_viewReady;
     bool m_pickingMode;
     bool m_testMode;
+    bool m_withArgs;
 };
 
 #endif
