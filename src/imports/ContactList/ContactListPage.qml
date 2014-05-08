@@ -33,6 +33,7 @@ PageWithBottomEdge {
     property var onlineAccountsMessageDialog: null
     property QtObject contactIndex: null
     property bool syncEnabled: application.syncEnabled
+    property bool searching: false
     property var contactModel: contactList.listModel ? contactList.listModel : null
 
     function createEmptyContact(phoneNumber) {
@@ -113,6 +114,16 @@ PageWithBottomEdge {
         multiSelectionEnabled: true
         multipleSelection: !pickMode ||
                            ((contactContentHub && contactContentHub.multipleItems) || mainPage.pickMultipleContacts)
+
+        filter: DetailFilter {
+            id: nameFilter
+
+            detail: ContactDetail.DisplayLabel
+            field: DisplayLabel.Label
+            value: ""
+            matchFlags: DetailFilter.MatchContains
+        }
+
         anchors {
             // This extra margin is necessary because the toolbar area overlaps the last item in the view
             // in the selection mode we remove it to avoid visual problems due the selection bar appears
@@ -246,6 +257,36 @@ PageWithBottomEdge {
                 onTriggered: application.startSync()
             }
         }
+        ToolbarButton {
+            objectName: "Search"
+            action: Action {
+                text: i18n.tr("Search")
+                iconName: "search"
+                onTriggered: mainPage.searching = !mainPage.searching
+            }
+        }
+    }
+
+    __customHeaderContents: TextField {
+        id: searchField
+
+        visible: mainPage.searching
+        onVisibleChanged: {
+            if (visible) {
+                searchField.forceActiveFocus()
+            } else {
+                searchField.text = ""
+            }
+        }
+
+        anchors {
+            left: parent.left
+            topMargin: units.gu(1.5)
+            bottomMargin: units.gu(1.5)
+            verticalCenter: parent.verticalCenter
+        }
+
+        onTextChanged: nameFilter.value = text
     }
 
     tools: contactList.isInSelectionMode ? toolbarItemsSelectionMode : toolbarItemsNormalMode

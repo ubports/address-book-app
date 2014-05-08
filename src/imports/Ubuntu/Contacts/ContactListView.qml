@@ -102,13 +102,22 @@ ContactSimpleListView {
         }
     }
 
+    DetailFilter {
+        id: favouritesFilter
+
+        detail: ContactDetail.Favorite
+        field: Favorite.Favorite
+        value: true
+        matchFlags: DetailFilter.MatchExactly
+    }
+
     ContactModel {
         id: allContactsModel
 
         manager: root.manager
         sortOrders: root.sortOrders
         fetchHint: root.fetchHint
-
+        filter: root.filter
         onErrorChanged: {
             if (error) {
                 busyIndicator.busy = false
@@ -123,13 +132,13 @@ ContactSimpleListView {
         manager: root.manager
         sortOrders: root.sortOrders
         fetchHint: root.fetchHint
-        filter: DetailFilter {
-            id: favouritesFilter
-
-            detail: ContactDetail.Favorite
-            field: Favorite.Favorite
-            value: true
-            matchFlags: DetailFilter.MatchExactly
+        filter: IntersectionFilter {
+            filters: {
+                var filters = [favouritesFilter]
+                if (root.filter)
+                    filters.push(root.filter)
+                return filters
+            }
         }
 
         onErrorChanged: {
