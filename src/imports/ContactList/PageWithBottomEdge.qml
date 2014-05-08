@@ -58,11 +58,24 @@ Page {
     property alias bottomEdgeEnabled: bottomEdge.visible
     property int bottomEdgeExpandThreshold: page.height * 0.3
     property int bottomEdgeExposedArea: page.height - bottomEdge.y - tip.height
+    property bool reloadBottomEdgePage: true
 
     readonly property alias bottomEdgePage: edgeLoader.item
     readonly property bool isReady: (tip.opacity === 0.0)
 
     signal bottomEdgeReleased()
+    signal bottomEdgeDismissed()
+
+    function showBottomEdgePage(source, properties)
+    {
+        edgeLoader.setSource(source, properties)
+        bottomEdge.state = "expanded"
+    }
+
+    function setBottomEdgePage(source, properties)
+    {
+        edgeLoader.setSource(source, properties)
+    }
 
     onActiveChanged: {
         if (active) {
@@ -213,8 +226,9 @@ Page {
                     ScriptAction {
                         script: {
                             // destroy current bottom page
-                            edgeLoader.active = false
-
+                            if (page.reloadBottomEdgePage) {
+                                edgeLoader.active = false
+                            }
                             // FIXME: this is ugly, but the header is not updating the title correctly
                             var title = page.title
                             page.title = "Something else"
@@ -222,7 +236,10 @@ Page {
                             // fix for a bug in the sdk header
                             activeLeafNode = page
 
-                            // keep bottom page in memory
+                            // notify
+                            page.bottomEdgeDismissed()
+
+                            // load a new bottom page in memory
                             edgeLoader.active = true
                         }
                     }

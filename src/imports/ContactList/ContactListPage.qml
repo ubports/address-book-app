@@ -59,6 +59,10 @@ PageWithBottomEdge {
 
     //bottom edge page
     bottomEdgePageComponent: ContactEditor {
+        //WORKAROUND: SKD changes the page header as soon as the page get created
+        // this will avoid that
+        active: false
+
         model: contactList.listModel
         contact: mainPage.createEmptyContact("")
     }
@@ -241,6 +245,16 @@ PageWithBottomEdge {
         }
     }
 
+    // We need to reset the page proprerties in case of the page was created pre-populated,
+    // with phonenumber or contact.
+    onBottomEdgeDismissed: {
+        var newContact = mainPage.createEmptyContact("")
+        mainPage.setBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                                   {model: contactList.listModel,
+                                    contact: newContact,
+                                    active: false})
+    }
+
     Connections {
         target: pageStack
         onContactRequested: {
@@ -249,12 +263,21 @@ PageWithBottomEdge {
         }
         onCreateContactRequested: {
             var newContact = mainPage.createEmptyContact(phoneNumber)
-            pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                           {model: contactList.listModel, contact: newContact})
+            //WORKAROUND: SKD changes the page header as soon as the page get created
+            // this will avoid that
+            mainPage.showBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                                        {model: contactList.listModel,
+                                         contact: newContact,
+                                         active: false})
         }
         onEditContatRequested: {
-            pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                           {model: contactList.listModel, contactId: contactId, newPhoneNumber: phoneNumber })
+            //WORKAROUND: SKD changes the page header as soon as the page get created
+            // this will avoid that
+            mainPage.showBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                                       {model: contactList.listModel,
+                                        contactId: contactId,
+                                        newPhoneNumber: phoneNumber,
+                                        active: false})
         }
         onContactCreated: {
             mainPage.contactIndex = contact
