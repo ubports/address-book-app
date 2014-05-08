@@ -22,6 +22,7 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Contacts 0.1 as ContactsUI
 import Ubuntu.Components.Popups 0.1 as Popups
 import "../ContactEdit"
+import "../Common"
 
 PageWithBottomEdge {
     id: mainPage
@@ -60,8 +61,8 @@ PageWithBottomEdge {
     //bottom edge page
     bottomEdgePageComponent: ContactEditor {
         //WORKAROUND: SKD changes the page header as soon as the page get created
-        // this will avoid that
-        active: false
+        // setting active false will avoid that
+            active: false
 
         model: contactList.listModel
         contact: mainPage.createEmptyContact("")
@@ -84,6 +85,23 @@ PageWithBottomEdge {
                 mainPage.onlineAccountsMessageDialog = null
                 PopupUtils.close(onlineAccountsMessage)
                 application.unsetFirstRun()
+            }
+        }
+    }
+
+    Component {
+        id: removeContactDialog
+
+        RemoveContactsDialog {
+            id: removeContactsDialogMessage
+
+            onCanceled: {
+                PopupUtils.close(removeContactsDialogMessage)
+            }
+
+            onAccepted: {
+                removeContacts(contactList.listModel)
+                PopupUtils.close(removeContactsDialogMessage)
             }
         }
     }
@@ -130,11 +148,14 @@ PageWithBottomEdge {
                 exporter.contacts = contacts
                 exporter.start()
             } else {
-                var ids = []
-                for (var i=0; i < items.count; i++) {
-                    ids.push(items.get(i).model.contact.contactId)
+                var contacts = []
+
+                for (var i=0, iMax=items.count; i < iMax; i++) {
+                    contacts.push(items.get(i).model.contact)
                 }
-                contactList.listModel.removeContacts(ids)
+
+                var dialog = PopupUtils.open(removeContactDialog, null)
+                dialog.contacts = contacts
             }
         }
 
@@ -248,6 +269,8 @@ PageWithBottomEdge {
     // We need to reset the page proprerties in case of the page was created pre-populated,
     // with phonenumber or contact.
     onBottomEdgeDismissed: {
+        //WORKAROUND: SKD changes the page header as soon as the page get created
+        // setting active false will avoid that
         var newContact = mainPage.createEmptyContact("")
         mainPage.setBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
                                    {model: contactList.listModel,
@@ -264,7 +287,7 @@ PageWithBottomEdge {
         onCreateContactRequested: {
             var newContact = mainPage.createEmptyContact(phoneNumber)
             //WORKAROUND: SKD changes the page header as soon as the page get created
-            // this will avoid that
+            // setting active false will avoid that
             mainPage.showBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
                                         {model: contactList.listModel,
                                          contact: newContact,
@@ -272,7 +295,7 @@ PageWithBottomEdge {
         }
         onEditContatRequested: {
             //WORKAROUND: SKD changes the page header as soon as the page get created
-            // this will avoid that
+            // setting active false will avoid that
             mainPage.showBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
                                        {model: contactList.listModel,
                                         contactId: contactId,

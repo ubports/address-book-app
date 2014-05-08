@@ -93,7 +93,6 @@ ListItem.Empty {
     }
 
     highlightWhenPressed: false
-    focus: false
 
     Rectangle {
         anchors.fill: parent

@@ -3,6 +3,7 @@ set(CONTACT_COMMON_QMLS
     ContactDetailItem.qml
     ContactDetailGroupBase.qml
     ContactDetailGroupWithTypeBase.qml
+    RemoveContactsDialog.qml
 )
 
 install(FILES ${CONTACT_COMMON_QMLS}

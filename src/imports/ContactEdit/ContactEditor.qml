@@ -21,6 +21,8 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Contacts 0.1 as ContactsUI
 
+import "../Common"
+
 Page {
     id: contactEditor
     objectName: "contactEditorPage"
@@ -285,10 +287,10 @@ Page {
                         left: parent.left
                         right: parent.right
                     }
+
                     onClicked: {
-                        contactEditor.model.removeContact(contactEditor.contact.contactId)
-                        pageStack.pop() // editor page
-                        pageStack.pop() // view page
+                        var dialog = PopupUtils.open(removeContactDialog, null)
+                        dialog.contacts = [contactEditor.contact]
                     }
                 }
             }
@@ -347,6 +349,34 @@ Page {
     Component.onCompleted: {
         if (contactId !== "") {
             contactFetch.fetchContact(contactId)
+        }
+    }
+
+    Component {
+        id: removeContactDialog
+
+        RemoveContactsDialog {
+            id: removeContactsDialogMessage
+
+            property var popPages: false
+
+            onCanceled: {
+                PopupUtils.close(removeContactsDialogMessage)
+            }
+
+            onAccepted: {
+                popPages = true
+                removeContacts(contactEditor.model)
+                PopupUtils.close(removeContactsDialogMessage)
+            }
+
+            // WORKAROUND: SDK element crash if pop the page where the dialog was created
+            Component.onDestruction: {
+                if (popPages) {
+                    contactEditor.pageStack.pop() // editor page
+                    contactEditor.pageStack.pop() // view page
+                }
+            }
         }
     }
 }
