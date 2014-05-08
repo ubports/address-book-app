@@ -151,8 +151,8 @@ ListView {
             SortOrder {
                 id: sortOrder
 
-                detail: ContactDetail.Name
-                field: Name.FirstName
+                detail: ContactDetail.Tag
+                field: Tag.Name
                 direction: Qt.AscendingOrder
             }
         ]

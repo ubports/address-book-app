@@ -38,6 +38,24 @@ ContactDetailGroupWithTypeBase {
         root.newDetails = []
     }
 
+    function isEmpty() {
+        for(var i=0; i < detailDelegates.length; i++) {
+            var delegate = detailDelegates[i]
+
+            // Get item from Loader
+            if (delegate.item) {
+                delegate = delegate.item
+            }
+
+            if (delegate.isEmpty) {
+                if (!delegate.isEmpty()) {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+
     function save() {
         var changed = false
         var removedDetails = []
