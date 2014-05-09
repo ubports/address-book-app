@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 
@@ -71,6 +71,7 @@ FocusScope {
 
     onContactChanged: reloadDetails(true)
     onDetailTypeChanged: reloadDetails(true)
+
     Connections {
         target: root.contact
         onContactChanged: reloadDetails(false)
@@ -148,14 +149,24 @@ FocusScope {
                         newFields.push(detailItem.item)
                         root.newFieldAdded(detailItem.item)
                         root.inputFields = newFields
-                        if (item.focus && root.loaded) {
+                        if (item.focus && root.loaded && root.focus) {
                             item.forceActiveFocus()
                         }
                     }
                 }
+                activeFocusOnTab: true
             }
         }
     }
 
     Component.onCompleted: root.loaded = true
+
+    // reset focus back to first field
+    onActiveFocusChanged: {
+        if (!activeFocus) {
+            for(var i=0; i < detailFields.count; i++) {
+                detailFields.itemAt(i).focus = (i === 0)
+            }
+        }
+    }
 }

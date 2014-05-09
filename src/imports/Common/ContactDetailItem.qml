@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 
@@ -60,6 +60,15 @@ ContactDetailBase {
 
                 KeyNavigation.backtab : index > 0 ? fieldRepeater.itemAt(index - 1) : null
                 KeyNavigation.tab: index < fieldRepeater.count - 1 ? fieldRepeater.itemAt(index + 1) : null
+            }
+        }
+    }
+
+    // reset focus back to first field
+    onActiveFocusChanged: {
+        if (!activeFocus) {
+            for(var i=0; i < fieldRepeater.count; i++) {
+                fieldRepeater.itemAt(i).focus = (i === 0)
             }
         }
     }

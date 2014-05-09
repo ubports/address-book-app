@@ -21,7 +21,7 @@ Vcs-Bzr: https://code.launchpad.net/~phablet-team/address-book-app/trunk
 Vcs-Browser: http://bazaar.launchpad.net/~phablet-team/address-book-app/trunk/files
 
 Package: address-book-app
-Architecture: any
+Architecture: amd64 armhf i386
 Depends: libqt5contacts5,
          libqt5versit5,
          qmlscene,
@@ -29,6 +29,7 @@ Depends: libqt5contacts5,
          qtdeclarative5-ubuntu-contacts0.1 (= ${binary:Version}),
          qtdeclarative5-ubuntu-ui-toolkit-plugin | qtdeclarative5-ubuntu-ui-toolkit-plugin-gles,
          qtdeclarative5-ubuntu-content0.1,
+         qtdeclarative5-ubuntu-keyboard-extensions0.1,
          qtdeclarative5-qtcontacts-plugin,
          qtdeclarative5-qtquick2-plugin,
          ${misc:Depends},
@@ -50,7 +51,7 @@ Description: Qt Ubuntu Contacts Components - QML plugin
  This package contains the Ubuntu Contacts Components QML plugin.
 
 Package: address-book-app-dbg
-Architecture: any
+Architecture: amd64 armhf i386
 Section: debug
 Priority: extra
 Depends: address-book-app (= ${binary:Version}),

@@ -1,3 +1,28 @@
+address-book-app (0.2+14.10.20140508.1-0ubuntu1) utopic; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Colin Watson ]
+  * Only build address-book-app{,-dbg} on architectures where it is
+    installable, due to the new dependency on qtdeclarative5-ubuntu-
+    keyboard-extensions0.1.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Send a fake tab press and release when the return key is pressed.
+    Modify Enter key visuals to show "Next" when a Input field has
+    focus; (LP: #1231445)
+  * Does not focus contact first name when opening contact edit view.
+    (LP: #1268042)
+  * Avoid show online account welcome screen if the app is running with
+    arguments. (LP: #1306798)
+  * Used contact.DisplayLabel as label for contacts in contactlist. (LP:
+    #1235971)
+  * Avoid the click on edit toolbar get stole by elements on Flickable
+    area. (LP: #1312578)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 08 May 2014 15:46:36 +0000
+
 address-book-app (0.2+14.10.20140430-0ubuntu1) utopic; urgency=low
 
   [ Leo Arias ]
