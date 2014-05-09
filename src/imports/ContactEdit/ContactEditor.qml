@@ -311,9 +311,9 @@ Page {
         id: toolbar
 
         back: ToolbarButton {
-            objectName: "cancel"
-
             action: Action {
+                objectName: "cancel"
+
                 iconName: "close"
                 text: i18n.tr("Cancel")
                 onTriggered: contactEditor.cancel()
@@ -323,6 +323,7 @@ Page {
         ToolbarButton {
             action: Action {
                 objectName: "save"
+
                 iconName: "save"
                 text: i18n.tr("Save")
                 enabled: !nameEditor.isEmpty() || !phonesEditor.isEmpty()

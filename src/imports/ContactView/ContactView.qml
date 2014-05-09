@@ -177,9 +177,8 @@ Page {
 
     tools: ToolbarItems {
         ToolbarButton {
-            objectName: "edit"
-
             action: Action {
+                objectName: "edit"
                 text: i18n.tr("Edit")
                 iconSource: "artwork:/edit.png"
                 onTriggered: {
