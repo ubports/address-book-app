@@ -117,6 +117,7 @@ ContactDetailBase {
 
                 detail: root.detail
                 field: modelData
+                focus: true
                 placeholderText: root.placeholderTexts[index]
                 inputMethodHints: root.inputMethodHints
                 onActiveFocusChanged: root.active = activeFocus
