@@ -150,7 +150,6 @@ Page {
         }
     }
 
-    //flickable: null
     Flickable {
         id: scrollArea
         objectName: "scrollArea"
