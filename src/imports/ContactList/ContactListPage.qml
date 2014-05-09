@@ -115,7 +115,7 @@ PageWithBottomEdge {
         multipleSelection: !pickMode ||
                            ((contactContentHub && contactContentHub.multipleItems) || mainPage.pickMultipleContacts)
 
-        filter: DetailFilter {
+        DetailFilter {
             id: nameFilter
 
             detail: ContactDetail.DisplayLabel
@@ -123,6 +123,8 @@ PageWithBottomEdge {
             value: searchField.text
             matchFlags: DetailFilter.MatchContains
         }
+
+        filter: (searchField.text != "" ? nameFilter : null)
 
         anchors {
             // This extra margin is necessary because the toolbar area overlaps the last item in the view
