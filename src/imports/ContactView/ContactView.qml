@@ -56,7 +56,9 @@ Page {
 
         flickableDirection: Flickable.VerticalFlick
         anchors.fill: parent
-        contentHeight: contents.height
+        //WORKAROUND: There is a bug on SDK page that causes the page to appear flicked with small contents
+        // see bug #1223050
+        contentHeight: Math.max(contents.height, parent.height)
         contentWidth: parent.width
         visible: !busyIndicator.visible
 
