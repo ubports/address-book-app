@@ -62,6 +62,7 @@ Page {
 
     readonly property alias bottomEdgePage: edgeLoader.item
     readonly property bool isReady: (tip.opacity === 0.0)
+    readonly property bool isCollapsed: (tip.opacity === 1.0)
 
     signal bottomEdgeReleased()
     signal bottomEdgeDismissed()

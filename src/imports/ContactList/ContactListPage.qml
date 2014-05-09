@@ -63,7 +63,7 @@ PageWithBottomEdge {
     bottomEdgePageComponent: ContactEditor {
         //WORKAROUND: SKD changes the page header as soon as the page get created
         // setting active false will avoid that
-            active: false
+        active: false
 
         model: contactList.listModel
         contact: mainPage.createEmptyContact("")

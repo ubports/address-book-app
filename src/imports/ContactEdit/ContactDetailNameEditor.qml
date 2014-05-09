@@ -74,6 +74,7 @@ ContactDetailItem {
             root.emptyFields = newEmtpyFields
         }
 
+        focus: true
         width: root.width - units.gu(4)
         x: units.gu(2)
         detail: root.detail

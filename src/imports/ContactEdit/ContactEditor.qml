@@ -179,6 +179,7 @@ Page {
             ContactDetailNameEditor {
                 id: nameEditor
 
+
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -269,6 +270,7 @@ Page {
                 height: implicitHeight
             }
 
+            // We need this extra element to correct align the deleteButton
             Item {
                 anchors {
                     left: parent.left
@@ -311,9 +313,9 @@ Page {
         id: toolbar
 
         back: ToolbarButton {
-            objectName: "cancel"
-
             action: Action {
+                objectName: "cancel"
+
                 iconName: "close"
                 text: i18n.tr("Cancel")
                 onTriggered: contactEditor.cancel()
@@ -323,6 +325,7 @@ Page {
         ToolbarButton {
             action: Action {
                 objectName: "save"
+
                 iconName: "save"
                 text: i18n.tr("Save")
                 enabled: !nameEditor.isEmpty() || !phonesEditor.isEmpty()
@@ -349,6 +352,8 @@ Page {
     Component.onCompleted: {
         if (contactId !== "") {
             contactFetch.fetchContact(contactId)
+        } else if (isNewContact) {
+            nameEditor.forceActiveFocus()
         }
     }
 

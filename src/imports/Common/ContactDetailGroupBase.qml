@@ -148,7 +148,7 @@ FocusScope {
                         newFields.push(detailItem.item)
                         root.newFieldAdded(detailItem.item)
                         root.inputFields = newFields
-                        if (item.focus && root.loaded && root.focus) {
+                        if (root.loaded) {
                             item.forceActiveFocus()
                         }
                     }

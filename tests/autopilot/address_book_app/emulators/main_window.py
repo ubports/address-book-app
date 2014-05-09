@@ -63,8 +63,15 @@ class MainWindow(uitk.MainView):
         return None
 
     def get_contact_edit_page(self):
-        return self.wait_select_single(ContactEditor,
-                                       objectName="contactEditorPage")
+        # We can have two contact editor page because of bottom edge page
+        # but we will return only the actived one
+        pages = self.select_many(ContactEditor,
+                                 objectName="contactEditorPage")
+        for p in pages:
+            if p.active:
+                return p
+        return None
+
 
     def get_contact_view_page(self):
         return self.wait_select_single("ContactView",
@@ -85,6 +92,9 @@ class MainWindow(uitk.MainView):
         return self.wait_select_single("ContactListView",
                                        objectName="contactListView")
 
+    def get_button(self, buttonName):
+        return self.get_header()._get_action_button(buttonName)
+
     def cancel(self):
         """
         Press the 'Cancel' button
@@ -95,18 +105,16 @@ class MainWindow(uitk.MainView):
         """
         Press the 'Save' button
         """
+        bottom_swipe_page = self.get_contact_list_page()
         self.get_header().click_action_button("save")
-
-    def get_toolbar(self):
-        """Override base class so we get our expected Toolbar subclass."""
-        return self.select_single(Toolbar)
+        bottom_swipe_page.isCollapsed.wait_for(True)
 
     @autopilot_logging.log_action(logger.info)
     def go_to_add_contact(self):
         """
         Press the 'Add' button and return the contact editor page
         """
-        bottom_swipe_page = self.wait_select_single(ContactListPage, objectName='contactListPage')
+        bottom_swipe_page = self.get_contact_list_page()
         bottom_swipe_page.revel_bottom_edge_page()
         return self.get_contact_edit_page()
 
