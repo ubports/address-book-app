@@ -179,6 +179,7 @@ Page {
             ContactDetailNameEditor {
                 id: nameEditor
 
+
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -269,6 +270,7 @@ Page {
                 height: implicitHeight
             }
 
+            // We need this extra element to correct align the deleteButton
             Item {
                 anchors {
                     left: parent.left
@@ -350,6 +352,8 @@ Page {
     Component.onCompleted: {
         if (contactId !== "") {
             contactFetch.fetchContact(contactId)
+        } else if (isNewContact) {
+            nameEditor.forceActiveFocus()
         }
     }
 
