@@ -491,7 +491,14 @@ MultipleSelectionListView {
     ContactFetch {
         id: contactFetch
 
-        model: contactListView.listModel
+        //WORKAROUND: Use a different model to fetch contacts, due a bug on qtpim the contact get
+        // destroyed if you change the filter model
+        model: ContactModel {
+            id: contactsModel
+
+            manager: root.manager
+            autoUpdate: false
+        }
         onContactFetched: contactListView.contactClicked(contact)
     }
 
