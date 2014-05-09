@@ -48,6 +48,7 @@ FocusScope {
             makeMeVisible(root)
         }
         focus: true
+        anchors.fill: parent
 
         // WORKAROUND: For some reason TextField.focus property get reset to false
         // we need do a deep investigation on that
