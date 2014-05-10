@@ -87,8 +87,6 @@ MultipleSelectionListView {
     */
     property list<SortOrder> sortOrders : [
         SortOrder {
-            id: sortOrder
-
             detail: ContactDetail.Tag
             field: Tag.Tag
             direction: Qt.AscendingOrder

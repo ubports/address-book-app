@@ -69,7 +69,12 @@ ContactSimpleListView {
                 color: root.showFavourites ? UbuntuColors.warmGrey : UbuntuColors.orange
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: root.showFavourites = false
+                    onClicked: {
+                        //WORKAROUND: clear the model before start populate it with the new contacts
+                        //otherwise the model will wait for all contacts before show any new contact
+                        contactsModel._clearModel = true
+                        root.showFavourites = false
+                    }
                 }
             }
 
@@ -111,14 +116,31 @@ ContactSimpleListView {
         matchFlags: DetailFilter.MatchExactly
     }
 
+    DetailFilter {
+        id: invalidFilter
+
+        detail: ContactDetail.Version
+        field: Version.Version
+        value: "-1"
+        matchFlags: DetailFilter.MatchExactly
+    }
+
     ContactModel {
         id: contactsModel
+
+        property bool _clearModel: false
 
         manager: root.manager
         sortOrders: root.sortOrders
         fetchHint: root.fetchHint
         filter: IntersectionFilter {
             filters: {
+                //WORKAROUND: clear the model before start populate it with the new contacts
+                //otherwise the model will wait for all contacts before show any new contact
+                if (contactsModel._clearModel) {
+                    return [ invalidFilter ]
+                }
+
                 var filters = []
                 if (root.showFavourites) {
                     filters.push(favouritesFilter)
@@ -133,6 +155,16 @@ ContactSimpleListView {
             if (error) {
                 busyIndicator.busy = false
                 contactListView.error(error)
+            }
+        }
+        onContactsChanged: {
+            //WORKAROUND: clear the model before start populate it with the new contacts
+            //otherwise the model will wait for all contacts before show any new contact
+
+            //after all contacts get removed we can populate the model again, this will show
+            //new contacts as soon as it arrives in the model
+            if (contacts.length === 0 && contactsModel._clearModel) {
+                contactsModel._clearModel = false
             }
         }
     }
