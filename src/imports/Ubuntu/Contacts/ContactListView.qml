@@ -116,6 +116,10 @@ ContactSimpleListView {
         matchFlags: DetailFilter.MatchExactly
     }
 
+    //FIXME: enable it back when this get merged (https://codereview.qt-project.org/85112)
+//    InvalidFilter {
+//        id: invalidFilter
+//    }
     DetailFilter {
         id: invalidFilter
 
@@ -123,6 +127,21 @@ ContactSimpleListView {
         field: Version.Version
         value: "-1"
         matchFlags: DetailFilter.MatchExactly
+    }
+
+    IntersectionFilter {
+        id: contactsFilter
+
+        filters: {
+            var filters = []
+            if (root.showFavourites) {
+                filters.push(favouritesFilter)
+            }
+            if (root.filter) {
+                filters.push(root.filter)
+            }
+            return filters
+        }
     }
 
     ContactModel {
@@ -133,24 +152,7 @@ ContactSimpleListView {
         manager: root.manager
         sortOrders: root.sortOrders
         fetchHint: root.fetchHint
-        filter: IntersectionFilter {
-            filters: {
-                //WORKAROUND: clear the model before start populate it with the new contacts
-                //otherwise the model will wait for all contacts before show any new contact
-                if (contactsModel._clearModel) {
-                    return [ invalidFilter ]
-                }
-
-                var filters = []
-                if (root.showFavourites) {
-                    filters.push(favouritesFilter)
-                }
-                if (root.filter) {
-                    filters.push(root.filter)
-                }
-                return filters
-            }
-        }
+        filter: contactsModel._clearModel ? invalidFilter : contactsFilter
         onErrorChanged: {
             if (error) {
                 busyIndicator.busy = false
@@ -163,7 +165,7 @@ ContactSimpleListView {
 
             //after all contacts get removed we can populate the model again, this will show
             //new contacts as soon as it arrives in the model
-            if (contacts.length === 0 && contactsModel._clearModel) {
+            if (contactsModel._clearModel && contacts.length === 0) {
                 contactsModel._clearModel = false
             }
         }
