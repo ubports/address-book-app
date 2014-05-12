@@ -105,7 +105,6 @@ class MainWindow(uitk.MainView):
             objectName="scrollArea")
         
         while (header.y != 0):
-
             globalRect = flickable.globalRect
             start_x = globalRect.x + (globalRect.width * 0.5)
             start_y = globalRect.y + (flickable.height * 0.1)

@@ -26,6 +26,10 @@ class ContactListPage(uitk.UbuntuUIToolkitEmulatorBase):
         self.selected_marks = []
         super(ContactListPage, self).__init__(*args)
 
+    def get_list_view(self):
+        return self.wait_select_single("ContactListView",
+                                       objectName="contactListView")
+
     def get_contacts(self):
         """
         Returns a list of ContactDelegate objects and populate
@@ -41,15 +45,27 @@ class ContactListPage(uitk.UbuntuUIToolkitEmulatorBase):
             self.selection_marks.append(mark)
         return self.contacts
 
+    def start_selection(self, index):
+        view = self.get_list_view()
+        if not view.isInSelectionMode:
+            contacts = self.select_many("ContactDelegate")
+            self.pointing_device.move_to_object(contacts[0])
+            self.pointing_device.press()
+            time.sleep(2.0)
+            self.pointing_device.release()
+        view.isInSelectionMode.wait_for(True)
+
+
     def select_contacts_by_index(self, indices):
         """ Select contacts corresponding to the list of index in indices
 
         :param indices: List of integers
         """
         self.deselect_all()
+        self.start_selection(indices[0])
 
         # Select matching indices
-        for idx in indices:
+        for idx in indices[1:]:
             self.selected_marks.append(self.selection_marks[idx])
             self.pointing_device.click_object(self.selection_marks[idx])
 

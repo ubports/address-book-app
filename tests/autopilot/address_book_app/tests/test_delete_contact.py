@@ -8,8 +8,8 @@
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
 
+import time
 from testtools.matchers import Equals
-
 from address_book_app.tests import AddressBookAppTestCase
 
 
@@ -39,7 +39,7 @@ class TestDeleteSelectContact(AddressBookAppTestCase):
     def setUp(self):
         AddressBookAppTestCase.PRELOAD_VCARD = True
         super(TestDeleteSelectContact, self).setUp()
-
+    
     def test_select(self):
         """
         Delete a contact in pick mode
@@ -49,7 +49,6 @@ class TestDeleteSelectContact(AddressBookAppTestCase):
         contact in the list before and after the action.
         Note that it doesn't check which contact has been deleted.
         """
-        self.main_window.open_toolbar().click_select()
         listpage = self.main_window.get_contact_list_page()
         contacts_before = listpage.get_contacts()
 
