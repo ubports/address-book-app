@@ -38,8 +38,7 @@ class TestCreateNewContactFromURI(AddressBookAppTestCase):
         self.type_on_field(lastNameField, "de Tal")
 
         # save the contact
-        acceptButton = self.main_window.get_button("accept")
-        self.pointing_device.click_object(acceptButton)
+        acceptButton = self.main_window.save()
 
         # open contact view
         contacts = self.main_window.select_many("ContactDelegate")
