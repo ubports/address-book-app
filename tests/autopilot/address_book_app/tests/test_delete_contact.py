@@ -8,7 +8,6 @@
 # under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
 
-import time
 from testtools.matchers import Equals
 from address_book_app.tests import AddressBookAppTestCase
 
@@ -25,9 +24,6 @@ class TestDeleteSelectContact(AddressBookAppTestCase):
         ("multiple_cancel", {
             "select": [1, 2],
             "action": "cancel"}),
-        ("none_delete", {
-            "select": [],
-            "action": "delete"}),
         ("single_delete", {
             "select": [1],
             "action": "delete"}),
@@ -55,9 +51,9 @@ class TestDeleteSelectContact(AddressBookAppTestCase):
         listpage.select_contacts_by_index(self.select)
         deleted = []
         if self.action == "cancel":
-            listpage.cancel()
+            self.main_window.cancel()
         elif self.action == "delete":
-            listpage.delete()
+            listpage.delete(self.main_window)
             deleted = self.select
 
         contacts_after = listpage.get_contacts()

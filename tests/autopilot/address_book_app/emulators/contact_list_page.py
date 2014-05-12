@@ -26,7 +26,7 @@ class ContactListPage(uitk.UbuntuUIToolkitEmulatorBase):
         self.selected_marks = []
         super(ContactListPage, self).__init__(*args)
 
-    def get_list_view(self):
+    def _get_list_view(self):
         return self.wait_select_single("ContactListView",
                                        objectName="contactListView")
 
@@ -45,15 +45,19 @@ class ContactListPage(uitk.UbuntuUIToolkitEmulatorBase):
             self.selection_marks.append(mark)
         return self.contacts
 
-    def start_selection(self, index):
-        view = self.get_list_view()
+    def start_selection(self, idx):
+        view = self._get_list_view()
         if not view.isInSelectionMode:
-            contacts = self.select_many("ContactDelegate")
-            self.pointing_device.move_to_object(contacts[0])
+            self.get_contacts()
+            self.selected_marks.append(self.selection_marks[idx])
+            self.pointing_device.move_to_object(self.contacts[idx])
             self.pointing_device.press()
-            time.sleep(2.0)
+            sleep(2.0)
             self.pointing_device.release()
-        view.isInSelectionMode.wait_for(True)
+            view.isInSelectionMode.wait_for(True)
+        else:
+            self.selected_marks.append(self.selection_marks[idx])
+            self.pointing_device.click_object(self.selection_marks[idx])
 
 
     def select_contacts_by_index(self, indices):
@@ -62,12 +66,13 @@ class ContactListPage(uitk.UbuntuUIToolkitEmulatorBase):
         :param indices: List of integers
         """
         self.deselect_all()
-        self.start_selection(indices[0])
+        if len(indices) > 0:
+            self.start_selection(indices[0])
 
-        # Select matching indices
-        for idx in indices[1:]:
-            self.selected_marks.append(self.selection_marks[idx])
-            self.pointing_device.click_object(self.selection_marks[idx])
+            # Select matching indices
+            for idx in indices[1:]:
+                self.selected_marks.append(self.selection_marks[idx])
+                self.pointing_device.click_object(self.selection_marks[idx])
 
     def deselect_all(self):
         """Deselect every contacts"""
@@ -79,13 +84,17 @@ class ContactListPage(uitk.UbuntuUIToolkitEmulatorBase):
                                              objectName="selectionMark")
                 self.pointing_device.click_object(mark)
 
-    def click_button(self, objectname):
+    def click_button(self, parent, objectname):
         """Press a button that matches objectname
 
         :param objectname: Name of the object
         """
+        if parent:
+            obj = parent
+        else:
+            obj = self
         try:
-            buttons = self.select_many("Button",
+            buttons = obj.select_many("Button",
                                        objectName=objectname)
             for button in buttons:
                 if button.visible:
@@ -96,11 +105,9 @@ class ContactListPage(uitk.UbuntuUIToolkitEmulatorBase):
             )
             raise
 
-    def cancel(self):
-        """Press the cancel button displayed when pick mode is enabled"""
-        self.click_button("DialogButtons.rejectButton")
+    def delete(self, main_window):
+        main_window.done_selection()
+        dialog = main_window.wait_select_single("RemoveContactsDialog",
+            objectName="removeContactsDialog")
+        self.click_button(main_window, "removeContactsDialog.Yes")
 
-    def delete(self):
-        """Press the delete button displayed when pick mode is enabled"""
-        self.click_button("DialogButtons.acceptButton")
-        self.get_contacts()

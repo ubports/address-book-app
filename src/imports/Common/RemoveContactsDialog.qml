@@ -19,6 +19,8 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1 as Popups
 
 Popups.Dialog {
+    objectName: "removeContactsDialog"
+
     property var contacts: []
 
     signal canceled()
@@ -51,6 +53,7 @@ Popups.Dialog {
     }
 
     Button {
+        objectName: "removeContactsDialog.Yes"
         anchors {
             left: parent.left
             right: parent.right
@@ -61,6 +64,7 @@ Popups.Dialog {
     }
 
     Button {
+        objectName: "removeContactsDialog.No"
         anchors {
             left: parent.left
             right: parent.right

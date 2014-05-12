@@ -9,12 +9,13 @@
 # by the Free Software Foundation.
 
 import logging
+from address_book_app.emulators.contact_list_page import ContactListPage
 from autopilot.introspection.dbus import StateNotFoundError
 from ubuntuuitoolkit import emulators as toolkit_emulators
 
 logger = logging.getLogger(__name__)
       
-class PageWithBottomEdge(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+class PageWithBottomEdge(ContactListPage):
     """An emulator class that makes it easy to interact with the bottom edge
        swipe page"""
     def __init__(self, *args):
