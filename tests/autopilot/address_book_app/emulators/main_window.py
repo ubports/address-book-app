@@ -64,6 +64,8 @@ class MainWindow(uitk.MainView):
     def get_contact_edit_page(self):
         # We can have two contact editor page because of bottom edge page
         # but we will return only the actived one
+        list_page = self.get_contact_list_page()
+        list_page.bottomEdgePageLoaded.wait_for(True)
         pages = self.select_many(ContactEditor,
                                  objectName="contactEditorPage")
         for p in pages:
