@@ -9,9 +9,8 @@ import collections
 import logging
 import time
 
-from address_book_app.emulators.contact_list_page import ContactListPage
-from address_book_app.emulators.toolbar import Toolbar
 from autopilot import logging as autopilot_logging
+from autopilot.introspection.dbus import StateNotFoundError
 from ubuntuuitoolkit import emulators as uitk
 
 from address_book_app import data
@@ -65,11 +64,17 @@ class MainWindow(uitk.MainView):
     def get_contact_edit_page(self):
         # We can have two contact editor page because of bottom edge page
         # but we will return only the actived one
+        list_page = self.get_contact_list_page()
+        list_page.bottomEdgePageLoaded.wait_for(True)
+        if not list_page.isReady:
+            raise StateNotFoundError('contactEditorPage not ready')
+            
         pages = self.select_many(ContactEditor,
                                  objectName="contactEditorPage")
         for p in pages:
             if p.active:
                 return p
+        raise StateNotFoundError('contactEditorPage not found')
         return None
 
 
@@ -95,18 +100,47 @@ class MainWindow(uitk.MainView):
     def get_button(self, buttonName):
         return self.get_header()._get_action_button(buttonName)
 
+    def open_header(self):
+        header = self.get_header()
+        if (header.y != 0):
+            edit_page = self.get_contact_edit_page()
+            flickable = edit_page.wait_select_single(
+                "QQuickFlickable",
+                objectName="scrollArea")
+            
+            while (header.y != 0):
+                globalRect = flickable.globalRect
+                start_x = globalRect.x + (globalRect.width * 0.5)
+                start_y = globalRect.y + (flickable.height * 0.1)
+                stop_y = start_y + (flickable.height * 0.1)
+
+                self.pointing_device.drag(start_x, start_y, start_x, stop_y, rate=5)
+                # wait flicking stops to move to the next field
+                flickable.flicking.wait_for(False)
+
+        return header
+
     def cancel(self):
         """
         Press the 'Cancel' button
         """
-        self.get_header().click_custom_back_button()
+        header = self.open_header()
+        header.click_custom_back_button()
 
     def save(self):
         """
         Press the 'Save' button
-        """
+        """        
         bottom_swipe_page = self.get_contact_list_page()
-        self.get_header().click_action_button("save")
+        self.click_action_button("save")
+        bottom_swipe_page.isCollapsed.wait_for(True)
+
+    def done_selection(self):
+        """
+        Press the 'doneSelection' button
+        """        
+        bottom_swipe_page = self.get_contact_list_page()
+        self.click_action_button("doneSelection")
         bottom_swipe_page.isCollapsed.wait_for(True)
 
     @autopilot_logging.log_action(logger.info)

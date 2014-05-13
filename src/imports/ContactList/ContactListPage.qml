@@ -223,9 +223,8 @@ PageWithBottomEdge {
         }
 
         ToolbarButton {
-            objectName: "SelectAll"
-
             action: Action {
+                objectName: "selectAll"
                 text: i18n.tr("Select All")
                 iconName: "filter"
                 onTriggered: contactList.selectAll()
@@ -234,9 +233,9 @@ PageWithBottomEdge {
         }
 
         ToolbarButton {
-            objectName: "DoneSelection"
 
             action: Action {
+                objectName: "doneSelection"
                 text: mainPage.pickMode ? i18n.tr("Select") : i18n.tr("Delete")
                 iconName: mainPage.pickMode ? "select" : "delete"
                 onTriggered: contactList.endSelection()

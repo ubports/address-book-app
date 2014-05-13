@@ -52,7 +52,7 @@ class TestAddContact(AddressBookAppTestCase):
         contact_editor = self.main_window.go_to_add_contact()
 
         # Try to save a empty contact
-        acceptButton = self.main_window.get_button("accept")
+        acceptButton = self.main_window.get_button("save")
 
         # Save button must be disabled
         self.assertThat(acceptButton.enabled, Eventually(Equals(False)))

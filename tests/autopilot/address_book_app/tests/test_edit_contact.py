@@ -52,10 +52,10 @@ class TestEditContact(AddressBookAppTestCase):
 
     def test_remove_phone(self):
         self.add_contact("Fulano", "de Tal", ["3321 2300", "3321 2301"])
-        self.edit_contact(0)
+        edit_page = self.edit_contact(0)
 
         # clear phone 1
-        phone_number_1 = self.main_window.select_single(
+        phone_number_1 = edit_page.select_single(
             "TextInputDetail",
             objectName="phoneNumber_1")
         self.clear_text_on_field(phone_number_1)
@@ -162,7 +162,7 @@ class TestEditContact(AddressBookAppTestCase):
         edit_page = self.edit_contact(0)
 
         # Change Im type
-        im_value_selector = self.main_window.select_single(
+        im_value_selector = edit_page.select_single(
             "ValueSelector",
             objectName="type_onlineAccount_0")
         self.pointing_device.click_object(im_value_selector)

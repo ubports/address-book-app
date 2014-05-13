@@ -35,18 +35,18 @@ FocusScope {
     property alias placeholderText: field.placeholderText
     property alias inputMethodHints: field.inputMethodHints
     property alias text: field.text
+    property alias hasClearButton: field.hasClearButton
 
     signal removeClicked()
 
     //FIXME: Move this property to TextField as soon as the SDK get ported to QtQuick 2.2
     activeFocusOnTab: true
 
+
     TextField {
         id: field
 
-        Component.onCompleted: {
-            makeMeVisible(root)
-        }
+
         focus: true
         anchors.fill: parent
 

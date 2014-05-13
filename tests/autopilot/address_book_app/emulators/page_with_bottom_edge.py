@@ -9,12 +9,13 @@
 # by the Free Software Foundation.
 
 import logging
+from address_book_app.emulators.contact_list_page import ContactListPage
 from autopilot.introspection.dbus import StateNotFoundError
 from ubuntuuitoolkit import emulators as toolkit_emulators
 
 logger = logging.getLogger(__name__)
       
-class PageWithBottomEdge(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
+class PageWithBottomEdge(ContactListPage):
     """An emulator class that makes it easy to interact with the bottom edge
        swipe page"""
     def __init__(self, *args):
@@ -22,12 +23,13 @@ class PageWithBottomEdge(toolkit_emulators.UbuntuUIToolkitEmulatorBase):
 
     def revel_bottom_edge_page(self):
         """Bring the bottom edge page to the screen"""
+        self.bottomEdgePageLoaded.wait_for(True)
         try:
             action_item = self.wait_select_single('QQuickItem', objectName='bottomEdgeTip')
             start_x = action_item.globalRect.x + (action_item.globalRect.width * 0.5)
             start_y = action_item.globalRect.y + (action_item.height * 0.5)
-            stop_y = start_y - (self.height * 0.5)
-            self.pointing_device.drag(start_x, start_y, start_x, stop_y, rate=5)
+            stop_y = start_y - (self.height * 0.7)
+            self.pointing_device.drag(start_x, start_y, start_x, stop_y, rate=2)
             self.isReady.wait_for(True)
         except StateNotFoundError:
             logger.error('ButtomEdge element not found.')

@@ -93,17 +93,17 @@ Page {
         }
 
         activeItem = item
-        var position = scrollArea.contentItem.mapFromItem(item, 0, 0);
+        var position = scrollArea.contentItem.mapFromItem(item, 0, activeItem.y);
 
         // check if the item is already visible
         var bottomY = scrollArea.contentY + scrollArea.height
-        var itemBottom = position.y + item.height
+        var itemBottom = position.y + (item.height * 3) // extra margin
         if (position.y >= scrollArea.contentY && itemBottom <= bottomY) {
             return;
         }
 
         // if it is not, try to scroll and make it visible
-        var targetY = position.y + item.height - scrollArea.height
+        var targetY = itemBottom - scrollArea.height
         if (targetY >= 0 && position.y) {
             scrollArea.contentY = targetY;
         } else if (position.y < scrollArea.contentY) {
@@ -150,7 +150,6 @@ Page {
         }
     }
 
-    //flickable: null
     Flickable {
         id: scrollArea
         objectName: "scrollArea"
