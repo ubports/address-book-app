@@ -23,6 +23,9 @@ class TestCreateNewContactFromURI(AddressBookAppTestCase):
         super(TestCreateNewContactFromURI, self).setUp()
 
     def test_save_new_contact(self):
+        list_page = self.main_window.get_contact_list_page()
+        list_page.isReady.wait_for(True)
+        
         edit_page = self.main_window.get_contact_edit_page()
         self.assertThat(edit_page.visible, Eventually(Equals(True)))
 

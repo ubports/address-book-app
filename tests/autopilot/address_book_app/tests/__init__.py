@@ -45,6 +45,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
             self.app_bin = AddressBookAppTestCase.DEFAULT_DEV_LOCATION
 
         os.environ['QTCONTACTS_MANAGER_OVERRIDE'] = 'memory'
+        os.environ['ADDRESS_BOOK_APP_ICON_THEME'] = 'ubuntu-mobile'
         vcard_data = ""
         if AddressBookAppTestCase.PRELOAD_VCARD:
             # Use vcard from source tree and fallback on installed vcard (from
@@ -88,7 +89,6 @@ class AddressBookAppTestCase(AutopilotTestCase):
     def launch_test_installed(self):
         df = "/usr/share/applications/address-book-app.desktop"
         self.ARGS.append("--desktop_file_hint=" + df)
-        self.ARGS.append("ADDRESS_BOOK_APP_ICON_THEME=ubuntu-mobile")
         self.app = self.launch_test_application(
             "address-book-app",
             *AddressBookAppTestCase.ARGS,
