@@ -81,13 +81,15 @@ Page {
     readonly property bool isCollapsed: (tip.opacity === 1.0)
     readonly property bool bottomEdgePageLoaded: (edgeLoader.status == Loader.Ready)
 
+    property bool _showEdgePageWhenReady: false
+
     signal bottomEdgeReleased()
     signal bottomEdgeDismissed()
 
     function showBottomEdgePage(source, properties)
     {
         edgeLoader.setSource(source, properties)
-        bottomEdge.state = "expanded"
+        _showEdgePageWhenReady = true
     }
 
     function setBottomEdgePage(source, properties)
@@ -98,6 +100,13 @@ Page {
     onActiveChanged: {
         if (active) {
             bottomEdge.state = "collapsed"
+        }
+    }
+
+    onBottomEdgePageLoadedChanged: {
+        if (_showEdgePageWhenReady && bottomEdgePageLoaded) {
+            bottomEdge.state = "expanded"
+            _showEdgePageWhenReady = false
         }
     }
 
