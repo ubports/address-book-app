@@ -8,12 +8,12 @@ Build-Depends: cmake,
                libcontent-hub-dev,
                libgl1-mesa-dev | libgl-dev,
                libgles2-mesa-dev,
-               python,
+               python3,
                pkg-config,
                qt5-default,
                qtbase5-dev,
                qtdeclarative5-dev,
-Standards-Version: 3.9.4
+Standards-Version: 3.9.5
 Homepage: https://launchpad.net/address-book-app
 # If you aren't a member of ~phablet-team but need to upload packaging changes,
 # just go ahead. ~phablet-team will notice and sync up the code again.
@@ -65,6 +65,7 @@ Package: address-book-app-autopilot
 Architecture: all
 Depends: ${misc:Depends},
          ${shlibs:Depends},
+         python3-autopilot,
          libautopilot-qt,
          libqt5test5,
          libqt5widgets5,
