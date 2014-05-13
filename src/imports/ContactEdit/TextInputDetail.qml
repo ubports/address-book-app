@@ -36,7 +36,6 @@ PhoneNumberField {
     defaultRegion: i18n.tr("US")
     autoFormat: false
 
-    Component.onCompleted: makeMeVisible(root)
     // Ubuntu.Keyboard
     InputMethod.extensions: { "enterKeyText": i18n.tr("Next") }
 
