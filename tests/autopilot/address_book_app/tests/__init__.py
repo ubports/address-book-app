@@ -88,6 +88,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
     def launch_test_installed(self):
         df = "/usr/share/applications/address-book-app.desktop"
         self.ARGS.append("--desktop_file_hint=" + df)
+        self.ARGS.append("ADDRESS_BOOK_APP_ICON_THEME=ubuntu-mobile")
         self.app = self.launch_test_application(
             "address-book-app",
             *AddressBookAppTestCase.ARGS,
