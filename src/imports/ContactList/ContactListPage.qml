@@ -262,22 +262,41 @@ PageWithBottomEdge {
             objectName: "Search"
             action: Action {
                 text: i18n.tr("Search")
+                visible: !mainPage.searching
                 iconName: "search"
                 onTriggered: {
-                    mainPage.searching = !mainPage.searching
-                    if (mainPage.searching) {
-                        searchField.forceActiveFocus()
-                    } else {
-                        searchField.text = ""
-                    }
+                    mainPage.searching = true
+                    searchField.forceActiveFocus()
                 }
             }
         }
     }
+
+    ToolbarItems {
+        id: toolbarItemsSearch
+
+        visible: false
+        back: ToolbarButton {
+            visible: false
+            action: Action {
+                objectName: "cancelSearch"
+
+                visible: mainPage.searching
+                iconName: "close"
+                text: i18n.tr("Cancel")
+                onTriggered: {
+                    searchField.text = ""
+                    mainPage.searching = false
+                }
+            }
+        }
+    }
+
     TextField {
         id: searchField
 
         visible: mainPage.searching
+        hasClearButton: false
         anchors {
             left: parent.left
             topMargin: units.gu(1.5)
@@ -289,7 +308,15 @@ PageWithBottomEdge {
 
     __customHeaderContents: mainPage.searching ? searchField : null
 
-    tools: contactList.isInSelectionMode ? toolbarItemsSelectionMode : toolbarItemsNormalMode
+    tools: {
+        if (contactList.isInSelectionMode) {
+            return toolbarItemsSelectionMode
+        } else if (mainPage.searching) {
+            return toolbarItemsSearch
+        } else {
+            return toolbarItemsNormalMode
+        }
+    }
 
     // WORKAROUND: Avoid the gap btw the header and the contact list when the list moves
     // see bug #1296764
