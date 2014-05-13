@@ -12,7 +12,6 @@ import time
 from autopilot import logging as autopilot_logging
 from autopilot.introspection.dbus import StateNotFoundError
 from ubuntuuitoolkit import emulators as uitk
-
 from address_book_app import data
 from address_book_app.emulators.page_with_bottom_edge import ContactListPage
 
@@ -139,6 +138,10 @@ class MainWindow(uitk.MainView):
         bottom_swipe_page = self.get_contact_list_page()
         self.click_action_button("doneSelection")
         bottom_swipe_page.isCollapsed.wait_for(True)
+
+    def get_toolbar(self):
+        """Override base class so we get our expected Toolbar subclass."""
+        return self.select_single(Toolbar)
 
     @autopilot_logging.log_action(logger.info)
     def go_to_add_contact(self):
