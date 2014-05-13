@@ -66,9 +66,6 @@ class MainWindow(uitk.MainView):
         # but we will return only the actived one
         list_page = self.get_contact_list_page()
         list_page.bottomEdgePageLoaded.wait_for(True)
-        if not list_page.isReady:
-            raise StateNotFoundError('contactEditorPage not ready')
-            
         pages = self.select_many(ContactEditor,
                                  objectName="contactEditorPage")
         for p in pages:
