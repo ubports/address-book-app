@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import Ubuntu.Components 0.1
 import QtContacts 5.0 as QtContacts
 import Ubuntu.Components.ListItems 0.1 as ListItem
@@ -37,6 +37,24 @@ ContactDetailGroupWithTypeBase {
             root.contact.removeDetail(root.newDetails[i])
         }
         root.newDetails = []
+    }
+
+    function isEmpty() {
+        for(var i=0; i < detailDelegates.length; i++) {
+            var delegate = detailDelegates[i]
+
+            // Get item from Loader
+            if (delegate.item) {
+                delegate = delegate.item
+            }
+
+            if (delegate.isEmpty) {
+                if (!delegate.isEmpty()) {
+                    return false
+                }
+            }
+        }
+        return true
     }
 
     function save() {
@@ -78,7 +96,7 @@ ContactDetailGroupWithTypeBase {
         return changed
     }
 
-    focus: true
+    activeFocusOnTab: detailsCount > 0
     minimumHeight: units.gu(5)
     headerDelegate: ListItem.Empty {
         id: header

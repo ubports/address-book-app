@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import Ubuntu.Components 0.1
 import QtContacts 5.0 as QtContacts
 
@@ -23,11 +23,10 @@ import "../Common"
 ContactDetailItem {
     id: root
 
-    property bool isEmpty: (fields == -1) || (emptyFields.length === fields.length)
     property variant emptyFields: []
 
     function isEmpty() {
-        return false
+        return (fields == -1) || (emptyFields.length === fields.length)
     }
 
     function save() {

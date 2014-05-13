@@ -20,7 +20,8 @@ var _sections = [];
 
 function sectionValueForContact(contact) {
     if (contact) {
-        return contact.tag.tag
+        var section = contact.tag.tag.charAt(0).toUpperCase()
+        return (section === "" ? "#" : section)
     } else {
         return null
     }

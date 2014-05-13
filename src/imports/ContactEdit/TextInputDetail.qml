@@ -14,7 +14,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
+import QtQuick 2.2
+import Ubuntu.Components 0.1
+import Ubuntu.Keyboard 0.1
 import Ubuntu.Telephony.PhoneNumber 0.1
 
 //style
@@ -33,6 +35,10 @@ PhoneNumberField {
     // the supported values can be found in: https://www.iso.org/obp/ui/#search
     defaultRegion: i18n.tr("US")
     autoFormat: false
+
+    Component.onCompleted: makeMeVisible(root)
+    // Ubuntu.Keyboard
+    InputMethod.extensions: { "enterKeyText": i18n.tr("Next") }
 
     readOnly: detail ? detail.readOnly : true
     focus: true
@@ -55,4 +61,6 @@ PhoneNumberField {
         family: "Ubuntu"
         pixelSize: activeFocus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
     }
+
+    Keys.onReturnPressed: application.sendTabEvent();
 }

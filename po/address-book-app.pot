@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-24 11:12-0300\n"
+"POT-Creation-Date: 2014-05-13 15:51-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/imports/ContactList/ContactListPage.qml:192
+#: src/imports/ContactList/ContactListPage.qml:193
 msgid "Add"
 msgstr ""
 
@@ -39,8 +39,8 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: src/imports/ContactEdit/ContactEditor.qml:297
-#: src/imports/ContactEdit/EditToolbar.qml:37
+#: src/imports/ContactEdit/ContactEditor.qml:300
+#: src/imports/ContactEdit/EditToolbar.qml:42
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:37
 msgid "Cancel"
 msgstr ""
@@ -50,7 +50,7 @@ msgid "Contact not found"
 msgstr ""
 
 #: data/address-book-app.desktop.in:6 data/address-book-app.desktop.in:7
-#: src/imports/ContactList/ContactListPage.qml:56
+#: src/imports/ContactList/ContactListPage.qml:57
 msgid "Contacts"
 msgstr ""
 
@@ -62,13 +62,13 @@ msgstr ""
 msgid "Country"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:82
+#: src/imports/ContactList/ContactListPage.qml:83
 #: src/imports/ContactView/ContactView.qml:181
-#: src/imports/Ubuntu/Contacts/ContactSimpleListView.qml:280
+#: src/imports/Ubuntu/Contacts/ContactSimpleListView.qml:288
 msgid "Delete"
 msgstr ""
 
-#: src/imports/ContactEdit/EditToolbar.qml:52
+#: src/imports/ContactEdit/EditToolbar.qml:57
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:53
 msgid "Done"
 msgstr ""
@@ -108,7 +108,7 @@ msgstr ""
 msgid "Favourites"
 msgstr ""
 
-#: src/imports/ContactEdit/ContactDetailNameEditor.qml:82
+#: src/imports/ContactEdit/ContactDetailNameEditor.qml:81
 msgid "First name"
 msgstr ""
 
@@ -129,7 +129,7 @@ msgstr ""
 msgid "Jabber"
 msgstr ""
 
-#: src/imports/ContactEdit/ContactDetailNameEditor.qml:82
+#: src/imports/ContactEdit/ContactDetailNameEditor.qml:81
 msgid "Last name"
 msgstr ""
 
@@ -137,7 +137,7 @@ msgstr ""
 msgid "Loading"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:162
+#: src/imports/ContactList/ContactListPage.qml:163
 msgid "Loading..."
 msgstr ""
 
@@ -151,6 +151,10 @@ msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:98
 msgid "Mobile"
+msgstr ""
+
+#: src/imports/ContactEdit/TextInputDetail.qml:46
+msgid "Next"
 msgstr ""
 
 #: src/imports/ContactList/OnlineAccountsMessage.qml:48
@@ -188,12 +192,12 @@ msgstr ""
 msgid "Role"
 msgstr ""
 
-#: src/imports/ContactEdit/ContactEditor.qml:292
+#: src/imports/ContactEdit/ContactEditor.qml:295
 msgid "Save"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:82
-#: src/imports/ContactList/ContactListPage.qml:184
+#: src/imports/ContactList/ContactListPage.qml:83
+#: src/imports/ContactList/ContactListPage.qml:185
 msgid "Select"
 msgstr ""
 
@@ -209,15 +213,15 @@ msgstr ""
 msgid "Street"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:175
+#: src/imports/ContactList/ContactListPage.qml:176
 msgid "Sync"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:175
+#: src/imports/ContactList/ContactListPage.qml:176
 msgid "Syncing"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:162
+#: src/imports/ContactList/ContactListPage.qml:163
 msgid "Syncing..."
 msgstr ""
 
@@ -231,7 +235,7 @@ msgstr ""
 
 #. TRANSLATORS: This value is used as default value for phone number format, when no coutry code is provided
 #. the supported values can be found in: https://www.iso.org/obp/ui/#search
-#: src/imports/ContactEdit/TextInputDetail.qml:34
+#: src/imports/ContactEdit/TextInputDetail.qml:41
 msgid "US"
 msgstr ""
 

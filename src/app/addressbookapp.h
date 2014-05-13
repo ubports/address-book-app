@@ -51,6 +51,7 @@ public Q_SLOTS:
     void returnVcard(const QUrl &url);
     bool isFirstRun() const;
     void unsetFirstRun() const;
+    void sendTabEvent() const;
 
     // sync monitor
     void startSync() const;
@@ -67,6 +68,7 @@ private:
     bool m_viewReady;
     bool m_pickingMode;
     bool m_testMode;
+    bool m_withArgs;
 };
 
 #endif

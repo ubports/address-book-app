@@ -8,12 +8,12 @@ Build-Depends: cmake,
                libcontent-hub-dev,
                libgl1-mesa-dev | libgl-dev,
                libgles2-mesa-dev,
-               python,
+               python3,
                pkg-config,
                qt5-default,
                qtbase5-dev,
                qtdeclarative5-dev,
-Standards-Version: 3.9.4
+Standards-Version: 3.9.5
 Homepage: https://launchpad.net/address-book-app
 # If you aren't a member of ~phablet-team but need to upload packaging changes,
 # just go ahead. ~phablet-team will notice and sync up the code again.
@@ -21,7 +21,7 @@ Vcs-Bzr: https://code.launchpad.net/~phablet-team/address-book-app/trunk
 Vcs-Browser: http://bazaar.launchpad.net/~phablet-team/address-book-app/trunk/files
 
 Package: address-book-app
-Architecture: any
+Architecture: amd64 armhf i386
 Depends: libqt5contacts5,
          libqt5versit5,
          qmlscene,
@@ -30,6 +30,7 @@ Depends: libqt5contacts5,
          qtdeclarative5-ubuntu-ui-toolkit-plugin | qtdeclarative5-ubuntu-ui-toolkit-plugin-gles,
          qtdeclarative5-ubuntu-telephony-phonenumber0.1,
          qtdeclarative5-ubuntu-content0.1,
+         qtdeclarative5-ubuntu-keyboard-extensions0.1,
          qtdeclarative5-qtcontacts-plugin,
          qtdeclarative5-qtquick2-plugin,
          ${misc:Depends},
@@ -51,7 +52,7 @@ Description: Qt Ubuntu Contacts Components - QML plugin
  This package contains the Ubuntu Contacts Components QML plugin.
 
 Package: address-book-app-dbg
-Architecture: any
+Architecture: amd64 armhf i386
 Section: debug
 Priority: extra
 Depends: address-book-app (= ${binary:Version}),
@@ -65,9 +66,11 @@ Package: address-book-app-autopilot
 Architecture: all
 Depends: ${misc:Depends},
          ${shlibs:Depends},
+         python3-autopilot,
          libautopilot-qt,
          libqt5test5,
          libqt5widgets5,
+         python-testscenarios,
          ubuntu-ui-toolkit-autopilot,
          address-book-app (>= ${binary:Version}),
 Description: Test package for address-book-app
