@@ -21,8 +21,6 @@ class TestAddContact(AddressBookAppTestCase):
 
     def test_go_to_add_contact(self):
         """Test to launch the add contact screen using emulator method"""
-        self.assertRaises(
-            dbus.StateNotFoundError, self.main_window.get_contact_edit_page)
         contact_editor = self.main_window.go_to_add_contact()
         self.assertTrue(contact_editor.visible)
         self.assertIsInstance(contact_editor, main_window.ContactEditor)
