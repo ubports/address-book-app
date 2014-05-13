@@ -32,6 +32,7 @@ Depends: libqt5contacts5,
          qtdeclarative5-ubuntu-keyboard-extensions0.1,
          qtdeclarative5-qtcontacts-plugin,
          qtdeclarative5-qtquick2-plugin,
+         ubuntu-mobile-icons,
          ${misc:Depends},
          ${shlibs:Depends},
 Description: Address Book application
