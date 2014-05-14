@@ -492,11 +492,18 @@ MultipleSelectionListView {
 
         //WORKAROUND: Use a different model to fetch contacts, due a bug on qtpim the contact get
         // destroyed if you change the filter model
-        model: ContactModel {
+        ContactModel {
+            id: contactFetchModel
+
             manager: root.manager
             autoUpdate: false
         }
-        onContactFetched: contactListView.contactClicked(contact)
+
+        model: root.manager == "memory" ? root.listModel : contactFetchModel
+        onContactFetched: {
+            console.debug("Contact fetched")
+            contactListView.contactClicked(contact)
+        }
     }
 
     // This is a workaround to make sure the spinner will disappear if the model is empty

@@ -65,5 +65,5 @@ ContactDetailGroupWithTypeView {
         autoUpdate: false
     }
 
-    Component.completed: sourceModel.update()
+    Component.onCompleted: sourceModel.update()
 }
