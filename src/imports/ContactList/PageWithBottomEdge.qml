@@ -236,6 +236,7 @@ Page {
                 }
             },
             Transition {
+                from: "expanded"
                 to: "collapsed"
                 SequentialAnimation {
                     ScriptAction {
@@ -270,6 +271,15 @@ Page {
                             edgeLoader.active = true
                         }
                     }
+                }
+            },
+            Transition {
+                from: "floating"
+                to: "collapsed"
+                UbuntuNumberAnimation {
+                    targets: [bottomEdge,tip]
+                    properties: "y,opacity"
+                    duration: 500
                 }
             }
         ]
