@@ -72,7 +72,9 @@ ContactSimpleListView {
                     onClicked: {
                         //WORKAROUND: clear the model before start populate it with the new contacts
                         //otherwise the model will wait for all contacts before show any new contact
-                        contactsModel._clearModel = true
+                        if (root.count > 0) {
+                            contactsModel._clearModel = true
+                        }
                         root.showFavourites = false
                     }
                 }
@@ -165,6 +167,7 @@ ContactSimpleListView {
 
             //after all contacts get removed we can populate the model again, this will show
             //new contacts as soon as it arrives in the model
+            console.debug("Contacts CHANGED: CLEAR:" +  contactsModel._clearModel + " / " + contacts.length)
             if (contactsModel._clearModel && contacts.length === 0) {
                 contactsModel._clearModel = false
             }
