@@ -181,7 +181,7 @@ MultipleSelectionListView {
       This property holds the manager uri of the contact backend engine.
       By default this is set to "galera"
     */
-    property string manager: QTCONTACTS_MANAGER_OVERRIDE && QTCONTACTS_MANAGER_OVERRIDE != "" ? QTCONTACTS_MANAGER_OVERRIDE : "galera"
+    property string manager: QTCONTACTS_MANAGER_OVERRIDE && QTCONTACTS_MANAGER_OVERRIDE !== "" ? QTCONTACTS_MANAGER_OVERRIDE : "galera"
 
     /*!
       This handler is called when any error occurs in the contact model
@@ -283,7 +283,6 @@ MultipleSelectionListView {
         }
     }
 
-    listModel: contactsModel
     onCountChanged: {
         busyIndicator.ping()
         dirtyModel.restart()
@@ -492,8 +491,6 @@ MultipleSelectionListView {
         //WORKAROUND: Use a different model to fetch contacts, due a bug on qtpim the contact get
         // destroyed if you change the filter model
         model: ContactModel {
-            id: contactsModel
-
             manager: root.manager
             autoUpdate: false
         }

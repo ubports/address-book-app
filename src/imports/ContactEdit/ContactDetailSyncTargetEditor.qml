@@ -24,6 +24,8 @@ import "../Common"
 ContactDetailBase {
     id: root
 
+    property bool active: false
+
     function save() {
         // only changes the target sync for new contacts
         if (!isNewContact) {
@@ -41,7 +43,7 @@ ContactDetailBase {
     }
 
     function getSelectedSource() {
-        var selectedContact = sourceModel.contacts[sources.selectedIndex]
+        var selectedContact = sources.model.contacts[sources.selectedIndex]
         if (selectedContact) {
             return selectedContact.guid.guid
         } else {
@@ -53,18 +55,21 @@ ContactDetailBase {
     property real myHeight: sources.containerHeight + units.gu(4) + label.height
 
     detail: contact ? contact.detail(ContactDetail.SyncTarget) : null
-    implicitHeight: isNewContact && (sourceModel.contacts.length > 1) ? myHeight : 0
+    implicitHeight: isNewContact &&  sources.model && (sources.model.contacts.length > 1) ? myHeight : 0
+
 
     ContactModel {
         id: sourceModel
 
-        manager: QTCONTACTS_MANAGER_OVERRIDE && QTCONTACTS_MANAGER_OVERRIDE != "" ? QTCONTACTS_MANAGER_OVERRIDE : "galera"
+        property string managerName: QTCONTACTS_MANAGER_OVERRIDE && QTCONTACTS_MANAGER_OVERRIDE !== "" ? QTCONTACTS_MANAGER_OVERRIDE : "galera"
+        manager: managerName
         filter:  DetailFilter {
             detail: ContactDetail.Type
             field: Type.TypeField
             value: Type.Group
             matchFlags: DetailFilter.MatchExactly
         }
+        autoUpdate: false
     }
 
     Label {
@@ -77,12 +82,13 @@ ContactDetailBase {
             right: parent.right
             margins: units.gu(2)
         }
-        height: root.active ? units.gu(4) : units.gu(3)
+        height: units.gu(4)
     }
 
     OptionSelector {
         id: sources
 
+        model: sourceModel
         anchors {
             left: parent.left
             leftMargin: units.gu(2)
@@ -94,13 +100,19 @@ ContactDetailBase {
             bottomMargin: units.gu(2)
         }
 
-        model: sourceModel
         delegate: OptionSelectorDelegate {
             text: contact.displayLabel.label
             height: units.gu(5)
         }
 
-        containerHeight: sourceModel.contacts.length > 4 ? itemHeight * 4 : itemHeight * sourceModel.contacts.length
+        containerHeight: sources.model && sources.model.contacts.length > 4 ? itemHeight * 4 : sources.model ? itemHeight * sources.model.contacts.length : 0
     }
+
+    onActiveChanged: {
+        if (active) {
+            sourceModel.update()
+        }
+    }
+
 }
 
