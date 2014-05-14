@@ -214,7 +214,13 @@ PageWithBottomEdge {
                 objectName: "selectAll"
                 text: i18n.tr("Select All")
                 iconName: "filter"
-                onTriggered: contactList.selectAll()
+                onTriggered: {
+                    if (contactList.selectedItems.count == contactList.count) {
+                        contactList.clearSelection()
+                    } else {
+                        contactList.selectAll()
+                    }
+                }
                 visible: contactList.isInSelectionMode
             }
         }
