@@ -35,6 +35,7 @@ PageWithBottomEdge {
     property bool syncEnabled: application.syncEnabled
     property bool searching: false
     property var contactModel: contactList.listModel ? contactList.listModel : null
+    property bool contactsLoaded: false
 
     function createEmptyContact(phoneNumber) {
         var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
@@ -136,6 +137,9 @@ PageWithBottomEdge {
         swipeToDelete: !pickMode
 
         onCountChanged: {
+            if (count > 0)
+                mainPage.contactsLoaded = true
+
             if ((count > 0) && mainPage.onlineAccountsMessageDialog) {
                 // Because of some contacts can take longer to arrive due the dbus delay,
                 // we need to destroy the online account dialog if this happen
@@ -195,7 +199,9 @@ PageWithBottomEdge {
 
             anchors.centerIn: parent
             spacing: units.gu(2)
-            visible: (contactList.loading || application.syncing) && (contactList.count === 0)
+            visible: ((contactList.loading && !mainPage.contactsLoaded) ||
+                      (application.syncing && (contactList.count === 0)))
+
 
             ActivityIndicator {
                 id: activity
