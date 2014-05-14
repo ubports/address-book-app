@@ -51,6 +51,13 @@ Page {
         }
     }
 
+    // Page page if the contact get removed
+    onContactChanged: {
+        if (!contact) {
+            pageStack.pop()
+        }
+    }
+
     Flickable {
         id: flickable
 

@@ -261,6 +261,7 @@ Page {
             ContactDetailSyncTargetEditor {
                 id: syncTargetEditor
 
+                active: contactEditor.active
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
@@ -317,7 +318,10 @@ Page {
 
                 iconName: "close"
                 text: i18n.tr("Cancel")
-                onTriggered: contactEditor.cancel()
+                onTriggered: {
+                    contactEditor.cancel()
+                    contactEditor.active = false
+                }
             }
         }
 
