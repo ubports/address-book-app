@@ -175,7 +175,6 @@ ContactSimpleListView {
 
             //after all contacts get removed we can populate the model again, this will show
             //new contacts as soon as it arrives in the model
-            console.debug("Contacts CHANGED: CLEAR:" +  contactsModel._clearModel + " / " + contacts.length)
             if (contactsModel._clearModel && contacts.length === 0) {
                 contactsModel._clearModel = false
             }
