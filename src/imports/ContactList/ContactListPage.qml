@@ -294,7 +294,7 @@ PageWithBottomEdge {
                 objectName: "cancelSearch"
 
                 visible: mainPage.searching
-                iconName: "close"
+                iconName: "back"
                 text: i18n.tr("Cancel")
                 onTriggered: {
                     searchField.text = ""
@@ -308,9 +308,11 @@ PageWithBottomEdge {
         id: searchField
 
         visible: mainPage.searching
-        hasClearButton: false
         anchors {
             left: parent.left
+            leftMargin: units.gu(2)
+            right: parent.right
+            rightMargin: units.gu(2)
             topMargin: units.gu(1.5)
             bottomMargin: units.gu(1.5)
             verticalCenter: parent.verticalCenter
