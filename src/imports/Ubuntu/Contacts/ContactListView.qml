@@ -154,7 +154,15 @@ ContactSimpleListView {
         manager: root.manager
         sortOrders: root.sortOrders
         fetchHint: root.fetchHint
-        filter: contactsModel._clearModel ? invalidFilter : contactsFilter
+        filter: {
+            if (contactsModel._clearModel) {
+                return invalidFilter
+            } else if (root.showFavourites || root.filter) {
+                return contactsFilter
+            } else {
+                return null
+            }
+        }
         onErrorChanged: {
             if (error) {
                 busyIndicator.busy = false
