@@ -316,7 +316,6 @@ Page {
                 active: true
                 anchors.fill: parent
                 asynchronous: true
-
                 onLoaded: {
                     if (page.isReady && edgeLoader.item.active != true) {
                         page._pushPage()
