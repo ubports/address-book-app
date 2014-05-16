@@ -53,7 +53,7 @@ class Phone(DataMixin):
     @classmethod
     def make(cls):
         """Return a Phone data object."""
-        return cls(type_='Mobile', number='81 8777 7755')
+        return cls(type_='Mobile', number='(818) 777-7755')
 
 
 class Email(DataMixin):
