@@ -41,7 +41,7 @@ Popups.Dialog {
         } else if (contacts.length == 1)  {
             return contacts[0].displayLabel.label
         } else {
-            return i18n.tr("Multipple contacts")
+            return i18n.tr("Multiple contacts")
         }
     }
     text: {
