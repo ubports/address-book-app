@@ -63,6 +63,7 @@ PageWithBottomEdge {
         //WORKAROUND: SKD changes the page header as soon as the page get created
         // setting active false will avoid that
         active: false
+        enabled: false
 
         model: contactList.listModel
         contact: mainPage.createEmptyContact("")
@@ -280,7 +281,8 @@ PageWithBottomEdge {
         mainPage.setBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
                                    {model: contactList.listModel,
                                     contact: newContact,
-                                    active: false})
+                                    active: false,
+                                    enabled: false})
     }
 
     Connections {
@@ -296,7 +298,8 @@ PageWithBottomEdge {
             mainPage.showBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
                                         {model: contactList.listModel,
                                          contact: newContact,
-                                         active: false})
+                                         active: false,
+                                         enabled: false})
         }
         onEditContatRequested: {
             //WORKAROUND: SKD changes the page header as soon as the page get created
@@ -305,7 +308,8 @@ PageWithBottomEdge {
                                        {model: contactList.listModel,
                                         contactId: contactId,
                                         newPhoneNumber: phoneNumber,
-                                        active: false})
+                                        active: false,
+                                        enabled: false})
         }
         onContactCreated: {
             mainPage.contactIndex = contact

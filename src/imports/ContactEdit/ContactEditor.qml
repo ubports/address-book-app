@@ -38,7 +38,6 @@ Page {
 
     // priv
     property bool _edgeReady: false
-    enabled: _edgeReady
 
     function cancel() {
         for(var i = 0; i < contents.children.length; ++i) {
@@ -116,6 +115,7 @@ Page {
 
     function ready()
     {
+        enabled = true
         if (isNewContact) {
             _edgeReady = true
             nameEditor.fieldDelegates[0].forceActiveFocus()
