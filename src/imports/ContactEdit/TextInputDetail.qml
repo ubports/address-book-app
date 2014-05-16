@@ -17,6 +17,7 @@
 import QtQuick 2.2
 import Ubuntu.Components 0.1
 import Ubuntu.Keyboard 0.1
+import Ubuntu.Telephony.PhoneNumber 0.1
 
 //style
 import Ubuntu.Components.Themes.Ambiance 0.1
@@ -34,6 +35,8 @@ FocusScope {
     property alias inputMethodHints: field.inputMethodHints
     property alias text: field.text
     property alias hasClearButton: field.hasClearButton
+    // proxy PhoneNumberField
+    property alias autoFormat: field.autoFormat
 
     signal removeClicked()
 
@@ -54,15 +57,25 @@ FocusScope {
         }
     }
 
-    TextField {
+    onOriginalValueChanged: {
+        if (originalValue && (originalValue !== "")) {
+            field.text = originalValue
+        }
+    }
+
+    PhoneNumberField {
         id: field
 
         anchors.fill: parent
 
+        // TRANSLATORS: This value is used as default value for phone number format, when no coutry code is provided
+        // the supported values can be found in: https://www.iso.org/obp/ui/#search
+        defaultRegion: i18n.tr("US")
+        autoFormat: false
+
         // Ubuntu.Keyboard
         InputMethod.extensions: { "enterKeyText": i18n.tr("Next") }
         readOnly: root.detail ? root.detail.readOnly : true
-        text: root.originalValue ? root.originalValue : ""
         style: TextFieldStyle {
             overlaySpacing: 0
             frameSpacing: 0
