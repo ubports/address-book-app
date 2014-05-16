@@ -17,11 +17,12 @@
 import QtQuick 2.2
 import Ubuntu.Components 0.1
 import Ubuntu.Keyboard 0.1
+import Ubuntu.Telephony.PhoneNumber 0.1
 
 //style
 import Ubuntu.Components.Themes.Ambiance 0.1
 
-TextField {
+PhoneNumberField {
     id: root
 
     property QtObject detail
@@ -30,7 +31,11 @@ TextField {
 
     signal removeClicked()
 
-    Component.onCompleted: makeMeVisible(root)
+    // TRANSLATORS: This value is used as default value for phone number format, when no coutry code is provided
+    // the supported values can be found in: https://www.iso.org/obp/ui/#search
+    defaultRegion: i18n.tr("US")
+    autoFormat: false
+
     // Ubuntu.Keyboard
     InputMethod.extensions: { "enterKeyText": i18n.tr("Next") }
 
@@ -42,6 +47,8 @@ TextField {
         frameSpacing: 0
         background: Item {}
     }
+
+    Component.onCompleted: makeMeVisible(root)
     onActiveFocusChanged: {
         if (activeFocus) {
             makeMeVisible(root)

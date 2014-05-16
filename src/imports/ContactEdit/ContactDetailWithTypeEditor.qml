@@ -31,6 +31,7 @@ ContactDetailBase {
     property alias selectedTypeIndex: detailTypeSelector.currentIndex
     property variant placeholderTexts: []
     property int inputMethodHints: Qt.ImhNone
+    property bool usePhoneFormat: false
 
     function selectType(type) {
         detailTypeSelector.selectItem(type)
@@ -124,6 +125,7 @@ ContactDetailBase {
                 field: modelData
                 placeholderText: root.placeholderTexts[index]
                 inputMethodHints: root.inputMethodHints
+                autoFormat: root.usePhoneFormat
                 onActiveFocusChanged: root.active = activeFocus
                 anchors {
                     left: parent.left
