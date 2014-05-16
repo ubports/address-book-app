@@ -229,15 +229,15 @@ class TestAddContact(AddressBookAppTestCase):
             data.Contact(first_name='Sherlock', last_name='Holmes'))
 
         # Home
-        self.set_phone_number(0, "00 0000 0000", 0)
+        self.set_phone_number(0, "(000) 000-0000", 0)
         # Work
-        self.set_phone_number(1, "11 1111 1111", 1)
+        self.set_phone_number(1, "(000) 000-0001", 1)
         # Mobile
-        self.set_phone_number(2, "22 2222 2222", 2)
+        self.set_phone_number(2, "(000) 000-0002", 2)
         # Work Mobile
-        self.set_phone_number(3, "33 3333 3333", 3)
+        self.set_phone_number(3, "(000) 000-0003", 3)
         # Other
-        self.set_phone_number(4, "44 4444 4444", 4)
+        self.set_phone_number(4, "(000) 000-0004", 4)
 
         # Save contact
         self.main_window.save()
@@ -255,11 +255,11 @@ class TestAddContact(AddressBookAppTestCase):
             objectName="phones")
         self.assertThat(phone_group.detailsCount, Eventually(Equals(5)))
 
-        phones = {"00 0000 0000" : "Home",
-                  "11 1111 1111" : "Work",
-                  "22 2222 2222" : "Mobile",
-                  "33 3333 3333" : "Work Mobile",
-                  "44 4444 4444" : "Other"}
+        phones = {"(000) 000-0000" : "Home",
+                  "(000) 000-0001" : "Work",
+                  "(000) 000-0002" : "Mobile",
+                  "(000) 000-0003" : "Work Mobile",
+                  "(000) 000-0004" : "Other"}
 
         # Check if they have the correct label
         for idx in range(5):

@@ -41,7 +41,6 @@ PhoneNumberField {
 
     readOnly: detail ? detail.readOnly : true
     focus: true
-    text: originalValue ? originalValue : ""
     style: TextFieldStyle {
         overlaySpacing: 0
         frameSpacing: 0
@@ -62,4 +61,9 @@ PhoneNumberField {
     }
 
     Keys.onReturnPressed: application.sendTabEvent();
+    onOriginalValueChanged: {
+        if (originalValue && (originalValue !== "")) {
+            text = originalValue
+        }
+    }
 }
