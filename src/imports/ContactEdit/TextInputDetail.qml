@@ -24,8 +24,6 @@ import Ubuntu.Components.Themes.Ambiance 0.1
 FocusScope {
     id: root
 
-
-
     property QtObject detail
     property int field: -1
     property variant originalValue: root.detail && (root.field >= 0) ? root.detail.value(root.field) : null
@@ -42,21 +40,27 @@ FocusScope {
     //FIXME: Move this property to TextField as soon as the SDK get ported to QtQuick 2.2
     activeFocusOnTab: true
 
+    // WORKAROUND: For some reason TextField.focus property get reset to false
+    // we need do a deep investigation on that
+    Binding {
+        target: field
+        property: "focus"
+        value: visible
+    }
+
+    onActiveFocusChanged:  {
+        if (activeFocus && field.visible) {
+            field.forceActiveFocus()
+        }
+    }
 
     TextField {
         id: field
 
-
-        focus: true
         anchors.fill: parent
-
-        // WORKAROUND: For some reason TextField.focus property get reset to false
-        // we need do a deep investigation on that
-        onFocusChanged: focus = true
 
         // Ubuntu.Keyboard
         InputMethod.extensions: { "enterKeyText": i18n.tr("Next") }
-
         readOnly: root.detail ? root.detail.readOnly : true
         text: root.originalValue ? root.originalValue : ""
         style: TextFieldStyle {
