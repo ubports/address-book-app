@@ -1,3 +1,13 @@
+address-book-app (0.2+14.10.20140516-0ubuntu1) utopic; urgency=low
+
+  [ Bill Filler ]
+  * no change rebuild against latest content-hud
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 16 May 2014 01:19:44 +0000
+
 address-book-app (0.2+14.10.20140514-0ubuntu1) utopic; urgency=low
 
   [ Renato Araujo Oliveira Filho ]
