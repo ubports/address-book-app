@@ -118,7 +118,6 @@ Page {
     {
         if (isNewContact) {
             _edgeReady = true
-            nameEditor.fieldDelegates[1].forceActiveFocus()
             nameEditor.fieldDelegates[0].forceActiveFocus()
         }
     }
