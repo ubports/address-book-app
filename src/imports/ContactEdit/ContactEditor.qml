@@ -38,6 +38,7 @@ Page {
 
     // priv
     property bool _edgeReady: false
+    enabled: _edgeReady
 
     function cancel() {
         for(var i = 0; i < contents.children.length; ++i) {
@@ -117,7 +118,7 @@ Page {
     {
         if (isNewContact) {
             _edgeReady = true
-            nameEditor.forceActiveFocus()
+            nameEditor.fieldDelegates[0].forceActiveFocus()
         }
     }
 
@@ -143,6 +144,7 @@ Page {
 
         interval: 200
         running: false
+        repeat: false
         onTriggered: {
             // get last phone field and set focus
             var lastPhoneField = phonesEditor.detailDelegates[phonesEditor.detailDelegates.length - 2].item

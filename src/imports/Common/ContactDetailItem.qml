@@ -43,7 +43,6 @@ ContactDetailBase {
                 id: field
 
                 sourceComponent: fieldDelegate
-                focus: true
                 Binding {
                     target: item
                     property: "field"
