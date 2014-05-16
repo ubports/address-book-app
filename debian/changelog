@@ -1,3 +1,10 @@
+address-book-app (0.2+14.10.20140516.1-0ubuntu1) utopic; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Fixed phone number field cleanup.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 16 May 2014 22:59:41 +0000
+
 address-book-app (0.2+14.10.20140516-0ubuntu1) utopic; urgency=low
 
   [ Bill Filler ]
