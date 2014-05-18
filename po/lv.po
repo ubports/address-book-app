@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-05-13 15:51-0300\n"
-"PO-Revision-Date: 2014-05-17 06:00+0000\n"
+"PO-Revision-Date: 2014-05-17 18:46+0000\n"
 "Last-Translator: Jānis-Marks Gailis <jeanmarc.gailis@gmail.com>\n"
 "Language-Team: Latvian <lv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-05-17 07:14+0000\n"
+"X-Launchpad-Export-Date: 2014-05-18 05:57+0000\n"
 "X-Generator: Launchpad (build 17007)\n"
 
 #: src/imports/ContactList/ContactListPage.qml:193
@@ -66,26 +66,26 @@ msgstr "Valsts"
 #: src/imports/ContactView/ContactView.qml:181
 #: src/imports/Ubuntu/Contacts/ContactSimpleListView.qml:288
 msgid "Delete"
-msgstr ""
+msgstr "Dzēst"
 
 #: src/imports/ContactEdit/EditToolbar.qml:57
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:53
 msgid "Done"
-msgstr ""
+msgstr "Pabeigts"
 
 #: src/imports/ContactView/ContactView.qml:193
 msgid "Edit"
-msgstr ""
+msgstr "Labot"
 
 #: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:23
 #: src/imports/ContactView/ContactDetailEmailsView.qml:23
 #: src/imports/ContactView/ContactDetailEmailsView.qml:26
 msgid "Email"
-msgstr ""
+msgstr "E-pasts"
 
 #: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:28
 msgid "Enter a number"
-msgstr ""
+msgstr "Ievadiet numuru"
 
 #: src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:28
 msgid "Enter a social alias"
