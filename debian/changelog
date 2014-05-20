@@ -1,3 +1,10 @@
+address-book-app (0.2+14.10.20140520-0ubuntu1) utopic; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Check if QTCONTACTS_MANAGER_OVERRIDE was defined.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 20 May 2014 16:52:29 +0000
+
 address-book-app (0.2+14.10.20140516.1-0ubuntu1) utopic; urgency=low
 
   [ Renato Araujo Oliveira Filho ]
