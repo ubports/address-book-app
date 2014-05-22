@@ -73,7 +73,7 @@ Page {
     property alias bottomEdgeTitle: tipLabel.text
     property alias bottomEdgeEnabled: bottomEdge.visible
     property int bottomEdgeExpandThreshold: page.height * 0.3
-    property int bottomEdgeExposedArea: page.height - bottomEdge.y - tip.height
+    property int bottomEdgeExposedArea: bottomEdge.state !== "expanded" ? (page.height - bottomEdge.y - tip.height) : _areaWhenExpanded
     property bool reloadBottomEdgePage: true
 
     readonly property alias bottomEdgePage: edgeLoader.item
@@ -82,6 +82,7 @@ Page {
     readonly property bool bottomEdgePageLoaded: (edgeLoader.status == Loader.Ready)
 
     property bool _showEdgePageWhenReady: false
+    property int _areaWhenExpanded: 0
 
     signal bottomEdgeReleased()
     signal bottomEdgeDismissed()
@@ -109,6 +110,12 @@ Page {
             if (edgeLoader.item.ready)
                 edgeLoader.item.ready()
         }
+    }
+
+    Component.onCompleted: {
+        // avoid a binding on the expanded height value
+        var expandedHeight = height;
+        _areaWhenExpanded = expandedHeight;
     }
 
     onActiveChanged: {
@@ -146,38 +153,46 @@ Page {
                 right: parent.right
                 top: parent.top
             }
-            height: units.gu(4)
+            height: units.gu(3.5)
             z: 1
+            clip: true
 
             opacity: state !== "expanded" ? 1.0 : 0
 
             Rectangle {
                 id: shadow
                 anchors {
-                    top: parent.top
+                    bottom: parent.bottom
                     left: parent.left
                     right: parent.right
                 }
-                height: units.gu(1)
+                height: units.gu(0.7)
                 gradient: Gradient {
                     GradientStop { position: 0.0; color: "transparent" }
-                    GradientStop { position: 1.0; color: Qt.rgba(0, 0, 0, 0.7) }
+                    GradientStop { position: 1.0; color: Qt.rgba(0, 0, 0, 0.2) }
                 }
-                opacity: bottomEdge.state != "collapsed" ? 1.0 : 0.0
+
                 Behavior on opacity {
                     UbuntuNumberAnimation { }
                 }
             }
 
-            Rectangle {
+            UbuntuShape {
                 anchors {
-                    fill: parent
-                    topMargin: units.gu(1)
+                    top: parent.top
+                    horizontalCenter: parent.horizontalCenter
                 }
-                color: UbuntuColors.coolGrey
+                width: tipLabel.width + units.gu(6)
+                height: units.gu(7)
+                color: Theme.palette.normal.overlay
                 Label {
                     id: tipLabel
-                    anchors.centerIn: parent
+                    anchors {
+                        horizontalCenter: parent.horizontalCenter
+                        bottom: parent.verticalCenter
+                        bottomMargin: units.gu(0.5)
+                    }
+
                 }
             }
 
@@ -185,6 +200,7 @@ Page {
                 anchors.fill: parent
                 drag.axis: Drag.YAxis
                 drag.target: bottomEdge
+                drag.minimumY: 0
 
                 onReleased: {
                     page.bottomEdgeReleased()

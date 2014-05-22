@@ -170,12 +170,6 @@ PageWithBottomEdge {
             }
         }
 
-        onIsInSelectionModeChanged: {
-            if (isInSelectionMode) {
-                toolbar.opened = false
-            }
-        }
-
         onError: pageStack.contactModelError(error)
 
         Column {
