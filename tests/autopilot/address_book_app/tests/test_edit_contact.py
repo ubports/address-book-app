@@ -31,13 +31,6 @@ class TestEditContact(AddressBookAppTestCase):
         # Save contact
         self.main_window.save()
 
-    def test_edit_contact_must_update_contact_information(self):
-        self.add_test_contact()
-        contact_list = self.main_window.select_single(pages.ContactListPage)
-        contact_page = contact_list.open_contact(0)
-        contact_editor = contact_page.go_to_edit_contact()
-        contact_editor.fill_form(data.Contact.make_unique())
-
     def test_add_new_phone(self):
         self.add_contact("Fulano", "de Tal", [self.PHONE_NUMBERS[0]])
         edit_page = self.edit_contact(0)
