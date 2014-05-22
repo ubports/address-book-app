@@ -68,7 +68,7 @@ PageWithBottomEdge {
         model: contactList.listModel
         contact: mainPage.createEmptyContact("")
     }
-    bottomEdgeTitle: i18n.tr("Create New")
+    bottomEdgeTitle: "+"
     bottomEdgeEnabled: !contactList.isInSelectionMode
 
     Component {
