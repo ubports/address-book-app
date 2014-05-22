@@ -10,12 +10,35 @@
 from testtools.matchers import Equals
 from autopilot.matchers import Eventually
 
+from address_book_app import data
+from address_book_app.emulators import contact_list_page
 from address_book_app.tests import AddressBookAppTestCase
 
 
 class TestEditContact(AddressBookAppTestCase):
     """Tests edit a contact"""
     PHONE_NUMBERS = ['(333) 123-4567', '(333) 123-4568', '(222) 222-2222']
+
+    def add_test_contact(self):
+        test_contact = data.Contact('test', 'test')
+        # TODO implement the filling of professional details.
+        # --elopio - 2014-03-01
+        test_contact.professional_details = []
+
+        # execute add new contact
+        contact_editor = self.main_window.go_to_add_contact()
+        contact_editor.fill_form(test_contact)
+
+        # Save contact
+        self.main_window.save()
+
+    def test_edit_contact_must_update_contact_information(self):
+        self.add_test_contact()
+        contact_list = self.main_window.select_single(
+            contact_list_page.ContactListPage)
+        contact_page = contact_list.open_contact(0)
+        contact_editor = contact_page.go_to_edit_contact()
+        contact_editor.fill_form(data.Contact.make_unique())
 
     def test_add_new_phone(self):
         self.add_contact("Fulano", "de Tal", [self.PHONE_NUMBERS[0]])

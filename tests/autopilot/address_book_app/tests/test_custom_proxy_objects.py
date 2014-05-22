@@ -17,8 +17,6 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from address_book_app import data, tests
-from address_book_app.emulators import main_window
-
 
 class ContactEditorTestCase(tests.AddressBookAppTestCase):
 
@@ -29,7 +27,7 @@ class ContactEditorTestCase(tests.AddressBookAppTestCase):
         # --elopio - 2014-03-01
         test_contact.professional_details = []
 
-        contact_editor = self.main_window.go_to_add_contact()
+        contact_editor = self.app.main_window.go_to_add_contact()
 
         contact_editor.fill_form(test_contact)
 
