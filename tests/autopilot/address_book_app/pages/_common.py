@@ -27,7 +27,8 @@ class PageWithHeader(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
     def get_header(self):
         """Return the Header custom proxy object of the Page."""
-        return self.select_single('Header', objectName='MainView_Header')
+        return self.get_root_instance().select_single(
+            'Header', objectName='MainView_Header')
 
 
 class PageWithBottomEdge(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
