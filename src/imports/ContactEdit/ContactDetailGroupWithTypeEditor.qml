@@ -128,7 +128,6 @@ ContactDetailGroupWithTypeBase {
             }
             width: units.gu(2)
             height: units.gu(2)
-            color: "white"
             name: "add"
         }
 
