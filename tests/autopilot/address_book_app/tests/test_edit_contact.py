@@ -10,12 +10,13 @@
 from testtools.matchers import Equals
 from autopilot.matchers import Eventually
 
-from address_book_app import data, pages
+from address_book_app import data
 from address_book_app.tests import AddressBookAppTestCase
 
 
 class TestEditContact(AddressBookAppTestCase):
     """Tests edit a contact"""
+
     PHONE_NUMBERS = ['(333) 123-4567', '(333) 123-4568', '(222) 222-2222']
 
     def add_test_contact(self):
