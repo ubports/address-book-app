@@ -151,6 +151,7 @@ PageWithBottomEdge {
         }
 
         onContactClicked: {
+            mainPage.searching = false
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
                            {model: contactList.listModel,
                             contact: contact})
