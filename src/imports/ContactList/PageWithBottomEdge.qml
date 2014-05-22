@@ -200,7 +200,8 @@ Page {
                 anchors.fill: parent
                 drag.axis: Drag.YAxis
                 drag.target: bottomEdge
-                drag.minimumY: 0
+                drag.minimumY: units.gu(10) - tip.height
+                drag.maximumY: page.height - tip.height - units.gu(3)
 
                 onReleased: {
                     page.bottomEdgeReleased()
@@ -211,7 +212,11 @@ Page {
                     }
                 }
 
-                onPressed: bottomEdge.state = "floating"
+                onPressed: {
+                    hintAnimation.start()
+                    bottomEdge.state = "floating"
+                }
+
             }
         }
 
@@ -219,6 +224,7 @@ Page {
         states: [
             State {
                 name: "collapsed"
+
                 PropertyChanges {
                     target: bottomEdge
                     parent: page
@@ -247,9 +253,8 @@ Page {
                     UbuntuNumberAnimation {
                         targets: [bottomEdge,tip]
                         properties: "y,opacity"
-                        duration: 500
+                        duration: UbuntuAnimation.SleepyDuration
                     }
-
                     ScriptAction {
                         script: page._pushPage()
                     }
@@ -269,7 +274,7 @@ Page {
                     UbuntuNumberAnimation {
                         targets: [bottomEdge,tip]
                         properties: "y,opacity"
-                        duration: 500
+                        duration: UbuntuAnimation.SleepyDuration
                     }
                     ScriptAction {
                         script: {
@@ -303,6 +308,14 @@ Page {
                 }
             }
         ]
+
+        UbuntuNumberAnimation {
+            id: hintAnimation
+
+            target: bottomEdge
+            property: "y"
+            to: page.height - tip.height - units.gu(3)
+        }
 
         // this is necessary because the Page item is translucid
         Rectangle {
