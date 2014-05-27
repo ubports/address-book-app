@@ -113,10 +113,11 @@ PageWithBottomEdge {
         id: contactList
         objectName: "contactListView"
 
+        anchors.fill: parent
+        swipeToDelete: !pickMode
         multiSelectionEnabled: true
         multipleSelection: !pickMode ||
                            ((contactContentHub && contactContentHub.multipleItems) || mainPage.pickMultipleContacts)
-
         DetailFilter {
             id: nameFilter
 
@@ -127,16 +128,6 @@ PageWithBottomEdge {
         }
 
         filter: (searchField.text != "" ? nameFilter : null)
-
-        anchors {
-            // This extra margin is necessary because the toolbar area overlaps the last item in the view
-            // in the selection mode we remove it to avoid visual problems due the selection bar appears
-            // inside of the listview
-            bottomMargin: contactList.isInSelectionMode ? 0 : units.gu(2)
-            fill: parent
-        }
-        swipeToDelete: !pickMode
-
         onCountChanged: {
             if (count > 0)
                 mainPage.contactsLoaded = true
