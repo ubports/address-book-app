@@ -72,8 +72,8 @@ Page {
     property alias bottomEdgePageSource: edgeLoader.source
     property alias bottomEdgeTitle: tipLabel.text
     property alias bottomEdgeEnabled: bottomEdge.visible
-    property int bottomEdgeExpandThreshold: page.height * 0.3
-    property int bottomEdgeExposedArea: bottomEdge.state !== "expanded" ? (page.height - bottomEdge.y - tip.height) : _areaWhenExpanded
+    property int bottomEdgeExpandThreshold: page.height * 0.2
+    property int bottomEdgeExposedArea: bottomEdge.state !== "expanded" ? (page.height - bottomEdge.y - bottomEdge.tipHeight) : _areaWhenExpanded
     property bool reloadBottomEdgePage: true
 
     readonly property alias bottomEdgePage: edgeLoader.item
@@ -86,6 +86,7 @@ Page {
 
     signal bottomEdgeReleased()
     signal bottomEdgeDismissed()
+
 
     function showBottomEdgePage(source, properties)
     {
@@ -112,6 +113,7 @@ Page {
         }
     }
 
+
     Component.onCompleted: {
         // avoid a binding on the expanded height value
         var expandedHeight = height;
@@ -131,117 +133,140 @@ Page {
         }
     }
 
-    Item {
+    Rectangle {
+        id: bgVisual
+
+        color: "black"
+        anchors.fill: page
+        opacity: 0.7 * ((page.height - bottomEdge.y) / page.height)
+        z: 1
+    }
+
+    Rectangle {
         id: bottomEdge
         objectName: "bottomEdge"
 
+        readonly property int tipHeight: units.gu(3)
+        readonly property int pageStartY: 0
+
         z: 1
-        height: (edgeLoader.item && edgeLoader.item.flickable) ? page.height + tip.height : page.height + tip.height - header.height
-        y: page.height - tip.height
-        clip: true
+        color: Theme.palette.normal.background
+        parent: page
         anchors {
             left: parent.left
             right: parent.right
         }
+        height: page.height
+        y: height
 
-        Item {
-            id: tip
-            objectName: "bottomEdgeTip"
+        Rectangle {
+            id: shadow
 
             anchors {
                 left: parent.left
                 right: parent.right
-                top: parent.top
             }
-            height: units.gu(3.5)
-            z: 1
+            height: units.gu(1)
+            y: -height
+            opacity: 0.0
+            gradient: Gradient {
+                GradientStop { position: 0.0; color: "transparent" }
+                GradientStop { position: 1.0; color: Qt.rgba(0, 0, 0, 0.2) }
+            }
+        }
+
+        Item {
+            id: tipContainer
+            width: childrenRect.width
+            height: bottomEdge.tipHeight
             clip: true
-
-            opacity: state !== "expanded" ? 1.0 : 0
-
-            Rectangle {
-                id: shadow
-                anchors {
-                    bottom: parent.bottom
-                    left: parent.left
-                    right: parent.right
-                }
-                height: units.gu(0.7)
-                gradient: Gradient {
-                    GradientStop { position: 0.0; color: "transparent" }
-                    GradientStop { position: 1.0; color: Qt.rgba(0, 0, 0, 0.2) }
-                }
-
-                Behavior on opacity {
-                    UbuntuNumberAnimation { }
-                }
-            }
+            y: -bottomEdge.tipHeight
+            anchors.horizontalCenter: parent.horizontalCenter
 
             UbuntuShape {
-                anchors {
-                    top: parent.top
-                    horizontalCenter: parent.horizontalCenter
-                }
-                width: tipLabel.width + units.gu(6)
-                height: units.gu(7)
+                id: tip
+
+                width: tipLabel.paintedWidth + units.gu(6)
+                height: bottomEdge.tipHeight + units.gu(1)
                 color: Theme.palette.normal.overlay
                 Label {
                     id: tipLabel
+
                     anchors {
-                        horizontalCenter: parent.horizontalCenter
-                        bottom: parent.verticalCenter
-                        bottomMargin: units.gu(0.5)
+                        top: parent.top
+                        left: parent.left
+                        right: parent.right
                     }
+                    height: bottomEdge.tipHeight
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                }
+            }
+        }
 
+        MouseArea {
+            preventStealing: true
+            drag.axis: Drag.YAxis
+            drag.target: bottomEdge
+            drag.minimumY: bottomEdge.pageStartY
+            drag.maximumY: page.height
+
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+            height: bottomEdge.tipHeight
+            y: -height
+
+            onReleased: {
+                page.bottomEdgeReleased()
+                if (bottomEdge.y < (page.height - bottomEdgeExpandThreshold - bottomEdge.tipHeight)) {
+                    bottomEdge.state = "expanded"
+                } else {
+                    bottomEdge.state = "collapsed"
+                    bottomEdge.y = bottomEdge.height
                 }
             }
 
-            MouseArea {
-                anchors.fill: parent
-                drag.axis: Drag.YAxis
-                drag.target: bottomEdge
-                drag.minimumY: units.gu(10) - tip.height
-                drag.maximumY: page.height - tip.height - units.gu(3)
-
-                onReleased: {
-                    page.bottomEdgeReleased()
-                    if (bottomEdge.y < (page.height - bottomEdgeExpandThreshold - tip.height)) {
-                        bottomEdge.state = "expanded"
-                    } else {
-                        bottomEdge.state = "collapsed"
-                    }
-                }
-
-                onPressed: {
-                    hintAnimation.start()
-                    bottomEdge.state = "floating"
-                }
-
+            onPressed: {
+                bottomEdge.state = "floating"
+                bottomEdge.y -= bottomEdge.tipHeight
             }
+        }
+
+        Behavior on y {
+            UbuntuNumberAnimation {}
         }
 
         state: "collapsed"
         states: [
             State {
                 name: "collapsed"
-
                 PropertyChanges {
                     target: bottomEdge
-                    parent: page
-                    y: page.height - tip.height
+                    y: bottomEdge.height
+                }
+                PropertyChanges {
+                    target: tip
+                    opacity: 1.0
                 }
             },
             State {
                 name: "expanded"
-
                 PropertyChanges {
                     target: bottomEdge
-                    y: - tip.height + header.height
+                    y: bottomEdge.pageStartY
                 }
-
                 PropertyChanges {
                     target: tip
                     opacity: 0.0
+                }
+            },
+            State {
+                name: "floating"
+                PropertyChanges {
+                    target: shadow
+                    opacity: 1.0
                 }
             }
         ]
@@ -253,7 +278,7 @@ Page {
                     UbuntuNumberAnimation {
                         targets: [bottomEdge,tip]
                         properties: "y,opacity"
-                        duration: UbuntuAnimation.SleepyDuration
+                        duration: UbuntuAnimation.SlowDuration
                     }
                     ScriptAction {
                         script: page._pushPage()
@@ -274,7 +299,7 @@ Page {
                     UbuntuNumberAnimation {
                         targets: [bottomEdge,tip]
                         properties: "y,opacity"
-                        duration: UbuntuAnimation.SleepyDuration
+                        duration: UbuntuAnimation.SlowDuration
                     }
                     ScriptAction {
                         script: {
@@ -282,12 +307,6 @@ Page {
                             if (page.reloadBottomEdgePage) {
                                 edgeLoader.active = false
                             }
-                            // FIXME: this is ugly, but the header is not updating the title correctly
-                            var title = page.title
-                            page.title = "Something else"
-                            page.title = title
-                            // fix for a bug in the sdk header
-                            activeLeafNode = page
 
                             // notify
                             page.bottomEdgeDismissed()
@@ -304,51 +323,29 @@ Page {
                 UbuntuNumberAnimation {
                     targets: [bottomEdge,tip]
                     properties: "y,opacity"
-                    duration: 500
                 }
             }
         ]
 
-        UbuntuNumberAnimation {
-            id: hintAnimation
+        Loader {
+            id: edgeLoader
 
-            target: bottomEdge
-            property: "y"
-            to: page.height - tip.height - units.gu(3)
-        }
-
-        // this is necessary because the Page item is translucid
-        Rectangle {
-            id: edgePageBackground
-
-            clip: true
-            anchors {
-                left: parent.left
-                right: parent.right
-                top: tip.bottom
-                bottom: parent.bottom
-            }
-
-            color: Theme.palette.normal.background
+            z: 1
+            active: true
+            asynchronous: true
+            anchors.fill: parent
 
             //WORKAROUND: The SDK move the page contents down to allocate space for the header we need to avoid that during the page dragging
             Binding {
-                target: edgePageBackground
+                target: edgeLoader
                 property: "anchors.topMargin"
                 value: edgeLoader.item && edgeLoader.item.flickable ? edgeLoader.item.flickable.contentY : 0
                 when: (edgeLoader.status === Loader.Ready && !page.isReady)
             }
 
-            Loader {
-                id: edgeLoader
-
-                active: true
-                anchors.fill: parent
-                asynchronous: true
-                onLoaded: {
-                    if (page.isReady && edgeLoader.item.active != true) {
-                        page._pushPage()
-                    }
+            onLoaded: {
+                if (page.isReady && edgeLoader.item.active != true) {
+                    page._pushPage()
                 }
             }
         }
