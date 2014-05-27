@@ -177,6 +177,8 @@ Page {
 
         Item {
             id: tipContainer
+            objectName: "bottomEdgeTip"
+
             width: childrenRect.width
             height: bottomEdge.tipHeight
             clip: true
