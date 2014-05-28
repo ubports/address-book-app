@@ -285,7 +285,7 @@ MultipleSelectionListView {
         }
     }
 
-    acceptAction.text: i18n.tr("Delete")
+    acceptAction.text: i18n.dtr("address-book-app", "Delete")
 
     listModel: contactsModel
     onCountChanged: {
