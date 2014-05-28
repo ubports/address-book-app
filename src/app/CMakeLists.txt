@@ -2,8 +2,6 @@ project(address-book-main-app)
 
 set(ADDRESS_BOOK_APP_BIN address-book-app)
 
-add_definitions(-DI18N_DIRECTORY="${CMAKE_INSTALL_PREFIX}/share/locale")
-
 include_directories(
     ${CMAKE_BINARY_DIR}
     ${CONTENTHUB_INCLUDE_DIRS}
