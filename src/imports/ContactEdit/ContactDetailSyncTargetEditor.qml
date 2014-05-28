@@ -1,4 +1,4 @@
-/*
+e /*
  * Copyright (C) 2012-2013 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -61,8 +61,7 @@ ContactDetailBase {
     ContactModel {
         id: sourceModel
 
-        property string managerName: QTCONTACTS_MANAGER_OVERRIDE && QTCONTACTS_MANAGER_OVERRIDE !== "" ? QTCONTACTS_MANAGER_OVERRIDE : "galera"
-        manager: managerName
+        manager: (typeof(QTCONTACTS_MANAGER_OVERRIDE) !== "undefined") && (QTCONTACTS_MANAGER_OVERRIDE != "") ? QTCONTACTS_MANAGER_OVERRIDE : "galera"
         filter:  DetailFilter {
             detail: ContactDetail.Type
             field: Type.TypeField
