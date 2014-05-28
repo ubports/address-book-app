@@ -62,5 +62,8 @@ ContactDetailGroupWithTypeView {
             value: Type.Group
             matchFlags: DetailFilter.MatchExactly
         }
+        autoUpdate: false
     }
+
+    Component.onCompleted: sourceModel.update()
 }

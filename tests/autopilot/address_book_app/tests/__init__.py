@@ -45,6 +45,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
             self.app_bin = AddressBookAppTestCase.DEFAULT_DEV_LOCATION
 
         os.environ['QTCONTACTS_MANAGER_OVERRIDE'] = 'memory'
+        os.environ['ADDRESS_BOOK_APP_ICON_THEME'] = 'ubuntu-mobile'
         vcard_data = ""
         if AddressBookAppTestCase.PRELOAD_VCARD:
             # Use vcard from source tree and fallback on installed vcard (from
@@ -159,7 +160,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
         self.assertThat(view_page.visible, Eventually(Equals(True)))
 
         # Edit contact
-        self.main_window.open_toolbar().click_button("edit")
+        self.main_window.get_header().click_action_button("edit")
         self.assertThat(view_page.visible, Eventually(Equals(False)))
 
         edit_page = self.main_window.get_contact_edit_page()
@@ -223,7 +224,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
                     postcode_address=None,
                     country_address=None):
         # execute add new contact
-        self.main_window.open_toolbar().click_button("Add")
+        self.main_window.go_to_add_contact()
 
         first_name_field = self.main_window.select_single(
             "TextInputDetail",
@@ -291,12 +292,4 @@ class AddressBookAppTestCase(AutopilotTestCase):
                 objectName="countryAddress_0")
             self.type_on_field(country_0, country_address)
 
-        edit_page = self.main_window.get_contact_edit_page()
-        accept_button = edit_page.select_single(
-            "Button",
-            objectName="accept")
-        self.pointing_device.click_object(accept_button)
-
-        # wait for contact list to be visible again
-        list_page = self.main_window.get_contact_list_page()
-        self.assertThat(list_page.visible, Eventually(Equals(True)))
+        self.main_window.save()

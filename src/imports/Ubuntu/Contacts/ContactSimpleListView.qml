@@ -16,6 +16,7 @@
 
 import QtQuick 2.2
 import QtContacts 5.0
+import Ubuntu.Contacts 0.1
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 
@@ -285,9 +286,6 @@ MultipleSelectionListView {
         }
     }
 
-    acceptAction.text: i18n.tr("Delete")
-
-    listModel: contactsModel
     onCountChanged: {
         busyIndicator.ping()
         dirtyModel.restart()
@@ -493,8 +491,20 @@ MultipleSelectionListView {
     ContactFetch {
         id: contactFetch
 
-        model: contactListView.listModel
-        onContactFetched: contactListView.contactClicked(contact)
+        //WORKAROUND: Use a different model to fetch contacts, due a bug on qtpim the contact get
+        // destroyed if you change the filter model
+        ContactModel {
+            id: contactFetchModel
+
+            manager: root.manager
+            autoUpdate: false
+        }
+
+        model: root.manager == "memory" ? root.listModel : contactFetchModel
+        onContactFetched: {
+            console.debug("Contact fetched")
+            contactListView.contactClicked(contact)
+        }
     }
 
     // This is a workaround to make sure the spinner will disappear if the model is empty

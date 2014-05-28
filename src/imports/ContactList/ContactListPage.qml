@@ -21,8 +21,10 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Contacts 0.1 as ContactsUI
 import Ubuntu.Components.Popups 0.1 as Popups
+import "../ContactEdit"
+import "../Common"
 
-Page {
+PageWithBottomEdge {
     id: mainPage
     objectName: "contactListPage"
 
@@ -54,7 +56,20 @@ Page {
         return newContact
     }
 
-    title: i18n.tr("Contacts")
+    title: contactList.isInSelectionMode ? i18n.tr("Select Contacts") : i18n.tr("Contacts")
+
+    //bottom edge page
+    bottomEdgePageComponent: ContactEditor {
+        //WORKAROUND: SKD changes the page header as soon as the page get created
+        // setting active false will avoid that
+        active: false
+        enabled: false
+
+        model: contactList.listModel
+        contact: mainPage.createEmptyContact("")
+    }
+    bottomEdgeTitle: "+"
+    bottomEdgeEnabled: !contactList.isInSelectionMode
 
     Component {
         id: onlineAccountsDialog
@@ -75,21 +90,31 @@ Page {
         }
     }
 
+    Component {
+        id: removeContactDialog
+
+        RemoveContactsDialog {
+            id: removeContactsDialogMessage
+
+            onCanceled: {
+                PopupUtils.close(removeContactsDialogMessage)
+            }
+
+            onAccepted: {
+                removeContacts(contactList.listModel)
+                PopupUtils.close(removeContactsDialogMessage)
+            }
+        }
+    }
+
     ContactsUI.ContactListView {
         id: contactList
         objectName: "contactListView"
 
         multiSelectionEnabled: true
-        acceptAction.text: pickMode ? i18n.tr("Select") : i18n.tr("Delete")
         multipleSelection: !pickMode ||
                            ((contactContentHub && contactContentHub.multipleItems) || mainPage.pickMultipleContacts)
-        anchors {
-            // This extra margin is necessary because the toolbar area overlaps the last item in the view
-            // in the selection mode we remove it to avoid visual problems due the selection bar appears
-            // inside of the listview
-            bottomMargin: contactList.isInSelectionMode ? 0 : units.gu(2)
-            fill: parent
-        }
+        anchors.fill: parent
         swipeToDelete: !pickMode
 
         onCountChanged: {
@@ -118,11 +143,14 @@ Page {
                 exporter.contacts = contacts
                 exporter.start()
             } else {
-                var ids = []
-                for (var i=0; i < items.count; i++) {
-                    ids.push(items.get(i).model.contact.contactId)
+                var contacts = []
+
+                for (var i=0, iMax=items.count; i < iMax; i++) {
+                    contacts.push(items.get(i).model.contact)
                 }
-                contactList.listModel.removeContacts(ids)
+
+                var dialog = PopupUtils.open(removeContactDialog, null)
+                dialog.contacts = contacts
             }
         }
 
@@ -136,14 +164,7 @@ Page {
             }
         }
 
-        onIsInSelectionModeChanged: {
-            if (isInSelectionMode) {
-                toolbar.opened = false
-            }
-        }
-
         onError: pageStack.contactModelError(error)
-
 
         Column {
             id: indicator
@@ -165,41 +186,63 @@ Page {
         }
     }
 
-    tools: ToolbarItems {
-        id: toolbar
+    ToolbarItems {
+        id: toolbarItemsSelectionMode
 
-        locked: contactList.isInSelectionMode
+        visible: false
+        back: ToolbarButton {
+            action: Action {
+                text: i18n.tr("Cancel selection")
+                iconName: "close"
+                onTriggered: contactList.cancelSelection()
+            }
+        }
+
+        ToolbarButton {
+            action: Action {
+                objectName: "selectAll"
+                text: i18n.tr("Select All")
+                iconName: "filter"
+                onTriggered: {
+                    if (contactList.selectedItems.count == contactList.count) {
+                        contactList.clearSelection()
+                    } else {
+                        contactList.selectAll()
+                    }
+                }
+                visible: contactList.isInSelectionMode
+            }
+        }
+
+        ToolbarButton {
+
+            action: Action {
+                objectName: "doneSelection"
+                text: mainPage.pickMode ? i18n.tr("Select") : i18n.tr("Delete")
+                iconName: mainPage.pickMode ? "select" : "delete"
+                onTriggered: contactList.endSelection()
+                visible: contactList.isInSelectionMode
+            }
+        }
+    }
+
+    ToolbarItems {
+        id: toolbarItemsNormalMode
+
+        visible: false
         ToolbarButton {
             objectName: "Sync"
-            visible: mainPage.syncEnabled
             action: Action {
+                visible: mainPage.syncEnabled
                 text: application.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
                 iconName: "reload"
                 enabled: !application.syncing
                 onTriggered: application.startSync()
             }
         }
-        ToolbarButton {
-            action: Action {
-                objectName: "selectButton"
-                text: i18n.tr("Select")
-                iconName: "select"
-                onTriggered: contactList.startSelection()
-            }
-        }
-        ToolbarButton {
-            objectName: "Add"
-            action: Action {
-                text: i18n.tr("Add")
-                iconName: "add"
-                onTriggered: {
-                    var newContact = mainPage.createEmptyContact("")
-                    pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                                   {model: contactList.listModel, contact: newContact})
-                }
-            }
-        }
     }
+
+    tools: contactList.isInSelectionMode ? toolbarItemsSelectionMode : toolbarItemsNormalMode
 
     // WORKAROUND: Avoid the gap btw the header and the contact list when the list moves
     // see bug #1296764
@@ -217,6 +260,19 @@ Page {
         }
     }
 
+    // We need to reset the page proprerties in case of the page was created pre-populated,
+    // with phonenumber or contact.
+    onBottomEdgeDismissed: {
+        //WORKAROUND: SKD changes the page header as soon as the page get created
+        // setting active false will avoid that
+        var newContact = mainPage.createEmptyContact("")
+        mainPage.setBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                                   {model: contactList.listModel,
+                                    contact: newContact,
+                                    active: false,
+                                    enabled: false})
+    }
+
     Connections {
         target: pageStack
         onContactRequested: {
@@ -225,12 +281,23 @@ Page {
         }
         onCreateContactRequested: {
             var newContact = mainPage.createEmptyContact(phoneNumber)
-            pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                           {model: contactList.listModel, contact: newContact})
+            //WORKAROUND: SKD changes the page header as soon as the page get created
+            // setting active false will avoid that
+            mainPage.showBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                                        {model: contactList.listModel,
+                                         contact: newContact,
+                                         active: false,
+                                         enabled: false})
         }
         onEditContatRequested: {
-            pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                           {model: contactList.listModel, contactId: contactId, newPhoneNumber: phoneNumber })
+            //WORKAROUND: SKD changes the page header as soon as the page get created
+            // setting active false will avoid that
+            mainPage.showBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                                       {model: contactList.listModel,
+                                        contactId: contactId,
+                                        newPhoneNumber: phoneNumber,
+                                        active: false,
+                                        enabled: false})
         }
         onContactCreated: {
             mainPage.contactIndex = contact

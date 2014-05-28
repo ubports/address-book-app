@@ -9,12 +9,11 @@ import collections
 import logging
 import time
 
-from address_book_app.emulators.contact_list_page import ContactListPage
-from address_book_app.emulators.toolbar import Toolbar
 from autopilot import logging as autopilot_logging
+from autopilot.introspection.dbus import StateNotFoundError
 from ubuntuuitoolkit import emulators as uitk
-
 from address_book_app import data
+from address_book_app.emulators.page_with_bottom_edge import ContactListPage
 
 
 logger = logging.getLogger(__name__)
@@ -62,8 +61,18 @@ class MainWindow(uitk.MainView):
         return None
 
     def get_contact_edit_page(self):
-        return self.wait_select_single(ContactEditor,
-                                       objectName="contactEditorPage")
+        # We can have two contact editor page because of bottom edge page
+        # but we will return only the actived one
+        list_page = self.get_contact_list_page()
+        list_page.bottomEdgePageLoaded.wait_for(True)
+        pages = self.select_many(ContactEditor,
+                                 objectName="contactEditorPage")
+        for p in pages:
+            if p.active:
+                return p
+        raise StateNotFoundError('contactEditorPage not found')
+        return None
+
 
     def get_contact_view_page(self):
         return self.wait_select_single("ContactView",
@@ -81,29 +90,54 @@ class MainWindow(uitk.MainView):
         """
         Returns a ContactListView iobject for the current window
         """
-        return self.wait_select_single( "ContactListView",
+        return self.wait_select_single("ContactListView",
                                        objectName="contactListView")
 
-    def get_button(self, name):
-        """
-        Returns a Button object matching 'name'
+    def get_button(self, buttonName):
+        return self.get_header()._get_action_button(buttonName)
 
-        Arguments:
-            name: Name of the button
-        """
-        return self.wait_select_single( "Button", objectName=name)
+    def open_header(self):
+        header = self.get_header()
+        if (header.y != 0):
+            edit_page = self.get_contact_edit_page()
+            flickable = edit_page.wait_select_single(
+                "QQuickFlickable",
+                objectName="scrollArea")
+            
+            while (header.y != 0):
+                globalRect = flickable.globalRect
+                start_x = globalRect.x + (globalRect.width * 0.5)
+                start_y = globalRect.y + (flickable.height * 0.1)
+                stop_y = start_y + (flickable.height * 0.1)
+
+                self.pointing_device.drag(start_x, start_y, start_x, stop_y, rate=5)
+                # wait flicking stops to move to the next field
+                flickable.flicking.wait_for(False)
+
+        return header
 
     def cancel(self):
         """
         Press the 'Cancel' button
         """
-        self.pointing_device.click_object(self.get_button("reject"))
+        header = self.open_header()
+        header.click_custom_back_button()
 
     def save(self):
         """
         Press the 'Save' button
+        """        
+        bottom_swipe_page = self.get_contact_list_page()
+        self.click_action_button("save")
+        bottom_swipe_page.isCollapsed.wait_for(True)
+
+    def done_selection(self):
         """
-        self.pointing_device.click_object(self.get_button("accept"))
+        Press the 'doneSelection' button
+        """        
+        bottom_swipe_page = self.get_contact_list_page()
+        self.click_action_button("doneSelection")
+        bottom_swipe_page.isCollapsed.wait_for(True)
 
     def get_toolbar(self):
         """Override base class so we get our expected Toolbar subclass."""
@@ -114,8 +148,8 @@ class MainWindow(uitk.MainView):
         """
         Press the 'Add' button and return the contact editor page
         """
-        toolbar = self.open_toolbar()
-        toolbar.click_button(object_name="Add")
+        bottom_swipe_page = self.get_contact_list_page()
+        bottom_swipe_page.revel_bottom_edge_page()
         return self.get_contact_edit_page()
 
 

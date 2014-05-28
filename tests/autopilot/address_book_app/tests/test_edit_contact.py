@@ -56,7 +56,7 @@ class TestEditContact(AddressBookAppTestCase):
         edit_page = self.edit_contact(0)
 
         # clear phone 1
-        phone_number_1 = self.main_window.select_single(
+        phone_number_1 = edit_page.select_single(
             "TextInputDetail",
             objectName="phoneNumber_1")
         self.clear_text_on_field(phone_number_1)
@@ -87,7 +87,7 @@ class TestEditContact(AddressBookAppTestCase):
         self.create_new_detail(emailGroup)
 
         # fill email address
-        email_field = self.main_window.select_single(
+        email_field = edit_page.select_single(
             "TextInputDetail",
             objectName="emailAddress_0")
         self.type_on_field(email_field, "fulano@internet.com.br")
@@ -113,10 +113,10 @@ class TestEditContact(AddressBookAppTestCase):
 
     def test_remove_email(self):
         self.add_contact("Fulano", "de Tal", None, ["fulano@email.com"])
-        self.edit_contact(0)
+        edit_page = self.edit_contact(0)
 
         # clear email
-        email_address_0 = self.main_window.select_single(
+        email_address_0 = edit_page.select_single(
             "TextInputDetail",
             objectName="emailAddress_0")
         self.clear_text_on_field(email_address_0)
@@ -133,12 +133,12 @@ class TestEditContact(AddressBookAppTestCase):
 
     def test_clear_names(self):
         self.add_contact("Fulano", "de Tal")
-        self.edit_contact(0)
+        edit_page = self.edit_contact(0)
 
-        first_name_field = self.main_window.select_single(
+        first_name_field = edit_page.select_single(
             "TextInputDetail",
             objectName="firstName")
-        last_name_field = self.main_window.select_single(
+        last_name_field = edit_page.select_single(
             "TextInputDetail",
             objectName="lastName")
 
@@ -147,7 +147,8 @@ class TestEditContact(AddressBookAppTestCase):
         self.clear_text_on_field(last_name_field)
 
         # check if is possible to save a contact without name
-        accept_button = self.main_window.get_button("accept")
+        self.main_window.save()
+        accept_button = self.main_window.get_button("save")
         self.assertThat(accept_button.enabled, Eventually(Equals(False)))
 
         # Cancel edit
@@ -162,13 +163,13 @@ class TestEditContact(AddressBookAppTestCase):
         edit_page = self.edit_contact(0)
 
         # Change Im type
-        im_value_selector = self.main_window.select_single(
+        im_value_selector = edit_page.select_single(
             "ValueSelector",
             objectName="type_onlineAccount_0")
         self.pointing_device.click_object(im_value_selector)
         self.assertThat(im_value_selector.expanded, Eventually(Equals(True)))
 
-        im_address_0 = self.main_window.select_single(
+        im_address_0 = edit_page.select_single(
             "TextInputDetail",
             objectName="imUri_0")
 

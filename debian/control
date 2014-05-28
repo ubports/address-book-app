@@ -73,5 +73,6 @@ Depends: ${misc:Depends},
          python-testscenarios,
          ubuntu-ui-toolkit-autopilot,
          address-book-app (>= ${binary:Version}),
+         ubuntu-mobile-icons,
 Description: Test package for address-book-app
  Autopilot tests for the address-book-app package
