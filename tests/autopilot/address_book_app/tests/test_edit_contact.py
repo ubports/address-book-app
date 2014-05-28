@@ -15,9 +15,10 @@ from address_book_app.tests import AddressBookAppTestCase
 
 class TestEditContact(AddressBookAppTestCase):
     """Tests edit a contact"""
+    PHONE_NUMBERS = ['(333) 123-4567', '(333) 123-4568', '(222) 222-2222']
 
     def test_add_new_phone(self):
-        self.add_contact("Fulano", "de Tal", ["3321 2300"])
+        self.add_contact("Fulano", "de Tal", [self.PHONE_NUMBERS[0]])
         edit_page = self.edit_contact(0)
 
         # Add a new phone
@@ -30,7 +31,7 @@ class TestEditContact(AddressBookAppTestCase):
         phone_number_1 = self.main_window.select_single(
             "TextInputDetail",
             objectName="phoneNumber_1")
-        self.type_on_field(phone_number_1, "22 2222 2222")
+        self.type_on_field(phone_number_1, self.PHONE_NUMBERS[1])
 
         self.main_window.save()
 
@@ -48,11 +49,11 @@ class TestEditContact(AddressBookAppTestCase):
         phone_label_1 = view_page.select_single(
             "Label",
             objectName="label_phoneNumber_1.0")
-        self.assertThat(phone_label_1.text, Eventually(Equals("22 2222 2222")))
+        self.assertThat(phone_label_1.text, Eventually(Equals(self.PHONE_NUMBERS[1])))
 
     def test_remove_phone(self):
-        self.add_contact("Fulano", "de Tal", ["3321 2300", "3321 2301"])
-        self.edit_contact(0)
+        self.add_contact("Fulano", "de Tal", self.PHONE_NUMBERS[1:3])
+        edit_page = self.edit_contact(0)
 
         # clear phone 1
         phone_number_1 = self.main_window.select_single(
@@ -74,7 +75,7 @@ class TestEditContact(AddressBookAppTestCase):
         phone_label_1 = view_page.select_single(
             "Label",
             objectName="label_phoneNumber_0.0")
-        self.assertThat(phone_label_1.text, Eventually(Equals("3321 2300")))
+        self.assertThat(phone_label_1.text, Eventually(Equals(self.PHONE_NUMBERS[1])))
 
     def test_add_email(self):
         self.add_contact("Fulano", "")
