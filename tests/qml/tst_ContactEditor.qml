@@ -32,6 +32,7 @@ Item {
     MainView {
         id: mainView
         anchors.fill: parent
+        useDeprecatedToolbar: false
 
         ListModel {
             // dummy data model.
@@ -76,19 +77,35 @@ Item {
 
         function init() {
             waitForRendering(contactEditor)
+            var saveButton = findChild(root, 'save_header_button')
+            compare(saveButton.enabled, false)
+        }
+
+        function cleanup() {
+            var textFields = ['firstName', 'lastName', 'phoneNumber_0']
+            textFields.forEach(clearTextField)
+        }
+
+        function clearTextField(value, index, array) {
+            var textField = findChild(root, value)
+            textField.text = ''
         }
 
         function test_fillRequiredFieldsMustEnableSaveButton_data() {
             return [
-                {objectName: 'firstName'},
-                {objectName: 'lastName'},
-                {objectName: 'phoneNumber_0'}
+                {tag: 'firstName', objectName: 'firstName'},
+                {tag: 'lastName', objectName: 'lastName'},
+                {tag: 'phoneNumber', objectName: 'phoneNumber_0'}
             ]
         }
 
         function test_fillRequiredFieldsMustEnableSaveButton(data) {
-            var saveButton = findChild(root, 'save')
-            compare(saveButton.enable, False)
+            var textField = findChild(root, data.objectName)
+            mouseClick(textField, textField.width/2, textField.height/2)
+            tryCompare(textField, 'focus', true)
+            keyClick(Qt.Key_T)
+            var saveButton = findChild(root, 'save_header_button')
+            tryCompare(saveButton, 'enabled', true)
         }
     }
 }
