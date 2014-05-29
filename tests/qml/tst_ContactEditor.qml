@@ -57,16 +57,16 @@ Item {
            {detail: 'Address', field: 'street', value: ''},
            {detail: 'Name', field: 'firstName', value: ''},
            {detail: 'Organization', field: 'name', value: ''}
-       ]
+       ];
 
-        var newContact = Qt.createQmlObject('import QtContacts 5.0; Contact{ }', mainView)
-        var detailSourceTemplate = 'import QtContacts 5.0; %1{ %2: "%3" }'
+        var newContact = Qt.createQmlObject('import QtContacts 5.0; Contact{ }', mainView);
+        var detailSourceTemplate = 'import QtContacts 5.0; %1{ %2: "%3" }';
         for (var i=0; i < details.length; i++) {
-            var detailMetaData = details[i]
-            var newDetail = Qt.createQmlObject(detailSourceTemplate.arg(detailMetaData.detail).arg(detailMetaData.field).arg(detailMetaData.value), mainView)
-            newContact.addDetail(newDetail)
+            var detailMetaData = details[i];
+            var newDetail = Qt.createQmlObject(detailSourceTemplate.arg(detailMetaData.detail).arg(detailMetaData.field).arg(detailMetaData.value), mainView);
+            newContact.addDetail(newDetail);
         }
-        return newContact
+        return newContact;
     }
 
     UbuntuTestCase {
@@ -76,36 +76,42 @@ Item {
         when: windowShown
 
         function init() {
-            waitForRendering(contactEditor)
-            var saveButton = findChild(root, 'save_header_button')
-            compare(saveButton.enabled, false)
+            waitForRendering(contactEditor);
+            var saveButton = findChild(root, 'save_header_button');
+            compare(saveButton.enabled, false);
         }
 
         function cleanup() {
-            var textFields = ['firstName', 'lastName', 'phoneNumber_0']
-            textFields.forEach(clearTextField)
+            var textFields = getRequiredTextFields();
+            textFields.forEach(clearTextField);
+        }
+
+        function getRequiredTextFields() {
+            return ['firstName', 'lastName', 'phoneNumber_0'];
         }
 
         function clearTextField(value, index, array) {
-            var textField = findChild(root, value)
-            textField.text = ''
+            var textField = findChild(root, value);
+            textField.text = '';
         }
 
         function test_fillRequiredFieldsMustEnableSaveButton_data() {
-            return [
-                {tag: 'firstName', objectName: 'firstName'},
-                {tag: 'lastName', objectName: 'lastName'},
-                {tag: 'phoneNumber', objectName: 'phoneNumber_0'}
-            ]
+            var textFields = getRequiredTextFields();
+            var data = new Array();
+            for (var index = 0; index < textFields.length; index++) {
+                var textObjectName = textFields[index];
+                data.push({tag: textObjectName, objectName: textObjectName});
+            }
+            return data;
         }
 
         function test_fillRequiredFieldsMustEnableSaveButton(data) {
-            var textField = findChild(root, data.objectName)
-            mouseClick(textField, textField.width/2, textField.height/2)
-            tryCompare(textField, 'focus', true)
-            keyClick(Qt.Key_T)
-            var saveButton = findChild(root, 'save_header_button')
-            tryCompare(saveButton, 'enabled', true)
+            var textField = findChild(root, data.objectName);
+            mouseClick(textField, textField.width/2, textField.height/2);
+            tryCompare(textField, 'focus', true);
+            keyClick(Qt.Key_T);
+            var saveButton = findChild(root, 'save_header_button');
+            tryCompare(saveButton, 'enabled', true);
         }
     }
 }
