@@ -75,7 +75,6 @@ class TestAddContact(AddressBookAppTestCase):
 
         # execute add new contact
         contact_editor = self.app.main_window.go_to_add_contact()
-        import pdb; pdb.set_trace()
         contact_editor.fill_form(test_contact)
 
         # Save contact
