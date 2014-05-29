@@ -60,6 +60,12 @@ ListItem.Empty {
         imMap[QtContacts.OnlineAccount.Protocol] = "imProtocol"
         imMap[QtContacts.OnlineAccount.Capabilities] = "imCaps"
 
+        // organization
+        var organizationMap = {}
+        organizationMap[QtContacts.Organization.Name] = 'orgName'
+        organizationMap[QtContacts.Organization.Role] = 'orgRole'
+        organizationMap[QtContacts.Organization.Title] = 'orgTitle'
+
         // SyncTarget
         var syncTargetMap = {}
         syncTargetMap[QtContacts.SyncTarget.SyncTarget] = "syncTarget"
@@ -71,6 +77,7 @@ ListItem.Empty {
         detailMap[QtContacts.ContactDetail.Email] = emailMap
         detailMap[QtContacts.ContactDetail.Address] = addressMap
         detailMap[QtContacts.ContactDetail.OnlineAccount] = imMap
+        detailMap[QtContacts.ContactDetail.Organization] = organizationMap
         detailMap[QtContacts.ContactDetail.SyncTarget] = syncTargetMap
 
         // detail name
