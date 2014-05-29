@@ -27,7 +27,6 @@ Depends: libqt5contacts5,
          qmlscene,
          qtcontact5-galera,
          qtdeclarative5-ubuntu-contacts0.1 (= ${binary:Version}),
-         qtdeclarative5-ubuntu-ui-toolkit-plugin (>= 0.1.46+14.10.20140527) | qtdeclarative5-ubuntu-ui-toolkit-plugin-gles,
          qtdeclarative5-ubuntu-telephony-phonenumber0.1,
          qtdeclarative5-ubuntu-content0.1,
          qtdeclarative5-ubuntu-keyboard-extensions0.1,
@@ -41,7 +40,7 @@ Description: Address Book application
 Package: qtdeclarative5-ubuntu-contacts0.1
 Architecture: any
 Depends: qtdeclarative5-qtquick2-plugin,
-         qtdeclarative5-ubuntu-ui-toolkit-plugin | qtdeclarative5-ubuntu-ui-toolkit-plugin-gles,
+         qtdeclarative5-ubuntu-ui-toolkit-plugin (>= 0.1.46+14.10.20140527) | qtdeclarative5-ubuntu-ui-toolkit-plugin-gles,
          qtdeclarative5-qtcontacts-plugin,
          ${misc:Depends},
          ${shlibs:Depends},
@@ -71,8 +70,9 @@ Depends: ${misc:Depends},
          libqt5test5,
          libqt5widgets5,
          python-testscenarios,
+         qtdeclarative5-ubuntu-ui-toolkit-plugin (>= 0.1.46+14.10.20140527),
          ubuntu-ui-toolkit-autopilot (>= 0.1.46+14.10.20140527),
          address-book-app (>= ${binary:Version}),
          ubuntu-mobile-icons,
 Description: Test package for address-book-app
- Autopilot tests for the address-book-app package
+ tests for the address-book-app package
