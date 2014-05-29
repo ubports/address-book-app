@@ -97,8 +97,8 @@ Item {
         function getOptionalTextFields() {
             return [
                 'emailAddress_0', 'imUri_0', 'streetAddress_0',
-                'localityAddress_0', /*'regionAddress_0', 'postcodeAddress_0',
-                'countryAddress_0', 'orgName_0', 'orgRole_0', 'orgTitle_0'*/
+                'localityAddress_0', 'regionAddress_0', 'postcodeAddress_0',
+                'countryAddress_0', 'orgName_0', 'orgRole_0', 'orgTitle_0'
             ];
         }
 
