@@ -7,19 +7,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-05-09 15:54-0300\n"
-"PO-Revision-Date: 2014-01-14 21:52+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2014-05-13 15:51-0300\n"
+"PO-Revision-Date: 2014-05-15 12:10+0000\n"
+"Last-Translator: Vizsla Áron <Unknown>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-05-14 06:25+0000\n"
-"X-Generator: Launchpad (build 17002)\n"
+"X-Launchpad-Export-Date: 2014-05-16 06:51+0000\n"
+"X-Generator: Launchpad (build 17007)\n"
 
 #: src/imports/ContactList/ContactListPage.qml:193
 msgid "Add"
-msgstr ""
+msgstr "Hozzáadás"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
 #: src/imports/ContactView/ContactDetailAddressesView.qml:24
@@ -37,22 +37,22 @@ msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactListView.qml:66
 msgid "All"
-msgstr ""
+msgstr "Összes"
 
 #: src/imports/ContactEdit/ContactEditor.qml:300
 #: src/imports/ContactEdit/EditToolbar.qml:42
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:37
 msgid "Cancel"
-msgstr ""
+msgstr "Mégse"
 
 #: src/imports/ContactEdit/ContactFetchError.qml:26
 msgid "Contact not found"
-msgstr ""
+msgstr "A kapcsolat nem található"
 
 #: data/address-book-app.desktop.in:6 data/address-book-app.desktop.in:7
 #: src/imports/ContactList/ContactListPage.qml:57
 msgid "Contacts"
-msgstr ""
+msgstr "Kapcsolatok"
 
 #: data/address-book-app.desktop.in:8
 msgid "Contacts Address Book"
@@ -60,57 +60,57 @@ msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
-msgstr ""
+msgstr "Ország"
 
 #: src/imports/ContactList/ContactListPage.qml:83
 #: src/imports/ContactView/ContactView.qml:181
 #: src/imports/Ubuntu/Contacts/ContactSimpleListView.qml:288
 msgid "Delete"
-msgstr ""
+msgstr "Törlés"
 
 #: src/imports/ContactEdit/EditToolbar.qml:57
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:53
 msgid "Done"
-msgstr ""
+msgstr "Kész"
 
 #: src/imports/ContactView/ContactView.qml:193
 msgid "Edit"
-msgstr ""
+msgstr "Szerkesztés"
 
 #: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:23
 #: src/imports/ContactView/ContactDetailEmailsView.qml:23
 #: src/imports/ContactView/ContactDetailEmailsView.qml:26
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 #: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:28
 msgid "Enter a number"
-msgstr ""
+msgstr "Adjon meg egy számot"
 
 #: src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:28
 msgid "Enter a social alias"
-msgstr ""
+msgstr "Becenév megadása"
 
 #: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:27
 msgid "Enter an email address"
-msgstr ""
+msgstr "E-mail cím megadása"
 
 #: src/imports/ContactEdit/ContactFetchError.qml:25
 #: src/imports/MainWindow.qml:94
 msgid "Error"
-msgstr ""
+msgstr "Hiba"
 
 #: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:33
 msgid "Favorite"
-msgstr ""
+msgstr "Kedvenc"
 
 #: src/imports/Ubuntu/Contacts/ContactListView.qml:93
 msgid "Favourites"
-msgstr ""
+msgstr "Kedvencek"
 
 #: src/imports/ContactEdit/ContactDetailNameEditor.qml:81
 msgid "First name"
-msgstr ""
+msgstr "Keresztnév"
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:116
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:94
@@ -119,7 +119,7 @@ msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "ICQ"
-msgstr ""
+msgstr "ICQ"
 
 #: src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:24
 msgid "IM"
@@ -127,19 +127,19 @@ msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
 msgid "Jabber"
-msgstr ""
+msgstr "Jabber"
 
 #: src/imports/ContactEdit/ContactDetailNameEditor.qml:81
 msgid "Last name"
-msgstr ""
+msgstr "Vezetéknév"
 
 #: src/imports/ContactEdit/ContactDetailAvatarEditor.qml:85
 msgid "Loading"
-msgstr ""
+msgstr "Betöltés"
 
 #: src/imports/ContactList/ContactListPage.qml:163
 msgid "Loading..."
-msgstr ""
+msgstr "Betöltés…"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:32
 msgid "Locality"
@@ -147,13 +147,13 @@ msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:98
 msgid "Mobile"
 msgstr ""
 
-#: src/imports/ContactEdit/TextInputDetail.qml:35
+#: src/imports/ContactEdit/TextInputDetail.qml:46
 msgid "Next"
 msgstr ""
 
@@ -231,6 +231,12 @@ msgstr ""
 
 #: src/imports/ContactView/ContactDetailOnlineAccountsView.qml:30
 msgid "Touch"
+msgstr ""
+
+#. TRANSLATORS: This value is used as default value for phone number format, when no coutry code is provided
+#. the supported values can be found in: https://www.iso.org/obp/ui/#search
+#: src/imports/ContactEdit/TextInputDetail.qml:41
+msgid "US"
 msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:111
