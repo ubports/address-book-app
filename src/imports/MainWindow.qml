@@ -81,6 +81,8 @@ MainView {
     }
 
     Component.onCompleted: {
+        i18n.domain = "address-book-app"
+        i18n.bindtextdomain("address-book-app", i18nDirectory)
         mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"))
         mainWindow.applicationReady()
     }
