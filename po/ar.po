@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-05-09 15:54-0300\n"
-"PO-Revision-Date: 2014-01-22 19:09+0000\n"
+"POT-Creation-Date: 2014-05-13 15:51-0300\n"
+"PO-Revision-Date: 2014-05-22 08:55+0000\n"
 "Last-Translator: Ibrahim Saed <ibraheem5000@gmail.com>\n"
 "Language-Team: Arabic <ar@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-05-14 06:25+0000\n"
-"X-Generator: Launchpad (build 17002)\n"
+"X-Launchpad-Export-Date: 2014-05-23 09:13+0000\n"
+"X-Generator: Launchpad (build 17017)\n"
 
 #: src/imports/ContactList/ContactListPage.qml:193
 msgid "Add"
@@ -29,7 +29,7 @@ msgstr "العنوان"
 #: src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:73
 #: src/imports/ContactView/ContactDetailSyncTargetView.qml:48
 msgid "Addressbook"
-msgstr ""
+msgstr "دفتر العناوين"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:61
 msgid "Aim"
@@ -37,7 +37,7 @@ msgstr "Aim"
 
 #: src/imports/Ubuntu/Contacts/ContactListView.qml:66
 msgid "All"
-msgstr ""
+msgstr "الكل"
 
 #: src/imports/ContactEdit/ContactEditor.qml:300
 #: src/imports/ContactEdit/EditToolbar.qml:42
@@ -139,7 +139,7 @@ msgstr "يجري التحميل"
 
 #: src/imports/ContactList/ContactListPage.qml:163
 msgid "Loading..."
-msgstr ""
+msgstr "يُحمّل..."
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:32
 msgid "Locality"
@@ -153,13 +153,13 @@ msgstr "MSN"
 msgid "Mobile"
 msgstr "الهاتف المحمول"
 
-#: src/imports/ContactEdit/TextInputDetail.qml:35
+#: src/imports/ContactEdit/TextInputDetail.qml:46
 msgid "Next"
-msgstr ""
+msgstr "التالي"
 
 #: src/imports/ContactList/OnlineAccountsMessage.qml:48
 msgid "No"
-msgstr ""
+msgstr "لا"
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Organization"
@@ -215,15 +215,15 @@ msgstr "الشارع"
 
 #: src/imports/ContactList/ContactListPage.qml:176
 msgid "Sync"
-msgstr ""
+msgstr "زامن"
 
 #: src/imports/ContactList/ContactListPage.qml:176
 msgid "Syncing"
-msgstr ""
+msgstr "المزامنة"
 
 #: src/imports/ContactList/ContactListPage.qml:163
 msgid "Syncing..."
-msgstr ""
+msgstr "يزامن..."
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:32
 msgid "Title"
@@ -231,6 +231,12 @@ msgstr "اللقب"
 
 #: src/imports/ContactView/ContactDetailOnlineAccountsView.qml:30
 msgid "Touch"
+msgstr ""
+
+#. TRANSLATORS: This value is used as default value for phone number format, when no coutry code is provided
+#. the supported values can be found in: https://www.iso.org/obp/ui/#search
+#: src/imports/ContactEdit/TextInputDetail.qml:41
+msgid "US"
 msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:111
@@ -251,6 +257,8 @@ msgid ""
 "Would you like to sync contacts\n"
 "from online accounts now?"
 msgstr ""
+"هل ترغب بمزامنة الأشخاص الآن\n"
+"من حسابات الإنترنت؟"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
@@ -258,8 +266,8 @@ msgstr "Yahoo"
 
 #: src/imports/ContactList/OnlineAccountsMessage.qml:36
 msgid "Yes"
-msgstr ""
+msgstr "نعم"
 
 #: src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
-msgstr ""
+msgstr "ليس لديك أي أشخاص."
