@@ -118,17 +118,8 @@ ContactSimpleListView {
         matchFlags: DetailFilter.MatchExactly
     }
 
-    //FIXME: enable it back when this get merged (https://codereview.qt-project.org/85112)
-//    InvalidFilter {
-//        id: invalidFilter
-//    }
-    DetailFilter {
+    InvalidFilter {
         id: invalidFilter
-
-        detail: ContactDetail.Version
-        field: Version.Version
-        value: "-1"
-        matchFlags: DetailFilter.MatchExactly
     }
 
     IntersectionFilter {
@@ -165,8 +156,7 @@ ContactSimpleListView {
         }
         onErrorChanged: {
             if (error) {
-                busyIndicator.busy = false
-                contactListView.error(error)
+                console.error("Contact List error:" + error)
             }
         }
         onContactsChanged: {
