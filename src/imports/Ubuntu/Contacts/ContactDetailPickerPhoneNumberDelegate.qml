@@ -108,7 +108,7 @@ Item {
                     anchors.leftMargin: units.gu(2)
                     anchors.rightMargin: units.gu(2)
                     Label {
-                        text: i18n.tr("View contact's profile")
+                        text: i18n.dtr("address-book-app", "View contact's profile")
                         fontSize: "medium"
                     }
                 }

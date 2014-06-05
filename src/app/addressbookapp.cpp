@@ -184,6 +184,7 @@ bool AddressBookApp::setup()
     m_view->rootContext()->setContextProperty("application", this);
     m_view->rootContext()->setContextProperty("contactKey", contactKey);
     m_view->rootContext()->setContextProperty("TEST_DATA", testData);
+    m_view->rootContext()->setContextProperty("i18nDirectory", I18N_DIRECTORY);
 
     QUrl source(fullPath("/imports/MainWindow.qml"));
     m_view->setSource(source);

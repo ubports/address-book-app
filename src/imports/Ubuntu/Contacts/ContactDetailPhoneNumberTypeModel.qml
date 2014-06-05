@@ -91,15 +91,15 @@ ListModel {
     }
 
     Component.onCompleted: {
-        append({"value": "Home", "label": i18n.tr("Home"), "icon": null,
+        append({"value": "Home", "label": i18n.dtr("address-book-app", "Home"), "icon": null,
                 "context": QtContacts.ContactDetail.ContextHome, "subType": QtContacts.PhoneNumber.Landline })
-        append({"value": "Work", "label": i18n.tr("Work"), "icon": null,
+        append({"value": "Work", "label": i18n.dtr("address-book-app", "Work"), "icon": null,
                "context": QtContacts.ContactDetail.ContextWork, "subType": QtContacts.PhoneNumber.Landline })
-        append({"value": "Mobile", "label": i18n.tr("Mobile"), "icon": null,
+        append({"value": "Mobile", "label": i18n.dtr("address-book-app", "Mobile"), "icon": null,
                 "context": QtContacts.ContactDetail.ContextHome, "subType": QtContacts.PhoneNumber.Mobile })
-        append({"value": "Mobile-Work", "label": i18n.tr("Work Mobile"), "icon": null,
+        append({"value": "Mobile-Work", "label": i18n.dtr("address-book-app", "Work Mobile"), "icon": null,
                 "context": QtContacts.ContactDetail.ContextWork, "subType": QtContacts.PhoneNumber.Mobile })
-        append({"value": "Other", "label": i18n.tr("Other"), "icon": null,
+        append({"value": "Other", "label": i18n.dtr("address-book-app", "Other"), "icon": null,
                 "context": QtContacts.ContactDetail.ContextOther, "subType": QtContacts.PhoneNumber.Landline })
         loaded()
     }
