@@ -57,15 +57,15 @@ ListModel {
     }
 
     Component.onCompleted: {
-        //append({"value": 0, "label": i18n.tr("Other"), icon: "artwork:/protocol-other.svg"})
-        /*0*/   append({"value": 1, "label": i18n.tr("Aim"), "icon": "artwork:/protocol-aim.svg"})
-        /*1*/   append({"value": 2, "label": i18n.tr("ICQ"), "icon": "artwork:/protocol-icq.svg"})
-        //append({"value": 3, "label": i18n.tr("IRC"), icon: "artwork:/protocol-irc.svg"})
-        /*2*/   append({"value": 4, "label": i18n.tr("Jabber"), "icon": "artwork:/protocol-jabber.svg"})
-        /*3*/   append({"value": 5, "label": i18n.tr("MSN"), "icon": "artwork:/protocol-msn.svg"})
-        // append({"value": 6, "label": i18n.tr("QQ"), icon: "artwork:/protocol-qq.svg"})
-        /*4*/   append({"value": 7, "label": i18n.tr("Skype"), "icon": "artwork:/protocol-skype.svg"})
-        /*5*/   append({"value": 8, "label": i18n.tr("Yahoo"), "icon": "artwork:/protocol-yahoo.svg"})
+        //append({"value": 0, "label": i18n.dtr("address-book-app", "Other"), icon: "artwork:/protocol-other.svg"})
+        /*0*/   append({"value": 1, "label": i18n.dtr("address-book-app", "Aim"), "icon": "artwork:/protocol-aim.svg"})
+        /*1*/   append({"value": 2, "label": i18n.dtr("address-book-app", "ICQ"), "icon": "artwork:/protocol-icq.svg"})
+        //append({"value": 3, "label": i18n.dtr("address-book-app", "IRC"), icon: "artwork:/protocol-irc.svg"})
+        /*2*/   append({"value": 4, "label": i18n.dtr("address-book-app", "Jabber"), "icon": "artwork:/protocol-jabber.svg"})
+        /*3*/   append({"value": 5, "label": i18n.dtr("address-book-app", "MSN"), "icon": "artwork:/protocol-msn.svg"})
+        // append({"value": 6, "label": i18n.dtr("address-book-app", "QQ"), icon: "artwork:/protocol-qq.svg"})
+        /*4*/   append({"value": 7, "label": i18n.dtr("address-book-app", "Skype"), "icon": "artwork:/protocol-skype.svg"})
+        /*5*/   append({"value": 8, "label": i18n.dtr("address-book-app", "Yahoo"), "icon": "artwork:/protocol-yahoo.svg"})
         loaded()
     }
 }

@@ -34,7 +34,7 @@ Rectangle {
         objectName: "DialogButtons.rejectButton"
 
         action: Action {
-            text: i18n.tr("Cancel")
+            text: i18n.dtr("address-book-app", "Cancel")
         }
         anchors {
             left: parent.left
@@ -50,7 +50,7 @@ Rectangle {
         objectName: "DialogButtons.acceptButton"
 
         action: Action {
-            text: i18n.tr("Done")
+            text: i18n.dtr("address-book-app", "Done")
         }
         anchors {
             right: parent.right

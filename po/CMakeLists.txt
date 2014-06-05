@@ -24,6 +24,7 @@ if(XGETTEXT_EXECUTABLE)
         COMMAND ${XGETTEXT_EXECUTABLE} -o ${POT_FILE}
                 --c++ --qt --add-comments=TRANSLATORS
                 --keyword=tr --keyword=tr:1,2
+                --keyword=dtr:2 --keyword=dtr:2,3
                 --package-name=${DOMAIN}
                 --copyright-holder='Canonical Ltd.'
                 -D ${CMAKE_SOURCE_DIR} -s 

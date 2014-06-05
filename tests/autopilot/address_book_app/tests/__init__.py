@@ -16,7 +16,8 @@ from autopilot.matchers import Eventually
 from autopilot.platform import model
 from testtools.matchers import Equals
 
-from address_book_app.emulators.main_window import MainWindow
+import address_book_app
+from address_book_app import MainWindow
 from ubuntuuitoolkit import emulators as toolkit_emulators
 
 
@@ -71,6 +72,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
         AddressBookAppTestCase.ARGS = []
         AddressBookAppTestCase.PRELOAD_VCARD = False
         self.main_window.visible.wait_for(True)
+        self.app = address_book_app.AddressBookApp(self.app_proxy)
 
     def tearDown(self):
         super(AddressBookAppTestCase, self).tearDown()
@@ -80,7 +82,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
             subprocess.check_call(["/sbin/initctl", "start", "maliit-server"])
 
     def launch_test_local(self):
-        self.app = self.launch_test_application(
+        self.app_proxy = self.launch_test_application(
             self.app_bin,
             *AddressBookAppTestCase.ARGS,
             app_type='qt',
@@ -89,19 +91,19 @@ class AddressBookAppTestCase(AutopilotTestCase):
     def launch_test_installed(self):
         df = "/usr/share/applications/address-book-app.desktop"
         self.ARGS.append("--desktop_file_hint=" + df)
-        self.app = self.launch_test_application(
+        self.app_proxy = self.launch_test_application(
             "address-book-app",
             *AddressBookAppTestCase.ARGS,
             app_type='qt',
             emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
 
     def launch_click_installed(self):
-        self.app = self.launch_click_package(
+        self.app_proxy = self.launch_click_package(
             "com.ubuntu.address-book")
 
     @property
     def main_window(self):
-        return self.app.select_single(MainWindow)
+        return self.app_proxy.select_single(MainWindow)
 
     def select_a_value(self, field, value_selector, value):
         # Make sure the field has focus

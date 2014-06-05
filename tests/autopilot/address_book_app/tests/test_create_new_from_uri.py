@@ -23,17 +23,17 @@ class TestCreateNewContactFromURI(AddressBookAppTestCase):
         super(TestCreateNewContactFromURI, self).setUp()
 
     def test_save_new_contact(self):
-        list_page = self.main_window.get_contact_list_page()
+        list_page = self.app.main_window.get_contact_list_page()
         list_page.isReady.wait_for(True)
-        
-        edit_page = self.main_window.get_contact_edit_page()
+
+        edit_page = self.app.main_window.get_contact_edit_page()
         self.assertThat(edit_page.visible, Eventually(Equals(True)))
 
         # add name to the contact
-        firstNameField = self.main_window.wait_select_single(
+        firstNameField = self.app.main_window.wait_select_single(
             "TextInputDetail",
             objectName="firstName")
-        lastNameField = self.main_window.wait_select_single(
+        lastNameField = self.app.main_window.wait_select_single(
             "TextInputDetail",
             objectName="lastName")
 
@@ -41,14 +41,14 @@ class TestCreateNewContactFromURI(AddressBookAppTestCase):
         self.type_on_field(lastNameField, "de Tal")
 
         # save the contact
-        acceptButton = self.main_window.save()
+        self.app.main_window.save()
 
         # open contact view
-        contacts = self.main_window.select_many("ContactDelegate")
+        contacts = self.app.main_window.select_many("ContactDelegate")
         self.pointing_device.click_object(contacts[0])
-        view_page = self.main_window.get_contact_view_page()
+        view_page = self.app.main_window.get_contact_view_page()
         self.assertThat(view_page.visible, Eventually(Equals(True)))
-        
+
 
         # check if we have the new phone"""
         phone_group = view_page.select_single(

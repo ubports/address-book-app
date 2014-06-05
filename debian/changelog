@@ -1,3 +1,11 @@
+address-book-app (0.2+14.10.20140530-0ubuntu1) utopic; urgency=low
+
+  [ Gustavo Pichorim Boiko ]
+  * Fix the loading of translations and make sure the plugin strings are
+    properly translated in other apps.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 30 May 2014 13:39:00 +0000
+
 address-book-app (0.2+14.10.20140521.1-0ubuntu1) utopic; urgency=low
 
   [ Bill Filler ]
