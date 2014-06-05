@@ -18,7 +18,7 @@ set(CONTACT_COMPONENTS_QMLS
 
 # make the files visible on qtcreator
 add_custom_target(contact_components_QmlFiles ALL SOURCES ${CONTACT_COMPONENTS_QMLS})
+
 if(INSTALL_COMPONENTS)
     install(FILES ${CONTACT_COMPONENTS_QMLS} DESTINATION ${QMLPLUGIN_INSTALL_PREFIX})
 endif()
-
