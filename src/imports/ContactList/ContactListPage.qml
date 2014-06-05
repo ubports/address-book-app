@@ -309,7 +309,7 @@ PageWithBottomEdge {
             bottomMargin: units.gu(1.5)
             verticalCenter: parent.verticalCenter
         }
-        onTextChanged: nameFilter.value = text
+        onTextChanged: contactSearchTimeout.restart()
         inputMethodHints: Qt.ImhNoPredictiveText
     }
 
@@ -415,6 +415,15 @@ PageWithBottomEdge {
             pageStack.pop()
             application.returnVcard(exporter.outputFile)
         }
+    }
+
+    Timer {
+        id: contactSearchTimeout
+
+        running: false
+        repeat: false
+        interval: 300
+        onTriggered: nameFilter.value = searchField.text
     }
 
 
