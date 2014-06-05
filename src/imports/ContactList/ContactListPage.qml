@@ -113,7 +113,12 @@ PageWithBottomEdge {
         id: contactList
         objectName: "contactListView"
 
-        anchors.fill: parent
+        anchors {
+            top: parent.top
+            left: parent.left
+            bottom: keyboard.top
+            right: parent.right
+        }
         swipeToDelete: !pickMode
         multiSelectionEnabled: true
         multipleSelection: !pickMode ||
@@ -377,6 +382,11 @@ PageWithBottomEdge {
         onContactCreated: {
             mainPage.contactIndex = contact
         }
+    }
+
+
+    KeyboardRectangle {
+        id: keyboard
     }
 
     Connections {
