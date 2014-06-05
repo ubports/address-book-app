@@ -43,6 +43,16 @@ ContactSimpleListView {
 
     property bool showFavourites: false
 
+    signal cleared()
+
+    function changeFilter(newFilter)
+    {
+        if (root.count > 0) {
+            contactsModel._clearModel = true
+        }
+        root.filter = newFilter
+    }
+
     header: Rectangle {
         id: itemHeader
 
@@ -72,9 +82,7 @@ ContactSimpleListView {
                     onClicked: {
                         //WORKAROUND: clear the model before start populate it with the new contacts
                         //otherwise the model will wait for all contacts before show any new contact
-                        if (root.count > 0) {
-                            contactsModel._clearModel = true
-                        }
+                        root.changeFilter(root.filter)
                         root.showFavourites = false
                     }
                 }

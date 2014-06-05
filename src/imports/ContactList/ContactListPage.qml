@@ -132,7 +132,6 @@ PageWithBottomEdge {
             matchFlags: DetailFilter.MatchContains
         }
 
-        filter: (searchField.text != "" ? nameFilter : null)
         onCountChanged: {
             if (count > 0)
                 mainPage.contactsLoaded = true
@@ -423,7 +422,18 @@ PageWithBottomEdge {
         running: false
         repeat: false
         interval: 300
-        onTriggered: nameFilter.value = searchField.text
+        onTriggered: {
+            if (searchField.text === "") {
+                if (contactList.filter !== null) {
+                    contactList.changeFilter(null)
+                }
+            } else {
+                if (contactList.filter !== nameFilter) {
+                    contactList.changeFilter(nameFilter)
+                }
+                nameFilter.value = searchField.text
+            }
+        }
     }
 
 
