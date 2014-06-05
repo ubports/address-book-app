@@ -10,12 +10,27 @@
 from testtools.matchers import Equals
 from autopilot.matchers import Eventually
 
+from address_book_app import data
 from address_book_app.tests import AddressBookAppTestCase
 
 
 class TestEditContact(AddressBookAppTestCase):
     """Tests edit a contact"""
+
     PHONE_NUMBERS = ['(333) 123-4567', '(333) 123-4568', '(222) 222-2222']
+
+    def add_test_contact(self):
+        test_contact = data.Contact('test', 'test')
+        # TODO implement the filling of professional details.
+        # --elopio - 2014-03-01
+        test_contact.professional_details = []
+
+        # execute add new contact
+        contact_editor = self.main_window.go_to_add_contact()
+        contact_editor.fill_form(test_contact)
+
+        # Save contact
+        self.main_window.save()
 
     def test_add_new_phone(self):
         self.add_contact("Fulano", "de Tal", [self.PHONE_NUMBERS[0]])
@@ -28,15 +43,15 @@ class TestEditContact(AddressBookAppTestCase):
         self.create_new_detail(phoneGroup)
 
         # fill phone number
-        phone_number_1 = self.main_window.select_single(
+        phone_number_1 = self.app.main_window.select_single(
             "TextInputDetail",
             objectName="phoneNumber_1")
         self.type_on_field(phone_number_1, self.PHONE_NUMBERS[1])
 
-        self.main_window.save()
+        self.app.main_window.save()
 
         # go back to view page
-        view_page = self.main_window.get_contact_view_page()
+        view_page = self.app.main_window.get_contact_view_page()
         self.assertThat(view_page.visible, Eventually(Equals(True)))
 
         # check if we have two phones"""
@@ -62,10 +77,10 @@ class TestEditContact(AddressBookAppTestCase):
         self.clear_text_on_field(phone_number_1)
 
         # Save contact
-        self.main_window.save()
+        self.app.main_window.save()
 
         # check if we have onlye one phone
-        view_page = self.main_window.get_contact_view_page()
+        view_page = self.app.main_window.get_contact_view_page()
         phone_group = view_page.select_single(
             "ContactDetailGroupWithTypeView",
             objectName="phones")
@@ -92,10 +107,10 @@ class TestEditContact(AddressBookAppTestCase):
             objectName="emailAddress_0")
         self.type_on_field(email_field, "fulano@internet.com.br")
 
-        self.main_window.save()
+        self.app.main_window.save()
 
         # go back to view page
-        view_page = self.main_window.get_contact_view_page()
+        view_page = self.app.main_window.get_contact_view_page()
         self.assertThat(view_page.visible, Eventually(Equals(True)))
 
         # check if we have a new email
@@ -122,10 +137,10 @@ class TestEditContact(AddressBookAppTestCase):
         self.clear_text_on_field(email_address_0)
 
         # Save contact
-        self.main_window.save()
+        self.app.main_window.save()
 
         # check if the email list is empty
-        view_page = self.main_window.get_contact_view_page()
+        view_page = self.app.main_window.get_contact_view_page()
         emails_group = view_page.select_single(
             "ContactDetailGroupWithTypeView",
             objectName="emails")
@@ -147,15 +162,15 @@ class TestEditContact(AddressBookAppTestCase):
         self.clear_text_on_field(last_name_field)
 
         # check if is possible to save a contact without name
-        self.main_window.save()
-        accept_button = self.main_window.get_button("save")
+        self.app.main_window.save()
+        accept_button = self.app.main_window.get_button("save")
         self.assertThat(accept_button.enabled, Eventually(Equals(False)))
 
         # Cancel edit
-        self.main_window.cancel()
+        self.app.main_window.cancel()
 
         # Check if the names still there
-        view_page = self.main_window.get_contact_view_page()
+        view_page = self.app.main_window.get_contact_view_page()
         self.assertThat(view_page.title, Eventually(Equals("Fulano de Tal")))
 
     def test_im_type(self):
@@ -177,9 +192,9 @@ class TestEditContact(AddressBookAppTestCase):
         self.select_a_value(im_address_0, im_value_selector, 0)
 
         # save contact
-        self.main_window.save()
+        self.app.main_window.save()
 
-        view_page = self.main_window.get_contact_view_page()
+        view_page = self.app.main_window.get_contact_view_page()
 
         # check if the type was saved correct
         im_type = view_page.select_single(

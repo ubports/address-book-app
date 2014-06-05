@@ -63,7 +63,7 @@ ContactSimpleListView {
                     bottom: parent.bottom
                 }
                 width: parent.width / 2
-                text: i18n.tr("All")
+                text: i18n.dtr("address-book-app", "All")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 color: root.showFavourites ? UbuntuColors.warmGrey : UbuntuColors.orange
@@ -97,7 +97,7 @@ ContactSimpleListView {
                     bottom: parent.bottom
                 }
                 width: parent.width / 2
-                text: i18n.tr("Favourites")
+                text: i18n.dtr("address-book-app", "Favourites")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 color: root.showFavourites ? UbuntuColors.orange : UbuntuColors.warmGrey
