@@ -49,13 +49,19 @@ static void printUsage(const QStringList& arguments)
              << "[-testability]";
 }
 
+static bool clickModeEnabled()
+{
+    return ((QString(ADDRESS_BOOK_APP_CLICK_PACKAGE).toLower() == "on") ||
+             (QString(ADDRESS_BOOK_APP_CLICK_PACKAGE) == "1"));
+}
+
 static QString fullPath(const QString &fileName)
 {
     QString result;
     QString appPath = QCoreApplication::applicationDirPath();
     if (appPath.startsWith(ADDRESS_BOOK_DEV_BINDIR)) {
         result = QString(ADDRESS_BOOK_APP_DEV_DATADIR) + fileName;
-    } else if (QString(ADDRESS_BOOK_APP_CLICK_PACKAGE).toLower() == "on") {
+    } else if (clickModeEnabled()) {
         result = appPath + QStringLiteral("/share/address-book-app/") + fileName;
     } else {
         result = QString(ADDRESS_BOOK_APP_INSTALL_DATADIR) + fileName;
@@ -178,7 +184,7 @@ bool AddressBookApp::setup()
 
     m_view->setResizeMode(QQuickView::SizeRootObjectToView);
     m_view->setTitle("AddressBook");
-    m_view->engine()->addImportPath(importPath("/imports/"));
+    m_view->engine()->addImportPath(QCoreApplication::applicationDirPath() + "/" + importPath(""));
     m_view->rootContext()->setContextProperty("QTCONTACTS_MANAGER_OVERRIDE", defaultManager);
     m_view->rootContext()->setContextProperty("contactContentHub", m_contentComm);
     m_view->rootContext()->setContextProperty("application", this);
