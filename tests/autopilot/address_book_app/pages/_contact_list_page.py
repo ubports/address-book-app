@@ -1,23 +1,33 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
+#
+# Copyright (C) 2014 Canonical Ltd.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3, as published
+# by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 """ ContactListPage emulator for Addressbook App tests """
 
-# Copyright 2014 Canonical
-#
-# This program is free software: you can redistribute it and/or modify it
-# under the terms of the GNU General Public License version 3, as published
-# by the Free Software Foundation.
-
 import logging
+import time
 
 from autopilot.introspection.dbus import StateNotFoundError
-from ubuntuuitoolkit import emulators as uitk
+
+from address_book_app.pages import _common, _contact_view
+
 
 LOGGER = logging.getLogger(__name__)
-from time import sleep
 
 
-class ContactListPage(uitk.UbuntuUIToolkitEmulatorBase):
+class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
     """ ContactListPage emulator class """
 
     def __init__(self, *args):
@@ -25,6 +35,18 @@ class ContactListPage(uitk.UbuntuUIToolkitEmulatorBase):
         self.selection_marks = []
         self.selected_marks = []
         super(ContactListPage, self).__init__(*args)
+
+    def open_contact(self, index):
+        """Open the page with the contact information.
+
+        :param index: The index of the contact to open.
+        :return: The page with the contact information.
+
+        """
+        contacts = self.get_contacts()
+        self.pointing_device.click_object(contacts[index])
+        return self.get_root_instance().select_single(
+            _contact_view.ContactView, objectName='contactViewPage')
 
     def _get_list_view(self):
         return self.wait_select_single("ContactListView",
@@ -35,7 +57,7 @@ class ContactListPage(uitk.UbuntuUIToolkitEmulatorBase):
         Returns a list of ContactDelegate objects and populate
         self.selection_marks
         """
-        sleep(1)
+        time.sleep(1)
         self.contacts = self.select_many("ContactDelegate")
         self.selection_marks = []
         for contact in self.contacts:
@@ -52,7 +74,7 @@ class ContactListPage(uitk.UbuntuUIToolkitEmulatorBase):
             self.selected_marks.append(self.selection_marks[idx])
             self.pointing_device.move_to_object(self.contacts[idx])
             self.pointing_device.press()
-            sleep(2.0)
+            time.sleep(2.0)
             self.pointing_device.release()
             view.isInSelectionMode.wait_for(True)
         else:
@@ -110,4 +132,3 @@ class ContactListPage(uitk.UbuntuUIToolkitEmulatorBase):
         dialog = main_window.wait_select_single("RemoveContactsDialog",
             objectName="removeContactsDialog")
         self.click_button(main_window, "removeContactsDialog.Yes")
-

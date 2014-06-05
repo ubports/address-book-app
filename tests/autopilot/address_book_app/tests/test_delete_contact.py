@@ -35,7 +35,7 @@ class TestDeleteSelectContact(AddressBookAppTestCase):
     def setUp(self):
         AddressBookAppTestCase.PRELOAD_VCARD = True
         super(TestDeleteSelectContact, self).setUp()
-    
+
     def test_select(self):
         """
         Delete a contact in pick mode
@@ -45,15 +45,15 @@ class TestDeleteSelectContact(AddressBookAppTestCase):
         contact in the list before and after the action.
         Note that it doesn't check which contact has been deleted.
         """
-        listpage = self.main_window.get_contact_list_page()
+        listpage = self.app.main_window.get_contact_list_page()
         contacts_before = listpage.get_contacts()
 
         listpage.select_contacts_by_index(self.select)
         deleted = []
         if self.action == "cancel":
-            self.main_window.cancel()
+            self.app.main_window.cancel()
         elif self.action == "delete":
-            listpage.delete(self.main_window)
+            listpage.delete(self.app.main_window)
             deleted = self.select
 
         contacts_after = listpage.get_contacts()

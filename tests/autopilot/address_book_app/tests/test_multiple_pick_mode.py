@@ -22,7 +22,7 @@ class TestMultiplePickerMode(AddressBookAppTestCase):
         super(TestMultiplePickerMode, self).setUp()
 
     def test_select_contacts(self):
-        pick_page = self.main_window.get_contact_list_pick_page()
+        pick_page = self.app.main_window.get_contact_list_pick_page()
         contacts = pick_page.select_many("ContactDelegate")
         # all selection marks should be visible
         selection_marks = []
