@@ -310,6 +310,7 @@ PageWithBottomEdge {
             verticalCenter: parent.verticalCenter
         }
         onTextChanged: nameFilter.value = text
+        inputMethodHints: Qt.ImhNoPredictiveText
     }
 
     __customHeaderContents: mainPage.searching ? searchField : null
