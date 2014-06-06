@@ -334,7 +334,10 @@ PageWithBottomEdge {
             bottomMargin: units.gu(1.5)
             verticalCenter: parent.verticalCenter
         }
-        onTextChanged: contactSearchTimeout.restart()
+        onTextChanged: {
+            contactList.currentIndex = -1
+            contactSearchTimeout.restart()
+        }
         inputMethodHints: Qt.ImhNoPredictiveText
     }
 

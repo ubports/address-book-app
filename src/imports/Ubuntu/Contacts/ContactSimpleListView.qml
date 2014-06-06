@@ -142,13 +142,6 @@ MultipleSelectionListView {
     */
     property int detailToPick: 0
     /*!
-      \qmlproperty int currentContactExpanded
-
-      This property holds the current contact expanded
-    */
-    property int currentContactExpanded: -1
-
-    /*!
       \qmlproperty bool showSections
 
       This property holds if the listview will show or not the section headers
@@ -245,7 +238,7 @@ MultipleSelectionListView {
         contactFetch.fetchContact(contact.contactId)
     }
 
-    snapMode: ListView.SnapToItem
+    currentIndex: -1
     section {
         property: showSections ? "contact.tag.tag" : ""
         criteria: ViewSection.FirstCharacter
@@ -317,25 +310,25 @@ MultipleSelectionListView {
                 }
                 return
             }
-            if (contactListView.currentContactExpanded === index) {
-                contactListView.currentContactExpanded = -1
+            if (ListView.isCurrentItem) {
+                contactListView.currentIndex = -1
                 return
             // check if we should expand and display the details picker
             } else if (detailToPick !== 0) {
-                contactListView.currentContactExpanded = index
+                contactListView.currentIndex = index
                 return
             }
         }
 
         onPressAndHold: {
             if (contactListView.multiSelectionEnabled) {
-                contactListView.currentContactExpanded = -1
+                contactListView.currentIndex = -1
                 contactListView.startSelection()
                 contactListView.selectItem(contactDelegate)
             }
         }
 
-        state: (index === contactListView.currentContactExpanded) ? "expanded" : ""
+        state: ListView.isCurrentItem ? "expanded" : ""
         states: [
             State {
                 name: "expanded"
@@ -447,7 +440,7 @@ MultipleSelectionListView {
         target: Qt.application
         onActiveChanged: {
             if (!Qt.application.active) {
-                currentContactExpanded = -1
+                currentIndex = -1
             }
         }
     }

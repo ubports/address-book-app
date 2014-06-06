@@ -55,7 +55,7 @@ Item {
     property alias defaultAvatarImageUrl: view.defaultAvatarImageUrl
     readonly property alias loading: view.loading
     property alias detailToPick: view.detailToPick
-    property alias currentContactExpanded: view.currentContactExpanded
+    property alias currentIndex: view.currentIndex
     property alias showSections: view.showSections
     property alias manager: view.manager
     property alias fastScrolling: fastScroll.fastScrolling
