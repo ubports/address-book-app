@@ -152,10 +152,13 @@ Page {
         }
     }
 
+    flickable: null
     Flickable {
         id: scrollArea
         objectName: "scrollArea"
 
+        // this is necessary to avoid the page to appear bellow the header
+        clip: true
         flickableDirection: Flickable.VerticalFlick
         anchors {
             fill: parent
