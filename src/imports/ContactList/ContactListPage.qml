@@ -162,6 +162,10 @@ PageWithBottomEdge {
                 mainPage.onlineAccountsMessageDialog = null
                 application.unsetFirstRun()
             }
+
+            if (mainPage.searching) {
+                 contactList.positionViewAtBeginning()
+            }
         }
 
         onInfoRequested: {

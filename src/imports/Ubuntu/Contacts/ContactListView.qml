@@ -116,7 +116,10 @@ Item {
     {
         view.positionViewAtContact(contact)
     }
-
+    function positionViewAtBeginning()
+    {
+        view.positionViewAtBeginning()
+    }
     function changeFilter(newFilter)
     {
         if (root.count > 0) {
