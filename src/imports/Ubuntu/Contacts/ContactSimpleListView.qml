@@ -52,20 +52,7 @@ MultipleSelectionListView {
       By default this is set to true.
     */
     property bool showAvatar: true
-    /*!
-      \qmlproperty bool swipeToDelete
 
-      This property holds if the swipe to delete contact gesture is enabled or not
-      By default this is set to false.
-    */
-    property bool swipeToDelete: false
-    /*!
-      \qmlproperty bool expanded
-
-      This property holds if the list is expaned or not
-      By default this is set to true.
-    */
-    property bool expanded: true
     /*!
       \qmlproperty int titleDetail
 
@@ -162,13 +149,6 @@ MultipleSelectionListView {
     property int currentContactExpanded: -1
 
     /*!
-      \qmlproperty bool animating
-
-      This property holds if the list is on animating state (expanding/collapsing)
-    */
-    readonly property alias animating: priv.animating
-
-    /*!
       \qmlproperty bool showSections
 
       This property holds if the listview will show or not the section headers
@@ -185,18 +165,35 @@ MultipleSelectionListView {
     property string manager: (typeof(QTCONTACTS_MANAGER_OVERRIDE) !== "undefined") && (QTCONTACTS_MANAGER_OVERRIDE != "") ? QTCONTACTS_MANAGER_OVERRIDE : "galera"
 
     /*!
+      \qmlproperty Action leftSideAction
+
+      This property holds the available actions when swipe the contact item from left to right
+    */
+    property Action leftSideAction
+
+    /*!
+      \qmlproperty list<Action> rightSideActions
+
+      This property holds the available actions when swipe the contact item from right to left
+    */
+    property list<Action> rightSideActions
+
+    /*!
       This handler is called when any error occurs in the contact model
     */
     signal error(string message)
     /*!
-      This handler is called when any contact int the list receives a click.
-    */
-    signal contactClicked(QtObject contact)
-    /*!
       This handler is called when any contact detail in the list receives a click
     */
-    signal detailClicked(QtObject contact, QtObject detail)
-
+    signal detailClicked(QtObject contact, QtObject detail, string action)
+    /*!
+      This handler is called when details button on contact delegate is clicked
+    */
+    signal infoRequested(QtObject contact)
+    /*!
+      This handler is called when the contact delegate disapear (height === 0) caused by the function call makeDisappear
+    */
+    signal contactDisappeared(QtObject contact)
     /*!
       Retrieve the contact index inside of the list based on contact id or contact name if the id is empty
     */
@@ -235,14 +232,7 @@ MultipleSelectionListView {
     */
     function positionViewAtContact(contact)
     {
-        if (expanded) {
-            positionViewAtIndex(getIndex(contact), ListView.Center)
-        } else {
-            priv.pendingTargetIndex = getIndex(contact)
-            priv.pendingTargetMode = ListView.Center
-            expanded = true
-            dirtyHeightTimer.restart()
-        }
+        positionViewAtIndex(getIndex(contact), ListView.Center)
     }
 
     /*!
@@ -255,30 +245,30 @@ MultipleSelectionListView {
         contactFetch.fetchContact(contact.contactId)
     }
 
-    clip: true
     snapMode: ListView.SnapToItem
     section {
         property: showSections ? "contact.tag.tag" : ""
         criteria: ViewSection.FirstCharacter
-        labelPositioning: ViewSection.InlineLabels | ViewSection.CurrentLabelAtStart
-        delegate: ListItem.Header {
-            id: listHeader
-            text: section != "" ? section : "#"
-            height: units.gu(4)
-
-            Rectangle {
-                z: -1
-                anchors.fill: parent
-                color: Theme.palette.normal.background
+        labelPositioning: ViewSection.InlineLabels
+        delegate: Rectangle {
+            color: Theme.palette.normal.background
+            anchors {
+                left: parent.left
+                right: parent.right
+                margins: units.gu(1)
             }
-
-            MouseArea {
+            height: units.gu(3)
+            Label {
                 anchors.fill: parent
-                onClicked: {
-                    if (!priv.animating) {
-                        priv.activeSection = listHeader.text
-                        contactListView.expanded = !contactListView.expanded
-                    }
+                verticalAlignment: Text.AlignVCenter
+                text: section != "" ? section : "#"
+                font.pointSize: 76
+            }
+            ListItem.ThinDivider {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    bottom: parent.bottom
                 }
             }
         }
@@ -289,201 +279,111 @@ MultipleSelectionListView {
         dirtyModel.restart()
     }
 
-    listDelegate: Loader {
-        id: loaderDelegate
+    listDelegate: ContactDelegate {
+        id: contactDelegate
 
-        property bool loaded: false
-        property var contact: model.contact
-        property int _index: index
-        property int delegateHeight: item ? item.implicitHeight : 0
-        property int targetHeight: ((currentContactExpanded == index) && detailToPick != 0) ?  delegateHeight : units.gu(6)
-        property bool detailsShown: false
+        // overwrite
+        function disappeared()
+        {
+            contactListView.contactDisappeared(contact)
+        }
 
-        source: Qt.resolvedUrl("ContactDelegate.qml")
-        active: true
         width: parent.width
-        visible: loaderDelegate.status == Loader.Ready
-        state: contactListView.expanded ? "" : "collapsed"
+        selected: contactListView.multiSelectionEnabled && contactListView.isSelected(contactDelegate)
+        defaultAvatarUrl: contactListView.defaultAvatarImageUrl
+        titleDetail: contactListView.titleDetail
+        titleFields: contactListView.titleFields
+
+        // ListItemWithActions
+        //locked: contactListView.isInSelectionMode || detailsShown
+        //triggerActionOnMouseRelease: true
+        //leftSideAction: contactListView.leftSideAction
+        //rightSideActions: contactListView.rightSideActions
+
+        onDetailClicked: contactListView.detailClicked(contact, detail, action)
+        onInfoRequested: contactListView._fetchContact(index, contact)
 
         Behavior on height {
-            enabled: currentContactExpanded == index || detailsShown
-            UbuntuNumberAnimation {}
+            id: behaviorOnHeight
+
+            enabled: false
+            UbuntuNumberAnimation { }
         }
 
-        Connections {
-            target: contactListView
-            onCurrentContactExpandedChanged: {
-                if (index != currentContactExpanded) {
-                    loaderDelegate.detailsShown = false
+        onClicked: {
+            if (contactListView.isInSelectionMode) {
+                if (!contactListView.selectItem(contactDelegate)) {
+                    contactListView.deselectItem(contactDelegate)
                 }
+                return
+            }
+            if (contactListView.currentContactExpanded === index) {
+                contactListView.currentContactExpanded = -1
+                return
+            // check if we should expand and display the details picker
+            } else if (detailToPick !== 0) {
+                contactListView.currentContactExpanded = index
+                return
             }
         }
 
-        Binding {
-            target: loaderDelegate.item
-            property: "index"
-            value: loaderDelegate._index
-            when: (loaderDelegate.status == Loader.Ready)
-        }
-
-        Binding {
-            target: loaderDelegate.item
-            property: "selected"
-            value: contactListView.multiSelectionEnabled &&
-                   contactListView.isSelected &&
-                   contactListView.isSelected(loaderDelegate)
-            when: (loaderDelegate.status == Loader.Ready)
-        }
-
-        Binding {
-            target: loaderDelegate.item
-            property: "removable"
-            value: contactListView &&
-                   contactListView.swipeToDelete &&
-                   !detailsShown &&
-                   !contactListView.isInSelectionMode
-            when: (loaderDelegate.status == Loader.Ready)
-        }
-
-        Binding {
-            target: loaderDelegate.item
-            property: "defaultAvatarUrl"
-            value: contactListView.defaultAvatarImageUrl
-            when: (loaderDelegate.status == Loader.Ready)
-        }
-
-        Binding {
-            target: loaderDelegate.item
-            property: "detailsShown"
-            value: loaderDelegate.detailsShown
-            when: (loaderDelegate.status == Loader.Ready)
-        }
-
-        Binding {
-            target: loaderDelegate.item
-            property: "selectMode"
-            value: contactListView.isInSelectionMode
-            when: (loaderDelegate.status == Loader.Ready)
-        }
-
-        Binding {
-            target: loaderDelegate.item
-            property: "titleDetail"
-            value: contactListView.titleDetail
-            when: (loaderDelegate.status == Loader.Ready)
-        }
-
-        Binding {
-            target: loaderDelegate.item
-            property: "titleFields"
-            value: contactListView.titleFields
-            when: (loaderDelegate.status == Loader.Ready)
-        }
-
-        // this will avoid the binding to be broken during the PropertyAction
-        Binding {
-            target: loaderDelegate
-            property: "height"
-            value: targetHeight
-            when: loaderDelegate.state == ""
-        }
-
-        Connections {
-            target: loaderDelegate.item
-            onContactClicked: {
-                if (contactListView.isInSelectionMode) {
-                    if (!contactListView.selectItem(loaderDelegate)) {
-                        contactListView.deselectItem(loaderDelegate)
-                    }
-                    return
-                }
-                if (contactListView.currentContactExpanded == index) {
-                    contactListView.currentContactExpanded = -1
-                    loaderDelegate.detailsShown = false
-                    return
-                // check if we should expand and display the details picker
-                } else if (detailToPick !== 0) {
-                    contactListView.currentContactExpanded = index
-                    loaderDelegate.detailsShown = !detailsShown
-                    return
-                }
-
-                contactListView._fetchContact(index, contact)
-            }
-            onPressAndHold: {
-                if (contactListView.multiSelectionEnabled) {
-                    contactListView.startSelection()
-                    contactListView.selectItem(loaderDelegate)
-                }
+        onPressAndHold: {
+            if (contactListView.multiSelectionEnabled) {
+                contactListView.currentContactExpanded = -1
+                contactListView.startSelection()
+                contactListView.selectItem(contactDelegate)
             }
         }
 
-        Timer {
-            id: dirtyItem
-
-            interval: 100
-            running: false
-            repeat: false
-            onTriggered: loaderDelegate.active = (state == "")
-        }
-
+        state: (index === contactListView.currentContactExpanded) ? "expanded" : ""
         states: [
             State {
-                name: "collapsed"
+                name: "expanded"
                 PropertyChanges {
-                    target: loaderDelegate
-                    height: 0
-                    restoreEntryValues: false
+                    target: contactDelegate
+                    clip: true
+                    height: contactDelegate.implicitHeight
+                    loaderOpacity: 1.0
+                    // FIXME: Setting detailsShown to true on expanded state cause the property to change to false and true during the state transition, and that
+                    // causes the loader to load twice
+                    //detailsShown: true
                 }
                 PropertyChanges {
-                    target: loaderDelegate
-                    active: false
-                    restoreEntryValues: false
+                    target: behaviorOnHeight
+                    enabled: true
                 }
             }
         ]
-
-        // control the property change order
         transitions: [
             Transition {
-                to: "collapsed"
-                onRunningChanged: priv.animating = running
-            },
-
-            Transition {
+                from: "expanded"
                 to: ""
-                onRunningChanged: priv.animating = running
                 SequentialAnimation {
-                    // expand the item
-                    PropertyAction {
-                        target: loaderDelegate
-                        property: "height"
-                        value: targetHeight
+                    UbuntuNumberAnimation {
+                        target: contactDelegate
+                        properties: "height, loaderOpacity"
                     }
-                    // give some time to listview to destroy the cache and load the delegate on the remaning items
-                    ScriptAction {
-                        // wait for list get fully expanded and cached delegates updated
-                        script: dirtyItem.restart()
+                    PropertyAction {
+                        target: contactDelegate
+                        property: "clip"
+                    }
+                    PropertyAction {
+                        target: contactDelegate
+                        property: "detailsShown"
+                        value: false
                     }
                 }
-
+            },
+            Transition {
+                from: ""
+                to: "expanded"
+                PropertyAction {
+                    target: contactDelegate
+                    property: "detailsShown"
+                    value: true
+                }
             }
         ]
-    }
-
-    onContentHeightChanged: {
-        if (priv.activeSection !== "") {
-            dirtyHeightTimer.restart()
-        }
-    }
-
-    Timer {
-        id: dirtyHeightTimer
-
-        interval: 1
-        running: false
-        repeat: false
-        onTriggered: priv.scrollList()
     }
 
     ContactFetch {
@@ -499,10 +399,7 @@ MultipleSelectionListView {
         }
 
         model: root.manager == "memory" ? root.listModel : contactFetchModel
-        onContactFetched: {
-            console.debug("Contact fetched")
-            contactListView.contactClicked(contact)
-        }
+        onContactFetched: contactListView.infoRequested(contact)
     }
 
     // This is a workaround to make sure the spinner will disappear if the model is empty
@@ -542,24 +439,8 @@ MultipleSelectionListView {
         id: priv
 
         property int currentOperation: -1
-        property string activeSection: ""
-        property bool animating: false
-
         property int pendingTargetIndex: 0
         property variant pendingTargetMode: null
-
-        function scrollList() {
-            if (activeSection) {
-                var targetSection = activeSection
-                activeSection = ""
-                var index = Sections.getIndexFor(targetSection)
-                contactListView.positionViewAtIndex(index, ListView.Beginning)
-            } else if (priv.pendingTargetIndex != -1) {
-                contactListView.positionViewAtIndex(priv.pendingTargetIndex, priv.pendingTargetMode)
-                priv.pendingTargetIndex = -1
-                priv.pendingTargetMode = null
-            }
-        }
     }
 
     Connections {

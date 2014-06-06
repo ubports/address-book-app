@@ -27,6 +27,19 @@ function formatToDisplay(contact, contactDetail, detailFields, detail) {
     return values
 }
 
+function getNameItials(name)
+{
+    var names = name.trim().split(' ')
+    var initials = ""
+    if (names.length > 0) {
+        initials = names[0].charAt(0)
+    }
+    if (names.length > 1) {
+        initials += names[1].charAt(0)
+    }
+    return initials.toUpperCase()
+}
+
 function getAvatar(contact, defaultValue)
 {
     // use this verbose mode to avoid problems with binding loops

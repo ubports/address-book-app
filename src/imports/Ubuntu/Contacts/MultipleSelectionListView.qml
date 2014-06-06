@@ -15,6 +15,7 @@
  */
 
 import QtQuick 2.2
+import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1 as Popups
 
 /*!
@@ -54,7 +55,7 @@ import Ubuntu.Components.Popups 0.1 as Popups
     \endqml
 */
 
-ListView {
+UbuntuListView {
     id: listView
 
     /*!

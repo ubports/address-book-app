@@ -1,5 +1,6 @@
 module Ubuntu.Contacts
 
+ContactAvatar 0.1 ContactAvatar.qml
 ContactDetailOnlineAccountTypeModel 0.1 ContactDetailOnlineAccountTypeModel.qml
 ContactDetailPhoneNumberTypeModel 0.1 ContactDetailPhoneNumberTypeModel.qml
 ContactFetch 0.1 ContactFetch.qml
@@ -8,9 +9,11 @@ ContactSearchListView 0.1 ContactSearchListView.qml
 ContactSimpleListView 0.1 ContactSimpleListView.qml
 MultipleSelectionListView 0.1 MultipleSelectionListView.qml
 
-internal ContactDetailPickerDelegate ContactDetailPickerDelegate.qml
+internal ContactDelegate ContactDelegate.qml
 internal ContactDetailPickerPhoneNumberDelegate ContactDetailPickerPhoneNumberDelegate.qml
 internal DialogButtons DialogButtons.qml
 internal OrganicView OrganicView.qml
 internal ContactList ContactList.js
 internal ContactJs Contacts.js
+internal FastScroll FastScroll.qml
+internal FastScrollJs FastScroll.js

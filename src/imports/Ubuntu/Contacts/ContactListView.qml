@@ -38,12 +38,80 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
         }
     \endqml
 */
-ContactSimpleListView {
+Item {
     id: root
 
-    property bool showFavourites: false
+    property alias view: view
+    property alias count: view.count
 
-    signal cleared()
+    property alias showFavourites: view.showFavourites
+    property alias showAvatar: view.showAvatar
+    property alias titleDetail: view.titleDetail
+    property alias titleFields: view.titleFields
+    property alias sortOrders: view.sortOrders
+    property alias fetchHint: view.fetchHint
+    property alias filter: view.filter
+    property alias multiSelectionEnabled: view.multiSelectionEnabled
+    property alias defaultAvatarImageUrl: view.defaultAvatarImageUrl
+    readonly property alias loading: view.loading
+    property alias detailToPick: view.detailToPick
+    property alias currentContactExpanded: view.currentContactExpanded
+    property alias showSections: view.showSections
+    property alias manager: view.manager
+    property alias fastScrolling: fastScroll.fastScrolling
+    property alias leftSideAction: view.leftSideAction
+    property alias rightSideActions: view.rightSideActions
+
+    readonly property alias selectedItems: view.selectedItems
+    property alias multipleSelection: view.multipleSelection
+    property alias listModel: view.listModel
+    property alias listDelegate: view.listDelegate
+    readonly property alias isInSelectionMode: view.isInSelectionMode
+
+    signal selectionDone(var items)
+    signal selectionCanceled()
+    signal error(string message)
+    signal infoRequested(QtObject contact)
+    signal detailClicked(QtObject contact, QtObject detail, string action)
+    signal contactDisappeared(QtObject contact)
+
+    function startSelection()
+    {
+        view.startSelection()
+    }
+
+    function isSelected(item)
+    {
+        return view.isSelected(item)
+    }
+    function selectItem(item)
+    {
+        return view.selectItem(item)
+    }
+    function deselectItem(item)
+    {
+        return view.deselectItem(item)
+    }
+    function endSelection()
+    {
+        view.endSelection()
+    }
+    function cancelSelection()
+    {
+        view.cancelSelection()
+    }
+    function clearSelection()
+    {
+        view.clearSelection()
+    }
+    function selectAll()
+    {
+        view.selectAll()
+    }
+    function returnToBounds()
+    {
+        view.returnToBounds()
+    }
 
     function changeFilter(newFilter)
     {
@@ -53,13 +121,14 @@ ContactSimpleListView {
         root.filter = newFilter
     }
 
-    header: Rectangle {
+    Rectangle {
         id: itemHeader
 
-        height: units.gu(4)
+        height: units.gu(2)
         anchors {
             left: parent.left
             right: parent.right
+            top: parent.top
         }
         color: Theme.palette.normal.overlay
 
@@ -117,67 +186,117 @@ ContactSimpleListView {
         }
     }
 
-    DetailFilter {
-        id: favouritesFilter
+    ContactSimpleListView {
+        id: view
 
-        detail: ContactDetail.Favorite
-        field: Favorite.Favorite
-        value: true
-        matchFlags: DetailFilter.MatchExactly
-    }
+        property bool showFavourites: false
 
-    InvalidFilter {
-        id: invalidFilter
-    }
+        function getSectionText(index) {
+            var tag = listModel.contacts[index].tag.tag
+            if (tag == "")
+                return "#"
+            else
+                return tag
+        }
 
-    IntersectionFilter {
-        id: contactsFilter
+        anchors {
+            top: itemHeader.bottom
+            left: parent.left
+            right: parent.right
+            rightMargin: fastScroll.showing ? fastScroll.width - units.gu(1) : 0
+            bottom: parent.bottom
 
-        filters: {
-            var filters = []
-            if (root.showFavourites) {
-                filters.push(favouritesFilter)
+            Behavior on rightMargin {
+                UbuntuNumberAnimation {}
             }
-            if (root.filter) {
-                filters.push(root.filter)
+        }
+
+        onError: root.error(message)
+        onInfoRequested: root.infoRequested(contact)
+        onDetailClicked: root.detailClicked(contact, detail, action)
+        onSelectionDone: root.selectionDone(items)
+        onSelectionCanceled: root.selectionCanceled()
+        onContactDisappeared: root.contactDisappeared(contact)
+        clip: true
+
+        InvalidFilter {
+            id: invalidFilter
+        }
+
+        DetailFilter {
+            id: favouritesFilter
+
+            detail: ContactDetail.Favorite
+            field: Favorite.Favorite
+            value: true
+            matchFlags: DetailFilter.MatchExactly
+        }
+
+        IntersectionFilter {
+            id: contactsFilter
+
+            filters: {
+                var filters = []
+                if (root.showFavourites) {
+                    filters.push(favouritesFilter)
+                }
+                if (root.filter) {
+                    filters.push(root.filter)
+                }
+                return filters
             }
-            return filters
+        }
+
+        listModel: ContactModel {
+            id: contactsModel
+
+            property bool _clearModel: false
+
+            manager: root.manager
+            sortOrders: root.sortOrders
+            fetchHint: root.fetchHint
+            filter: {
+                if (contactsModel._clearModel) {
+                    return invalidFilter
+                } else if (view.showFavourites || root.filter) {
+                    console.debug("show vaforite")
+                    return contactsFilter
+                } else {
+                    return null
+                }
+            }
+
+            onErrorChanged: {
+                if (error) {
+                    console.error("Contact List error:" + error)
+                }
+            }
+
+            onContactsChanged: {
+                //WORKAROUND: clear the model before start populate it with the new contacts
+                //otherwise the model will wait for all contacts before show any new contact
+
+                //after all contacts get removed we can populate the model again, this will show
+                //new contacts as soon as it arrives in the model
+                if (contactsModel._clearModel && contacts.length === 0) {
+                    contactsModel._clearModel = false
+                }
+            }
         }
     }
 
-    ContactModel {
-        id: contactsModel
+    FastScroll {
+        id: fastScroll
 
-        property bool _clearModel: false
+        listView: view
+        // only enable FastScroll if the we have more than 2 pages of content
+        enabled: view.contentHeight > (view.height * 2)
 
-        manager: root.manager
-        sortOrders: root.sortOrders
-        fetchHint: root.fetchHint
-        filter: {
-            if (contactsModel._clearModel) {
-                return invalidFilter
-            } else if (root.showFavourites || root.filter) {
-                return contactsFilter
-            } else {
-                return null
-            }
-        }
-        onErrorChanged: {
-            if (error) {
-                console.error("Contact List error:" + error)
-            }
-        }
-        onContactsChanged: {
-            //WORKAROUND: clear the model before start populate it with the new contacts
-            //otherwise the model will wait for all contacts before show any new contact
-
-            //after all contacts get removed we can populate the model again, this will show
-            //new contacts as soon as it arrives in the model
-            if (contactsModel._clearModel && contacts.length === 0) {
-                contactsModel._clearModel = false
-            }
+        anchors {
+            top: itemHeader.bottom
+            topMargin: units.gu(0.5)
+            bottom: parent.bottom
+            right: parent.right
         }
     }
-
-    listModel: contactsModel
 }

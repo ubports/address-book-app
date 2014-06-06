@@ -109,6 +109,7 @@ PageWithBottomEdge {
         }
     }
 
+    flickable: null //contactList.fastScrolling ? null : contactList.view
     ContactsUI.ContactListView {
         id: contactList
         objectName: "contactListView"
@@ -119,7 +120,7 @@ PageWithBottomEdge {
             bottom: keyboard.top
             right: parent.right
         }
-        swipeToDelete: !pickMode
+        detailToPick: ContactDetail.PhoneNumber
         multiSelectionEnabled: true
         multipleSelection: !pickMode ||
                            ((contactContentHub && contactContentHub.multipleItems) || mainPage.pickMultipleContacts)
@@ -130,6 +131,24 @@ PageWithBottomEdge {
             field: DisplayLabel.Label
             value: searchField.text
             matchFlags: DetailFilter.MatchContains
+        }
+
+        filter: (searchField.text != "" ? nameFilter : null)
+
+        anchors.fill: parent
+
+        leftSideAction: Action {
+            iconName: "delete"
+            text: i18n.tr("Delete")
+            onTriggered: {
+                value.makeDisappear()
+            }
+        }
+
+        onContactDisappeared: {
+            if (contact) {
+                contactModel.removeContact(contact.contactId)
+            }
         }
 
         onCountChanged: {
@@ -145,11 +164,18 @@ PageWithBottomEdge {
             }
         }
 
-        onContactClicked: {
+        onInfoRequested: {
             mainPage.searching = false
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
                            {model: contactList.listModel,
                             contact: contact})
+        }
+
+        onDetailClicked: {
+            if (action == "call")
+                Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
+            else if (action == "message")
+                Qt.openUrlExternally("message:///" + encodeURIComponent(detail.number))
         }
 
         onSelectionDone: {
@@ -184,26 +210,26 @@ PageWithBottomEdge {
         }
 
         onError: pageStack.contactModelError(error)
+    }
 
-        Column {
-            id: indicator
+    Column {
+        id: indicator
 
-            anchors.centerIn: parent
-            spacing: units.gu(2)
-            visible: ((contactList.loading && !mainPage.contactsLoaded) ||
-                      (application.syncing && (contactList.count === 0)))
+        anchors.centerIn: contactList
+        spacing: units.gu(2)
+        visible: ((contactList.loading && !mainPage.contactsLoaded) ||
+                  (application.syncing && (contactList.count === 0)))
 
 
-            ActivityIndicator {
-                id: activity
+        ActivityIndicator {
+            id: activity
 
-                anchors.horizontalCenter: parent.horizontalCenter
-                running: indicator.visible
-            }
-            Label {
-                anchors.horizontalCenter: activity.horizontalCenter
-                text: contactList.loading ?  i18n.tr("Loading...") : i18n.tr("Syncing...")
-            }
+            anchors.horizontalCenter: parent.horizontalCenter
+            running: indicator.visible
+        }
+        Label {
+            anchors.horizontalCenter: activity.horizontalCenter
+            text: contactList.loading ?  i18n.tr("Loading...") : i18n.tr("Syncing...")
         }
     }
 
@@ -383,7 +409,6 @@ PageWithBottomEdge {
             mainPage.contactIndex = contact
         }
     }
-
 
     KeyboardRectangle {
         id: keyboard
