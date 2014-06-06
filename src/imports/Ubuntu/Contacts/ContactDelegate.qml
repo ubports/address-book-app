@@ -105,7 +105,7 @@ Item {
 
         Icon {
             id: infoIcon
-
+            objectName: "infoIcon"
 
             anchors {
                 right: parent.right
