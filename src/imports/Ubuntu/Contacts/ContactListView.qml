@@ -112,6 +112,10 @@ Item {
     {
         view.returnToBounds()
     }
+    function positionViewAtContact(contact)
+    {
+        view.positionViewAtContact(contact)
+    }
 
     function changeFilter(newFilter)
     {
