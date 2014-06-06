@@ -18,6 +18,10 @@
 
 import logging
 
+
+logging.basicConfig(filename='warning.log', level=logging.WARNING)
+
+
 import autopilot.logging
 import ubuntuuitoolkit
 from autopilot.introspection import dbus
