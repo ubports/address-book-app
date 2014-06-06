@@ -23,7 +23,6 @@ Item {
 
     property string contactId
     property alias contactsModel: contactFetch.model
-    property alias contact: contactFetch.contact
 
     signal detailClicked(QtObject detail, string action)
 
@@ -34,11 +33,6 @@ Item {
     }
 
     height: detailItems.height + units.gu(2)
-    anchors {
-        left: parent.left
-        right: parent.right
-    }
-
     onContactIdChanged: contactFetch.fetchContact(contactId)
 
     Column {
@@ -53,15 +47,16 @@ Item {
         width: parent.width
 
         ListItem.Standard {
+            id: noNumberMessage
+
             showDivider: false
             text: "No phone numbers."
-            visible: phoneNumberEntries.count == 0
+            visible: false
         }
 
         Repeater {
             id: phoneNumberEntries
 
-            model: contact ? contact.phoneNumbers : undefined
             ListItem.Subtitled {
                 anchors {
                     left: parent.left
@@ -127,5 +122,11 @@ Item {
 
     ContactFetch {
         id: contactFetch
+
+        // do not keep track of contact to avoid problems during the delete destruction
+        onContactFetched: {
+            phoneNumberEntries.model = contact.phoneNumbers
+            noNumberMessage.visible = (contact.phoneNumbers.length === 0)
+        }
     }
 }

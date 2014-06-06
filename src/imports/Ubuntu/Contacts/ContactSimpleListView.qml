@@ -234,7 +234,6 @@ MultipleSelectionListView {
     */
     function _fetchContact(index, contact)
     {
-        contactListView.currentIndex = index
         contactFetch.fetchContact(contact.contactId)
     }
 
@@ -293,21 +292,25 @@ MultipleSelectionListView {
         //leftSideAction: contactListView.leftSideAction
         //rightSideActions: contactListView.rightSideActions
 
-        onDetailClicked: {
-            contactListView.currentIndex = -1
-            contactListView.detailClicked(contact, detail, action)
-        }
-
-        onInfoRequested: {
-            contactListView.currentIndex = -1
-            contactListView._fetchContact(index, contact)
-        }
+        onDetailClicked: contactListView.detailClicked(contact, detail, action)
+        onInfoRequested: contactListView._fetchContact(index, contact)
 
         Behavior on height {
             id: behaviorOnHeight
 
             enabled: false
             UbuntuNumberAnimation { }
+        }
+
+        // collapse the item before remove it, to avoid crash
+        ListView.onRemove: SequentialAnimation {
+            ScriptAction {
+                script: {
+                    if (contactDelegate.state !== "") {
+                        contactListView.currentIndex = -1
+                    }
+                }
+            }
         }
 
         onClicked: {
@@ -334,7 +337,6 @@ MultipleSelectionListView {
                 contactListView.selectItem(contactDelegate)
             }
         }
-
         state: ListView.isCurrentItem ? "expanded" : ""
         states: [
             State {
@@ -372,15 +374,27 @@ MultipleSelectionListView {
                         property: "detailsShown"
                         value: false
                     }
+                    PropertyAction {
+                        target: contactDelegate
+                        property: "ListView.delayRemove"
+                        value: false
+                    }
                 }
             },
             Transition {
                 from: ""
                 to: "expanded"
-                PropertyAction {
-                    target: contactDelegate
-                    property: "detailsShown"
-                    value: true
+                SequentialAnimation {
+                    PropertyAction {
+                        target: contactDelegate
+                        properties: "detailsShown"
+                        value: true
+                    }
+                    PropertyAction {
+                        target: contactDelegate
+                        properties: "ListView.delayRemove"
+                        value: true
+                    }
                 }
             }
         ]
@@ -389,16 +403,7 @@ MultipleSelectionListView {
     ContactFetch {
         id: contactFetch
 
-        //WORKAROUND: Use a different model to fetch contacts, due a bug on qtpim the contact get
-        // destroyed if you change the filter model
-        ContactModel {
-            id: contactFetchModel
-
-            manager: root.manager
-            autoUpdate: false
-        }
-
-        model: root.manager == "memory" ? root.listModel : contactFetchModel
+        model: root.listModel
         onContactFetched: contactListView.infoRequested(contact)
     }
 
