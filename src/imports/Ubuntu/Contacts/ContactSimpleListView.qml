@@ -293,8 +293,15 @@ MultipleSelectionListView {
         //leftSideAction: contactListView.leftSideAction
         //rightSideActions: contactListView.rightSideActions
 
-        onDetailClicked: contactListView.detailClicked(contact, detail, action)
-        onInfoRequested: contactListView._fetchContact(index, contact)
+        onDetailClicked: {
+            contactListView.currentIndex = -1
+            contactListView.detailClicked(contact, detail, action)
+        }
+
+        onInfoRequested: {
+            contactListView.currentIndex = -1
+            contactListView._fetchContact(index, contact)
+        }
 
         Behavior on height {
             id: behaviorOnHeight
