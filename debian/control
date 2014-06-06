@@ -75,4 +75,4 @@ Depends: ${misc:Depends},
          address-book-app (>= ${binary:Version}),
          ubuntu-mobile-icons,
 Description: Test package for address-book-app
- tests for the address-book-app package
+ Autopilot tests for the address-book-app package 
