@@ -157,6 +157,8 @@ Item {
 
             model: root.letters
             Label {
+                id: lbl
+
                 anchors.left: parent.left
                 height: pinSize
                 width: pinSize
@@ -164,7 +166,7 @@ Item {
                 horizontalAlignment: Text.AlignHCenter
                 text: internal.fastScrolling && internal.targetSection == modelData ? "" : modelData
                 fontSize: "x-small"
-                color: internal.targetSection == text ? Theme.palette.selected.foregroundText : Theme.palette.selected.backgroundText
+                color: internal.currentItem.text === text ? Theme.palette.selected.foregroundText : Theme.palette.selected.backgroundText
                 opacity: !internal.modelDirty && Sections.contains(text) ? 1.0 : 0.5
             }
         }
@@ -230,9 +232,11 @@ Item {
         running: false
         interval: 10
         onTriggered: {
-            var idx = Sections.getIndexFor(internal.desireSection)
-            if (idx !== -1) {
-                listView.positionViewAtIndex(idx, ListView.Beginning)
+            if (internal.desireSection != internal.currentSection) {
+                var idx = Sections.getIndexFor(internal.desireSection)
+                if (idx !== -1) {
+                    listView.positionViewAtIndex(idx, ListView.Beginning)
+                }
             }
         }
     }
@@ -249,7 +253,7 @@ Item {
         property bool fastScrolling: false
         property var currentItem: null
 
-        onTargetSectionChanged: moveIndicator()
+        onTargetSectionChanged: moveIndicator(targetSection)
 
         function initDirtyObserver() {
             Sections.initialize(listView);
@@ -284,14 +288,14 @@ Item {
             var section = child.text
             if (internal.desireSection !== section) {
                 internal.desireSection = section
-                moveIndicator()
+                moveIndicator(section)
                 timerScroll.restart()
             }
         }
 
-        function moveIndicator()
+        function moveIndicator(section)
         {
-            var index = root.letters.indexOf(targetSection)
+            var index = root.letters.indexOf(section)
             if (index != -1) {
                 currentItem = sectionsRepeater.itemAt(index)
             }
