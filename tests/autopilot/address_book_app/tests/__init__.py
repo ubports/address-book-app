@@ -152,13 +152,8 @@ class AddressBookAppTestCase(AutopilotTestCase):
                         Eventually(Equals(detCount + 1)))
 
     def edit_contact(self, index):
-        contacts = self.main_window.select_many("ContactDelegate")
-        contact_delegate = contacts[index]
-        self.pointing_device.click_object(contact_delegate)
-        self.assertThat(contact_delegate.state, Eventually(Equals('expanded')))
-        details_button = contact_delegate.select_single("Icon",
-                                                        objectName="infoIcon")
-        self.pointing_device.click_object(details_button)
+        list_page = self.main_window.get_contact_list_page()
+        list_page.open_contact(index)
 
         list_page = self.main_window.get_contact_list_page()
         self.assertThat(list_page.visible, Eventually(Equals(False)))

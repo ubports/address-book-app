@@ -190,8 +190,8 @@ class TestAddContact(AddressBookAppTestCase):
         # Save contact
         self.app.main_window.save()
 
-        contacts = self.app.main_window.select_many("ContactDelegate")
-        self.pointing_device.click_object(contacts[0])
+        list_page = self.app.main_window.get_contact_list_page()
+        list_page.open_contact(0)
 
         # check if contacts was saved with the correct labels
         view_page = self.app.main_window.get_contact_view_page()

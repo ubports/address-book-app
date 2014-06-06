@@ -60,6 +60,7 @@ Item {
 
         Rectangle {
             id: selectionMark
+            objectName: "selectionMark"
 
             anchors.fill: parent
             color: root.selected ? "black" : Theme.palette.selected.background
