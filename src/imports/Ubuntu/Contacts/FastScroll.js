@@ -48,6 +48,10 @@ function initialize(list) {
     initSectionData(list);
 }
 
+function contains(name) {
+    return (_sections.indexOf(name) > -1)
+}
+
 function initSectionData(list) {
     if (!list || !list.model) return;
     sectionData = [];

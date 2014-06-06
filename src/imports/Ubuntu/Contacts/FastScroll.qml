@@ -165,6 +165,7 @@ Item {
                 text: internal.fastScrolling && internal.targetSection == modelData ? "" : modelData
                 fontSize: "x-small"
                 color: internal.targetSection == text ? Theme.palette.selected.foregroundText : Theme.palette.selected.backgroundText
+                opacity: !internal.modelDirty && Sections.contains(text) ? 1.0 : 0.5
             }
         }
 
