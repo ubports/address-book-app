@@ -32,10 +32,11 @@ PageWithBottomEdge {
     property bool pickMultipleContacts: false
     property var onlineAccountsMessageDialog: null
     property QtObject contactIndex: null
-    property bool syncEnabled: application.syncEnabled
-    property bool searching: false
-    property var contactModel: contactList.listModel ? contactList.listModel : null
     property bool contactsLoaded: false
+
+    readonly property bool syncEnabled: application.syncEnabled
+    readonly property var contactModel: contactList.listModel ? contactList.listModel : null
+    readonly property bool searching: (state === "searching")
 
     function createEmptyContact(phoneNumber) {
         var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
@@ -146,7 +147,7 @@ PageWithBottomEdge {
         }
 
         onContactClicked: {
-            mainPage.searching = false
+            mainPage.state = ""
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
                            {model: contactList.listModel,
                             contact: contact})
@@ -236,7 +237,6 @@ PageWithBottomEdge {
         }
 
         ToolbarButton {
-
             action: Action {
                 objectName: "doneSelection"
                 text: mainPage.pickMode ? i18n.tr("Select") : i18n.tr("Delete")
@@ -268,7 +268,7 @@ PageWithBottomEdge {
                 visible: !mainPage.searching
                 iconName: "search"
                 onTriggered: {
-                    mainPage.searching = true
+                    mainPage.state = "searching"
                     searchField.forceActiveFocus()
                 }
             }
@@ -287,10 +287,7 @@ PageWithBottomEdge {
                 visible: mainPage.searching
                 iconName: "back"
                 text: i18n.tr("Cancel")
-                onTriggered: {
-                    searchField.text = ""
-                    mainPage.searching = false
-                }
+                onTriggered: mainPage.state = ""
             }
         }
     }
@@ -312,17 +309,33 @@ PageWithBottomEdge {
         inputMethodHints: Qt.ImhNoPredictiveText
     }
 
-    __customHeaderContents: mainPage.searching ? searchField : null
-
-    tools: {
-        if (contactList.isInSelectionMode) {
-            return toolbarItemsSelectionMode
-        } else if (mainPage.searching) {
-            return toolbarItemsSearch
-        } else {
-            return toolbarItemsNormalMode
+    states: [
+        State {
+            name: ""
+            PropertyChanges {
+                target: searchField
+                text: ""
+            }
+        },
+        State {
+            name: "searching"
+            PropertyChanges {
+                target: mainPage
+                __customHeaderContents: searchField
+                tools: toolbarItemsSearch
+            }
+        },
+        State {
+            name: "selection"
+            when: contactList.isInSelectionMode
+            PropertyChanges {
+                target: mainPage
+                tools: toolbarItemsSelectionMode
+            }
         }
-    }
+    ]
+
+    tools: toolbarItemsNormalMode
 
     // WORKAROUND: Avoid the gap btw the header and the contact list when the list moves
     // see bug #1296764
