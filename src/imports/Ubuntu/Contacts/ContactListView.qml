@@ -52,6 +52,14 @@ Item {
     */
     property string contactNameFilter: ""
     /*!
+      \qmlproperty Filter filter
+
+      This property holds the filter instance used by the contact model.
+
+      \sa Filter
+    */
+    property var filter: null
+    /*!
       \qmlproperty bool showFavourites
 
       This property holds if the option to switch between favourite and all contacts should be visible
@@ -94,14 +102,6 @@ Item {
       \sa FetchHint
     */
     property alias fetchHint: view.fetchHint
-    /*!
-      \qmlproperty Filter filter
-
-      This property holds the filter instance used by the contact model.
-
-      \sa Filter
-    */
-    property alias filter: view.filter
     /*!
       \qmlproperty bool multiSelectionEnabled
 
