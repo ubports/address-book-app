@@ -41,6 +41,8 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 Item {
     id: root
 
+    property string contactNameFilter: ""
+
     property alias view: view
     property alias count: view.count
 
@@ -193,6 +195,8 @@ Item {
         }
     }
 
+    onContactNameFilterChanged: contactSearchTimeout.restart()
+
     ContactSimpleListView {
         id: view
 
@@ -242,6 +246,8 @@ Item {
         IntersectionFilter {
             id: contactsFilter
 
+            property bool active: false
+
             filters: {
                 var filters = []
                 if (root.showFavourites) {
@@ -250,7 +256,39 @@ Item {
                 if (root.filter) {
                     filters.push(root.filter)
                 }
+                if (nameFilter.value && (nameFilter.value.length > 0)) {
+                    filters.push(nameFilter)
+                }
+                active = (filters.length > 0)
                 return filters
+            }
+        }
+
+        DetailFilter {
+            id: nameFilter
+
+            detail: ContactDetail.DisplayLabel
+            field: DisplayLabel.Label
+            value: root.nameFilter
+            matchFlags: DetailFilter.MatchContains
+        }
+
+        Timer {
+            id: contactSearchTimeout
+
+            running: false
+            repeat: false
+            interval: 300
+            onTriggered: {
+                if (root.contactNameFilter === "") { // if the search criteria is empty clear the list before show all contacts
+                    contactList.changeFilter(root.filter)
+                    nameFilter.value = ""
+                } else {
+                    if (nameFilter.value === "") { // if the search starts clear the list before show results
+                        contactList.changeFilter(root.filter)
+                    }
+                    nameFilter.value = root.contactNameFilter
+                }
             }
         }
 
@@ -265,8 +303,7 @@ Item {
             filter: {
                 if (contactsModel._clearModel) {
                     return invalidFilter
-                } else if (view.showFavourites || root.filter) {
-                    console.debug("show vaforite")
+                } else if (contactsFilter.active) {
                     return contactsFilter
                 } else {
                     return null
