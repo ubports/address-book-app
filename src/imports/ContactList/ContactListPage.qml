@@ -68,6 +68,7 @@ PageWithBottomEdge {
         active: false
         enabled: false
 
+        initialFocusSection: "name"
         model: contactList.listModel
         contact: mainPage.createEmptyContact("")
     }
@@ -413,17 +414,14 @@ PageWithBottomEdge {
                                         {model: contactList.listModel,
                                          contact: newContact,
                                          active: false,
-                                         enabled: false})
+                                         enabled: false,
+                                         initialFocusSection: "name"})
         }
         onEditContatRequested: {
-            //WORKAROUND: SKD changes the page header as soon as the page get created
-            // setting active false will avoid that
-            mainPage.showBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                                       {model: contactList.listModel,
-                                        contactId: contactId,
-                                        newPhoneNumber: phoneNumber,
-                                        active: false,
-                                        enabled: false})
+            pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
+                           {model: contactList.listModel,
+                            contactId: contactId,
+                            addPhoneToContact: phoneNumber})
         }
         onContactCreated: {
             mainPage.contactIndex = contact
