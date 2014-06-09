@@ -3,7 +3,9 @@ set(CONTACT_COMMON_QMLS
     ContactDetailItem.qml
     ContactDetailGroupBase.qml
     ContactDetailGroupWithTypeBase.qml
+    KeyboardRectangle.qml
     RemoveContactsDialog.qml
+    StandardAnimation.qml
 )
 
 install(FILES ${CONTACT_COMMON_QMLS}

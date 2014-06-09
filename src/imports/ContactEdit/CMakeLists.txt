@@ -11,8 +11,6 @@ set(CONTACT_EDIT_QMLS
     ContactDetailWithTypeEditor.qml
     ContactEditor.qml
     ContactFetchError.qml
-    KeyboardRectangle.qml
-    StandardAnimation.qml
     TextInputDetail.qml
     ValueSelector.qml
 )

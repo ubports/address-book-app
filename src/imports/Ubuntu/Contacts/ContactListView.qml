@@ -43,6 +43,14 @@ ContactSimpleListView {
 
     property bool showFavourites: false
 
+    function changeFilter(newFilter)
+    {
+        if (root.count > 0) {
+            contactsModel._clearModel = true
+        }
+        root.filter = newFilter
+    }
+
     header: Rectangle {
         id: itemHeader
 
@@ -69,7 +77,12 @@ ContactSimpleListView {
                 color: root.showFavourites ? UbuntuColors.warmGrey : UbuntuColors.orange
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: root.showFavourites = false
+                    onClicked: {
+                        //WORKAROUND: clear the model before start populate it with the new contacts
+                        //otherwise the model will wait for all contacts before show any new contact
+                        root.changeFilter(root.filter)
+                        root.showFavourites = false
+                    }
                 }
             }
 
@@ -102,44 +115,67 @@ ContactSimpleListView {
         }
     }
 
-    ContactModel {
-        id: allContactsModel
+    DetailFilter {
+        id: favouritesFilter
 
-        manager: root.manager
-        sortOrders: root.sortOrders
-        fetchHint: root.fetchHint
+        detail: ContactDetail.Favorite
+        field: Favorite.Favorite
+        value: true
+        matchFlags: DetailFilter.MatchExactly
+    }
 
-        onErrorChanged: {
-            if (error) {
-                busyIndicator.busy = false
-                contactListView.error(error)
+    InvalidFilter {
+        id: invalidFilter
+    }
+
+    IntersectionFilter {
+        id: contactsFilter
+
+        filters: {
+            var filters = []
+            if (root.showFavourites) {
+                filters.push(favouritesFilter)
             }
+            if (root.filter) {
+                filters.push(root.filter)
+            }
+            return filters
         }
     }
 
     ContactModel {
-        id: favouritesContactsModel
+        id: contactsModel
+
+        property bool _clearModel: false
 
         manager: root.manager
         sortOrders: root.sortOrders
         fetchHint: root.fetchHint
-        filter: DetailFilter {
-            id: favouritesFilter
-
-            detail: ContactDetail.Favorite
-            field: Favorite.Favorite
-            value: true
-            matchFlags: DetailFilter.MatchExactly
-        }
-
-        onErrorChanged: {
-            if (error) {
-                busyIndicator.busy = false
-                contactListView.error(error)
+        filter: {
+            if (contactsModel._clearModel) {
+                return invalidFilter
+            } else if (root.showFavourites || root.filter) {
+                return contactsFilter
+            } else {
+                return null
             }
         }
+        onErrorChanged: {
+            if (error) {
+                console.error("Contact List error:" + error)
+            }
+        }
+        onContactsChanged: {
+            //WORKAROUND: clear the model before start populate it with the new contacts
+            //otherwise the model will wait for all contacts before show any new contact
 
+            //after all contacts get removed we can populate the model again, this will show
+            //new contacts as soon as it arrives in the model
+            if (contactsModel._clearModel && contacts.length === 0) {
+                contactsModel._clearModel = false
+            }
+        }
     }
 
-    listModel: showFavourites ? favouritesContactsModel : allContactsModel
+    listModel: contactsModel
 }
