@@ -41,40 +41,184 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 Item {
     id: root
 
-    property string contactNameFilter: ""
-
     property alias view: view
     property alias count: view.count
 
+    /*!
+      \qmlproperty string contactNameFilter
+
+      This property holds a string that will be used to filter contacts on the list
+      By default this is set to empty
+    */
+    property string contactNameFilter: ""
+    /*!
+      \qmlproperty bool showFavourites
+
+      This property holds if the option to switch between favourite and all contacts should be visible
+      By default this is set to true.
+    */
     property alias showFavourites: view.showFavourites
+    /*!
+      \qmlproperty bool showAvatar
+
+      This property holds if the contact avatar will appear on the list or not.
+      By default this is set to true.
+    */
     property alias showAvatar: view.showAvatar
+    /*!
+      \qmlproperty int titleDetail
+
+      This property holds the contact detail which will be used to display the contact title in the delegate
+      By default this is set to ContactDetail.Name.
+    */
     property alias titleDetail: view.titleDetail
+    /*!
+      \qmlproperty list<int> titleFields
+
+      This property holds the list of all fields which will be used to display the contact title in the delegate
+      By default this is set to [ Name.FirstName, Name.LastName ]
+    */
     property alias titleFields: view.titleFields
+    /*!
+      \qmlproperty list<SortOrder> sortOrders
+
+      This property holds a list of sort orders used by the contacts model.
+      \sa SortOrder
+    */
     property alias sortOrders: view.sortOrders
+    /*!
+      \qmlproperty FetchHint fetchHint
+
+      This property holds the fetch hint instance used by the contact model.
+
+      \sa FetchHint
+    */
     property alias fetchHint: view.fetchHint
+    /*!
+      \qmlproperty Filter filter
+
+      This property holds the filter instance used by the contact model.
+
+      \sa Filter
+    */
     property alias filter: view.filter
+    /*!
+      \qmlproperty bool multiSelectionEnabled
+
+      This property holds if the multi selection mode is enabled or not
+      By default this is set to false
+    */
     property alias multiSelectionEnabled: view.multiSelectionEnabled
+    /*!
+      \qmlproperty string defaultAvatarImage
+
+      This property holds the default image url to be used when the current contact does
+      not contains a photo
+    */
     property alias defaultAvatarImageUrl: view.defaultAvatarImageUrl
+    /*!
+      \qmlproperty bool loading
+
+      This property holds when the model still loading new contacts
+    */
     readonly property alias loading: view.loading
+    /*!
+      \qmlproperty int detailToPick
+
+      This property holds the detail type to be picked
+    */
     property alias detailToPick: view.detailToPick
+    /*!
+      \qmlproperty int currentIndex
+
+      This property holds the current active item index
+    */
     property alias currentIndex: view.currentIndex
+    /*!
+      \qmlproperty bool showSections
+
+      This property holds if the listview will show or not the section headers
+      By default this is set to true
+    */
     property alias showSections: view.showSections
+    /*!
+      \qmlproperty string manager
+
+      This property holds the manager uri of the contact backend engine.
+      By default this is set to "galera"
+    */
     property alias manager: view.manager
+    /*!
+      \qmlproperty bool fastScrolling
+
+      This property holds if the listview is in fast scroll mode or not
+    */
     property alias fastScrolling: fastScroll.fastScrolling
+    /*!
+      \qmlproperty Action leftSideAction
+
+      This property holds the available actions when swipe the contact item from left to right
+    */
     property alias leftSideAction: view.leftSideAction
+    /*!
+      \qmlproperty list<Action> rightSideActions
+
+      This property holds the available actions when swipe the contact item from right to left
+    */
     property alias rightSideActions: view.rightSideActions
+    /*!
+      \qmlproperty model selectedItems
 
+      This property holds the list of selected items
+    */
     readonly property alias selectedItems: view.selectedItems
-    property alias multipleSelection: view.multipleSelection
-    property alias listModel: view.listModel
-    property alias listDelegate: view.listDelegate
-    readonly property alias isInSelectionMode: view.isInSelectionMode
+    /*!
+      \qmlproperty bool multipleSelection
 
+      This property holds if the selection will accept multiple items or single items
+    */
+    property alias multipleSelection: view.multipleSelection
+    /*!
+      \qmlproperty model listModel
+
+      This property holds the model providing data for the list.
+    */
+    property alias listModel: view.listModel
+    /*!
+      \qmlproperty Component listDelegate
+
+      The delegate provides a template defining each item instantiated by the view.
+    */
+    property alias listDelegate: view.listDelegate
+    /*!
+      \qmlproperty bool isInSelectionMode
+
+      This property holds a list with the index of selected items
+    */
+    readonly property alias isInSelectionMode: view.isInSelectionMode
+    /*!
+      This handler is called when the selection mode is finished without be canceled
+    */
     signal selectionDone(var items)
+    /*!
+      This handler is called when the selection mode is canceled
+    */
     signal selectionCanceled()
+    /*!
+      This handler is called when any error occurs in the contact model
+    */
     signal error(string message)
+    /*!
+      This handler is called when details button on contact delegate is clicked
+    */
     signal infoRequested(QtObject contact)
+    /*!
+      This handler is called when any contact detail in the list receives a click
+    */
     signal detailClicked(QtObject contact, QtObject detail, string action)
+    /*!
+      This handler is called when the contact delegate disapear (height === 0) caused by the function call makeDisappear
+    */
     signal contactDisappeared(QtObject contact)
 
     function startSelection()
