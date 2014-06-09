@@ -43,8 +43,6 @@ ContactSimpleListView {
 
     property bool showFavourites: false
 
-    signal cleared()
-
     function changeFilter(newFilter)
     {
         if (root.count > 0) {
