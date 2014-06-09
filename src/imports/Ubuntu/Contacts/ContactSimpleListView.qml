@@ -327,6 +327,8 @@ MultipleSelectionListView {
             } else if (detailToPick !== 0) {
                 contactListView.currentIndex = index
                 return
+            } else if (detailToPick == 0) {
+                contactListView.detailClicked(contact, null, "")
             }
         }
 
