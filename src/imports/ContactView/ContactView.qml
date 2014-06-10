@@ -19,6 +19,7 @@ import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Contacts 0.1 as ContactsUI
+import Ubuntu.Components.Popups 0.1 as Popups
 
 Page {
     id: root
@@ -178,7 +179,8 @@ Page {
             pageStack.pop()
         }
 
-        onContactNotFound: PopupUtils.open(fetchErrorDialog, null)
+        onContactNotFound: Popups.PopupUtils.open(fetchErrorDialog, pageStack)
+
         onContactFetched: {
             root.contact = contact
             if (root.addPhoneToContact != "") {
