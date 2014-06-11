@@ -18,8 +18,6 @@ import QtQuick 2.2
 import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
-import Ubuntu.Components.Popups 0.1
-import Ubuntu.Contacts 0.1 as ContactsUI
 
 import "../Common"
 
@@ -28,18 +26,21 @@ Page {
     objectName: "contactEditorPage"
 
     property QtObject contact: null
-    property alias model: contactFetch.model
+    property QtObject model: null
     property QtObject activeItem: null
-    readonly property  bool isNewContact: contact && (contact.contactId === "qtcontacts:::")
-
-    // this is used to add a phone number to a existing contact
-    property string contactId: ""
-    property string newPhoneNumber: ""
+    readonly property bool isNewContact: contact && (contact.contactId === "qtcontacts:::")
+    property string initialFocusSection: ""
+    property var newDetails: []
 
     // priv
     property bool _edgeReady: false
 
     function cancel() {
+        for (var i = 0; i < contactEditor.newDetails.length; ++i) {
+            contactEditor.contact.removeDetail(contactEditor.newDetails[i])
+        }
+        contactEditor.newDetails = []
+
         for(var i = 0; i < contents.children.length; ++i) {
             var field = contents.children[i]
             if (field.cancel) {
@@ -116,46 +117,44 @@ Page {
     function ready()
     {
         enabled = true
-        if (isNewContact) {
-            _edgeReady = true
+        _edgeReady = true
+
+        switch (contactEditor.initialFocusSection)
+        {
+        case "phones":
+            contactEditor.focusToLastPhoneField()
+            break;
+        case "name":
             nameEditor.fieldDelegates[0].forceActiveFocus()
+            break;
         }
+        contactEditor.initialFocusSection = ""
+    }
+
+    function focusToLastPhoneField()
+    {
+        var lastPhoneField = phonesEditor.detailDelegates[phonesEditor.detailDelegates.length - 2].item
+        lastPhoneField.forceActiveFocus()
     }
 
     title: i18n.tr("Edit")
 
-    ContactFetchError {
-        id: fetchErrorDialog
-    }
-
-    ContactsUI.ContactFetch {
-        id: contactFetch
-
-        onContactNotFound: PopupUtils.open(fetchErrorDialog, null)
-        onContactFetched: {
-            if (contactEditor.contact == null) {
-                contactEditor.contact = contact
-            }
-        }
-    }
-
     Timer {
         id: focusTimer
 
-        interval: 200
+        interval: 1000
         running: false
         repeat: false
-        onTriggered: {
-            // get last phone field and set focus
-            var lastPhoneField = phonesEditor.detailDelegates[phonesEditor.detailDelegates.length - 2].item
-            lastPhoneField.forceActiveFocus()
-        }
+        onTriggered: contactEditor.ready()
     }
 
+    flickable: null
     Flickable {
         id: scrollArea
         objectName: "scrollArea"
 
+        // this is necessary to avoid the page to appear bellow the header
+        clip: true
         flickableDirection: Flickable.VerticalFlick
         anchors {
             fill: parent
@@ -339,26 +338,15 @@ Page {
         }
     }
 
-    // This will load the contact information and add the new phone number
-    // when the app was launched with the URI: addressbook:///addphone?id=<contact-id>&phone=<phone-number>
-    onContactChanged: {
-        if (contact && (newPhoneNumber.length > 0)) {
-            var detailSourceTemplate = "import QtContacts 5.0; PhoneNumber{ number: \"" + newPhoneNumber + "\" }"
-            var newDetail = Qt.createQmlObject(detailSourceTemplate, contactEditor)
-            if (newDetail) {
-                contact.addDetail(newDetail)
-                // we need to wait for the field be created
-                focusTimer.restart()
-            }
-            newPhoneNumber = ""
-        }
-    }
-
     Component.onCompleted: {
-        if (contactId !== "") {
-            contactFetch.fetchContact(contactId)
-        } else if (isNewContact) {
-            nameEditor.forceActiveFocus()
+        if (!enabled) {
+            return
+        }
+
+        if (contactEditor.initialFocusSection != "") {
+            focusTimer.restart()
+        } else {
+            contactEditor.ready()
         }
     }
 

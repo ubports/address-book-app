@@ -74,6 +74,7 @@ Item {
         property QtObject contact: null
         property string contactId: contact ? contact.contactId : ""
 
+        ignoreUnknownSignals: true
         onContactsFetched: {
             // currentQueryId == -2 is used during a fetch using "memory" manager
             if ((currentQueryId == -2) || (requestId == currentQueryId)) {

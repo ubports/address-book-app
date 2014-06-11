@@ -44,7 +44,12 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
 
         """
         contacts = self.get_contacts()
-        self.pointing_device.click_object(contacts[index])
+        contact_delegate = contacts[index]
+        self.pointing_device.click_object(contact_delegate)
+        contact_delegate.state.wait_for('expanded')
+        details_button = contact_delegate.select_single("Icon",
+                                                        objectName="infoIcon")
+        self.pointing_device.click_object(details_button)
         return self.get_root_instance().select_single(
             _contact_view.ContactView, objectName='contactViewPage')
 

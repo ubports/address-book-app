@@ -44,11 +44,9 @@ class TestCreateNewContactFromURI(AddressBookAppTestCase):
         self.app.main_window.save()
 
         # open contact view
-        contacts = self.app.main_window.select_many("ContactDelegate")
-        self.pointing_device.click_object(contacts[0])
+        list_page.open_contact(0)
         view_page = self.app.main_window.get_contact_view_page()
         self.assertThat(view_page.visible, Eventually(Equals(True)))
-
 
         # check if we have the new phone"""
         phone_group = view_page.select_single(

@@ -13,6 +13,7 @@ set(CONTACT_VIEW_QMLS
     ContactDetailPhoneNumberView.qml
     ContactDetailSyncTargetView.qml
     ContactDetailWithTypeView.qml
+    ContactFetchError.qml
     ContactHeaderView.qml
     ContactView.qml
 )
