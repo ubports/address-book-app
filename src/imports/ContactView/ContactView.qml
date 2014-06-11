@@ -19,6 +19,7 @@ import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Contacts 0.1 as ContactsUI
+import Ubuntu.Components.Popups 0.1 as Popups
 
 Page {
     id: root
@@ -28,6 +29,7 @@ Page {
     property alias model: contactFetch.model
     // used by main page to open the contact view on app startup
     property string contactId: ""
+    property string addPhoneToContact: ""
 
     function formatNameToDisplay(contact) {
         if (!contact) {
@@ -166,6 +168,10 @@ Page {
         anchors.centerIn: parent
     }
 
+    ContactFetchError {
+        id: fetchErrorDialog
+    }
+
     ContactsUI.ContactFetch {
         id: contactFetch
 
@@ -173,12 +179,23 @@ Page {
             pageStack.pop()
         }
 
-        onContactNotFound: {
-            pageStack.pop()
-        }
+        onContactNotFound: Popups.PopupUtils.open(fetchErrorDialog, pageStack)
 
         onContactFetched: {
             root.contact = contact
+            if (root.addPhoneToContact != "") {
+                var detailSourceTemplate = "import QtContacts 5.0; PhoneNumber{ number: \"" + root.addPhoneToContact + "\" }"
+                var newDetail = Qt.createQmlObject(detailSourceTemplate, root.contact)
+                if (newDetail) {
+                    root.contact.addDetail(newDetail)
+                    pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                                   { model: root.model,
+                                     contact: root.contact,
+                                     initialFocusSection: "phones",
+                                     newDetails: [newDetail]})
+                    root.addPhoneToContact = ""
+                }
+            }
         }
     }
 

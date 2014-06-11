@@ -10,7 +10,6 @@ set(CONTACT_EDIT_QMLS
     ContactDetailSyncTargetEditor.qml
     ContactDetailWithTypeEditor.qml
     ContactEditor.qml
-    ContactFetchError.qml
     TextInputDetail.qml
     ValueSelector.qml
 )

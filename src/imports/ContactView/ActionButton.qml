@@ -29,6 +29,5 @@ AbstractButton {
         anchors.centerIn: parent
         height: units.gu(3)
         width: height
-        color: "white"
     }
 }

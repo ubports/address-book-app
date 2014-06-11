@@ -68,6 +68,7 @@ PageWithBottomEdge {
         active: false
         enabled: false
 
+        initialFocusSection: "name"
         model: contactList.listModel
         contact: mainPage.createEmptyContact("")
     }
@@ -110,6 +111,7 @@ PageWithBottomEdge {
         }
     }
 
+    flickable: null //contactList.fastScrolling ? null : contactList.view
     ContactsUI.ContactListView {
         id: contactList
         objectName: "contactListView"
@@ -120,7 +122,7 @@ PageWithBottomEdge {
             bottom: keyboard.top
             right: parent.right
         }
-        swipeToDelete: !pickMode
+        detailToPick: ContactDetail.PhoneNumber
         multiSelectionEnabled: true
         multipleSelection: !pickMode ||
                            ((contactContentHub && contactContentHub.multipleItems) || mainPage.pickMultipleContacts)
@@ -131,6 +133,24 @@ PageWithBottomEdge {
             field: DisplayLabel.Label
             value: searchField.text
             matchFlags: DetailFilter.MatchContains
+        }
+
+        filter: (searchField.text != "" ? nameFilter : null)
+
+        anchors.fill: parent
+
+        leftSideAction: Action {
+            iconName: "delete"
+            text: i18n.tr("Delete")
+            onTriggered: {
+                value.makeDisappear()
+            }
+        }
+
+        onContactDisappeared: {
+            if (contact) {
+                contactModel.removeContact(contact.contactId)
+            }
         }
 
         onCountChanged: {
@@ -144,13 +164,24 @@ PageWithBottomEdge {
                 mainPage.onlineAccountsMessageDialog = null
                 application.unsetFirstRun()
             }
+
+            if (mainPage.searching) {
+                 contactList.positionViewAtBeginning()
+            }
         }
 
-        onContactClicked: {
+        onInfoRequested: {
             mainPage.state = ""
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
                            {model: contactList.listModel,
                             contact: contact})
+        }
+
+        onDetailClicked: {
+            if (action == "call")
+                Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
+            else if (action == "message")
+                Qt.openUrlExternally("message:///" + encodeURIComponent(detail.number))
         }
 
         onSelectionDone: {
@@ -185,26 +216,26 @@ PageWithBottomEdge {
         }
 
         onError: pageStack.contactModelError(error)
+    }
 
-        Column {
-            id: indicator
+    Column {
+        id: indicator
 
-            anchors.centerIn: parent
-            spacing: units.gu(2)
-            visible: ((contactList.loading && !mainPage.contactsLoaded) ||
-                      (application.syncing && (contactList.count === 0)))
+        anchors.centerIn: contactList
+        spacing: units.gu(2)
+        visible: ((contactList.loading && !mainPage.contactsLoaded) ||
+                  (application.syncing && (contactList.count === 0)))
 
 
-            ActivityIndicator {
-                id: activity
+        ActivityIndicator {
+            id: activity
 
-                anchors.horizontalCenter: parent.horizontalCenter
-                running: indicator.visible
-            }
-            Label {
-                anchors.horizontalCenter: activity.horizontalCenter
-                text: contactList.loading ?  i18n.tr("Loading...") : i18n.tr("Syncing...")
-            }
+            anchors.horizontalCenter: parent.horizontalCenter
+            running: indicator.visible
+        }
+        Label {
+            anchors.horizontalCenter: activity.horizontalCenter
+            text: contactList.loading ?  i18n.tr("Loading...") : i18n.tr("Syncing...")
         }
     }
 
@@ -305,7 +336,10 @@ PageWithBottomEdge {
             bottomMargin: units.gu(1.5)
             verticalCenter: parent.verticalCenter
         }
-        onTextChanged: contactSearchTimeout.restart()
+        onTextChanged: {
+            contactList.currentIndex = -1
+            contactSearchTimeout.restart()
+        }
         inputMethodHints: Qt.ImhNoPredictiveText
     }
 
@@ -380,23 +414,19 @@ PageWithBottomEdge {
                                         {model: contactList.listModel,
                                          contact: newContact,
                                          active: false,
-                                         enabled: false})
+                                         enabled: false,
+                                         initialFocusSection: "name"})
         }
         onEditContatRequested: {
-            //WORKAROUND: SKD changes the page header as soon as the page get created
-            // setting active false will avoid that
-            mainPage.showBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                                       {model: contactList.listModel,
-                                        contactId: contactId,
-                                        newPhoneNumber: phoneNumber,
-                                        active: false,
-                                        enabled: false})
+            pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
+                           {model: contactList.listModel,
+                            contactId: contactId,
+                            addPhoneToContact: phoneNumber})
         }
         onContactCreated: {
             mainPage.contactIndex = contact
         }
     }
-
 
     KeyboardRectangle {
         id: keyboard

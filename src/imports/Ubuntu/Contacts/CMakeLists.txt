@@ -1,9 +1,9 @@
 set(CONTACT_COMPONENTS_QMLS
     ContactList.js
+    ContactAvatar.qml
     ContactDelegate.qml
     ContactDetailOnlineAccountTypeModel.qml
     ContactDetailPhoneNumberTypeModel.qml
-    ContactDetailPickerDelegate.qml
     ContactDetailPickerPhoneNumberDelegate.qml
     ContactFetch.qml
     ContactListView.qml
@@ -11,6 +11,8 @@ set(CONTACT_COMPONENTS_QMLS
     ContactSearchListView.qml
     ContactSimpleListView.qml
     DialogButtons.qml
+    FastScroll.qml
+    FastScroll.js
     MultipleSelectionListView.qml
     MultipleSelectionVisualModel.qml
     qmldir

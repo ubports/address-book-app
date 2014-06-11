@@ -100,12 +100,11 @@ Item {
 
             // style
             fontSize: root.active ? "medium" : "small"
-            color: "#f3f3e7"
         }
 
         Icon {
             name: "chevron"
-            color: "white"
+            color: "black"
             height: units.gu(1)
             width: height
 
@@ -142,7 +141,7 @@ Item {
                 bottom: parent.bottom
             }
             width: arrow.width + listLabel.paintedWidth + units.gu(1)
-            opacity: currentIndex == index ? 1.0 : 0.2
+            opacity: currentIndex == index ? 1.0 : 0.4
 
             Label {
                 id: listLabel
@@ -156,7 +155,6 @@ Item {
 
                 // style
                 fontSize: "medium"
-                color: "#f3f3e7"
 
                 MouseArea {
                     width: parent.width + units.gu(0.5)
