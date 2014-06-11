@@ -10,6 +10,7 @@ Build-Depends: cmake,
                libgles2-mesa-dev,
                python3,
                pkg-config,
+               qml-module-qttest,
                qt5-default,
                qtbase5-dev,
                qtdeclarative5-dev,
@@ -75,4 +76,4 @@ Depends: ${misc:Depends},
          address-book-app (>= ${binary:Version}),
          ubuntu-mobile-icons,
 Description: Test package for address-book-app
- Autopilot tests for the address-book-app package 
+ Autopilot tests for the address-book-app package
