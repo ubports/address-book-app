@@ -202,6 +202,17 @@ Page {
     tools: ToolbarItems {
         ToolbarButton {
             action: Action {
+                objectName: "share"
+                text: i18n.tr("Share")
+                iconName: "share"
+                onTriggered: {
+                    pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
+                                   { contactModel: root.model, contact: root.contact})
+                }
+            }
+        }
+        ToolbarButton {
+            action: Action {
                 objectName: "edit"
                 text: i18n.tr("Edit")
                 iconSource: "artwork:/edit.png"

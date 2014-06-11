@@ -18,6 +18,7 @@ import QtQuick 2.2
 import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1 as Popups
+import Ubuntu.Content 0.1 as ContentHub
 
 MainView {
     id: mainWindow
@@ -110,12 +111,12 @@ MainView {
     }
 
     Connections {
-        target: contactContentHub
-        onActiveChanged: {
-            if (contactContentHub && contactContentHub.active) {
-                // enter in pick mode
-                mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"), {pickMode: true})
-            }
+        target: ContentHub.ContentHub
+        onExportRequested: {
+            // enter in pick mode
+            mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"),
+                           {pickMode: true,
+                            contentHubTransfer: transfer})
         }
     }
 }
