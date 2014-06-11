@@ -8,7 +8,6 @@ set(CONTACT_COMPONENTS_QMLS
     ContactFetch.qml
     ContactListView.qml
     Contacts.js
-    ContactSearchListView.qml
     ContactSimpleListView.qml
     DialogButtons.qml
     FastScroll.qml
