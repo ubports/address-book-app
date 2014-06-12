@@ -10,10 +10,12 @@ Build-Depends: cmake,
                libgles2-mesa-dev,
                python3,
                pkg-config,
+               qml-module-qttest,
                qtdeclarative5-dev-tools,
                qt5-default,
                qtbase5-dev,
                qtdeclarative5-dev,
+               xvfb,
 Standards-Version: 3.9.5
 Homepage: https://launchpad.net/address-book-app
 # If you aren't a member of ~phablet-team but need to upload packaging changes,

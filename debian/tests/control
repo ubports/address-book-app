@@ -1,4 +1,0 @@
-Tests: qml
-Depends: @,
- xvfb,
- qtdeclarative5-dev-tools,
