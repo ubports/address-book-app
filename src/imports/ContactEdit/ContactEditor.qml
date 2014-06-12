@@ -177,30 +177,30 @@ Page {
             }
             height: childrenRect.height
 
-            ContactDetailAvatarEditor {
-                id: avatarEditor
-
-                contact: contactEditor.contact
+            Row {
                 anchors {
                     left: parent.left
                     leftMargin: units.gu(2)
-                }
-                height: implicitHeight
-                width: implicitWidth
-            }
-
-            ContactDetailNameEditor {
-                id: nameEditor
-
-                anchors {
-                    left: parent.left
                     right: parent.right
                 }
-                height: nameEditor.implicitHeight + units.gu(3)
-                contact: contactEditor.contact
+                height: Math.max(avatarEditor.height, nameEditor.height)
+
+                ContactDetailAvatarEditor {
+                    id: avatarEditor
+
+                    contact: contactEditor.contact
+                    height: implicitHeight
+                    width: implicitWidth
+                }
+
+                ContactDetailNameEditor {
+                    id: nameEditor
+
+                    width: parent.width - avatarEditor.width
+                    height: nameEditor.implicitHeight + units.gu(3)
+                    contact: contactEditor.contact
+                }
             }
-
-
 
             ContactDetailPhoneNumbersEditor {
                 id: phonesEditor
