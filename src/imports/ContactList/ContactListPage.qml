@@ -124,21 +124,11 @@ PageWithBottomEdge {
             bottom: keyboard.top
             right: parent.right
         }
+        contactNameFilter: searchField.text
         detailToPick: ContactDetail.PhoneNumber
         multiSelectionEnabled: true
         multipleSelection: !pickMode ||
                            mainPage.pickMultipleContacts || (contactExporter.active && contactExporter.isMultiple)
-
-        DetailFilter {
-            id: nameFilter
-
-            detail: ContactDetail.DisplayLabel
-            field: DisplayLabel.Label
-            value: searchField.text
-            matchFlags: DetailFilter.MatchContains
-        }
-
-        filter: (searchField.text != "" ? nameFilter : null)
 
         anchors.fill: parent
 
@@ -337,10 +327,7 @@ PageWithBottomEdge {
             bottomMargin: units.gu(1.5)
             verticalCenter: parent.verticalCenter
         }
-        onTextChanged: {
-            contactList.currentIndex = -1
-            contactSearchTimeout.restart()
-        }
+        onTextChanged: contactList.currentIndex = -1
         inputMethodHints: Qt.ImhNoPredictiveText
     }
 
@@ -474,26 +461,6 @@ PageWithBottomEdge {
             }
             pageStack.pop()
             application.returnVcard(url)
-        }
-    }
-
-    Timer {
-        id: contactSearchTimeout
-
-        running: false
-        repeat: false
-        interval: 300
-        onTriggered: {
-            if (searchField.text === "") {
-                if (contactList.filter !== null) {
-                    contactList.changeFilter(null)
-                }
-            } else {
-                if (contactList.filter !== nameFilter) {
-                    contactList.changeFilter(nameFilter)
-                }
-                nameFilter.value = searchField.text
-            }
         }
     }
 

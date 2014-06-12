@@ -5,10 +5,9 @@ ContactDetailOnlineAccountTypeModel 0.1 ContactDetailOnlineAccountTypeModel.qml
 ContactDetailPhoneNumberTypeModel 0.1 ContactDetailPhoneNumberTypeModel.qml
 ContactFetch 0.1 ContactFetch.qml
 ContactListView 0.1 ContactListView.qml
-ContactSearchListView 0.1 ContactSearchListView.qml
-ContactSimpleListView 0.1 ContactSimpleListView.qml
 MultipleSelectionListView 0.1 MultipleSelectionListView.qml
 
+internal ContactSimpleListView ContactSimpleListView.qml
 internal ContactDelegate ContactDelegate.qml
 internal ContactDetailPickerPhoneNumberDelegate ContactDetailPickerPhoneNumberDelegate.qml
 internal DialogButtons DialogButtons.qml

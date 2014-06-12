@@ -108,14 +108,6 @@ MultipleSelectionListView {
         }
     }
     /*!
-      \qmlproperty Filter filter
-
-      This property holds the filter instance used by the contact model.
-
-      \sa Filter
-    */
-    property var filter
-    /*!
       \qmlproperty bool multiSelectionEnabled
 
       This property holds if the multi selection mode is enabled or not
@@ -327,6 +319,8 @@ MultipleSelectionListView {
             } else if (detailToPick !== 0) {
                 contactListView.currentIndex = index
                 return
+            } else if (detailToPick == 0) {
+                contactListView.detailClicked(contact, null, "")
             }
         }
 
