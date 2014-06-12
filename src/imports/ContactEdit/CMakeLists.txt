@@ -1,4 +1,5 @@
 set(CONTACT_EDIT_QMLS
+    AvatarImport.qml
     ContactDetailAddressesEditor.qml
     ContactDetailAvatarEditor.qml
     ContactDetailEmailsEditor.qml

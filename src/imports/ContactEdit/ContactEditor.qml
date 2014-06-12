@@ -171,14 +171,26 @@ Page {
 
             anchors {
                 top: parent.top
+                topMargin: units.gu(2)
                 left: parent.left
                 right: parent.right
             }
             height: childrenRect.height
 
+            ContactDetailAvatarEditor {
+                id: avatarEditor
+
+                contact: contactEditor.contact
+                anchors {
+                    left: parent.left
+                    leftMargin: units.gu(2)
+                }
+                height: implicitHeight
+                width: implicitWidth
+            }
+
             ContactDetailNameEditor {
                 id: nameEditor
-
 
                 anchors {
                     left: parent.left
@@ -188,16 +200,7 @@ Page {
                 contact: contactEditor.contact
             }
 
-            ContactDetailAvatarEditor {
-                id: avatarEditor
 
-                contact: contactEditor.contact
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-                height: implicitHeight
-            }
 
             ContactDetailPhoneNumbersEditor {
                 id: phonesEditor
