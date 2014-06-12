@@ -1,0 +1,5 @@
+#! /bin/sh
+
+set -e
+
+xvfb-run -s "-screen 0 1024x768x24" qmltestrunner -import src/imports -input tests/qml
