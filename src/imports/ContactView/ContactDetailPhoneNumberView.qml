@@ -55,62 +55,40 @@ ContactDetailBase {
         anchors {
             left: parent.left
             top: parent.top
-            right: div0.left
+            right: messageActions.left
             bottom: parent.bottom
             leftMargin: units.gu(2)
         }
-        iconSource: root.action ? root.action.iconSource : ""
-    }
-
-    Image {
-        id: div0
-
-        anchors {
-            top: parent.top
-            right: callActions.left
-            bottom: parent.bottom
-        }
-        width: 2
-        fillMode: Image.TileVertically
-        source: "artwork:/vertical-div.png"
-    }
-
-    ActionButton {
-        id: callActions
-
-        anchors {
-            right: div1.left
-            top: parent.top
-            bottom: parent.bottom
-        }
-        width: height
-        iconName: "call-start"
-        onClicked: Qt.openUrlExternally("tel:///" + encodeURIComponent(view.values[0]))
-    }
-
-    Image {
-        id: div1
-
-        anchors {
-            top: parent.top
-            right: messageActions.left
-            bottom: parent.bottom
-        }
-        width: 2
-        fillMode: Image.TileVertically
-        source: "artwork:/vertical-div.png"
     }
 
     ActionButton {
         id: messageActions
 
         anchors {
-            right: parent.right
-            top: parent.top
-            bottom: parent.bottom
+            right: callActions.left
+            rightMargin: units.gu(1)
+            verticalCenter: parent.verticalCenter
         }
-        width: height
+        width: units.gu(4)
+        height: units.gu(4)
         iconName: "messages"
         onClicked: Qt.openUrlExternally("message:///" + encodeURIComponent(view.values[0]))
     }
+
+
+    ActionButton {
+        id: callActions
+
+        anchors {
+            right: parent.right
+            rightMargin: units.gu(2)
+            top: parent.top
+            verticalCenter: parent.verticalCenter
+        }
+        width: units.gu(4)
+        height: units.gu(4)
+        iconName: "call-start"
+        onClicked: Qt.openUrlExternally("tel:///" + encodeURIComponent(view.values[0]))
+    }
+
 }
