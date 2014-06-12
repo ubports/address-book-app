@@ -83,11 +83,9 @@ Page {
 
             ContactDetailAvatarView {
                 contact: root.contact
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
+                anchors.left: parent.left
                 height: implicitHeight
+                width: implicitWidth
             }
 
             ContactDetailPhoneNumbersView {

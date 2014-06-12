@@ -23,7 +23,7 @@ import "../Common"
 ContactDetailBase {
     id: root
 
-    readonly property string defaultAvatar: Qt.resolvedUrl("../../artwork/contact-default-profile.png")
+    readonly property string defaultAvatar: "image://theme/import-image"
 
     function getAvatar(avatarDetail)
     {
@@ -39,7 +39,9 @@ ContactDetailBase {
     }
 
     detail: contact ? contact.detail(ContactDetail.Avatar) : null
-    implicitHeight: units.gu(17)
+    implicitHeight: units.gu(10)
+    implicitWidth: units.gu(10)
+    showDivider: false
 
     // update the contact detail in case of the contact change
     Connections {
@@ -78,13 +80,23 @@ ContactDetailBase {
         }
     }
 
-    Image {
-        id: avatar
+    UbuntuShape {
+        id: avatarShape
 
-        anchors.fill: parent
-        asynchronous: true
-        smooth: true
-        source: root.defaultAvatar
-        fillMode: Image.PreserveAspectCrop
+        anchors {
+            fill: parent
+            leftMargin: units.gu(2)
+            topMargin: units.gu(2)
+        }
+        radius: "medium"
+
+        image: Image {
+            id: avatar
+
+            fillMode: Image.PreserveAspectCrop
+            asynchronous: true
+            source: root.defaultAvatar
+            smooth: true
+        }
     }
 }
