@@ -10,7 +10,7 @@ Build-Depends: cmake,
                libgles2-mesa-dev,
                python3,
                pkg-config,
-               qml-module-qttest,
+               qtdeclarative5-dev-tools,
                qt5-default,
                qtbase5-dev,
                qtdeclarative5-dev,
@@ -20,6 +20,7 @@ Homepage: https://launchpad.net/address-book-app
 # just go ahead. ~phablet-team will notice and sync up the code again.
 Vcs-Bzr: https://code.launchpad.net/~phablet-team/address-book-app/trunk
 Vcs-Browser: http://bazaar.launchpad.net/~phablet-team/address-book-app/trunk/files
+XS-Testsuite: autopkgtest
 
 Package: address-book-app
 Architecture: amd64 armhf i386
