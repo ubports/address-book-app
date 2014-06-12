@@ -88,16 +88,6 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
-                ContactDetailFavoriteView {
-                    contact: root.contact
-                    anchors {
-                        left: parent.left
-                        bottom: parent.bottom
-                        margins: units.gu(2)
-                    }
-                    width: units.gu(4)
-                    height: units.gu(4)
-                }
             }
 
             ContactDetailPhoneNumbersView {
@@ -200,6 +190,17 @@ Page {
     }
 
     tools: ToolbarItems {
+        ToolbarButton {
+            action: Action {
+                objectName: "favorite"
+                text: i18n.tr("Favorite")
+                iconName: root.contact && root.contact.favorite.favorite ? "favorite-selected" : "favorite-unselected"
+                onTriggered: {
+                    root.contact.favorite.favorite = !root.contact.favorite.favorite
+                    root.contact.save()
+                }
+            }
+        }
         ToolbarButton {
             action: Action {
                 objectName: "share"
