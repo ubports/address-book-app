@@ -50,8 +50,8 @@ import "../Common"
                 objectName: detail && fields ? "label_" + detailToString(detail.type, fields[index]) + "_" + root.parentIndex + "." + index : ""
 
                 anchors {
-                    left: parent ? parent.left : null
-                    right: parent ? parent.right : null
+                    left: parent ? parent.left : undefined
+                    right: parent ? parent.right : undefined
                 }
                 height: root.lineHeight
                 verticalAlignment: Text.AlignVCenter
