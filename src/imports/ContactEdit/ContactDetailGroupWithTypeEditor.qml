@@ -95,7 +95,7 @@ ContactDetailGroupWithTypeBase {
 
         return changed
     }
-    minimumHeight: units.gu(5)
+
     headerDelegate: ListItem.Empty {
         id: header
         highlightWhenPressed: false
