@@ -15,7 +15,6 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from address_book_app.pages import _common, _contact_editor
-import time
 
 
 class ContactView(_common.PageWithHeader):
@@ -23,13 +22,7 @@ class ContactView(_common.PageWithHeader):
 
     def go_to_edit_contact(self):
         self.get_header().click_action_button('edit')
-        page = self.get_root_instance().select_single(
+        return self.get_root_instance().select_single(
             _contact_editor.ContactEditor,
             objectName='contactEditorPage',
             active=True)
-
-        self.pointing_device.click_object(page)
-        # see bug #1329557
-        time.sleep(1)
-        self.pointing_device.click_object(page)
-        return page
