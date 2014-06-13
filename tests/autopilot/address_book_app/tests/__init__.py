@@ -162,10 +162,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
         self.assertThat(view_page.visible, Eventually(Equals(True)))
 
         # Edit contact
-        self.main_window.get_header().click_action_button("edit")
-        self.assertThat(view_page.visible, Eventually(Equals(False)))
-
-        edit_page = self.main_window.get_contact_edit_page()
+        edit_page = view_page.go_to_edit_contact()
         self.assertThat(edit_page.visible, Eventually(Equals(True)))
 
         return edit_page
