@@ -160,7 +160,7 @@ Page {
             fill: parent
             bottomMargin: keyboard.height
         }
-        contentHeight: contents.height
+        contentHeight: contents.height + units.gu(2)
         contentWidth: parent.width
 
         //after add a new field we need to wait for the contentHeight to change to scroll to the correct position
@@ -274,13 +274,39 @@ Page {
                 height: implicitHeight
             }
 
-            // We need this extra element to correct align the deleteButton
+            ListItem.ThinDivider {}
+
             Item {
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
-                height: deleteButton.height + units.gu(2)
+                height: units.gu(2)
+            }
+
+            Row {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(2)
+                }
+                height: units.gu(6)
+                spacing: units.gu(2)
+
+                Button {
+                    id: addNewFieldButton
+
+                    text: i18n.tr("Add Field")
+                    gradient: UbuntuColors.greyGradient
+                    anchors {
+                        top: parent.top
+                        bottom: parent.bottom
+                        bottomMargin: units.gu(2)
+                    }
+                    width: (parent.width - units.gu(4)) / 2
+
+                    onClicked: addFieldDialog.showOptions()
+                }
 
                 Button {
                     id: deleteButton
@@ -288,12 +314,11 @@ Page {
                     text: i18n.tr("Delete")
                     visible: !contactEditor.isNewContact
                     anchors {
-                        margins: units.gu(2)
                         top: parent.top
-                        left: parent.left
-                        right: parent.right
+                        bottom: parent.bottom
+                        bottomMargin: units.gu(2)
                     }
-
+                    width: (parent.width - units.gu(4)) / 2
                     onClicked: {
                         var dialog = PopupUtils.open(removeContactDialog, null)
                         dialog.contacts = [contactEditor.contact]
@@ -350,6 +375,22 @@ Page {
             focusTimer.restart()
         } else {
             contactEditor.ready()
+        }
+    }
+
+    AddFieldDialog {
+        id: addFieldDialog
+
+        onFieldSelected: {
+            if (qmlTypeName) {
+                var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + qmlTypeName + "{}", addFieldDialog)
+                if (newDetail) {
+                    var newDetailsCopy = contactEditor.newDetails
+                    newDetailsCopy.push(newDetail)
+                    contactEditor.newDetails = newDetailsCopy
+                    contactEditor.contact.addDetail(newDetail)
+                }
+            }
         }
     }
 
