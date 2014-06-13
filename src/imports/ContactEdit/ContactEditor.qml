@@ -369,6 +369,8 @@ Page {
                 Popups.PopupUtils.close(removeContactsDialogMessage)
             }
 
+            Component.onCompleted: removeContactsDialogMessage.forceActiveFocus()
+
             // WORKAROUND: SDK element crash if pop the page where the dialog was created
             Component.onDestruction: {
                 if (popPages) {
