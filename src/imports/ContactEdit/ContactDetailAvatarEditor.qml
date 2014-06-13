@@ -60,24 +60,22 @@ ContactDetailBase {
     }
 
     detail: contact ? contact.detail(ContactDetail.Avatar) : null
-    implicitHeight: units.gu(10)
-    implicitWidth: units.gu(10)
+    implicitHeight: units.gu(8)
+    implicitWidth: units.gu(8)
 
     UbuntuShape {
         id: avatar
 
         radius: "medium"
         anchors.fill: parent
-
         image: Image {
             id: avatarImage
 
             fillMode: Image.PreserveAspectCrop
             asynchronous: true
             source: root.getAvatar(root.detail)
-            visible: source !== ""
-            height: units.gu(6)
-            width: units.gu(6)
+            height: units.gu(8)
+            width: units.gu(8)
 
             // When updating the avatar using the content picker the temporary file returned
             // can contain the same name as the previous one and if the cache is enabled this

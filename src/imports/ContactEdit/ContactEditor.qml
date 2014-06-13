@@ -178,6 +178,16 @@ Page {
             height: childrenRect.height
 
             Row {
+                function save()
+                {
+                    return (avatarEditor.save() || nameEditor.save())
+                }
+
+                function isEmpty()
+                {
+                    return (avatarEditor.isEmpty() && nameEditor.isEmpty())
+                }
+
                 anchors {
                     left: parent.left
                     leftMargin: units.gu(2)

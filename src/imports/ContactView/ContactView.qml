@@ -67,7 +67,7 @@ Page {
         anchors.fill: parent
         //WORKAROUND: There is a bug on SDK page that causes the page to appear flicked with small contents
         // see bug #1223050
-        contentHeight: Math.max(contents.height, parent.height)
+        contentHeight: Math.max(contents.height, parent.height) + units.gu(2)
         contentWidth: parent.width
         visible: !busyIndicator.visible
 
@@ -77,6 +77,7 @@ Page {
             height: childrenRect.height
             anchors {
                 top: parent.top
+                topMargin: units.gu(2)
                 left: parent.left
                 right: parent.right
             }
