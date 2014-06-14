@@ -39,7 +39,7 @@ UbuntuShape {
          text: ContactsJS.getNameItials(displayName)
          font.pointSize: 88
          color: UbuntuColors.lightAubergine
-         visible: !img.visible
+         visible: (img.status != Image.Ready)
     }
 
     image: Image {
@@ -48,7 +48,6 @@ UbuntuShape {
         fillMode: Image.PreserveAspectCrop
         asynchronous: true
         source: avatarUrl
-        visible: status === Image.Ready
         height: avatar.height
         width: avatar.width
     }
