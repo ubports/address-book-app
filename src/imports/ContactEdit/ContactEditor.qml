@@ -180,7 +180,10 @@ Page {
             Row {
                 function save()
                 {
-                    return (avatarEditor.save() || nameEditor.save())
+                    var avatarSave = avatarEditor.save()
+                    var nameSave = nameEditor.save();
+
+                    return (nameSave || avatarSave);
                 }
 
                 function isEmpty()
