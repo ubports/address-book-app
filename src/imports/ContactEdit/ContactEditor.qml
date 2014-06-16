@@ -369,7 +369,8 @@ Page {
                 Popups.PopupUtils.close(removeContactsDialogMessage)
             }
 
-            Component.onCompleted: removeContactsDialogMessage.forceActiveFocus()
+            // hide virtual keyboard if necessary
+            Component.onCompleted: Qt.inputMethod.hide()
 
             // WORKAROUND: SDK element crash if pop the page where the dialog was created
             Component.onDestruction: {
