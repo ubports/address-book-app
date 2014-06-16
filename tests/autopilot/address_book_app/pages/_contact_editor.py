@@ -1,20 +1,27 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-# Copyright 2013, 2014 Canonical
 #
-# This program is free software: you can redistribute it and/or modify it
-# under the terms of the GNU General Public License version 3, as published
+# Copyright (C) 2014 Canonical Ltd.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import collections
 import logging
 import time
 
-from address_book_app.emulators.contact_list_page import ContactListPage
-from address_book_app.emulators.toolbar import Toolbar
-from autopilot import logging as autopilot_logging
-from ubuntuuitoolkit import emulators as uitk
-
-from address_book_app import data
+import autopilot.logging
+import ubuntuuitoolkit
+from address_book_app import data, _errors
+from address_book_app.pages import _common
 
 
 logger = logging.getLogger(__name__)
@@ -33,7 +40,7 @@ _TEXT_FIELD_OBJECT_NAMES = {
 
 def _get_text_field(parent, field, index=None):
     if field not in _TEXT_FIELD_OBJECT_NAMES:
-        raise AddressBookAppError('Unknown field: {}.'.format(field))
+        raise _errors.AddressBookAppError('Unknown field: {}.'.format(field))
 
     object_name = _TEXT_FIELD_OBJECT_NAMES[field]
     if index is not None:
@@ -41,88 +48,10 @@ def _get_text_field(parent, field, index=None):
     return parent.select_single(TextInputDetail, objectName=object_name)
 
 
-class AddressBookAppError(uitk.ToolkitEmulatorException):
-    """Exception raised when there is an error with the emulator."""
-
-
-class MainWindow(uitk.MainView):
-    """An emulator class that makes it easy to interact with the app."""
-
-    def get_contact_list_page(self):
-        # ContactListPage is the only page that can appears multiple times
-        # Ex.: During the pick mode we alway push a new contactListPage, to
-        # preserve the current application status.
-        pages = self.select_many(ContactListPage,
-                                 objectName="contactListPage")
-
-        # alway return the page without pickMode
-        for p in pages:
-            if not p.pickMode:
-                return p
-        return None
-
-    def get_contact_edit_page(self):
-        return self.wait_select_single(ContactEditor,
-                                       objectName="contactEditorPage")
-
-    def get_contact_view_page(self):
-        return self.wait_select_single("ContactView",
-                                       objectName="contactViewPage")
-
-    def get_contact_list_pick_page(self):
-        pages = self.select_many("ContactListPage",
-                                 objectName="contactListPage")
-        for p in pages:
-            if p.pickMode:
-                return p
-        return None
-
-    def get_contact_list_view(self):
-        """
-        Returns a ContactListView iobject for the current window
-        """
-        return self.wait_select_single( "ContactListView",
-                                       objectName="contactListView")
-
-    def get_button(self, name):
-        """
-        Returns a Button object matching 'name'
-
-        Arguments:
-            name: Name of the button
-        """
-        return self.wait_select_single( "Button", objectName=name)
-
-    def cancel(self):
-        """
-        Press the 'Cancel' button
-        """
-        self.pointing_device.click_object(self.get_button("reject"))
-
-    def save(self):
-        """
-        Press the 'Save' button
-        """
-        self.pointing_device.click_object(self.get_button("accept"))
-
-    def get_toolbar(self):
-        """Override base class so we get our expected Toolbar subclass."""
-        return self.select_single(Toolbar)
-
-    @autopilot_logging.log_action(logger.info)
-    def go_to_add_contact(self):
-        """
-        Press the 'Add' button and return the contact editor page
-        """
-        toolbar = self.open_toolbar()
-        toolbar.click_button(object_name="Add")
-        return self.get_contact_edit_page()
-
-
-class ContactEditor(uitk.UbuntuUIToolkitEmulatorBase):
+class ContactEditor(_common.PageWithHeader):
     """Custom proxy object for the Contact Editor."""
 
-    @autopilot_logging.log_action(logger.info)
+    @autopilot.logging.log_action(logger.info)
     def fill_form(self, contact_information):
         """Fill the edit contact form.
 
@@ -189,11 +118,12 @@ class ContactEditor(uitk.UbuntuUIToolkitEmulatorBase):
         flickable.flicking.wait_for(False)
 
 
-class TextInputDetail(uitk.TextField):
+class TextInputDetail(ubuntuuitoolkit.TextField):
     """Custom proxy object for the Text Input Detail field."""
 
 
-class ContactDetailGroupWithTypeEditor(uitk.UbuntuUIToolkitEmulatorBase):
+class ContactDetailGroupWithTypeEditor(
+        ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
     """Custom proxy object for the ContactDetailGroupWithTypeEditor widget."""
 
     _DETAIL_EDITORS = {
@@ -240,12 +170,9 @@ class ContactDetailGroupWithTypeEditor(uitk.UbuntuUIToolkitEmulatorBase):
         return values
 
 
-class ContactDetailWithTypeEditor(uitk.UbuntuUIToolkitEmulatorBase):
+class ContactDetailWithTypeEditor(
+        ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
     """Custom proxy object for the ContactDetailWithTypeEditor widget."""
-
-    def __init__(self, *args):
-        super(ContactDetailWithTypeEditor, self).__init__(*args)
-        self.main_view = self.get_root_instance().select_single(MainWindow)
 
     def fill(self, field, index, detail):
         self._select_type(detail)
@@ -275,7 +202,8 @@ class ContactDetailWithTypeEditor(uitk.UbuntuUIToolkitEmulatorBase):
         elif field == 'professionalDetails':
             self._fill_professional_details(index, detail)
         else:
-            raise AddressBookAppError('Unknown field: {}.'.format(field))
+            raise _errors.AddressBookAppError(
+                'Unknown field: {}.'.format(field))
 
     def _fill_single_field(self, value):
         text_field = self.select_single(TextInputDetail)
@@ -288,7 +216,9 @@ class ContactDetailWithTypeEditor(uitk.UbuntuUIToolkitEmulatorBase):
             # --elopio - 2014-03-01
             text_field.keyboard.press_and_release('Tab')
             time.sleep(0.1)
-            self.main_view.get_contact_edit_page().wait_to_stop_moving()
+            contact_editor = self.get_root_instance().select_single(
+                ContactEditor, objectName='contactEditorPage', active=True)
+            contact_editor.wait_to_stop_moving()
 
         text_field.write(value)
 
@@ -325,7 +255,7 @@ class ContactDetailWithTypeEditor(uitk.UbuntuUIToolkitEmulatorBase):
         if field == 'professionalDetails':
             # TODO --elopio - 2014-03-01
             return None
-        raise AddressBookAppError('Unknown field: {}.'.format(field))
+        raise _errors.AddressBookAppError('Unknown field: {}.'.format(field))
 
     def _get_single_field_value(self):
         return self.select_single(TextInputDetail).text

@@ -25,7 +25,6 @@ ContactDetailBase {
     property Component fieldDelegate: null
 
     implicitHeight: fieldsColumn.height
-
     Column {
         id: fieldsColumn
 
@@ -42,10 +41,8 @@ ContactDetailBase {
             model: root.fields
             Loader {
                 id: field
-                focus: true
 
                 sourceComponent: fieldDelegate
-
                 Binding {
                     target: item
                     property: "field"
@@ -57,18 +54,6 @@ ContactDetailBase {
                     property: "detail"
                     value: root.detail
                 }
-
-                KeyNavigation.backtab : index > 0 ? fieldRepeater.itemAt(index - 1) : null
-                KeyNavigation.tab: index < fieldRepeater.count - 1 ? fieldRepeater.itemAt(index + 1) : null
-            }
-        }
-    }
-
-    // reset focus back to first field
-    onActiveFocusChanged: {
-        if (!activeFocus) {
-            for(var i=0; i < fieldRepeater.count; i++) {
-                fieldRepeater.itemAt(i).focus = (i === 0)
             }
         }
     }

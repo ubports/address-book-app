@@ -17,7 +17,6 @@
 #include "config.h"
 #include "addressbookapp.h"
 #include "imagescalethread.h"
-#include "contentcommunicator.h"
 
 #include <QDir>
 #include <QUrl>
@@ -49,13 +48,19 @@ static void printUsage(const QStringList& arguments)
              << "[-testability]";
 }
 
+static bool clickModeEnabled()
+{
+    return ((QString(ADDRESS_BOOK_APP_CLICK_PACKAGE).toLower() == "on") ||
+             (QString(ADDRESS_BOOK_APP_CLICK_PACKAGE) == "1"));
+}
+
 static QString fullPath(const QString &fileName)
 {
     QString result;
     QString appPath = QCoreApplication::applicationDirPath();
     if (appPath.startsWith(ADDRESS_BOOK_DEV_BINDIR)) {
         result = QString(ADDRESS_BOOK_APP_DEV_DATADIR) + fileName;
-    } else if (QString(ADDRESS_BOOK_APP_CLICK_PACKAGE).toLower() == "on") {
+    } else if (clickModeEnabled()) {
         result = appPath + QStringLiteral("/share/address-book-app/") + fileName;
     } else {
         result = QString(ADDRESS_BOOK_APP_INSTALL_DATADIR) + fileName;
@@ -88,7 +93,6 @@ static void installIconPath()
 AddressBookApp::AddressBookApp(int &argc, char **argv)
     : QGuiApplication(argc, argv),
       m_view(0),
-      m_contentComm(0),
       m_syncMonitor(0),
       m_pickingMode(false),
       m_testMode(false),
@@ -145,10 +149,7 @@ bool AddressBookApp::setup()
             qCritical("Library qttestability load failed!");
         }
         m_testMode = true;
-    } else {
-        m_contentComm = new ContentCommunicator(this);
     }
-
     /* Ubuntu APP Manager gathers info on the list of running applications from the .desktop
        file specified on the command line with the desktop_file_hint switch, and will also pass a stage hint
        So app will be launched like this:
@@ -178,9 +179,8 @@ bool AddressBookApp::setup()
 
     m_view->setResizeMode(QQuickView::SizeRootObjectToView);
     m_view->setTitle("AddressBook");
-    m_view->engine()->addImportPath(importPath("/imports/"));
+    m_view->engine()->addImportPath(QCoreApplication::applicationDirPath() + "/" + importPath(""));
     m_view->rootContext()->setContextProperty("QTCONTACTS_MANAGER_OVERRIDE", defaultManager);
-    m_view->rootContext()->setContextProperty("contactContentHub", m_contentComm);
     m_view->rootContext()->setContextProperty("application", this);
     m_view->rootContext()->setContextProperty("contactKey", contactKey);
     m_view->rootContext()->setContextProperty("TEST_DATA", testData);
@@ -213,10 +213,6 @@ AddressBookApp::~AddressBookApp()
 
     if (m_view) {
         delete m_view;
-    }
-
-    if (m_contentComm) {
-        delete m_contentComm;
     }
 }
 

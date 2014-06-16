@@ -62,8 +62,7 @@ import "../Common"
 
         // style
         fontSize: "small"
-        color: "#f3f3e7"
-        opacity: 0.2
+        opacity: 0.8
     }
 
     Column {
@@ -94,7 +93,7 @@ import "../Common"
 
                 // style
                 fontSize: "medium"
-                color: "#f3f3e7"
+                color: UbuntuColors.lightAubergine
             }
         }
     }

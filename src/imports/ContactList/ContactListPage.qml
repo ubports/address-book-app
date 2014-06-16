@@ -21,17 +21,24 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Contacts 0.1 as ContactsUI
 import Ubuntu.Components.Popups 0.1 as Popups
+import Ubuntu.Content 0.1 as ContentHub
+import "../ContactEdit"
+import "../Common"
 
-Page {
+PageWithBottomEdge {
     id: mainPage
     objectName: "contactListPage"
 
     property bool pickMode: false
+    property alias contentHubTransfer: contactExporter.activeTransfer
     property bool pickMultipleContacts: false
     property var onlineAccountsMessageDialog: null
     property QtObject contactIndex: null
-    property bool syncEnabled: application.syncEnabled
-    property var contactModel: contactList.listModel ? contactList.listModel : null
+    property bool contactsLoaded: false
+
+    readonly property bool syncEnabled: application.syncEnabled
+    readonly property var contactModel: contactList.listModel ? contactList.listModel : null
+    readonly property bool searching: (state === "searching")
 
     function createEmptyContact(phoneNumber) {
         var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
@@ -54,7 +61,21 @@ Page {
         return newContact
     }
 
-    title: i18n.tr("Contacts")
+    title: contactList.isInSelectionMode ? i18n.tr("Select Contacts") : i18n.tr("Contacts")
+
+    //bottom edge page
+    bottomEdgePageComponent: ContactEditor {
+        //WORKAROUND: SKD changes the page header as soon as the page get created
+        // setting active false will avoid that
+        active: false
+        enabled: false
+
+        initialFocusSection: "name"
+        model: contactList.listModel
+        contact: mainPage.createEmptyContact("")
+    }
+    bottomEdgeTitle: "+"
+    bottomEdgeEnabled: !contactList.isInSelectionMode
 
     Component {
         id: onlineAccountsDialog
@@ -75,24 +96,60 @@ Page {
         }
     }
 
+    Component {
+        id: removeContactDialog
+
+        RemoveContactsDialog {
+            id: removeContactsDialogMessage
+
+            onCanceled: {
+                PopupUtils.close(removeContactsDialogMessage)
+            }
+
+            onAccepted: {
+                removeContacts(contactList.listModel)
+                PopupUtils.close(removeContactsDialogMessage)
+            }
+        }
+    }
+
+    flickable: null //contactList.fastScrolling ? null : contactList.view
     ContactsUI.ContactListView {
         id: contactList
         objectName: "contactListView"
 
-        multiSelectionEnabled: true
-        acceptAction.text: pickMode ? i18n.tr("Select") : i18n.tr("Delete")
-        multipleSelection: !pickMode ||
-                           ((contactContentHub && contactContentHub.multipleItems) || mainPage.pickMultipleContacts)
         anchors {
-            // This extra margin is necessary because the toolbar area overlaps the last item in the view
-            // in the selection mode we remove it to avoid visual problems due the selection bar appears
-            // inside of the listview
-            bottomMargin: contactList.isInSelectionMode ? 0 : units.gu(2)
-            fill: parent
+            top: parent.top
+            left: parent.left
+            bottom: keyboard.top
+            right: parent.right
         }
-        swipeToDelete: !pickMode
+        contactNameFilter: searchField.text
+        detailToPick: ContactDetail.PhoneNumber
+        multiSelectionEnabled: true
+        multipleSelection: !pickMode ||
+                           mainPage.pickMultipleContacts || (contactExporter.active && contactExporter.isMultiple)
+
+        anchors.fill: parent
+
+        leftSideAction: Action {
+            iconName: "delete"
+            text: i18n.tr("Delete")
+            onTriggered: {
+                value.makeDisappear()
+            }
+        }
+
+        onContactDisappeared: {
+            if (contact) {
+                contactModel.removeContact(contact.contactId)
+            }
+        }
 
         onCountChanged: {
+            if (count > 0)
+                mainPage.contactsLoaded = true
+
             if ((count > 0) && mainPage.onlineAccountsMessageDialog) {
                 // Because of some contacts can take longer to arrive due the dbus delay,
                 // we need to destroy the online account dialog if this happen
@@ -100,12 +157,24 @@ Page {
                 mainPage.onlineAccountsMessageDialog = null
                 application.unsetFirstRun()
             }
+
+            if (mainPage.searching) {
+                 contactList.positionViewAtBeginning()
+            }
         }
 
-        onContactClicked: {
+        onInfoRequested: {
+            mainPage.state = ""
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
                            {model: contactList.listModel,
                             contact: contact})
+        }
+
+        onDetailClicked: {
+            if (action == "call")
+                Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
+            else if (action == "message")
+                Qt.openUrlExternally("message:///" + encodeURIComponent(detail.number))
         }
 
         onSelectionDone: {
@@ -114,65 +183,100 @@ Page {
                 for (var i=0; i < items.count; i++) {
                     contacts.push(items.get(i).model.contact)
                 }
-                exporter.contactModel = contactList.listModel
-                exporter.contacts = contacts
-                exporter.start()
+                contactExporter.exportContacts(contacts)
             } else {
-                var ids = []
-                for (var i=0; i < items.count; i++) {
-                    ids.push(items.get(i).model.contact.contactId)
+                var contacts = []
+
+                for (var i=0, iMax=items.count; i < iMax; i++) {
+                    contacts.push(items.get(i).model.contact)
                 }
-                contactList.listModel.removeContacts(ids)
+
+                var dialog = PopupUtils.open(removeContactDialog, null)
+                dialog.contacts = contacts
             }
         }
 
         onSelectionCanceled: {
             if (pickMode) {
-                if (contactContentHub) {
-                    contactContentHub.cancelTransfer()
+                if (contentHubTransfer) {
+                    contentHubTransfer.state = ContentTransfer.Aborted
                 }
                 pageStack.pop()
                 application.returnVcard("")
             }
         }
 
-        onIsInSelectionModeChanged: {
-            if (isInSelectionMode) {
-                toolbar.opened = false
+        onError: pageStack.contactModelError(error)
+    }
+
+    Column {
+        id: indicator
+
+        anchors.centerIn: contactList
+        spacing: units.gu(2)
+        visible: ((contactList.loading && !mainPage.contactsLoaded) ||
+                  (application.syncing && (contactList.count === 0)))
+
+
+        ActivityIndicator {
+            id: activity
+
+            anchors.horizontalCenter: parent.horizontalCenter
+            running: indicator.visible
+        }
+        Label {
+            anchors.horizontalCenter: activity.horizontalCenter
+            text: contactList.loading ?  i18n.tr("Loading...") : i18n.tr("Syncing...")
+        }
+    }
+
+    ToolbarItems {
+        id: toolbarItemsSelectionMode
+
+        visible: false
+        back: ToolbarButton {
+            action: Action {
+                text: i18n.tr("Cancel selection")
+                iconName: "close"
+                onTriggered: contactList.cancelSelection()
             }
         }
 
-        onError: pageStack.contactModelError(error)
-
-
-        Column {
-            id: indicator
-
-            anchors.centerIn: parent
-            spacing: units.gu(2)
-            visible: (contactList.loading || application.syncing) && (contactList.count === 0)
-
-            ActivityIndicator {
-                id: activity
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                running: indicator.visible
+        ToolbarButton {
+            action: Action {
+                objectName: "selectAll"
+                text: i18n.tr("Select All")
+                iconName: "filter"
+                onTriggered: {
+                    if (contactList.selectedItems.count == contactList.count) {
+                        contactList.clearSelection()
+                    } else {
+                        contactList.selectAll()
+                    }
+                }
+                visible: contactList.isInSelectionMode
             }
-            Label {
-                anchors.horizontalCenter: activity.horizontalCenter
-                text: contactList.loading ?  i18n.tr("Loading...") : i18n.tr("Syncing...")
+        }
+
+        ToolbarButton {
+            action: Action {
+                objectName: "doneSelection"
+                text: mainPage.pickMode ? i18n.tr("Select") : i18n.tr("Delete")
+                iconName: mainPage.pickMode ? "select" : "delete"
+                onTriggered: contactList.endSelection()
+                visible: contactList.isInSelectionMode
             }
         }
     }
 
-    tools: ToolbarItems {
-        id: toolbar
+    ToolbarItems {
+        id: toolbarItemsNormalMode
 
-        locked: contactList.isInSelectionMode
+        visible: false
         ToolbarButton {
             objectName: "Sync"
-            visible: mainPage.syncEnabled
             action: Action {
+                visible: mainPage.syncEnabled
                 text: application.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
                 iconName: "reload"
                 enabled: !application.syncing
@@ -180,26 +284,80 @@ Page {
             }
         }
         ToolbarButton {
+            objectName: "Search"
             action: Action {
-                objectName: "selectButton"
-                text: i18n.tr("Select")
-                iconName: "select"
-                onTriggered: contactList.startSelection()
-            }
-        }
-        ToolbarButton {
-            objectName: "Add"
-            action: Action {
-                text: i18n.tr("Add")
-                iconName: "add"
+                text: i18n.tr("Search")
+                visible: !mainPage.searching
+                iconName: "search"
                 onTriggered: {
-                    var newContact = mainPage.createEmptyContact("")
-                    pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                                   {model: contactList.listModel, contact: newContact})
+                    mainPage.state = "searching"
+                    searchField.forceActiveFocus()
                 }
             }
         }
     }
+
+    ToolbarItems {
+        id: toolbarItemsSearch
+
+        visible: false
+        back: ToolbarButton {
+            visible: false
+            action: Action {
+                objectName: "cancelSearch"
+
+                visible: mainPage.searching
+                iconName: "back"
+                text: i18n.tr("Cancel")
+                onTriggered: mainPage.state = ""
+            }
+        }
+    }
+
+    TextField {
+        id: searchField
+
+        visible: mainPage.searching
+        anchors {
+            left: parent.left
+            leftMargin: units.gu(2)
+            right: parent.right
+            rightMargin: units.gu(2)
+            topMargin: units.gu(1.5)
+            bottomMargin: units.gu(1.5)
+            verticalCenter: parent.verticalCenter
+        }
+        onTextChanged: contactList.currentIndex = -1
+        inputMethodHints: Qt.ImhNoPredictiveText
+    }
+
+    states: [
+        State {
+            name: ""
+            PropertyChanges {
+                target: searchField
+                text: ""
+            }
+        },
+        State {
+            name: "searching"
+            PropertyChanges {
+                target: mainPage
+                __customHeaderContents: searchField
+                tools: toolbarItemsSearch
+            }
+        },
+        State {
+            name: "selection"
+            when: contactList.isInSelectionMode
+            PropertyChanges {
+                target: mainPage
+                tools: toolbarItemsSelectionMode
+            }
+        }
+    ]
+
+    tools: toolbarItemsNormalMode
 
     // WORKAROUND: Avoid the gap btw the header and the contact list when the list moves
     // see bug #1296764
@@ -217,6 +375,19 @@ Page {
         }
     }
 
+    // We need to reset the page proprerties in case of the page was created pre-populated,
+    // with phonenumber or contact.
+    onBottomEdgeDismissed: {
+        //WORKAROUND: SKD changes the page header as soon as the page get created
+        // setting active false will avoid that
+        var newContact = mainPage.createEmptyContact("")
+        mainPage.setBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                                   {model: contactList.listModel,
+                                    contact: newContact,
+                                    active: false,
+                                    enabled: false})
+    }
+
     Connections {
         target: pageStack
         onContactRequested: {
@@ -225,16 +396,28 @@ Page {
         }
         onCreateContactRequested: {
             var newContact = mainPage.createEmptyContact(phoneNumber)
-            pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                           {model: contactList.listModel, contact: newContact})
+            //WORKAROUND: SKD changes the page header as soon as the page get created
+            // setting active false will avoid that
+            mainPage.showBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                                        {model: contactList.listModel,
+                                         contact: newContact,
+                                         active: false,
+                                         enabled: false,
+                                         initialFocusSection: "name"})
         }
         onEditContatRequested: {
-            pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                           {model: contactList.listModel, contactId: contactId, newPhoneNumber: phoneNumber })
+            pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
+                           {model: contactList.listModel,
+                            contactId: contactId,
+                            addPhoneToContact: phoneNumber})
         }
         onContactCreated: {
             mainPage.contactIndex = contact
         }
+    }
+
+    KeyboardRectangle {
+        id: keyboard
     }
 
     Connections {
@@ -247,23 +430,39 @@ Page {
         }
     }
 
-    ContactExporter {
-        id: exporter
-        contactModel: contactList.listModel ? contactList.listModel : null
-        outputFile: contactContentHub ? contactContentHub.createTemporaryFile() : "/tmp/vcard_address_book_app.vcf"
-        onCompleted: {
-            if (contactContentHub) {
-                if (error == ContactModel.ExportNoError) {
-                    contactContentHub.returnContacts(exporter.outputFile)
-                } else {
-                    contactContentHub.cancelTransfer()
-                }
+
+    QtObject {
+        id: contactExporter
+
+        property var activeTransfer: null
+        readonly property bool active: activeTransfer && (activeTransfer.state === ContentHub.ContentTransfer.InProgress && activeTransfer.direction === ContentHub.ContentTransfer.Import)
+        readonly property bool isMultiple: activeTransfer && (activeTransfer.selectionType === ContentHub.ContentTransfer.Multiple)
+
+        function exportContacts(contacts)
+        {
+            if (activeTransfer) {
+                var exportUrl = "file:///tmp/address_book_app_export.vcf"
+                mainPage.contactModel.exportCompleted.connect(contactExporter.onExportCompleted)
+                mainPage.contactModel.exportContacts(exportUrl, [], contacts)
+            } else {
+                console.error("Export requested with noo active transfer")
+            }
+        }
+
+        function onExportCompleted(error, url)
+        {
+            mainPage.contactModel.exportCompleted.disconnect(contactExporter.onExportCompleted)
+            if (error === ContactModel.ExportNoError) {
+                var obj = Qt.createQmlObject("import Ubuntu.Content 0.1;  ContentItem { url: '" + url + "' }", contactExporter)
+                activeTransfer.items = [obj]
+                activeTransfer.state = ContentHub.ContentTransfer.Charged
+            } else {
+                console.error("Fail to export contacts:" + error)
             }
             pageStack.pop()
-            application.returnVcard(exporter.outputFile)
+            application.returnVcard(url)
         }
     }
-
 
     Component.onCompleted: {
         if (pickMode) {
@@ -276,6 +475,15 @@ Page {
 
         if (TEST_DATA != "") {
             contactList.listModel.importContacts("file://" + TEST_DATA)
+        }
+
+        if (!pickMode) {
+            mainPage.setBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                                       {model: contactList.listModel,
+                                        contact: mainPage.createEmptyContact(""),
+                                        active: false,
+                                        enabled: false,
+                                        initialFocusSection: "name"})
         }
     }
 }

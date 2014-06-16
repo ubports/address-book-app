@@ -19,6 +19,7 @@ import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Contacts 0.1 as ContactsUI
+import Ubuntu.Components.Popups 0.1 as Popups
 
 Page {
     id: root
@@ -28,6 +29,7 @@ Page {
     property alias model: contactFetch.model
     // used by main page to open the contact view on app startup
     property string contactId: ""
+    property string addPhoneToContact: ""
 
     function formatNameToDisplay(contact) {
         if (!contact) {
@@ -51,12 +53,21 @@ Page {
         }
     }
 
+    // Page page if the contact get removed
+    onContactChanged: {
+        if (!contact) {
+            pageStack.pop()
+        }
+    }
+
     Flickable {
         id: flickable
 
         flickableDirection: Flickable.VerticalFlick
         anchors.fill: parent
-        contentHeight: contents.height
+        //WORKAROUND: There is a bug on SDK page that causes the page to appear flicked with small contents
+        // see bug #1223050
+        contentHeight: Math.max(contents.height, parent.height)
         contentWidth: parent.width
         visible: !busyIndicator.visible
 
@@ -157,6 +168,10 @@ Page {
         anchors.centerIn: parent
     }
 
+    ContactFetchError {
+        id: fetchErrorDialog
+    }
+
     ContactsUI.ContactFetch {
         id: contactFetch
 
@@ -164,32 +179,41 @@ Page {
             pageStack.pop()
         }
 
-        onContactNotFound: {
-            pageStack.pop()
-        }
+        onContactNotFound: Popups.PopupUtils.open(fetchErrorDialog, pageStack)
 
         onContactFetched: {
             root.contact = contact
+            if (root.addPhoneToContact != "") {
+                var detailSourceTemplate = "import QtContacts 5.0; PhoneNumber{ number: \"" + root.addPhoneToContact + "\" }"
+                var newDetail = Qt.createQmlObject(detailSourceTemplate, root.contact)
+                if (newDetail) {
+                    root.contact.addDetail(newDetail)
+                    pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                                   { model: root.model,
+                                     contact: root.contact,
+                                     initialFocusSection: "phones",
+                                     newDetails: [newDetail]})
+                    root.addPhoneToContact = ""
+                }
+            }
         }
     }
 
     tools: ToolbarItems {
         ToolbarButton {
-            objectName: "delete"
-
             action: Action {
-                text: i18n.tr("Delete")
-                iconSource: "artwork:/delete.png"
+                objectName: "share"
+                text: i18n.tr("Share")
+                iconName: "share"
                 onTriggered: {
-                    root.model.removeContact(root.contact.contactId)
-                    pageStack.pop()
+                    pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
+                                   { contactModel: root.model, contact: root.contact})
                 }
             }
         }
         ToolbarButton {
-            objectName: "edit"
-
             action: Action {
+                objectName: "edit"
                 text: i18n.tr("Edit")
                 iconSource: "artwork:/edit.png"
                 onTriggered: {

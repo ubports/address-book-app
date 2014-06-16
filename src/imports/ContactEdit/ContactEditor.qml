@@ -18,30 +18,30 @@ import QtQuick 2.2
 import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
-import Ubuntu.Components.Popups 0.1
-import Ubuntu.Contacts 0.1 as ContactsUI
+import Ubuntu.Components.Popups 0.1 as Popups
+
+import "../Common"
 
 Page {
     id: contactEditor
     objectName: "contactEditorPage"
 
     property QtObject contact: null
-    property alias model: contactFetch.model
-    readonly property  bool isNewContact: contact && (contact.contactId === "qtcontacts:::")
-
-    // this is used to add a phone number to a existing contact
-    property string contactId: ""
-    property string newPhoneNumber: ""
-
+    property QtObject model: null
     property QtObject activeItem: null
+    readonly property bool isNewContact: contact && (contact.contactId === "qtcontacts:::")
+    property string initialFocusSection: ""
+    property var newDetails: []
 
-    // we use a custom toolbar in this view
-    tools: ToolbarItems {
-        locked: true
-        opened: false
-    }
+    // priv
+    property bool _edgeReady: false
 
     function cancel() {
+        for (var i = 0; i < contactEditor.newDetails.length; ++i) {
+            contactEditor.contact.removeDetail(contactEditor.newDetails[i])
+        }
+        contactEditor.newDetails = []
+
         for(var i = 0; i < contents.children.length; ++i) {
             var field = contents.children[i]
             if (field.cancel) {
@@ -90,22 +90,22 @@ Page {
     }
 
     function makeMeVisible(item) {
-        if (!item) {
+        if (!_edgeReady || !item) {
             return
         }
 
         activeItem = item
-        var position = scrollArea.contentItem.mapFromItem(item, 0, item.y);
+        var position = scrollArea.contentItem.mapFromItem(item, 0, activeItem.y);
 
         // check if the item is already visible
         var bottomY = scrollArea.contentY + scrollArea.height
-        var itemBottom = position.y + item.height
+        var itemBottom = position.y + (item.height * 3) // extra margin
         if (position.y >= scrollArea.contentY && itemBottom <= bottomY) {
             return;
         }
 
         // if it is not, try to scroll and make it visible
-        var targetY = position.y + item.height - scrollArea.height
+        var targetY = itemBottom - scrollArea.height
         if (targetY >= 0 && position.y) {
             scrollArea.contentY = targetY;
         } else if (position.y < scrollArea.contentY) {
@@ -115,31 +115,38 @@ Page {
         scrollArea.returnToBounds()
     }
 
-    ContactFetchError {
-        id: fetchErrorDialog
-    }
+    function ready()
+    {
+        enabled = true
+        _edgeReady = true
 
-    ContactsUI.ContactFetch {
-        id: contactFetch
-
-        onContactNotFound: PopupUtils.open(fetchErrorDialog, null)
-        onContactFetched: {
-            if (contactEditor.contact == null) {
-                contactEditor.contact = contact
-            }
+        switch (contactEditor.initialFocusSection)
+        {
+        case "phones":
+            contactEditor.focusToLastPhoneField()
+            break;
+        case "name":
+            nameEditor.fieldDelegates[0].forceActiveFocus()
+            break;
         }
+        contactEditor.initialFocusSection = ""
     }
+
+    function focusToLastPhoneField()
+    {
+        var lastPhoneField = phonesEditor.detailDelegates[phonesEditor.detailDelegates.length - 2].item
+        lastPhoneField.forceActiveFocus()
+    }
+
+    title: i18n.tr("Edit")
 
     Timer {
         id: focusTimer
 
-        interval: 200
+        interval: 1000
         running: false
-        onTriggered: {
-            // get last phone field and set focus
-            var lastPhoneField = phonesEditor.detailDelegates[phonesEditor.detailDelegates.length - 2].item
-            lastPhoneField.forceActiveFocus()
-        }
+        repeat: false
+        onTriggered: contactEditor.ready()
     }
 
     flickable: null
@@ -147,18 +154,17 @@ Page {
         id: scrollArea
         objectName: "scrollArea"
 
+        // this is necessary to avoid the page to appear bellow the header
+        clip: true
         flickableDirection: Flickable.VerticalFlick
         anchors {
-            left: parent.left
-            right: parent.right
-            top: parent.top
-            bottom: toolbar.top
-            bottomMargin: units.gu(2)
+            fill: parent
+            bottomMargin: keyboard.height
         }
         contentHeight: contents.height
         contentWidth: parent.width
 
-        // after add a new field we need to wait for the contentHeight to change to scroll to the correct position
+        //after add a new field we need to wait for the contentHeight to change to scroll to the correct position
         onContentHeightChanged: contactEditor.makeMeVisible(contactEditor.activeItem)
 
         Column {
@@ -166,37 +172,21 @@ Page {
 
             anchors {
                 top: parent.top
-                topMargin: units.gu(2)
                 left: parent.left
                 right: parent.right
             }
             height: childrenRect.height
 
-            // WORKAROUND: SDK does not support QtQuick 2.2 properties yet, because of that we need create
-            // a external element and that allow us to use activeFocusOnTab
-            // FIXME: Remove FocusScope element as soon as the SDK get support for QtQuick 2.2
-            FocusScope {
-                function save() {
-                    return nameEditor.save()
-                }
+            ContactDetailNameEditor {
+                id: nameEditor
 
-                function isEmpty() {
-                    return nameEditor.cancel()
-                }
 
-                activeFocusOnTab: true
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
                 height: nameEditor.implicitHeight + units.gu(3)
-
-                ContactDetailNameEditor {
-                    id: nameEditor
-
-                    contact: contactEditor.contact
-                    anchors.fill: parent
-                }
+                contact: contactEditor.contact
             }
 
             ContactDetailAvatarEditor {
@@ -273,6 +263,7 @@ Page {
             ContactDetailSyncTargetEditor {
                 id: syncTargetEditor
 
+                active: contactEditor.active
                 contact: contactEditor.contact
                 anchors {
                     left: parent.left
@@ -280,25 +271,33 @@ Page {
                 }
                 height: implicitHeight
             }
-        }
-    }
 
-    EditToolbar {
-        id: toolbar
-        anchors {
-            left: parent.left
-            right: parent.right
-            bottom: keyboard.top
-        }
-        height: units.gu(6)
-        acceptAction: Action {
-            text: i18n.tr("Save")
-            enabled: !nameEditor.isEmpty() || !phonesEditor.isEmpty()
-            onTriggered: contactEditor.save()
-        }
-        rejectAction: Action {
-            text: i18n.tr("Cancel")
-            onTriggered: contactEditor.cancel()
+            // We need this extra element to correct align the deleteButton
+            Item {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                height: deleteButton.height + units.gu(2)
+
+                Button {
+                    id: deleteButton
+
+                    text: i18n.tr("Delete")
+                    visible: !contactEditor.isNewContact
+                    anchors {
+                        margins: units.gu(2)
+                        top: parent.top
+                        left: parent.left
+                        right: parent.right
+                    }
+
+                    onClicked: {
+                        var dialog = Popups.PopupUtils.open(removeContactDialog, null)
+                        dialog.contacts = [contactEditor.contact]
+                    }
+                }
+            }
         }
     }
 
@@ -312,26 +311,74 @@ Page {
         }
     }
 
-    // This will load the contact information and add the new phone number
-    // when the app was launched with the URI: addressbook:///addphone?id=<contact-id>&phone=<phone-number>
-    onContactChanged: {
-        if (contact && (newPhoneNumber.length > 0)) {
-            var detailSourceTemplate = "import QtContacts 5.0; PhoneNumber{ number: \"" + newPhoneNumber + "\" }"
-            var newDetail = Qt.createQmlObject(detailSourceTemplate, contactEditor)
-            if (newDetail) {
-                contact.addDetail(newDetail)
-                // we need to wait for the field be created
-                focusTimer.restart()
+    tools: ToolbarItems {
+        id: toolbar
+
+        back: ToolbarButton {
+            action: Action {
+                objectName: "cancel"
+
+                iconName: "close"
+                text: i18n.tr("Cancel")
+                onTriggered: {
+                    contactEditor.cancel()
+                    contactEditor.active = false
+                }
             }
-            newPhoneNumber = ""
+        }
+
+        ToolbarButton {
+            action: Action {
+                objectName: "save"
+
+                iconName: "save"
+                text: i18n.tr("Save")
+                enabled: !nameEditor.isEmpty() || !phonesEditor.isEmpty()
+                onTriggered: contactEditor.save()
+            }
         }
     }
 
     Component.onCompleted: {
-        if (contactId !== "") {
-            contactFetch.fetchContact(contactId)
-        } else if (isNewContact) {
-            nameEditor.forceActiveFocus()
+        if (!enabled) {
+            return
+        }
+
+        if (contactEditor.initialFocusSection != "") {
+            focusTimer.restart()
+        } else {
+            contactEditor.ready()
+        }
+    }
+
+    Component {
+        id: removeContactDialog
+
+        RemoveContactsDialog {
+            id: removeContactsDialogMessage
+
+            property var popPages: false
+
+            onCanceled: {
+                Popups.PopupUtils.close(removeContactsDialogMessage)
+            }
+
+            onAccepted: {
+                popPages = true
+                removeContacts(contactEditor.model)
+                Popups.PopupUtils.close(removeContactsDialogMessage)
+            }
+
+            // hide virtual keyboard if necessary
+            Component.onCompleted: Qt.inputMethod.hide()
+
+            // WORKAROUND: SDK element crash if pop the page where the dialog was created
+            Component.onDestruction: {
+                if (popPages) {
+                    contactEditor.pageStack.pop() // editor page
+                    contactEditor.pageStack.pop() // view page
+                }
+            }
         }
     }
 }

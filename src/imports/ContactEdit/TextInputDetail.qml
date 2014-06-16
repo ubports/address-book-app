@@ -22,48 +22,76 @@ import Ubuntu.Telephony.PhoneNumber 0.1
 //style
 import Ubuntu.Components.Themes.Ambiance 0.1
 
-PhoneNumberField {
+FocusScope {
     id: root
 
     property QtObject detail
     property int field: -1
     property variant originalValue: root.detail && (root.field >= 0) ? root.detail.value(root.field) : null
 
+    // proxy textField
+    property alias font: field.font
+    property alias placeholderText: field.placeholderText
+    property alias inputMethodHints: field.inputMethodHints
+    property alias text: field.text
+    property alias hasClearButton: field.hasClearButton
+    // proxy PhoneNumberField
+    property alias autoFormat: field.autoFormat
+
     signal removeClicked()
 
-    // TRANSLATORS: This value is used as default value for phone number format, when no coutry code is provided
-    // the supported values can be found in: https://www.iso.org/obp/ui/#search
-    defaultRegion: i18n.tr("US")
-    autoFormat: false
+    //FIXME: Move this property to TextField as soon as the SDK get ported to QtQuick 2.2
+    activeFocusOnTab: true
 
-    // Ubuntu.Keyboard
-    InputMethod.extensions: { "enterKeyText": i18n.tr("Next") }
-
-    readOnly: detail ? detail.readOnly : true
-    focus: true
-    style: TextFieldStyle {
-        overlaySpacing: 0
-        frameSpacing: 0
-        background: Item {}
+    // WORKAROUND: For some reason TextField.focus property get reset to false
+    // we need do a deep investigation on that
+    Binding {
+        target: field
+        property: "focus"
+        value: visible
     }
 
-    Component.onCompleted: makeMeVisible(root)
-    onActiveFocusChanged: {
-        if (activeFocus) {
-            makeMeVisible(root)
+    onActiveFocusChanged:  {
+        if (activeFocus && field.visible) {
+            field.forceActiveFocus()
         }
     }
 
-    // default style
-    font {
-        family: "Ubuntu"
-        pixelSize: activeFocus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
-    }
-
-    Keys.onReturnPressed: application.sendTabEvent();
     onOriginalValueChanged: {
         if (originalValue && (originalValue !== "")) {
-            text = originalValue
+            field.text = originalValue
         }
+    }
+
+    PhoneNumberField {
+        id: field
+
+        anchors.fill: parent
+
+        // TRANSLATORS: This value is used as default value for phone number format, when no coutry code is provided
+        // the supported values can be found in: https://www.iso.org/obp/ui/#search
+        defaultRegion: i18n.tr("US")
+        autoFormat: false
+
+        // Ubuntu.Keyboard
+        InputMethod.extensions: { "enterKeyText": i18n.tr("Next") }
+        readOnly: root.detail ? root.detail.readOnly : true
+        style: TextFieldStyle {
+            overlaySpacing: 0
+            frameSpacing: 0
+            background: Item {}
+        }
+        onActiveFocusChanged: {
+            if (activeFocus) {
+                makeMeVisible(root)
+            }
+        }
+
+        // default style
+        font {
+            family: "Ubuntu"
+            pixelSize: activeFocus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
+        }
+        Keys.onReturnPressed: application.sendTabEvent();
     }
 }
