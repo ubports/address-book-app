@@ -391,6 +391,7 @@ Page {
     AddFieldDialog {
         id: addFieldDialog
 
+        contact: contactEditor.contact
         onFieldSelected: {
             if (qmlTypeName) {
                 var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + qmlTypeName + "{}", addFieldDialog)

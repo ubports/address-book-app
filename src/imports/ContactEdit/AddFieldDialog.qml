@@ -28,13 +28,14 @@ Item {
     readonly property var validDetails: [ ContactDetail.PhoneNumber,
                                           ContactDetail.Email,
                                           ContactDetail.Address,
-                                          ContactDetail.OnlineAccount
+                                          ContactDetail.OnlineAccount,
+                                          ContactDetail.Organization
                                           // TODO: Not supported yet
-                                          // ContactDetail.Organization,
                                           // ContactDetail.Birthday,
                                           // ContactDetail.Note,
                                           // ContactDetail.Url
                                          ]
+    readonly property var singleValueDetails: [ ContactDetail.Organization ]
     signal fieldSelected(string fieldName, string qmlTypeName)
 
     function showOptions()
@@ -58,6 +59,8 @@ Item {
             return i18n.tr("Address")
         case ContactDetail.OnlineAccount:
             return i18n.tr("Social")
+        case ContactDetail.Organization:
+            return i18n.tr("Profissional Details")
         default:
             console.error("Invalid contact detail enum value:" + value)
             return ""
@@ -76,10 +79,30 @@ Item {
             return "Address"
         case ContactDetail.OnlineAccount:
             return "OnlineAccount"
+        case ContactDetail.Organization:
+            return "Organization"
         default:
             console.error("Invalid contact detail enum value:" + value)
             return ""
         }
+    }
+
+    // check which details will be allowed to create
+    // some details we only support one value
+    function filterSingleDetails(details, contact)
+    {
+        var result = []
+        for(var i=0; i < details.length; i++) {
+            var det = details[i]
+            if (singleValueDetails.indexOf(det) != -1) {
+                if (contact.details(det).length === 0) {
+                    result.push(det)
+                }
+            } else {
+                result.push(det)
+            }
+        }
+        return result
     }
 
     visible: false
@@ -91,7 +114,7 @@ Item {
 
             title: i18n.tr("Select a field")
             Repeater {
-                model: validDetails
+                model: root.filterSingleDetails(validDetails, root.contact)
                 Button {
                     text: root.nameFromEnum(modelData)
                     onClicked: {
