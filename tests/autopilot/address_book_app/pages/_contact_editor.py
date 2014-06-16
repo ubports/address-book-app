@@ -163,7 +163,8 @@ class ContactDetailGroupWithTypeEditor(
         """Fill a contact detail group."""
         for index, detail in enumerate(details[:-1]):
             self._fill_detail(index, detail)
-            self._add_detail()
+            # not implemented yet
+            # self._add_detail()
         self._fill_detail(len(details) - 1, details[-1])
 
     def _fill_detail(self, index, detail):

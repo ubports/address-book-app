@@ -64,11 +64,21 @@ class TestEditContact(AddressBookAppTestCase):
         self.assertThat(phone_label_1.text, Eventually(Equals(self.PHONE_NUMBERS[1])))
 
     def test_remove_phone(self):
-        self.add_contact("Fulano", "de Tal", self.PHONE_NUMBERS[1:3])
-        edit_page = self.edit_contact(0)
+        contact_editor = self.app.main_window.go_to_add_contact()
+        my_phones = []
+        for n in self.PHONE_NUMBERS[1:3]:
+            my_phones.append(data.Phone(type_='Mobile', number=n))
+
+        # create the necessary fields
+        contact_editor.add_detail(self.app.main_window, "phones")
+        
+        test_contact = data.Contact(first_name="Fulano",
+                                    last_name="de Tal",
+                                    phones=my_phones)
+        contact_editor.fill_form(test_contact)
 
         # clear phone 1
-        phone_number_1 = edit_page.select_single(
+        phone_number_1 = contact_editor.wait_select_single(
             "TextInputDetail",
             objectName="phoneNumber_1")
         self.clear_text_on_field(phone_number_1)
@@ -76,8 +86,11 @@ class TestEditContact(AddressBookAppTestCase):
         # Save contact
         self.app.main_window.save()
 
+        # Go to contact view
+        list_page = self.main_window.get_contact_list_page()
+
         # check if we have onlye one phone
-        view_page = self.app.main_window.get_contact_view_page()
+        view_page = list_page.open_contact(0)
         phone_group = view_page.select_single(
             "ContactDetailGroupWithTypeView",
             objectName="phones")
