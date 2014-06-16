@@ -308,6 +308,7 @@ Page {
 
                 Button {
                     id: addNewFieldButton
+                    objectName: "addNewFieldButton"
 
                     text: i18n.tr("Add Field")
                     gradient: UbuntuColors.greyGradient

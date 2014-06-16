@@ -37,10 +37,7 @@ class TestEditContact(AddressBookAppTestCase):
         edit_page = self.edit_contact(0)
 
         # Add a new phone
-        phoneGroup = edit_page.select_single(
-            "ContactDetailGroupWithTypeEditor",
-            objectName="phones")
-        self.create_new_detail(phoneGroup)
+        edit_page.add_detail(self.app.main_window, "phones")
 
         # fill phone number
         phone_number_1 = self.app.main_window.select_single(

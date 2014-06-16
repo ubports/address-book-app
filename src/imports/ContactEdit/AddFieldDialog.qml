@@ -111,11 +111,14 @@ Item {
 
         Popups.Dialog {
             id: dialogue
+            objectName: "addFieldDialog"
 
             title: i18n.tr("Select a field")
             Repeater {
                 model: root.filterSingleDetails(validDetails, root.contact)
                 Button {
+                    objectName: text
+
                     text: root.nameFromEnum(modelData)
                     onClicked: {
                         root.fieldSelected(text, root.qmlTypeFromEnum(modelData))
@@ -125,6 +128,8 @@ Item {
                 }
             }
             Button {
+                objectName: "cancel"
+
                 text: i18n.tr("Cancel")
                 gradient: UbuntuColors.greyGradient
                 onClicked: {

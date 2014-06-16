@@ -51,6 +51,30 @@ def _get_text_field(parent, field, index=None):
 class ContactEditor(_common.PageWithHeader):
     """Custom proxy object for the Contact Editor."""
 
+    _DETAIL_ALIAS = {
+        'phones': 'Phone',
+        'emails': 'Email',
+        'ims': 'Social',
+        'addresses': 'Address',
+        'professionalDetails': 'Profissional Details'
+    }
+
+    def add_detail(self, main_window, detail_name):
+        """Create a new field into the edit contact form.
+
+        :param detail_name: The detail field name
+
+        """
+
+        btn = self.select_single("Button", objectName="addNewFieldButton")
+        self.pointing_device.click_object(btn)
+        
+        dlg = main_window.wait_select_single("Dialog", objectName="addFieldDialog")
+        new_field_btn = dlg.select_single("Button", 
+            objectName=self._DETAIL_ALIAS[detail_name])
+
+        self.pointing_device.click_object(new_field_btn)
+
     @autopilot.logging.log_action(logger.info)
     def fill_form(self, contact_information):
         """Fill the edit contact form.
