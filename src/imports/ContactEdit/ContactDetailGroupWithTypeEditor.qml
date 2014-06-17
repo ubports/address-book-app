@@ -104,6 +104,9 @@ ContactDetailGroupWithTypeBase {
         height: units.gu(5)
         // disable listview mouse area
         __mouseArea.visible: false
+        divider.anchors.leftMargin: units.gu(2)
+        divider.anchors.rightMargin: units.gu(2)
+
         Label {
             anchors {
                 verticalCenter: parent.verticalCenter

@@ -31,6 +31,8 @@ ContactDetailGroupWithTypeBase {
     headerDelegate: ListItem.Empty {
         highlightWhenPressed: false
 
+        divider.anchors.leftMargin: units.gu(2)
+        divider.anchors.rightMargin: units.gu(2)
         width: root.width
         height: units.gu(5)
         Label {

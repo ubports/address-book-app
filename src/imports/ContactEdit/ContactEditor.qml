@@ -197,7 +197,7 @@ Page {
                     leftMargin: units.gu(2)
                     right: parent.right
                 }
-                height: Math.max(avatarEditor.height, nameEditor.height)
+                height: Math.max(avatarEditor.height, nameEditor.height) - units.gu(4)
 
                 ContactDetailAvatarEditor {
                     id: avatarEditor
