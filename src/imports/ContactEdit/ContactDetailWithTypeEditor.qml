@@ -79,7 +79,7 @@ ContactDetailBase {
 
         anchors {
             left: parent.left
-            leftMargin: units.gu(3)
+            leftMargin: units.gu(2)
             right: parent.right
             rightMargin: units.gu(2)
             top: parent.top
