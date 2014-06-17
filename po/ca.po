@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-05-13 15:51-0300\n"
-"PO-Revision-Date: 2014-01-14 23:31+0000\n"
+"PO-Revision-Date: 2014-06-06 07:13+0000\n"
 "Last-Translator: David Planella <david.planella@ubuntu.com>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-05-16 06:51+0000\n"
-"X-Generator: Launchpad (build 17007)\n"
+"X-Launchpad-Export-Date: 2014-06-07 06:35+0000\n"
+"X-Generator: Launchpad (build 17031)\n"
 
 #: src/imports/ContactList/ContactListPage.qml:193
 msgid "Add"
@@ -29,7 +29,7 @@ msgstr "Adreça"
 #: src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:73
 #: src/imports/ContactView/ContactDetailSyncTargetView.qml:48
 msgid "Addressbook"
-msgstr ""
+msgstr "Llibreta d'adreces"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:61
 msgid "Aim"
@@ -37,7 +37,7 @@ msgstr "AIM"
 
 #: src/imports/Ubuntu/Contacts/ContactListView.qml:66
 msgid "All"
-msgstr ""
+msgstr "Tots"
 
 #: src/imports/ContactEdit/ContactEditor.qml:300
 #: src/imports/ContactEdit/EditToolbar.qml:42
@@ -139,7 +139,7 @@ msgstr "S’està carregant"
 
 #: src/imports/ContactList/ContactListPage.qml:163
 msgid "Loading..."
-msgstr ""
+msgstr "S'està carregant..."
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:32
 msgid "Locality"
@@ -155,11 +155,11 @@ msgstr "Mòbil"
 
 #: src/imports/ContactEdit/TextInputDetail.qml:46
 msgid "Next"
-msgstr ""
+msgstr "Següent"
 
 #: src/imports/ContactList/OnlineAccountsMessage.qml:48
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Organization"
@@ -215,15 +215,15 @@ msgstr "Carrer"
 
 #: src/imports/ContactList/ContactListPage.qml:176
 msgid "Sync"
-msgstr ""
+msgstr "Sincronitza"
 
 #: src/imports/ContactList/ContactListPage.qml:176
 msgid "Syncing"
-msgstr ""
+msgstr "S'està sincronitzant"
 
 #: src/imports/ContactList/ContactListPage.qml:163
 msgid "Syncing..."
-msgstr ""
+msgstr "S'està sincronitzant..."
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:32
 msgid "Title"
@@ -237,7 +237,7 @@ msgstr "Toca"
 #. the supported values can be found in: https://www.iso.org/obp/ui/#search
 #: src/imports/ContactEdit/TextInputDetail.qml:41
 msgid "US"
-msgstr ""
+msgstr "EUA"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:111
 msgid "View contact's profile"
@@ -257,6 +257,8 @@ msgid ""
 "Would you like to sync contacts\n"
 "from online accounts now?"
 msgstr ""
+"Voleu sincronitzar els contactes\n"
+"dels comptes en línia ara?"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
@@ -264,8 +266,8 @@ msgstr "Yahoo"
 
 #: src/imports/ContactList/OnlineAccountsMessage.qml:36
 msgid "Yes"
-msgstr ""
+msgstr "Sí"
 
 #: src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
-msgstr ""
+msgstr "No teniu cap contacte"
