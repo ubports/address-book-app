@@ -83,21 +83,9 @@ Page {
 
             ContactDetailAvatarView {
                 contact: root.contact
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
+                anchors.left: parent.left
                 height: implicitHeight
-                ContactDetailFavoriteView {
-                    contact: root.contact
-                    anchors {
-                        left: parent.left
-                        bottom: parent.bottom
-                        margins: units.gu(2)
-                    }
-                    width: units.gu(4)
-                    height: units.gu(4)
-                }
+                width: implicitWidth
             }
 
             ContactDetailPhoneNumbersView {
@@ -202,15 +190,28 @@ Page {
     tools: ToolbarItems {
         ToolbarButton {
             action: Action {
-                objectName: "share"
-                text: i18n.tr("Share")
-                iconName: "share"
+                objectName: "favorite"
+                text: i18n.tr("Favorite")
+                iconName: root.contact && root.contact.favorite.favorite ? "favorite-selected" : "favorite-unselected"
                 onTriggered: {
-                    pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
-                                   { contactModel: root.model, contact: root.contact})
+                    root.contact.favorite.favorite = !root.contact.favorite.favorite
+                    root.contact.save()
                 }
             }
         }
+        // FIXME: Having more than 3 options in the header causes a bug that make difficult to reach the component behind it.
+        // Enable it again when the bug #1329557 get fix
+//        ToolbarButton {
+//            action: Action {
+//                objectName: "share"
+//                text: i18n.tr("Share")
+//                iconName: "share"
+//                onTriggered: {
+//                    pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
+//                                   { contactModel: root.model, contact: root.contact})
+//                }
+//            }
+//        }
         ToolbarButton {
             action: Action {
                 objectName: "edit"
