@@ -3,13 +3,13 @@ Encoding=UTF-8
 Version=1.0
 Terminal=false
 Type=Application
-Name=tr("Contacts")
-GenericName=tr("Contacts")
-Comment=tr("Contacts Address Book")
+_Name=Contacts
+_GenericName=Contacts
+_Comment=Contacts Address Book
+_Keywords=Contacts;People;Numbers
 Exec=@DESKTOP_EXEC@ %u
 Icon=@ADDRESSBOOK_APP_ICON@
 X-Ubuntu-Touch=true
 X-Ubuntu-StageHint=SideStage
-X-Ubuntu-Gettext-Domain=address-book-app
 X-Ubuntu-Single-Instance=true
 @XSCREENSHOT@

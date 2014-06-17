@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-13 15:51-0300\n"
+"POT-Creation-Date: 2014-06-17 10:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,13 +49,8 @@ msgstr ""
 msgid "Contact not found"
 msgstr ""
 
-#: data/address-book-app.desktop.in:6 data/address-book-app.desktop.in:7
 #: src/imports/ContactList/ContactListPage.qml:57
 msgid "Contacts"
-msgstr ""
-
-#: data/address-book-app.desktop.in:8
-msgid "Contacts Address Book"
 msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
@@ -96,7 +91,7 @@ msgid "Enter an email address"
 msgstr ""
 
 #: src/imports/ContactEdit/ContactFetchError.qml:25
-#: src/imports/MainWindow.qml:94
+#: src/imports/MainWindow.qml:96
 msgid "Error"
 msgstr ""
 
@@ -153,7 +148,7 @@ msgstr ""
 msgid "Mobile"
 msgstr ""
 
-#: src/imports/ContactEdit/TextInputDetail.qml:46
+#: src/imports/ContactEdit/TextInputDetail.qml:40
 msgid "Next"
 msgstr ""
 
@@ -235,7 +230,7 @@ msgstr ""
 
 #. TRANSLATORS: This value is used as default value for phone number format, when no coutry code is provided
 #. the supported values can be found in: https://www.iso.org/obp/ui/#search
-#: src/imports/ContactEdit/TextInputDetail.qml:41
+#: src/imports/ContactEdit/TextInputDetail.qml:36
 msgid "US"
 msgstr ""
 

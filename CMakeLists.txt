@@ -18,9 +18,13 @@ find_package(Qt5DBus)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(CONTENTHUB REQUIRED libcontent-hub)
 
+find_program(INTLTOOL_MERGE intltool-merge)
+find_program(INTLTOOL_EXTRACT intltool-extract)
+
 set(ADDRESS_BOOK_APP_DIR ${CMAKE_INSTALL_DATADIR}/address-book-app)
 set(ADDRESS_BOOK_APP_FULL_DIR ${CMAKE_INSTALL_FULL_DATADIR}/address-book-app)
 set(ADDRESS_BOOK_APP_NAME "Address Book")
+set(DESKTOP_FILE address-book-app.desktop)
 set(API_VERSION 0.1)
 
 # for dh_translations to extract the domain
