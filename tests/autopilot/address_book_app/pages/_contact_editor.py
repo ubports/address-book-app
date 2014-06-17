@@ -69,7 +69,12 @@ class ContactEditor(_common.PageWithHeader):
 
         add_field_button = self.select_single(
             'Button', objectName='addNewFieldButton')
-        add_field_button.swipe_into_view()
+        # WORKAROUND: Problem with the field in the bottom of the flickable
+        try:
+            add_field_button.swipe_into_view()
+        except:
+            add_field_button.swipe_into_view()
+
         self.pointing_device.click_object(add_field_button)
 
         add_field_dialog = self.get_root_instance().wait_select_single(
