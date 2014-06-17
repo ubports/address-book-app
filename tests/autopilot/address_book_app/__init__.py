@@ -65,7 +65,6 @@ class MainWindow(ubuntuuitoolkit.MainView):
             pages.ContactEditor, objectName="contactEditorPage")
         for p in contact_editor_pages:
             if p.active:
-                p.set_main_window(self)
                 return p
         raise dbus.StateNotFoundError('contactEditorPage not found')
         return None

@@ -143,7 +143,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
         self.pointing_device.click_object(clear_button)
         self.assertThat(field.text, Eventually(Equals("")))
 
-    # FIXME: Remove this function use ContactEditor.add_detail
+    # FIXME: Remove this function use ContactEditor.add_field
     def create_new_detail(self, detailGroup):
         detCount = detailGroup.detailsCount
         add_button = detailGroup.select_single("Icon",
@@ -162,7 +162,6 @@ class AddressBookAppTestCase(AutopilotTestCase):
 
         # Edit contact
         edit_page = view_page.go_to_edit_contact()
-        edit_page.set_main_window(self.main_window)
         self.assertThat(edit_page.visible, Eventually(Equals(True)))
 
         return edit_page

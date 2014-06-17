@@ -37,7 +37,7 @@ class TestEditContact(AddressBookAppTestCase):
         edit_page = self.edit_contact(0)
 
         # Add a new phone
-        edit_page.add_detail("phones")
+        edit_page.add_field('phones')
 
         # fill phone number
         phone_number_1 = self.app.main_window.select_single(
@@ -102,7 +102,7 @@ class TestEditContact(AddressBookAppTestCase):
     def test_add_email(self):
         self.add_contact("Fulano", "")
         edit_page = self.edit_contact(0)
-        edit_page.add_detail("emails")
+        edit_page.add_field("emails")
 
         # fill email address
         email_field = edit_page.select_single(
