@@ -479,7 +479,8 @@ PageWithBottomEdge {
                                        {model: contactList.listModel,
                                         contact: mainPage.createEmptyContact(""),
                                         active: false,
-                                        enabled: false})
+                                        enabled: false,
+                                        initialFocusSection: "name"})
         }
     }
 }
