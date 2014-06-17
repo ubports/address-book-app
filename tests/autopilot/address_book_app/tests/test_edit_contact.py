@@ -37,7 +37,7 @@ class TestEditContact(AddressBookAppTestCase):
         edit_page = self.edit_contact(0)
 
         # Add a new phone
-        edit_page.add_detail(self.app.main_window, "phones")
+        edit_page.add_detail("phones")
 
         # fill phone number
         phone_number_1 = self.app.main_window.select_single(
@@ -69,9 +69,6 @@ class TestEditContact(AddressBookAppTestCase):
         for n in self.PHONE_NUMBERS[1:3]:
             my_phones.append(data.Phone(type_='Mobile', number=n))
 
-        # create the necessary fields
-        contact_editor.add_detail(self.app.main_window, "phones")
-        
         test_contact = data.Contact(first_name="Fulano",
                                     last_name="de Tal",
                                     phones=my_phones)
@@ -105,11 +102,7 @@ class TestEditContact(AddressBookAppTestCase):
     def test_add_email(self):
         self.add_contact("Fulano", "")
         edit_page = self.edit_contact(0)
-
-        emailGroup = edit_page.select_single(
-            "ContactDetailGroupWithTypeEditor",
-            objectName="emails")
-        self.create_new_detail(emailGroup)
+        edit_page.add_detail("emails")
 
         # fill email address
         email_field = edit_page.select_single(
@@ -184,7 +177,17 @@ class TestEditContact(AddressBookAppTestCase):
         self.assertThat(view_page.title, Eventually(Equals("Fulano de Tal")))
 
     def test_im_type(self):
-        self.add_contact("Fulano", "de Tal", im_address=["im@account.com"])
+        contact_editor = self.app.main_window.go_to_add_contact()
+        alias = data.SocialAlias(type_="Skype", alias="im@account.com")
+        test_contact = data.Contact(first_name="Fulano",
+                                    last_name="de Tal",
+                                    social_aliases=[alias])
+        contact_editor.fill_form(test_contact)
+
+        # Save contact
+        self.app.main_window.save()
+
+        # edit again
         edit_page = self.edit_contact(0)
 
         # Change Im type

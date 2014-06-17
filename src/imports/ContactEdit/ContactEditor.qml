@@ -306,6 +306,14 @@ Page {
                 height: units.gu(6)
                 spacing: units.gu(2)
 
+                // WORKAROUND: SDK uses a old version of qtquick components
+                activeFocusOnTab: true
+                onActiveFocusChanged: {
+                    if (activeFocus) {
+                        addNewFieldButton.forceActiveFocus()
+                    }
+                }
+
                 Button {
                     id: addNewFieldButton
                     objectName: "addNewFieldButton"
