@@ -59,28 +59,26 @@ class ContactEditor(_common.PageWithHeader):
         'professionalDetails': 'Profissional Details'
     }
 
-    def set_main_window(self, main_window):
-        self._main_window = main_window
-
-    def add_detail(self, detail_name, main_window = None):
+    @autopilot.logging.log_action(logger.info)
+    def add_field(self, detail_name):
         """Create a new field into the edit contact form.
 
         :param detail_name: The detail field name
 
         """
 
-        btn = self.select_single("Button", objectName="addNewFieldButton")
-        self._make_visible(btn)
-        self.pointing_device.click_object(btn)
+        add_field_button = self.select_single(
+            'Button', objectName='addNewFieldButton')
+        add_field_button.swipe_into_view()
+        self.pointing_device.click_object(add_field_button)
 
-        if not main_window:
-            main_window = self._main_window
-
-        dlg = main_window.wait_select_single("Dialog", objectName="addFieldDialog")
-        new_field_btn = dlg.select_single("Button", 
+        add_field_dialog = self.get_root_instance().wait_select_single(
+            'Dialog', objectName='addFieldDialog')
+        new_field_button = add_field_dialog.select_single(
+            'Button',
             objectName=self._DETAIL_ALIAS[detail_name])
 
-        self.pointing_device.click_object(new_field_btn)
+        self.pointing_device.click_object(new_field_button)
 
     @autopilot.logging.log_action(logger.info)
     def fill_form(self, contact_information):
@@ -143,20 +141,6 @@ class ContactEditor(_common.PageWithHeader):
             ContactDetailGroupWithTypeEditor, objectName=object_name)
         return editor.get_values(object_name)
 
-    def _get_keyboard(self):
-        return _get_text_field(self, 'first_name').keyboard
-
-    def _make_visible(self, item):
-        keyboard = self._get_keyboard()
-
-        while not item.activeFocus:
-            # XXX We should just swipe the text field into view.
-            # Update this once bug http://pad.lv/1286479 is implemented.
-            # --elopio - 2014-03-01
-            keyboard.press_and_release('Tab')
-            time.sleep(0.1)
-            self.wait_to_stop_moving()
-
     def wait_to_stop_moving(self):
         flickable = self.select_single(
             'QQuickFlickable', objectName='scrollArea')
@@ -184,7 +168,7 @@ class ContactDetailGroupWithTypeEditor(
         """Fill a contact detail group."""
         for index, detail in enumerate(details):
             if self.detailsCount <= index:
-                editor.add_detail(self.objectName)
+                editor.add_field(self.objectName)
             self._fill_detail(index, detail)
 
     def _fill_detail(self, index, detail):
@@ -224,15 +208,11 @@ class ContactDetailWithTypeEditor(
         self._select_type(detail)
 
     def _select_type(self, detail):
-        # get keyboard
-        contact_editor = self.get_root_instance().select_single(
-            ContactEditor, objectName='contactEditorPage', active=True)
-        keyboard = contact_editor._get_keyboard()
         type_index = detail.TYPES.index(detail.type)
         value_selector = self.select_single('ValueSelector')
 
         while(value_selector.currentIndex != type_index):
-            keyboard.press_and_release("Shift+Right")
+            ubuntuuitoolkit.get_keyboard().press_and_release("Shift+Right")
             time.sleep(0.1)
 
     def _get_selected_type_index(self):
@@ -260,10 +240,7 @@ class ContactDetailWithTypeEditor(
         self._make_field_visible_and_write(text_field, value)
 
     def _make_field_visible_and_write(self, text_field, value):
-        contact_editor = self.get_root_instance().select_single(
-            ContactEditor, objectName='contactEditorPage', active=True)
-
-        contact_editor._make_visible(text_field)
+        text_field.swipe_into_view()
         text_field.write(value)
 
     def _fill_address(self, index, address):
