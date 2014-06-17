@@ -194,7 +194,7 @@ Page {
             y: -bottomEdge.tipHeight
             anchors.horizontalCenter: parent.horizontalCenter
             Behavior on y {
-                NumberAnimation {}
+                UbuntuNumberAnimation {}
             }
 
             UbuntuShape {
