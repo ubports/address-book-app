@@ -326,7 +326,7 @@ Page {
                         bottom: parent.bottom
                         bottomMargin: units.gu(2)
                     }
-                    width: (parent.width - units.gu(4)) / 2
+                    width: (parent.width / 2) - units.gu(1)
 
                     onClicked: addFieldDialog.showOptions()
                 }
@@ -341,7 +341,7 @@ Page {
                         bottom: parent.bottom
                         bottomMargin: units.gu(2)
                     }
-                    width: (parent.width - units.gu(4)) / 2
+                    width: (parent.width / 2) - units.gu(1)
                     onClicked: {
                         var dialog = Popups.PopupUtils.open(removeContactDialog, null)
                         dialog.contacts = [contactEditor.contact]
