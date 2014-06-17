@@ -18,6 +18,7 @@ import QtQuick 2.2
 import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components.Popups 0.1 as Popups
 
 import "../Common"
 
@@ -180,7 +181,10 @@ Page {
             Row {
                 function save()
                 {
-                    return (avatarEditor.save() || nameEditor.save())
+                    var avatarSave = avatarEditor.save()
+                    var nameSave = nameEditor.save();
+
+                    return (nameSave || avatarSave);
                 }
 
                 function isEmpty()
@@ -303,8 +307,17 @@ Page {
                 height: units.gu(6)
                 spacing: units.gu(2)
 
+                // WORKAROUND: SDK uses a old version of qtquick components
+                activeFocusOnTab: true
+                onActiveFocusChanged: {
+                    if (activeFocus) {
+                        addNewFieldButton.forceActiveFocus()
+                    }
+                }
+
                 Button {
                     id: addNewFieldButton
+                    objectName: "addNewFieldButton"
 
                     text: i18n.tr("Add Field")
                     gradient: UbuntuColors.greyGradient
@@ -330,7 +343,7 @@ Page {
                     }
                     width: (parent.width - units.gu(4)) / 2
                     onClicked: {
-                        var dialog = PopupUtils.open(removeContactDialog, null)
+                        var dialog = Popups.PopupUtils.open(removeContactDialog, null)
                         dialog.contacts = [contactEditor.contact]
                     }
                 }
@@ -391,6 +404,7 @@ Page {
     AddFieldDialog {
         id: addFieldDialog
 
+        contact: contactEditor.contact
         onFieldSelected: {
             if (qmlTypeName) {
                 var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + qmlTypeName + "{}", addFieldDialog)
@@ -413,14 +427,17 @@ Page {
             property var popPages: false
 
             onCanceled: {
-                PopupUtils.close(removeContactsDialogMessage)
+                Popups.PopupUtils.close(removeContactsDialogMessage)
             }
 
             onAccepted: {
                 popPages = true
                 removeContacts(contactEditor.model)
-                PopupUtils.close(removeContactsDialogMessage)
+                Popups.PopupUtils.close(removeContactsDialogMessage)
             }
+
+            // hide virtual keyboard if necessary
+            Component.onCompleted: Qt.inputMethod.hide()
 
             // WORKAROUND: SDK element crash if pop the page where the dialog was created
             Component.onDestruction: {

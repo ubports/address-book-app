@@ -51,6 +51,37 @@ def _get_text_field(parent, field, index=None):
 class ContactEditor(_common.PageWithHeader):
     """Custom proxy object for the Contact Editor."""
 
+    _DETAIL_ALIAS = {
+        'phones': 'Phone',
+        'emails': 'Email',
+        'ims': 'Social',
+        'addresses': 'Address',
+        'professionalDetails': 'Profissional Details'
+    }
+
+    def set_main_window(self, main_window):
+        self._main_window = main_window
+
+    def add_detail(self, detail_name, main_window = None):
+        """Create a new field into the edit contact form.
+
+        :param detail_name: The detail field name
+
+        """
+
+        btn = self.select_single("Button", objectName="addNewFieldButton")
+        self._make_visible(btn)
+        self.pointing_device.click_object(btn)
+
+        if not main_window:
+            main_window = self._main_window
+
+        dlg = main_window.wait_select_single("Dialog", objectName="addFieldDialog")
+        new_field_btn = dlg.select_single("Button", 
+            objectName=self._DETAIL_ALIAS[detail_name])
+
+        self.pointing_device.click_object(new_field_btn)
+
     @autopilot.logging.log_action(logger.info)
     def fill_form(self, contact_information):
         """Fill the edit contact form.
@@ -90,7 +121,7 @@ class ContactEditor(_common.PageWithHeader):
     def _fill_detail_group(self, object_name, details):
         editor = self.select_single(
             ContactDetailGroupWithTypeEditor, objectName=object_name)
-        editor.fill(details)
+        editor.fill(self, details)
 
     def _get_form_values(self):
         first_name = _get_text_field(self, 'first_name').text
@@ -111,6 +142,20 @@ class ContactEditor(_common.PageWithHeader):
         editor = self.select_single(
             ContactDetailGroupWithTypeEditor, objectName=object_name)
         return editor.get_values(object_name)
+
+    def _get_keyboard(self):
+        return _get_text_field(self, 'first_name').keyboard
+
+    def _make_visible(self, item):
+        keyboard = self._get_keyboard()
+
+        while not item.activeFocus:
+            # XXX We should just swipe the text field into view.
+            # Update this once bug http://pad.lv/1286479 is implemented.
+            # --elopio - 2014-03-01
+            keyboard.press_and_release('Tab')
+            time.sleep(0.1)
+            self.wait_to_stop_moving()
 
     def wait_to_stop_moving(self):
         flickable = self.select_single(
@@ -135,12 +180,12 @@ class ContactDetailGroupWithTypeEditor(
         'professionalDetails': 'base_unknown_{}'
     }
 
-    def fill(self, details):
+    def fill(self, editor, details):
         """Fill a contact detail group."""
-        for index, detail in enumerate(details[:-1]):
+        for index, detail in enumerate(details):
+            if self.detailsCount <= index:
+                editor.add_detail(self.objectName)
             self._fill_detail(index, detail)
-            self._add_detail()
-        self._fill_detail(len(details) - 1, details[-1])
 
     def _fill_detail(self, index, detail):
         detail_editor = self._get_detail_editor_by_index(index)
@@ -175,15 +220,20 @@ class ContactDetailWithTypeEditor(
     """Custom proxy object for the ContactDetailWithTypeEditor widget."""
 
     def fill(self, field, index, detail):
-        self._select_type(detail)
         self._fill_value(field, index, detail)
+        self._select_type(detail)
 
     def _select_type(self, detail):
+        # get keyboard
+        contact_editor = self.get_root_instance().select_single(
+            ContactEditor, objectName='contactEditorPage', active=True)
+        keyboard = contact_editor._get_keyboard()
         type_index = detail.TYPES.index(detail.type)
-        selected_type_index = self._get_selected_type_index()
-        if type_index != selected_type_index:
-            # TODO --elopio - 2014-03-01
-            raise NotImplementedError('Type selection not yet implemented.')
+        value_selector = self.select_single('ValueSelector')
+
+        while(value_selector.currentIndex != type_index):
+            keyboard.press_and_release("Shift+Right")
+            time.sleep(0.1)
 
     def _get_selected_type_index(self):
         value_selector = self.select_single('ValueSelector')
@@ -210,16 +260,10 @@ class ContactDetailWithTypeEditor(
         self._make_field_visible_and_write(text_field, value)
 
     def _make_field_visible_and_write(self, text_field, value):
-        while not text_field.activeFocus:
-            # XXX We should just swipe the text field into view.
-            # Update this once bug http://pad.lv/1286479 is implemented.
-            # --elopio - 2014-03-01
-            text_field.keyboard.press_and_release('Tab')
-            time.sleep(0.1)
-            contact_editor = self.get_root_instance().select_single(
-                ContactEditor, objectName='contactEditorPage', active=True)
-            contact_editor.wait_to_stop_moving()
+        contact_editor = self.get_root_instance().select_single(
+            ContactEditor, objectName='contactEditorPage', active=True)
 
+        contact_editor._make_visible(text_field)
         text_field.write(value)
 
     def _fill_address(self, index, address):

@@ -326,6 +326,7 @@ Page {
                 SequentialAnimation {
                     ScriptAction {
                         script: {
+                            Qt.inputMethod.hide()
                             edgeLoader.item.parent = edgeLoader
                             edgeLoader.item.anchors.fill = edgeLoader
                             edgeLoader.item.active = false
