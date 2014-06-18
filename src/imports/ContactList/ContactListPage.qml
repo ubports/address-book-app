@@ -382,7 +382,8 @@ PageWithBottomEdge {
                                    {model: contactList.listModel,
                                     contact: newContact,
                                     active: false,
-                                    enabled: false})
+                                    enabled: false,
+                                    initialFocusSection: "name"})
     }
 
     Connections {

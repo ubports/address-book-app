@@ -24,11 +24,13 @@ UbuntuShape {
 
     property var contactElement: null
     property string displayName: ContactsJS.formatToDisplay(contactElement, ContactDetail.Name, [Name.FirstName, Name.LastName])
-    property string avatarUrl: ContactsJS.getAvatar(contactElement, "")
+    readonly property string defaultAvatar: "image://theme/contact"
+    readonly property string avatarUrl: ContactsJS.getAvatar(contactElement, "")
+    readonly property bool useDefaultAvatar: (displayName === "" || contact.tag.tag === "") && (avatarUrl === "")
 
     function reload()
     {
-        avatarUrl = ContactsJS.getAvatar(contactElement, "")
+        img.source = ContactsJS.getAvatar(contactElement, "")
     }
 
     radius: "medium"
@@ -47,7 +49,7 @@ UbuntuShape {
 
         fillMode: Image.PreserveAspectCrop
         asynchronous: true
-        source: avatarUrl
+        source: avatar.useDefaultAvatar ? avatar.defaultAvatar : avatar.avatarUrl
         height: avatar.height
         width: avatar.width
     }
