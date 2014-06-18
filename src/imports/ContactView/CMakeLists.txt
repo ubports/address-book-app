@@ -4,7 +4,6 @@ set(CONTACT_VIEW_QMLS
     ContactDetailAddressesView.qml
     ContactDetailAvatarView.qml
     ContactDetailEmailsView.qml
-    ContactDetailFavoriteView.qml
     ContactDetailGroupWithTypeView.qml
     ContactDetailNameView.qml
     ContactDetailOnlineAccountsView.qml

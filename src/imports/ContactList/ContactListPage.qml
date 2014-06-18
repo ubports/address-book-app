@@ -43,10 +43,7 @@ PageWithBottomEdge {
     function createEmptyContact(phoneNumber) {
         var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
                         {detail: "EmailAddress", field: "emailAddress", value: ""},
-                        {detail: "OnlineAccount", field: "accountUri", value: ""},
-                        {detail: "Address", field: "street", value: ""},
-                        {detail: "Name", field: "firstName", value: ""},
-                        {detail: "Organization", field: "name", value: ""}
+                        {detail: "Name", field: "firstName", value: ""}
                       ]
 
         var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", mainPage)
@@ -385,7 +382,8 @@ PageWithBottomEdge {
                                    {model: contactList.listModel,
                                     contact: newContact,
                                     active: false,
-                                    enabled: false})
+                                    enabled: false,
+                                    initialFocusSection: "name"})
     }
 
     Connections {
@@ -482,7 +480,8 @@ PageWithBottomEdge {
                                        {model: contactList.listModel,
                                         contact: mainPage.createEmptyContact(""),
                                         active: false,
-                                        enabled: false})
+                                        enabled: false,
+                                        initialFocusSection: "name"})
         }
     }
 }

@@ -24,7 +24,14 @@ UbuntuShape {
 
     property var contactElement: null
     property string displayName: ContactsJS.formatToDisplay(contactElement, ContactDetail.Name, [Name.FirstName, Name.LastName])
+    readonly property string defaultAvatar: "image://theme/contact"
     readonly property string avatarUrl: ContactsJS.getAvatar(contactElement, "")
+    readonly property bool useDefaultAvatar: (displayName === "" || contact.tag.tag === "") && (avatarUrl === "")
+
+    function reload()
+    {
+        img.source = ContactsJS.getAvatar(contactElement, "")
+    }
 
     radius: "medium"
     color: Theme.palette.normal.overlay
@@ -34,13 +41,16 @@ UbuntuShape {
          text: ContactsJS.getNameItials(displayName)
          font.pointSize: 88
          color: UbuntuColors.lightAubergine
-         visible: avatarUrl === ""
+         visible: (img.status != Image.Ready)
     }
 
     image: Image {
+        id: img
+
         fillMode: Image.PreserveAspectCrop
         asynchronous: true
-        source: avatarUrl
-        visible: source !== ""
+        source: avatar.useDefaultAvatar ? avatar.defaultAvatar : avatar.avatarUrl
+        height: avatar.height
+        width: avatar.width
     }
 }

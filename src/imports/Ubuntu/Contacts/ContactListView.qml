@@ -523,6 +523,11 @@ Item {
                 //new contacts as soon as it arrives in the model
                 if (contactsModel._clearModel && contacts.length === 0) {
                     contactsModel._clearModel = false
+                    // do a new update if autoUpdate is false
+                    if (!contactsModel.autoUpdate) {
+                        contactsModel.update()
+                    }
+
                 }
             }
         }

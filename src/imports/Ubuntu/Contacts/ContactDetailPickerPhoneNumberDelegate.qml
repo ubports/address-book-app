@@ -21,8 +21,7 @@ import Ubuntu.Components 0.1
 Item {
     id: root
 
-    property string contactId
-    property alias contactsModel: contactFetch.model
+    property QtObject contact: null
 
     signal detailClicked(QtObject detail, string action)
 
@@ -33,8 +32,6 @@ Item {
     }
 
     height: detailItems.height + units.gu(2)
-    onContactIdChanged: contactFetch.fetchContact(contactId)
-
     Column {
         id: detailItems
 
@@ -48,15 +45,15 @@ Item {
 
         ListItem.Standard {
             id: noNumberMessage
-
             showDivider: false
             text: "No phone numbers."
-            visible: false
+            visible: phoneNumberEntries.count == 0
         }
 
         Repeater {
             id: phoneNumberEntries
 
+            model: contact.phoneNumbers
             ListItem.Subtitled {
                 anchors {
                     left: parent.left
@@ -118,15 +115,5 @@ Item {
 
     ContactDetailPhoneNumberTypeModel {
         id: phoneTypeModel
-    }
-
-    ContactFetch {
-        id: contactFetch
-
-        // do not keep track of contact to avoid problems during the delete destruction
-        onContactFetched: {
-            phoneNumberEntries.model = contact.phoneNumbers
-            noNumberMessage.visible = (contact.phoneNumbers.length === 0)
-        }
     }
 }

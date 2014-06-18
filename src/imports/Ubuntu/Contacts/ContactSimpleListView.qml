@@ -99,7 +99,9 @@ MultipleSelectionListView {
     */
     property var fetchHint : FetchHint {
         detailTypesHint: {
-            var hints = [ ContactDetail.Tag, contactListView.titleDetail ]
+            var hints = [ ContactDetail.Tag,          // sections
+                          ContactDetail.PhoneNumber,  // expansion
+                          contactListView.titleDetail ]
 
             if (contactListView.showAvatar) {
                 hints.push(ContactDetail.Avatar)

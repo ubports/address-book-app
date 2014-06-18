@@ -142,6 +142,15 @@ Page {
         z: 1
     }
 
+    Timer {
+        id: hideIndicator
+
+        interval: 3000
+        running: true
+        repeat: false
+        onTriggered: tipContainer.y = -units.gu(1)
+    }
+
     Rectangle {
         id: bottomEdge
         objectName: "bottomEdge"
@@ -184,6 +193,9 @@ Page {
             clip: true
             y: -bottomEdge.tipHeight
             anchors.horizontalCenter: parent.horizontalCenter
+            Behavior on y {
+                UbuntuNumberAnimation {}
+            }
 
             UbuntuShape {
                 id: tip
@@ -230,10 +242,7 @@ Page {
                 }
             }
 
-            onPressed: {
-                bottomEdge.state = "floating"
-                bottomEdge.y -= bottomEdge.tipHeight
-            }
+            onPressed: bottomEdge.state = "floating"
         }
 
         Behavior on y {
@@ -252,6 +261,14 @@ Page {
                     target: tip
                     opacity: 1.0
                 }
+                PropertyChanges {
+                    target: tipContainer
+                    y: -bottomEdge.tipHeight
+                }
+                PropertyChanges {
+                    target: hideIndicator
+                    running: true
+                }
             },
             State {
                 name: "expanded"
@@ -263,12 +280,28 @@ Page {
                     target: tip
                     opacity: 0.0
                 }
+                PropertyChanges {
+                    target: tipContainer
+                    y: -bottomEdge.tipHeight
+                }
+                PropertyChanges {
+                    target: hideIndicator
+                    running: false
+                }
             },
             State {
                 name: "floating"
                 PropertyChanges {
                     target: shadow
                     opacity: 1.0
+                }
+                PropertyChanges {
+                    target: hideIndicator
+                    running: false
+                }
+                PropertyChanges {
+                    target: tipContainer
+                    y: -bottomEdge.tipHeight
                 }
             }
         ]
@@ -293,6 +326,7 @@ Page {
                 SequentialAnimation {
                     ScriptAction {
                         script: {
+                            Qt.inputMethod.hide()
                             edgeLoader.item.parent = edgeLoader
                             edgeLoader.item.anchors.fill = edgeLoader
                             edgeLoader.item.active = false
@@ -315,6 +349,8 @@ Page {
 
                             // load a new bottom page in memory
                             edgeLoader.active = true
+
+                            hideIndicator.restart()
                         }
                     }
                 }
