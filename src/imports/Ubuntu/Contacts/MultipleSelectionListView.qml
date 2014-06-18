@@ -55,7 +55,7 @@ import Ubuntu.Components.Popups 0.1 as Popups
     \endqml
 */
 
-UbuntuListView {
+ListView {
     id: listView
 
     /*!
@@ -187,5 +187,13 @@ UbuntuListView {
 
     MultipleSelectionVisualModel {
         id: visualModel
+    }
+
+    Component.onCompleted: {
+        // FIXME: workaround for qtubuntu not returning values depending on the grid unit definition
+        // for Flickable.maximumFlickVelocity and Flickable.flickDeceleration
+        var scaleFactor = units.gridUnit / 8;
+        maximumFlickVelocity = maximumFlickVelocity * scaleFactor;
+        flickDeceleration = flickDeceleration * scaleFactor;
     }
 }
