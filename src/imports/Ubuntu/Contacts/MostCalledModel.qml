@@ -23,26 +23,41 @@ import Ubuntu.Telephony 0.1
 VisualDataModel {
     id: root
 
+    property int minCalls: 1
     property int maxCount: 20
     property var contactModel: null
     property var threadModel
 
+    signal clicked(int index, QtObject contact)
+    signal detailClicked(QtObject contact, QtObject detail, string action)
+    signal infoRequested(int index, QtObject contact)
+
+
     function filterEntries()
     {
-        var contacts = []
-        listModel.clear()
+        var contacts = {}
+
         for(var i=0; i < threadModel.count; i++) {
             var participants = threadModel.get(i, "participants")
             var phoneNumber = null
             if (participants && (participants.length > 0)) {
                 phoneNumber = participants[0];
             }
-            if (phoneNumber && contacts.indexOf(phoneNumber) === -1) {
-                contacts.push(phoneNumber)
-                listModel.append({"participant": phoneNumber})
-                if (listModel.count >= root.maxCount) {
-                    break;
+
+            if (phoneNumber) {
+                if (contacts[phoneNumber] === undefined) {
+                    contacts[phoneNumber] = 1
+                } else {
+                    var count = contacts[phoneNumber]
+                    contacts[phoneNumber] = count + 1
                 }
+            }
+        }
+
+        listModel.clear()
+        for (var phone in contacts) {
+            if (contacts[phone] >= minCalls) {
+                listModel.append({"participant": phone})
             }
         }
     }
@@ -67,10 +82,12 @@ VisualDataModel {
 
         readonly property alias contact: contactFetch.contact
 
+        onDetailClicked: root.detailClicked(contact, detail, action)
+        onInfoRequested: root.infoRequested(index, contact)
+
         defaultAvatarUrl: "image://theme/contacts"
         defaultTitle: participant
         width: parent.width
-        //defaultAvatarUrl: contactListView.defaultAvatarImageUrl
         titleDetail: ContactDetail.DisplayLabel
         titleFields: [ DisplayLabel.Label ]
 
@@ -85,8 +102,6 @@ VisualDataModel {
             }
         }
 
-        //onDetailClicked: contactListView.detailClicked(contact, detail, action)
-        //onInfoRequested: contactListView._fetchContact(index, contact)
         onClicked: {
             if (ListView.isCurrentItem) {
                 //contactListView.currentIndex = -1

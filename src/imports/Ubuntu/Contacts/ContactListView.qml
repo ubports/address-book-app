@@ -354,170 +354,179 @@ Item {
 
     onContactNameFilterChanged: contactSearchTimeout.restart()
 
-    Flickable {
+    ContactSimpleListView {
+        id: view
+
+        property bool showFavourites: false
+
+        function getSectionText(index) {
+            var tag = listModel.contacts[index].tag.tag
+            if (tag == "")
+                return "#"
+            else
+                return tag
+        }
+
         anchors {
             top: itemHeader.bottom
             left: parent.left
             right: parent.right
             bottom: parent.bottom
+            rightMargin: fastScroll.showing ? fastScroll.width - units.gu(1) : 0
+            Behavior on rightMargin {
+                UbuntuNumberAnimation {}
+            }
         }
 
-        contentWidth: width
-        contentHeight: mostCalledView.height + view.height
-
-        Column {
+        header: Column {
             id: mostCalledView
 
             anchors {
-                top: parent.top
                 left: parent.left
                 right: parent.right
             }
-            height: visible ? mostCalledView.childrenRect.height : 0
+            height: visible ? childrenRect.height : 0
             visible: root.showFavourites
 
+            Rectangle {
+                color: Theme.palette.normal.background
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(1)
+                }
+                height: units.gu(3)
+                Label {
+                    anchors.fill: parent
+                    verticalAlignment: Text.AlignVCenter
+                    text: i18n.tr("Frequently called")
+                    font.pointSize: 76
+                }
+                ListItem.ThinDivider {
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        bottom: parent.bottom
+                    }
+                }
+            }
             Repeater {
                 id: callerRepeat
 
-                //height: childrenRect.height
                 model: MostCalledModel {
                     id: calledModel
                     maxCount: 20
                 }
             }
         }
+        //boundsBehavior: Flickable.StopAtBounds
+        height: Math.min(root.height, contentHeight)
+        onError: root.error(message)
+        onInfoRequested: root.infoRequested(contact)
+        onDetailClicked: root.detailClicked(contact, detail, action)
+        onSelectionDone: root.selectionDone(items)
+        onSelectionCanceled: root.selectionCanceled()
+        onContactDisappeared: root.contactDisappeared(contact)
+        clip: true
 
-        ContactSimpleListView {
-            id: view
+        InvalidFilter {
+            id: invalidFilter
+        }
 
-            property bool showFavourites: false
+        DetailFilter {
+            id: favouritesFilter
 
-            function getSectionText(index) {
-                var tag = listModel.contacts[index].tag.tag
-                if (tag == "")
-                    return "#"
-                else
-                    return tag
-            }
+            detail: ContactDetail.Favorite
+            field: Favorite.Favorite
+            value: true
+            matchFlags: DetailFilter.MatchExactly
+        }
 
-            //boundsBehavior: Flickable.StopAtBounds
-            anchors {
-                top: mostCalledView.bottom
-                left: parent.left
-                right: parent.right
-                //rightMargin: fastScroll.showing ? fastScroll.width - units.gu(1) : 0
+        IntersectionFilter {
+            id: contactsFilter
 
-                Behavior on rightMargin {
-                    UbuntuNumberAnimation {}
+            property bool active: false
+
+            filters: {
+                var filters = []
+                if (root.showFavourites) {
+                    filters.push(favouritesFilter)
                 }
-            }
-            height: Math.min(root.height, contentHeight)
-            onError: root.error(message)
-            onInfoRequested: root.infoRequested(contact)
-            onDetailClicked: root.detailClicked(contact, detail, action)
-            onSelectionDone: root.selectionDone(items)
-            onSelectionCanceled: root.selectionCanceled()
-            onContactDisappeared: root.contactDisappeared(contact)
-            clip: true
-
-            InvalidFilter {
-                id: invalidFilter
-            }
-
-            DetailFilter {
-                id: favouritesFilter
-
-                detail: ContactDetail.Favorite
-                field: Favorite.Favorite
-                value: true
-                matchFlags: DetailFilter.MatchExactly
-            }
-
-            IntersectionFilter {
-                id: contactsFilter
-
-                property bool active: false
-
-                filters: {
-                    var filters = []
-                    if (root.showFavourites) {
-                        filters.push(favouritesFilter)
-                    }
-                    if (root.filter) {
-                        filters.push(root.filter)
-                    }
-                    if (nameFilter.value && (nameFilter.value.length > 0)) {
-                        filters.push(nameFilter)
-                    }
-                    active = (filters.length > 0)
-                    return filters
+                if (root.filter) {
+                    filters.push(root.filter)
                 }
+                if (nameFilter.value && (nameFilter.value.length > 0)) {
+                    filters.push(nameFilter)
+                }
+                active = (filters.length > 0)
+                return filters
             }
+        }
 
-            DetailFilter {
-                id: nameFilter
+        DetailFilter {
+            id: nameFilter
 
-                detail: ContactDetail.DisplayLabel
-                field: DisplayLabel.Label
-                value: root.nameFilter
-                matchFlags: DetailFilter.MatchContains
-            }
+            detail: ContactDetail.DisplayLabel
+            field: DisplayLabel.Label
+            value: root.nameFilter
+            matchFlags: DetailFilter.MatchContains
+        }
 
-            Timer {
-                id: contactSearchTimeout
+        Timer {
+            id: contactSearchTimeout
 
-                running: false
-                repeat: false
-                interval: 300
-                onTriggered: {
-                    if (root.contactNameFilter === "") { // if the search criteria is empty clear the list before show all contacts
+            running: false
+            repeat: false
+            interval: 300
+            onTriggered: {
+                if (root.contactNameFilter === "") { // if the search criteria is empty clear the list before show all contacts
+                    contactList.changeFilter(root.filter)
+                    nameFilter.value = ""
+                } else {
+                    if (nameFilter.value === "") { // if the search starts clear the list before show results
                         contactList.changeFilter(root.filter)
-                        nameFilter.value = ""
-                    } else {
-                        if (nameFilter.value === "") { // if the search starts clear the list before show results
-                            contactList.changeFilter(root.filter)
-                        }
-                        nameFilter.value = root.contactNameFilter
                     }
-                }
-            }
-
-            listModel: ContactModel {
-                id: contactsModel
-
-                property bool _clearModel: false
-
-                manager: root.manager
-                sortOrders: root.sortOrders
-                fetchHint: root.fetchHint
-                filter: {
-                    if (contactsModel._clearModel) {
-                        return invalidFilter
-                    } else if (contactsFilter.active) {
-                        return contactsFilter
-                    } else {
-                        return null
-                    }
-                }
-
-                onErrorChanged: {
-                    if (error) {
-                        console.error("Contact List error:" + error)
-                    }
-                }
-
-                onContactsChanged: {
-                    //WORKAROUND: clear the model before start populate it with the new contacts
-                    //otherwise the model will wait for all contacts before show any new contact
-
-                    //after all contacts get removed we can populate the model again, this will show
-                    //new contacts as soon as it arrives in the model
-                    if (contactsModel._clearModel && contacts.length === 0) {
-                        contactsModel._clearModel = false
-                    }
+                    nameFilter.value = root.contactNameFilter
                 }
             }
         }
+
+        listModel: ContactModel {
+            id: contactsModel
+
+            property bool _clearModel: false
+
+            manager: root.manager
+            sortOrders: root.sortOrders
+            fetchHint: root.fetchHint
+            filter: {
+                if (contactsModel._clearModel) {
+                    return invalidFilter
+                } else if (contactsFilter.active) {
+                    return contactsFilter
+                } else {
+                    return null
+                }
+            }
+
+            onErrorChanged: {
+                if (error) {
+                    console.error("Contact List error:" + error)
+                }
+            }
+
+            onContactsChanged: {
+                //WORKAROUND: clear the model before start populate it with the new contacts
+                //otherwise the model will wait for all contacts before show any new contact
+
+                //after all contacts get removed we can populate the model again, this will show
+                //new contacts as soon as it arrives in the model
+                if (contactsModel._clearModel && contacts.length === 0) {
+                    contactsModel._clearModel = false
+                }
+            }
+        }
+
         FastScroll {
             id: fastScroll
 
