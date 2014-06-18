@@ -26,6 +26,7 @@ Item {
     property bool showAvatar: true
     property bool selected: false
     property string defaultAvatarUrl: ""
+    property string defaultTitle: ""
     property int titleDetail: ContactDetail.Name
     property variant titleFields: [ Name.FirstName, Name.LastName ]
     property bool detailsShown: false
@@ -40,10 +41,6 @@ Item {
     {
         detailClicked(contact, detail, action)
     }
-
-    // ListItemWithActions
-    //onItemClicked: root.clicked(index, contact)
-    //onItemPressAndHold: root.pressAndHold(index, contact)
 
     height: delegate.height
     implicitHeight: delegate.height + (pickerLoader.item ? pickerLoader.item.height : 0)
@@ -100,7 +97,7 @@ Item {
             }
             font.pointSize: 88
             color: UbuntuColors.lightAubergine
-            text: ContactsJS.formatToDisplay(contact, root.titleDetail, root.titleFields)
+            text: contact ? ContactsJS.formatToDisplay(contact, root.titleDetail, root.titleFields, "") : root.defaultTitle
             elide: Text.ElideRight
         }
 
@@ -155,9 +152,80 @@ Item {
         onStatusChanged: {
             if (status == Loader.Ready) {
                 pickerLoader.item.contactsModel = listModel
-                pickerLoader.item.contactId = contact.contactId
-                pickerLoader.item.detailClicked.connect(root._onDetailClicked)
+                if (contact) {
+                    pickerLoader.item.contactId = contact.contactId
+                    pickerLoader.item.detailClicked.connect(root._onDetailClicked)
+                }
             }
         }
     }
+
+    Behavior on height {
+        id: behaviorOnHeight
+
+        enabled: false
+        UbuntuNumberAnimation { }
+    }
+
+    state: ListView.isCurrentItem ? "expanded" : ""
+    states: [
+        State {
+            name: "expanded"
+            PropertyChanges {
+                target: root
+                clip: true
+                height: root.implicitHeight
+                loaderOpacity: 1.0
+                // FIXME: Setting detailsShown to true on expanded state cause the property to change to false and true during the state transition, and that
+                // causes the loader to load twice
+                //detailsShown: true
+            }
+            PropertyChanges {
+                target: behaviorOnHeight
+                enabled: true
+            }
+        }
+    ]
+    transitions: [
+        Transition {
+            from: "expanded"
+            to: ""
+            SequentialAnimation {
+                UbuntuNumberAnimation {
+                    target: root
+                    properties: "height, loaderOpacity"
+                }
+                PropertyAction {
+                    target: root
+                    property: "clip"
+                }
+                PropertyAction {
+                    target: root
+                    property: "detailsShown"
+                    value: false
+                }
+                PropertyAction {
+                    target: root
+                    property: "ListView.delayRemove"
+                    value: false
+                }
+            }
+        },
+        Transition {
+            from: ""
+            to: "expanded"
+            SequentialAnimation {
+                PropertyAction {
+                    target: root
+                    properties: "detailsShown"
+                    value: true
+                }
+                PropertyAction {
+                    target: root
+                    properties: "ListView.delayRemove"
+                    value: true
+                }
+            }
+        }
+    ]
 }
