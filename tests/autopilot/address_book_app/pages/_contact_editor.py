@@ -56,7 +56,7 @@ class ContactEditor(_common.PageWithHeader):
         'emails': 'Email',
         'ims': 'Social',
         'addresses': 'Address',
-        'professionalDetails': 'Profissional Details'
+        'professionalDetails': 'Professional Details'
     }
 
     @autopilot.logging.log_action(logger.info)
