@@ -1,3 +1,15 @@
+address-book-app (0.2+14.10.20140618-0ubuntu1) utopic; urgency=low
+
+  [ Tarmac ]
+  * Update contact view page visuals Update contact edit page visuals
+    Add a hide animation for the bottom edge title.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Update contact view page visuals Update contact edit page visuals
+    Add a hide animation for the bottom edge title.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 18 Jun 2014 21:53:23 +0000
+
 address-book-app (0.2+14.10.20140616-0ubuntu1) utopic; urgency=low
 
   [ Tarmac ]
