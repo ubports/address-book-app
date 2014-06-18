@@ -60,7 +60,7 @@ Item {
         case ContactDetail.OnlineAccount:
             return i18n.tr("Social")
         case ContactDetail.Organization:
-            return i18n.tr("Profissional Details")
+            return i18n.tr("Professional Details")
         default:
             console.error("Invalid contact detail enum value:" + value)
             return ""
