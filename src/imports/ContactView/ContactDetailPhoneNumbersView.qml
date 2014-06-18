@@ -29,11 +29,6 @@ ContactDetailGroupWithTypeView {
 
     title: i18n.tr("Phone")
     typeModel: ContactDetailPhoneNumberTypeModel { }
-    defaultAction: Action {
-        text: i18n.tr("Favorite")
-        iconSource: "artwork:/contact-call.png"
-    }
-
     detailDelegate: ContactDetailPhoneNumberView {
         property variant detailType: detail && root.contact && root.typeModelReady ? root.getType(detail) : null
 

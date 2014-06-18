@@ -73,41 +73,19 @@ ContactDetailBase {
     enabled: root.detail ? !root.detail.readOnly : false
     implicitHeight: detailTypeSelector.height + fieldValues.height + units.gu(2)
     opacity: enabled ? 1.0 : 0.5
-    ValueSelector {
-        id: detailTypeSelector
-        objectName: detail ? "type_" + detailToString(detail.type, -1) + "_" + index : ""
-
-        readOnly: root.detail ? root.detail.readOnly : false
-        visible: (currentIndex != -1)
-        active: root.active
-        anchors {
-            left: parent.left
-            leftMargin: units.gu(3)
-            right: parent.right
-            rightMargin: units.gu(2)
-            top: parent.top
-            topMargin: units.gu(1)
-        }
-
-        height: visible ? (root.active ? units.gu(4) : units.gu(3)) : 0
-        onExpandedChanged: {
-            // Make sure that the inputfield get focus when clicking on type selector
-            if (expanded) {
-                root.forceActiveFocus()
-            }
-        }
-    }
 
     Column {
         id: fieldValues
 
         anchors {
-            left: detailTypeSelector.left
-            right: detailTypeSelector.right
-            top: detailTypeSelector.bottom
+            left: parent.left
+            leftMargin: units.gu(2)
+            right: parent.right
+            rightMargin: units.gu(2)
+            top: parent.top
+            topMargin: units.gu(1)
         }
         height: childrenRect.height
-
         Repeater {
             id: fieldRepeater
 
@@ -138,6 +116,28 @@ ContactDetailBase {
             } else if ((event.key == Qt.Key_Left) && (event.modifiers & Qt.ShiftModifier)) {
                 detailTypeSelector.movePrevious()
                 event.accepted = true
+            }
+        }
+    }
+
+    ValueSelector {
+        id: detailTypeSelector
+        objectName: detail ? "type_" + detailToString(detail.type, -1) + "_" + index : ""
+
+        anchors {
+            left: fieldValues.left
+            right: fieldValues.right
+            top: fieldValues.bottom
+        }
+
+        readOnly: root.detail ? root.detail.readOnly : false
+        visible: (currentIndex != -1)
+        active: root.active
+        height: visible ? (root.active ? units.gu(4) : units.gu(3)) : 0
+        onExpandedChanged: {
+            // Make sure that the inputfield get focus when clicking on type selector
+            if (expanded) {
+                root.forceActiveFocus()
             }
         }
     }

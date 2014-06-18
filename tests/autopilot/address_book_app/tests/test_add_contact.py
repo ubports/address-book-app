@@ -173,28 +173,23 @@ class TestAddContact(AddressBookAppTestCase):
         self.assertThat(list_view.count, Eventually(Equals(1)))
 
     def test_email_label_save(self):
-        # execute add new contact
         contact_editor = self.app.main_window.go_to_add_contact()
 
-        # fill name
-        contact_editor.fill_form(
-            data.Contact(first_name='Sherlock', last_name='Holmes'))
+        my_emails = []
+        my_emails.append(data.Email(type_="Home", address="home@email.com"))
+        my_emails.append(data.Email(type_="Work", address="work@email.com"))
+        my_emails.append(data.Email(type_="Other", address="other@email.com"))
 
-        # Home
-        self.set_email_address(0, "home@email.com", 0)
-        # Work
-        self.set_email_address(1, "work@email.com", 1)
-        # Other
-        self.set_email_address(2, "other@email.com", 2)
+        test_contact = data.Contact(first_name="Sherlock",
+                                    last_name="Holmes",
+                                    emails=my_emails)
+        contact_editor.fill_form(test_contact)
 
         # Save contact
         self.app.main_window.save()
 
         list_page = self.app.main_window.get_contact_list_page()
-        list_page.open_contact(0)
-
-        # check if contacts was saved with the correct labels
-        view_page = self.app.main_window.get_contact_view_page()
+        view_page = list_page.open_contact(0)
         self.assertThat(view_page.visible, Eventually(Equals(True)))
 
         # check if we have 3 emails"""
@@ -223,33 +218,26 @@ class TestAddContact(AddressBookAppTestCase):
         self.assertThat(len(emails), Equals(0))
 
     def test_phone_label_save(self):
-        # execute add new contact
         contact_editor = self.app.main_window.go_to_add_contact()
 
-        # fill name
-        contact_editor.fill_form(
-            data.Contact(first_name='Sherlock', last_name='Holmes'))
+        my_phones = []
+        my_phones.append(data.Phone(type_="Home", number="(000) 000-0000"))
+        my_phones.append(data.Phone(type_="Work", number="(000) 000-0001"))
+        my_phones.append(data.Phone(type_="Mobile", number="(000) 000-0002"))
+        my_phones.append(data.Phone(type_="Work Mobile", number="(000) 000-0003"))
+        my_phones.append(data.Phone(type_="Other", number="(000) 000-0004"))
 
-        # Home
-        self.set_phone_number(0, "(000) 000-0000", 0)
-        # Work
-        self.set_phone_number(1, "(000) 000-0001", 1)
-        # Mobile
-        self.set_phone_number(2, "(000) 000-0002", 2)
-        # Work Mobile
-        self.set_phone_number(3, "(000) 000-0003", 3)
-        # Other
-        self.set_phone_number(4, "(000) 000-0004", 4)
+        test_contact = data.Contact(first_name="Sherlock",
+                                    last_name="Holmes",
+                                    phones=my_phones)
+        contact_editor.fill_form(test_contact)
 
         # Save contact
         self.app.main_window.save()
 
         # Open contact view
         list_page = self.app.main_window.get_contact_list_page()
-        list_page.open_contact(0)
-
-        # check if contacts was saved with the correct labels
-        view_page = self.app.main_window.get_contact_view_page()
+        view_page = list_page.open_contact(0)
         self.assertThat(view_page.visible, Eventually(Equals(True)))
 
         # check if we have five phones"""

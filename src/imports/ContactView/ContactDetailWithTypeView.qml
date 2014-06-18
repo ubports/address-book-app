@@ -25,7 +25,6 @@ ContactDetailBase {
     id: root
 
     property alias typeLabel: view.typeLabel
-    property string typeIcon: null
     property alias lineHeight: view.lineHeight
     readonly property bool isReady: (fields != null) && (detail != null)
 
@@ -61,6 +60,5 @@ ContactDetailBase {
             left: parent.left
             leftMargin: units.gu(2)
         }
-        iconSource: typeIcon ? typeIcon : (root.action ? root.action.iconSource : "")
     }
 }
