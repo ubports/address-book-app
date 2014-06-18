@@ -23,6 +23,7 @@ ContactDetailBase {
 
     readonly property alias fieldDelegates: fieldsColumn.children
     property Component fieldDelegate: null
+    property alias spacing: fieldsColumn.spacing
 
     implicitHeight: fieldsColumn.height
     Column {

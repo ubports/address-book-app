@@ -84,6 +84,12 @@ ContactDetailBase {
         height: units.gu(4)
     }
 
+    ListItem.ThinDivider {
+        id: divider
+
+        anchors.top: label.bottom
+    }
+
     OptionSelector {
         id: sources
 
@@ -91,8 +97,8 @@ ContactDetailBase {
         anchors {
             left: parent.left
             leftMargin: units.gu(2)
-            top: label.bottom
-            topMargin: units.gu(1)
+            top: divider.bottom
+            topMargin: units.gu(2)
             right: parent.right
             rightMargin: units.gu(2)
             bottom: parent.bottom

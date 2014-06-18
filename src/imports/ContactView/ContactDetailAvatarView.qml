@@ -24,8 +24,13 @@ import "../Common"
 ContactDetailBase {
     id: root
 
-    implicitHeight: units.gu(10)
+    implicitHeight: units.gu(8)
     implicitWidth: units.gu(10)
+
+    Connections {
+        target: root.contact.avatar
+        onDetailChanged: avatar.reload()
+    }
 
     ContactsUI.ContactAvatar {
         id: avatar
@@ -34,7 +39,6 @@ ContactDetailBase {
         anchors {
             fill: parent
             leftMargin: units.gu(2)
-            topMargin: units.gu(2)
         }
     }
 }

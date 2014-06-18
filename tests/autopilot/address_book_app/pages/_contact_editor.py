@@ -51,6 +51,36 @@ def _get_text_field(parent, field, index=None):
 class ContactEditor(_common.PageWithHeader):
     """Custom proxy object for the Contact Editor."""
 
+    _DETAIL_ALIAS = {
+        'phones': 'Phone',
+        'emails': 'Email',
+        'ims': 'Social',
+        'addresses': 'Address',
+        'professionalDetails': 'Professional Details'
+    }
+
+    @autopilot.logging.log_action(logger.info)
+    def add_field(self, detail_name):
+        """Create a new field into the edit contact form.
+
+        :param detail_name: The detail field name
+
+        """
+
+        add_field_button = self.select_single(
+            'Button', objectName='addNewFieldButton')
+        add_field_button.swipe_into_view()
+
+        self.pointing_device.click_object(add_field_button)
+
+        add_field_dialog = self.get_root_instance().wait_select_single(
+            'Dialog', objectName='addFieldDialog')
+        new_field_button = add_field_dialog.select_single(
+            'Button',
+            objectName=self._DETAIL_ALIAS[detail_name])
+
+        self.pointing_device.click_object(new_field_button)
+
     @autopilot.logging.log_action(logger.info)
     def fill_form(self, contact_information):
         """Fill the edit contact form.
@@ -90,7 +120,7 @@ class ContactEditor(_common.PageWithHeader):
     def _fill_detail_group(self, object_name, details):
         editor = self.select_single(
             ContactDetailGroupWithTypeEditor, objectName=object_name)
-        editor.fill(details)
+        editor.fill(self, details)
 
     def _get_form_values(self):
         first_name = _get_text_field(self, 'first_name').text
@@ -135,12 +165,12 @@ class ContactDetailGroupWithTypeEditor(
         'professionalDetails': 'base_unknown_{}'
     }
 
-    def fill(self, details):
+    def fill(self, editor, details):
         """Fill a contact detail group."""
-        for index, detail in enumerate(details[:-1]):
+        for index, detail in enumerate(details):
+            if self.detailsCount <= index:
+                editor.add_field(self.objectName)
             self._fill_detail(index, detail)
-            self._add_detail()
-        self._fill_detail(len(details) - 1, details[-1])
 
     def _fill_detail(self, index, detail):
         detail_editor = self._get_detail_editor_by_index(index)
@@ -175,15 +205,16 @@ class ContactDetailWithTypeEditor(
     """Custom proxy object for the ContactDetailWithTypeEditor widget."""
 
     def fill(self, field, index, detail):
-        self._select_type(detail)
         self._fill_value(field, index, detail)
+        self._select_type(detail)
 
     def _select_type(self, detail):
         type_index = detail.TYPES.index(detail.type)
-        selected_type_index = self._get_selected_type_index()
-        if type_index != selected_type_index:
-            # TODO --elopio - 2014-03-01
-            raise NotImplementedError('Type selection not yet implemented.')
+        value_selector = self.select_single('ValueSelector')
+
+        while(value_selector.currentIndex != type_index):
+            ubuntuuitoolkit.get_keyboard().press_and_release("Shift+Right")
+            time.sleep(0.1)
 
     def _get_selected_type_index(self):
         value_selector = self.select_single('ValueSelector')
@@ -210,16 +241,7 @@ class ContactDetailWithTypeEditor(
         self._make_field_visible_and_write(text_field, value)
 
     def _make_field_visible_and_write(self, text_field, value):
-        while not text_field.activeFocus:
-            # XXX We should just swipe the text field into view.
-            # Update this once bug http://pad.lv/1286479 is implemented.
-            # --elopio - 2014-03-01
-            text_field.keyboard.press_and_release('Tab')
-            time.sleep(0.1)
-            contact_editor = self.get_root_instance().select_single(
-                ContactEditor, objectName='contactEditorPage', active=True)
-            contact_editor.wait_to_stop_moving()
-
+        text_field.swipe_into_view()
         text_field.write(value)
 
     def _fill_address(self, index, address):

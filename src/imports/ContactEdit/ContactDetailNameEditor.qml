@@ -51,6 +51,7 @@ ContactDetailItem {
         return changed
     }
 
+    spacing: units.gu(1)
     detail: root.contact ? root.contact.name : null
     fields: [ QtContacts.Name.FirstName, QtContacts.Name.LastName ]
 
