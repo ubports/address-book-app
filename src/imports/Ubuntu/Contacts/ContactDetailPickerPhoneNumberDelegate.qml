@@ -21,14 +21,17 @@ import Ubuntu.Components 0.1
 Item {
     id: root
 
-    property QtObject contact: null
-
     signal detailClicked(QtObject detail, string action)
 
     function containsPointer(item, point)
     {
         return ((point.x >= item.x) && (point.x <= item.x + item.width) &&
                 (point.y >= item.y) && (point.y <= item.y + item.height));
+    }
+
+    function updateDetails(contact)
+    {
+        phoneNumberEntries.model = contact.phoneNumbers
     }
 
     height: detailItems.height + units.gu(2)
