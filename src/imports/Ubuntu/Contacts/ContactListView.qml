@@ -385,12 +385,27 @@ Item {
         footer: Column {
             id: mostCalledView
 
+            function makeItemVisible(item)
+            {
+                var finalY = mostCalledView.y + item.y + item.implicitHeight
+                var contentY = (view.contentY + view.height)
+                if (contentY < finalY) {
+                    view.contentY += (finalY - contentY)
+                }
+            }
+
             anchors {
                 left: parent.left
                 right: parent.right
             }
             height: visible ? childrenRect.height : 0
             visible: root.showFavourites && (callerRepeat.count > 0)
+            onHeightChanged: {
+                // make selected item fully visible
+                if (calledModel.currentIndex != -1) {
+                    mostCalledView.makeItemVisible(callerRepeat.itemAt(calledModel.currentIndex))
+                }
+            }
 
             Rectangle {
                 color: Theme.palette.normal.background
