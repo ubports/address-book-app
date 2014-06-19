@@ -223,6 +223,10 @@ Item {
     */
     signal detailClicked(QtObject contact, QtObject detail, string action)
     /*!
+      This handler is called when a unknown contact is clicked, the label contains the phone number
+    */
+    signal addContactClicked(string label)
+    /*!
       This handler is called when the contact delegate disapear (height === 0) caused by the function call makeDisappear
     */
     signal contactDisappeared(QtObject contact)
@@ -378,7 +382,7 @@ Item {
             }
         }
 
-        header: Column {
+        footer: Column {
             id: mostCalledView
 
             anchors {
@@ -386,7 +390,7 @@ Item {
                 right: parent.right
             }
             height: visible ? childrenRect.height : 0
-            visible: root.showFavourites
+            visible: root.showFavourites && (callerRepeat.count > 0)
 
             Rectangle {
                 color: Theme.palette.normal.background
@@ -416,10 +420,28 @@ Item {
                 model: MostCalledModel {
                     id: calledModel
                     maxCount: 20
+
+                    onInfoRequested: root.infoRequested(contact)
+                    onDetailClicked: root.detailClicked(contact, detail, action)
+                    onAddContactClicked: root.addContactClicked(label)
+                    onCurrentIndexChanged:  {
+                        if (currentIndex !== -1) {
+                            view.currentIndex = -1
+                        }
+                    }
+                }
+            }
+
+            Connections {
+                target: view
+                onCurrentIndexChanged: {
+                    if (view.currentIndex !== -1) {
+                        calledModel.currentIndex = -1
+                    }
                 }
             }
         }
-        //boundsBehavior: Flickable.StopAtBounds
+
         height: Math.min(root.height, contentHeight)
         onError: root.error(message)
         onInfoRequested: root.infoRequested(contact)
@@ -531,20 +553,20 @@ Item {
                 }
             }
         }
+    }
 
-        FastScroll {
-            id: fastScroll
+    FastScroll {
+        id: fastScroll
 
-            listView: view
-            // only enable FastScroll if the we have more than 2 pages of content
-            enabled: view.contentHeight > (view.height * 2)
+        listView: view
+        // only enable FastScroll if the we have more than 2 pages of content
+        enabled: view.contentHeight > (view.height * 2)
 
-            anchors {
-                top: view.top
-                topMargin: units.gu(0.5)
-                bottom: view.bottom
-                right: view.right
-            }
+        anchors {
+            top: view.top
+            topMargin: units.gu(0.5)
+            bottom: view.bottom
+            right: parent.right
         }
     }
 }

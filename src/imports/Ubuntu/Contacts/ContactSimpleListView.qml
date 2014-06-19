@@ -273,6 +273,7 @@ MultipleSelectionListView {
         defaultAvatarUrl: contactListView.defaultAvatarImageUrl
         titleDetail: contactListView.titleDetail
         titleFields: contactListView.titleFields
+        isCurrentItem: ListView.isCurrentItem
 
         onDetailClicked: contactListView.detailClicked(contact, detail, action)
         onInfoRequested: contactListView._fetchContact(index, contact)

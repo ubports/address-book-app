@@ -25,6 +25,7 @@ Item {
 
     property bool showAvatar: true
     property bool selected: false
+    property bool isCurrentItem: false
     property string defaultAvatarUrl: ""
     property string defaultTitle: ""
     property int titleDetail: ContactDetail.Name
@@ -36,6 +37,7 @@ Item {
     signal pressAndHold(int index, QtObject contact)
     signal detailClicked(QtObject contact, QtObject detail, string action)
     signal infoRequested(int index, QtObject contact)
+    signal addContactClicked(string label)
 
     function _onDetailClicked(detail, action)
     {
@@ -110,7 +112,7 @@ Item {
                 rightMargin: units.gu(2)
                 verticalCenter: parent.verticalCenter
             }
-            name: "contact"
+            name: contact ? "contact" : "new-contact"
             height: units.gu(3)
             width: opacity > 0.0 ? height : 0
             opacity: root.detailsShown ? 1.0 : 0.0
@@ -119,8 +121,14 @@ Item {
             }
 
             MouseArea {
-               anchors.fill: parent
-               onClicked: root.infoRequested(index, contact)
+                anchors.fill: parent
+                onClicked: {
+                    if (contact) {
+                        root.infoRequested(index, contact)
+                    } else {
+                        root.addContactClicked(name.text)
+                    }
+                }
             }
         }
 
@@ -136,7 +144,7 @@ Item {
                 return Qt.resolvedUrl("ContactDetailPickerPhoneNumberDelegate.qml")
             }
         }
-        active: root.detailsShown
+        active: contact && root.detailsShown
         asynchronous: true
         anchors {
             top: delegate.bottom
@@ -166,7 +174,7 @@ Item {
         UbuntuNumberAnimation { }
     }
 
-    state: ListView.isCurrentItem ? "expanded" : ""
+    state: isCurrentItem ? "expanded" : ""
     states: [
         State {
             name: "expanded"

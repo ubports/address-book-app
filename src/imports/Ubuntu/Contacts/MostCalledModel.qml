@@ -23,41 +23,78 @@ import Ubuntu.Telephony 0.1
 VisualDataModel {
     id: root
 
-    property int minCalls: 1
-    property int maxCount: 20
+    property int maxCount: 10
     property var contactModel: null
-    property var threadModel
+    property var historyModel
+    property int currentIndex: -1
 
     signal clicked(int index, QtObject contact)
     signal detailClicked(QtObject contact, QtObject detail, string action)
     signal infoRequested(int index, QtObject contact)
-
+    signal addContactClicked(string label)
 
     function filterEntries()
     {
         var contacts = {}
+        var interval = new Date()
+        var secs = (interval.getTime() - 7776000000) // three months ago
+        interval.setTime(secs)
 
-        for(var i=0; i < threadModel.count; i++) {
-            var participants = threadModel.get(i, "participants")
-            var phoneNumber = null
-            if (participants && (participants.length > 0)) {
-                phoneNumber = participants[0];
+        var totalCount = 0
+        for(var i=0; i < historyModel.count; i++) {
+            var event = historyModel.get(i)
+
+            if (event.timestamp < interval) {
+                break
             }
 
-            if (phoneNumber) {
-                if (contacts[phoneNumber] === undefined) {
-                    contacts[phoneNumber] = 1
-                } else {
-                    var count = contacts[phoneNumber]
-                    contacts[phoneNumber] = count + 1
+            var participants = event.participants
+            for (var p=0; p < participants.length; p++) {
+                var phoneNumber = participants[p]
+                if (phoneNumber) {
+                    if (contacts[phoneNumber] === undefined) {
+                        contacts[phoneNumber] = 1
+                    } else {
+                        var count = contacts[phoneNumber]
+                        contacts[phoneNumber] = count + 1
+                    }
+                    totalCount += 1
                 }
             }
         }
 
         listModel.clear()
+        if (totalCount == 0) {
+            return
+        }
+
+        // sort phones most called first
+        var mostCalledFirst = []
+        for (var key in contacts) mostCalledFirst.push([key, contacts[key]]);
+
+        mostCalledFirst.sort(function(a, b) {
+            a = a[1];
+            b = b[1];
+
+            return a < b ? -1 : (a > b ? 1 : 0);
+        });
+
+        contacts = {}
+        for (var i = 0; i < mostCalledFirst.length; i++) {
+            var key = mostCalledFirst[i][0];
+            var value = mostCalledFirst[i][1];
+            contacts[key] = value
+        }
+
+        // get the avarage frequency
+        var average = totalCount / mostCalledFirst.length
+
         for (var phone in contacts) {
-            if (contacts[phone] >= minCalls) {
+            if (contacts[phone] >= average) {
                 listModel.append({"participant": phone})
+                if (listModel.count >= root.maxCount) {
+                    return;
+                }
             }
         }
     }
@@ -66,10 +103,10 @@ VisualDataModel {
         id: listModel
     }
 
-    threadModel: HistoryThreadModel {
+    historyModel: HistoryEventModel {
         type: HistoryThreadModel.EventTypeVoice
         sort: HistorySort {
-            sortField: "count"
+            sortField: "timestamp"
             sortOrder: HistorySort.DescendingOrder
         }
         onCountChanged: root.filterEntries()
@@ -84,12 +121,14 @@ VisualDataModel {
 
         onDetailClicked: root.detailClicked(contact, detail, action)
         onInfoRequested: root.infoRequested(index, contact)
+        onAddContactClicked: root.addContactClicked(label)
 
         defaultAvatarUrl: "image://theme/contacts"
         defaultTitle: participant
         width: parent.width
         titleDetail: ContactDetail.DisplayLabel
         titleFields: [ DisplayLabel.Label ]
+        isCurrentItem: root.currentIndex === index
 
         // collapse the item before remove it, to avoid crash
         ListView.onRemove: SequentialAnimation {
@@ -103,15 +142,14 @@ VisualDataModel {
         }
 
         onClicked: {
-            if (ListView.isCurrentItem) {
-                //contactListView.currentIndex = -1
+            if (root.currentIndex === index) {
+                root.currentIndex = -1
                 return
-            // check if we should expand and display the details picker
             } else if (detailToPick !== 0) {
-                //contactListView.currentIndex = indexWatcher
+                root.currentIndex = index
                 return
             } else if (detailToPick == 0) {
-                //contactListView.detailClicked(contact, null, "")
+                contactListView.detailClicked(contact, null, "")
             }
         }
 
