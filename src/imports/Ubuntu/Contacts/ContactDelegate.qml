@@ -154,7 +154,7 @@ Item {
 
         onStatusChanged: {
             if (status == Loader.Ready) {
-                pickerLoader.item.contact = contact
+                pickerLoader.item.updateDetails(contact)
                 pickerLoader.item.detailClicked.connect(root._onDetailClicked)
             }
         }
