@@ -405,6 +405,8 @@ Item {
                 if (calledModel.currentIndex != -1) {
                     mostCalledView.makeItemVisible(callerRepeat.itemAt(calledModel.currentIndex))
                 } else {
+                    // WORKAROUND: The SDK header causes the contactY to move to a wrong postion
+                    // this should fix the Y position (630 is the header height)
                     view.contentY = -630
                 }
             }
