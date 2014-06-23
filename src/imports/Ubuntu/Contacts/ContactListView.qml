@@ -382,15 +382,15 @@ Item {
             }
         }
 
-        footer: Column {
+        header: Column {
             id: mostCalledView
 
             function makeItemVisible(item)
             {
-                var finalY = mostCalledView.y + item.y + item.implicitHeight
-                var contentY = (view.contentY + view.height)
-                if (contentY < finalY) {
-                    view.contentY += (finalY - contentY)
+                var itemY = mostCalledView.y + item.y
+                var areaY = view.contentY
+                if (itemY < areaY) {
+                    view.contentY = itemY
                 }
             }
 
@@ -404,6 +404,8 @@ Item {
                 // make selected item fully visible
                 if (calledModel.currentIndex != -1) {
                     mostCalledView.makeItemVisible(callerRepeat.itemAt(calledModel.currentIndex))
+                } else {
+                    view.contentY = -630
                 }
             }
 
