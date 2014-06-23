@@ -311,14 +311,14 @@ Item {
                 text: i18n.dtr("address-book-app", "All")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
-                color: root.showFavourites ? UbuntuColors.warmGrey : UbuntuColors.orange
+                color: view.favouritesIsSelected ? UbuntuColors.warmGrey : UbuntuColors.orange
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
                         //WORKAROUND: clear the model before start populate it with the new contacts
                         //otherwise the model will wait for all contacts before show any new contact
                         root.changeFilter(root.filter)
-                        root.showFavourites = false
+                        view.favouritesIsSelected = false
                     }
                 }
             }
@@ -343,10 +343,10 @@ Item {
                 text: i18n.dtr("address-book-app", "Favourites")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
-                color: root.showFavourites ? UbuntuColors.orange : UbuntuColors.warmGrey
+                color: view.favouritesIsSelected ? UbuntuColors.orange : UbuntuColors.warmGrey
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: root.showFavourites = true
+                    onClicked: view.favouritesIsSelected = true
                 }
             }
         }
@@ -357,7 +357,8 @@ Item {
     ContactSimpleListView {
         id: view
 
-        property bool showFavourites: false
+        property bool showFavourites: true
+        property bool favouritesIsSelected: false
 
         function getSectionText(index) {
             var tag = listModel.contacts[index].tag.tag
@@ -407,7 +408,7 @@ Item {
 
             filters: {
                 var filters = []
-                if (root.showFavourites) {
+                if (view.showFavourites && view.favouritesIsSelected) {
                     filters.push(favouritesFilter)
                 }
                 if (root.filter) {
