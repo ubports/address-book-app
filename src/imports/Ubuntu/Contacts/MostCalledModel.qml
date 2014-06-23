@@ -37,12 +37,16 @@ VisualDataModel {
     {
         var contacts = {}
         var interval = new Date()
-        var secs = (interval.getTime() - 7776000000) // three months ago
+        var secs = (interval.getTime() - 2592000000) // one month ago
         interval.setTime(secs)
 
         var totalCount = 0
-        for(var i=0; i < historyModel.count; i++) {
-            var event = historyModel.get(i)
+        var i = 0;
+        while(true) {
+            var event = historyModel.getItem(i)
+            if (!event) {
+                break
+            }
 
             if (event.timestamp < interval) {
                 break
@@ -61,6 +65,7 @@ VisualDataModel {
                     totalCount += 1
                 }
             }
+            i++
         }
 
         listModel.clear()
@@ -70,7 +75,9 @@ VisualDataModel {
 
         // sort phones most called first
         var mostCalledFirst = []
-        for (var key in contacts) mostCalledFirst.push([key, contacts[key]]);
+        for (var key in contacts) {
+            mostCalledFirst.push([key, contacts[key]]);
+        }
 
         mostCalledFirst.sort(function(a, b) {
             a = a[1];
@@ -91,7 +98,7 @@ VisualDataModel {
 
         for (var phone in contacts) {
             if (contacts[phone] >= average) {
-                listModel.append({"participant": phone})
+                listModel.insert(0, {"participant": phone})
                 if (listModel.count >= root.maxCount) {
                     return;
                 }
@@ -104,12 +111,19 @@ VisualDataModel {
     }
 
     historyModel: HistoryEventModel {
+
+        function getItem(row) {
+            while ((row >= count) && (canFetchMore())) {
+                fetchMore()
+            }
+            return get(row)
+        }
+
         type: HistoryThreadModel.EventTypeVoice
         sort: HistorySort {
             sortField: "timestamp"
             sortOrder: HistorySort.DescendingOrder
         }
-        onCountChanged: root.filterEntries()
         Component.onCompleted: root.filterEntries()
     }
 
@@ -135,7 +149,7 @@ VisualDataModel {
             ScriptAction {
                 script: {
                     if (contactDelegate.state !== "") {
-                        //contactListView.currentIndex = -1
+                        historyModel.currentIndex = -1
                     }
                 }
             }
