@@ -429,7 +429,7 @@ PageWithBottomEdge {
         onContactsChanged: {
             if (contactIndex) {
                 contactList.positionViewAtContact(mainPage.contactIndex)
-                mainPage.coninfoRequestedtactIndex = null
+                mainPage.contactIndex = null
             }
         }
     }
