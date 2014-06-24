@@ -120,7 +120,7 @@ MainView {
                             contentHubTransfer: transfer})
         }
         onImportRequested: {
-            if (transfer.state === ContentTransfer.Charged) {
+            if (transfer.state === ContentHub.ContentTransfer.Charged) {
                 mainStack.importContactRequested(transfer.items)
             }
         }

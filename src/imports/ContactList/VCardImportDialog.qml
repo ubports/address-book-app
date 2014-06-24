@@ -24,15 +24,22 @@ Item {
 
     property alias model: modelConnections.target
     property var vcards: []
-
-    property var _importedVcards: []
-    property var _importErrors: []
+    property var importedVcards: []
+    property var importErrors: []
+    property var dialog: null
 
     signal finished()
 
-    function importContacts(vcards)
+    function importVCards(model, vcards)
     {
+        if (dialog || vcards.length === 0) {
+            return
+        }
+
+        root.model = model
         root.vcards = vcards
+        dialog = Popups.PopupUtils.open(importDialogComponent, root)
+
         for(var i=0, iMax=vcards.length; i < iMax; i++) {
             model.importContacts(vcards[i])
         }
@@ -42,37 +49,42 @@ Item {
         id: modelConnections
 
         onImportCompleted: {
-            var imported = root._importedVcards
-            var importErrors = root._importErrors
+            var imported = root.importedVcards
+            var importErrors = root.importErrors
             imported.push(url)
             if (error !== ContactModel.ImportNoError) {
-                root._importErrors.push(error)
+                root.importErrors.push(error)
             }
-            root._importedVcards = imported
-            root._importErrors = importErrors
+            root.importedVcards = imported
+            root.importErrors = importErrors
         }
     }
 
+    Component {
+        id: importDialogComponent
 
-    Popups.Dialog {
-        id: dialog
+        Popups.Dialog {
+            id: importDialog
 
-        title: i18n.tr("Import vCards")
-        text: root._importedVcards.length === 0 ? i18n.tr("Importing...") : i18n.tr("%1 vCards imported").arg(root._importedVcards.length)
+            title: i18n.tr("Import vCards")
+            text: root.importedVcards.length === 0 ?  i18n.tr("Importing...") : i18n.tr("%1 vCards imported").arg(root.importedVcards.length)
 
-        Button {
-            anchors {
-                left: parent.left
-                right: parent.right
-                margins: units.gu(1)
+            Button {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(1)
+                }
+                text: i18n.tr("Close")
+                enabled: (root.importedVcards.length === root.vcards.length)
+                onClicked: {
+                    root.dialog = null
+                    Popups.PopupUtils.close(importDialog)
+                }
             }
-            text: i18n.tr("Close")
-            onClicked: root.finished()
-        }
-    }
 
-    Component.onCompleted: {
-        var dialog = PopupUtils.open(dialog, null)
+            Component.onDestruction: root.destroy()
+        }
     }
 }
 

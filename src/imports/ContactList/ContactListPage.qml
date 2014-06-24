@@ -416,12 +416,15 @@ PageWithBottomEdge {
         onImportContactRequested: {
             var urls = []
             for(var i=0; i < items.length; i++) {
-                urls.push(items[0].url)
+                urls.push(items[i].url)
             }
             if (urls.length > 0) {
-                Qt.Qt.createQmlObject(Qt.resolvedUrl("VCardImportDialog.qml"),
-                                      { model: contactList.listModel,
-                                        vcards: urls})
+                var importDialog = Qt.createQmlObject("VCardImportDialog{}",
+                                   mainPage,
+                                   "VCardImportDialog")
+                if (importDialog) {
+                    importDialog.importVCards(contactList.listModel, urls)
+                }
             }
         }
     }
