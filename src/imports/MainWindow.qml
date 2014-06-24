@@ -60,6 +60,7 @@ MainView {
         signal editContatRequested(string contactId, string phoneNumber)
         signal contactCreated(QtObject contact)
         signal contactModelError(string errorMessage)
+        signal importContactRequested(var items)
 
         anchors {
             fill: parent
@@ -117,6 +118,11 @@ MainView {
             mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"),
                            {pickMode: true,
                             contentHubTransfer: transfer})
+        }
+        onImportRequested: {
+            if (transfer.state === ContentTransfer.Charged) {
+                mainStack.importContactRequested(transfer.items)
+            }
         }
     }
 }

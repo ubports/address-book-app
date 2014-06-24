@@ -412,6 +412,18 @@ PageWithBottomEdge {
         onContactCreated: {
             mainPage.contactIndex = contact
         }
+
+        onImportContactRequested: {
+            var urls = []
+            for(var i=0; i < items.length; i++) {
+                urls.push(items[0].url)
+            }
+            if (urls.length > 0) {
+                Qt.Qt.createQmlObject(Qt.resolvedUrl("VCardImportDialog.qml"),
+                                      { model: contactList.listModel,
+                                        vcards: urls})
+            }
+        }
     }
 
     KeyboardRectangle {
