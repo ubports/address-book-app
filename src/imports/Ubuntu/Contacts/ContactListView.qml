@@ -462,14 +462,14 @@ Item {
                 var needUpdate = false
                 if (root.filterTerm === "") { // if the search criteria is empty clear the list before show all contacts
                     if (contactTermFilter.value !== "") {
-                        contactList.changeFilter(root.filter)
+                        root.changeFilter(root.filter)
                         contactTermFilter.value = ""
                         needUpdate = true
                     }
                 } else {
                     if (contactTermFilter.value !== root.filterTerm) {
                         if (contactTermFilter.value === "") { // if the search starts clear the list before show results
-                            contactList.changeFilter(root.filter)
+                            root.changeFilter(root.filter)
                         }
                         contactTermFilter.value = root.filterTerm
                         needUpdate = true
