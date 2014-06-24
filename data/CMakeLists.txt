@@ -1,4 +1,4 @@
-if (not CLICK_MODE)
+if (NOT CLICK_MODE)
     set(XSCREENSHOT "X-Screenshot=${ADDRESS_BOOK_APP_FULL_DIR}/artwork/address-book-app-preview.png")
 endif()
 
