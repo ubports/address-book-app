@@ -43,6 +43,7 @@ static void printUsage(const QStringList& arguments)
              << "[addressbook:///contact?id=<contact-id>"
              << "[addressbook:///create?phone=<phone-number>"
              << "[addressbook:///pick?single=<true/false>"
+             << "[addressbook:///vcard?url=<vcard-file>"
              << "[--fullscreen]"
              << "[--help]"
              << "[-testability]";
@@ -297,6 +298,11 @@ void AddressBookApp::parseUrl(const QString &arg)
         args << "single";
         methodsMetaData.insert("pick", args);
         args.clear();
+
+        //vcard
+        args << "url";
+        methodsMetaData.insert("vcard", args);
+        args.clear();
     }
 
     QUrlQuery query(url);
@@ -356,7 +362,7 @@ void AddressBookApp::callQMLMethod(const QString name, QStringList args)
             method.invoke(mainView);
             break;
         case 1:
-            method.invoke(mainView, Q_ARG(QVariant, QVariant(args[0].toUtf8())));
+            method.invoke(mainView, Q_ARG(QVariant, QVariant(QUrl(args[0]))));
             break;
         case 2:
             method.invoke(mainView, Q_ARG(QVariant, QVariant(args[0].toUtf8())),

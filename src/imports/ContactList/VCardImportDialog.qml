@@ -41,7 +41,8 @@ Item {
         dialog = Popups.PopupUtils.open(importDialogComponent, root)
 
         for(var i=0, iMax=vcards.length; i < iMax; i++) {
-            model.importContacts(vcards[i])
+            var vcardUrl = vcards[i]
+            model.importContacts(vcardUrl)
         }
     }
 
@@ -54,6 +55,7 @@ Item {
             imported.push(url)
             if (error !== ContactModel.ImportNoError) {
                 root.importErrors.push(error)
+                console.error("Fail to import vcard:" + error)
             }
             root.importedVcards = imported
             root.importErrors = importErrors

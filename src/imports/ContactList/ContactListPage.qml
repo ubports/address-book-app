@@ -414,10 +414,6 @@ PageWithBottomEdge {
         }
 
         onImportContactRequested: {
-            var urls = []
-            for(var i=0; i < items.length; i++) {
-                urls.push(items[i].url)
-            }
             if (urls.length > 0) {
                 var importDialog = Qt.createQmlObject("VCardImportDialog{}",
                                    mainPage,
