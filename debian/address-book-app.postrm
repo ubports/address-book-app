@@ -2,8 +2,12 @@
 
 case "$1" in
     remove|upgrade|deconfigure)
-        # unregister address-book-app content hub rules
-        /usr/lib/arm-linux-gnueabihf/content-hub/content-hub-peer-hook
+        # register address-book-app content hub rules
+        content_hub_hook=$(find /usr/lib/*/content-hub -name "content-hub-peer-hook"  -executable -print0 -nowarn)
+        if [ ! -z "$content_hub_hook" ]
+        then
+            $content_hub_hook
+        fi
     ;;
 
     failed-upgrade)
