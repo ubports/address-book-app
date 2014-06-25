@@ -17,74 +17,28 @@
 import QtQuick 2.2
 import QtContacts 5.0
 import Ubuntu.Components 0.1
+import Ubuntu.Contacts 0.1 as ContactsUI
 
 import "../Common"
 
 ContactDetailBase {
     id: root
 
-    readonly property string defaultAvatar: Qt.resolvedUrl("../../artwork/contact-default-profile.png")
+    implicitHeight: units.gu(8)
+    implicitWidth: units.gu(10)
 
-    function getAvatar(avatarDetail)
-    {
-        // use this verbose mode to avoid problems with binding loops
-        var avatarUrl = defaultAvatar
-        if (avatarDetail) {
-            var avatarValue = avatarDetail.value(Avatar.ImageUrl)
-            if (avatarValue != "") {
-                avatarUrl = avatarValue
-            }
-        }
-        return avatarUrl
-    }
-
-    detail: contact ? contact.detail(ContactDetail.Avatar) : null
-    implicitHeight: units.gu(17)
-
-    // update the contact detail in case of the contact change
     Connections {
-        target: root.contact
-        onContactChanged: {
-            if (root.contact) {
-                root.detail = contact.detail(ContactDetail.Avatar)
-            } else {
-                root.detail = null
-            }
-        }
+        target: root.contact.avatar
+        onDetailChanged: avatar.reload()
     }
 
-    onDetailChanged: {
-        var newAvatar = root.getAvatar(root.detail)
-        if (newAvatar !== defaultAvatar) {
-            avatar.source = newAvatar
-        } else {
-            updateAvatar.restart()
-        }
-    }
-
-    // Wait some milliseconds before update the avatar, in some cases the avatac get update later and this cause the image flick
-    Timer {
-        id: updateAvatar
-
-        interval: 100
-        running: false
-        repeat: false
-        onTriggered: {
-            if (root.detail && contact) {
-                avatar.source = root.getAvatar(root.detail)
-            } else {
-                avatar.source = root.defaultAvatar
-            }
-        }
-    }
-
-    Image {
+    ContactsUI.ContactAvatar {
         id: avatar
 
-        anchors.fill: parent
-        asynchronous: true
-        smooth: true
-        source: root.defaultAvatar
-        fillMode: Image.PreserveAspectCrop
+        contactElement: root.contact
+        anchors {
+            fill: parent
+            leftMargin: units.gu(2)
+        }
     }
 }

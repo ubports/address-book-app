@@ -100,6 +100,7 @@ ListItem.Empty {
     }
 
     highlightWhenPressed: false
+    showDivider: false
 
     Rectangle {
         anchors.fill: parent

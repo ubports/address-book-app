@@ -95,7 +95,7 @@ ContactDetailGroupWithTypeBase {
 
         return changed
     }
-    minimumHeight: units.gu(5)
+
     headerDelegate: ListItem.Empty {
         id: header
         highlightWhenPressed: false
@@ -104,6 +104,9 @@ ContactDetailGroupWithTypeBase {
         height: units.gu(5)
         // disable listview mouse area
         __mouseArea.visible: false
+        divider.anchors.leftMargin: units.gu(2)
+        divider.anchors.rightMargin: units.gu(2)
+
         Label {
             anchors {
                 verticalCenter: parent.verticalCenter
@@ -116,35 +119,6 @@ ContactDetailGroupWithTypeBase {
 
             // style
             fontSize: "medium"
-        }
-
-        Icon {
-            objectName: "newDetailButton"
-
-            anchors {
-                verticalCenter: parent.verticalCenter
-                right: parent.right
-                rightMargin: units.gu(2)
-            }
-            width: units.gu(2)
-            height: units.gu(2)
-            name: "add"
-        }
-
-        // Mouse area fill all title area to avoid problems with swipe from the right gesture
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                if (detailQmlTypeName) {
-                    var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + detailQmlTypeName + "{}", root)
-                    if (newDetail) {
-                        var newDetailsCopy = root.newDetails
-                        newDetailsCopy.push(newDetail)
-                        root.newDetails = newDetailsCopy
-                        root.contact.addDetail(newDetail)
-                    }
-                }
-            }
         }
     }
 

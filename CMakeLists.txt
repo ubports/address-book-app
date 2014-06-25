@@ -17,7 +17,6 @@ find_package(Qt5Qml)
 find_package(Qt5Quick)
 find_package(Qt5DBus)
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(CONTENTHUB REQUIRED libcontent-hub)
 
 set(ADDRESS_BOOK_APP_DIR ${CMAKE_INSTALL_DATADIR}/address-book-app)
 set(ADDRESS_BOOK_APP_FULL_DIR ${CMAKE_INSTALL_FULL_DATADIR}/address-book-app)

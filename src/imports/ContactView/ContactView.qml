@@ -67,7 +67,7 @@ Page {
         anchors.fill: parent
         //WORKAROUND: There is a bug on SDK page that causes the page to appear flicked with small contents
         // see bug #1223050
-        contentHeight: Math.max(contents.height, parent.height)
+        contentHeight: Math.max(contents.height, parent.height) + units.gu(2)
         contentWidth: parent.width
         visible: !busyIndicator.visible
 
@@ -77,27 +77,16 @@ Page {
             height: childrenRect.height
             anchors {
                 top: parent.top
+                topMargin: units.gu(2)
                 left: parent.left
                 right: parent.right
             }
 
             ContactDetailAvatarView {
                 contact: root.contact
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
+                anchors.left: parent.left
                 height: implicitHeight
-                ContactDetailFavoriteView {
-                    contact: root.contact
-                    anchors {
-                        left: parent.left
-                        bottom: parent.bottom
-                        margins: units.gu(2)
-                    }
-                    width: units.gu(4)
-                    height: units.gu(4)
-                }
+                width: implicitWidth
             }
 
             ContactDetailPhoneNumbersView {
@@ -200,6 +189,30 @@ Page {
     }
 
     tools: ToolbarItems {
+        ToolbarButton {
+            action: Action {
+                objectName: "favorite"
+                text: i18n.tr("Favorite")
+                iconName: root.contact && root.contact.favorite.favorite ? "favorite-selected" : "favorite-unselected"
+                onTriggered: {
+                    root.contact.favorite.favorite = !root.contact.favorite.favorite
+                    root.contact.save()
+                }
+            }
+        }
+        // FIXME: Having more than 3 options in the header causes a bug that make difficult to reach the component behind it.
+        // Enable it again when the bug #1329557 get fix
+//        ToolbarButton {
+//            action: Action {
+//                objectName: "share"
+//                text: i18n.tr("Share")
+//                iconName: "share"
+//                onTriggered: {
+//                    pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
+//                                   { contactModel: root.model, contact: root.contact})
+//                }
+//            }
+//        }
         ToolbarButton {
             action: Action {
                 objectName: "edit"

@@ -1,4 +1,7 @@
 {
+    "destination": [
+        "contacts"
+    ],
     "source": [
         "contacts"
     ]

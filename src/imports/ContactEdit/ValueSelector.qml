@@ -59,22 +59,12 @@ Item {
 
     // FIXME: workaround to close list after a while.
     // we cant rely on focus since it hides the keyboard.
-    MouseArea {
-        anchors.fill: parent
-        visible: expanded
-        onPressed: {
-            mouse.accepted = false
-            timer.restart()
-        }
-        propagateComposedEvents: true
-        z: 1
-    }
-
     Timer {
         id: timer
+
         interval: 5000
-        onTriggered: state = ""
         running: false
+        onTriggered: state = ""
     }
 
     Item {
@@ -119,8 +109,12 @@ Item {
 
     MouseArea {
         anchors.fill: parent
-        propagateComposedEvents: true
-        onClicked: if (!readOnly) root.state = "expanded"
+        onClicked: {
+            if (!readOnly) {
+                root.state = "expanded"
+                timer.restart()
+            }
+        }
     }
 
     ListView {
@@ -160,7 +154,10 @@ Item {
                     width: parent.width + units.gu(0.5)
                     height: parent.height + units.gu(0.5)
                     anchors.centerIn: parent
-                    onClicked: currentIndex = index
+                    onClicked: {
+                        currentIndex = index
+                        timer.restart()
+                    }
                 }
             }
 

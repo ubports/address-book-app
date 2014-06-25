@@ -41,8 +41,8 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 Item {
     id: root
 
-    property alias view: view
-    property alias count: view.count
+    readonly property alias view: view
+    readonly property alias count: view.count
 
     /*!
       \qmlproperty string contactNameFilter
@@ -191,6 +191,12 @@ Item {
     */
     property alias listDelegate: view.listDelegate
     /*!
+      \qmlproperty bool autoUpdate
+
+       This property indicates whether or not the contact model should be updated automatically, default value is true.
+    */
+    property alias autoUpdate: contactsModel.autoUpdate
+    /*!
       \qmlproperty bool isInSelectionMode
 
       This property holds a list with the index of selected items
@@ -225,7 +231,6 @@ Item {
     {
         view.startSelection()
     }
-
     function isSelected(item)
     {
         return view.isSelected(item)
@@ -272,6 +277,14 @@ Item {
             contactsModel._clearModel = true
         }
         root.filter = newFilter
+    }
+    /*!
+      Causes the list to update
+      \l autoUpdate
+    */
+    function update()
+    {
+        contactsModel.update()
     }
 
     Rectangle {
@@ -468,6 +481,11 @@ Item {
                 //new contacts as soon as it arrives in the model
                 if (contactsModel._clearModel && contacts.length === 0) {
                     contactsModel._clearModel = false
+                    // do a new update if autoUpdate is false
+                    if (!contactsModel.autoUpdate) {
+                        contactsModel.update()
+                    }
+
                 }
             }
         }

@@ -154,8 +154,7 @@ Item {
 
         onStatusChanged: {
             if (status == Loader.Ready) {
-                pickerLoader.item.contactsModel = listModel
-                pickerLoader.item.contactId = contact.contactId
+                pickerLoader.item.updateDetails(contact)
                 pickerLoader.item.detailClicked.connect(root._onDetailClicked)
             }
         }

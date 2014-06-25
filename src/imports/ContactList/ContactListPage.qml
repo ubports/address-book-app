@@ -21,6 +21,7 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Contacts 0.1 as ContactsUI
 import Ubuntu.Components.Popups 0.1 as Popups
+import Ubuntu.Content 0.1 as ContentHub
 import "../ContactEdit"
 import "../Common"
 
@@ -29,6 +30,7 @@ PageWithBottomEdge {
     objectName: "contactListPage"
 
     property bool pickMode: false
+    property alias contentHubTransfer: contactExporter.activeTransfer
     property bool pickMultipleContacts: false
     property var onlineAccountsMessageDialog: null
     property QtObject contactIndex: null
@@ -41,10 +43,7 @@ PageWithBottomEdge {
     function createEmptyContact(phoneNumber) {
         var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
                         {detail: "EmailAddress", field: "emailAddress", value: ""},
-                        {detail: "OnlineAccount", field: "accountUri", value: ""},
-                        {detail: "Address", field: "street", value: ""},
-                        {detail: "Name", field: "firstName", value: ""},
-                        {detail: "Organization", field: "name", value: ""}
+                        {detail: "Name", field: "firstName", value: ""}
                       ]
 
         var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", mainPage)
@@ -126,7 +125,7 @@ PageWithBottomEdge {
         detailToPick: ContactDetail.PhoneNumber
         multiSelectionEnabled: true
         multipleSelection: !pickMode ||
-                           ((contactContentHub && contactContentHub.multipleItems) || mainPage.pickMultipleContacts)
+                           mainPage.pickMultipleContacts || (contactExporter.active && contactExporter.isMultiple)
 
         anchors.fill: parent
 
@@ -181,9 +180,7 @@ PageWithBottomEdge {
                 for (var i=0; i < items.count; i++) {
                     contacts.push(items.get(i).model.contact)
                 }
-                exporter.contactModel = contactList.listModel
-                exporter.contacts = contacts
-                exporter.start()
+                contactExporter.exportContacts(contacts)
             } else {
                 var contacts = []
 
@@ -198,8 +195,8 @@ PageWithBottomEdge {
 
         onSelectionCanceled: {
             if (pickMode) {
-                if (contactContentHub) {
-                    contactContentHub.cancelTransfer()
+                if (contentHubTransfer) {
+                    contentHubTransfer.state = ContentTransfer.Aborted
                 }
                 pageStack.pop()
                 application.returnVcard("")
@@ -385,7 +382,8 @@ PageWithBottomEdge {
                                    {model: contactList.listModel,
                                     contact: newContact,
                                     active: false,
-                                    enabled: false})
+                                    enabled: false,
+                                    initialFocusSection: "name"})
     }
 
     Connections {
@@ -430,20 +428,37 @@ PageWithBottomEdge {
         }
     }
 
-    ContactExporter {
-        id: exporter
-        contactModel: contactList.listModel ? contactList.listModel : null
-        outputFile: contactContentHub ? contactContentHub.createTemporaryFile() : "/tmp/vcard_address_book_app.vcf"
-        onCompleted: {
-            if (contactContentHub) {
-                if (error == ContactModel.ExportNoError) {
-                    contactContentHub.returnContacts(exporter.outputFile)
-                } else {
-                    contactContentHub.cancelTransfer()
-                }
+
+    QtObject {
+        id: contactExporter
+
+        property var activeTransfer: null
+        readonly property bool active: activeTransfer && (activeTransfer.state === ContentHub.ContentTransfer.InProgress && activeTransfer.direction === ContentHub.ContentTransfer.Import)
+        readonly property bool isMultiple: activeTransfer && (activeTransfer.selectionType === ContentHub.ContentTransfer.Multiple)
+
+        function exportContacts(contacts)
+        {
+            if (activeTransfer) {
+                var exportUrl = "file:///tmp/address_book_app_export.vcf"
+                mainPage.contactModel.exportCompleted.connect(contactExporter.onExportCompleted)
+                mainPage.contactModel.exportContacts(exportUrl, [], contacts)
+            } else {
+                console.error("Export requested with noo active transfer")
+            }
+        }
+
+        function onExportCompleted(error, url)
+        {
+            mainPage.contactModel.exportCompleted.disconnect(contactExporter.onExportCompleted)
+            if (error === ContactModel.ExportNoError) {
+                var obj = Qt.createQmlObject("import Ubuntu.Content 0.1;  ContentItem { url: '" + url + "' }", contactExporter)
+                activeTransfer.items = [obj]
+                activeTransfer.state = ContentHub.ContentTransfer.Charged
+            } else {
+                console.error("Fail to export contacts:" + error)
             }
             pageStack.pop()
-            application.returnVcard(exporter.outputFile)
+            application.returnVcard(url)
         }
     }
 
@@ -458,6 +473,15 @@ PageWithBottomEdge {
 
         if (TEST_DATA != "") {
             contactList.listModel.importContacts("file://" + TEST_DATA)
+        }
+
+        if (!pickMode) {
+            mainPage.setBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                                       {model: contactList.listModel,
+                                        contact: mainPage.createEmptyContact(""),
+                                        active: false,
+                                        enabled: false,
+                                        initialFocusSection: "name"})
         }
     }
 }

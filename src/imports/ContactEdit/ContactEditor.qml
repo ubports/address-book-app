@@ -18,6 +18,7 @@ import QtQuick 2.2
 import QtContacts 5.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components.Popups 0.1 as Popups
 
 import "../Common"
 
@@ -160,7 +161,7 @@ Page {
             fill: parent
             bottomMargin: keyboard.height
         }
-        contentHeight: contents.height
+        contentHeight: contents.height + units.gu(2)
         contentWidth: parent.width
 
         //after add a new field we need to wait for the contentHeight to change to scroll to the correct position
@@ -171,32 +172,48 @@ Page {
 
             anchors {
                 top: parent.top
+                topMargin: units.gu(2)
                 left: parent.left
                 right: parent.right
             }
             height: childrenRect.height
 
-            ContactDetailNameEditor {
-                id: nameEditor
+            Row {
+                function save()
+                {
+                    var avatarSave = avatarEditor.save()
+                    var nameSave = nameEditor.save();
 
+                    return (nameSave || avatarSave);
+                }
+
+                function isEmpty()
+                {
+                    return (avatarEditor.isEmpty() && nameEditor.isEmpty())
+                }
 
                 anchors {
                     left: parent.left
+                    leftMargin: units.gu(2)
                     right: parent.right
                 }
-                height: nameEditor.implicitHeight + units.gu(3)
-                contact: contactEditor.contact
-            }
+                height: Math.max(avatarEditor.height, nameEditor.height) - units.gu(4)
 
-            ContactDetailAvatarEditor {
-                id: avatarEditor
+                ContactDetailAvatarEditor {
+                    id: avatarEditor
 
-                contact: contactEditor.contact
-                anchors {
-                    left: parent.left
-                    right: parent.right
+                    contact: contactEditor.contact
+                    height: implicitHeight
+                    width: implicitWidth
                 }
-                height: implicitHeight
+
+                ContactDetailNameEditor {
+                    id: nameEditor
+
+                    width: parent.width - avatarEditor.width
+                    height: nameEditor.implicitHeight + units.gu(3)
+                    contact: contactEditor.contact
+                }
             }
 
             ContactDetailPhoneNumbersEditor {
@@ -271,13 +288,48 @@ Page {
                 height: implicitHeight
             }
 
-            // We need this extra element to correct align the deleteButton
+            ListItem.ThinDivider {}
+
             Item {
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
-                height: deleteButton.height + units.gu(2)
+                height: units.gu(2)
+            }
+
+            Row {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(2)
+                }
+                height: units.gu(6)
+                spacing: units.gu(2)
+
+                // WORKAROUND: SDK uses a old version of qtquick components
+                activeFocusOnTab: true
+                onActiveFocusChanged: {
+                    if (activeFocus) {
+                        addNewFieldButton.forceActiveFocus()
+                    }
+                }
+
+                Button {
+                    id: addNewFieldButton
+                    objectName: "addNewFieldButton"
+
+                    text: i18n.tr("Add Field")
+                    gradient: UbuntuColors.greyGradient
+                    anchors {
+                        top: parent.top
+                        bottom: parent.bottom
+                        bottomMargin: units.gu(2)
+                    }
+                    width: (parent.width / 2) - units.gu(1)
+
+                    onClicked: addFieldDialog.showOptions()
+                }
 
                 Button {
                     id: deleteButton
@@ -285,14 +337,13 @@ Page {
                     text: i18n.tr("Delete")
                     visible: !contactEditor.isNewContact
                     anchors {
-                        margins: units.gu(2)
                         top: parent.top
-                        left: parent.left
-                        right: parent.right
+                        bottom: parent.bottom
+                        bottomMargin: units.gu(2)
                     }
-
+                    width: (parent.width / 2) - units.gu(1)
                     onClicked: {
-                        var dialog = PopupUtils.open(removeContactDialog, null)
+                        var dialog = Popups.PopupUtils.open(removeContactDialog, null)
                         dialog.contacts = [contactEditor.contact]
                     }
                 }
@@ -350,6 +401,23 @@ Page {
         }
     }
 
+    AddFieldDialog {
+        id: addFieldDialog
+
+        contact: contactEditor.contact
+        onFieldSelected: {
+            if (qmlTypeName) {
+                var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + qmlTypeName + "{}", addFieldDialog)
+                if (newDetail) {
+                    var newDetailsCopy = contactEditor.newDetails
+                    newDetailsCopy.push(newDetail)
+                    contactEditor.newDetails = newDetailsCopy
+                    contactEditor.contact.addDetail(newDetail)
+                }
+            }
+        }
+    }
+
     Component {
         id: removeContactDialog
 
@@ -359,14 +427,17 @@ Page {
             property var popPages: false
 
             onCanceled: {
-                PopupUtils.close(removeContactsDialogMessage)
+                Popups.PopupUtils.close(removeContactsDialogMessage)
             }
 
             onAccepted: {
                 popPages = true
                 removeContacts(contactEditor.model)
-                PopupUtils.close(removeContactsDialogMessage)
+                Popups.PopupUtils.close(removeContactsDialogMessage)
             }
+
+            // hide virtual keyboard if necessary
+            Component.onCompleted: Qt.inputMethod.hide()
 
             // WORKAROUND: SDK element crash if pop the page where the dialog was created
             Component.onDestruction: {

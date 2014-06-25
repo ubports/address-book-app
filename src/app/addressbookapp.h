@@ -22,8 +22,6 @@
 #include <QtGui/QGuiApplication>
 #include <QtQuick/QQuickView>
 
-class ContentCommunicator;
-
 class AddressBookApp : public QGuiApplication
 {
     Q_OBJECT
@@ -62,7 +60,6 @@ private:
 
 private:
     QQuickView *m_view;
-    ContentCommunicator *m_contentComm;
     QDBusInterface *m_syncMonitor;
     QString m_initialArg;
     bool m_viewReady;
