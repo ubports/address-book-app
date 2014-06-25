@@ -1,0 +1,16 @@
+#!/bin/sh
+
+case "$1" in
+    configure)
+        # register address-book-app content hub rules
+        /usr/lib/arm-linux-gnueabihf/content-hub/content-hub-peer-hook
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 0
+    ;;
+esac
