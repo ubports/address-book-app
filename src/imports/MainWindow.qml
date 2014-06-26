@@ -50,7 +50,7 @@ MainView {
         mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"), { pickMode: true, pickMultipleContacts: !isSingle})
     }
 
-    function vcard(_url) {
+    function importvcard(_url) {
         mainStack.importContactRequested([_url])
     }
 
