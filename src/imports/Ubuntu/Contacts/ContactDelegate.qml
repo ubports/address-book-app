@@ -48,6 +48,7 @@ ListItemWithActions {
     height: delegate.height
     implicitHeight: delegate.height + (pickerLoader.item ? pickerLoader.item.height : 0)
     width: parent ? parent.width : 0
+    color: Theme.palette.normal.background
 
     onItemClicked: root.clicked(index, contact)
     onItemPressAndHold: root.pressAndHold(index, contact)

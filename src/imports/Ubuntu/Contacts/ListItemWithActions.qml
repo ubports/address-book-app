@@ -17,7 +17,7 @@
 import QtQuick 2.2
 import Ubuntu.Components 0.1
 
-Rectangle {
+Item {
     id: root
 
     property Action leftSideAction: null
@@ -27,10 +27,11 @@ Rectangle {
     property Action activeAction: null
     property var activeItem: null
     property bool triggerActionOnMouseRelease: false
+    property alias color: main.color
     default property alias contents: main.children
 
     readonly property double actionWidth: units.gu(5)
-    readonly property double threshold: 0.0
+    readonly property double threshold: 0.4
     readonly property string swipeState: main.x == 0 ? "Normal" : main.x > 0 ? "LeftToRight" : "RightToLeft"
 
     signal itemClicked(var mouse)
@@ -120,7 +121,7 @@ Rectangle {
 
     height: defaultHeight
     clip: height !== defaultHeight
-    color: Theme.palette.selected.field
+    //color: Theme.palette.selected.field
 
     Rectangle {
         id: leftActionView
