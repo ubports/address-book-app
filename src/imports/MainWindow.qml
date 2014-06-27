@@ -50,6 +50,10 @@ MainView {
         mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"), { pickMode: true, pickMultipleContacts: !isSingle})
     }
 
+    function importvcard(_url) {
+        mainStack.importContactRequested([_url])
+    }
+
     PageStack {
         id: mainStack
 
@@ -60,6 +64,7 @@ MainView {
         signal editContatRequested(string contactId, string phoneNumber)
         signal contactCreated(QtObject contact)
         signal contactModelError(string errorMessage)
+        signal importContactRequested(var urls)
 
         anchors {
             fill: parent
@@ -117,6 +122,15 @@ MainView {
             mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"),
                            {pickMode: true,
                             contentHubTransfer: transfer})
+        }
+        onImportRequested: {
+            if (transfer.state === ContentHub.ContentTransfer.Charged) {
+                var urls = []
+                for(var i=0; i < transfer.items.length; i++) {
+                    urls.push(transfer.items[i].url)
+                }
+                mainStack.importContactRequested(urls)
+            }
         }
     }
 }

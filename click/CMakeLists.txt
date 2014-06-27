@@ -9,4 +9,8 @@ if(CLICK_MODE)
             DESTINATION ${CMAKE_INSTALL_PREFIX})
     install(FILES address-book-content.json
             DESTINATION ${CMAKE_INSTALL_PREFIX})
+else(CLICK_MODE)
+    install(FILES address-book-content.json
+            DESTINATION ${CMAKE_INSTALL_DATADIR}/content-hub/peers
+            RENAME address-book-app)
 endif(CLICK_MODE)
