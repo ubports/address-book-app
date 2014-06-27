@@ -401,7 +401,7 @@ Item {
                 right: parent.right
             }
             height: visible ? childrenRect.height : 0
-            visible: root.showFavourites && (callerRepeat.count > 0)
+            visible: view.favouritesIsSelected && (callerRepeat.count > 0)
             onHeightChanged: {
                 // make selected item fully visible
                 if (calledModel.currentIndex != -1) {
