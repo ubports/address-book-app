@@ -1,3 +1,17 @@
+address-book-app (0.2+14.10.20140627.1-0ubuntu1) utopic; urgency=low
+
+  [ Tarmac ]
+  * Updated pot file. Implemented frequently called list. Implemented
+    vcard import. Search contacts by phone number and name. (LP:
+    #1325016)
+
+  [ Renato Araujo Oliveira Filho ]
+  * Updated pot file. Implemented frequently called list. Implemented
+    vcard import. Search contacts by phone number and name. (LP:
+    #1325016)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 27 Jun 2014 21:31:10 +0000
+
 address-book-app (0.2+14.10.20140618-0ubuntu1) utopic; urgency=low
 
   [ Tarmac ]
