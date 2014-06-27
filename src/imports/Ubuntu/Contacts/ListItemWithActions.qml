@@ -121,7 +121,6 @@ Item {
 
     height: defaultHeight
     clip: height !== defaultHeight
-    //color: Theme.palette.selected.field
 
     Rectangle {
         id: leftActionView

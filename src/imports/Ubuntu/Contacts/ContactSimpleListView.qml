@@ -284,11 +284,6 @@ MultipleSelectionListView {
 
         // collapse the item before remove it, to avoid crash
         ListView.onRemove: SequentialAnimation {
-            ScriptAction {
-                script: {
-                    console.debug("will remove")
-                }
-            }
             PropertyAction {
                 target: contactDelegate
                 property: "ListView.delayRemove"
@@ -301,7 +296,6 @@ MultipleSelectionListView {
             }
             ScriptAction {
                 script: {
-                    console.debug(remove )
                     if (contactDelegate.state !== "") {
                         contactListView.currentIndex = -1
                     }
