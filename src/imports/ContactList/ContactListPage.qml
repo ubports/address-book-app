@@ -121,7 +121,7 @@ PageWithBottomEdge {
             bottom: keyboard.top
             right: parent.right
         }
-        contactNameFilter: searchField.text
+        filterTerm: searchField.text
         detailToPick: ContactDetail.PhoneNumber
         multiSelectionEnabled: true
         multipleSelection: !pickMode ||
@@ -342,6 +342,10 @@ PageWithBottomEdge {
                 target: mainPage
                 __customHeaderContents: searchField
                 tools: toolbarItemsSearch
+            }
+            PropertyChanges {
+                target: contactList
+                showFavourites: false
             }
         },
         State {

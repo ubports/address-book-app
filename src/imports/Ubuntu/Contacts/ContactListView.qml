@@ -45,12 +45,12 @@ Item {
     readonly property alias count: view.count
 
     /*!
-      \qmlproperty string contactNameFilter
+      \qmlproperty string contactStringFilter
 
       This property holds a string that will be used to filter contacts on the list
       By default this is set to empty
     */
-    property string contactNameFilter: ""
+    property string filterTerm: ""
     /*!
       \qmlproperty Filter filter
 
@@ -290,7 +290,8 @@ Item {
     Rectangle {
         id: itemHeader
 
-        height: units.gu(2)
+        visible: root.showFavourites && (root.filterTerm.length === 0)
+        height: visible ? units.gu(2) : 0
         anchors {
             left: parent.left
             right: parent.right
@@ -311,14 +312,14 @@ Item {
                 text: i18n.dtr("address-book-app", "All")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
-                color: root.showFavourites ? UbuntuColors.warmGrey : UbuntuColors.orange
+                color: view.favouritesIsSelected ? UbuntuColors.warmGrey : UbuntuColors.orange
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
                         //WORKAROUND: clear the model before start populate it with the new contacts
                         //otherwise the model will wait for all contacts before show any new contact
                         root.changeFilter(root.filter)
-                        root.showFavourites = false
+                        view.favouritesIsSelected = false
                     }
                 }
             }
@@ -343,21 +344,22 @@ Item {
                 text: i18n.dtr("address-book-app", "Favourites")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
-                color: root.showFavourites ? UbuntuColors.orange : UbuntuColors.warmGrey
+                color: view.favouritesIsSelected ? UbuntuColors.orange : UbuntuColors.warmGrey
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: root.showFavourites = true
+                    onClicked: view.favouritesIsSelected = true
                 }
             }
         }
     }
 
-    onContactNameFilterChanged: contactSearchTimeout.restart()
+    onFilterTermChanged: contactSearchTimeout.restart()
 
     ContactSimpleListView {
         id: view
 
-        property bool showFavourites: false
+        property bool showFavourites: true
+        property bool favouritesIsSelected: false
 
         function getSectionText(index) {
             var tag = listModel.contacts[index].tag.tag
@@ -400,6 +402,34 @@ Item {
             matchFlags: DetailFilter.MatchExactly
         }
 
+        UnionFilter {
+            id: contactTermFilter
+
+            property string value: ""
+
+            DetailFilter {
+                detail: ContactDetail.DisplayLabel
+                field: DisplayLabel.Label
+                value: contactTermFilter.value
+                matchFlags: DetailFilter.MatchContains
+            }
+
+            DetailFilter {
+                detail: ContactDetail.PhoneNumber
+                field: PhoneNumber.Number
+                value: contactTermFilter.value
+                matchFlags: DetailFilter.MatchPhoneNumber
+            }
+
+            DetailFilter {
+                detail: ContactDetail.PhoneNumber
+                field: PhoneNumber.Number
+                value: contactTermFilter.value
+                matchFlags: DetailFilter.MatchContains
+            }
+        }
+
+
         IntersectionFilter {
             id: contactsFilter
 
@@ -407,27 +437,19 @@ Item {
 
             filters: {
                 var filters = []
-                if (root.showFavourites) {
+                if (contactTermFilter.value.length > 0) {
+                    filters.push(contactTermFilter)
+                } else if (view.showFavourites && view.favouritesIsSelected) {
                     filters.push(favouritesFilter)
                 }
+
                 if (root.filter) {
                     filters.push(root.filter)
                 }
-                if (nameFilter.value && (nameFilter.value.length > 0)) {
-                    filters.push(nameFilter)
-                }
+
                 active = (filters.length > 0)
                 return filters
             }
-        }
-
-        DetailFilter {
-            id: nameFilter
-
-            detail: ContactDetail.DisplayLabel
-            field: DisplayLabel.Label
-            value: root.nameFilter
-            matchFlags: DetailFilter.MatchContains
         }
 
         Timer {
@@ -437,14 +459,26 @@ Item {
             repeat: false
             interval: 300
             onTriggered: {
-                if (root.contactNameFilter === "") { // if the search criteria is empty clear the list before show all contacts
-                    contactList.changeFilter(root.filter)
-                    nameFilter.value = ""
-                } else {
-                    if (nameFilter.value === "") { // if the search starts clear the list before show results
-                        contactList.changeFilter(root.filter)
+                var needUpdate = false
+                if (root.filterTerm === "") { // if the search criteria is empty clear the list before show all contacts
+                    if (contactTermFilter.value !== "") {
+                        root.changeFilter(root.filter)
+                        contactTermFilter.value = ""
+                        needUpdate = true
                     }
-                    nameFilter.value = root.contactNameFilter
+                } else {
+                    if (contactTermFilter.value !== root.filterTerm) {
+                        if (contactTermFilter.value === "") { // if the search starts clear the list before show results
+                            root.changeFilter(root.filter)
+                        }
+                        contactTermFilter.value = root.filterTerm
+                        needUpdate = true
+                    }
+                }
+
+                // manually update if autoUpdate is disabled
+                if (needUpdate && !root.autoUpdate) {
+                    contactsModel.update()
                 }
             }
         }
