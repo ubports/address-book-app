@@ -268,33 +268,15 @@ MultipleSelectionListView {
     listDelegate: ContactDelegate {
         id: contactDelegate
 
-        // overwrite
-        function disappeared()
-        {
-            contactListView.contactDisappeared(contact)
-        }
-
         width: parent.width
         selected: contactListView.multiSelectionEnabled && contactListView.isSelected(contactDelegate)
         defaultAvatarUrl: contactListView.defaultAvatarImageUrl
         titleDetail: contactListView.titleDetail
         titleFields: contactListView.titleFields
-
-        // ListItemWithActions
-        //locked: contactListView.isInSelectionMode || detailsShown
-        //triggerActionOnMouseRelease: true
-        //leftSideAction: contactListView.leftSideAction
-        //rightSideActions: contactListView.rightSideActions
+        isCurrentItem: ListView.isCurrentItem
 
         onDetailClicked: contactListView.detailClicked(contact, detail, action)
         onInfoRequested: contactListView._fetchContact(index, contact)
-
-        Behavior on height {
-            id: behaviorOnHeight
-
-            enabled: false
-            UbuntuNumberAnimation { }
-        }
 
         // collapse the item before remove it, to avoid crash
         ListView.onRemove: SequentialAnimation {
@@ -333,67 +315,6 @@ MultipleSelectionListView {
                 contactListView.selectItem(contactDelegate)
             }
         }
-        state: ListView.isCurrentItem ? "expanded" : ""
-        states: [
-            State {
-                name: "expanded"
-                PropertyChanges {
-                    target: contactDelegate
-                    clip: true
-                    height: contactDelegate.implicitHeight
-                    loaderOpacity: 1.0
-                    // FIXME: Setting detailsShown to true on expanded state cause the property to change to false and true during the state transition, and that
-                    // causes the loader to load twice
-                    //detailsShown: true
-                }
-                PropertyChanges {
-                    target: behaviorOnHeight
-                    enabled: true
-                }
-            }
-        ]
-        transitions: [
-            Transition {
-                from: "expanded"
-                to: ""
-                SequentialAnimation {
-                    UbuntuNumberAnimation {
-                        target: contactDelegate
-                        properties: "height, loaderOpacity"
-                    }
-                    PropertyAction {
-                        target: contactDelegate
-                        property: "clip"
-                    }
-                    PropertyAction {
-                        target: contactDelegate
-                        property: "detailsShown"
-                        value: false
-                    }
-                    PropertyAction {
-                        target: contactDelegate
-                        property: "ListView.delayRemove"
-                        value: false
-                    }
-                }
-            },
-            Transition {
-                from: ""
-                to: "expanded"
-                SequentialAnimation {
-                    PropertyAction {
-                        target: contactDelegate
-                        properties: "detailsShown"
-                        value: true
-                    }
-                    PropertyAction {
-                        target: contactDelegate
-                        properties: "ListView.delayRemove"
-                        value: true
-                    }
-                }
-            }
-        ]
     }
 
     ContactFetch {

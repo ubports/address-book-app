@@ -25,7 +25,9 @@ Item {
 
     property bool showAvatar: true
     property bool selected: false
+    property bool isCurrentItem: false
     property string defaultAvatarUrl: ""
+    property string defaultTitle: ""
     property int titleDetail: ContactDetail.Name
     property variant titleFields: [ Name.FirstName, Name.LastName ]
     property bool detailsShown: false
@@ -35,15 +37,12 @@ Item {
     signal pressAndHold(int index, QtObject contact)
     signal detailClicked(QtObject contact, QtObject detail, string action)
     signal infoRequested(int index, QtObject contact)
+    signal addContactClicked(string label)
 
     function _onDetailClicked(detail, action)
     {
         detailClicked(contact, detail, action)
     }
-
-    // ListItemWithActions
-    //onItemClicked: root.clicked(index, contact)
-    //onItemPressAndHold: root.pressAndHold(index, contact)
 
     height: delegate.height
     implicitHeight: delegate.height + (pickerLoader.item ? pickerLoader.item.height : 0)
@@ -100,7 +99,7 @@ Item {
             }
             font.pointSize: 88
             color: UbuntuColors.lightAubergine
-            text: ContactsJS.formatToDisplay(contact, root.titleDetail, root.titleFields)
+            text: contact ? ContactsJS.formatToDisplay(contact, root.titleDetail, root.titleFields, "") : root.defaultTitle
             elide: Text.ElideRight
         }
 
@@ -113,7 +112,7 @@ Item {
                 rightMargin: units.gu(2)
                 verticalCenter: parent.verticalCenter
             }
-            name: "contact"
+            name: contact ? "contact" : "new-contact"
             height: units.gu(3)
             width: opacity > 0.0 ? height : 0
             opacity: root.detailsShown ? 1.0 : 0.0
@@ -122,8 +121,14 @@ Item {
             }
 
             MouseArea {
-               anchors.fill: parent
-               onClicked: root.infoRequested(index, contact)
+                anchors.fill: parent
+                onClicked: {
+                    if (contact) {
+                        root.infoRequested(index, contact)
+                    } else {
+                        root.addContactClicked(name.text)
+                    }
+                }
             }
         }
 
@@ -139,7 +144,7 @@ Item {
                 return Qt.resolvedUrl("ContactDetailPickerPhoneNumberDelegate.qml")
             }
         }
-        active: root.detailsShown
+        active: contact && root.detailsShown
         asynchronous: true
         anchors {
             top: delegate.bottom
@@ -153,10 +158,79 @@ Item {
         }
 
         onStatusChanged: {
-            if (status == Loader.Ready) {
+            if ((status == Loader.Ready) && contact) {
                 pickerLoader.item.updateDetails(contact)
                 pickerLoader.item.detailClicked.connect(root._onDetailClicked)
             }
         }
     }
+
+    Behavior on height {
+        id: behaviorOnHeight
+
+        enabled: false
+        UbuntuNumberAnimation { }
+    }
+
+    state: isCurrentItem ? "expanded" : ""
+    states: [
+        State {
+            name: "expanded"
+            PropertyChanges {
+                target: root
+                clip: true
+                height: root.implicitHeight
+                loaderOpacity: 1.0
+                // FIXME: Setting detailsShown to true on expanded state cause the property to change to false and true during the state transition, and that
+                // causes the loader to load twice
+                //detailsShown: true
+            }
+            PropertyChanges {
+                target: behaviorOnHeight
+                enabled: true
+            }
+        }
+    ]
+    transitions: [
+        Transition {
+            from: "expanded"
+            to: ""
+            SequentialAnimation {
+                UbuntuNumberAnimation {
+                    target: root
+                    properties: "height, loaderOpacity"
+                }
+                PropertyAction {
+                    target: root
+                    property: "clip"
+                }
+                PropertyAction {
+                    target: root
+                    property: "detailsShown"
+                    value: false
+                }
+                PropertyAction {
+                    target: root
+                    property: "ListView.delayRemove"
+                    value: false
+                }
+            }
+        },
+        Transition {
+            from: ""
+            to: "expanded"
+            SequentialAnimation {
+                PropertyAction {
+                    target: root
+                    properties: "detailsShown"
+                    value: true
+                }
+                PropertyAction {
+                    target: root
+                    properties: "ListView.delayRemove"
+                    value: true
+                }
+            }
+        }
+    ]
 }

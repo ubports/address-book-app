@@ -58,6 +58,20 @@ PageWithBottomEdge {
         return newContact
     }
 
+    function createContactWithPhoneNumber(phoneNumber)
+    {
+        var newContact = mainPage.createEmptyContact(phoneNumber)
+        //WORKAROUND: SKD changes the page header as soon as the page get created
+        // setting active false will avoid that
+        mainPage.showBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                                    {model: contactList.listModel,
+                                     contact: newContact,
+                                     active: false,
+                                     enabled: false,
+                                     initialFocusSection: "name"})
+
+    }
+
     title: contactList.isInSelectionMode ? i18n.tr("Select Contacts") : i18n.tr("Contacts")
 
     //bottom edge page
@@ -121,7 +135,7 @@ PageWithBottomEdge {
             bottom: keyboard.top
             right: parent.right
         }
-        contactNameFilter: searchField.text
+        filterTerm: searchField.text
         detailToPick: ContactDetail.PhoneNumber
         multiSelectionEnabled: true
         multipleSelection: !pickMode ||
@@ -159,6 +173,8 @@ PageWithBottomEdge {
                  contactList.positionViewAtBeginning()
             }
         }
+
+        onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
 
         onInfoRequested: {
             mainPage.state = ""
@@ -343,6 +359,10 @@ PageWithBottomEdge {
                 __customHeaderContents: searchField
                 tools: toolbarItemsSearch
             }
+            PropertyChanges {
+                target: contactList
+                showFavourites: false
+            }
         },
         State {
             name: "selection"
@@ -388,20 +408,10 @@ PageWithBottomEdge {
 
     Connections {
         target: pageStack
+        onCreateContactRequested: mainPage.createContactWithPhoneNumber(phoneNumber)
         onContactRequested: {
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
                            {model: contactList.listModel, contactId: contactId})
-        }
-        onCreateContactRequested: {
-            var newContact = mainPage.createEmptyContact(phoneNumber)
-            //WORKAROUND: SKD changes the page header as soon as the page get created
-            // setting active false will avoid that
-            mainPage.showBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                                        {model: contactList.listModel,
-                                         contact: newContact,
-                                         active: false,
-                                         enabled: false,
-                                         initialFocusSection: "name"})
         }
         onEditContatRequested: {
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
@@ -411,6 +421,17 @@ PageWithBottomEdge {
         }
         onContactCreated: {
             mainPage.contactIndex = contact
+        }
+
+        onImportContactRequested: {
+            if (urls.length > 0) {
+                var importDialog = Qt.createQmlObject("VCardImportDialog{}",
+                                   mainPage,
+                                   "VCardImportDialog")
+                if (importDialog) {
+                    importDialog.importVCards(contactList.listModel, urls)
+                }
+            }
         }
     }
 
