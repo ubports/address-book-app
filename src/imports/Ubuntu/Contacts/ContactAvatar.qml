@@ -26,7 +26,7 @@ UbuntuShape {
     property string displayName: ContactsJS.formatToDisplay(contactElement, ContactDetail.Name, [Name.FirstName, Name.LastName])
     readonly property string defaultAvatar: "image://theme/contact"
     readonly property string avatarUrl: ContactsJS.getAvatar(contactElement, "")
-    readonly property bool useDefaultAvatar: (displayName === "" || contact.tag.tag === "") && (avatarUrl === "")
+    readonly property bool useDefaultAvatar: (contactElement == null) || (displayName === "" || contactElement.tag.tag === "") && (avatarUrl === "")
 
     function reload()
     {

@@ -2,9 +2,9 @@
 var phoneTypeModel = null
 
 // Format contact name to be displayed
-function formatToDisplay(contact, contactDetail, detailFields, detail) {
+function formatToDisplay(contact, contactDetail, detailFields, detail, defaultTitle) {
     if (!contact) {
-        return ""
+        return defaultTitle
     }
 
     if (!detail) {

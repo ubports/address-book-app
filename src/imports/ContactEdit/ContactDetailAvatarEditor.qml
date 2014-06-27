@@ -52,7 +52,7 @@ ContactDetailBase {
 
         if (avatarDetail) {
             var avatarValue = avatarDetail.value(Avatar.ImageUrl)
-            if (avatarValue != "") {
+            if (avatarValue && (avatarValue != "")) {
                 avatarUrl = avatarValue
             }
         }
