@@ -179,6 +179,7 @@ ListItemWithActions {
                 clip: true
                 height: root.implicitHeight
                 loaderOpacity: 1.0
+                locked: true
                 // FIXME: Setting detailsShown to true on expanded state cause the property to change to false and true during the state transition, and that
                 // causes the loader to load twice
                 //detailsShown: true
