@@ -58,6 +58,20 @@ PageWithBottomEdge {
         return newContact
     }
 
+    function createContactWithPhoneNumber(phoneNumber)
+    {
+        var newContact = mainPage.createEmptyContact(phoneNumber)
+        //WORKAROUND: SKD changes the page header as soon as the page get created
+        // setting active false will avoid that
+        mainPage.showBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                                    {model: contactList.listModel,
+                                     contact: newContact,
+                                     active: false,
+                                     enabled: false,
+                                     initialFocusSection: "name"})
+
+    }
+
     title: contactList.isInSelectionMode ? i18n.tr("Select Contacts") : i18n.tr("Contacts")
 
     //bottom edge page
@@ -159,6 +173,8 @@ PageWithBottomEdge {
                  contactList.positionViewAtBeginning()
             }
         }
+
+        onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
 
         onInfoRequested: {
             mainPage.state = ""
@@ -392,20 +408,10 @@ PageWithBottomEdge {
 
     Connections {
         target: pageStack
+        onCreateContactRequested: mainPage.createContactWithPhoneNumber(phoneNumber)
         onContactRequested: {
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
                            {model: contactList.listModel, contactId: contactId})
-        }
-        onCreateContactRequested: {
-            var newContact = mainPage.createEmptyContact(phoneNumber)
-            //WORKAROUND: SKD changes the page header as soon as the page get created
-            // setting active false will avoid that
-            mainPage.showBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                                        {model: contactList.listModel,
-                                         contact: newContact,
-                                         active: false,
-                                         enabled: false,
-                                         initialFocusSection: "name"})
         }
         onEditContatRequested: {
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),

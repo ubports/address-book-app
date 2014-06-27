@@ -223,6 +223,10 @@ Item {
     */
     signal detailClicked(QtObject contact, QtObject detail, string action)
     /*!
+      This handler is called when a unknown contact is clicked, the label contains the phone number
+    */
+    signal addContactClicked(string label)
+    /*!
       This handler is called when the contact delegate disapear (height === 0) caused by the function call makeDisappear
     */
     signal contactDisappeared(QtObject contact)
@@ -373,14 +377,93 @@ Item {
             top: itemHeader.bottom
             left: parent.left
             right: parent.right
-            rightMargin: fastScroll.showing ? fastScroll.width - units.gu(1) : 0
             bottom: parent.bottom
-
+            rightMargin: fastScroll.showing ? fastScroll.width - units.gu(1) : 0
             Behavior on rightMargin {
                 UbuntuNumberAnimation {}
             }
         }
 
+        header: Column {
+            id: mostCalledView
+
+            function makeItemVisible(item)
+            {
+                var itemY = mostCalledView.y + item.y
+                var areaY = view.contentY
+                if (itemY < areaY) {
+                    view.contentY = itemY
+                }
+            }
+
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+            height: visible ? childrenRect.height : 0
+            visible: root.showFavourites && (callerRepeat.count > 0)
+            onHeightChanged: {
+                // make selected item fully visible
+                if (calledModel.currentIndex != -1) {
+                    mostCalledView.makeItemVisible(callerRepeat.itemAt(calledModel.currentIndex))
+                } else {
+                    // WORKAROUND: The SDK header causes the contactY to move to a wrong postion
+                    // this should fix the Y position (630 is the header height)
+                    view.contentY = -630
+                }
+            }
+
+            Rectangle {
+                color: Theme.palette.normal.background
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(1)
+                }
+                height: units.gu(3)
+                Label {
+                    anchors.fill: parent
+                    verticalAlignment: Text.AlignVCenter
+                    text: i18n.tr("Frequently called")
+                    font.pointSize: 76
+                }
+                ListItem.ThinDivider {
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                        bottom: parent.bottom
+                    }
+                }
+            }
+            Repeater {
+                id: callerRepeat
+
+                model: MostCalledModel {
+                    id: calledModel
+                    maxCount: 20
+
+                    onInfoRequested: root.infoRequested(contact)
+                    onDetailClicked: root.detailClicked(contact, detail, action)
+                    onAddContactClicked: root.addContactClicked(label)
+                    onCurrentIndexChanged:  {
+                        if (currentIndex !== -1) {
+                            view.currentIndex = -1
+                        }
+                    }
+                }
+            }
+
+            Connections {
+                target: view
+                onCurrentIndexChanged: {
+                    if (view.currentIndex !== -1) {
+                        calledModel.currentIndex = -1
+                    }
+                }
+            }
+        }
+
+        height: Math.min(root.height, contentHeight)
         onError: root.error(message)
         onInfoRequested: root.infoRequested(contact)
         onDetailClicked: root.detailClicked(contact, detail, action)
@@ -533,9 +616,9 @@ Item {
         enabled: view.contentHeight > (view.height * 2)
 
         anchors {
-            top: itemHeader.bottom
+            top: view.top
             topMargin: units.gu(0.5)
-            bottom: parent.bottom
+            bottom: view.bottom
             right: parent.right
         }
     }
