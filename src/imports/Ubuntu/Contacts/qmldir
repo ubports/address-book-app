@@ -16,4 +16,5 @@ internal ContactList ContactList.js
 internal ContactJs Contacts.js
 internal FastScroll FastScroll.qml
 internal FastScrollJs FastScroll.js
+internal ListItemWithActions ListItemWithActions.qml
 internal MostCalledModel MostCalledModel.qml

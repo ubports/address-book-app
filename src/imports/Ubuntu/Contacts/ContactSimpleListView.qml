@@ -275,6 +275,10 @@ MultipleSelectionListView {
         titleFields: contactListView.titleFields
         isCurrentItem: ListView.isCurrentItem
 
+        // actions
+        leftSideAction: contactListView.leftSideAction
+        rightSideActions: contactListView.rightSideActions
+
         onDetailClicked: contactListView.detailClicked(contact, detail, action)
         onInfoRequested: contactListView._fetchContact(index, contact)
 
@@ -282,10 +286,31 @@ MultipleSelectionListView {
         ListView.onRemove: SequentialAnimation {
             ScriptAction {
                 script: {
+                    console.debug("will remove")
+                }
+            }
+            PropertyAction {
+                target: contactDelegate
+                property: "ListView.delayRemove"
+                value: true
+            }
+            UbuntuNumberAnimation {
+                target: contactDelegate
+                property: "height"
+                to: 1
+            }
+            ScriptAction {
+                script: {
+                    console.debug(remove )
                     if (contactDelegate.state !== "") {
                         contactListView.currentIndex = -1
                     }
                 }
+            }
+            PropertyAction {
+                target: contactDelegate
+                property: "ListView.delayRemove"
+                value: false
             }
         }
 
