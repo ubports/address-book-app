@@ -132,6 +132,7 @@ VisualDataModel {
         id: contactDelegate
 
         readonly property alias contact: contactFetch.contact
+        property var contents
 
         onDetailClicked: root.detailClicked(contact, detail, action)
         onInfoRequested: root.infoRequested(index, contact)
@@ -143,6 +144,7 @@ VisualDataModel {
         titleDetail: ContactDetail.DisplayLabel
         titleFields: [ DisplayLabel.Label ]
         isCurrentItem: root.currentIndex === index
+        locked: true
 
         // collapse the item before remove it, to avoid crash
         ListView.onRemove: SequentialAnimation {
@@ -167,17 +169,20 @@ VisualDataModel {
             }
         }
 
-        ContactWatcher {
-            id: contactWatcher
+        // delegate does not support more than one child
+        contents: Item {
+            ContactWatcher {
+                id: contactWatcher
 
-            phoneNumber: participant
-            onContactIdChanged: contactFetch.fetchContact(contactId)
-        }
+                phoneNumber: participant
+                onContactIdChanged: contactFetch.fetchContact(contactId)
+            }
 
-        ContactFetch {
-            id: contactFetch
+            ContactFetch {
+                id: contactFetch
 
-            model: contactsModel
+                model: contactsModel
+            }
         }
     }
 }

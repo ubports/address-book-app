@@ -12,6 +12,7 @@ set(CONTACT_COMPONENTS_QMLS
     DialogButtons.qml
     FastScroll.qml
     FastScroll.js
+    ListItemWithActions.qml
     MostCalledModel.qml
     MultipleSelectionListView.qml
     MultipleSelectionVisualModel.qml
