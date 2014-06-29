@@ -20,7 +20,7 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import "Contacts.js" as ContactsJS
 
-Item {
+ListItemWithActions {
     id: root
 
     property bool showAvatar: true
@@ -32,6 +32,7 @@ Item {
     property variant titleFields: [ Name.FirstName, Name.LastName ]
     property bool detailsShown: false
     property int loaderOpacity: 0.0
+    property var _contact: contact
 
     signal clicked(int index, QtObject contact)
     signal pressAndHold(int index, QtObject contact)
@@ -47,6 +48,10 @@ Item {
     height: delegate.height
     implicitHeight: delegate.height + (pickerLoader.item ? pickerLoader.item.height : 0)
     width: parent ? parent.width : 0
+    color: Theme.palette.normal.background
+
+    onItemClicked: root.clicked(index, contact)
+    onItemPressAndHold: root.pressAndHold(index, contact)
 
     Item {
         id: delegate
@@ -65,12 +70,6 @@ Item {
             color: root.selected ? "black" : Theme.palette.selected.background
             opacity: root.selected ? 0.2 : 1.0
             visible: root.selected || root.detailsShown
-        }
-
-        MouseArea {
-            anchors.fill: parent
-            onClicked: root.clicked(index, contact)
-            onPressAndHold: root.pressAndHold(index, contact)
         }
 
         ContactAvatar {
@@ -181,6 +180,7 @@ Item {
                 clip: true
                 height: root.implicitHeight
                 loaderOpacity: 1.0
+                locked: true
                 // FIXME: Setting detailsShown to true on expanded state cause the property to change to false and true during the state transition, and that
                 // causes the loader to load twice
                 //detailsShown: true

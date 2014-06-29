@@ -141,20 +141,10 @@ PageWithBottomEdge {
         multipleSelection: !pickMode ||
                            mainPage.pickMultipleContacts || (contactExporter.active && contactExporter.isMultiple)
 
-        anchors.fill: parent
-
         leftSideAction: Action {
             iconName: "delete"
             text: i18n.tr("Delete")
-            onTriggered: {
-                value.makeDisappear()
-            }
-        }
-
-        onContactDisappeared: {
-            if (contact) {
-                contactModel.removeContact(contact.contactId)
-            }
+            onTriggered: contactModel.removeContact(value._contact.contactId)
         }
 
         onCountChanged: {

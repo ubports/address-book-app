@@ -275,17 +275,36 @@ MultipleSelectionListView {
         titleFields: contactListView.titleFields
         isCurrentItem: ListView.isCurrentItem
 
+        // actions
+        leftSideAction: contactListView.leftSideAction
+        rightSideActions: contactListView.rightSideActions
+
         onDetailClicked: contactListView.detailClicked(contact, detail, action)
         onInfoRequested: contactListView._fetchContact(index, contact)
 
         // collapse the item before remove it, to avoid crash
         ListView.onRemove: SequentialAnimation {
+            PropertyAction {
+                target: contactDelegate
+                property: "ListView.delayRemove"
+                value: true
+            }
+            UbuntuNumberAnimation {
+                target: contactDelegate
+                property: "height"
+                to: 1
+            }
             ScriptAction {
                 script: {
                     if (contactDelegate.state !== "") {
                         contactListView.currentIndex = -1
                     }
                 }
+            }
+            PropertyAction {
+                target: contactDelegate
+                property: "ListView.delayRemove"
+                value: false
             }
         }
 
