@@ -48,8 +48,6 @@ class TestAddContact(AddressBookAppTestCase):
         # Check if the contact list still empty
         list_view = self.app.main_window.get_contact_list_view()
         self.assertThat(list_view.count, Eventually(Equals(0)))
-        list_view = self.app.main_window.get_contact_list_view()
-        self.assertThat(list_view.count, Eventually(Equals(1)))
 
     def test_add_contact_with_name_and_phone(self):
         test_contact = data.Contact(
