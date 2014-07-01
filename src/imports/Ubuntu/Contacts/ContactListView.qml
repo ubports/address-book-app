@@ -443,7 +443,11 @@ Item {
 
                     readonly property bool visible:  view.favouritesIsSelected
 
-                    onVisibleChanged: filterEntries()
+                    onVisibleChanged: {
+                        if (visible) {
+                            filterEntries()
+                        }
+                    }
                     maxCount: 20
                     onInfoRequested: root.infoRequested(contact)
                     onDetailClicked: root.detailClicked(contact, detail, action)
