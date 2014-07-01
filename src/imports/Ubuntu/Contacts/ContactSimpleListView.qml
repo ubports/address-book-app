@@ -268,6 +268,13 @@ MultipleSelectionListView {
     listDelegate: ContactDelegate {
         id: contactDelegate
 
+        property var removalAnimation
+
+        function remove()
+        {
+            removalAnimation.start()
+        }
+
         width: parent.width
         selected: contactListView.multiSelectionEnabled && contactListView.isSelected(contactDelegate)
         defaultAvatarUrl: contactListView.defaultAvatarImageUrl
@@ -283,7 +290,18 @@ MultipleSelectionListView {
         onInfoRequested: contactListView._fetchContact(index, contact)
 
         // collapse the item before remove it, to avoid crash
-        ListView.onRemove: SequentialAnimation {
+        ListView.onRemove: ScriptAction {
+            script: {
+                if (contactDelegate.state !== "") {
+                    contactListView.currentIndex = -1
+                }
+            }
+        }
+
+        // used by swipe to delete
+        removalAnimation: SequentialAnimation {
+            alwaysRunToEnd: true
+
             PropertyAction {
                 target: contactDelegate
                 property: "ListView.delayRemove"
@@ -294,17 +312,13 @@ MultipleSelectionListView {
                 property: "height"
                 to: 1
             }
-            ScriptAction {
-                script: {
-                    if (contactDelegate.state !== "") {
-                        contactListView.currentIndex = -1
-                    }
-                }
-            }
             PropertyAction {
                 target: contactDelegate
                 property: "ListView.delayRemove"
                 value: false
+            }
+            ScriptAction {
+                script: contactListView.listModel.removeContact(contact.contactId)
             }
         }
 
