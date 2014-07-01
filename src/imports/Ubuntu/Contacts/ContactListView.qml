@@ -440,8 +440,15 @@ Item {
 
                 model: MostCalledModel {
                     id: calledModel
-                    maxCount: 20
 
+                    readonly property bool visible:  view.favouritesIsSelected
+
+                    onVisibleChanged: {
+                        if (visible) {
+                            filterEntries()
+                        }
+                    }
+                    maxCount: 20
                     onInfoRequested: root.infoRequested(contact)
                     onDetailClicked: root.detailClicked(contact, detail, action)
                     onAddContactClicked: root.addContactClicked(label)
