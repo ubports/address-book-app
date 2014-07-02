@@ -449,7 +449,6 @@ Item {
                             model.update()
                         }
                     }
-
                     onInfoRequested: root.infoRequested(contact)
                     onDetailClicked: root.detailClicked(contact, detail, action)
                     onAddContactClicked: root.addContactClicked(label)
