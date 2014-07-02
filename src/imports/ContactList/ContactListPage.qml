@@ -144,7 +144,7 @@ PageWithBottomEdge {
         leftSideAction: Action {
             iconName: "delete"
             text: i18n.tr("Delete")
-            onTriggered: contactModel.removeContact(value._contact.contactId)
+            onTriggered: value.remove()
         }
 
         onCountChanged: {
