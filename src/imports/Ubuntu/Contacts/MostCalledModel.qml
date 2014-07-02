@@ -124,7 +124,6 @@ VisualDataModel {
             sortField: "timestamp"
             sortOrder: HistorySort.DescendingOrder
         }
-        Component.onCompleted: root.filterEntries()
     }
 
 
