@@ -23,16 +23,13 @@ import Ubuntu.Contacts 0.1
 VisualDataModel {
     id: root
 
-    property int maxCount: 10
     property var contactModel: null
-    property var historyModel
     property int currentIndex: -1
 
     signal clicked(int index, QtObject contact)
     signal detailClicked(QtObject contact, QtObject detail, string action)
     signal infoRequested(int index, QtObject contact)
     signal addContactClicked(string label)
-
 
     model: MostCalledContactsModel {
         startInterval: new Date((new Date().getTime() - 2592000000)) // one month ago
@@ -61,8 +58,7 @@ VisualDataModel {
         onAddContactClicked: root.addContactClicked(label)
 
         defaultAvatarUrl: "image://theme/contacts"
-        defaultTitle: participant
-        width: parent.width
+        width: parent ? parent.width : 0
         titleDetail: ContactDetail.DisplayLabel
         titleFields: [ DisplayLabel.Label ]
         isCurrentItem: root.currentIndex === index
@@ -99,6 +95,4 @@ VisualDataModel {
 
         Component.onCompleted: contactFetch.fetchContact(contactId)
     }
-
-    Component.onCompleted: model.update()
 }

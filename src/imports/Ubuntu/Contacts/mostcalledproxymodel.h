@@ -37,6 +37,7 @@ class MostCalledContactsModel : public QAbstractListModel
     Q_PROPERTY(uint maxCount READ maxCount WRITE setMaxCount NOTIFY maxCountChanged)
     Q_PROPERTY(int callAverage READ callAverage NOTIFY callAverageChanged)
     Q_PROPERTY(QDateTime startInterval READ startInterval WRITE setStartInterval NOTIFY startIntervalChanged)
+    Q_PROPERTY(bool outdated READ outdated NOTIFY outdatedChange)
 
 public:
     enum Role {
@@ -59,6 +60,7 @@ public:
     void setMaxCount(uint value);
 
     int callAverage() const;
+    bool outdated() const;
 
     QDateTime startInterval() const;
     void setStartInterval(const QDateTime &value);
@@ -70,6 +72,10 @@ Q_SIGNALS:
     void callAverageChanged(int value);
     void startIntervalChanged(const QDateTime &value);
     void sourceModelChanged(QAbstractItemModel *value);
+    void outdatedChange(bool value);
+
+private Q_SLOTS:
+    void markAsOutdated();
 
 private:
     QAbstractItemModel *m_sourceModel;
@@ -78,6 +84,8 @@ private:
     uint m_maxCount;
     int m_average;
     QDateTime m_startInterval;
+    bool m_outdated;
+    bool m_reloadingModel;
 
     QString fetchContactId(const QString &phoneNumber);
     QVariant getSourceData(int row, int role);

@@ -34,8 +34,14 @@ MostCalledContactsModel::MostCalledContactsModel(QObject *parent)
       m_sourceModel(0),
       m_manager(new QContactManager("galera")),
       m_maxCount(20),
-      m_average(0)
+      m_average(0),
+      m_outdated(true),
+      m_reloadingModel(false)
 {
+    connect(this, SIGNAL(sourceModelChanged(QAbstractItemModel*)), SLOT(markAsOutdated()));
+    connect(this, SIGNAL(maxCountChanged(uint)), SLOT(markAsOutdated()));
+    connect(this, SIGNAL(startIntervalChanged(QDateTime)), SLOT(markAsOutdated()));
+    connect(this, SIGNAL(modelReset()), SIGNAL(outdatedChange(bool)));
 }
 
 MostCalledContactsModel::~MostCalledContactsModel()
@@ -89,10 +95,20 @@ QAbstractItemModel *MostCalledContactsModel::sourceModel() const
 void MostCalledContactsModel::setSourceModel(QAbstractItemModel *model)
 {
     if (m_sourceModel != model) {
+        if (m_sourceModel) {
+            disconnect(m_sourceModel);
+        }
+
         m_sourceModel = model;
+        connect(m_sourceModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)), SLOT(markAsOutdated()));
+        connect(m_sourceModel, SIGNAL(rowsInserted(QModelIndex,int,int)), SLOT(markAsOutdated()));
+        connect(m_sourceModel, SIGNAL(rowsRemoved(QModelIndex,int,int)), SLOT(markAsOutdated()));
+        connect(m_sourceModel, SIGNAL(modelReset()), SLOT(markAsOutdated()));
+
         Q_EMIT sourceModelChanged(m_sourceModel);
     }
 }
+
 
 uint MostCalledContactsModel::maxCount() const
 {
@@ -131,10 +147,8 @@ QVariant MostCalledContactsModel::getSourceData(int row, int role)
     if (!source) {
         return QVariant();
     }
-    qDebug() << "SOURCE MODEL SIZE" << source->rowCount() << source->canFetchMore(QModelIndex());
 
     while ((source->rowCount() <= row)  && (source->canFetchMore(QModelIndex()))) {
-        qDebug() << "FETCH MORE";
         source->fetchMore(QModelIndex());
     }
 
@@ -160,27 +174,38 @@ QString MostCalledContactsModel::fetchContactId(const QString &phoneNumber)
 
 void MostCalledContactsModel::update()
 {
+    // skip update if not necessary
+    if (!m_outdated || m_reloadingModel) {
+        return;
+    }
+
     Q_EMIT beginResetModel();
 
+    m_reloadingModel = true;
+    m_outdated = false;
     m_data.clear();
     m_average = 0;
 
     if (m_maxCount <= 0) {
         qWarning() << "update model requested with invalid maxCount";
         Q_EMIT endResetModel();
+        m_reloadingModel = false;
         return;
     }
 
     if (!m_startInterval.isValid()) {
         qWarning() << "Update model requested with invalid startInterval";
         Q_EMIT endResetModel();
+        m_reloadingModel = false;
         return;
     }
 
     QAbstractItemModel *source = sourceModel();
     if (!source) {
         qWarning() << "Update model requested with null source model";
+        m_outdated = false;
         Q_EMIT endResetModel();
+        m_reloadingModel = false;
         return;
     }
 
@@ -241,26 +266,37 @@ void MostCalledContactsModel::update()
         row++;
     }
 
-    if (contactsData.isEmpty()) {
-        Q_EMIT endResetModel();
-        return;
-    }
+    if (!contactsData.isEmpty()) {
+        // sort by callCount
+        QList<MostCalledContactsModelData> data = contactsData.values();
+        qSort(data.begin(), data.end(), mostCalledContactsModelDataLessThan);
 
-    // sort by callCount
-    QList<MostCalledContactsModelData> data = contactsData.values();
-    qSort(data.begin(), data.end(), mostCalledContactsModelDataLessThan);
+        // average
+        m_average = totalCalls / contactsData.size();
 
-    // average
-    m_average = totalCalls / contactsData.size();
-
-    Q_FOREACH(const MostCalledContactsModelData &d, data) {
-        if (d.callCount >= m_average) {
-            m_data << d;
-        }
-        if ((uint) m_data.size() > m_maxCount) {
-            break;
+        Q_FOREACH(const MostCalledContactsModelData &d, data) {
+            if (d.callCount >= m_average) {
+                m_data << d;
+            }
+            if ((uint) m_data.size() > m_maxCount) {
+                break;
+            }
         }
     }
 
     Q_EMIT endResetModel();
+    m_reloadingModel = false;
+}
+
+void MostCalledContactsModel::markAsOutdated()
+{
+    // skip if model is being reloaded
+    if (m_reloadingModel) {
+        return;
+    }
+
+    if (!m_outdated) {
+        m_outdated = true;
+        Q_EMIT outdatedChange(m_outdated);
+    }
 }
