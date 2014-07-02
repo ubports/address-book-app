@@ -79,3 +79,7 @@ add_custom_target(uninstall "${CMAKE_COMMAND}"
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/config.h.in"
                "${CMAKE_CURRENT_BINARY_DIR}/config.h"
                IMMEDIATE @ONLY)
+
+add_custom_target(check
+    DEPENDS test-qml
+)
