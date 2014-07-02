@@ -17,3 +17,6 @@ override_dh_translations:
 .PHONY: override_dh_strip
 override_dh_strip:
 	dh_strip --dbg-package=address-book-app-dbg
+
+override_dh_auto_test:
+	xvfb-run -a -s "-screen 0 1024x768x24" qmltestrunner -import src/imports -input tests/qml
