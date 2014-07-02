@@ -42,6 +42,11 @@ VisualDataModel {
                 sortField: "timestamp"
                 sortOrder: HistorySort.DescendingOrder
             }
+            filter: HistoryFilter {
+                filterProperty: "senderId"
+                filterValue: "self"
+                matchFlags: HistoryFilter.MatchCaseSensitive
+            }
         }
     }
 
