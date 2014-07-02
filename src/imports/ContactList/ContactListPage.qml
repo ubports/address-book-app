@@ -158,10 +158,6 @@ PageWithBottomEdge {
                 mainPage.onlineAccountsMessageDialog = null
                 application.unsetFirstRun()
             }
-
-            if (mainPage.searching) {
-                 contactList.positionViewAtBeginning()
-            }
         }
 
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
