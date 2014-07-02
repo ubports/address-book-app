@@ -1,4 +1,4 @@
-add_custom_target(test-qml
-    COMMAND QML2_IMPORT_PATH=${imports_BINARY_DIR} qmltestrunner
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+add_test(NAME qmltestrunner
+	 WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    	 COMMAND xvfb-run -a -s "-screen 0 1024x768x24" qmltestrunner -import ${imports_BINARY_DIR} -input ${CMAKE_SOURCE_DIR}/tests/qml
 )
