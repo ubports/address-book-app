@@ -41,3 +41,17 @@ if(INSTALL_COMPONENTS)
     install(FILES ${CONTACT_COMPONENTS_QMLS} DESTINATION ${QMLPLUGIN_INSTALL_PREFIX})
     install(TARGETS ${CONTACT_COMPONENTS_PLUGIN} DESTINATION ${QMLPLUGIN_INSTALL_PREFIX})
 endif()
+
+
+#copy qml files to build dir to make it possible to run without install
+
+add_custom_target(copy_qml)
+foreach(QML_FILE ${CONTACT_COMPONENTS_QMLS})
+  add_custom_command(TARGET copy_qml PRE_BUILD
+                     COMMAND ${CMAKE_COMMAND} -E
+                         copy ${CMAKE_CURRENT_SOURCE_DIR}/${QML_FILE} ${CMAKE_CURRENT_BINARY_DIR}/)
+endforeach()
+
+if (NOT ${CMAKE_CURRENT_BINARY_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
+    add_dependencies(${CONTACT_COMPONENTS_PLUGIN} copy_qml)
+endif()
