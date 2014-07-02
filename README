@@ -1,3 +1,29 @@
+Building for desktop
+====================
+
+mkdir build
+cd build
+cmake ..
+make
+
+Run on desktop
+==============
+
+cd build
+./src/app/address-book-app
+
+Run the QML tests
+=================
+
+cd build
+make check
+
+Run the Autopilot tests
+=======================
+
+cd build
+make autopilot
+
 Building for click
 ==================
 
