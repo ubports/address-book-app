@@ -31,6 +31,7 @@ VisualDataModel {
     signal infoRequested(int index, QtObject contact)
     signal addContactClicked(string label)
 
+
     model: MostCalledContactsModel {
         startInterval: new Date((new Date().getTime() - 2592000000)) // one month ago
         sourceModel: HistoryEventModel {

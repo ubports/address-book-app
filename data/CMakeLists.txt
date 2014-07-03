@@ -1,7 +1,4 @@
-if (CLICK_MODE)
-    set(ADDRESSBOOK_APP_ICON "share/icons/hicolor/scalable/apps/contacts-app.svg")
-else()
-    set(ADDRESSBOOK_APP_ICON "contacts-app")
+if (NOT CLICK_MODE)
     set(XSCREENSHOT "X-Screenshot=${ADDRESS_BOOK_APP_FULL_DIR}/artwork/address-book-app-preview.png")
 endif()
 
