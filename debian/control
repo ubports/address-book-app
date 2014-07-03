@@ -19,6 +19,7 @@ Build-Depends: cmake,
                qt5-default,
                qtbase5-dev,
                qtdeclarative5-dev,
+               qtpim5-dev,
                xvfb,
 Standards-Version: 3.9.5
 Homepage: https://launchpad.net/address-book-app
@@ -40,7 +41,6 @@ Depends: libqt5contacts5,
          qtdeclarative5-ubuntu-history0.1,
          qtdeclarative5-ubuntu-keyboard-extensions0.1,
          qtdeclarative5-ubuntu-telephony-phonenumber0.1,
-         qtdeclarative5-ubuntu-telephony0.1,
          ${misc:Depends},
          ${shlibs:Depends},
 Description: Address Book application

@@ -16,7 +16,7 @@ Run the QML tests
 =================
 
 cd build
-make check
+make test or ctest 
 
 Run the Autopilot tests
 =======================

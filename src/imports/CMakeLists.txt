@@ -1,3 +1,5 @@
+project(imports)
+
 set(ADDRESS_BOOK_APP_QMLS
     MainWindow.qml
 )

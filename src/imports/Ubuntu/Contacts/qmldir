@@ -1,5 +1,7 @@
 module Ubuntu.Contacts
 
+plugin ubuntu-contacts-qml
+
 ContactAvatar 0.1 ContactAvatar.qml
 ContactDetailOnlineAccountTypeModel 0.1 ContactDetailOnlineAccountTypeModel.qml
 ContactDetailPhoneNumberTypeModel 0.1 ContactDetailPhoneNumberTypeModel.qml
