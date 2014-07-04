@@ -11,7 +11,7 @@ find_program(XVFB_RUN_BIN
 if(QMLTESTRUNNER_BIN AND XVFB_RUN_BIN)
     add_test(NAME qmltestrunner
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        COMMAND xvfb-run -a -s "-screen 0 1024x768x24" ${QMLTESTRUNNER_BIN} -import ${imports_BINARY_DIR} -input ${CMAKE_SOURCE_DIR}/tests/qml
+        COMMAND ${XVFB_RUN_BIN} -a -s "-screen 0 1024x768x24" ${QMLTESTRUNNER_BIN} -import ${imports_BINARY_DIR} -input ${CMAKE_SOURCE_DIR}/tests/qml
     )
 else()
     if (NOT QMLTESTRUNNER_BIN)
