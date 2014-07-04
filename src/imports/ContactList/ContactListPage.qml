@@ -141,20 +141,10 @@ PageWithBottomEdge {
         multipleSelection: !pickMode ||
                            mainPage.pickMultipleContacts || (contactExporter.active && contactExporter.isMultiple)
 
-        anchors.fill: parent
-
         leftSideAction: Action {
             iconName: "delete"
             text: i18n.tr("Delete")
-            onTriggered: {
-                value.makeDisappear()
-            }
-        }
-
-        onContactDisappeared: {
-            if (contact) {
-                contactModel.removeContact(contact.contactId)
-            }
+            onTriggered: value.remove()
         }
 
         onCountChanged: {
@@ -167,10 +157,6 @@ PageWithBottomEdge {
                 PopupUtils.close(mainPage.onlineAccountsMessageDialog)
                 mainPage.onlineAccountsMessageDialog = null
                 application.unsetFirstRun()
-            }
-
-            if (mainPage.searching) {
-                 contactList.positionViewAtBeginning()
             }
         }
 

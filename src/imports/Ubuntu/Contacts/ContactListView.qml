@@ -441,14 +441,14 @@ Item {
                 model: MostCalledModel {
                     id: calledModel
 
-                    readonly property bool visible:  view.favouritesIsSelected
+                    readonly property bool visible: view.favouritesIsSelected
 
                     onVisibleChanged: {
+                        // update the model every time that it became visible
                         if (visible) {
-                            filterEntries()
+                            model.update()
                         }
                     }
-                    maxCount: 20
                     onInfoRequested: root.infoRequested(contact)
                     onDetailClicked: root.detailClicked(contact, detail, action)
                     onAddContactClicked: root.addContactClicked(label)
@@ -549,6 +549,7 @@ Item {
             repeat: false
             interval: 300
             onTriggered: {
+                view.positionViewAtBeginning()
                 var needUpdate = false
                 if (root.filterTerm === "") { // if the search criteria is empty clear the list before show all contacts
                     if (contactTermFilter.value !== "") {

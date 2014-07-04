@@ -18,14 +18,12 @@
 import QtQuick 2.2
 import QtContacts 5.0
 import Ubuntu.History 0.1
-import Ubuntu.Telephony 0.1
+import Ubuntu.Contacts 0.1
 
 VisualDataModel {
     id: root
 
-    property int maxCount: 10
     property var contactModel: null
-    property var historyModel
     property int currentIndex: -1
 
     signal clicked(int index, QtObject contact)
@@ -33,115 +31,39 @@ VisualDataModel {
     signal infoRequested(int index, QtObject contact)
     signal addContactClicked(string label)
 
-    function filterEntries()
-    {
-        var contacts = {}
-        var interval = new Date()
-        var secs = (interval.getTime() - 2592000000) // one month ago
-        interval.setTime(secs)
 
-        var totalCount = 0
-        var i = 0;
-        while(true) {
-            var event = historyModel.getItem(i)
-            if (!event) {
-                break
+    model: MostCalledContactsModel {
+        startInterval: new Date((new Date().getTime() - 2592000000)) // one month ago
+        sourceModel: HistoryEventModel {
+            type: HistoryThreadModel.EventTypeVoice
+            sort: HistorySort {
+                sortField: "timestamp"
+                sortOrder: HistorySort.DescendingOrder
             }
-
-            if (event.timestamp < interval) {
-                break
-            }
-
-            var participants = event.participants
-            for (var p=0; p < participants.length; p++) {
-                var phoneNumber = participants[p]
-                if (phoneNumber) {
-                    if (contacts[phoneNumber] === undefined) {
-                        contacts[phoneNumber] = 1
-                    } else {
-                        var count = contacts[phoneNumber]
-                        contacts[phoneNumber] = count + 1
-                    }
-                    totalCount += 1
-                }
-            }
-            i++
-        }
-
-        listModel.clear()
-        if (totalCount == 0) {
-            return
-        }
-
-        // sort phones most called first
-        var mostCalledFirst = []
-        for (var key in contacts) {
-            mostCalledFirst.push([key, contacts[key]]);
-        }
-
-        mostCalledFirst.sort(function(a, b) {
-            a = a[1];
-            b = b[1];
-
-            return a < b ? -1 : (a > b ? 1 : 0);
-        });
-
-        contacts = {}
-        for (var i = 0; i < mostCalledFirst.length; i++) {
-            var key = mostCalledFirst[i][0];
-            var value = mostCalledFirst[i][1];
-            contacts[key] = value
-        }
-
-        // get the avarage frequency
-        var average = totalCount / mostCalledFirst.length
-
-        for (var phone in contacts) {
-            if (contacts[phone] >= average) {
-                listModel.insert(0, {"participant": phone})
-                if (listModel.count >= root.maxCount) {
-                    return;
-                }
+            filter: HistoryFilter {
+                filterProperty: "senderId"
+                filterValue: "self"
+                matchFlags: HistoryFilter.MatchCaseSensitive
             }
         }
     }
-
-    model: ListModel {
-        id: listModel
-    }
-
-    historyModel: HistoryEventModel {
-
-        function getItem(row) {
-            while ((row >= count) && (canFetchMore())) {
-                fetchMore()
-            }
-            return get(row)
-        }
-
-        type: HistoryThreadModel.EventTypeVoice
-        sort: HistorySort {
-            sortField: "timestamp"
-            sortOrder: HistorySort.DescendingOrder
-        }
-    }
-
 
     delegate: ContactDelegate {
         id: contactDelegate
 
         readonly property alias contact: contactFetch.contact
+        property var contents
 
         onDetailClicked: root.detailClicked(contact, detail, action)
         onInfoRequested: root.infoRequested(index, contact)
         onAddContactClicked: root.addContactClicked(label)
 
         defaultAvatarUrl: "image://theme/contacts"
-        defaultTitle: participant
-        width: parent.width
+        width: parent ? parent.width : 0
         titleDetail: ContactDetail.DisplayLabel
         titleFields: [ DisplayLabel.Label ]
         isCurrentItem: root.currentIndex === index
+        locked: true
 
         // collapse the item before remove it, to avoid crash
         ListView.onRemove: SequentialAnimation {
@@ -166,17 +88,12 @@ VisualDataModel {
             }
         }
 
-        ContactWatcher {
-            id: contactWatcher
-
-            phoneNumber: participant
-            onContactIdChanged: contactFetch.fetchContact(contactId)
+        // delegate does not support more than one child
+        contents: ContactFetch {
+                id: contactFetch
+                model: contactsModel
         }
 
-        ContactFetch {
-            id: contactFetch
-
-            model: contactsModel
-        }
+        Component.onCompleted: contactFetch.fetchContact(contactId)
     }
 }
