@@ -8,23 +8,23 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-27 09:54-0300\n"
-"PO-Revision-Date: 2014-06-08 20:43+0000\n"
-"Last-Translator: Pierre Slamich <pierre.slamich@gmail.com>\n"
+"PO-Revision-Date: 2014-07-03 19:39+0000\n"
+"Last-Translator: Jean Marc <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-01 06:17+0000\n"
-"X-Generator: Launchpad (build 17082)\n"
+"X-Launchpad-Export-Date: 2014-07-04 06:31+0000\n"
+"X-Generator: Launchpad (build 17086)\n"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
 msgid "%1 vCards imported"
-msgstr ""
+msgstr "%1 vCards importées"
 
 #: src/imports/ContactEdit/ContactEditor.qml:322
 msgid "Add Field"
-msgstr ""
+msgstr "Ajouter un champ"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:59
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
@@ -47,11 +47,11 @@ msgstr "Tous"
 
 #: src/imports/Common/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir supprimer tous les contacts sélectionnés ?"
 
 #: src/imports/Common/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
-msgstr ""
+msgstr "Êtes-vous sûr de vouloir supprimer ce contact ?"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:133
 #: src/imports/ContactEdit/ContactEditor.qml:372
@@ -62,11 +62,11 @@ msgstr "Annuler"
 
 #: src/imports/ContactList/ContactListPage.qml:252
 msgid "Cancel selection"
-msgstr ""
+msgstr "Annuler la sélection"
 
 #: src/imports/ContactList/VCardImportDialog.qml:80
 msgid "Close"
-msgstr ""
+msgstr "Fermer"
 
 #: src/imports/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
@@ -138,7 +138,7 @@ msgstr "Prénom"
 
 #: src/imports/Ubuntu/Contacts/ContactListView.qml:427
 msgid "Frequently called"
-msgstr ""
+msgstr "Fréquemment appelés"
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:116
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:94
@@ -155,11 +155,11 @@ msgstr "Messagerie instantanée"
 
 #: src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
-msgstr ""
+msgstr "Importer des vCards"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
 msgid "Importing..."
-msgstr ""
+msgstr "Importation..."
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
 msgid "Jabber"
@@ -191,7 +191,7 @@ msgstr "Téléphone portable"
 
 #: src/imports/Common/RemoveContactsDialog.qml:44
 msgid "Multiple contacts"
-msgstr ""
+msgstr "Contacts multiples"
 
 #: src/imports/ContactEdit/TextInputDetail.qml:77
 msgid "Next"
@@ -204,7 +204,7 @@ msgstr "Non"
 
 #: src/imports/Common/RemoveContactsDialog.qml:40
 msgid "No contact selected."
-msgstr ""
+msgstr "Aucun contact sélectionné."
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Organization"
@@ -227,7 +227,7 @@ msgstr "Code postal"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:63
 msgid "Professional Details"
-msgstr ""
+msgstr "Détails professionnels"
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:23
 #: src/imports/ContactView/ContactDetailOrganizationsView.qml:27
@@ -248,7 +248,7 @@ msgstr "Enregistrer"
 
 #: src/imports/ContactList/ContactListPage.qml:302
 msgid "Search"
-msgstr ""
+msgstr "Rechercher"
 
 #: src/imports/ContactList/ContactListPage.qml:277
 msgid "Select"
@@ -256,15 +256,15 @@ msgstr "Sélectionner"
 
 #: src/imports/ContactList/ContactListPage.qml:261
 msgid "Select All"
-msgstr ""
+msgstr "Tout sélectionner"
 
 #: src/imports/ContactList/ContactListPage.qml:75
 msgid "Select Contacts"
-msgstr ""
+msgstr "Sélectionner des contacts"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:116
 msgid "Select a field"
-msgstr ""
+msgstr "Sélectionner un champ"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
 msgid "Skype"
