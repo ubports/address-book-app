@@ -87,6 +87,7 @@ static void installIconPath()
 {
     QByteArray iconTheme = qgetenv("ADDRESS_BOOK_APP_ICON_THEME");
     if (!iconTheme.isEmpty()) {
+        qDebug() << "Register extra icon theme:" << iconTheme;
         QIcon::setThemeName(iconTheme);
     }
 }
