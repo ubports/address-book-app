@@ -215,7 +215,7 @@ Page {
             action: Action {
                 objectName: "edit"
                 text: i18n.tr("Edit")
-                iconSource: "artwork:/edit.png"
+                iconName: "edit"
                 onTriggered: {
                     pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
                                    { model: root.model, contact: root.contact})
