@@ -1,7 +1,7 @@
 {
     "description":
         "Address Book application to manager contacts",
-    "framework": "ubuntu-sdk-13.10",
+    "framework": "ubuntu-sdk-14.04-qml-dev1",
     "architecture": "armhf",
     "hooks": {
         "address-book": {

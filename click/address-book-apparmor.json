@@ -8,5 +8,5 @@
     "read_path": [
       "@{HOME}/.local/share/evolution/addressbook/system/photos/"
     ],
-    "policy_version": 1.0
+    "policy_version": 1.2
 }
