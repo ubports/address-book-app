@@ -165,6 +165,9 @@ MultipleSelectionListView {
     */
     property list<Action> rightSideActions
 
+    /* internal */
+    property var _currentSwipedItem: null
+
     /*!
       This handler is called when any error occurs in the contact model
     */
@@ -231,6 +234,24 @@ MultipleSelectionListView {
         contactFetch.fetchContact(contact.contactId)
     }
 
+    function _updateSwipeState(item)
+    {
+        if (item.swipping) {
+            return
+        }
+
+        if (item.swipeState !== "Normal") {
+            if (contactListView._currentSwipedItem !== item) {
+                if (contactListView._currentSwipedItem) {
+                    contactListView._currentSwipedItem.resetSwipe()
+                }
+                contactListView._currentSwipedItem = item
+            }
+        } else if (item.swipeState !== "Normal" && contactListView._currentSwipedItem === item) {
+            contactListView._currentSwipedItem = null
+        }
+    }
+
     currentIndex: -1
     section {
         property: showSections ? "contact.tag.tag" : ""
@@ -292,6 +313,10 @@ MultipleSelectionListView {
         // collapse the item before remove it, to avoid crash
         ListView.onRemove: ScriptAction {
             script: {
+                if (contactListView._currentSwipedItem === contactDelegate) {
+                    contactListView._currentSwipedItem = null
+                }
+
                 if (contactDelegate.state !== "") {
                     contactListView.currentIndex = -1
                 }
@@ -348,6 +373,9 @@ MultipleSelectionListView {
                 contactListView.selectItem(contactDelegate)
             }
         }
+
+        onSwippingChanged: contactListView._updateSwipeState(contactDelegate)
+        onSwipeStateChanged: contactListView._updateSwipeState(contactDelegate)
     }
 
     ContactFetch {
