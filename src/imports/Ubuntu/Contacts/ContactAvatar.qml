@@ -17,39 +17,48 @@
 import QtQuick 2.2
 import QtContacts 5.0
 import Ubuntu.Components 0.1
+import Ubuntu.Contacts 0.1
 import "Contacts.js" as ContactsJS
 
 UbuntuShape {
     id: avatar
 
     property var contactElement: null
-    property string displayName: ContactsJS.formatToDisplay(contactElement, ContactDetail.Name, [Name.FirstName, Name.LastName])
-    readonly property string defaultAvatar: "image://theme/contact"
-    readonly property string avatarUrl: ContactsJS.getAvatar(contactElement, "")
-    readonly property bool useDefaultAvatar: (contactElement == null) || (displayName === "" || contactElement.tag.tag === "") && (avatarUrl === "")
+    property string fallbackAvatarUrl: "image://theme/contact"
+    property string fallbackDisplayName: ""
+    property bool showAvatarPicture: (avatarUrl != fallbackAvatarUrl) || (initials.length === 0)
+
+    readonly property alias initials: initialsLabel.text
+    readonly property string displayName: ContactsJS.formatToDisplay(contactElement, ContactDetail.Name, [Name.FirstName, Name.LastName], fallbackDisplayName)
+    readonly property string avatarUrl: ContactsJS.getAvatar(contactElement, fallbackAvatarUrl)
 
     function reload()
     {
-        img.source = ContactsJS.getAvatar(contactElement, "")
+        // FIXME: Why this is necessary????
+        img.source = ContactsJS.getAvatar(contactElement, fallbackAvatarUrl)
     }
 
     radius: "medium"
     color: Theme.palette.normal.overlay
 
     Label {
-         anchors.centerIn: parent
-         text: ContactsJS.getNameItials(displayName)
-         font.pointSize: 88
-         color: UbuntuColors.lightAubergine
-         visible: (img.status != Image.Ready)
+        id: initialsLabel
+        objectName: "avatarInitials"
+
+        anchors.centerIn: parent
+        text: Contacts.contactInitialsFromString(displayName)
+        font.pointSize: 88
+        color: UbuntuColors.lightAubergine
+        visible: (img.status != Image.Ready)
     }
 
     image: Image {
         id: img
+        objectName: "avatarImage"
 
         fillMode: Image.PreserveAspectCrop
         asynchronous: true
-        source: avatar.useDefaultAvatar ? avatar.defaultAvatar : avatar.avatarUrl
+        source: avatar.showAvatarPicture ? avatar.avatarUrl : ""
         height: avatar.height
         width: avatar.width
     }

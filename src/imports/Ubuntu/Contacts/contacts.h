@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2013 Canonical, Ltd.
+ * Copyright (C) 2012-2014 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,21 +14,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef _UBUNTU_CONTACTS_H_
+#define _UBUNTU_CONTACTS_H_
 
-#ifndef _UBUNTU_CONTACTS_PLUGIN_H_
-#define _UBUNTU_CONTACTS_PLUGIN_H_
+#include <QtCore/QObject>
+#include <QtCore/QString>
 
-#include <QQmlContext>
-#include <QQmlExtensionPlugin>
-
-class UbuntuContactsPlugin : public QQmlExtensionPlugin
+class UbuntuContacts : public QObject
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QQmlExtensionInterface")
 
 public:
-    void initializeEngine(QQmlEngine *engine, const char *uri);
-    void registerTypes(const char *uri);
+    UbuntuContacts(QObject *parent = 0);
+
+    Q_INVOKABLE QString contactInitialsFromString(const QString &value);
 };
 
-#endif //_UBUNTU_CONTACTS_PLUGINS_H_
+#endif //_UBUNTU_CONTACTS_H_
