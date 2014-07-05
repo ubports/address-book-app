@@ -18,8 +18,9 @@ import QtQuick 2.2
 import QtTest 1.0
 import Ubuntu.Components 0.1
 import Ubuntu.Test 0.1
-import Ubuntu.Contacts 0.1 
+import Ubuntu.Contacts 0.1
 
+import "ContactUtil.js" as ContactUtilJS
 import '../../src/imports/ContactEdit'
 
 Item {
@@ -57,19 +58,8 @@ Item {
            {detail: 'Address', field: 'street', value: ''},
            {detail: 'Name', field: 'firstName', value: ''},
            {detail: 'Organization', field: 'name', value: ''}
-       ];
-
-        var newContact = Qt.createQmlObject(
-            'import QtContacts 5.0; Contact{ }', mainView);
-        var detailSourceTemplate = 'import QtContacts 5.0; %1{ %2: "%3" }';
-        for (var i=0; i < details.length; i++) {
-            var detailMetaData = details[i];
-            var template = detailSourceTemplate.arg(detailMetaData.detail).arg(
-                detailMetaData.field).arg(detailMetaData.value);
-            var newDetail = Qt.createQmlObject(template, mainView);
-            newContact.addDetail(newDetail);
-        }
-        return newContact;
+        ];
+        return ContactUtilJS.createContact(details, mainView)
     }
 
     UbuntuTestCase {
