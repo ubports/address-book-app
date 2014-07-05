@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-06-27 09:54-0300\n"
+"POT-Creation-Date: 2014-06-30 15:01-0300\n"
 "PO-Revision-Date: 2014-01-14 19:20+0000\n"
 "Last-Translator: Volkan Gezer <Unknown>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-01 06:17+0000\n"
-"X-Generator: Launchpad (build 17082)\n"
+"X-Launchpad-Export-Date: 2014-07-05 05:58+0000\n"
+"X-Generator: Launchpad (build 17086)\n"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -55,12 +55,12 @@ msgstr ""
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:133
 #: src/imports/ContactEdit/ContactEditor.qml:372
-#: src/imports/ContactList/ContactListPage.qml:324
+#: src/imports/ContactList/ContactListPage.qml:314
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:37
 msgid "Cancel"
 msgstr "İptal"
 
-#: src/imports/ContactList/ContactListPage.qml:252
+#: src/imports/ContactList/ContactListPage.qml:242
 msgid "Cancel selection"
 msgstr ""
 
@@ -86,8 +86,8 @@ msgid "Country"
 msgstr "Ülke"
 
 #: src/imports/ContactEdit/ContactEditor.qml:337
-#: src/imports/ContactList/ContactListPage.qml:148
-#: src/imports/ContactList/ContactListPage.qml:277
+#: src/imports/ContactList/ContactListPage.qml:146
+#: src/imports/ContactList/ContactListPage.qml:267
 msgid "Delete"
 msgstr "Sil"
 
@@ -96,7 +96,7 @@ msgid "Done"
 msgstr "Bitti"
 
 #: src/imports/ContactEdit/ContactEditor.qml:141
-#: src/imports/ContactView/ContactView.qml:219
+#: src/imports/ContactView/ContactView.qml:217
 msgid "Edit"
 msgstr "Düzenle"
 
@@ -173,7 +173,7 @@ msgstr "Soyadı"
 msgid "Loading"
 msgstr "Yükleniyor"
 
-#: src/imports/ContactList/ContactListPage.qml:242
+#: src/imports/ContactList/ContactListPage.qml:232
 msgid "Loading..."
 msgstr ""
 
@@ -246,15 +246,15 @@ msgstr "Görev"
 msgid "Save"
 msgstr "Kaydet"
 
-#: src/imports/ContactList/ContactListPage.qml:302
+#: src/imports/ContactList/ContactListPage.qml:292
 msgid "Search"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:277
+#: src/imports/ContactList/ContactListPage.qml:267
 msgid "Select"
 msgstr "Seç"
 
-#: src/imports/ContactList/ContactListPage.qml:261
+#: src/imports/ContactList/ContactListPage.qml:251
 msgid "Select All"
 msgstr ""
 
@@ -264,6 +264,10 @@ msgstr ""
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:116
 msgid "Select a field"
+msgstr ""
+
+#: src/imports/ContactView/ContactView.qml:206
+msgid "Share"
 msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
@@ -279,15 +283,15 @@ msgstr "Sosyal"
 msgid "Street"
 msgstr "Cadde"
 
-#: src/imports/ContactList/ContactListPage.qml:293
+#: src/imports/ContactList/ContactListPage.qml:283
 msgid "Sync"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:293
+#: src/imports/ContactList/ContactListPage.qml:283
 msgid "Syncing"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:242
+#: src/imports/ContactList/ContactListPage.qml:232
 msgid "Syncing..."
 msgstr ""
 
