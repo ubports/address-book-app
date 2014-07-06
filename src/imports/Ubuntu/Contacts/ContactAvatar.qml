@@ -52,14 +52,18 @@ UbuntuShape {
         visible: (img.status != Image.Ready)
     }
 
-    image: Image {
+    image: !img.visible ? img : null
+
+    Image {
         id: img
         objectName: "avatarImage"
 
+        anchors.centerIn: visible ? avatar : undefined
         fillMode: Image.PreserveAspectCrop
         asynchronous: true
         source: avatar.showAvatarPicture ? avatar.avatarUrl : ""
-        height: avatar.height
-        width: avatar.width
+        height: visible ? units.gu(3) : avatar.height
+        width: height
+        visible: avatar.avatarUrl === "image://theme/contact"
     }
 }
