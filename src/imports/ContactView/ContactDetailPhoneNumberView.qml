@@ -71,7 +71,7 @@ ContactDetailBase {
         }
         width: units.gu(4)
         height: units.gu(4)
-        iconName: "messages"
+        iconName: "message"
         onClicked: Qt.openUrlExternally("message:///" + encodeURIComponent(view.values[0]))
     }
 
