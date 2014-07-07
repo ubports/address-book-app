@@ -1,18 +1,17 @@
 {
-    "description":
-        "Address Book application to manager contacts",
+    "description": "Address Book application to manager contacts",
     "framework": "ubuntu-sdk-14.04-qml-dev1",
     "architecture": "armhf",
     "hooks": {
         "address-book": {
             "apparmor": "address-book-apparmor.json",
             "content-hub": "address-book-content.json",
-            "desktop": "@CMAKE_INSTALL_DATADIR@/applications/@ADDRESS_BOOK_APP_DESKTOP_FILE@"
+            "desktop": "@ADDRESS_BOOK_APP_DESKTOP_FILE@"
         }
     },
     "icon": "share/icons/hicolor/scalable/apps/contacts-app.svg",
     "maintainer": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
-    "name": "@APP_PACKAGE_NAME@",
+    "name": "@app_package_name@",
     "title": "Address Book",
     "version": "1.0.1.@BZR_REVNO@",
     "x-source": {
