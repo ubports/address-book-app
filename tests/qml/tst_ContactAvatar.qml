@@ -137,7 +137,7 @@ Item {
         {
             waitForRendering(avatarComponent);
             var avatarInitials = findChild(avatarComponent, "avatarInitials")
-            var avatarImage = avatarComponent.image
+            var avatarImage = findChild(avatarComponent, "avatarImage")
 
             avatarComponent.showAvatarPicture = true
             tryCompare(avatarInitials, "visible", false)
