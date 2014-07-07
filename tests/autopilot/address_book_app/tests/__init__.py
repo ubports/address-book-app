@@ -46,7 +46,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
         else:
             self.app_bin = AddressBookAppTestCase.DEFAULT_DEV_LOCATION
 
-        if MEMORY_BACKEND:
+        if AddressBookAppTestCase.MEMORY_BACKEND:
             os.environ['QTCONTACTS_MANAGER_OVERRIDE'] = 'memory'
         else:
             os.environ['QTCONTACTS_MANAGER_OVERRIDE'] = 'galera'
