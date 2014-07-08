@@ -22,6 +22,8 @@ set(CONTACT_COMPONENTS_QMLS
 )
 
 set(CONTACT_COMPONENTS_SRC
+    contacts.h
+    contacts.cpp
     mostcalledproxymodel.h
     mostcalledproxymodel.cpp
     plugin.h
@@ -30,7 +32,7 @@ set(CONTACT_COMPONENTS_SRC
 
 add_library(${CONTACT_COMPONENTS_PLUGIN} MODULE
     ${CONTACT_COMPONENTS_SRC}
-)    
+)
 
 qt5_use_modules(${CONTACT_COMPONENTS_PLUGIN} Core Contacts Qml Quick)
 

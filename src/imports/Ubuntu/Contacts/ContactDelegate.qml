@@ -77,7 +77,7 @@ ListItemWithActions {
             id: avatar
 
             contactElement: contact
-            displayName: name.text
+            fallbackDisplayName: name.text
             anchors {
                 left: parent.left
                 top: parent.top

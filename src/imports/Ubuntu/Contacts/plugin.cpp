@@ -16,18 +16,27 @@
 
 #include "plugin.h"
 #include "mostcalledproxymodel.h"
+#include "contacts.h"
 
 #include <QQmlEngine>
 #include <qqml.h>
 
-void UbuntuContacts::initializeEngine(QQmlEngine *engine, const char *uri)
+static QObject *contactsProvider(QQmlEngine *engine, QJSEngine *scriptEngine)
+{
+    Q_UNUSED(engine)
+    Q_UNUSED(scriptEngine)
+    return new UbuntuContacts;
+}
+
+void UbuntuContactsPlugin::initializeEngine(QQmlEngine *engine, const char *uri)
 {
     Q_UNUSED(engine);
     Q_UNUSED(uri);
 }
 
-void UbuntuContacts::registerTypes(const char *uri)
+void UbuntuContactsPlugin::registerTypes(const char *uri)
 {
     // @uri Ubuntu.Contacts
+    qmlRegisterSingletonType<UbuntuContacts>(uri, 0, 1, "Contacts", contactsProvider);
     qmlRegisterType<MostCalledContactsModel>(uri, 0, 1, "MostCalledContactsModel");
 }

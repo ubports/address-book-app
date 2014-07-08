@@ -17,40 +17,56 @@
 import QtQuick 2.2
 import QtContacts 5.0
 import Ubuntu.Components 0.1
+import Ubuntu.Contacts 0.1
 import "Contacts.js" as ContactsJS
 
 UbuntuShape {
     id: avatar
 
     property var contactElement: null
-    property string displayName: ContactsJS.formatToDisplay(contactElement, ContactDetail.Name, [Name.FirstName, Name.LastName])
-    readonly property string defaultAvatar: "image://theme/contact"
-    readonly property string avatarUrl: ContactsJS.getAvatar(contactElement, "")
-    readonly property bool useDefaultAvatar: (contactElement == null) || (displayName === "" || contactElement.tag.tag === "") && (avatarUrl === "")
+    property string fallbackAvatarUrl: "image://theme/stock_contact"
+    property string fallbackDisplayName: ""
+    property bool showAvatarPicture: (avatarUrl != fallbackAvatarUrl) || (initials.length === 0)
 
+    readonly property alias initials: initialsLabel.text
+    readonly property string displayName: ContactsJS.formatToDisplay(contactElement, ContactDetail.Name, [Name.FirstName, Name.LastName], fallbackDisplayName)
+    readonly property alias avatarUrl: img.avatarUrl
+
+    // this is necessary because the object does not monitor changes on avatarDetail object this will be very expesive and only happens in few cases,
+    // this need to be called manually on these cases
     function reload()
     {
-        img.source = ContactsJS.getAvatar(contactElement, "")
+        img.avatarUrl = Qt.binding(function() { return ContactsJS.getAvatar(contactElement, fallbackAvatarUrl) })
     }
 
     radius: "medium"
     color: Theme.palette.normal.overlay
 
     Label {
-         anchors.centerIn: parent
-         text: ContactsJS.getNameItials(displayName)
-         font.pointSize: 88
-         color: UbuntuColors.lightAubergine
-         visible: (img.status != Image.Ready)
+        id: initialsLabel
+        objectName: "avatarInitials"
+
+        anchors.centerIn: parent
+        text: Contacts.contactInitialsFromString(displayName)
+        font.pointSize: 88
+        color: UbuntuColors.lightAubergine
+        visible: (img.status != Image.Ready)
     }
 
-    image: Image {
-        id: img
+    image: !img.visible ? img : null
 
+    Image {
+        id: img
+        objectName: "avatarImage"
+
+        property string avatarUrl: ContactsJS.getAvatar(contactElement, fallbackAvatarUrl)
+
+        anchors.centerIn: visible ? avatar : undefined
         fillMode: Image.PreserveAspectCrop
         asynchronous: true
-        source: avatar.useDefaultAvatar ? avatar.defaultAvatar : avatar.avatarUrl
-        height: avatar.height
-        width: avatar.width
+        source: avatar.showAvatarPicture ? avatar.avatarUrl : ""
+        height: visible ? units.gu(3) : avatar.height
+        width: height
+        visible: avatar.avatarUrl.indexOf("image://theme/") === 0
     }
 }
