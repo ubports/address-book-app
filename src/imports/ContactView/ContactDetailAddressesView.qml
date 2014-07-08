@@ -22,7 +22,7 @@ ContactDetailGroupWithTypeView {
     id: root
 
     title: i18n.tr("Address")
-    defaultIcon: "artwork:/contact-location.png"
+    defaultIcon: "image://theme/location"
     detailType: QtContacts.ContactDetail.Address
     fields: [ QtContacts.Address.Street,
               QtContacts.Address.Locality,

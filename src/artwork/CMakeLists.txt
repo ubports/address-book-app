@@ -1,27 +1,7 @@
-set(ADDRESS_BOOK_COMPONENTS_ARTWORK
-    contact-default@27.png
-    tick-dark@30.png
-)
-
 set(ADDRESS_BOOK_APP_ARTWORK
-    action-list.png
-    add-detail.svg
-    add.png
     address-book-app-preview.png
     birthday-cake.svg
-    combo-indicator.png
-    contact-call.svg
-    contact-default-profile.png
-    contact-email.svg
-    contact-location.png
-    contact-message.svg
-    delete.png
-    edit.png
-    edit-remove.png
-    favorite-selected.svg
-    favorite-unselected.svg
     import-image.svg
-    new-contact.svg
     protocol-aim.svg
     protocol-facebook.svg
     protocol-icq.svg
@@ -32,25 +12,8 @@ set(ADDRESS_BOOK_APP_ARTWORK
     protocol-skype.svg
     protocol-twitter.svg
     protocol-yahoo.svg
-    save.png
-    select.png
-    settings.png
-    vertical-div.png
 )
-
-if(CLICK_MODE)
-    install(FILES contacts-app.svg
-        DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps
-    )
-endif()
 
 install(FILES ${ADDRESS_BOOK_APP_ARTWORK}
     DESTINATION ${ADDRESS_BOOK_APP_DIR}/artwork
 )
-
-if(INSTALL_COMPONENTS)
-    install(FILES ${ADDRESS_BOOK_COMPONENTS_ARTWORK}
-        DESTINATION ${QMLPLUGIN_INSTALL_PREFIX}/artwork
-    )
-endif()
-

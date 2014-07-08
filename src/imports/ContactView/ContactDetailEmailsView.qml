@@ -24,6 +24,6 @@ ContactDetailGroupWithTypeView {
     fields: [ 0 ]
     defaultAction: Action {
         text: i18n.tr("Email")
-        iconSource: "artwork:/contact-email.svg"
+        iconName: "email"
     }
 }

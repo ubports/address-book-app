@@ -32,7 +32,6 @@ ListItemWithActions {
     property variant titleFields: [ Name.FirstName, Name.LastName ]
     property bool detailsShown: false
     property int loaderOpacity: 0.0
-    property var _contact: contact
 
     signal clicked(int index, QtObject contact)
     signal pressAndHold(int index, QtObject contact)
@@ -67,9 +66,11 @@ ListItemWithActions {
             objectName: "selectionMark"
 
             anchors.fill: parent
-            color: root.selected ? "black" : Theme.palette.selected.background
-            opacity: root.selected ? 0.2 : 1.0
-            visible: root.selected || root.detailsShown
+            color: "black"
+            opacity: root.selected || root.detailsShown ? root.selected ? 0.2 : 0.1 : 0.0
+            Behavior on opacity {
+                NumberAnimation { }
+            }
         }
 
         ContactAvatar {
@@ -111,7 +112,7 @@ ListItemWithActions {
                 rightMargin: units.gu(2)
                 verticalCenter: parent.verticalCenter
             }
-            name: contact ? "contact" : "new-contact"
+            name: "contact"
             height: units.gu(3)
             width: opacity > 0.0 ? height : 0
             opacity: root.detailsShown ? 1.0 : 0.0

@@ -25,7 +25,7 @@ ContactDetailGroupWithTypeView {
     id: root
 
     title: i18n.tr("Professional details")
-    defaultIcon: "artwork:/contact-location.png"
+    defaultIcon: "image://theme/location"
     detailType: QtContacts.ContactDetail.Organization
     typeModel: null
 

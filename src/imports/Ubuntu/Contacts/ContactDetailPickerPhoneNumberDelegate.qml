@@ -85,7 +85,7 @@ Item {
                     Icon {
                         id: messageIcon
 
-                        name: "messages"
+                        name: "message"
                         height: units.gu(3)
                         width: height
                         anchors.verticalCenter: parent.verticalCenter
