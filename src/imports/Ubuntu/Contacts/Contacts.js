@@ -2,15 +2,12 @@
 var phoneTypeModel = null
 
 // Format contact name to be displayed
-function formatToDisplay(contact, contactDetail, detailFields, detail, defaultTitle) {
+function formatToDisplay(contact, contactDetail, detailFields, defaultTitle) {
     if (!contact) {
         return defaultTitle
     }
 
-    if (!detail) {
-        detail = contact.detail(contactDetail)
-    }
-
+    var detail = contact.detail(contactDetail)
     var values = ""
     for (var i=0; i < detailFields.length; i++) {
         if (detail) {
@@ -24,20 +21,11 @@ function formatToDisplay(contact, contactDetail, detailFields, detail, defaultTi
         }
     }
 
-    return values
-}
+    if (values.length === 0) {
+        return defaultTitle
+    }
 
-function getNameItials(name)
-{
-    var names = name.trim().split(' ')
-    var initials = ""
-    if (names.length > 0) {
-        initials = names[0].charAt(0)
-    }
-    if (names.length > 1) {
-        initials += names[1].charAt(0)
-    }
-    return initials.toUpperCase()
+    return values
 }
 
 function getAvatar(contact, defaultValue)
@@ -52,7 +40,7 @@ function getAvatar(contact, defaultValue)
     var avatarDetail = contact.detail(ContactDetail.Avatar)
     if (avatarDetail) {
         var avatarValue = avatarDetail.value(Avatar.ImageUrl)
-        if (avatarValue != "") {
+        if (avatarValue && (avatarValue !== "")) {
             avatarUrl = avatarValue
         }
     }

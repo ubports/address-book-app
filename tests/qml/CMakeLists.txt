@@ -8,11 +8,16 @@ find_program(XVFB_RUN_BIN
     NAMES xvfb-run
 )
 
-if(QMLTESTRUNNER_BIN AND XVFB_RUN_BIN)
-    add_test(NAME qmltestrunner
+macro(DECLARE_QML_TEST TST_NAME TST_QML_FILE)
+    add_test(NAME ${TST_NAME}
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        COMMAND ${XVFB_RUN_BIN} -a -s "-screen 0 1024x768x24" ${QMLTESTRUNNER_BIN} -import ${imports_BINARY_DIR} -input ${CMAKE_SOURCE_DIR}/tests/qml
+        COMMAND ${XVFB_RUN_BIN} -a -s "-screen 0 1024x768x24" ${QMLTESTRUNNER_BIN} -import ${imports_BINARY_DIR} -input ${CMAKE_CURRENT_SOURCE_DIR}/${TST_QML_FILE}
     )
+endmacro()
+
+if(QMLTESTRUNNER_BIN AND XVFB_RUN_BIN)
+    declare_qml_test("contact_editor" tst_ContactEditor.qml)
+    declare_qml_test("contact_avatar" tst_ContactAvatar.qml)
 else()
     if (NOT QMLTESTRUNNER_BIN)
         message(WARNING "Qml tests disabled: qmltestrunner not found")
@@ -20,3 +25,10 @@ else()
         message(WARNING "Qml tests disabled: xvfb-run not found")
     endif()
 endif()
+
+set(QML_TST_FILES
+    ContactUtil.js
+    tst_ContactEditor.qml
+    tst_ContactAvatar.qml
+)
+add_custom_target(tst_QmlFiles ALL SOURCES ${QML_TST_FILES})
