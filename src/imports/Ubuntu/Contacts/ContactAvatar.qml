@@ -67,6 +67,6 @@ UbuntuShape {
         source: avatar.showAvatarPicture ? avatar.avatarUrl : ""
         height: visible ? units.gu(3) : avatar.height
         width: height
-        visible: avatar.avatarUrl === "image://theme/contact"
+        visible: avatar.avatarUrl.indexOf("image://theme/") === 0
     }
 }
