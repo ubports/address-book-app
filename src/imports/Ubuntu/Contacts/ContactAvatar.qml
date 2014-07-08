@@ -30,23 +30,13 @@ UbuntuShape {
 
     readonly property alias initials: initialsLabel.text
     readonly property string displayName: ContactsJS.formatToDisplay(contactElement, ContactDetail.Name, [Name.FirstName, Name.LastName], fallbackDisplayName)
-    readonly property alias avatarUrl: detailConnections.avatarUrl
+    readonly property alias avatarUrl: img.avatarUrl
 
-    Connections {
-        id: detailConnections
-
-        property string avatarUrl: ContactsJS.getAvatar(contactElement, fallbackAvatarUrl)
-
-        target: contactElement ? contactElement.avatar : null
-        onDetailChanged: {
-            detailConnections.avatarUrl = Qt.binding(function() { return ContactsJS.getAvatar(contactElement, fallbackAvatarUrl) })
-        }
-    }
-
+    // this is necessary because the object does not monitor changes on avatarDetail object this will be very expesive and only happens in few cases,
+    // this need to be called manually on these cases
     function reload()
     {
-        // FIXME: Why this is necessary????
-        img.source = ContactsJS.getAvatar(contactElement, fallbackAvatarUrl)
+        img.avatarUrl = Qt.binding(function() { return ContactsJS.getAvatar(contactElement, fallbackAvatarUrl) })
     }
 
     radius: "medium"
@@ -68,6 +58,8 @@ UbuntuShape {
     Image {
         id: img
         objectName: "avatarImage"
+
+        property string avatarUrl: ContactsJS.getAvatar(contactElement, fallbackAvatarUrl)
 
         anchors.centerIn: visible ? avatar : undefined
         fillMode: Image.PreserveAspectCrop

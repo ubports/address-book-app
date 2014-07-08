@@ -142,6 +142,7 @@ Item {
 
             var avatarDetail = contact.detail(ContactDetail.Avatar)
             avatarDetail.imageUrl = "image://theme/contact"
+            avatarComponent.reload()
             compare(avatarComponent.showAvatarPicture, true)
         }
 
