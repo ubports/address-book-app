@@ -1,5 +1,8 @@
-if (NOT CLICK_MODE)
+if(NOT CLICK_MODE)
     set(XSCREENSHOT "X-Screenshot=${ADDRESS_BOOK_APP_FULL_DIR}/artwork/address-book-app-preview.png")
+    set(ADDRESS_BOOK_APP_ICON "address-book-app")
+else()
+    set(ADDRESS_BOOK_APP_ICON "address-book-app.svg")
 endif()
 
 file(REMOVE ${CMAKE_CURRENT_BINARY_DIR}/${ADDRESS_BOOK_APP_DESKTOP_FILE})
@@ -10,9 +13,18 @@ foreach(LINE ${DESKTOP_FILE_CONTENTS})
     file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/${ADDRESS_BOOK_APP_DESKTOP_FILE} "${LINE}\n")
 endforeach(LINE)
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${ADDRESS_BOOK_APP_DESKTOP_FILE}
-    DESTINATION ${CMAKE_INSTALL_DATADIR}/applications
-)
+if(CLICK_MODE)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${ADDRESS_BOOK_APP_DESKTOP_FILE}
+        DESTINATION ${CMAKE_INSTALL_BINDIR}
+    )
+    install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/${ADDRESS_BOOK_APP_ICON}
+        DESTINATION ${CMAKE_INSTALL_BINDIR}
+    )
+else()
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${ADDRESS_BOOK_APP_DESKTOP_FILE}
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/applications
+    )
+endif()
 
 install(FILES "address-book-app.url-dispatcher"
     DESTINATION ${CMAKE_INSTALL_DATADIR}/url-dispatcher/urls

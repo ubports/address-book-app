@@ -33,6 +33,7 @@ Item {
     readonly property double actionWidth: units.gu(5)
     readonly property double threshold: 0.4
     readonly property string swipeState: main.x == 0 ? "Normal" : main.x > 0 ? "LeftToRight" : "RightToLeft"
+    readonly property alias swipping: mainItemMoving.running
 
     signal itemClicked(var mouse)
     signal itemPressAndHold(var mouse)
@@ -194,6 +195,8 @@ Item {
         width: parent.width
         Behavior on x {
             UbuntuNumberAnimation {
+                id: mainItemMoving
+
                 easing.type: Easing.OutElastic
                 duration: UbuntuAnimation.SlowDuration
             }
