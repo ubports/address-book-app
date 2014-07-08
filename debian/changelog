@@ -1,3 +1,13 @@
+address-book-app (0.2+14.10.20140707-0ubuntu1) utopic; urgency=low
+
+  [ Leo Arias ]
+  * Call get_header from ubuntu-ui-toolkit-autopilot.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Call get_header from ubuntu-ui-toolkit-autopilot.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 07 Jul 2014 14:10:19 +0000
+
 address-book-app (0.2+14.10.20140704-0ubuntu1) utopic; urgency=low
 
   [ Tarmac ]
