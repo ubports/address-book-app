@@ -44,15 +44,13 @@ UbuntuShape {
          visible: (img.status != Image.Ready)
     }
 
-    Image {
+    image: Image {
         id: img
 
-        anchors.centerIn: parent
         fillMode: Image.PreserveAspectCrop
         asynchronous: true
         source: avatar.useDefaultAvatar ? avatar.defaultAvatar : avatar.avatarUrl
         height: avatar.height
         width: avatar.width
-        visible: !avatar.useDefaultAvatar
     }
 }
