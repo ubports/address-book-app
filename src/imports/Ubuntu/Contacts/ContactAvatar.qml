@@ -24,13 +24,24 @@ UbuntuShape {
     id: avatar
 
     property var contactElement: null
-    property string fallbackAvatarUrl: "image://theme/contact"
+    property string fallbackAvatarUrl: "image://theme/stock_contact"
     property string fallbackDisplayName: ""
     property bool showAvatarPicture: (avatarUrl != fallbackAvatarUrl) || (initials.length === 0)
 
     readonly property alias initials: initialsLabel.text
     readonly property string displayName: ContactsJS.formatToDisplay(contactElement, ContactDetail.Name, [Name.FirstName, Name.LastName], fallbackDisplayName)
-    readonly property string avatarUrl: ContactsJS.getAvatar(contactElement, fallbackAvatarUrl)
+    readonly property alias avatarUrl: detailConnections.avatarUrl
+
+    Connections {
+        id: detailConnections
+
+        property string avatarUrl: ContactsJS.getAvatar(contactElement, fallbackAvatarUrl)
+
+        target: contactElement ? contactElement.avatar : null
+        onDetailChanged: {
+            detailConnections.avatarUrl = Qt.binding(function() { return ContactsJS.getAvatar(contactElement, fallbackAvatarUrl) })
+        }
+    }
 
     function reload()
     {

@@ -15,6 +15,7 @@
  */
 
 import QtQuick 2.2
+import QtContacts 5.0
 import QtTest 1.0
 import Ubuntu.Test 0.1
 import Ubuntu.Contacts 0.1
@@ -130,6 +131,17 @@ Item {
         function test_show_avatar_with_contact_with_especial_name_and_image()
         {
             avatarComponent.contactElement = createContact("3214567", "")
+            compare(avatarComponent.showAvatarPicture, true)
+        }
+
+        function test_show_avatar_after_update_contact_()
+        {
+            var contact = createContact("My Name", "")
+            avatarComponent.contactElement = contact
+            compare(avatarComponent.showAvatarPicture, false)
+
+            var avatarDetail = contact.detail(ContactDetail.Avatar)
+            avatarDetail.imageUrl = "image://theme/contact"
             compare(avatarComponent.showAvatarPicture, true)
         }
 

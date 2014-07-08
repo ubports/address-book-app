@@ -27,11 +27,6 @@ ContactDetailBase {
     implicitHeight: units.gu(8)
     implicitWidth: units.gu(10)
 
-//    Connections {
-//        target: root.contact.avatar
-//        onDetailChanged: avatar.reload()
-//    }
-
     ContactsUI.ContactAvatar {
         id: avatar
 
