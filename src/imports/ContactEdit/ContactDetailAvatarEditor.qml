@@ -23,7 +23,7 @@ import "../Common"
 ContactDetailBase {
     id: root
 
-    readonly property string defaultAvatar: "image://theme/contact"
+    readonly property string defaultAvatar: "image://theme/add"
 
     function isEmpty() {
         return false;
@@ -68,14 +68,18 @@ ContactDetailBase {
 
         radius: "medium"
         anchors.fill: parent
-        image: Image {
+        image: avatarImage.source != defaultAvatar ? avatarImage : null
+
+        Image {
             id: avatarImage
 
             fillMode: Image.PreserveAspectCrop
             asynchronous: true
             source: root.getAvatar(root.detail)
-            height: units.gu(8)
-            width: units.gu(8)
+            anchors.centerIn: visible ? avatar : undefined
+            height: units.gu(3)
+            width: units.gu(3)
+            visible: source == defaultAvatar
 
             // When updating the avatar using the content picker the temporary file returned
             // can contain the same name as the previous one and if the cache is enabled this
