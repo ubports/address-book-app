@@ -31,7 +31,7 @@ class TestMultiplePickerMode(AddressBookAppTestCase):
         for contact in contacts:
             if (contact.visible):
                 mark = contact.select_single("QQuickRectangle", objectName="selectionMark")
-                self.assertThat(mark.visible, Eventually(Equals(False)))
+                self.assertThat(mark.opacity, Eventually(Equals(0.0)))
                 selection_marks.append(mark)
                 mark_to_contacts[mark] = contact
 

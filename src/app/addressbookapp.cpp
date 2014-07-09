@@ -72,10 +72,10 @@ static QString fullPath(const QString &fileName)
 static QString importPath(const QString &suffix)
 {
     QString appPath = QCoreApplication::applicationDirPath();
-    if (appPath.startsWith(ADDRESS_BOOK_DEV_BINDIR)) {
-        return QString(ADDRESS_BOOK_APP_DEV_DATADIR) + suffix;
-    } else if (!QStringLiteral(QT_EXTRA_IMPORTS_DIR).isEmpty()) {
+    if (ADDRESS_BOOK_APP_CLICK_MODE) {
         return QString(QT_EXTRA_IMPORTS_DIR) + suffix;
+    } else if (appPath.startsWith(ADDRESS_BOOK_DEV_BINDIR)) {
+        return QString(ADDRESS_BOOK_APP_DEV_DATADIR) + suffix;
     } else {
         return "";
     }
@@ -87,6 +87,7 @@ static void installIconPath()
 {
     QByteArray iconTheme = qgetenv("ADDRESS_BOOK_APP_ICON_THEME");
     if (!iconTheme.isEmpty()) {
+        qDebug() << "Register extra icon theme:" << iconTheme;
         QIcon::setThemeName(iconTheme);
     }
 }
@@ -180,6 +181,7 @@ bool AddressBookApp::setup()
 
     m_view->setResizeMode(QQuickView::SizeRootObjectToView);
     m_view->setTitle("AddressBook");
+    qDebug() << "New import path:" << QCoreApplication::applicationDirPath() + "/" + importPath("");
     m_view->engine()->addImportPath(QCoreApplication::applicationDirPath() + "/" + importPath(""));
     m_view->rootContext()->setContextProperty("QTCONTACTS_MANAGER_OVERRIDE", defaultManager);
     m_view->rootContext()->setContextProperty("application", this);

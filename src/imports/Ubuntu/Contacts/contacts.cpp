@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2013 Canonical, Ltd.
+ * Copyright (C) 2012-2014 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,22 +14,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.2
-import QtContacts 5.0 as QtContacts
-import Ubuntu.Components 0.1
-import Ubuntu.Contacts 0.1
+#include "contacts.h"
 
-//import "../Common"
+#include <QtCore/QStringList>
+#include <QtCore/QDebug>
 
-ContactDetailGroupWithTypeView {
-    id: root
+UbuntuContacts::UbuntuContacts(QObject *parent)
+    : QObject(parent)
+{
+}
 
-    title: i18n.tr("Professional details")
-    defaultIcon: "image://theme/location"
-    detailType: QtContacts.ContactDetail.Organization
-    typeModel: null
+QString UbuntuContacts::contactInitialsFromString(const QString &value)
+{
+    if (value.isEmpty() || !value.at(0).isLetter()) {
+        return QString();
+    }
 
-    fields: [ QtContacts.Organization.Name,
-              QtContacts.Organization.Role,
-              QtContacts.Organization.Title ]
+    QString initials;
+    QStringList parts = value.split(" ");
+    initials = parts.first().at(0).toUpper();
+    if (parts.size() > 1) {
+        initials += parts.last().at(0).toUpper();
+    }
+
+    return initials;
 }

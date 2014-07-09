@@ -193,7 +193,7 @@ Page {
             action: Action {
                 objectName: "favorite"
                 text: i18n.tr("Favorite")
-                iconName: root.contact && root.contact.favorite.favorite ? "favorite-selected" : "favorite-unselected"
+                iconName: root.contact && root.contact.favorite.favorite ? "starred" : "non-starred"
                 onTriggered: {
                     root.contact.favorite.favorite = !root.contact.favorite.favorite
                     root.contact.save()
@@ -215,7 +215,7 @@ Page {
             action: Action {
                 objectName: "edit"
                 text: i18n.tr("Edit")
-                iconSource: "artwork:/edit.png"
+                iconName: "edit"
                 onTriggered: {
                     pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
                                    { model: root.model, contact: root.contact})

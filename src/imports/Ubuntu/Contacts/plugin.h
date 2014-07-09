@@ -15,13 +15,13 @@
  */
 
 
-#ifndef _UBUNTU_CONTACTS_H_
-#define _UBUNTU_CONTACTS_H_
+#ifndef _UBUNTU_CONTACTS_PLUGIN_H_
+#define _UBUNTU_CONTACTS_PLUGIN_H_
 
 #include <QQmlContext>
 #include <QQmlExtensionPlugin>
 
-class UbuntuContacts : public QQmlExtensionPlugin
+class UbuntuContactsPlugin : public QQmlExtensionPlugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QQmlExtensionInterface")
@@ -31,4 +31,4 @@ public:
     void registerTypes(const char *uri);
 };
 
-#endif //_UBUNTU_CONTACTS_H_
+#endif //_UBUNTU_CONTACTS_PLUGINS_H_

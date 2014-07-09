@@ -1,6 +1,7 @@
 #ifndef __CONFIG_H__
 #define __CONFIG_H__
 
+#define ADDRESS_BOOK_APP_CLICK_MODE         @CLICK_MODE_ENABLED@
 #define ADDRESS_BOOK_APP_NAME               "@ADDRESS_BOOK_APP_NAME@"
 #define ADDRESS_BOOK_APP_INSTALL_DATADIR    "@ADDRESS_BOOK_APP_FULL_DIR@"
 #define ADDRESS_BOOK_APP_DEV_DATADIR        "@address-book-app-src_SOURCE_DIR@"

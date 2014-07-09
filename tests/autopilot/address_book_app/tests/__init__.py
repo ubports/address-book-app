@@ -31,6 +31,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
     VCARD_PATH_DEV = os.path.abspath("../data/vcard.vcf")
     ARGS = []
     PRELOAD_VCARD = False
+    MEMORY_BACKEND = True
 
     def setUp(self):
         self.pointing_device = toolkit_emulators.get_pointing_device()
@@ -45,7 +46,10 @@ class AddressBookAppTestCase(AutopilotTestCase):
         else:
             self.app_bin = AddressBookAppTestCase.DEFAULT_DEV_LOCATION
 
-        os.environ['QTCONTACTS_MANAGER_OVERRIDE'] = 'memory'
+        if AddressBookAppTestCase.MEMORY_BACKEND:
+            os.environ['QTCONTACTS_MANAGER_OVERRIDE'] = 'memory'
+        else:
+            os.environ['QTCONTACTS_MANAGER_OVERRIDE'] = 'galera'
         os.environ['ADDRESS_BOOK_APP_ICON_THEME'] = 'ubuntu-mobile'
         vcard_data = ""
         if AddressBookAppTestCase.PRELOAD_VCARD:
