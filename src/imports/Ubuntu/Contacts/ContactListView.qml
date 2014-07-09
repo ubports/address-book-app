@@ -373,6 +373,14 @@ Item {
                 return tag
         }
 
+        // if the favorite header became invisible we should move back to all contacts.
+        onShowFavouritesChanged: {
+            if (!showFavourites && view.favouritesIsSelected) {
+                root.changeFilter(root.filter)
+                view.favouritesIsSelected = false
+            }
+        }
+
         anchors {
             top: itemHeader.bottom
             left: parent.left
@@ -523,22 +531,21 @@ Item {
         IntersectionFilter {
             id: contactsFilter
 
-            property bool active: false
-
-            filters: {
-                var filters = []
+            property bool active: {
+                var filters_ = []
                 if (contactTermFilter.value.length > 0) {
-                    filters.push(contactTermFilter)
-                } else if (view.showFavourites && view.favouritesIsSelected) {
-                    filters.push(favouritesFilter)
+                    filters_.push(contactTermFilter)
+                } else if (view.favouritesIsSelected) {
+                    filters_.push(favouritesFilter)
                 }
 
                 if (root.filter) {
-                    filters.push(root.filter)
+                    filters_.push(root.filter)
                 }
 
-                active = (filters.length > 0)
-                return filters
+                // update the filters before notify about the active property
+                contactsFilter.filters = filters_
+                return (filters_.length > 0)
             }
         }
 
