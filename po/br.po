@@ -8,23 +8,23 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-06-30 15:01-0300\n"
-"PO-Revision-Date: 2014-05-16 07:53+0000\n"
+"PO-Revision-Date: 2014-07-08 07:50+0000\n"
 "Last-Translator: Fohanno Thierry <thierry.fohanno@ofis-bzh.org>\n"
 "Language-Team: Breton <br@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-05 05:58+0000\n"
-"X-Generator: Launchpad (build 17086)\n"
+"X-Launchpad-Export-Date: 2014-07-09 06:36+0000\n"
+"X-Generator: Launchpad (build 17100)\n"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
 msgid "%1 vCards imported"
-msgstr ""
+msgstr "%1 vKartenn enporzhiet"
 
 #: src/imports/ContactEdit/ContactEditor.qml:322
 msgid "Add Field"
-msgstr ""
+msgstr "Ouzhpennañ ur vaezienn"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:59
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
@@ -47,11 +47,11 @@ msgstr "An holl anezho"
 
 #: src/imports/Common/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
-msgstr ""
+msgstr "Ha sur oc'h e fell deoc'h lemel an holl zarempredoù diuzet ?"
 
 #: src/imports/Common/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
-msgstr ""
+msgstr "Ha sur oc'h e fell deoc'h lemel an darempred-mañ ?"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:133
 #: src/imports/ContactEdit/ContactEditor.qml:372
@@ -62,11 +62,11 @@ msgstr "Nullañ"
 
 #: src/imports/ContactList/ContactListPage.qml:242
 msgid "Cancel selection"
-msgstr ""
+msgstr "Nullañ an diuzadur"
 
 #: src/imports/ContactList/VCardImportDialog.qml:80
 msgid "Close"
-msgstr ""
+msgstr "Serriñ"
 
 #: src/imports/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
@@ -138,7 +138,7 @@ msgstr "Anv-bihan"
 
 #: src/imports/Ubuntu/Contacts/ContactListView.qml:427
 msgid "Frequently called"
-msgstr ""
+msgstr "Galvet alies"
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:116
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:94
@@ -155,11 +155,11 @@ msgstr "Tamm flap"
 
 #: src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
-msgstr ""
+msgstr "Enporzhiañ vKartennoù"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
 msgid "Importing..."
-msgstr ""
+msgstr "Oc'h enporzhiañ..."
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
 msgid "Jabber"
@@ -191,7 +191,7 @@ msgstr "Pellgomzer hezoug"
 
 #: src/imports/Common/RemoveContactsDialog.qml:44
 msgid "Multiple contacts"
-msgstr ""
+msgstr "Darempredoù liezek"
 
 #: src/imports/ContactEdit/TextInputDetail.qml:77
 msgid "Next"
@@ -204,7 +204,7 @@ msgstr "Ket"
 
 #: src/imports/Common/RemoveContactsDialog.qml:40
 msgid "No contact selected."
-msgstr ""
+msgstr "N'eus darempred diuzet ebet"
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Organization"
@@ -227,7 +227,7 @@ msgstr "Kod-post"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:63
 msgid "Professional Details"
-msgstr ""
+msgstr "Munudoù micherel"
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:23
 #: src/imports/ContactView/ContactDetailOrganizationsView.qml:27
@@ -248,7 +248,7 @@ msgstr "Enrollañ"
 
 #: src/imports/ContactList/ContactListPage.qml:292
 msgid "Search"
-msgstr ""
+msgstr "Klask"
 
 #: src/imports/ContactList/ContactListPage.qml:267
 msgid "Select"
@@ -256,19 +256,19 @@ msgstr "Diuzañ"
 
 #: src/imports/ContactList/ContactListPage.qml:251
 msgid "Select All"
-msgstr ""
+msgstr "Diuzañ pep tra"
 
 #: src/imports/ContactList/ContactListPage.qml:75
 msgid "Select Contacts"
-msgstr ""
+msgstr "Diuzañ darempredoù"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:116
 msgid "Select a field"
-msgstr ""
+msgstr "Diuzañ ur vaezienn"
 
 #: src/imports/ContactView/ContactView.qml:206
 msgid "Share"
-msgstr ""
+msgstr "Rannañ"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
 msgid "Skype"
