@@ -32,6 +32,7 @@ Package: address-book-app
 Architecture: amd64 armhf i386
 Depends: libqt5contacts5,
          libqt5versit5,
+         light-themes (>= 14.04+14.10.20140707),
          qmlscene,
          qtcontact5-galera,
          qtdeclarative5-qtcontacts-plugin,
