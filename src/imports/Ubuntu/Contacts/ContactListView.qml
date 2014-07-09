@@ -543,8 +543,18 @@ Item {
                     filters_.push(root.filter)
                 }
 
-                // update the filters before notify about the active property
-                contactsFilter.filters = filters_
+                // check if the filter has changed
+                var oldFilters = contactsFilter.filters
+                if (oldFilters.length !== filters_.length) {
+                    contactsFilter.filters = filters_
+                } else {
+                    for(var i=0; i < oldFilters.length; i++) {
+                        if (filters_.indexOf(oldFilters[i]) === -1) {
+                            contactsFilter.filters = filters_
+                        }
+                    }
+                }
+
                 return (filters_.length > 0)
             }
         }
@@ -557,25 +567,12 @@ Item {
             interval: 300
             onTriggered: {
                 view.positionViewAtBeginning()
-                var needUpdate = false
-                if (root.filterTerm === "") { // if the search criteria is empty clear the list before show all contacts
-                    if (contactTermFilter.value !== "") {
-                        root.changeFilter(root.filter)
-                        contactTermFilter.value = ""
-                        needUpdate = true
-                    }
-                } else {
-                    if (contactTermFilter.value !== root.filterTerm) {
-                        if (contactTermFilter.value === "") { // if the search starts clear the list before show results
-                            root.changeFilter(root.filter)
-                        }
-                        contactTermFilter.value = root.filterTerm
-                        needUpdate = true
-                    }
-                }
+
+                root.changeFilter(root.filter)
+                contactTermFilter.value = root.filterTerm
 
                 // manually update if autoUpdate is disabled
-                if (needUpdate && !root.autoUpdate) {
+                if (!root.autoUpdate) {
                     contactsModel.update()
                 }
             }
