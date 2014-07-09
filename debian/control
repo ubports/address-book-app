@@ -32,6 +32,7 @@ Package: address-book-app
 Architecture: amd64 armhf i386
 Depends: libqt5contacts5,
          libqt5versit5,
+         ubuntu-ui-toolkit-theme (>= 0.1.49+14.10.20140707),
          qmlscene,
          qtcontact5-galera,
          qtdeclarative5-qtcontacts-plugin,
@@ -51,6 +52,7 @@ Architecture: any
 Depends: qtdeclarative5-qtquick2-plugin,
          qtdeclarative5-ubuntu-ui-toolkit-plugin (>= 0.1.46+14.10.20140527) | qtdeclarative5-ubuntu-ui-toolkit-plugin-gles,
          qtdeclarative5-qtcontacts-plugin,
+         suru-icon-theme,
          ${misc:Depends},
          ${shlibs:Depends},
 Description: Qt Ubuntu Contacts Components - QML plugin
