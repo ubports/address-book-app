@@ -73,6 +73,7 @@ Q_SIGNALS:
     void startIntervalChanged(const QDateTime &value);
     void sourceModelChanged(QAbstractItemModel *value);
     void outdatedChange(bool value);
+    void loaded();
 
 private Q_SLOTS:
     void markAsOutdated();
