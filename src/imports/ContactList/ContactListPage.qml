@@ -40,7 +40,8 @@ PageWithBottomEdge {
     readonly property var contactModel: contactList.listModel ? contactList.listModel : null
     readonly property bool searching: (state === "searching")
 
-    function createEmptyContact(phoneNumber) {
+    function createEmptyContact(phoneNumber)
+    {
         var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
                         {detail: "EmailAddress", field: "emailAddress", value: ""},
                         {detail: "Name", field: "firstName", value: ""}
@@ -70,6 +71,44 @@ PageWithBottomEdge {
                                      enabled: false,
                                      initialFocusSection: "name"})
 
+    }
+
+    function showContact(contactId)
+    {
+        pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
+                       {model: contactList.listModel, contactId: contactId})
+    }
+
+    function addPhoneToContact(contactId, phoneNumber)
+    {
+        pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
+                       {model: contactList.listModel,
+                        contactId: contactId,
+                        addPhoneToContact: phoneNumber})
+    }
+
+    function importContact(urls)
+    {
+        if (urls.length > 0) {
+            var importDialog = Qt.createQmlObject("VCardImportDialog{}",
+                               mainPage,
+                               "VCardImportDialog")
+            if (importDialog) {
+                importDialog.importVCards(contactList.listModel, urls)
+            }
+        }
+    }
+
+    function startPickMode(isSingleSelection)
+    {
+        pickMode = true
+        pickMultipleContacts = !isSingleSelection
+        contactList.startSelection()
+    }
+
+    function moveListToContact(contact)
+    {
+        contactIndex = contact
     }
 
     title: contactList.isInSelectionMode ? i18n.tr("Select Contacts") : i18n.tr("Contacts")
@@ -139,7 +178,8 @@ PageWithBottomEdge {
         detailToPick: ContactDetail.PhoneNumber
         multiSelectionEnabled: true
         multipleSelection: !pickMode ||
-                           mainPage.pickMultipleContacts || (contactExporter.active && contactExporter.isMultiple)
+                           mainPage.pickMultipleContacts ||
+                           (contactExporter.active && contactExporter.isMultiple)
 
         leftSideAction: Action {
             iconName: "delete"
@@ -247,7 +287,7 @@ PageWithBottomEdge {
                 text: i18n.tr("Select All")
                 iconName: "filter"
                 onTriggered: {
-                    if (contactList.selectedItems.count == contactList.count) {
+                    if (contactList.selectedItems.count === contactList.count) {
                         contactList.clearSelection()
                     } else {
                         contactList.selectAll()
@@ -329,7 +369,6 @@ PageWithBottomEdge {
         onTextChanged: contactList.currentIndex = -1
         inputMethodHints: Qt.ImhNoPredictiveText
     }
-
     states: [
         State {
             name: ""
@@ -356,6 +395,7 @@ PageWithBottomEdge {
             PropertyChanges {
                 target: mainPage
                 tools: toolbarItemsSelectionMode
+                bottomEdgeEnabled: false
             }
         }
     ]
@@ -392,35 +432,6 @@ PageWithBottomEdge {
                                     initialFocusSection: "name"})
     }
 
-    Connections {
-        target: pageStack
-        onCreateContactRequested: mainPage.createContactWithPhoneNumber(phoneNumber)
-        onContactRequested: {
-            pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
-                           {model: contactList.listModel, contactId: contactId})
-        }
-        onEditContatRequested: {
-            pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
-                           {model: contactList.listModel,
-                            contactId: contactId,
-                            addPhoneToContact: phoneNumber})
-        }
-        onContactCreated: {
-            mainPage.contactIndex = contact
-        }
-
-        onImportContactRequested: {
-            if (urls.length > 0) {
-                var importDialog = Qt.createQmlObject("VCardImportDialog{}",
-                                   mainPage,
-                                   "VCardImportDialog")
-                if (importDialog) {
-                    importDialog.importVCards(contactList.listModel, urls)
-                }
-            }
-        }
-    }
-
     KeyboardRectangle {
         id: keyboard
     }
@@ -434,7 +445,6 @@ PageWithBottomEdge {
             }
         }
     }
-
 
     QtObject {
         id: contactExporter
@@ -470,25 +480,22 @@ PageWithBottomEdge {
     }
 
     Component.onCompleted: {
-        if (pickMode) {
-            contactList.startSelection()
-        } else if ((contactList.count === 0) &&
+        if ((contactList.count === 0) &&
                    application.firstRun &&
                    !mainPage.syncEnabled) {
             mainPage.onlineAccountsMessageDialog = PopupUtils.open(onlineAccountsDialog, null)
         }
 
-        if (TEST_DATA != "") {
+        if (TEST_DATA !== "") {
             contactList.listModel.importContacts("file://" + TEST_DATA)
         }
 
-        if (!pickMode) {
-            mainPage.setBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                                       {model: contactList.listModel,
-                                        contact: mainPage.createEmptyContact(""),
-                                        active: false,
-                                        enabled: false,
-                                        initialFocusSection: "name"})
-        }
+        mainPage.setBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                                   {model: contactList.listModel,
+                                    contact: mainPage.createEmptyContact(""),
+                                    active: false,
+                                    enabled: false,
+                                    initialFocusSection: "name"})
+        pageStack.contactListPage = mainPage
     }
 }

@@ -32,54 +32,57 @@ MainView {
 
     signal applicationReady()
 
-    function contact(contactId) {
-        mainStack.contactRequested(contactId)
+    function resetStack()
+    {
+        while(mainStack.depth > 1) {
+            mainStack.pop()
+        }
     }
 
-    function create(phoneNumber) {
-        mainStack.createContactRequested(phoneNumber)
+    function contact(contactId)
+    {
+        resetStack()
+        if (mainStack.contactListPage) {
+            mainStack.contactListPage.showContact(contactId)
+        }
     }
 
-    function addphone(contactId, phoneNumber) {
-        mainStack.newPhoneNumber = phoneNumber
-        mainStack.editContatRequested(contactId, phoneNumber)
+    function create(phoneNumber)
+    {
+        resetStack()
+        if (mainStack.contactListPage) {
+            mainStack.contactListPage.createContactWithPhoneNumber(phoneNumber)
+        }
     }
 
-    function pick(single) {
-        var isSingle = (single == "true")
-        mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"), { pickMode: true, pickMultipleContacts: !isSingle})
+    function addphone(contactId, phoneNumber)
+    {
+        resetStack()
+        if (mainStack.contactListPage) {
+            mainStack.contactListPage.addPhoneToContact(contactId, phoneNumber)
+        }
     }
 
-    function importvcard(_url) {
+    function pick(single)
+    {
+        resetStack()
+        if (mainStack.contactListPage) {
+            mainStack.contactListPage.startPickMode(single == "true")
+        }
+    }
+
+    function importvcard(_url)
+    {
+        resetStack()
         mainStack.importContactRequested([_url])
     }
 
     PageStack {
         id: mainStack
 
-        property string newPhoneNumber: ""
+        property var contactListPage: null
 
-        signal contactRequested(string contactId)
-        signal createContactRequested(string phoneNumber)
-        signal editContatRequested(string contactId, string phoneNumber)
-        signal contactCreated(QtObject contact)
-        signal contactModelError(string errorMessage)
-        signal importContactRequested(var urls)
-
-        anchors {
-            fill: parent
-            Behavior on bottomMargin {
-                NumberAnimation {
-                    duration: 175
-                    easing.type: Easing.OutQuad
-                }
-            }
-       }
-
-       onContactModelError: {
-           modelErrorMessage = errorMessage
-           PopupUtils.open(errorDialog, null)
-       }
+        anchors.fill: parent
     }
 
     Component.onCompleted: {
