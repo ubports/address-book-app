@@ -166,6 +166,16 @@ ListItemWithActions {
                 pickerLoader.item.detailClicked.connect(root._onDetailClicked)
             }
         }
+
+        // update delegate if contact update
+        Connections {
+            target: contact
+            onContactChanged: {
+                if (pickerLoader.item) {
+                    pickerLoader.item.updateDetails(contact)
+                }
+            }
+        }
     }
 
     Behavior on height {
