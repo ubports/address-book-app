@@ -1,3 +1,12 @@
+address-book-app (0.2+14.10.20140710-0ubuntu1) utopic; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Show the "+" icon in contact editor mode if the image is empty.
+    Fixed app crash wen starting the searching from favorite mode. (LP:
+    #1332124)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 10 Jul 2014 01:03:52 +0000
+
 address-book-app (0.2+14.10.20140709-0ubuntu1) utopic; urgency=low
 
   [ Omer Akram ]
