@@ -39,11 +39,12 @@ static void printUsage(const QStringList& arguments)
 {
     qDebug() << "usage:"
              << arguments.at(0).toUtf8().constData()
-             << "[addressbook:///addphone?id=<contact-id>&phone=<phone-number>"
-             << "[addressbook:///contact?id=<contact-id>"
-             << "[addressbook:///create?phone=<phone-number>"
-             << "[addressbook:///pick?single=<true/false>"
-             << "[addressbook:///importvcard?url=<vcard-file>"
+             << "[addressbook:///addphone?id=<contact-id>&phone=<phone-number>]"
+             << "[addressbook:///addnewphone?phone=<phone-number>]"
+             << "[addressbook:///contact?id=<contact-id>]"
+             << "[addressbook:///create?phone=<phone-number>]"
+             << "[addressbook:///pick?single=<true/false>]"
+             << "[addressbook:///importvcard?url=<vcard-file>]"
              << "[--fullscreen]"
              << "[--help]"
              << "[-testability]";
@@ -304,6 +305,11 @@ void AddressBookApp::parseUrl(const QString &arg)
         //vcard
         args << "url";
         methodsMetaData.insert("importvcard", args);
+        args.clear();
+
+        //addnewphone
+        args << "phone";
+        methodsMetaData.insert("addnewphone", args);
         args.clear();
     }
 

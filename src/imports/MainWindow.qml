@@ -74,7 +74,17 @@ MainView {
     function importvcard(_url)
     {
         resetStack()
-        mainStack.importContactRequested([_url])
+        if (mainStack.contactListPage) {
+            mainStack.contactListPage.importContactRequested([_url])
+        }
+    }
+
+    function addnewphone(phoneNumer)
+    {
+        resetStack()
+        if (mainStack.contactListPage) {
+            mainStack.contactListPage.addNewPhone(phoneNumer)
+        }
     }
 
     PageStack {

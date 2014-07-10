@@ -35,6 +35,7 @@ PageWithBottomEdge {
     property var onlineAccountsMessageDialog: null
     property QtObject contactIndex: null
     property bool contactsLoaded: false
+    property string newPhoneToAdd: ""
 
     readonly property bool syncEnabled: application.syncEnabled
     readonly property var contactModel: contactList.listModel ? contactList.listModel : null
@@ -64,13 +65,19 @@ PageWithBottomEdge {
         var newContact = mainPage.createEmptyContact(phoneNumber)
         //WORKAROUND: SKD changes the page header as soon as the page get created
         // setting active false will avoid that
-        mainPage.showBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                                    {model: contactList.listModel,
-                                     contact: newContact,
-                                     active: false,
-                                     enabled: false,
-                                     initialFocusSection: "name"})
-
+        if (bottomEdgeEnabled) {
+            mainPage.showBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                                        {model: contactList.listModel,
+                                         contact: newContact,
+                                         active: false,
+                                         enabled: false,
+                                         initialFocusSection: "name"})
+        } else {
+            pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                           {model: contactList.listModel,
+                            contact: newContact,
+                            initialFocusSection: "name"})
+        }
     }
 
     function showContact(contactId)
@@ -109,6 +116,12 @@ PageWithBottomEdge {
     function moveListToContact(contact)
     {
         contactIndex = contact
+    }
+
+    function addNewPhone(phoneNumber)
+    {
+        newPhoneToAdd = phoneNumber
+        state = "newphone"
     }
 
     title: contactList.isInSelectionMode ? i18n.tr("Select Contacts") : i18n.tr("Contacts")
@@ -163,13 +176,34 @@ PageWithBottomEdge {
         }
     }
 
+    Button {
+        id: addNewContactButton
+        objectName: "addNewContact"
+
+        text: i18n.tr("+ New Contact")
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            margins: visible ? units.gu(2) : 0
+        }
+        height: visible ? units.gu(4) : 0
+        visible: false
+        onClicked: {
+            mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
+            mainPage.newPhoneToAdd = ""
+            mainPage.state = ""
+        }
+    }
+
     flickable: null //contactList.fastScrolling ? null : contactList.view
     ContactsUI.ContactListView {
         id: contactList
         objectName: "contactListView"
 
         anchors {
-            top: parent.top
+            top: addNewContactButton.bottom
+            topMargin: addNewContactButton.visible ? units.gu(2) : 0
             left: parent.left
             bottom: keyboard.top
             right: parent.right
@@ -214,6 +248,11 @@ PageWithBottomEdge {
                 Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
             else if (action == "message")
                 Qt.openUrlExternally("message:///" + encodeURIComponent(detail.number))
+            else if (mainPage.state == "newphone") {
+                mainPage.addPhoneToContact(contact.contactId, mainPage.newPhoneToAdd)
+                mainPage.newPhoneToAdd = ""
+                mainPage.state = ""
+            }
         }
 
         onSelectionDone: {
@@ -375,6 +414,21 @@ PageWithBottomEdge {
             PropertyChanges {
                 target: searchField
                 text: ""
+            }
+        },
+        State {
+            name: "newphone"
+            PropertyChanges {
+                target: addNewContactButton
+                visible: true
+            }
+            PropertyChanges {
+                target: mainPage
+                bottomEdgeEnabled: false
+            }
+            PropertyChanges {
+                target: contactList
+                detailToPick: -1
             }
         },
         State {

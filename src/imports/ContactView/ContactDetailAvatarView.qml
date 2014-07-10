@@ -28,7 +28,8 @@ ContactDetailBase {
     implicitWidth: units.gu(10)
 
     Connections {
-        target: root.contact.avatar
+        target: root.contact ? root.contact.detail(ContactDetail.Avatar) : null
+        ignoreUnknownSignals: true
         onDetailChanged: avatar.reload()
     }
 
