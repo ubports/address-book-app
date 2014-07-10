@@ -373,6 +373,14 @@ Item {
                 return tag
         }
 
+        // if the favorite header became invisible we should move back to all contacts.
+        onShowFavouritesChanged: {
+            if (!showFavourites && view.favouritesIsSelected) {
+                root.changeFilter(root.filter)
+                view.favouritesIsSelected = false
+            }
+        }
+
         anchors {
             top: itemHeader.bottom
             left: parent.left
@@ -535,22 +543,31 @@ Item {
         IntersectionFilter {
             id: contactsFilter
 
-            property bool active: false
-
-            filters: {
-                var filters = []
+            property bool active: {
+                var filters_ = []
                 if (contactTermFilter.value.length > 0) {
-                    filters.push(contactTermFilter)
-                } else if (view.showFavourites && view.favouritesIsSelected) {
-                    filters.push(favouritesFilter)
+                    filters_.push(contactTermFilter)
+                } else if (view.favouritesIsSelected) {
+                    filters_.push(favouritesFilter)
                 }
 
                 if (root.filter) {
-                    filters.push(root.filter)
+                    filters_.push(root.filter)
                 }
 
-                active = (filters.length > 0)
-                return filters
+                // check if the filter has changed
+                var oldFilters = contactsFilter.filters
+                if (oldFilters.length !== filters_.length) {
+                    contactsFilter.filters = filters_
+                } else {
+                    for(var i=0; i < oldFilters.length; i++) {
+                        if (filters_.indexOf(oldFilters[i]) === -1) {
+                            contactsFilter.filters = filters_
+                        }
+                    }
+                }
+
+                return (filters_.length > 0)
             }
         }
 
@@ -562,25 +579,12 @@ Item {
             interval: 300
             onTriggered: {
                 view.positionViewAtBeginning()
-                var needUpdate = false
-                if (root.filterTerm === "") { // if the search criteria is empty clear the list before show all contacts
-                    if (contactTermFilter.value !== "") {
-                        root.changeFilter(root.filter)
-                        contactTermFilter.value = ""
-                        needUpdate = true
-                    }
-                } else {
-                    if (contactTermFilter.value !== root.filterTerm) {
-                        if (contactTermFilter.value === "") { // if the search starts clear the list before show results
-                            root.changeFilter(root.filter)
-                        }
-                        contactTermFilter.value = root.filterTerm
-                        needUpdate = true
-                    }
-                }
+
+                root.changeFilter(root.filter)
+                contactTermFilter.value = root.filterTerm
 
                 // manually update if autoUpdate is disabled
-                if (needUpdate && !root.autoUpdate) {
+                if (!root.autoUpdate) {
                     contactsModel.update()
                 }
             }

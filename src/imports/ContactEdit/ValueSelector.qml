@@ -93,7 +93,7 @@ Item {
         }
 
         Icon {
-            name: "chevron"
+            name: "go-next"
             color: "black"
             height: units.gu(1)
             width: height
@@ -164,8 +164,7 @@ Item {
             Icon {
                 id: arrow
 
-                name: "chevron"
-                color: "white"
+                name: "go-next"
                 height: visible ? units.gu(1) : 0
                 width: height
                 visible: index < (listView.count - 1)

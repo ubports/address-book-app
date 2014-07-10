@@ -1,3 +1,19 @@
+address-book-app (0.2+14.10.20140709-0ubuntu1) utopic; urgency=low
+
+  [ Omer Akram ]
+  * make use of memory backend in autopilot testing optional. Extend
+    ContactAvatar element to be possible to use in different apps.
+    Prevent to have two swiped items. Make sure to use theme images when
+    possible .
+
+  [ Renato Araujo Oliveira Filho ]
+  * make use of memory backend in autopilot testing optional. Extend
+    ContactAvatar element to be possible to use in different apps.
+    Prevent to have two swiped items. Make sure to use theme images when
+    possible .
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 09 Jul 2014 00:55:22 +0000
+
 address-book-app (0.2+14.10.20140707-0ubuntu1) utopic; urgency=low
 
   [ Leo Arias ]
