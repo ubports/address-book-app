@@ -31,6 +31,8 @@ Item {
     default property alias contents: main.children
 
     readonly property double actionWidth: units.gu(5)
+    readonly property double leftActionWidth: units.gu(10)
+    readonly property double actionThreshold: actionWidth * 0.4
     readonly property double threshold: 0.4
     readonly property string swipeState: main.x == 0 ? "Normal" : main.x > 0 ? "LeftToRight" : "RightToLeft"
     readonly property alias swipping: mainItemMoving.running
@@ -40,27 +42,20 @@ Item {
 
     function returnToBoundsRTL()
     {
-        var xOffset = Math.abs(main.x)
         var actionFullWidth = actionWidth + units.gu(1)
+        var xOffset = Math.abs(main.x)
+        var index = Math.min(Math.floor(xOffset / root.actionWidth), rightSideActions.length)
 
-        if (xOffset < actionFullWidth) {
+        if (index < 1) {
             main.x = 0
-        } else if (xOffset > (actionFullWidth * rightActionsRepeater.count)) {
-            main.x = - (actionFullWidth * rightActionsRepeater.count)
         } else {
-            for (var i = rightActionsRepeater.count; i >= 2; i--) {
-                if (xOffset >= (actionFullWidth * i)) {
-                    main.x = -(actionWidth * i)
-                    return
-                }
-            }
-            main.x = -actionWidth
+            main.x = -(actionFullWidth * index)
         }
     }
 
     function returnToBoundsLTR()
     {
-        var finalX = leftActionView.width
+        var finalX = leftActionWidth
         if (main.x > (finalX * root.threshold))
             main.x = finalX
         else
@@ -99,16 +94,13 @@ Item {
 
     function updateActiveAction()
     {
-        var xOffset = Math.abs(main.x)
-        if (main.x < 0) {
-            for (var i = rightActionsRepeater.count - 1; i >= 0; i--) {
-                var child = rightActionsRepeater.itemAt(i)
-                var childOffset = rightActionsView.width - child.x
-                if (xOffset <= childOffset) {
-                    root.activeItem = child
-                    root.activeAction = root.rightSideActions[i]
-                    return
-                }
+        if (main.x <= -root.actionWidth) {
+            var xOffset = Math.abs(main.x)
+            var index = Math.min(Math.floor(xOffset / root.actionWidth), rightSideActions.length)
+            index = index - 1
+            if (index > -1) {
+                root.activeItem = rightActionsRepeater.itemAt(index)
+                root.activeAction = root.rightSideActions[index]
             }
         } else {
             root.activeAction = null
@@ -129,9 +121,9 @@ Item {
         anchors {
             top: parent.top
             bottom: parent.bottom
-            left: parent.left
+            right: main.left
         }
-        width: height
+        width: root.leftActionWidth + actionThreshold
         visible: leftSideAction
         color: "red"
 
@@ -149,10 +141,10 @@ Item {
 
        anchors {
            top: main.top
-           right: parent.right
+           left: main.right
            bottom: main.bottom
        }
-       width: rightActionsRepeater.count * (root.actionWidth + units.gu(1))
+       width: rightActionsRepeater.count * (root.actionWidth + units.gu(1)) + actionThreshold
        Row {
            anchors.fill: parent
            spacing: units.gu(1)
