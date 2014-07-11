@@ -24,6 +24,7 @@ MainView {
     id: mainWindow
 
     property string modelErrorMessage: ""
+    readonly property bool appActive: Qt.application.active
 
     width: units.gu(40)
     height: units.gu(71)
@@ -155,16 +156,13 @@ MainView {
 
 
     // If appliacion wass called from url handler and lost the focus reset the app to normal state
-    Connections {
-        target: Qt.application
-        onActiveChanged: {
-            if (!Qt.application.active &&
-                mainStack.contactListPage &&
-                mainStack.contactListPage.allowToQuit) {
-                resetStack()
-                mainStack.contactListPage.allowToQuit = false
-                mainStack.contactListPage.state = ""
-            }
+    onAppActiveChanged: {
+        if (!appActive &&
+            mainStack.contactListPage &&
+            mainStack.contactListPage.allowToQuit) {
+            resetStack()
+            mainStack.contactListPage.allowToQuit = false
+            mainStack.contactListPage.state = ""
         }
     }
 }
