@@ -307,7 +307,7 @@ msgstr "Toque"
 #. the supported values can be found in: https://www.iso.org/obp/ui/#search
 #: src/imports/ContactEdit/TextInputDetail.qml:73
 msgid "US"
-msgstr ""
+msgstr "BR"
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:117
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:96
