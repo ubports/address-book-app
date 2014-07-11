@@ -82,8 +82,8 @@ Page {
             // backend error will be handled by the root page (contact list)
             var newContact = (contact.model == null)
             contactEditor.model.saveContact(contact)
-            if (newContact) {
-                pageStack.contactCreated(contact)
+            if (newContact && pageStack.contactListPage) {
+                pageStack.contactListPage.moveListToContact(contact)
             }
         }
         pageStack.pop()
