@@ -128,7 +128,10 @@ Item {
         color: "red"
 
         Icon {
-            anchors.centerIn: parent
+            anchors {
+                centerIn: parent
+                horizontalCenterOffset: actionThreshold / 2
+            }
             name: leftSideAction ? leftSideAction.iconName : ""
             color: Theme.palette.selected.field
             height: units.gu(3)
