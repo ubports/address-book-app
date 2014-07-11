@@ -42,9 +42,9 @@ Item {
 
     function returnToBoundsRTL()
     {
-        var actionFullWidth = actionWidth + units.gu(1)
+        var actionFullWidth = actionWidth + units.gu(2)
         var xOffset = Math.abs(main.x)
-        var index = Math.min(Math.floor(xOffset / root.actionWidth), rightSideActions.length)
+        var index = Math.min(Math.floor(xOffset / actionFullWidth), rightSideActions.length)
 
         if (index < 1) {
             main.x = 0
@@ -95,8 +95,9 @@ Item {
     function updateActiveAction()
     {
         if (main.x <= -root.actionWidth) {
+            var actionFullWidth = actionWidth + units.gu(2)
             var xOffset = Math.abs(main.x)
-            var index = Math.min(Math.floor(xOffset / root.actionWidth), rightSideActions.length)
+            var index = Math.min(Math.floor(xOffset / actionFullWidth), rightSideActions.length)
             index = index - 1
             if (index > -1) {
                 root.activeItem = rightActionsRepeater.itemAt(index)
@@ -145,12 +146,13 @@ Item {
        anchors {
            top: main.top
            left: main.right
+           leftMargin: units.gu(1)
            bottom: main.bottom
        }
-       width: rightActionsRepeater.count * (root.actionWidth + units.gu(1)) + actionThreshold
+       width: rightActionsRepeater.count * (root.actionWidth + units.gu(2)) + actionThreshold
        Row {
            anchors.fill: parent
-           spacing: units.gu(1)
+           spacing: units.gu(2)
            Repeater {
                id: rightActionsRepeater
 
