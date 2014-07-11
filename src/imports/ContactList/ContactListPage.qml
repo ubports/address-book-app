@@ -36,6 +36,7 @@ PageWithBottomEdge {
     property QtObject contactIndex: null
     property bool contactsLoaded: false
     property string newPhoneToAdd: ""
+    property bool allowToQuit: false
 
     readonly property bool syncEnabled: application.syncEnabled
     readonly property var contactModel: contactList.listModel ? contactList.listModel : null
@@ -351,6 +352,21 @@ PageWithBottomEdge {
         id: toolbarItemsNormalMode
 
         visible: false
+        back: mainPage.allowToQuit ? quitButton : null
+
+        ToolbarButton {
+            id: quitButton
+
+            visible: false
+            action: Action {
+                objectName: "quitApp"
+
+                visible: mainPage.allowToQuit
+                iconName: "back"
+                text: i18n.tr("Quit")
+                onTriggered: Qt.quit()
+            }
+        }
         ToolbarButton {
             objectName: "Sync"
             action: Action {

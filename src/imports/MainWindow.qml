@@ -43,6 +43,7 @@ MainView {
     {
         resetStack()
         if (mainStack.contactListPage) {
+            mainStack.contactListPage.allowToQuit = true
             mainStack.contactListPage.showContact(contactId)
         }
     }
@@ -51,6 +52,7 @@ MainView {
     {
         resetStack()
         if (mainStack.contactListPage) {
+            mainStack.contactListPage.allowToQuit = true
             mainStack.contactListPage.createContactWithPhoneNumber(phoneNumber)
         }
     }
@@ -59,6 +61,7 @@ MainView {
     {
         resetStack()
         if (mainStack.contactListPage) {
+            mainStack.contactListPage.allowToQuit = true
             mainStack.contactListPage.addPhoneToContact(contactId, phoneNumber)
         }
     }
@@ -67,6 +70,7 @@ MainView {
     {
         resetStack()
         if (mainStack.contactListPage) {
+            mainStack.contactListPage.allowToQuit = true
             mainStack.contactListPage.startPickMode(single == "true")
         }
     }
@@ -75,6 +79,7 @@ MainView {
     {
         resetStack()
         if (mainStack.contactListPage) {
+            mainStack.contactListPage.allowToQuit = true
             mainStack.contactListPage.importContactRequested([_url])
         }
     }
@@ -83,6 +88,7 @@ MainView {
     {
         resetStack()
         if (mainStack.contactListPage) {
+            mainStack.contactListPage.allowToQuit = true
             mainStack.contactListPage.addNewPhone(phoneNumer)
         }
     }
@@ -143,6 +149,21 @@ MainView {
                     urls.push(transfer.items[i].url)
                 }
                 mainStack.importContactRequested(urls)
+            }
+        }
+    }
+
+
+    // If appliacion wass called from url handler and lost the focus reset the app to normal state
+    Connections {
+        target: Qt.application
+        onActiveChanged: {
+            if (!Qt.application.active &&
+                mainStack.contactListPage &&
+                mainStack.contactListPage.allowToQuit) {
+                resetStack()
+                mainStack.contactListPage.allowToQuit = false
+                mainStack.contactListPage.state = ""
             }
         }
     }
