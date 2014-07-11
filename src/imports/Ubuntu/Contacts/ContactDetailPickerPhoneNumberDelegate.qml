@@ -17,6 +17,7 @@
 import QtQuick 2.2
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components 0.1
+import QtContacts 5.0 as QtContacts
 
 Item {
     id: root
@@ -31,7 +32,9 @@ Item {
 
     function updateDetails(contact)
     {
-        phoneNumberEntries.model = contact.phoneNumbers
+        if (contact) {
+            phoneNumberEntries.model = contact.details(QtContacts.ContactDetail.PhoneNumber)
+        }
     }
 
     height: detailItems.height + units.gu(2)
@@ -56,7 +59,6 @@ Item {
         Repeater {
             id: phoneNumberEntries
 
-            model: contact.phoneNumbers
             ListItem.Subtitled {
                 anchors {
                     left: parent.left
@@ -66,7 +68,7 @@ Item {
                 showDivider: false
                 // TODO: change text font color to UbuntuColors.lightAubergine
                 // see bug #1324128
-                text: number
+                text: modelData.number
                 subText: phoneTypeModel.get(phoneTypeModel.getTypeIndex(modelData)).label
                 onClicked: root.detailClicked(modelData, "")
 
