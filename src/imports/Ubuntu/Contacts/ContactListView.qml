@@ -401,6 +401,7 @@ Item {
                 var areaY = view.contentY
                 if (itemY < areaY) {
                     view.contentY = itemY
+                    view.returnToBounds()
                 }
             }
 
@@ -411,14 +412,20 @@ Item {
             height: visible ? childrenRect.height : 0
             visible: view.favouritesIsSelected && (callerRepeat.count > 0)
             onHeightChanged: {
-                // make selected item fully visible
                 if (calledModel.currentIndex != -1) {
                     mostCalledView.makeItemVisible(callerRepeat.itemAt(calledModel.currentIndex))
-                } else {
-                    // WORKAROUND: The SDK header causes the contactY to move to a wrong postion
-                    // this should fix the Y position (630 is the header height)
-                    view.contentY = -630
                 }
+            }
+
+            // WORKAROUND: The SDK header causes the contactY to move to a wrong postion
+            // calling the positionViewAtBeginning after the list created fix that
+            Timer {
+                id: moveToBegining
+
+                interval: 100
+                running: false
+                repeat: false
+                onTriggered: view.positionViewAtBeginning()
             }
 
             Rectangle {
@@ -453,6 +460,7 @@ Item {
 
                     onVisibleChanged: {
                         // update the model every time that it became visible
+                        // in fact calling update only reloads the model data if it has changed
                         if (visible) {
                             model.update()
                         }
@@ -465,6 +473,10 @@ Item {
                             view.currentIndex = -1
                         }
                     }
+
+                    // WORKAROUND: The SDK header causes the contactY to move to a wrong postion
+                    // calling the positionViewAtBeginning after the list created fix that
+                    onLoaded: moveToBegining.restart()
                 }
             }
 

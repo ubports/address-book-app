@@ -25,14 +25,18 @@ VisualDataModel {
 
     property var contactModel: null
     property int currentIndex: -1
+    property alias callAverage: mostCalledModel.callAverage
 
     signal clicked(int index, QtObject contact)
     signal detailClicked(QtObject contact, QtObject detail, string action)
     signal infoRequested(int index, QtObject contact)
     signal addContactClicked(string label)
+    signal loaded()
 
 
     model: MostCalledContactsModel {
+        id: mostCalledModel
+
         startInterval: new Date((new Date().getTime() - 2592000000)) // one month ago
         sourceModel: HistoryEventModel {
             type: HistoryThreadModel.EventTypeVoice
@@ -46,6 +50,7 @@ VisualDataModel {
                 matchFlags: HistoryFilter.MatchCaseSensitive
             }
         }
+        onLoaded: root.loaded()
     }
 
     delegate: ContactDelegate {
