@@ -155,7 +155,7 @@ MainView {
     }
 
 
-    // If appliacion wass called from url handler and lost the focus reset the app to normal state
+    // If application was called from uri handler and lost the focus reset the app to normal state
     onAppActiveChanged: {
         if (!appActive &&
             mainStack.contactListPage &&
