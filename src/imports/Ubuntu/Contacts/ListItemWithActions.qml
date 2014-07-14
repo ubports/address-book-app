@@ -149,7 +149,7 @@ Item {
            leftMargin: units.gu(1)
            bottom: main.bottom
        }
-       width: rightActionsRepeater.count * (root.actionWidth + units.gu(2)) + actionThreshold
+       width: rightActionsRepeater.count > 0 ? rightActionsRepeater.count * (root.actionWidth + units.gu(2)) + actionThreshold : 0
        Row {
            anchors.fill: parent
            spacing: units.gu(2)
@@ -224,11 +224,6 @@ Item {
                 easing {type: Easing.InOutBack; }
             }
         }
-        ScriptAction {
-            script: {
-                root.activeAction.triggered(root)
-            }
-        }
         PropertyAction {
             target: triggerAction.currentItem
             properties: "width, height"
@@ -245,6 +240,11 @@ Item {
             to: 0
             easing.type: Easing.OutElastic
             duration: UbuntuAnimation.SlowDuration
+        }
+        ScriptAction {
+            script: {
+                root.activeAction.triggered(root)
+            }
         }
     }
 
