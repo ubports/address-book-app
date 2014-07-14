@@ -163,6 +163,7 @@ MainView {
             resetStack()
             mainStack.contactListPage.allowToQuit = false
             mainStack.contactListPage.state = ""
+            application.callbackApplication = ""
         }
     }
 }

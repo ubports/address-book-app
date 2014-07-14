@@ -22,6 +22,7 @@
 #include <QUrl>
 #include <QUrlQuery>
 #include <QDebug>
+#include <QDesktopServices>
 #include <QStringList>
 #include <QQuickItem>
 #include <QQmlComponent>
@@ -30,6 +31,8 @@
 #include <QLibrary>
 #include <QIcon>
 #include <QSettings>
+#include <QTimer>
+
 
 #include <QQmlEngine>
 
@@ -267,6 +270,14 @@ void AddressBookApp::sendTabEvent() const
     sendEvent(m_view, &keyReleaseEvent);
 }
 
+void AddressBookApp::exit()
+{
+    QTimer::singleShot(0, this, SLOT(quit()));
+    if (!m_callbackApplication.isEmpty()) {
+        QDesktopServices::openUrl(QUrl(QString("application:///%1").arg(m_callbackApplication)));
+    }
+}
+
 void AddressBookApp::parseUrl(const QString &arg)
 {
     QUrl url = QUrl::fromPercentEncoding(arg.toUtf8());
@@ -322,6 +333,8 @@ void AddressBookApp::parseUrl(const QString &arg)
         QPair<QString, QString> item = queryItemsPair[i];
         queryItems.insert(item.first, item.second);
     }
+    // keep callback arg
+    m_callbackApplication = queryItems.take("callback");
 
     if (methodsMetaData.contains(methodName)) {
         QStringList argsNames = methodsMetaData[methodName];
@@ -455,4 +468,17 @@ bool AddressBookApp::syncEnabled() const
         }
     }
     return false;
+}
+
+QString AddressBookApp::callbackApplication() const
+{
+    return m_callbackApplication;
+}
+
+void AddressBookApp::setCallbackApplication(const QString &application)
+{
+    if (m_callbackApplication != application) {
+        m_callbackApplication = application;
+        Q_EMIT callbackApplicationChanged();
+    }
 }

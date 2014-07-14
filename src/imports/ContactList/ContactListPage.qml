@@ -364,7 +364,7 @@ PageWithBottomEdge {
                 visible: mainPage.allowToQuit
                 iconName: "back"
                 text: i18n.tr("Quit")
-                onTriggered: Qt.quit()
+                onTriggered: application.exit()
             }
         }
         ToolbarButton {
