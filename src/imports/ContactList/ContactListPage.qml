@@ -40,7 +40,7 @@ PageWithBottomEdge {
 
     readonly property bool syncEnabled: application.syncEnabled
     readonly property var contactModel: contactList.listModel ? contactList.listModel : null
-    readonly property bool searching: (state === "searching")
+    readonly property bool searching: (state === "searching" || state === "newphoneSearching")
 
     function createEmptyContact(phoneNumber)
     {
@@ -384,7 +384,7 @@ PageWithBottomEdge {
                 visible: !mainPage.searching
                 iconName: "search"
                 onTriggered: {
-                    mainPage.state = "searching"
+                    mainPage.state = (mainPage.state === "newphone" ? "newphoneSearching" : "searching")
                     searchField.forceActiveFocus()
                 }
             }
@@ -401,9 +401,9 @@ PageWithBottomEdge {
                 objectName: "cancelSearch"
 
                 visible: mainPage.searching
-                iconName: "back"
+                iconName: "close"
                 text: i18n.tr("Cancel")
-                onTriggered: mainPage.state = ""
+                onTriggered: mainPage.state = (mainPage.state === "newphoneSearching" ? "newphone" : "")
             }
         }
     }
@@ -435,6 +435,10 @@ PageWithBottomEdge {
         State {
             name: "newphone"
             PropertyChanges {
+                target: searchField
+                text: ""
+            }
+            PropertyChanges {
                 target: addNewContactButton
                 visible: true
             }
@@ -445,6 +449,30 @@ PageWithBottomEdge {
             PropertyChanges {
                 target: contactList
                 detailToPick: -1
+            }
+        },
+        State {
+            name: "newphoneSearching"
+            PropertyChanges {
+                target: addNewContactButton
+                visible: true
+            }
+            PropertyChanges {
+                target: mainPage
+                bottomEdgeEnabled: false
+            }
+            PropertyChanges {
+                target: contactList
+                detailToPick: -1
+            }
+            PropertyChanges {
+                target: mainPage
+                __customHeaderContents: searchField
+                tools: toolbarItemsSearch
+            }
+            PropertyChanges {
+                target: contactList
+                showFavourites: false
             }
         },
         State {
@@ -469,6 +497,7 @@ PageWithBottomEdge {
             }
         }
     ]
+    onStateChanged: console.debug("NEW STATE" + state)
 
     tools: toolbarItemsNormalMode
 
