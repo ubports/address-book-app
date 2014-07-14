@@ -67,10 +67,7 @@ FocusScope {
         id: field
 
         anchors.fill: parent
-
-        // TRANSLATORS: This value is used as default value for phone number format, when no coutry code is provided
-        // the supported values can be found in: https://www.iso.org/obp/ui/#search
-        defaultRegion: i18n.tr("US")
+        defaultRegion: PhoneUtils.defaultRegion
         autoFormat: false
 
         // Ubuntu.Keyboard
