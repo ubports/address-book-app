@@ -117,6 +117,11 @@ PageWithBottomEdge {
     function moveListToContact(contact)
     {
         contactIndex = contact
+
+        // this means a new contact was created
+        if (mainPage.allowToQuit) {
+            application.exit()
+        }
     }
 
     function addNewPhone(phoneNumber)
@@ -190,11 +195,7 @@ PageWithBottomEdge {
         }
         height: visible ? units.gu(4) : 0
         visible: false
-        onClicked: {
-            mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
-            mainPage.newPhoneToAdd = ""
-            mainPage.state = ""
-        }
+        onClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
     }
 
     flickable: null //contactList.fastScrolling ? null : contactList.view
@@ -249,10 +250,8 @@ PageWithBottomEdge {
                 Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
             else if (action == "message")
                 Qt.openUrlExternally("message:///" + encodeURIComponent(detail.number))
-            else if (mainPage.state == "newphone") {
+            else if ((mainPage.state === "newphone") || (mainPage.state === "newphoneSearching")) {
                 mainPage.addPhoneToContact(contact.contactId, mainPage.newPhoneToAdd)
-                mainPage.newPhoneToAdd = ""
-                mainPage.state = ""
             }
         }
 
