@@ -35,7 +35,7 @@ MainView {
 
     function contact(contactId)
     {
-        resetStack()
+        mainStack.resetStack()
         if (mainStack.contactListPage) {
             mainStack.contactListPage.showContact(contactId)
         }
@@ -43,7 +43,7 @@ MainView {
 
     function create(phoneNumber)
     {
-        resetStack()
+        mainStack.resetStack()
         if (mainStack.contactListPage) {
             mainStack.contactListPage.createContactWithPhoneNumber(phoneNumber)
         }
