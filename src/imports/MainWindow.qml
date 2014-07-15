@@ -33,13 +33,6 @@ MainView {
 
     signal applicationReady()
 
-    function resetStack()
-    {
-        while(mainStack.depth > 1) {
-            mainStack.pop()
-        }
-    }
-
     function contact(contactId)
     {
         resetStack()
@@ -58,7 +51,7 @@ MainView {
 
     function addphone(contactId, phoneNumber)
     {
-        resetStack()
+        mainStack.resetStack()
         if (mainStack.contactListPage) {
             mainStack.contactListPage.addPhoneToContact(contactId, phoneNumber)
         }
@@ -66,7 +59,7 @@ MainView {
 
     function pick(single)
     {
-        resetStack()
+        mainStack.resetStack()
         if (mainStack.contactListPage) {
             mainStack.contactListPage.startPickMode(single == "true")
         }
@@ -74,7 +67,7 @@ MainView {
 
     function importvcard(_url)
     {
-        resetStack()
+        mainStack.resetStack()
         if (mainStack.contactListPage) {
             mainStack.contactListPage.importContactRequested([_url])
         }
@@ -82,7 +75,7 @@ MainView {
 
     function addnewphone(phoneNumer)
     {
-        resetStack()
+        mainStack.resetStack()
         if (mainStack.contactListPage) {
             mainStack.contactListPage.addNewPhone(phoneNumer)
         }
@@ -92,6 +85,13 @@ MainView {
         id: mainStack
 
         property var contactListPage: null
+
+        function resetStack()
+        {
+            while(depth > 1) {
+                pop()
+            }
+        }
 
         anchors.fill: parent
     }
@@ -151,13 +151,8 @@ MainView {
 
     // If application was called from uri handler and lost the focus reset the app to normal state
     onAppActiveChanged: {
-        if (!appActive &&
-            mainStack.contactListPage &&
-            mainStack.contactListPage.allowToQuit) {
-            resetStack()
-            mainStack.contactListPage.allowToQuit = false
-            mainStack.contactListPage.state = ""
-            application.callbackApplication = ""
+        if (!appActive && mainStack.contactListPage) {
+            mainStack.contactListPage.returnToNormalState()
         }
     }
 }

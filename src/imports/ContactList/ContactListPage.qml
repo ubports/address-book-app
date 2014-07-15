@@ -42,6 +42,19 @@ PageWithBottomEdge {
     readonly property var contactModel: contactList.listModel ? contactList.listModel : null
     readonly property bool searching: (state === "searching" || state === "newphoneSearching")
 
+    // this function is used to reset the contact list page to the default state if it was called
+    // from the uri. For example when called to add a new contact
+    function returnToNormalState()
+    {
+        // these two states are the only state that need to be reset
+        if (state == "newphoneSearching" || state == "newphone") {
+            pageStack.resetStack()
+            state = ""
+            newPhoneToAdd = ""
+            application.callbackApplication = ""
+        }
+    }
+
     function createEmptyContact(phoneNumber)
     {
         var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
@@ -130,7 +143,7 @@ PageWithBottomEdge {
         state = "newphone"
     }
 
-    title: contactList.isInSelectionMode ? i18n.tr("Select Contacts") : i18n.tr("Contacts")
+    title: i18n.tr("Contacts")
 
     //bottom edge page
     bottomEdgePageComponent: ContactEditor {
@@ -347,25 +360,26 @@ PageWithBottomEdge {
         }
     }
 
+    ToolbarButton {
+        id: quitButton
+
+        visible: false
+        action: Action {
+            objectName: "quitApp"
+
+            visible: mainPage.allowToQuit
+            iconName: "back"
+            text: i18n.tr("Quit")
+            onTriggered: application.exit()
+        }
+    }
+
     ToolbarItems {
         id: toolbarItemsNormalMode
 
         visible: false
         back: mainPage.allowToQuit ? quitButton : null
 
-        ToolbarButton {
-            id: quitButton
-
-            visible: false
-            action: Action {
-                objectName: "quitApp"
-
-                visible: mainPage.allowToQuit
-                iconName: "back"
-                text: i18n.tr("Quit")
-                onTriggered: application.exit()
-            }
-        }
         ToolbarButton {
             objectName: "Sync"
             action: Action {
@@ -445,6 +459,7 @@ PageWithBottomEdge {
             PropertyChanges {
                 target: mainPage
                 bottomEdgeEnabled: false
+                title: i18n.tr("Add contact")
             }
             PropertyChanges {
                 target: contactList
@@ -494,6 +509,7 @@ PageWithBottomEdge {
                 target: mainPage
                 tools: toolbarItemsSelectionMode
                 bottomEdgeEnabled: false
+                title: i18n.tr("Select Contacts")
             }
         }
     ]
