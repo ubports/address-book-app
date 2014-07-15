@@ -44,7 +44,6 @@ MainView {
     {
         resetStack()
         if (mainStack.contactListPage) {
-            mainStack.contactListPage.allowToQuit = true
             mainStack.contactListPage.showContact(contactId)
         }
     }
@@ -53,7 +52,6 @@ MainView {
     {
         resetStack()
         if (mainStack.contactListPage) {
-            mainStack.contactListPage.allowToQuit = true
             mainStack.contactListPage.createContactWithPhoneNumber(phoneNumber)
         }
     }
@@ -62,7 +60,6 @@ MainView {
     {
         resetStack()
         if (mainStack.contactListPage) {
-            mainStack.contactListPage.allowToQuit = true
             mainStack.contactListPage.addPhoneToContact(contactId, phoneNumber)
         }
     }
@@ -71,7 +68,6 @@ MainView {
     {
         resetStack()
         if (mainStack.contactListPage) {
-            mainStack.contactListPage.allowToQuit = true
             mainStack.contactListPage.startPickMode(single == "true")
         }
     }
@@ -80,7 +76,6 @@ MainView {
     {
         resetStack()
         if (mainStack.contactListPage) {
-            mainStack.contactListPage.allowToQuit = true
             mainStack.contactListPage.importContactRequested([_url])
         }
     }
@@ -89,7 +84,6 @@ MainView {
     {
         resetStack()
         if (mainStack.contactListPage) {
-            mainStack.contactListPage.allowToQuit = true
             mainStack.contactListPage.addNewPhone(phoneNumer)
         }
     }

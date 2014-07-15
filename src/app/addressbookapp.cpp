@@ -272,10 +272,10 @@ void AddressBookApp::sendTabEvent() const
 
 void AddressBookApp::exit()
 {
-    QTimer::singleShot(0, this, SLOT(quit()));
     if (!m_callbackApplication.isEmpty()) {
         QDesktopServices::openUrl(QUrl(QString("application:///%1").arg(m_callbackApplication)));
     }
+    QTimer::singleShot(0, this, SLOT(quit()));
 }
 
 void AddressBookApp::parseUrl(const QString &arg)
@@ -334,7 +334,7 @@ void AddressBookApp::parseUrl(const QString &arg)
         queryItems.insert(item.first, item.second);
     }
     // keep callback arg
-    m_callbackApplication = queryItems.take("callback");
+    setCallbackApplication(queryItems.take("callback"));
 
     if (methodsMetaData.contains(methodName)) {
         QStringList argsNames = methodsMetaData[methodName];

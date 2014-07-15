@@ -36,8 +36,8 @@ PageWithBottomEdge {
     property QtObject contactIndex: null
     property bool contactsLoaded: false
     property string newPhoneToAdd: ""
-    property bool allowToQuit: false
 
+    readonly property bool allowToQuit: (application.callbackApplication.length > 0)
     readonly property bool syncEnabled: application.syncEnabled
     readonly property var contactModel: contactList.listModel ? contactList.listModel : null
     readonly property bool searching: (state === "searching" || state === "newphoneSearching")
@@ -117,7 +117,7 @@ PageWithBottomEdge {
     function moveListToContact(contact)
     {
         contactIndex = contact
-
+        mainPage.state = ""
         // this means a new contact was created
         if (mainPage.allowToQuit) {
             application.exit()
@@ -429,6 +429,7 @@ PageWithBottomEdge {
             PropertyChanges {
                 target: searchField
                 text: ""
+                newPhoneToAdd: ""
             }
         },
         State {
@@ -496,8 +497,6 @@ PageWithBottomEdge {
             }
         }
     ]
-    onStateChanged: console.debug("NEW STATE" + state)
-
     tools: toolbarItemsNormalMode
 
     // WORKAROUND: Avoid the gap btw the header and the contact list when the list moves
