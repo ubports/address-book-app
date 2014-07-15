@@ -134,7 +134,7 @@ MultipleSelectionListView {
 
       This property holds the detail type to be picked
     */
-    property int detailToPick: 0
+    property int detailToPick: -1
     /*!
       \qmlproperty bool showSections
 
