@@ -275,7 +275,8 @@ void AddressBookApp::exit()
     if (!m_callbackApplication.isEmpty()) {
         QDesktopServices::openUrl(QUrl(QString("application:///%1").arg(m_callbackApplication)));
     }
-    QTimer::singleShot(0, this, SLOT(quit()));
+    // quit after a delay to avoid problems with unity task manager.
+    QTimer::singleShot(1000, this, SLOT(quit()));
 }
 
 void AddressBookApp::parseUrl(const QString &arg)
