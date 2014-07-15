@@ -22,6 +22,7 @@
 #include <QUrl>
 #include <QUrlQuery>
 #include <QDebug>
+#include <QDesktopServices>
 #include <QStringList>
 #include <QQuickItem>
 #include <QQmlComponent>
@@ -30,6 +31,8 @@
 #include <QLibrary>
 #include <QIcon>
 #include <QSettings>
+#include <QTimer>
+
 
 #include <QQmlEngine>
 
@@ -39,11 +42,12 @@ static void printUsage(const QStringList& arguments)
 {
     qDebug() << "usage:"
              << arguments.at(0).toUtf8().constData()
-             << "[addressbook:///addphone?id=<contact-id>&phone=<phone-number>"
-             << "[addressbook:///contact?id=<contact-id>"
-             << "[addressbook:///create?phone=<phone-number>"
-             << "[addressbook:///pick?single=<true/false>"
-             << "[addressbook:///importvcard?url=<vcard-file>"
+             << "[addressbook:///addphone?id=<contact-id>&phone=<phone-number>]"
+             << "[addressbook:///addnewphone?phone=<phone-number>]"
+             << "[addressbook:///contact?id=<contact-id>]"
+             << "[addressbook:///create?phone=<phone-number>]"
+             << "[addressbook:///pick?single=<true/false>]"
+             << "[addressbook:///importvcard?url=<vcard-file>]"
              << "[--fullscreen]"
              << "[--help]"
              << "[-testability]";
@@ -266,6 +270,15 @@ void AddressBookApp::sendTabEvent() const
     sendEvent(m_view, &keyReleaseEvent);
 }
 
+void AddressBookApp::exit()
+{
+    if (!m_callbackApplication.isEmpty()) {
+        QDesktopServices::openUrl(QUrl(QString("application:///%1").arg(m_callbackApplication)));
+    }
+    // quit after a delay to avoid problems with unity task manager.
+    QTimer::singleShot(1000, this, SLOT(quit()));
+}
+
 void AddressBookApp::parseUrl(const QString &arg)
 {
     QUrl url = QUrl::fromPercentEncoding(arg.toUtf8());
@@ -305,6 +318,11 @@ void AddressBookApp::parseUrl(const QString &arg)
         args << "url";
         methodsMetaData.insert("importvcard", args);
         args.clear();
+
+        //addnewphone
+        args << "phone";
+        methodsMetaData.insert("addnewphone", args);
+        args.clear();
     }
 
     QUrlQuery query(url);
@@ -316,6 +334,8 @@ void AddressBookApp::parseUrl(const QString &arg)
         QPair<QString, QString> item = queryItemsPair[i];
         queryItems.insert(item.first, item.second);
     }
+    // keep callback arg
+    setCallbackApplication(queryItems.take("callback"));
 
     if (methodsMetaData.contains(methodName)) {
         QStringList argsNames = methodsMetaData[methodName];
@@ -449,4 +469,17 @@ bool AddressBookApp::syncEnabled() const
         }
     }
     return false;
+}
+
+QString AddressBookApp::callbackApplication() const
+{
+    return m_callbackApplication;
+}
+
+void AddressBookApp::setCallbackApplication(const QString &application)
+{
+    if (m_callbackApplication != application) {
+        m_callbackApplication = application;
+        Q_EMIT callbackApplicationChanged();
+    }
 }

@@ -84,12 +84,10 @@ VisualDataModel {
         onClicked: {
             if (root.currentIndex === index) {
                 root.currentIndex = -1
-                return
-            } else if (detailToPick !== 0) {
+            } else if (detailToPick !== -1) {
                 root.currentIndex = index
-                return
-            } else if (detailToPick == 0) {
-                contactListView.detailClicked(contact, null, "")
+            } else if (detailToPick === -1) {
+                detailClicked(contact, null, "")
             }
         }
 
