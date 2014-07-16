@@ -369,7 +369,10 @@ PageWithBottomEdge {
             visible: mainPage.allowToQuit
             iconName: "back"
             text: i18n.tr("Quit")
-            onTriggered: application.exit()
+            onTriggered: {
+                application.goBackToSourceApp()
+                mainPage.returnToNormalState()
+            }
         }
     }
 

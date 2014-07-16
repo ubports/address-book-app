@@ -270,13 +270,13 @@ void AddressBookApp::sendTabEvent() const
     sendEvent(m_view, &keyReleaseEvent);
 }
 
-void AddressBookApp::exit()
+void AddressBookApp::goBackToSourceApp()
 {
     if (!m_callbackApplication.isEmpty()) {
         QDesktopServices::openUrl(QUrl(QString("application:///%1").arg(m_callbackApplication)));
+        m_callbackApplication.clear();
+        Q_EMIT callbackApplicationChanged();
     }
-    // quit after a delay to avoid problems with unity task manager.
-    QTimer::singleShot(1000, this, SLOT(quit()));
 }
 
 void AddressBookApp::parseUrl(const QString &arg)
