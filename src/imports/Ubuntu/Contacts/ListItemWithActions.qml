@@ -49,7 +49,12 @@ Item {
         if (index < 1) {
             main.x = 0
         } else {
-            main.x = -(actionFullWidth * index)
+            if (xOffset >= rightActionsView.width) {
+                main.x = -rightActionsView.width
+                root.activeAction = null
+            } else {
+                main.x = -(actionFullWidth * index)
+            }
         }
     }
 
@@ -264,6 +269,11 @@ Item {
         }
 
         onReleased: {
+            if (main.x <= mouseArea.drag.minimumX) {
+                main.x = mouseArea.drag.minimumX + root.actionThreshold
+                root.activeAction = null
+                return
+            }
             if (root.triggerActionOnMouseRelease && root.activeAction) {
                 triggerAction.start()
             } else {
