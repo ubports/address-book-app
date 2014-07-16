@@ -234,17 +234,19 @@ Item {
             properties: "opacity"
             value: 1.0
         }
-        UbuntuNumberAnimation {
-            target: main
-            property: "x"
-            to: 0
-            easing.type: Easing.OutElastic
-            duration: UbuntuAnimation.SlowDuration
-        }
         ScriptAction {
             script: {
                 root.activeAction.triggered(root)
             }
+        }
+        PauseAnimation {
+            duration: 500
+        }
+        UbuntuNumberAnimation {
+            target: main
+            property: "x"
+            to: 0
+
         }
     }
 
