@@ -94,7 +94,8 @@ Item {
 
     function updateActiveAction()
     {
-        if (main.x <= -root.actionWidth) {
+        if ((main.x <= -root.actionWidth) &&
+            (main.x > mouseArea.drag.minimumX)) {
             var actionFullWidth = actionWidth + units.gu(2)
             var xOffset = Math.abs(main.x)
             var index = Math.min(Math.floor(xOffset / actionFullWidth), rightSideActions.length)
@@ -264,11 +265,6 @@ Item {
         }
 
         onReleased: {
-            if (main.x <= mouseArea.drag.minimumX) {
-                main.x = mouseArea.drag.minimumX + root.actionThreshold
-                root.activeAction = null
-                return
-            }
             if (root.triggerActionOnMouseRelease && root.activeAction) {
                 triggerAction.start()
             } else {
