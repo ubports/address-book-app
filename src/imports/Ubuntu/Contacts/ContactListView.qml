@@ -359,6 +359,17 @@ Item {
 
     onFilterTermChanged: contactSearchTimeout.restart()
 
+    // colapse contacts if the keyboard appears
+    Connections {
+        target: Qt.inputMethod
+        onVisibleChanged: {
+            if (visible) {
+                view.currentIndex = -1
+            }
+        }
+
+    }
+
     ContactSimpleListView {
         id: view
 
@@ -380,6 +391,8 @@ Item {
                 view.favouritesIsSelected = false
             }
         }
+
+        onFlickStarted: Qt.inputMethod.hide()
 
         anchors {
             top: itemHeader.bottom
@@ -637,7 +650,7 @@ Item {
 
         listView: view
         // only enable FastScroll if the we have more than 2 pages of content and sections is enabled
-        enabled: showSections && (view.contentHeight > (view.height * 2))
+        enabled: showSections && (view.contentHeight > (view.height * 2)) && (view.height >= minimumHeight)
 
         anchors {
             top: view.top
