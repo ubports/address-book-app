@@ -36,6 +36,7 @@ MainView {
     function contact(contactId)
     {
         mainStack.resetStack()
+        mainStack.quitOnDepth = 1
         if (mainStack.contactListPage) {
             mainStack.contactListPage.showContact(contactId)
         }
@@ -85,11 +86,19 @@ MainView {
         id: mainStack
 
         property var contactListPage: null
+        property int quitOnDepth: -1
 
         function resetStack()
         {
             while(depth > 1) {
                 pop()
+            }
+        }
+
+        onDepthChanged: {
+            if (depth === quitOnDepth) {
+                quitOnDepth = -1
+                application.goBackToSourceApp()
             }
         }
 
