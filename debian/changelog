@@ -1,3 +1,111 @@
+address-book-app (0.2+14.10.20140709-0ubuntu1) utopic; urgency=low
+
+  [ Omer Akram ]
+  * make use of memory backend in autopilot testing optional. Extend
+    ContactAvatar element to be possible to use in different apps.
+    Prevent to have two swiped items. Make sure to use theme images when
+    possible .
+
+  [ Renato Araujo Oliveira Filho ]
+  * make use of memory backend in autopilot testing optional. Extend
+    ContactAvatar element to be possible to use in different apps.
+    Prevent to have two swiped items. Make sure to use theme images when
+    possible .
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 09 Jul 2014 00:55:22 +0000
+
+address-book-app (0.2+14.10.20140707-0ubuntu1) utopic; urgency=low
+
+  [ Leo Arias ]
+  * Call get_header from ubuntu-ui-toolkit-autopilot.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Call get_header from ubuntu-ui-toolkit-autopilot.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 07 Jul 2014 14:10:19 +0000
+
+address-book-app (0.2+14.10.20140704-0ubuntu1) utopic; urgency=low
+
+  [ Tarmac ]
+  * Implemented MostCalledContactsModel in C++ as a proxy model for
+    HistoryEventModel;. Enabled share button again. Fixed build warning:
+    comparison with string literal results in unspecified behavior;.
+    Implemented swipe to delete. (LP: #1323577)
+
+  [ CI bot ]
+  * Resync trunk
+
+  [ Renato Araujo Oliveira Filho ]
+  * Implemented MostCalledContactsModel in C++ as a proxy model for
+    HistoryEventModel;. Enabled share button again. Fixed build warning:
+    comparison with string literal results in unspecified behavior;.
+    Implemented swipe to delete. (LP: #1323577)
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 04 Jul 2014 14:55:34 +0000
+
+address-book-app (0.2+14.10.20140701.2-0ubuntu1) utopic; urgency=low
+
+  [ CI bot ]
+  * Resync trunk
+
+  [ Michał Sawicz ]
+  * New icon. Also drop difference between click mode and not, as both
+    support theme-sourced icons.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Load frequently called contact only when the list became visible.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 01 Jul 2014 19:33:32 +0000
+
+address-book-app (0.2+14.10.20140627.1-0ubuntu1) utopic; urgency=low
+
+  [ Tarmac ]
+  * Updated pot file. Implemented frequently called list. Implemented
+    vcard import. Search contacts by phone number and name. (LP:
+    #1325016)
+
+  [ Renato Araujo Oliveira Filho ]
+  * Updated pot file. Implemented frequently called list. Implemented
+    vcard import. Search contacts by phone number and name. (LP:
+    #1325016)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 27 Jun 2014 21:31:10 +0000
+
+address-book-app (0.2+14.10.20140618-0ubuntu1) utopic; urgency=low
+
+  [ Tarmac ]
+  * Update contact view page visuals Update contact edit page visuals
+    Add a hide animation for the bottom edge title.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Update contact view page visuals Update contact edit page visuals
+    Add a hide animation for the bottom edge title.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 18 Jun 2014 21:53:23 +0000
+
+address-book-app (0.2+14.10.20140616-0ubuntu1) utopic; urgency=low
+
+  [ Tarmac ]
+  * Implemented contact share. Replaced ContentHub API with QML API.
+    Removed ContactSearchListView component. Moved ContactSimpleListView
+    to the private API. Added documentation for ContactListView
+    properties. Created "contactNameFilter" into ContactListView. Update
+    contact list visuals. Implemented fast scroll. Implemented contact
+    search. Initial refactor of autopilot tests. Used new SDK header.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Implemented contact share. Replaced ContentHub API with QML API.
+    Removed ContactSearchListView component. Moved ContactSimpleListView
+    to the private API. Added documentation for ContactListView
+    properties. Created "contactNameFilter" into ContactListView. Update
+    contact list visuals. Implemented fast scroll. Implemented contact
+    search. Initial refactor of autopilot tests. Used new SDK header.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 16 Jun 2014 13:13:04 +0000
+
 address-book-app (0.2+14.10.20140530-0ubuntu1) utopic; urgency=low
 
   [ Gustavo Pichorim Boiko ]

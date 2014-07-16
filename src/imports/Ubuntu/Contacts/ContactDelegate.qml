@@ -20,52 +20,72 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import "Contacts.js" as ContactsJS
 
-Item {
-   id: item
+ListItemWithActions {
+    id: root
 
-   property int index: -1
-   property bool showAvatar: true
-   property alias selected: delegate.selected
-   property alias removable: delegate.removable
-   property bool selectMode: false
-   property string defaultAvatarUrl: ""
-   property int titleDetail: ContactDetail.Name
-   property variant titleFields: [ Name.FirstName, Name.LastName ]
-   property bool detailsShown: false
+    property bool showAvatar: true
+    property bool selected: false
+    property bool isCurrentItem: false
+    property string defaultAvatarUrl: ""
+    property string defaultTitle: ""
+    property int titleDetail: ContactDetail.Name
+    property variant titleFields: [ Name.FirstName, Name.LastName ]
+    property bool detailsShown: false
+    property int loaderOpacity: 0.0
 
-   signal contactClicked(var index, var contact)
-   signal pressAndHold(var index, var contact)
+    signal clicked(int index, QtObject contact)
+    signal pressAndHold(int index, QtObject contact)
+    signal detailClicked(QtObject contact, QtObject detail, string action)
+    signal infoRequested(int index, QtObject contact)
+    signal addContactClicked(string label)
 
-   implicitHeight: delegate.height + (item.detailsShown ? pickerLoader.item.height : 0)
-   width: parent ? parent.width : 0
-   clip: true
+    function _onDetailClicked(detail, action)
+    {
+        detailClicked(contact, detail, action)
+    }
 
-    ListItem.Empty {
+    height: delegate.height
+    implicitHeight: delegate.height + (pickerLoader.item ? pickerLoader.item.height : 0)
+    width: parent ? parent.width : 0
+    color: Theme.palette.normal.background
+
+    onItemClicked: root.clicked(index, contact)
+    onItemPressAndHold: root.pressAndHold(index, contact)
+
+    Item {
         id: delegate
 
-        height: units.gu(6)
-        showDivider: false
-        confirmRemoval: removable
-        UbuntuShape {
+        height: units.gu(8)
+        anchors {
+            left: parent.left
+            right: parent.right
+        }
+
+        Rectangle {
+            id: selectionMark
+            objectName: "selectionMark"
+
+            anchors.fill: parent
+            color: "black"
+            opacity: root.selected || root.detailsShown ? root.selected ? 0.2 : 0.1 : 0.0
+            Behavior on opacity {
+                NumberAnimation { }
+            }
+        }
+
+        ContactAvatar {
             id: avatar
 
-            height: units.gu(4)
-            width: item.showAvatar ? units.gu(4) : 0
-            visible: width > 0
-            radius: "medium"
+            contactElement: contact
+            fallbackDisplayName: name.text
             anchors {
                 left: parent.left
-                leftMargin: units.gu(2)
-                verticalCenter: parent.verticalCenter
+                top: parent.top
+                bottom: parent.bottom
+                margins: units.gu(1)
             }
-            image: Image {
-                property bool isDefaultAvatar: (source == item.defaultAvatarUrl)
-                fillMode: Image.PreserveAspectCrop
-                asynchronous: true
-                source: ContactsJS.getAvatar(contact, item.defaultAvatarUrl)
-                sourceSize.width: isDefaultAvatar ? undefined : width * 1.5
-                sourceSize.height: isDefaultAvatar ? undefined : height * 1.5
-            }
+            width: root.showAvatar ? height : 0
+            visible: width > 0
         }
 
         Label {
@@ -75,79 +95,156 @@ Item {
                 left: avatar.right
                 leftMargin: units.gu(2)
                 verticalCenter: parent.verticalCenter
-                right: selectionMark.left
+                right: infoIcon.left
             }
-
-            height: paintedHeight
-            text: ContactsJS.formatToDisplay(contact, item.titleDetail, item.titleFields)
-            fontSize: "medium"
+            font.pointSize: 88
+            color: UbuntuColors.lightAubergine
+            text: contact ? ContactsJS.formatToDisplay(contact, root.titleDetail, root.titleFields, "") : root.defaultTitle
+            elide: Text.ElideRight
         }
 
-        Rectangle {
-            id: selectionMark
-            objectName: "selectionMark"
+        Icon {
+            id: infoIcon
+            objectName: "infoIcon"
 
             anchors {
-                top: parent.top
-                bottom: parent.bottom
                 right: parent.right
+                rightMargin: units.gu(2)
+                verticalCenter: parent.verticalCenter
             }
-
-            color: "black"
-            width: item.selectMode ? units.gu(5) : 0
-            visible: width > 0
-
-            Behavior on width {
+            name: "contact"
+            height: units.gu(3)
+            width: opacity > 0.0 ? height : 0
+            opacity: root.detailsShown ? 1.0 : 0.0
+            Behavior on opacity {
                 UbuntuNumberAnimation { }
             }
 
-            Image {
-                id: tickImage
-
-                height: units.gu(3)
-                width: height
-                anchors.centerIn: parent
-                source: Qt.resolvedUrl("./artwork/tick-dark.png")
-                opacity: item.selected ? 1.0 : 0.2
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    if (contact) {
+                        root.infoRequested(index, contact)
+                    } else {
+                        root.addContactClicked(name.text)
+                    }
+                }
             }
         }
 
-        onClicked: item.contactClicked(index, contact)
-        onPressAndHold: item.pressAndHold(index, contact)
-
-        onItemRemoved: {
-            listModel.removeContact(contact.contactId)
-        }
     }
 
     Loader {
         id: pickerLoader
 
-        source: item.detailsShown ? Qt.resolvedUrl("ContactDetailPickerDelegate.qml") : ""
+        source: {
+            if (!root.detailsShown) {
+                return "";
+            }
+
+            switch(root.detailToPick) {
+            case ContactDetail.PhoneNumber:
+            default:
+                return Qt.resolvedUrl("ContactDetailPickerPhoneNumberDelegate.qml")
+            }
+        }
+        asynchronous: true
         anchors {
             top: delegate.bottom
             left: parent.left
             right: parent.right
         }
+
+        opacity: root.loaderOpacity
+        Behavior on opacity {
+            UbuntuNumberAnimation { }
+        }
+
         onStatusChanged: {
             if (status == Loader.Ready) {
-                pickerLoader.item.contactsModel = listModel
-                pickerLoader.item.detailType = detailToPick
-                pickerLoader.item.contactId = contact.contactId
+                pickerLoader.item.updateDetails(contact)
+                pickerLoader.item.detailClicked.connect(root._onDetailClicked)
+            }
+        }
+
+        // update delegate if contact update
+        Connections {
+            target: contact
+            onContactChanged: {
+                if (pickerLoader.item) {
+                    pickerLoader.item.updateDetails(contact)
+                }
             }
         }
     }
 
-    ListItem.ThinDivider {
-        anchors {
-            bottom: parent.bottom
-            right: parent.right
-            left: parent.left
-        }
+    Behavior on height {
+        id: behaviorOnHeight
+
+        enabled: false
+        UbuntuNumberAnimation { }
     }
 
-    Connections {
-        target: pickerLoader.item
-        onDetailClicked: detailClicked(contact, detail)
-    }
+    state: isCurrentItem ? "expanded" : ""
+    states: [
+        State {
+            name: "expanded"
+            PropertyChanges {
+                target: root
+                clip: true
+                height: root.implicitHeight
+                loaderOpacity: 1.0
+                locked: true
+                // FIXME: Setting detailsShown to true on expanded state cause the property to change to false and true during the state transition, and that
+                // causes the loader to load twice
+                //detailsShown: true
+            }
+            PropertyChanges {
+                target: behaviorOnHeight
+                enabled: true
+            }
+        }
+    ]
+    transitions: [
+        Transition {
+            from: "expanded"
+            to: ""
+            SequentialAnimation {
+                UbuntuNumberAnimation {
+                    target: root
+                    properties: "height, loaderOpacity"
+                }
+                PropertyAction {
+                    target: root
+                    property: "clip"
+                }
+                PropertyAction {
+                    target: root
+                    property: "detailsShown"
+                    value: false
+                }
+                PropertyAction {
+                    target: root
+                    property: "ListView.delayRemove"
+                    value: false
+                }
+            }
+        },
+        Transition {
+            from: ""
+            to: "expanded"
+            SequentialAnimation {
+                PropertyAction {
+                    target: root
+                    properties: "detailsShown"
+                    value: true
+                }
+                PropertyAction {
+                    target: root
+                    properties: "ListView.delayRemove"
+                    value: true
+                }
+            }
+        }
+    ]
 }

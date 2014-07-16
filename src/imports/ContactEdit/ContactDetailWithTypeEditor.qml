@@ -68,61 +68,35 @@ ContactDetailBase {
         return detailchanged
     }
 
-    focus: true
     // disable listview mouse area
     __mouseArea.visible: false
     enabled: root.detail ? !root.detail.readOnly : false
     implicitHeight: detailTypeSelector.height + fieldValues.height + units.gu(2)
     opacity: enabled ? 1.0 : 0.5
-    ValueSelector {
-        id: detailTypeSelector
-        objectName: detail ? "type_" + detailToString(detail.type, -1) + "_" + index : ""
-
-        readOnly: root.detail ? root.detail.readOnly : false
-        visible: (currentIndex != -1)
-        active: root.active
-        anchors {
-            left: parent.left
-            leftMargin: units.gu(3)
-            right: parent.right
-            rightMargin: units.gu(2)
-            top: parent.top
-            topMargin: units.gu(1)
-        }
-
-        height: visible ? (root.active ? units.gu(4) : units.gu(3)) : 0
-        onExpandedChanged: {
-            // Make sure that the inputfield get focus when clicking on type selector
-            if (expanded) {
-                root.forceActiveFocus()
-            }
-        }
-    }
 
     Column {
         id: fieldValues
 
         anchors {
-            left: detailTypeSelector.left
-            right: detailTypeSelector.right
-            top: detailTypeSelector.bottom
+            left: parent.left
+            leftMargin: units.gu(2)
+            right: parent.right
+            rightMargin: units.gu(2)
+            top: parent.top
+            topMargin: units.gu(1)
         }
-        focus: true
         height: childrenRect.height
-
         Repeater {
             id: fieldRepeater
-            model: root.fields
 
-            focus: true
+            model: root.fields
             TextInputDetail {
                 id: detail
                 objectName: root.detail ? detailToString(root.detail.type, modelData) + "_" + root.index : ""
 
-                Component.onCompleted: focus = (index === 0)
-                focus: false
                 detail: root.detail
                 field: modelData
+                focus: true
                 placeholderText: root.placeholderTexts[index]
                 inputMethodHints: root.inputMethodHints
                 autoFormat: root.usePhoneFormat
@@ -133,9 +107,6 @@ ContactDetailBase {
                 }
                 height: root.active ? root.itemHeight + units.gu(1) : root.itemHeight
                 onRemoveClicked: root.contact.removeDetail(root.detail)
-                // FIXME: SDK still using QtQuick 2.0 change this to activeFocusOnTab: true on version 2.2
-                KeyNavigation.backtab : index > 0 ? fieldRepeater.itemAt(index - 1) : null
-                KeyNavigation.tab: index < fieldRepeater.count - 1 ? fieldRepeater.itemAt(index + 1) : null
             }
         }
         Keys.onReleased: {
@@ -149,11 +120,24 @@ ContactDetailBase {
         }
     }
 
-    // reset focus back to first field
-    onActiveFocusChanged: {
-        if (!activeFocus) {
-            for(var i=0; i < fieldRepeater.count; i++) {
-                fieldRepeater.itemAt(i).focus = (i === 0)
+    ValueSelector {
+        id: detailTypeSelector
+        objectName: detail ? "type_" + detailToString(detail.type, -1) + "_" + index : ""
+
+        anchors {
+            left: fieldValues.left
+            right: fieldValues.right
+            top: fieldValues.bottom
+        }
+
+        readOnly: root.detail ? root.detail.readOnly : false
+        visible: (currentIndex != -1)
+        active: root.active
+        height: visible ? (root.active ? units.gu(4) : units.gu(3)) : 0
+        onExpandedChanged: {
+            // Make sure that the inputfield get focus when clicking on type selector
+            if (expanded) {
+                root.forceActiveFocus()
             }
         }
     }

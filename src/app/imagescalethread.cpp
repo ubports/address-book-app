@@ -57,7 +57,7 @@ void ImageScaleThread::run()
     }
 
     // Create the temporary file
-    m_tmpFile = new QTemporaryFile();
+    m_tmpFile = new QTemporaryFile("avatar_XXXXXX.png");
     if (!m_tmpFile->open()) {
         return;
     }

@@ -17,15 +17,13 @@
 import QtQuick 2.2
 import Ubuntu.Components 0.1
 import QtContacts 5.0
-import Ubuntu.Content 0.1
-import Ubuntu.Components.Popups 0.1 as Popups
 
 import "../Common"
 
 ContactDetailBase {
     id: root
 
-    readonly property string defaultAvatar: Qt.resolvedUrl("../../artwork/contact-default-profile.png")
+    readonly property string defaultAvatar: "image://theme/add"
 
     function isEmpty() {
         return false;
@@ -54,7 +52,7 @@ ContactDetailBase {
 
         if (avatarDetail) {
             var avatarValue = avatarDetail.value(Avatar.ImageUrl)
-            if (avatarValue != "") {
+            if (avatarValue && (avatarValue != "")) {
                 avatarUrl = avatarValue
             }
         }
@@ -62,98 +60,55 @@ ContactDetailBase {
     }
 
     detail: contact ? contact.detail(ContactDetail.Avatar) : null
-    implicitHeight: units.gu(17)
+    implicitHeight: units.gu(8)
+    implicitWidth: units.gu(8)
 
-    Image {
-        id: avatarImage
+    UbuntuShape {
+        id: avatar
 
+        radius: "medium"
         anchors.fill: parent
-        source: root.getAvatar(root.detail)
-        asynchronous: true
-        fillMode: Image.PreserveAspectCrop
-        // When updating the avatar using the content picker the temporary file returned
-        // can contain the same name as the previous one and if the cache is enabled this
-        // will cause the image to not be updated
-        cache: false
+        image: avatarImage.source != defaultAvatar ? avatarImage : null
 
-        Component {
-            id: loadingDialog
+        Image {
+            id: avatarImage
 
-            Popups.Dialog {
-                id: dialogue
-
-                title: i18n.tr("Loading")
-
-                ActivityIndicator {
-                    id: activity
-
-                    anchors.centerIn: parent
-                    running: true
-                    visible: running
-                }
-            }
-        }
-
-        Icon {
-            anchors {
-                right: parent.right
-                rightMargin: units.gu(1.5)
-                bottom: parent.bottom
-                bottomMargin: units.gu(2)
-            }
+            fillMode: Image.PreserveAspectCrop
+            asynchronous: true
+            source: root.getAvatar(root.detail)
+            anchors.centerIn: visible ? avatar : undefined
+            height: units.gu(3)
             width: units.gu(3)
-            height: width
-            name: "import-image"
-            color: "white"
+            visible: source == defaultAvatar
+
+            // When updating the avatar using the content picker the temporary file returned
+            // can contain the same name as the previous one and if the cache is enabled this
+            // will cause the image to not be updated
+            cache: false
         }
+    }
 
-        ContentPeer {
-            id: defaultSource
-            contentType: ContentType.Pictures
-            handler: ContentHandler.Source
-            selectionType: ContentTransfer.Single
+    AvatarImport {
+        id: avatarImport
+
+        onAvatarReceived: {
+            // remove the previous image, this is nessary to make sure that the new image
+            // get updated otherwise if the new image has the same name the image will not
+            // be updated
+            avatarImage.source = ""
+            // Update with the new value
+            avatarImage.source = application.copyImage(root.contact, avatarUrl);
         }
+    }
 
-        MouseArea {
-            id: changeButton
-
-            property var activeTransfer
-            property var loadingDialog: null
-
-            anchors.fill: parent
-            onClicked: {
-                // make sure the OSK disappear
-                root.forceActiveFocus()
-                if (!changeButton.loadingDialog) {
-                    changeButton.loadingDialog = PopupUtils.open(loadingDialog, null)
-                    changeButton.activeTransfer = defaultSource.request();
-                }
-            }
-
-            Connections {
-                target: changeButton.activeTransfer != null ? changeButton.activeTransfer : null
-                onStateChanged: {
-                    var done = ((changeButton.activeTransfer.state === ContentTransfer.Charged) ||
-                                (changeButton.activeTransfer.state === ContentTransfer.Aborted));
-
-                    if (changeButton.activeTransfer.state === ContentTransfer.Charged) {
-                        if (changeButton.activeTransfer.items.length > 0) {
-                            // remove the previous image, this is nessary to make sure that the new image
-                            // get updated otherwise if the new image has the same name the image will not
-                            // be updated
-                            avatarImage.source = ""
-                            // Update with the new valu
-                            avatarImage.source = application.copyImage(root.contact, changeButton.activeTransfer.items[0].url);
-                        }
-                    }
-
-                    if (done) {
-                        PopupUtils.close(changeButton.loadingDialog)
-                        changeButton.loadingDialog = null
-                    }
-                }
-            }
+    MouseArea {
+        anchors.fill: parent
+        onClicked: {
+            // make sure the OSK disappear
+            root.forceActiveFocus()
+            avatarImport.requestNewAvatar()
         }
     }
 }
+
 

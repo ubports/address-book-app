@@ -17,12 +17,12 @@
 #include "config.h"
 #include "addressbookapp.h"
 #include "imagescalethread.h"
-#include "contentcommunicator.h"
 
 #include <QDir>
 #include <QUrl>
 #include <QUrlQuery>
 #include <QDebug>
+#include <QDesktopServices>
 #include <QStringList>
 #include <QQuickItem>
 #include <QQmlComponent>
@@ -31,6 +31,8 @@
 #include <QLibrary>
 #include <QIcon>
 #include <QSettings>
+#include <QTimer>
+
 
 #include <QQmlEngine>
 
@@ -40,13 +42,21 @@ static void printUsage(const QStringList& arguments)
 {
     qDebug() << "usage:"
              << arguments.at(0).toUtf8().constData()
-             << "[addressbook:///addphone?id=<contact-id>&phone=<phone-number>"
-             << "[addressbook:///contact?id=<contact-id>"
-             << "[addressbook:///create?phone=<phone-number>"
-             << "[addressbook:///pick?single=<true/false>"
+             << "[addressbook:///addphone?id=<contact-id>&phone=<phone-number>]"
+             << "[addressbook:///addnewphone?phone=<phone-number>]"
+             << "[addressbook:///contact?id=<contact-id>]"
+             << "[addressbook:///create?phone=<phone-number>]"
+             << "[addressbook:///pick?single=<true/false>]"
+             << "[addressbook:///importvcard?url=<vcard-file>]"
              << "[--fullscreen]"
              << "[--help]"
              << "[-testability]";
+}
+
+static bool clickModeEnabled()
+{
+    return ((QString(ADDRESS_BOOK_APP_CLICK_PACKAGE).toLower() == "on") ||
+             (QString(ADDRESS_BOOK_APP_CLICK_PACKAGE) == "1"));
 }
 
 static QString fullPath(const QString &fileName)
@@ -55,7 +65,7 @@ static QString fullPath(const QString &fileName)
     QString appPath = QCoreApplication::applicationDirPath();
     if (appPath.startsWith(ADDRESS_BOOK_DEV_BINDIR)) {
         result = QString(ADDRESS_BOOK_APP_DEV_DATADIR) + fileName;
-    } else if (QString(ADDRESS_BOOK_APP_CLICK_PACKAGE).toLower() == "on") {
+    } else if (clickModeEnabled()) {
         result = appPath + QStringLiteral("/share/address-book-app/") + fileName;
     } else {
         result = QString(ADDRESS_BOOK_APP_INSTALL_DATADIR) + fileName;
@@ -66,10 +76,10 @@ static QString fullPath(const QString &fileName)
 static QString importPath(const QString &suffix)
 {
     QString appPath = QCoreApplication::applicationDirPath();
-    if (appPath.startsWith(ADDRESS_BOOK_DEV_BINDIR)) {
-        return QString(ADDRESS_BOOK_APP_DEV_DATADIR) + suffix;
-    } else if (QT_EXTRA_IMPORTS_DIR != ""){
+    if (ADDRESS_BOOK_APP_CLICK_MODE) {
         return QString(QT_EXTRA_IMPORTS_DIR) + suffix;
+    } else if (appPath.startsWith(ADDRESS_BOOK_DEV_BINDIR)) {
+        return QString(ADDRESS_BOOK_APP_DEV_DATADIR) + suffix;
     } else {
         return "";
     }
@@ -81,6 +91,7 @@ static void installIconPath()
 {
     QByteArray iconTheme = qgetenv("ADDRESS_BOOK_APP_ICON_THEME");
     if (!iconTheme.isEmpty()) {
+        qDebug() << "Register extra icon theme:" << iconTheme;
         QIcon::setThemeName(iconTheme);
     }
 }
@@ -88,7 +99,6 @@ static void installIconPath()
 AddressBookApp::AddressBookApp(int &argc, char **argv)
     : QGuiApplication(argc, argv),
       m_view(0),
-      m_contentComm(0),
       m_syncMonitor(0),
       m_pickingMode(false),
       m_testMode(false),
@@ -145,10 +155,7 @@ bool AddressBookApp::setup()
             qCritical("Library qttestability load failed!");
         }
         m_testMode = true;
-    } else {
-        m_contentComm = new ContentCommunicator(this);
     }
-
     /* Ubuntu APP Manager gathers info on the list of running applications from the .desktop
        file specified on the command line with the desktop_file_hint switch, and will also pass a stage hint
        So app will be launched like this:
@@ -178,9 +185,9 @@ bool AddressBookApp::setup()
 
     m_view->setResizeMode(QQuickView::SizeRootObjectToView);
     m_view->setTitle("AddressBook");
-    m_view->engine()->addImportPath(importPath("/imports/"));
+    qDebug() << "New import path:" << QCoreApplication::applicationDirPath() + "/" + importPath("");
+    m_view->engine()->addImportPath(QCoreApplication::applicationDirPath() + "/" + importPath(""));
     m_view->rootContext()->setContextProperty("QTCONTACTS_MANAGER_OVERRIDE", defaultManager);
-    m_view->rootContext()->setContextProperty("contactContentHub", m_contentComm);
     m_view->rootContext()->setContextProperty("application", this);
     m_view->rootContext()->setContextProperty("contactKey", contactKey);
     m_view->rootContext()->setContextProperty("TEST_DATA", testData);
@@ -213,10 +220,6 @@ AddressBookApp::~AddressBookApp()
 
     if (m_view) {
         delete m_view;
-    }
-
-    if (m_contentComm) {
-        delete m_contentComm;
     }
 }
 
@@ -267,6 +270,15 @@ void AddressBookApp::sendTabEvent() const
     sendEvent(m_view, &keyReleaseEvent);
 }
 
+void AddressBookApp::exit()
+{
+    if (!m_callbackApplication.isEmpty()) {
+        QDesktopServices::openUrl(QUrl(QString("application:///%1").arg(m_callbackApplication)));
+    }
+    // quit after a delay to avoid problems with unity task manager.
+    QTimer::singleShot(1000, this, SLOT(quit()));
+}
+
 void AddressBookApp::parseUrl(const QString &arg)
 {
     QUrl url = QUrl::fromPercentEncoding(arg.toUtf8());
@@ -301,6 +313,16 @@ void AddressBookApp::parseUrl(const QString &arg)
         args << "single";
         methodsMetaData.insert("pick", args);
         args.clear();
+
+        //vcard
+        args << "url";
+        methodsMetaData.insert("importvcard", args);
+        args.clear();
+
+        //addnewphone
+        args << "phone";
+        methodsMetaData.insert("addnewphone", args);
+        args.clear();
     }
 
     QUrlQuery query(url);
@@ -312,6 +334,8 @@ void AddressBookApp::parseUrl(const QString &arg)
         QPair<QString, QString> item = queryItemsPair[i];
         queryItems.insert(item.first, item.second);
     }
+    // keep callback arg
+    setCallbackApplication(queryItems.take("callback"));
 
     if (methodsMetaData.contains(methodName)) {
         QStringList argsNames = methodsMetaData[methodName];
@@ -360,7 +384,7 @@ void AddressBookApp::callQMLMethod(const QString name, QStringList args)
             method.invoke(mainView);
             break;
         case 1:
-            method.invoke(mainView, Q_ARG(QVariant, QVariant(args[0].toUtf8())));
+            method.invoke(mainView, Q_ARG(QVariant, QVariant(args[0])));
             break;
         case 2:
             method.invoke(mainView, Q_ARG(QVariant, QVariant(args[0].toUtf8())),
@@ -445,4 +469,17 @@ bool AddressBookApp::syncEnabled() const
         }
     }
     return false;
+}
+
+QString AddressBookApp::callbackApplication() const
+{
+    return m_callbackApplication;
+}
+
+void AddressBookApp::setCallbackApplication(const QString &application)
+{
+    if (m_callbackApplication != application) {
+        m_callbackApplication = application;
+        Q_EMIT callbackApplicationChanged();
+    }
 }

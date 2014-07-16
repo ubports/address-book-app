@@ -2,6 +2,8 @@ set(CONTACT_LIST_QMLS
     ContactListPage.qml
     ContactExporter.qml
     OnlineAccountsMessage.qml
+    PageWithBottomEdge.qml
+    VCardImportDialog.qml
 )
 
 install(FILES ${CONTACT_LIST_QMLS}

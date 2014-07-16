@@ -24,57 +24,23 @@ import "../Common"
 
     property alias typeLabel: typeLabel.text
     property alias values: valueList.model
-    property alias iconSource: actionIcon.source
-    property double lineHeight: units.gu(3)
+    property double lineHeight: units.gu(2)
     property QtObject detail: null
     property variant fields: null
     property int parentIndex: -1
 
-    implicitHeight: typeLabel.height + (root.lineHeight * valueList.count) + units.gu(2)
-
-    Image {
-        id: actionIcon
-
-        anchors {
-            verticalCenter: parent.verticalCenter
-            left: parent.left
-        }
-        height: units.gu(2.5)
-        width: visible ? units.gu(2.5) : 0
-        visible: iconSource && iconSource != ""
-    }
-
-    Label {
-        id: typeLabel
-        objectName: detail ? "type_" + detailToString(detail.type, -1) + "_" + root.parentIndex : ""
-
-        elide: Text.ElideRight
-        visible: text != ""
-        anchors {
-            left: actionIcon.right
-            leftMargin: actionIcon.visible ? units.gu(2) : 0
-            top: parent.top
-            topMargin: units.gu(1)
-            right: root.right
-        }
-        height: visible ? units.gu(2) : 0
-        verticalAlignment: Text.AlignVCenter
-
-        // style
-        fontSize: "small"
-        color: "#f3f3e7"
-        opacity: 0.2
-    }
+    implicitHeight: typeLabel.height + fieldValues.height + units.gu(2)
 
     Column {
         id: fieldValues
 
         anchors {
-            left: typeLabel.left
-            top: typeLabel.bottom
+            left: parent.left
+            top: parent.top
+            topMargin: units.gu(1)
             right: parent.right
-            bottom:  parent.bottom
         }
+        height: (valueList.count * root.lineHeight)
 
         Repeater {
             id: valueList
@@ -84,8 +50,8 @@ import "../Common"
                 objectName: detail && fields ? "label_" + detailToString(detail.type, fields[index]) + "_" + root.parentIndex + "." + index : ""
 
                 anchors {
-                    left: parent ? parent.left : null
-                    right: parent ? parent.right : null
+                    left: parent ? parent.left : undefined
+                    right: parent ? parent.right : undefined
                 }
                 height: root.lineHeight
                 verticalAlignment: Text.AlignVCenter
@@ -94,8 +60,28 @@ import "../Common"
 
                 // style
                 fontSize: "medium"
-                color: "#f3f3e7"
+                color: UbuntuColors.lightAubergine
             }
         }
+    }
+
+    Label {
+        id: typeLabel
+        objectName: detail ? "type_" + detailToString(detail.type, -1) + "_" + root.parentIndex : ""
+
+        elide: Text.ElideRight
+        visible: text != ""
+        anchors {
+            left: parent.left
+            top: fieldValues.bottom
+            //topMargin: units.gu(0.0)
+            right: parent.right
+        }
+        height: visible ? units.gu(2) : 0
+        verticalAlignment: Text.AlignVCenter
+
+        // style
+        fontSize: "small"
+        opacity: 0.8
     }
 }

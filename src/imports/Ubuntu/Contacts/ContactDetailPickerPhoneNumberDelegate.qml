@@ -17,121 +17,108 @@
 import QtQuick 2.2
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components 0.1
+import QtContacts 5.0 as QtContacts
 
 Item {
-    property QtObject contact: null
+    id: root
 
-    signal detailClicked(QtObject detail)
+    signal detailClicked(QtObject detail, string action)
+
+    function containsPointer(item, point)
+    {
+        return ((point.x >= item.x) && (point.x <= item.x + item.width) &&
+                (point.y >= item.y) && (point.y <= item.y + item.height));
+    }
+
+    function updateDetails(contact)
+    {
+        if (contact) {
+            phoneNumberEntries.model = contact.details(QtContacts.ContactDetail.PhoneNumber)
+        }
+    }
+
+    height: detailItems.height + units.gu(2)
+    Column {
+        id: detailItems
+
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+        }
+        height: childrenRect.height
+        width: parent.width
+
+        ListItem.Standard {
+            id: noNumberMessage
+            showDivider: false
+            text: "No phone numbers."
+            visible: phoneNumberEntries.count == 0
+        }
+
+        Repeater {
+            id: phoneNumberEntries
+
+            ListItem.Subtitled {
+                anchors {
+                    left: parent.left
+                    leftMargin: units.gu(7)
+                    right: parent.right
+                }
+                showDivider: false
+                // TODO: change text font color to UbuntuColors.lightAubergine
+                // see bug #1324128
+                text: modelData.number
+                subText: phoneTypeModel.get(phoneTypeModel.getTypeIndex(modelData)).label
+                onClicked: root.detailClicked(modelData, "")
+
+                Row {
+                    id: icons
+
+                    anchors {
+                        top: parent.top
+                        right: parent.right
+                        bottom: parent.bottom
+                    }
+
+                    width: childrenRect.width
+                    spacing: units.gu(2)
+
+                    Icon {
+                        id: messageIcon
+
+                        name: "message"
+                        height: units.gu(3)
+                        width: height
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                    Icon {
+                        id: callIcon
+
+                        name: "call-start"
+                        height: units.gu(3)
+                        width: height
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                }
+                // WORKAROUND: SDK ListItem.Subtitled does not provide the mouse arg on onClicked event
+                // without that we can not check where the user clicked
+                MouseArea {
+                    anchors.fill: icons
+                    z: 100
+                    onClicked: {
+                        var point = Qt.point(mouse.x, mouse.y)
+                        if (root.containsPointer(messageIcon, point))
+                            root.detailClicked(modelData, "message")
+                        if (root.containsPointer(callIcon, point))
+                            root.detailClicked(modelData, "call")
+                    }
+                }
+            }
+        }
+    }
 
     ContactDetailPhoneNumberTypeModel {
         id: phoneTypeModel
-    }
-
-    height: details.height + units.gu(2)
-    anchors {
-        left: parent.left
-        right: parent.right
-    }
-
-    UbuntuShape {
-        id: details
-        height: childrenRect.height
-        color: Qt.rgba(0,0,0,0.1)
-        anchors {
-            top: parent.top
-            //topMargin: units.gu(2)
-            left: parent.left
-            leftMargin: units.gu(2)
-            right: parent.right
-            rightMargin: units.gu(2)
-        }
-
-        Column {
-            id: detailItems
-            anchors.top: parent.top
-            height: childrenRect.height
-            width: parent.width
-
-            Repeater {
-                id: phoneNumberEntries
-                model: contact ? contact.phoneNumbers : undefined
-                ListItem.Empty {
-                    showDivider: false
-                    Column {
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        anchors.leftMargin: units.gu(2)
-                        anchors.rightMargin: units.gu(2)
-                        Label {
-                            id: context
-                            text: phoneTypeModel.get(phoneTypeModel.getTypeIndex(modelData)).label
-                            fontSize: "small"
-                            opacity: 0.2
-                        }
-                        Label {
-                            text: number
-                            fontSize: "medium"
-                        }
-                    }
-
-                    onClicked: detailClicked(modelData)
-                    Icon {
-                        height: units.gu(2)
-                        width: units.gu(2)
-                        name: "call-start"
-                        color: "white"
-                        rotation: 90
-                        anchors {
-                            right: parent.right
-                            rightMargin: units.gu(2)
-                            verticalCenter: parent.verticalCenter
-                        }
-                    }
-                    ListItem.ThinDivider {
-                        visible: index != 0
-                        anchors {
-                            bottom: parent.top
-                            right: parent.right
-                            left: parent.left
-                        }
-                    }
-                }
-            }
-            ListItem.Empty {
-                showDivider: false
-                height: units.gu(5)
-                Column {
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    anchors.leftMargin: units.gu(2)
-                    anchors.rightMargin: units.gu(2)
-                    Label {
-                        text: i18n.dtr("address-book-app", "View contact's profile")
-                        fontSize: "medium"
-                    }
-                }
-                onClicked: Qt.openUrlExternally("addressbook:///contact?id=" + encodeURIComponent(contact.contactId))
-                Icon {
-                    height: units.gu(2)
-                    width: units.gu(2)
-                    name: "contact"
-                    anchors {
-                        right: parent.right
-                        rightMargin: units.gu(2)
-                        verticalCenter: parent.verticalCenter
-                    }
-                }
-                ListItem.ThinDivider {
-                    visible: phoneNumberEntries.count !== 0
-                    anchors {
-                        bottom: parent.top
-                        right: parent.right
-                        left: parent.left
-                    }
-                }
-            }
-        }
     }
 }

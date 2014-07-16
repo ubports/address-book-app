@@ -59,22 +59,12 @@ Item {
 
     // FIXME: workaround to close list after a while.
     // we cant rely on focus since it hides the keyboard.
-    MouseArea {
-        anchors.fill: parent
-        visible: expanded
-        onPressed: {
-            mouse.accepted = false
-            timer.restart()
-        }
-        propagateComposedEvents: true
-        z: 1
-    }
-
     Timer {
         id: timer
+
         interval: 5000
-        onTriggered: state = ""
         running: false
+        onTriggered: state = ""
     }
 
     Item {
@@ -100,12 +90,11 @@ Item {
 
             // style
             fontSize: root.active ? "medium" : "small"
-            color: "#f3f3e7"
         }
 
         Icon {
-            name: "chevron"
-            color: "white"
+            name: "go-next"
+            color: "black"
             height: units.gu(1)
             width: height
 
@@ -120,8 +109,12 @@ Item {
 
     MouseArea {
         anchors.fill: parent
-        propagateComposedEvents: true
-        onClicked: if (!readOnly) root.state = "expanded"
+        onClicked: {
+            if (!readOnly) {
+                root.state = "expanded"
+                timer.restart()
+            }
+        }
     }
 
     ListView {
@@ -142,7 +135,7 @@ Item {
                 bottom: parent.bottom
             }
             width: arrow.width + listLabel.paintedWidth + units.gu(1)
-            opacity: currentIndex == index ? 1.0 : 0.2
+            opacity: currentIndex == index ? 1.0 : 0.4
 
             Label {
                 id: listLabel
@@ -156,21 +149,22 @@ Item {
 
                 // style
                 fontSize: "medium"
-                color: "#f3f3e7"
 
                 MouseArea {
                     width: parent.width + units.gu(0.5)
                     height: parent.height + units.gu(0.5)
                     anchors.centerIn: parent
-                    onClicked: currentIndex = index
+                    onClicked: {
+                        currentIndex = index
+                        timer.restart()
+                    }
                 }
             }
 
             Icon {
                 id: arrow
 
-                name: "chevron"
-                color: "white"
+                name: "go-next"
                 height: visible ? units.gu(1) : 0
                 width: height
                 visible: index < (listView.count - 1)

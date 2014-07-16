@@ -7,6 +7,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DQT_QML_DEBUG")
 
 # Standard install paths
 include(GNUInstallDirs)
@@ -16,7 +17,6 @@ find_package(Qt5Qml)
 find_package(Qt5Quick)
 find_package(Qt5DBus)
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(CONTENTHUB REQUIRED libcontent-hub)
 
 find_program(INTLTOOL_MERGE intltool-merge)
 find_program(INTLTOOL_EXTRACT intltool-extract)
@@ -39,22 +39,25 @@ option(CLICK_MODE "Installs to a contained location" off)
 enable_testing()
 
 # components PATH
-execute_process(
-    COMMAND qmake -query QT_INSTALL_QML
-    OUTPUT_VARIABLE QT_IMPORTS_DIR
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-)
 if(CLICK_MODE)
-    set(APP_PACKAGE_NAME "com.ubuntu.address-book")
+    set(QT_IMPORTS_DIR "${ADDRESS_BOOK_APP_DIR}/imports/")
+else()
+    execute_process(
+        COMMAND qmake -query QT_INSTALL_QML
+        OUTPUT_VARIABLE QT_IMPORTS_DIR
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+endif()
+if(CLICK_MODE)
+    set(CLICK_MODE_ENABLED 1)
     set(CMAKE_INSTALL_PREFIX /)
     set(CMAKE_INSTALL_BINDIR /)
     set(CLICK_TAG click)
     set(ADDRESS_BOOK_APP_BINDIR ".")
     set(QT_EXTRA_IMPORTS_DIR ${QT_IMPORTS_DIR})
     set(INSTALL_TESTS off)
-    set(INSTALL_COMPONENTS off)
-    STRING(REPLACE "/usr/" "/"  QT_IMPORTS_DIR  ${QT_IMPORTS_DIR})
 else(CLICK_MODE)
+    set(CLICK_MODE_ENABLED 0)
     set(ADDRESS_BOOK_APP_BINDIR ${CMAKE_INSTALL_FULL_BINDIR})
     set(QT_EXTRA_IMPORTS_DIR "")
 endif(CLICK_MODE)

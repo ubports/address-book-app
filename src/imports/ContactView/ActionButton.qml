@@ -27,8 +27,7 @@ AbstractButton {
         id: icon
 
         anchors.centerIn: parent
-        height: units.gu(3)
-        width: height
-        color: "white"
+        height: units.gu(2.5)
+        width: units.gu(2.5)
     }
 }

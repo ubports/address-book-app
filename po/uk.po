@@ -7,26 +7,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-05-13 15:51-0300\n"
-"PO-Revision-Date: 2014-05-16 14:45+0000\n"
+"POT-Creation-Date: 2014-06-30 15:01-0300\n"
+"PO-Revision-Date: 2014-06-30 15:29+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-05-17 07:14+0000\n"
-"X-Generator: Launchpad (build 17007)\n"
+"X-Launchpad-Export-Date: 2014-07-05 05:59+0000\n"
+"X-Generator: Launchpad (build 17086)\n"
 
-#: src/imports/ContactList/ContactListPage.qml:193
-msgid "Add"
-msgstr "Додати"
+#: src/imports/ContactList/VCardImportDialog.qml:72
+#, qt-format
+msgid "%1 vCards imported"
+msgstr "Імпортовано %1 візитівок"
 
+#: src/imports/ContactEdit/ContactEditor.qml:322
+msgid "Add Field"
+msgstr "Додати поле"
+
+#: src/imports/ContactEdit/AddFieldDialog.qml:59
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
 #: src/imports/ContactView/ContactDetailAddressesView.qml:24
 msgid "Address"
 msgstr "Адреса"
 
-#: src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:73
+#: src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:77
 #: src/imports/ContactView/ContactDetailSyncTargetView.qml:48
 msgid "Addressbook"
 msgstr "Адресна книга"
@@ -35,22 +41,39 @@ msgstr "Адресна книга"
 msgid "Aim"
 msgstr "Мета"
 
-#: src/imports/Ubuntu/Contacts/ContactListView.qml:66
+#: src/imports/Ubuntu/Contacts/ContactListView.qml:316
 msgid "All"
 msgstr "Усі"
 
-#: src/imports/ContactEdit/ContactEditor.qml:300
-#: src/imports/ContactEdit/EditToolbar.qml:42
+#: src/imports/Common/RemoveContactsDialog.qml:51
+msgid "Are you sure that you want to remove all selected contacts?"
+msgstr "Ви справді хочете вилучити усі позначені записи контактів?"
+
+#: src/imports/Common/RemoveContactsDialog.qml:49
+msgid "Are you sure that you want to remove this contact?"
+msgstr "Ви справді хочете вилучити цей запис контакту?"
+
+#: src/imports/ContactEdit/AddFieldDialog.qml:133
+#: src/imports/ContactEdit/ContactEditor.qml:372
+#: src/imports/ContactList/ContactListPage.qml:314
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:37
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: src/imports/ContactEdit/ContactFetchError.qml:26
+#: src/imports/ContactList/ContactListPage.qml:242
+msgid "Cancel selection"
+msgstr "Скасувати позначення"
+
+#: src/imports/ContactList/VCardImportDialog.qml:80
+msgid "Close"
+msgstr "Закрити"
+
+#: src/imports/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
 msgstr "Контакт не знайдено"
 
 #: data/address-book-app.desktop.in:6 data/address-book-app.desktop.in:7
-#: src/imports/ContactList/ContactListPage.qml:57
+#: src/imports/ContactList/ContactListPage.qml:75
 msgid "Contacts"
 msgstr "Контакти"
 
@@ -62,21 +85,22 @@ msgstr "Адресна книга контактів"
 msgid "Country"
 msgstr "Країна"
 
-#: src/imports/ContactList/ContactListPage.qml:83
-#: src/imports/ContactView/ContactView.qml:181
-#: src/imports/Ubuntu/Contacts/ContactSimpleListView.qml:288
+#: src/imports/ContactEdit/ContactEditor.qml:337
+#: src/imports/ContactList/ContactListPage.qml:146
+#: src/imports/ContactList/ContactListPage.qml:267
 msgid "Delete"
 msgstr "Вилучити"
 
-#: src/imports/ContactEdit/EditToolbar.qml:57
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:53
 msgid "Done"
 msgstr "Виконано"
 
-#: src/imports/ContactView/ContactView.qml:193
+#: src/imports/ContactEdit/ContactEditor.qml:141
+#: src/imports/ContactView/ContactView.qml:217
 msgid "Edit"
 msgstr "Редагувати"
 
+#: src/imports/ContactEdit/AddFieldDialog.qml:57
 #: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:23
 #: src/imports/ContactView/ContactDetailEmailsView.qml:23
 #: src/imports/ContactView/ContactDetailEmailsView.qml:26
@@ -95,22 +119,26 @@ msgstr "Введіть адресу профілю у соцмережі"
 msgid "Enter an email address"
 msgstr "Введіть адресу електронної пошти"
 
-#: src/imports/ContactEdit/ContactFetchError.qml:25
-#: src/imports/MainWindow.qml:94
+#: src/imports/ContactView/ContactFetchError.qml:25
+#: src/imports/MainWindow.qml:98
 msgid "Error"
 msgstr "Помилка"
 
-#: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:33
+#: src/imports/ContactView/ContactView.qml:195
 msgid "Favorite"
 msgstr "Вибраний"
 
-#: src/imports/Ubuntu/Contacts/ContactListView.qml:93
+#: src/imports/Ubuntu/Contacts/ContactListView.qml:348
 msgid "Favourites"
 msgstr "Вибрані"
 
-#: src/imports/ContactEdit/ContactDetailNameEditor.qml:81
+#: src/imports/ContactEdit/ContactDetailNameEditor.qml:83
 msgid "First name"
 msgstr "Ім’я"
+
+#: src/imports/Ubuntu/Contacts/ContactListView.qml:427
+msgid "Frequently called"
+msgstr "Найуживаніші"
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:116
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:94
@@ -125,19 +153,27 @@ msgstr "ICQ"
 msgid "IM"
 msgstr "МП"
 
+#: src/imports/ContactList/VCardImportDialog.qml:71
+msgid "Import vCards"
+msgstr "Імпортувати візитівки"
+
+#: src/imports/ContactList/VCardImportDialog.qml:72
+msgid "Importing..."
+msgstr "Імпортування…"
+
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
 msgid "Jabber"
 msgstr "Jabber"
 
-#: src/imports/ContactEdit/ContactDetailNameEditor.qml:81
+#: src/imports/ContactEdit/ContactDetailNameEditor.qml:83
 msgid "Last name"
 msgstr "Прізвище"
 
-#: src/imports/ContactEdit/ContactDetailAvatarEditor.qml:85
+#: src/imports/ContactEdit/AvatarImport.qml:71
 msgid "Loading"
 msgstr "Завантаження"
 
-#: src/imports/ContactList/ContactListPage.qml:163
+#: src/imports/ContactList/ContactListPage.qml:232
 msgid "Loading..."
 msgstr "Завантаження…"
 
@@ -153,13 +189,22 @@ msgstr "MSN"
 msgid "Mobile"
 msgstr "Мобільний"
 
-#: src/imports/ContactEdit/TextInputDetail.qml:46
+#: src/imports/Common/RemoveContactsDialog.qml:44
+msgid "Multiple contacts"
+msgstr "Декілька контактів"
+
+#: src/imports/ContactEdit/TextInputDetail.qml:77
 msgid "Next"
 msgstr "Далі"
 
+#: src/imports/Common/RemoveContactsDialog.qml:74
 #: src/imports/ContactList/OnlineAccountsMessage.qml:48
 msgid "No"
 msgstr "Ні"
+
+#: src/imports/Common/RemoveContactsDialog.qml:40
+msgid "No contact selected."
+msgstr "Не позначено жодного запису контакту."
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Organization"
@@ -170,6 +215,7 @@ msgstr "Організація"
 msgid "Other"
 msgstr "Інше"
 
+#: src/imports/ContactEdit/AddFieldDialog.qml:55
 #: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:24
 #: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:30
 msgid "Phone"
@@ -178,6 +224,10 @@ msgstr "Телефон"
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
 msgstr "Поштовий індекс"
+
+#: src/imports/ContactEdit/AddFieldDialog.qml:63
+msgid "Professional Details"
+msgstr "Професійні подробиці"
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:23
 #: src/imports/ContactView/ContactDetailOrganizationsView.qml:27
@@ -192,19 +242,39 @@ msgstr "Область/Регіон"
 msgid "Role"
 msgstr "Посада"
 
-#: src/imports/ContactEdit/ContactEditor.qml:295
+#: src/imports/ContactEdit/ContactEditor.qml:385
 msgid "Save"
 msgstr "Зберегти"
 
-#: src/imports/ContactList/ContactListPage.qml:83
-#: src/imports/ContactList/ContactListPage.qml:185
+#: src/imports/ContactList/ContactListPage.qml:292
+msgid "Search"
+msgstr "Пошук"
+
+#: src/imports/ContactList/ContactListPage.qml:267
 msgid "Select"
 msgstr "Вибрати"
+
+#: src/imports/ContactList/ContactListPage.qml:251
+msgid "Select All"
+msgstr "Позначити всі"
+
+#: src/imports/ContactList/ContactListPage.qml:75
+msgid "Select Contacts"
+msgstr "Вибір контактів"
+
+#: src/imports/ContactEdit/AddFieldDialog.qml:116
+msgid "Select a field"
+msgstr "Виберіть поле"
+
+#: src/imports/ContactView/ContactView.qml:206
+msgid "Share"
+msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
 msgid "Skype"
 msgstr "Skype"
 
+#: src/imports/ContactEdit/AddFieldDialog.qml:61
 #: src/imports/ContactView/ContactDetailOnlineAccountsView.qml:27
 msgid "Social"
 msgstr "Соціальне"
@@ -213,15 +283,15 @@ msgstr "Соціальне"
 msgid "Street"
 msgstr "Вулиця"
 
-#: src/imports/ContactList/ContactListPage.qml:176
+#: src/imports/ContactList/ContactListPage.qml:283
 msgid "Sync"
 msgstr "Синхронізувати"
 
-#: src/imports/ContactList/ContactListPage.qml:176
+#: src/imports/ContactList/ContactListPage.qml:283
 msgid "Syncing"
 msgstr "Синхронізація"
 
-#: src/imports/ContactList/ContactListPage.qml:163
+#: src/imports/ContactList/ContactListPage.qml:232
 msgid "Syncing..."
 msgstr "Синхронізація..."
 
@@ -235,13 +305,9 @@ msgstr "Торкніться"
 
 #. TRANSLATORS: This value is used as default value for phone number format, when no coutry code is provided
 #. the supported values can be found in: https://www.iso.org/obp/ui/#search
-#: src/imports/ContactEdit/TextInputDetail.qml:41
+#: src/imports/ContactEdit/TextInputDetail.qml:73
 msgid "US"
 msgstr "UA"
-
-#: src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:111
-msgid "View contact's profile"
-msgstr "Переглянути профіль контакта"
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:117
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:96
@@ -264,6 +330,7 @@ msgstr ""
 msgid "Yahoo"
 msgstr "Yahoo"
 
+#: src/imports/Common/RemoveContactsDialog.qml:62
 #: src/imports/ContactList/OnlineAccountsMessage.qml:36
 msgid "Yes"
 msgstr "Так"

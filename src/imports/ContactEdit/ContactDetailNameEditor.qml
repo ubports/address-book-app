@@ -51,6 +51,7 @@ ContactDetailItem {
         return changed
     }
 
+    spacing: units.gu(1)
     detail: root.contact ? root.contact.name : null
     fields: [ QtContacts.Name.FirstName, QtContacts.Name.LastName ]
 
@@ -74,6 +75,7 @@ ContactDetailItem {
             root.emptyFields = newEmtpyFields
         }
 
+        focus: true
         width: root.width - units.gu(4)
         x: units.gu(2)
         detail: root.detail

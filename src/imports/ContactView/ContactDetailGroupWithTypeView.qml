@@ -31,6 +31,8 @@ ContactDetailGroupWithTypeBase {
     headerDelegate: ListItem.Empty {
         highlightWhenPressed: false
 
+        divider.anchors.leftMargin: units.gu(2)
+        divider.anchors.rightMargin: units.gu(2)
         width: root.width
         height: units.gu(5)
         Label {
@@ -45,8 +47,6 @@ ContactDetailGroupWithTypeBase {
 
             // style
             fontSize: "medium"
-            color: "#f3f3e7"
-            opacity: 0.2
         }
     }
 
@@ -57,7 +57,6 @@ ContactDetailGroupWithTypeBase {
         contact: root.contact
         fields: root.fields
         typeLabel: detailType ? detailType.label : ""
-        typeIcon: detailType && detailType.icon ? detailType.icon : ""
 
         height: implicitHeight
         width: root.width

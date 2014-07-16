@@ -4,7 +4,6 @@ set(CONTACT_VIEW_QMLS
     ContactDetailAddressesView.qml
     ContactDetailAvatarView.qml
     ContactDetailEmailsView.qml
-    ContactDetailFavoriteView.qml
     ContactDetailGroupWithTypeView.qml
     ContactDetailNameView.qml
     ContactDetailOnlineAccountsView.qml
@@ -13,6 +12,7 @@ set(CONTACT_VIEW_QMLS
     ContactDetailPhoneNumberView.qml
     ContactDetailSyncTargetView.qml
     ContactDetailWithTypeView.qml
+    ContactFetchError.qml
     ContactHeaderView.qml
     ContactView.qml
 )

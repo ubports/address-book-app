@@ -9,7 +9,6 @@
 # by the Free Software Foundation.
 
 from testtools.matchers import Equals
-
 from address_book_app.tests import AddressBookAppTestCase
 
 
@@ -25,9 +24,6 @@ class TestDeleteSelectContact(AddressBookAppTestCase):
         ("multiple_cancel", {
             "select": [1, 2],
             "action": "cancel"}),
-        ("none_delete", {
-            "select": [],
-            "action": "delete"}),
         ("single_delete", {
             "select": [1],
             "action": "delete"}),
@@ -49,16 +45,15 @@ class TestDeleteSelectContact(AddressBookAppTestCase):
         contact in the list before and after the action.
         Note that it doesn't check which contact has been deleted.
         """
-        self.main_window.open_toolbar().click_select()
-        listpage = self.main_window.get_contact_list_page()
+        listpage = self.app.main_window.get_contact_list_page()
         contacts_before = listpage.get_contacts()
 
         listpage.select_contacts_by_index(self.select)
         deleted = []
         if self.action == "cancel":
-            listpage.cancel()
+            self.app.main_window.cancel()
         elif self.action == "delete":
-            listpage.delete()
+            listpage.delete(self.app.main_window)
             deleted = self.select
 
         contacts_after = listpage.get_contacts()

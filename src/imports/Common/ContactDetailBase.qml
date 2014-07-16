@@ -19,7 +19,6 @@ import QtContacts 5.0 as QtContacts
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 
-
 ListItem.Empty {
     id: root
     objectName: detail ? "base_" + detailToString(detail.type, -1) + "_" + index : ""
@@ -61,6 +60,12 @@ ListItem.Empty {
         imMap[QtContacts.OnlineAccount.Protocol] = "imProtocol"
         imMap[QtContacts.OnlineAccount.Capabilities] = "imCaps"
 
+        // organization
+        var organizationMap = {}
+        organizationMap[QtContacts.Organization.Name] = 'orgName'
+        organizationMap[QtContacts.Organization.Role] = 'orgRole'
+        organizationMap[QtContacts.Organization.Title] = 'orgTitle'
+
         // SyncTarget
         var syncTargetMap = {}
         syncTargetMap[QtContacts.SyncTarget.SyncTarget] = "syncTarget"
@@ -72,6 +77,7 @@ ListItem.Empty {
         detailMap[QtContacts.ContactDetail.Email] = emailMap
         detailMap[QtContacts.ContactDetail.Address] = addressMap
         detailMap[QtContacts.ContactDetail.OnlineAccount] = imMap
+        detailMap[QtContacts.ContactDetail.Organization] = organizationMap
         detailMap[QtContacts.ContactDetail.SyncTarget] = syncTargetMap
 
         // detail name
@@ -94,7 +100,7 @@ ListItem.Empty {
     }
 
     highlightWhenPressed: false
-    focus: false
+    showDivider: false
 
     Rectangle {
         anchors.fill: parent

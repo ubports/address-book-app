@@ -7,26 +7,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-05-13 15:51-0300\n"
-"PO-Revision-Date: 2014-05-18 06:59+0000\n"
+"POT-Creation-Date: 2014-06-30 15:01-0300\n"
+"PO-Revision-Date: 2014-07-06 16:03+0000\n"
 "Last-Translator: Jiri Grönroos <Unknown>\n"
 "Language-Team: Finnish <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-05-19 06:25+0000\n"
-"X-Generator: Launchpad (build 17007)\n"
+"X-Launchpad-Export-Date: 2014-07-07 06:08+0000\n"
+"X-Generator: Launchpad (build 17086)\n"
 
-#: src/imports/ContactList/ContactListPage.qml:193
-msgid "Add"
-msgstr "Lisää"
+#: src/imports/ContactList/VCardImportDialog.qml:72
+#, qt-format
+msgid "%1 vCards imported"
+msgstr "%1 vCardia tuotu"
 
+#: src/imports/ContactEdit/ContactEditor.qml:322
+msgid "Add Field"
+msgstr "Lisää kenttä"
+
+#: src/imports/ContactEdit/AddFieldDialog.qml:59
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
 #: src/imports/ContactView/ContactDetailAddressesView.qml:24
 msgid "Address"
 msgstr "Osoite"
 
-#: src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:73
+#: src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:77
 #: src/imports/ContactView/ContactDetailSyncTargetView.qml:48
 msgid "Addressbook"
 msgstr "Osoitekirja"
@@ -35,22 +41,39 @@ msgstr "Osoitekirja"
 msgid "Aim"
 msgstr "Aim"
 
-#: src/imports/Ubuntu/Contacts/ContactListView.qml:66
+#: src/imports/Ubuntu/Contacts/ContactListView.qml:316
 msgid "All"
 msgstr "Kaikki"
 
-#: src/imports/ContactEdit/ContactEditor.qml:300
-#: src/imports/ContactEdit/EditToolbar.qml:42
+#: src/imports/Common/RemoveContactsDialog.qml:51
+msgid "Are you sure that you want to remove all selected contacts?"
+msgstr "Haluatko varmasti poistaa kaikki valitut yhteystiedot?"
+
+#: src/imports/Common/RemoveContactsDialog.qml:49
+msgid "Are you sure that you want to remove this contact?"
+msgstr "Haluatko varmasti poistaa tämän yhteystiedon?"
+
+#: src/imports/ContactEdit/AddFieldDialog.qml:133
+#: src/imports/ContactEdit/ContactEditor.qml:372
+#: src/imports/ContactList/ContactListPage.qml:314
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:37
 msgid "Cancel"
 msgstr "Peru"
 
-#: src/imports/ContactEdit/ContactFetchError.qml:26
+#: src/imports/ContactList/ContactListPage.qml:242
+msgid "Cancel selection"
+msgstr "Peru valinta"
+
+#: src/imports/ContactList/VCardImportDialog.qml:80
+msgid "Close"
+msgstr "Sulje"
+
+#: src/imports/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
 msgstr "Yhteystietoa ei löytynyt"
 
 #: data/address-book-app.desktop.in:6 data/address-book-app.desktop.in:7
-#: src/imports/ContactList/ContactListPage.qml:57
+#: src/imports/ContactList/ContactListPage.qml:75
 msgid "Contacts"
 msgstr "Yhteystiedot"
 
@@ -62,21 +85,22 @@ msgstr "Yhteystietojen osoitekirja"
 msgid "Country"
 msgstr "Maa"
 
-#: src/imports/ContactList/ContactListPage.qml:83
-#: src/imports/ContactView/ContactView.qml:181
-#: src/imports/Ubuntu/Contacts/ContactSimpleListView.qml:288
+#: src/imports/ContactEdit/ContactEditor.qml:337
+#: src/imports/ContactList/ContactListPage.qml:146
+#: src/imports/ContactList/ContactListPage.qml:267
 msgid "Delete"
 msgstr "Poista"
 
-#: src/imports/ContactEdit/EditToolbar.qml:57
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:53
 msgid "Done"
 msgstr "Valmis"
 
-#: src/imports/ContactView/ContactView.qml:193
+#: src/imports/ContactEdit/ContactEditor.qml:141
+#: src/imports/ContactView/ContactView.qml:217
 msgid "Edit"
 msgstr "Muokkaa"
 
+#: src/imports/ContactEdit/AddFieldDialog.qml:57
 #: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:23
 #: src/imports/ContactView/ContactDetailEmailsView.qml:23
 #: src/imports/ContactView/ContactDetailEmailsView.qml:26
@@ -95,22 +119,26 @@ msgstr ""
 msgid "Enter an email address"
 msgstr "Anna sähköpostiosoite"
 
-#: src/imports/ContactEdit/ContactFetchError.qml:25
-#: src/imports/MainWindow.qml:94
+#: src/imports/ContactView/ContactFetchError.qml:25
+#: src/imports/MainWindow.qml:98
 msgid "Error"
 msgstr "Virhe"
 
-#: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:33
+#: src/imports/ContactView/ContactView.qml:195
 msgid "Favorite"
 msgstr "Suosikki"
 
-#: src/imports/Ubuntu/Contacts/ContactListView.qml:93
+#: src/imports/Ubuntu/Contacts/ContactListView.qml:348
 msgid "Favourites"
 msgstr "Suosikit"
 
-#: src/imports/ContactEdit/ContactDetailNameEditor.qml:81
+#: src/imports/ContactEdit/ContactDetailNameEditor.qml:83
 msgid "First name"
 msgstr "Etunimi"
+
+#: src/imports/Ubuntu/Contacts/ContactListView.qml:427
+msgid "Frequently called"
+msgstr "Usein soitetut"
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:116
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:94
@@ -125,19 +153,27 @@ msgstr "ICQ"
 msgid "IM"
 msgstr "Pikaviestin"
 
+#: src/imports/ContactList/VCardImportDialog.qml:71
+msgid "Import vCards"
+msgstr "Tuo vCardeja"
+
+#: src/imports/ContactList/VCardImportDialog.qml:72
+msgid "Importing..."
+msgstr "Tuodaan..."
+
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
 msgid "Jabber"
 msgstr "Jabber"
 
-#: src/imports/ContactEdit/ContactDetailNameEditor.qml:81
+#: src/imports/ContactEdit/ContactDetailNameEditor.qml:83
 msgid "Last name"
 msgstr "Sukunimi"
 
-#: src/imports/ContactEdit/ContactDetailAvatarEditor.qml:85
+#: src/imports/ContactEdit/AvatarImport.qml:71
 msgid "Loading"
 msgstr "Ladataan"
 
-#: src/imports/ContactList/ContactListPage.qml:163
+#: src/imports/ContactList/ContactListPage.qml:232
 msgid "Loading..."
 msgstr "Ladataan..."
 
@@ -153,13 +189,22 @@ msgstr "MSN"
 msgid "Mobile"
 msgstr "Matkapuhelin"
 
-#: src/imports/ContactEdit/TextInputDetail.qml:46
+#: src/imports/Common/RemoveContactsDialog.qml:44
+msgid "Multiple contacts"
+msgstr "Useita yhteystietoja"
+
+#: src/imports/ContactEdit/TextInputDetail.qml:77
 msgid "Next"
 msgstr "Seuraava"
 
+#: src/imports/Common/RemoveContactsDialog.qml:74
 #: src/imports/ContactList/OnlineAccountsMessage.qml:48
 msgid "No"
 msgstr "Ei"
+
+#: src/imports/Common/RemoveContactsDialog.qml:40
+msgid "No contact selected."
+msgstr "Yhteystietoa ei ole valittu."
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Organization"
@@ -170,6 +215,7 @@ msgstr "Organisaatio"
 msgid "Other"
 msgstr "Muu"
 
+#: src/imports/ContactEdit/AddFieldDialog.qml:55
 #: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:24
 #: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:30
 msgid "Phone"
@@ -178,6 +224,10 @@ msgstr "Puhelin"
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
 msgstr "Postinumero"
+
+#: src/imports/ContactEdit/AddFieldDialog.qml:63
+msgid "Professional Details"
+msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:23
 #: src/imports/ContactView/ContactDetailOrganizationsView.qml:27
@@ -192,19 +242,39 @@ msgstr "Alue"
 msgid "Role"
 msgstr "Rooli"
 
-#: src/imports/ContactEdit/ContactEditor.qml:295
+#: src/imports/ContactEdit/ContactEditor.qml:385
 msgid "Save"
 msgstr "Tallenna"
 
-#: src/imports/ContactList/ContactListPage.qml:83
-#: src/imports/ContactList/ContactListPage.qml:185
+#: src/imports/ContactList/ContactListPage.qml:292
+msgid "Search"
+msgstr "Etsi"
+
+#: src/imports/ContactList/ContactListPage.qml:267
 msgid "Select"
 msgstr "Valitse"
+
+#: src/imports/ContactList/ContactListPage.qml:251
+msgid "Select All"
+msgstr "Valitse kaikki"
+
+#: src/imports/ContactList/ContactListPage.qml:75
+msgid "Select Contacts"
+msgstr "Valitse yhteystiedot"
+
+#: src/imports/ContactEdit/AddFieldDialog.qml:116
+msgid "Select a field"
+msgstr "Valitse kenttä"
+
+#: src/imports/ContactView/ContactView.qml:206
+msgid "Share"
+msgstr "Jaa"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
 msgid "Skype"
 msgstr "Skype"
 
+#: src/imports/ContactEdit/AddFieldDialog.qml:61
 #: src/imports/ContactView/ContactDetailOnlineAccountsView.qml:27
 msgid "Social"
 msgstr ""
@@ -213,15 +283,15 @@ msgstr ""
 msgid "Street"
 msgstr "Katuosoite"
 
-#: src/imports/ContactList/ContactListPage.qml:176
+#: src/imports/ContactList/ContactListPage.qml:283
 msgid "Sync"
 msgstr "Synkronoi"
 
-#: src/imports/ContactList/ContactListPage.qml:176
+#: src/imports/ContactList/ContactListPage.qml:283
 msgid "Syncing"
 msgstr "Synkronoidaan"
 
-#: src/imports/ContactList/ContactListPage.qml:163
+#: src/imports/ContactList/ContactListPage.qml:232
 msgid "Syncing..."
 msgstr "Synkronoidaan..."
 
@@ -235,13 +305,9 @@ msgstr ""
 
 #. TRANSLATORS: This value is used as default value for phone number format, when no coutry code is provided
 #. the supported values can be found in: https://www.iso.org/obp/ui/#search
-#: src/imports/ContactEdit/TextInputDetail.qml:41
+#: src/imports/ContactEdit/TextInputDetail.qml:73
 msgid "US"
 msgstr "FI"
-
-#: src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:111
-msgid "View contact's profile"
-msgstr "Näytä yhteystiedon profiili"
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:117
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:96
@@ -264,6 +330,7 @@ msgstr ""
 msgid "Yahoo"
 msgstr "Yahoo"
 
+#: src/imports/Common/RemoveContactsDialog.qml:62
 #: src/imports/ContactList/OnlineAccountsMessage.qml:36
 msgid "Yes"
 msgstr "Kyllä"

@@ -1,3 +1,5 @@
+project(imports)
+
 set(ADDRESS_BOOK_APP_QMLS
     MainWindow.qml
 )
@@ -13,4 +15,5 @@ add_subdirectory(Common)
 add_subdirectory(ContactList)
 add_subdirectory(ContactView)
 add_subdirectory(ContactEdit)
+add_subdirectory(ContactShare)
 add_subdirectory(Ubuntu)

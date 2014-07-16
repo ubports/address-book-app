@@ -15,6 +15,7 @@
  */
 
 import QtQuick 2.2
+import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1 as Popups
 
 /*!
@@ -70,25 +71,6 @@ ListView {
     */
     property bool multipleSelection: true
 
-    /*!
-      \qmlproperty Action acceptAction
-
-      This property holds the action used into the accept button
-    */
-    property alias acceptAction: sheet.acceptAction
-    /*!
-      \qmlproperty Action acceptAction
-
-      This property holds the action used into the reject button
-    */
-    property alias rejectAction: sheet.rejectAction
-    /*!
-      \qmlproperty bool showActionButtons
-
-      This property holds if the default sheet element must be visible during the selection
-      By default this is set to true
-    */
-    property alias showActionButtons: sheet.enabled
     /*!
       \qmlproperty model listModel
 
@@ -191,20 +173,15 @@ ListView {
             selectedItems.remove(0, selectedItems.count)
         }
     }
-
-    states: [
-        State {
-            name: "selection"
-            PropertyChanges {
-                target: sheet
-                active: true
-            }
-            PropertyChanges {
-                target: listView
-                bottomMargin: sheet.height
-            }
+    /*!
+      Select all items in the list
+    */
+    function selectAll()
+    {
+        if (multipleSelection) {
+            visualModel.items.addGroups(0, visualModel.items.count, ["selected"] )
         }
-    ]
+    }
 
     model: visualModel
 
@@ -212,21 +189,11 @@ ListView {
         id: visualModel
     }
 
-    DialogButtons {
-        id: sheet
-
-        property bool active: false
-        property bool enabled: true
-
-        anchors {
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-        }
-        height: visible ? units.gu(6) : 0
-        visible: active && enabled
-
-        onReject: listView.cancelSelection()
-        onAccept: listView.endSelection()
+    Component.onCompleted: {
+        // FIXME: workaround for qtubuntu not returning values depending on the grid unit definition
+        // for Flickable.maximumFlickVelocity and Flickable.flickDeceleration
+        var scaleFactor = units.gridUnit / 8;
+        maximumFlickVelocity = maximumFlickVelocity * scaleFactor;
+        flickDeceleration = flickDeceleration * scaleFactor;
     }
 }

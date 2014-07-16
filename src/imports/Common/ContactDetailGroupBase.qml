@@ -129,7 +129,6 @@ FocusScope {
             Loader {
                 id: detailItem
 
-                focus: true
                 sourceComponent: root.detailDelegate
                 Binding {
                     target: detailItem.item
@@ -149,24 +148,14 @@ FocusScope {
                         newFields.push(detailItem.item)
                         root.newFieldAdded(detailItem.item)
                         root.inputFields = newFields
-                        if (item.focus && root.loaded && root.focus) {
+                        if (root.loaded) {
                             item.forceActiveFocus()
                         }
                     }
                 }
-                activeFocusOnTab: true
             }
         }
     }
 
     Component.onCompleted: root.loaded = true
-
-    // reset focus back to first field
-    onActiveFocusChanged: {
-        if (!activeFocus) {
-            for(var i=0; i < detailFields.count; i++) {
-                detailFields.itemAt(i).focus = (i === 0)
-            }
-        }
-    }
 }

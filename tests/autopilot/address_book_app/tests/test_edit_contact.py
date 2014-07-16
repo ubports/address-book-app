@@ -10,33 +10,45 @@
 from testtools.matchers import Equals
 from autopilot.matchers import Eventually
 
+from address_book_app import data
 from address_book_app.tests import AddressBookAppTestCase
 
 
 class TestEditContact(AddressBookAppTestCase):
     """Tests edit a contact"""
+
     PHONE_NUMBERS = ['(333) 123-4567', '(333) 123-4568', '(222) 222-2222']
+
+    def add_test_contact(self):
+        test_contact = data.Contact('test', 'test')
+        # TODO implement the filling of professional details.
+        # --elopio - 2014-03-01
+        test_contact.professional_details = []
+
+        # execute add new contact
+        contact_editor = self.main_window.go_to_add_contact()
+        contact_editor.fill_form(test_contact)
+
+        # Save contact
+        self.main_window.save()
 
     def test_add_new_phone(self):
         self.add_contact("Fulano", "de Tal", [self.PHONE_NUMBERS[0]])
         edit_page = self.edit_contact(0)
 
         # Add a new phone
-        phoneGroup = edit_page.select_single(
-            "ContactDetailGroupWithTypeEditor",
-            objectName="phones")
-        self.create_new_detail(phoneGroup)
+        edit_page.add_field('phones')
 
         # fill phone number
-        phone_number_1 = self.main_window.select_single(
+        phone_number_1 = self.app.main_window.select_single(
             "TextInputDetail",
             objectName="phoneNumber_1")
         self.type_on_field(phone_number_1, self.PHONE_NUMBERS[1])
 
-        self.main_window.save()
+        self.app.main_window.save()
 
         # go back to view page
-        view_page = self.main_window.get_contact_view_page()
+        view_page = self.app.main_window.get_contact_view_page()
         self.assertThat(view_page.visible, Eventually(Equals(True)))
 
         # check if we have two phones"""
@@ -52,20 +64,30 @@ class TestEditContact(AddressBookAppTestCase):
         self.assertThat(phone_label_1.text, Eventually(Equals(self.PHONE_NUMBERS[1])))
 
     def test_remove_phone(self):
-        self.add_contact("Fulano", "de Tal", self.PHONE_NUMBERS[1:3])
-        edit_page = self.edit_contact(0)
+        contact_editor = self.app.main_window.go_to_add_contact()
+        my_phones = []
+        for n in self.PHONE_NUMBERS[1:3]:
+            my_phones.append(data.Phone(type_='Mobile', number=n))
+
+        test_contact = data.Contact(first_name="Fulano",
+                                    last_name="de Tal",
+                                    phones=my_phones)
+        contact_editor.fill_form(test_contact)
 
         # clear phone 1
-        phone_number_1 = self.main_window.select_single(
+        phone_number_1 = contact_editor.wait_select_single(
             "TextInputDetail",
             objectName="phoneNumber_1")
         self.clear_text_on_field(phone_number_1)
 
         # Save contact
-        self.main_window.save()
+        self.app.main_window.save()
+
+        # Go to contact view
+        list_page = self.main_window.get_contact_list_page()
 
         # check if we have onlye one phone
-        view_page = self.main_window.get_contact_view_page()
+        view_page = list_page.open_contact(0)
         phone_group = view_page.select_single(
             "ContactDetailGroupWithTypeView",
             objectName="phones")
@@ -80,22 +102,18 @@ class TestEditContact(AddressBookAppTestCase):
     def test_add_email(self):
         self.add_contact("Fulano", "")
         edit_page = self.edit_contact(0)
-
-        emailGroup = edit_page.select_single(
-            "ContactDetailGroupWithTypeEditor",
-            objectName="emails")
-        self.create_new_detail(emailGroup)
+        edit_page.add_field("emails")
 
         # fill email address
-        email_field = self.main_window.select_single(
+        email_field = edit_page.select_single(
             "TextInputDetail",
             objectName="emailAddress_0")
         self.type_on_field(email_field, "fulano@internet.com.br")
 
-        self.main_window.save()
+        self.app.main_window.save()
 
         # go back to view page
-        view_page = self.main_window.get_contact_view_page()
+        view_page = self.app.main_window.get_contact_view_page()
         self.assertThat(view_page.visible, Eventually(Equals(True)))
 
         # check if we have a new email
@@ -113,19 +131,19 @@ class TestEditContact(AddressBookAppTestCase):
 
     def test_remove_email(self):
         self.add_contact("Fulano", "de Tal", None, ["fulano@email.com"])
-        self.edit_contact(0)
+        edit_page = self.edit_contact(0)
 
         # clear email
-        email_address_0 = self.main_window.select_single(
+        email_address_0 = edit_page.select_single(
             "TextInputDetail",
             objectName="emailAddress_0")
         self.clear_text_on_field(email_address_0)
 
         # Save contact
-        self.main_window.save()
+        self.app.main_window.save()
 
         # check if the email list is empty
-        view_page = self.main_window.get_contact_view_page()
+        view_page = self.app.main_window.get_contact_view_page()
         emails_group = view_page.select_single(
             "ContactDetailGroupWithTypeView",
             objectName="emails")
@@ -133,12 +151,12 @@ class TestEditContact(AddressBookAppTestCase):
 
     def test_clear_names(self):
         self.add_contact("Fulano", "de Tal")
-        self.edit_contact(0)
+        edit_page = self.edit_contact(0)
 
-        first_name_field = self.main_window.select_single(
+        first_name_field = edit_page.select_single(
             "TextInputDetail",
             objectName="firstName")
-        last_name_field = self.main_window.select_single(
+        last_name_field = edit_page.select_single(
             "TextInputDetail",
             objectName="lastName")
 
@@ -147,28 +165,39 @@ class TestEditContact(AddressBookAppTestCase):
         self.clear_text_on_field(last_name_field)
 
         # check if is possible to save a contact without name
-        accept_button = self.main_window.get_button("accept")
+        self.app.main_window.save()
+        accept_button = self.app.main_window.get_button("save")
         self.assertThat(accept_button.enabled, Eventually(Equals(False)))
 
         # Cancel edit
-        self.main_window.cancel()
+        self.app.main_window.cancel()
 
         # Check if the names still there
-        view_page = self.main_window.get_contact_view_page()
+        view_page = self.app.main_window.get_contact_view_page()
         self.assertThat(view_page.title, Eventually(Equals("Fulano de Tal")))
 
     def test_im_type(self):
-        self.add_contact("Fulano", "de Tal", im_address=["im@account.com"])
+        contact_editor = self.app.main_window.go_to_add_contact()
+        alias = data.SocialAlias(type_="Skype", alias="im@account.com")
+        test_contact = data.Contact(first_name="Fulano",
+                                    last_name="de Tal",
+                                    social_aliases=[alias])
+        contact_editor.fill_form(test_contact)
+
+        # Save contact
+        self.app.main_window.save()
+
+        # edit again
         edit_page = self.edit_contact(0)
 
         # Change Im type
-        im_value_selector = self.main_window.select_single(
+        im_value_selector = edit_page.select_single(
             "ValueSelector",
             objectName="type_onlineAccount_0")
         self.pointing_device.click_object(im_value_selector)
         self.assertThat(im_value_selector.expanded, Eventually(Equals(True)))
 
-        im_address_0 = self.main_window.select_single(
+        im_address_0 = edit_page.select_single(
             "TextInputDetail",
             objectName="imUri_0")
 
@@ -176,9 +205,9 @@ class TestEditContact(AddressBookAppTestCase):
         self.select_a_value(im_address_0, im_value_selector, 0)
 
         # save contact
-        self.main_window.save()
+        self.app.main_window.save()
 
-        view_page = self.main_window.get_contact_view_page()
+        view_page = self.app.main_window.get_contact_view_page()
 
         # check if the type was saved correct
         im_type = view_page.select_single(
