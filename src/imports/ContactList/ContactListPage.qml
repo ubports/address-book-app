@@ -132,7 +132,7 @@ PageWithBottomEdge {
         mainPage.state = ""
         // this means a new contact was created
         if (mainPage.allowToQuit) {
-            application.exit()
+            application.goBackToSourceApp()
         }
     }
 
