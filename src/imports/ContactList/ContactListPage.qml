@@ -50,8 +50,8 @@ PageWithBottomEdge {
         if (state == "newphoneSearching" || state == "newphone") {
             state = ""
             newPhoneToAdd = ""
-            application.callbackApplication = ""
         }
+        application.callbackApplication = ""
     }
 
     function createEmptyContact(phoneNumber)
