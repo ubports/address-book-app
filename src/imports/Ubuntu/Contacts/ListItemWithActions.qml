@@ -87,11 +87,11 @@ Item {
             for (var i = 0; i < rightActionsRepeater.count; i++) {
                 var child = rightActionsRepeater.itemAt(i)
                 if (contains(child, newPoint)) {
-                    return rightSideActions[i]
+                    return i
                 }
             }
         }
-        return null
+        return -1
     }
 
     function updateActiveAction()
@@ -279,9 +279,12 @@ Item {
             if (main.x === 0) {
                 root.itemClicked(mouse)
             } else {
-                var action = getActionAt(Qt.point(mouse.x, mouse.y))
-                if (action) {
-                    action.triggered(root)
+                var actionIndex = getActionAt(Qt.point(mouse.x, mouse.y))
+                if (actionIndex !== -1) {
+                    root.activeItem = rightActionsRepeater.itemAt(actionIndex)
+                    root.activeAction = root.rightSideActions[actionIndex]
+                    triggerAction.start()
+                    return
                 }
             }
             root.resetSwipe()
