@@ -49,7 +49,6 @@ PageWithBottomEdge {
         // these two states are the only state that need to be reset
         if (state == "newphoneSearching" || state == "newphone") {
             state = ""
-            newPhoneToAdd = ""
         }
         application.callbackApplication = ""
     }
@@ -445,6 +444,9 @@ PageWithBottomEdge {
             PropertyChanges {
                 target: searchField
                 text: ""
+            }
+            PropertyChanges {
+                target: mainPage
                 newPhoneToAdd: ""
             }
         },
