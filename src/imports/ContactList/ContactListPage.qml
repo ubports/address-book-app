@@ -48,7 +48,6 @@ PageWithBottomEdge {
     {
         // these two states are the only state that need to be reset
         if (state == "newphoneSearching" || state == "newphone") {
-            pageStack.resetStack()
             state = ""
             newPhoneToAdd = ""
             application.callbackApplication = ""
