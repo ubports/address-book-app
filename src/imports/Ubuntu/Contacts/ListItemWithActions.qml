@@ -49,12 +49,7 @@ Item {
         if (index < 1) {
             main.x = 0
         } else {
-            if (xOffset >= rightActionsView.width) {
-                main.x = -rightActionsView.width
-                root.activeAction = null
-            } else {
-                main.x = -(actionFullWidth * index)
-            }
+            main.x = -(actionFullWidth * index)
         }
     }
 
