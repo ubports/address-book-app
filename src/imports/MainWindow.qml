@@ -36,10 +36,10 @@ MainView {
     function contact(contactId)
     {
         mainStack.resetStack()
-        mainStack.quitOnDepth = 1
         if (mainStack.contactListPage) {
             mainStack.contactListPage.showContact(contactId)
         }
+        mainStack.quitOnDepth = 1
     }
 
     function create(phoneNumber)
@@ -161,6 +161,7 @@ MainView {
     // If application was called from uri handler and lost the focus reset the app to normal state
     onAppActiveChanged: {
         if (!appActive && mainStack.contactListPage) {
+            mainStack.quitOnDepth = -1
             mainStack.contactListPage.returnToNormalState()
         }
     }
