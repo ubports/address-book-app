@@ -48,6 +48,8 @@ Item {
 
         if (index < 1) {
             main.x = 0
+        } else if (index === rightSideActions.length) {
+            main.x = -rightActionsView.width
         } else {
             main.x = -(actionFullWidth * index)
         }
@@ -95,7 +97,7 @@ Item {
     function updateActiveAction()
     {
         if ((main.x <= -root.actionWidth) &&
-            (main.x > mouseArea.drag.minimumX)) {
+            (main.x > -rightActionsView.width)) {
             var actionFullWidth = actionWidth + units.gu(2)
             var xOffset = Math.abs(main.x)
             var index = Math.min(Math.floor(xOffset / actionFullWidth), rightSideActions.length)
@@ -255,12 +257,13 @@ Item {
         id: mouseArea
 
         property bool locked: root.locked || ((root.leftSideAction === null) && (root.rightSideActions.count === 0))
+        property bool manual: false
 
         anchors.fill: parent
         drag {
             target: locked ? null : main
             axis: Drag.XAxis
-            minimumX: -rightActionsView.width
+            minimumX: -(rightActionsView.width + root.actionThreshold)
             maximumX: leftActionView.visible ? leftActionView.width : 0
         }
 
@@ -269,22 +272,26 @@ Item {
                 triggerAction.start()
             } else {
                 root.returnToBounds()
+                root.activeAction = null
             }
         }
         onClicked: {
             if (main.x === 0) {
                 root.itemClicked(mouse)
-                return
-            }
-
-            var action = getActionAt(Qt.point(mouse.x, mouse.y))
-            if (action) {
-                action.triggered(root)
+            } else {
+                var action = getActionAt(Qt.point(mouse.x, mouse.y))
+                if (action) {
+                    action.triggered(root)
+                }
             }
             root.resetSwipe()
         }
 
-        onPositionChanged: updateActiveAction()
+        onPositionChanged: {
+            if (mouseArea.pressed) {
+                updateActiveAction()
+            }
+        }
         onPressAndHold: {
             if (main.x === 0) {
                 root.itemPressAndHold(mouse)
