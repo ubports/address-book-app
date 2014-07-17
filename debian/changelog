@@ -1,3 +1,20 @@
+address-book-app (0.2+14.10.20140717-0ubuntu1) utopic; urgency=low
+
+  [ CI bot ]
+  * Resync trunk
+
+  [ Renato Araujo Oliveira Filho ]
+  * Optimized ListItemWithActions. Only shows FastScroll if list section
+    is enabled. Fix MostCalledModel to move to correct position after
+    creation and while expanding a contact. Fixed phone picker while
+    loading contact list. Implemented new uri support:
+    addressbook:///addnewphone?phone=<phone-number> (LP: #1331515)
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 17 Jul 2014 00:40:25 +0000
+
 address-book-app (0.2+14.10.20140710-0ubuntu1) utopic; urgency=low
 
   [ Renato Araujo Oliveira Filho ]
