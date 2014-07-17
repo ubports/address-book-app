@@ -7,23 +7,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-06-30 15:01-0300\n"
+"POT-Creation-Date: 2014-07-16 09:55-0300\n"
 "PO-Revision-Date: 2014-01-26 08:31+0000\n"
 "Last-Translator: Daniel Cheung <daniel.2345@hotmail.com>\n"
 "Language-Team: Chinese (Hong Kong) <zh_HK@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-05 05:59+0000\n"
-"X-Generator: Launchpad (build 17086)\n"
+"X-Launchpad-Export-Date: 2014-07-17 06:37+0000\n"
+"X-Generator: Launchpad (build 17114)\n"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
 msgid "%1 vCards imported"
 msgstr ""
 
+#: src/imports/ContactList/ContactListPage.qml:202
+msgid "+ New Contact"
+msgstr ""
+
 #: src/imports/ContactEdit/ContactEditor.qml:322
 msgid "Add Field"
+msgstr ""
+
+#: src/imports/ContactList/ContactListPage.qml:462
+msgid "Add contact"
 msgstr ""
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:59
@@ -55,12 +63,12 @@ msgstr ""
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:133
 #: src/imports/ContactEdit/ContactEditor.qml:372
-#: src/imports/ContactList/ContactListPage.qml:314
+#: src/imports/ContactList/ContactListPage.qml:418
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:37
 msgid "Cancel"
 msgstr "取消"
 
-#: src/imports/ContactList/ContactListPage.qml:242
+#: src/imports/ContactList/ContactListPage.qml:330
 msgid "Cancel selection"
 msgstr ""
 
@@ -72,22 +80,17 @@ msgstr ""
 msgid "Contact not found"
 msgstr "找不到聯絡人"
 
-#: data/address-book-app.desktop.in:6 data/address-book-app.desktop.in:7
-#: src/imports/ContactList/ContactListPage.qml:75
+#: src/imports/ContactList/ContactListPage.qml:146
 msgid "Contacts"
 msgstr "聯絡人"
-
-#: data/address-book-app.desktop.in:8
-msgid "Contacts Address Book"
-msgstr "聯絡人地址簿"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
 msgstr "國家"
 
 #: src/imports/ContactEdit/ContactEditor.qml:337
-#: src/imports/ContactList/ContactListPage.qml:146
-#: src/imports/ContactList/ContactListPage.qml:267
+#: src/imports/ContactList/ContactListPage.qml:235
+#: src/imports/ContactList/ContactListPage.qml:355
 msgid "Delete"
 msgstr "刪除"
 
@@ -120,7 +123,7 @@ msgid "Enter an email address"
 msgstr "輸入電郵地址"
 
 #: src/imports/ContactView/ContactFetchError.qml:25
-#: src/imports/MainWindow.qml:98
+#: src/imports/MainWindow.qml:112
 msgid "Error"
 msgstr "錯誤"
 
@@ -136,12 +139,12 @@ msgstr "我的最愛"
 msgid "First name"
 msgstr "名字"
 
-#: src/imports/Ubuntu/Contacts/ContactListView.qml:427
+#: src/imports/Ubuntu/Contacts/ContactListView.qml:442
 msgid "Frequently called"
 msgstr ""
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:116
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:94
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:99
 msgid "Home"
 msgstr "主目錄"
 
@@ -173,7 +176,7 @@ msgstr "姓氏"
 msgid "Loading"
 msgstr "載入中"
 
-#: src/imports/ContactList/ContactListPage.qml:232
+#: src/imports/ContactList/ContactListPage.qml:320
 msgid "Loading..."
 msgstr ""
 
@@ -185,7 +188,7 @@ msgstr "所在地"
 msgid "MSN"
 msgstr "MSN"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:98
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:103
 msgid "Mobile"
 msgstr "手提電話"
 
@@ -193,7 +196,7 @@ msgstr "手提電話"
 msgid "Multiple contacts"
 msgstr ""
 
-#: src/imports/ContactEdit/TextInputDetail.qml:77
+#: src/imports/ContactEdit/TextInputDetail.qml:74
 msgid "Next"
 msgstr ""
 
@@ -211,7 +214,7 @@ msgid "Organization"
 msgstr "組織"
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:118
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:102
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:107
 msgid "Other"
 msgstr "其他"
 
@@ -234,6 +237,10 @@ msgstr ""
 msgid "Professional details"
 msgstr "專業細節"
 
+#: src/imports/ContactList/ContactListPage.qml:372
+msgid "Quit"
+msgstr ""
+
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:33
 msgid "Region"
 msgstr "地區"
@@ -246,19 +253,19 @@ msgstr "職位"
 msgid "Save"
 msgstr "儲存"
 
-#: src/imports/ContactList/ContactListPage.qml:292
+#: src/imports/ContactList/ContactListPage.qml:396
 msgid "Search"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:267
+#: src/imports/ContactList/ContactListPage.qml:355
 msgid "Select"
 msgstr "選擇"
 
-#: src/imports/ContactList/ContactListPage.qml:251
+#: src/imports/ContactList/ContactListPage.qml:339
 msgid "Select All"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:75
+#: src/imports/ContactList/ContactListPage.qml:512
 msgid "Select Contacts"
 msgstr ""
 
@@ -283,15 +290,15 @@ msgstr "社交"
 msgid "Street"
 msgstr "街道"
 
-#: src/imports/ContactList/ContactListPage.qml:283
+#: src/imports/ContactList/ContactListPage.qml:387
 msgid "Sync"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:283
+#: src/imports/ContactList/ContactListPage.qml:387
 msgid "Syncing"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:232
+#: src/imports/ContactList/ContactListPage.qml:320
 msgid "Syncing..."
 msgstr ""
 
@@ -303,18 +310,12 @@ msgstr "銜頭"
 msgid "Touch"
 msgstr "觸控"
 
-#. TRANSLATORS: This value is used as default value for phone number format, when no coutry code is provided
-#. the supported values can be found in: https://www.iso.org/obp/ui/#search
-#: src/imports/ContactEdit/TextInputDetail.qml:73
-msgid "US"
-msgstr ""
-
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:117
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:96
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:101
 msgid "Work"
 msgstr "工作資料"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:100
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
 msgid "Work Mobile"
 msgstr "商務手提電話"
 
@@ -336,3 +337,6 @@ msgstr ""
 #: src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr ""
+
+#~ msgid "Contacts Address Book"
+#~ msgstr "聯絡人地址簿"

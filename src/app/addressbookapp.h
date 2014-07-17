@@ -55,7 +55,7 @@ public Q_SLOTS:
     bool isFirstRun() const;
     void unsetFirstRun() const;
     void sendTabEvent() const;
-    void exit();
+    void goBackToSourceApp();
 
     // sync monitor
     void startSync() const;

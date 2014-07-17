@@ -48,11 +48,9 @@ PageWithBottomEdge {
     {
         // these two states are the only state that need to be reset
         if (state == "newphoneSearching" || state == "newphone") {
-            pageStack.resetStack()
             state = ""
-            newPhoneToAdd = ""
-            application.callbackApplication = ""
         }
+        application.callbackApplication = ""
     }
 
     function createEmptyContact(phoneNumber)
@@ -133,7 +131,7 @@ PageWithBottomEdge {
         mainPage.state = ""
         // this means a new contact was created
         if (mainPage.allowToQuit) {
-            application.exit()
+            application.goBackToSourceApp()
         }
     }
 
@@ -370,7 +368,10 @@ PageWithBottomEdge {
             visible: mainPage.allowToQuit
             iconName: "back"
             text: i18n.tr("Quit")
-            onTriggered: application.exit()
+            onTriggered: {
+                application.goBackToSourceApp()
+                mainPage.returnToNormalState()
+            }
         }
     }
 
@@ -443,6 +444,9 @@ PageWithBottomEdge {
             PropertyChanges {
                 target: searchField
                 text: ""
+            }
+            PropertyChanges {
+                target: mainPage
                 newPhoneToAdd: ""
             }
         },

@@ -39,6 +39,7 @@ MainView {
         if (mainStack.contactListPage) {
             mainStack.contactListPage.showContact(contactId)
         }
+        mainStack.quitOnDepth = 1
     }
 
     function create(phoneNumber)
@@ -85,11 +86,19 @@ MainView {
         id: mainStack
 
         property var contactListPage: null
+        property int quitOnDepth: -1
 
         function resetStack()
         {
             while(depth > 1) {
                 pop()
+            }
+        }
+
+        onDepthChanged: {
+            if (depth === quitOnDepth) {
+                quitOnDepth = -1
+                application.goBackToSourceApp()
             }
         }
 
@@ -152,6 +161,7 @@ MainView {
     // If application was called from uri handler and lost the focus reset the app to normal state
     onAppActiveChanged: {
         if (!appActive && mainStack.contactListPage) {
+            mainStack.quitOnDepth = -1
             mainStack.contactListPage.returnToNormalState()
         }
     }
