@@ -31,6 +31,8 @@ Item {
     default property alias contents: main.children
 
     readonly property double actionWidth: units.gu(5)
+    readonly property double leftActionWidth: units.gu(10)
+    readonly property double actionThreshold: actionWidth * 0.4
     readonly property double threshold: 0.4
     readonly property string swipeState: main.x == 0 ? "Normal" : main.x > 0 ? "LeftToRight" : "RightToLeft"
     readonly property alias swipping: mainItemMoving.running
@@ -40,27 +42,22 @@ Item {
 
     function returnToBoundsRTL()
     {
+        var actionFullWidth = actionWidth + units.gu(2)
         var xOffset = Math.abs(main.x)
-        var actionFullWidth = actionWidth + units.gu(1)
+        var index = Math.min(Math.floor(xOffset / actionFullWidth), rightSideActions.length)
 
-        if (xOffset < actionFullWidth) {
+        if (index < 1) {
             main.x = 0
-        } else if (xOffset > (actionFullWidth * rightActionsRepeater.count)) {
-            main.x = - (actionFullWidth * rightActionsRepeater.count)
+        } else if (index === rightSideActions.length) {
+            main.x = -rightActionsView.width
         } else {
-            for (var i = rightActionsRepeater.count; i >= 2; i--) {
-                if (xOffset >= (actionFullWidth * i)) {
-                    main.x = -(actionWidth * i)
-                    return
-                }
-            }
-            main.x = -actionWidth
+            main.x = -(actionFullWidth * index)
         }
     }
 
     function returnToBoundsLTR()
     {
-        var finalX = leftActionView.width
+        var finalX = leftActionWidth
         if (main.x > (finalX * root.threshold))
             main.x = finalX
         else
@@ -90,25 +87,24 @@ Item {
             for (var i = 0; i < rightActionsRepeater.count; i++) {
                 var child = rightActionsRepeater.itemAt(i)
                 if (contains(child, newPoint)) {
-                    return rightSideActions[i]
+                    return i
                 }
             }
         }
-        return null
+        return -1
     }
 
     function updateActiveAction()
     {
-        var xOffset = Math.abs(main.x)
-        if (main.x < 0) {
-            for (var i = rightActionsRepeater.count - 1; i >= 0; i--) {
-                var child = rightActionsRepeater.itemAt(i)
-                var childOffset = rightActionsView.width - child.x
-                if (xOffset <= childOffset) {
-                    root.activeItem = child
-                    root.activeAction = root.rightSideActions[i]
-                    return
-                }
+        if ((main.x <= -root.actionWidth) &&
+            (main.x > -rightActionsView.width)) {
+            var actionFullWidth = actionWidth + units.gu(2)
+            var xOffset = Math.abs(main.x)
+            var index = Math.min(Math.floor(xOffset / actionFullWidth), rightSideActions.length)
+            index = index - 1
+            if (index > -1) {
+                root.activeItem = rightActionsRepeater.itemAt(index)
+                root.activeAction = root.rightSideActions[index]
             }
         } else {
             root.activeAction = null
@@ -129,14 +125,17 @@ Item {
         anchors {
             top: parent.top
             bottom: parent.bottom
-            left: parent.left
+            right: main.left
         }
-        width: height
+        width: root.leftActionWidth + actionThreshold
         visible: leftSideAction
         color: "red"
 
         Icon {
-            anchors.centerIn: parent
+            anchors {
+                centerIn: parent
+                horizontalCenterOffset: actionThreshold / 2
+            }
             name: leftSideAction ? leftSideAction.iconName : ""
             color: Theme.palette.selected.field
             height: units.gu(3)
@@ -149,13 +148,14 @@ Item {
 
        anchors {
            top: main.top
-           right: parent.right
+           left: main.right
+           leftMargin: units.gu(1)
            bottom: main.bottom
        }
-       width: rightActionsRepeater.count * (root.actionWidth + units.gu(1))
+       width: rightActionsRepeater.count > 0 ? rightActionsRepeater.count * (root.actionWidth + units.gu(2)) + actionThreshold : 0
        Row {
            anchors.fill: parent
-           spacing: units.gu(1)
+           spacing: units.gu(2)
            Repeater {
                id: rightActionsRepeater
 
@@ -227,11 +227,6 @@ Item {
                 easing {type: Easing.InOutBack; }
             }
         }
-        ScriptAction {
-            script: {
-                root.activeAction.triggered(root)
-            }
-        }
         PropertyAction {
             target: triggerAction.currentItem
             properties: "width, height"
@@ -242,12 +237,19 @@ Item {
             properties: "opacity"
             value: 1.0
         }
+        ScriptAction {
+            script: {
+                root.activeAction.triggered(root)
+            }
+        }
+        PauseAnimation {
+            duration: 500
+        }
         UbuntuNumberAnimation {
             target: main
             property: "x"
             to: 0
-            easing.type: Easing.OutElastic
-            duration: UbuntuAnimation.SlowDuration
+
         }
     }
 
@@ -255,12 +257,13 @@ Item {
         id: mouseArea
 
         property bool locked: root.locked || ((root.leftSideAction === null) && (root.rightSideActions.count === 0))
+        property bool manual: false
 
         anchors.fill: parent
         drag {
             target: locked ? null : main
             axis: Drag.XAxis
-            minimumX: -rightActionsView.width
+            minimumX: -(rightActionsView.width + root.actionThreshold)
             maximumX: leftActionView.visible ? leftActionView.width : 0
         }
 
@@ -269,22 +272,29 @@ Item {
                 triggerAction.start()
             } else {
                 root.returnToBounds()
+                root.activeAction = null
             }
         }
         onClicked: {
             if (main.x === 0) {
                 root.itemClicked(mouse)
-                return
-            }
-
-            var action = getActionAt(Qt.point(mouse.x, mouse.y))
-            if (action) {
-                action.triggered(root)
+            } else {
+                var actionIndex = getActionAt(Qt.point(mouse.x, mouse.y))
+                if (actionIndex !== -1) {
+                    root.activeItem = rightActionsRepeater.itemAt(actionIndex)
+                    root.activeAction = root.rightSideActions[actionIndex]
+                    triggerAction.start()
+                    return
+                }
             }
             root.resetSwipe()
         }
 
-        onPositionChanged: updateActiveAction()
+        onPositionChanged: {
+            if (mouseArea.pressed) {
+                updateActiveAction()
+            }
+        }
         onPressAndHold: {
             if (main.x === 0) {
                 root.itemPressAndHold(mouse)

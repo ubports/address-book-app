@@ -359,6 +359,17 @@ Item {
 
     onFilterTermChanged: contactSearchTimeout.restart()
 
+    // colapse contacts if the keyboard appears
+    Connections {
+        target: Qt.inputMethod
+        onVisibleChanged: {
+            if (visible) {
+                view.currentIndex = -1
+            }
+        }
+
+    }
+
     ContactSimpleListView {
         id: view
 
@@ -381,6 +392,8 @@ Item {
             }
         }
 
+        onFlickStarted: Qt.inputMethod.hide()
+
         anchors {
             top: itemHeader.bottom
             left: parent.left
@@ -401,6 +414,7 @@ Item {
                 var areaY = view.contentY
                 if (itemY < areaY) {
                     view.contentY = itemY
+                    view.returnToBounds()
                 }
             }
 
@@ -411,14 +425,20 @@ Item {
             height: visible ? childrenRect.height : 0
             visible: view.favouritesIsSelected && (callerRepeat.count > 0)
             onHeightChanged: {
-                // make selected item fully visible
                 if (calledModel.currentIndex != -1) {
                     mostCalledView.makeItemVisible(callerRepeat.itemAt(calledModel.currentIndex))
-                } else {
-                    // WORKAROUND: The SDK header causes the contactY to move to a wrong postion
-                    // this should fix the Y position (630 is the header height)
-                    view.contentY = -630
                 }
+            }
+
+            // WORKAROUND: The SDK header causes the contactY to move to a wrong postion
+            // calling the positionViewAtBeginning after the list created fix that
+            Timer {
+                id: moveToBegining
+
+                interval: 100
+                running: false
+                repeat: false
+                onTriggered: view.positionViewAtBeginning()
             }
 
             Rectangle {
@@ -453,6 +473,7 @@ Item {
 
                     onVisibleChanged: {
                         // update the model every time that it became visible
+                        // in fact calling update only reloads the model data if it has changed
                         if (visible) {
                             model.update()
                         }
@@ -465,6 +486,10 @@ Item {
                             view.currentIndex = -1
                         }
                     }
+
+                    // WORKAROUND: The SDK header causes the contactY to move to a wrong postion
+                    // calling the positionViewAtBeginning after the list created fix that
+                    onLoaded: moveToBegining.restart()
                 }
             }
 
@@ -624,8 +649,8 @@ Item {
         id: fastScroll
 
         listView: view
-        // only enable FastScroll if the we have more than 2 pages of content
-        enabled: view.contentHeight > (view.height * 2)
+        // only enable FastScroll if the we have more than 2 pages of content and sections is enabled
+        enabled: showSections && (view.contentHeight > (view.height * 2)) && (view.height >= minimumHeight)
 
         anchors {
             top: view.top

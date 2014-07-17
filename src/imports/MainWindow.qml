@@ -24,6 +24,7 @@ MainView {
     id: mainWindow
 
     property string modelErrorMessage: ""
+    readonly property bool appActive: Qt.application.active
 
     width: units.gu(40)
     height: units.gu(71)
@@ -32,54 +33,76 @@ MainView {
 
     signal applicationReady()
 
-    function contact(contactId) {
-        mainStack.contactRequested(contactId)
+    function contact(contactId)
+    {
+        mainStack.resetStack()
+        if (mainStack.contactListPage) {
+            mainStack.contactListPage.showContact(contactId)
+        }
+        mainStack.quitOnDepth = 1
     }
 
-    function create(phoneNumber) {
-        mainStack.createContactRequested(phoneNumber)
+    function create(phoneNumber)
+    {
+        mainStack.resetStack()
+        if (mainStack.contactListPage) {
+            mainStack.contactListPage.createContactWithPhoneNumber(phoneNumber)
+        }
     }
 
-    function addphone(contactId, phoneNumber) {
-        mainStack.newPhoneNumber = phoneNumber
-        mainStack.editContatRequested(contactId, phoneNumber)
+    function addphone(contactId, phoneNumber)
+    {
+        mainStack.resetStack()
+        if (mainStack.contactListPage) {
+            mainStack.contactListPage.addPhoneToContact(contactId, phoneNumber)
+        }
     }
 
-    function pick(single) {
-        var isSingle = (single == "true")
-        mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"), { pickMode: true, pickMultipleContacts: !isSingle})
+    function pick(single)
+    {
+        mainStack.resetStack()
+        if (mainStack.contactListPage) {
+            mainStack.contactListPage.startPickMode(single == "true")
+        }
     }
 
-    function importvcard(_url) {
-        mainStack.importContactRequested([_url])
+    function importvcard(_url)
+    {
+        mainStack.resetStack()
+        if (mainStack.contactListPage) {
+            mainStack.contactListPage.importContactRequested([_url])
+        }
+    }
+
+    function addnewphone(phoneNumer)
+    {
+        mainStack.resetStack()
+        if (mainStack.contactListPage) {
+            mainStack.contactListPage.addNewPhone(phoneNumer)
+        }
     }
 
     PageStack {
         id: mainStack
 
-        property string newPhoneNumber: ""
+        property var contactListPage: null
+        property int quitOnDepth: -1
 
-        signal contactRequested(string contactId)
-        signal createContactRequested(string phoneNumber)
-        signal editContatRequested(string contactId, string phoneNumber)
-        signal contactCreated(QtObject contact)
-        signal contactModelError(string errorMessage)
-        signal importContactRequested(var urls)
-
-        anchors {
-            fill: parent
-            Behavior on bottomMargin {
-                NumberAnimation {
-                    duration: 175
-                    easing.type: Easing.OutQuad
-                }
+        function resetStack()
+        {
+            while(depth > 1) {
+                pop()
             }
-       }
+        }
 
-       onContactModelError: {
-           modelErrorMessage = errorMessage
-           PopupUtils.open(errorDialog, null)
-       }
+        onDepthChanged: {
+            if (depth === quitOnDepth) {
+                quitOnDepth = -1
+                application.goBackToSourceApp()
+            }
+        }
+
+        anchors.fill: parent
     }
 
     Component.onCompleted: {
@@ -131,6 +154,15 @@ MainView {
                 }
                 mainStack.importContactRequested(urls)
             }
+        }
+    }
+
+
+    // If application was called from uri handler and lost the focus reset the app to normal state
+    onAppActiveChanged: {
+        if (!appActive && mainStack.contactListPage) {
+            mainStack.quitOnDepth = -1
+            mainStack.contactListPage.returnToNormalState()
         }
     }
 }

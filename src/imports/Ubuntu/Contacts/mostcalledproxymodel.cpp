@@ -272,8 +272,7 @@ void MostCalledContactsModel::update()
         qSort(data.begin(), data.end(), mostCalledContactsModelDataLessThan);
 
         // average
-        m_average = totalCalls / contactsData.size();
-
+        m_average = qRound(((qreal) (totalCalls)) / contactsData.size());
         Q_FOREACH(const MostCalledContactsModelData &d, data) {
             if (d.callCount >= m_average) {
                 m_data << d;
@@ -286,6 +285,8 @@ void MostCalledContactsModel::update()
 
     Q_EMIT endResetModel();
     m_reloadingModel = false;
+    Q_EMIT callAverageChanged(m_average);
+    Q_EMIT loaded();
 }
 
 void MostCalledContactsModel::markAsOutdated()

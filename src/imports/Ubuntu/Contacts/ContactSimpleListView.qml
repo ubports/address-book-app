@@ -134,7 +134,7 @@ MultipleSelectionListView {
 
       This property holds the detail type to be picked
     */
-    property int detailToPick: 0
+    property int detailToPick: -1
     /*!
       \qmlproperty bool showSections
 
@@ -358,10 +358,10 @@ MultipleSelectionListView {
                 contactListView.currentIndex = -1
                 return
             // check if we should expand and display the details picker
-            } else if (detailToPick !== 0) {
+            } else if (detailToPick !== -1) {
                 contactListView.currentIndex = index
                 return
-            } else if (detailToPick == 0) {
+            } else if (detailToPick == -1) {
                 contactListView.detailClicked(contact, null, "")
             }
         }

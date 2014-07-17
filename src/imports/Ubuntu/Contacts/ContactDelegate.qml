@@ -138,13 +138,16 @@ ListItemWithActions {
         id: pickerLoader
 
         source: {
+            if (!root.detailsShown) {
+                return "";
+            }
+
             switch(root.detailToPick) {
             case ContactDetail.PhoneNumber:
             default:
                 return Qt.resolvedUrl("ContactDetailPickerPhoneNumberDelegate.qml")
             }
         }
-        active: contact && root.detailsShown
         asynchronous: true
         anchors {
             top: delegate.bottom
@@ -158,9 +161,19 @@ ListItemWithActions {
         }
 
         onStatusChanged: {
-            if ((status == Loader.Ready) && contact) {
+            if (status == Loader.Ready) {
                 pickerLoader.item.updateDetails(contact)
                 pickerLoader.item.detailClicked.connect(root._onDetailClicked)
+            }
+        }
+
+        // update delegate if contact update
+        Connections {
+            target: contact
+            onContactChanged: {
+                if (pickerLoader.item) {
+                    pickerLoader.item.updateDetails(contact)
+                }
             }
         }
     }
