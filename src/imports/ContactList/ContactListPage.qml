@@ -193,30 +193,45 @@ PageWithBottomEdge {
         }
     }
 
-    Button {
-        id: addNewContactButton
-        objectName: "addNewContact"
-
-        text: i18n.tr("+ New Contact")
-        anchors {
-            top: parent.top
-            left: parent.left
-            right: parent.right
-            margins: visible ? units.gu(2) : 0
-        }
-        height: visible ? units.gu(4) : 0
-        visible: false
-        onClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
-    }
-
     flickable: null //contactList.fastScrolling ? null : contactList.view
     ContactsUI.ContactListView {
         id: contactList
         objectName: "contactListView"
 
+        header: Rectangle {
+            id: addNewContactButton
+            objectName: "addNewContact"
+
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+            height: visible ? units.gu(8) : 0
+            color: Theme.palette.normal.background
+
+            Rectangle {
+                anchors.fill: parent
+                color: Theme.palette.selected.background
+                opacity: addNewContactButtonArea.pressed ?  1.0 : 0.0
+            }
+
+            Label {
+                anchors.centerIn: parent
+                text: i18n.tr("+ Create New")
+                fontSize: "large"
+            }
+
+            visible: false
+            MouseArea {
+                id: addNewContactButtonArea
+
+                anchors.fill: parent
+                onClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
+            }
+        }
+
         anchors {
-            top: addNewContactButton.bottom
-            topMargin: addNewContactButton.visible ? units.gu(2) : 0
+            top: parent.top
             left: parent.left
             bottom: keyboard.top
             right: parent.right
@@ -518,11 +533,10 @@ PageWithBottomEdge {
         }
     ]
     tools: toolbarItemsNormalMode
-
-    // WORKAROUND: Avoid the gap btw the header and the contact list when the list moves
-    // see bug #1296764
     onActiveChanged: {
-        contactList.returnToBounds()
+        if (active && addNewContactButton.visible) {
+            contactList.positionViewAtBeginning()
+        }
     }
 
     onSyncEnabledChanged: {

@@ -44,6 +44,8 @@ Item {
     readonly property alias view: view
     readonly property alias count: view.count
 
+    property var header: []
+
     /*!
       \qmlproperty string contactStringFilter
 
@@ -273,7 +275,7 @@ Item {
     }
     function positionViewAtBeginning()
     {
-        view.positionViewAtBeginning()
+        moveToBegining.restart()
     }
     function changeFilter(newFilter)
     {
@@ -405,99 +407,115 @@ Item {
             }
         }
 
+        // WORKAROUND: The SDK header causes the contactY to move to a wrong postion
+        // calling the positionViewAtBeginning after the list created fix that
+        Timer {
+            id: moveToBegining
+
+            interval: 100
+            running: false
+            repeat: false
+            onTriggered: view.positionViewAtBeginning()
+        }
+
         header: Column {
             id: mostCalledView
-
-            function makeItemVisible(item)
-            {
-                var itemY = mostCalledView.y + item.y
-                var areaY = view.contentY
-                if (itemY < areaY) {
-                    view.contentY = itemY
-                    view.returnToBounds()
-                }
-            }
 
             anchors {
                 left: parent.left
                 right: parent.right
             }
-            height: visible ? childrenRect.height : 0
-            visible: view.favouritesIsSelected && (callerRepeat.count > 0)
             onHeightChanged: {
                 if (calledModel.currentIndex != -1) {
                     mostCalledView.makeItemVisible(callerRepeat.itemAt(calledModel.currentIndex))
                 }
             }
-
-            // WORKAROUND: The SDK header causes the contactY to move to a wrong postion
-            // calling the positionViewAtBeginning after the list created fix that
-            Timer {
-                id: moveToBegining
-
-                interval: 100
-                running: false
-                repeat: false
-                onTriggered: view.positionViewAtBeginning()
-            }
-
-            Rectangle {
-                color: Theme.palette.normal.background
+            Item {
+                id: headerContents
                 anchors {
                     left: parent.left
                     right: parent.right
-                    margins: units.gu(1)
                 }
-                height: units.gu(3)
-                Label {
-                    anchors.fill: parent
-                    verticalAlignment: Text.AlignVCenter
-                    text: i18n.tr("Frequently called")
-                    font.pointSize: 76
+                height: childrenRect.height
+                children: root.header
+            }
+
+            Column {
+                function makeItemVisible(item)
+                {
+                     var itemY = mostCalledView.y + item.y
+                     var areaY = view.contentY
+                     if (itemY < areaY) {
+                         view.contentY = itemY
+                         view.returnToBounds()
+                     }
                 }
-                ListItem.ThinDivider {
+
+                visible: view.favouritesIsSelected && (callerRepeat.count > 0)
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                height: visible ? childrenRect.height : 0
+
+                Rectangle {
+                    color: Theme.palette.normal.background
                     anchors {
                         left: parent.left
                         right: parent.right
-                        bottom: parent.bottom
+                        margins: units.gu(1)
                     }
-                }
-            }
-            Repeater {
-                id: callerRepeat
-
-                model: MostCalledModel {
-                    id: calledModel
-
-                    readonly property bool visible: view.favouritesIsSelected
-
-                    onVisibleChanged: {
-                        // update the model every time that it became visible
-                        // in fact calling update only reloads the model data if it has changed
-                        if (visible) {
-                            model.update()
+                    height: units.gu(3)
+                    Label {
+                        anchors.fill: parent
+                        verticalAlignment: Text.AlignVCenter
+                        text: i18n.tr("Frequently called")
+                        font.pointSize: 76
+                    }
+                    ListItem.ThinDivider {
+                        anchors {
+                            left: parent.left
+                            right: parent.right
+                            bottom: parent.bottom
                         }
                     }
-                    onInfoRequested: root.infoRequested(contact)
-                    onDetailClicked: root.detailClicked(contact, detail, action)
-                    onAddContactClicked: root.addContactClicked(label)
-                    onCurrentIndexChanged:  {
-                        if (currentIndex !== -1) {
-                            view.currentIndex = -1
-                        }
-                    }
-
-                    // WORKAROUND: The SDK header causes the contactY to move to a wrong postion
-                    // calling the positionViewAtBeginning after the list created fix that
-                    onLoaded: moveToBegining.restart()
                 }
-            }
+                Repeater {
+                    id: callerRepeat
 
-            Connections {
-                target: view
-                onCurrentIndexChanged: {
-                    if (view.currentIndex !== -1) {
-                        calledModel.currentIndex = -1
+                    model: MostCalledModel {
+                        id: calledModel
+
+                        readonly property bool visible: view.favouritesIsSelected
+
+                        onVisibleChanged: {
+                            // update the model every time that it became visible
+                            // in fact calling update only reloads the model data if it has changed
+                            if (visible) {
+                                model.update()
+                            }
+                        }
+                        onInfoRequested: root.infoRequested(contact)
+                        onDetailClicked: root.detailClicked(contact, detail, action)
+                        onAddContactClicked: root.addContactClicked(label)
+                        onCurrentIndexChanged:  {
+                            if (currentIndex !== -1) {
+                                view.currentIndex = -1
+                            }
+                        }
+
+                        // WORKAROUND: The SDK header causes the contactY to move to a wrong postion
+                        // calling the positionViewAtBeginning after the list created fix that
+                        onLoaded: moveToBegining.restart()
+                    }
+                }
+
+                Connections {
+                    target: view
+                    onCurrentIndexChanged: {
+                        if (view.currentIndex !== -1) {
+                            calledModel.currentIndex = -1
+                        }
                     }
                 }
             }
