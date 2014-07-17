@@ -24,7 +24,7 @@ import "../Common"
 ContactDetailBase {
     id: root
 
-    property bool active: false
+    property alias active: sourceModel.autoUpdate
 
     function save() {
         // only changes the target sync for new contacts
@@ -54,9 +54,8 @@ ContactDetailBase {
     property bool isNewContact: contact && contact.contactId === "qtcontacts:::"
     property real myHeight: sources.containerHeight + units.gu(4) + label.height
 
-    detail: contact ? contact.detail(ContactDetail.SyncTarget) : null
-    implicitHeight: isNewContact &&  sources.model && (sources.model.contacts.length > 1) ? myHeight : 0
-
+    detail: root.contact ? contact.detail(ContactDetail.SyncTarget) : null
+    implicitHeight: root.isNewContact &&  sources.model && (sources.model.contacts.length > 1) ? myHeight : 0
 
     ContactModel {
         id: sourceModel
@@ -112,12 +111,5 @@ ContactDetailBase {
 
         containerHeight: sources.model && sources.model.contacts.length > 4 ? itemHeight * 4 : sources.model ? itemHeight * sources.model.contacts.length : 0
     }
-
-    onActiveChanged: {
-        if (active) {
-            sourceModel.update()
-        }
-    }
-
 }
 
