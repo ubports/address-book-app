@@ -46,7 +46,7 @@ Item {
             anchors.fill: parent
 
             Repeater {
-                model: 10
+                model: 5
 
                 ListItemWithActions {
                     id: listWithActions
@@ -91,6 +91,33 @@ Item {
                             onTriggered: itemList.actionTriggered(contactAction)
                         }
                     ]
+                }
+            }
+
+            Repeater {
+                model: 5
+
+                ListItemWithActions {
+                    id: listWithNoRightActions
+                    objectName: "listWithNoRightActions" + index
+
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                    }
+                    height: units.gu(8)
+                    triggerActionOnMouseRelease: true
+                    Rectangle {
+                        anchors.fill: parent
+                        color: "blue"
+                    }
+
+                    leftSideAction: Action {
+                        objectName: "deleteAction2"
+
+                        iconName: "delete"
+                        onTriggered: itemList.actionTriggered(deleteAction, value)
+                    }
                 }
             }
         }
@@ -237,6 +264,17 @@ Item {
             itemList.signalSpy.wait()
             compare(itemList.signalSpy.count, 1)
             compare(itemList.signalSpy.signalArguments[0][0].iconName, data.iconName)
+        }
+
+        function test_noSwipeWithEmptyRightActions()
+        {
+            var item = findChild(itemList, "listWithNoRightActions2")
+            var startX = item.width - item.threshold
+            var y = item.height / 2
+            mousePress(item, startX, y)
+            mouseMoveSlowly(item, startX, y, -startX, y, 10, 100)
+            var mainItem = findChild(item, "mainItem")
+            compare(mainItem.x, 0)
         }
     }
 }
