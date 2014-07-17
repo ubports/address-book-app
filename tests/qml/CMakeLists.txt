@@ -9,15 +9,21 @@ find_program(XVFB_RUN_BIN
 )
 
 macro(DECLARE_QML_TEST TST_NAME TST_QML_FILE)
+    if(USE_XVFB)
+        set(COMMAND_PREFIX ${XVFB_RUN_BIN} -a -s "-screen 0 1024x768x24")
+    else()
+        set(COMMAND_PREFIX "")
+    endif()
     add_test(NAME ${TST_NAME}
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        COMMAND ${XVFB_RUN_BIN} -a -s "-screen 0 1024x768x24" ${QMLTESTRUNNER_BIN} -import ${imports_BINARY_DIR} -input ${CMAKE_CURRENT_SOURCE_DIR}/${TST_QML_FILE}
+        COMMAND ${COMMAND_PREFIX} ${QMLTESTRUNNER_BIN} -import ${imports_BINARY_DIR} -input ${CMAKE_CURRENT_SOURCE_DIR}/${TST_QML_FILE}
     )
 endmacro()
 
 if(QMLTESTRUNNER_BIN AND XVFB_RUN_BIN)
     declare_qml_test("contact_editor" tst_ContactEditor.qml)
     declare_qml_test("contact_avatar" tst_ContactAvatar.qml)
+    declare_qml_test("list_with_actions" tst_ListWithActions.qml)
 else()
     if (NOT QMLTESTRUNNER_BIN)
         message(WARNING "Qml tests disabled: qmltestrunner not found")
@@ -30,5 +36,6 @@ set(QML_TST_FILES
     ContactUtil.js
     tst_ContactEditor.qml
     tst_ContactAvatar.qml
+    tst_ListWithActions.qml
 )
 add_custom_target(tst_QmlFiles ALL SOURCES ${QML_TST_FILES})

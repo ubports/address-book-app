@@ -34,6 +34,7 @@ set(GETTEXT_PACKAGE "address-book-app")
 option(INSTALL_TESTS "Install the tests on make install" on)
 option(INSTALL_COMPONENTS "Install the Ubuntu contact components" on)
 option(CLICK_MODE "Installs to a contained location" off)
+option(USE_XVFB "Use XVFB to run qml tests" on)
 
 # Tests
 enable_testing()
