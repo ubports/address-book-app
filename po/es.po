@@ -7,24 +7,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-06-30 15:01-0300\n"
+"POT-Creation-Date: 2014-07-16 09:55-0300\n"
 "PO-Revision-Date: 2014-07-06 07:23+0000\n"
 "Last-Translator: Paco Molinero <paco@byasl.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-07 06:08+0000\n"
-"X-Generator: Launchpad (build 17086)\n"
+"X-Launchpad-Export-Date: 2014-07-17 06:37+0000\n"
+"X-Generator: Launchpad (build 17114)\n"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
 msgid "%1 vCards imported"
 msgstr "%1 vCards importadas"
 
+#: src/imports/ContactList/ContactListPage.qml:202
+msgid "+ New Contact"
+msgstr ""
+
 #: src/imports/ContactEdit/ContactEditor.qml:322
 msgid "Add Field"
 msgstr "Añadir campo"
+
+#: src/imports/ContactList/ContactListPage.qml:462
+msgid "Add contact"
+msgstr ""
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:59
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
@@ -55,12 +63,12 @@ msgstr "¿Está seguro de querer eliminar este contacto?"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:133
 #: src/imports/ContactEdit/ContactEditor.qml:372
-#: src/imports/ContactList/ContactListPage.qml:314
+#: src/imports/ContactList/ContactListPage.qml:418
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:37
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/imports/ContactList/ContactListPage.qml:242
+#: src/imports/ContactList/ContactListPage.qml:330
 msgid "Cancel selection"
 msgstr "Cancelar selección"
 
@@ -72,22 +80,17 @@ msgstr "Cerrar"
 msgid "Contact not found"
 msgstr "Contacto no encontrado"
 
-#: data/address-book-app.desktop.in:6 data/address-book-app.desktop.in:7
-#: src/imports/ContactList/ContactListPage.qml:75
+#: src/imports/ContactList/ContactListPage.qml:146
 msgid "Contacts"
 msgstr "Contactos"
-
-#: data/address-book-app.desktop.in:8
-msgid "Contacts Address Book"
-msgstr "Libreta de direcciones"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
 msgstr "País"
 
 #: src/imports/ContactEdit/ContactEditor.qml:337
-#: src/imports/ContactList/ContactListPage.qml:146
-#: src/imports/ContactList/ContactListPage.qml:267
+#: src/imports/ContactList/ContactListPage.qml:235
+#: src/imports/ContactList/ContactListPage.qml:355
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -120,7 +123,7 @@ msgid "Enter an email address"
 msgstr "Escriba una dirección de correo electrónico"
 
 #: src/imports/ContactView/ContactFetchError.qml:25
-#: src/imports/MainWindow.qml:98
+#: src/imports/MainWindow.qml:112
 msgid "Error"
 msgstr "Error"
 
@@ -136,12 +139,12 @@ msgstr "Favoritos"
 msgid "First name"
 msgstr "Nombre"
 
-#: src/imports/Ubuntu/Contacts/ContactListView.qml:427
+#: src/imports/Ubuntu/Contacts/ContactListView.qml:442
 msgid "Frequently called"
 msgstr "Llamados frecuentemente"
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:116
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:94
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:99
 msgid "Home"
 msgstr "Inicio"
 
@@ -173,7 +176,7 @@ msgstr "Apellido"
 msgid "Loading"
 msgstr "Cargando"
 
-#: src/imports/ContactList/ContactListPage.qml:232
+#: src/imports/ContactList/ContactListPage.qml:320
 msgid "Loading..."
 msgstr "Cargando..."
 
@@ -185,7 +188,7 @@ msgstr "Localidad"
 msgid "MSN"
 msgstr "MSN"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:98
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:103
 msgid "Mobile"
 msgstr "Móvil"
 
@@ -193,7 +196,7 @@ msgstr "Móvil"
 msgid "Multiple contacts"
 msgstr "Múltiples contactos"
 
-#: src/imports/ContactEdit/TextInputDetail.qml:77
+#: src/imports/ContactEdit/TextInputDetail.qml:74
 msgid "Next"
 msgstr "Siguiente"
 
@@ -211,7 +214,7 @@ msgid "Organization"
 msgstr "Organización"
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:118
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:102
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:107
 msgid "Other"
 msgstr "Otro"
 
@@ -234,6 +237,10 @@ msgstr "Detalles profesionales"
 msgid "Professional details"
 msgstr "Detalles profesionales"
 
+#: src/imports/ContactList/ContactListPage.qml:372
+msgid "Quit"
+msgstr ""
+
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:33
 msgid "Region"
 msgstr "Región"
@@ -246,19 +253,19 @@ msgstr "Rol"
 msgid "Save"
 msgstr "Guardar"
 
-#: src/imports/ContactList/ContactListPage.qml:292
+#: src/imports/ContactList/ContactListPage.qml:396
 msgid "Search"
 msgstr "Buscar"
 
-#: src/imports/ContactList/ContactListPage.qml:267
+#: src/imports/ContactList/ContactListPage.qml:355
 msgid "Select"
 msgstr "Seleccionar"
 
-#: src/imports/ContactList/ContactListPage.qml:251
+#: src/imports/ContactList/ContactListPage.qml:339
 msgid "Select All"
 msgstr "Seleccionar todo"
 
-#: src/imports/ContactList/ContactListPage.qml:75
+#: src/imports/ContactList/ContactListPage.qml:512
 msgid "Select Contacts"
 msgstr "Seleccionar contactos"
 
@@ -283,15 +290,15 @@ msgstr "Social"
 msgid "Street"
 msgstr "Calle"
 
-#: src/imports/ContactList/ContactListPage.qml:283
+#: src/imports/ContactList/ContactListPage.qml:387
 msgid "Sync"
 msgstr "Sincr."
 
-#: src/imports/ContactList/ContactListPage.qml:283
+#: src/imports/ContactList/ContactListPage.qml:387
 msgid "Syncing"
 msgstr "Sincronizando"
 
-#: src/imports/ContactList/ContactListPage.qml:232
+#: src/imports/ContactList/ContactListPage.qml:320
 msgid "Syncing..."
 msgstr "Sincronizando..."
 
@@ -303,18 +310,12 @@ msgstr "Título"
 msgid "Touch"
 msgstr "Toque"
 
-#. TRANSLATORS: This value is used as default value for phone number format, when no coutry code is provided
-#. the supported values can be found in: https://www.iso.org/obp/ui/#search
-#: src/imports/ContactEdit/TextInputDetail.qml:73
-msgid "US"
-msgstr "ES"
-
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:117
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:96
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:101
 msgid "Work"
 msgstr "Trabajo"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:100
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
 msgid "Work Mobile"
 msgstr "Móvil del trabajo"
 
@@ -338,3 +339,9 @@ msgstr "Sí"
 #: src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "No tiene contactos."
+
+#~ msgid "Contacts Address Book"
+#~ msgstr "Libreta de direcciones"
+
+#~ msgid "US"
+#~ msgstr "ES"
