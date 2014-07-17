@@ -152,6 +152,7 @@ Item {
            leftMargin: units.gu(1)
            bottom: main.bottom
        }
+       visible: rightSideActions.length > 0
        width: rightActionsRepeater.count > 0 ? rightActionsRepeater.count * (root.actionWidth + units.gu(2)) + actionThreshold : 0
        Row {
            anchors.fill: parent
@@ -264,7 +265,7 @@ Item {
         drag {
             target: locked ? null : main
             axis: Drag.XAxis
-            minimumX: -(rightActionsView.width + root.actionThreshold)
+            minimumX: rightActionsView.visible ? -(rightActionsView.width + root.actionThreshold) : 0
             maximumX: leftActionView.visible ? leftActionView.width : 0
         }
 
