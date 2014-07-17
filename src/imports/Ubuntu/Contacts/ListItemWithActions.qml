@@ -186,6 +186,7 @@ Item {
 
     Rectangle {
         id: main
+        objectName: "mainItem"
 
         anchors {
             top: parent.top
@@ -278,6 +279,11 @@ Item {
         onClicked: {
             if (main.x === 0) {
                 root.itemClicked(mouse)
+            } else if (main.x > 0) {
+                var action = getActionAt(Qt.point(mouse.x, mouse.y))
+                if (action && action !== -1) {
+                    action.trigger()
+                }
             } else {
                 var actionIndex = getActionAt(Qt.point(mouse.x, mouse.y))
                 if (actionIndex !== -1) {
