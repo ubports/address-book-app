@@ -152,6 +152,7 @@ Item {
            leftMargin: units.gu(1)
            bottom: main.bottom
        }
+       visible: rightSideActions.length > 0
        width: rightActionsRepeater.count > 0 ? rightActionsRepeater.count * (root.actionWidth + units.gu(2)) + actionThreshold : 0
        Row {
            anchors.fill: parent
@@ -186,6 +187,7 @@ Item {
 
     Rectangle {
         id: main
+        objectName: "mainItem"
 
         anchors {
             top: parent.top
@@ -263,7 +265,7 @@ Item {
         drag {
             target: locked ? null : main
             axis: Drag.XAxis
-            minimumX: -(rightActionsView.width + root.actionThreshold)
+            minimumX: rightActionsView.visible ? -(rightActionsView.width + root.actionThreshold) : 0
             maximumX: leftActionView.visible ? leftActionView.width : 0
         }
 
@@ -278,6 +280,11 @@ Item {
         onClicked: {
             if (main.x === 0) {
                 root.itemClicked(mouse)
+            } else if (main.x > 0) {
+                var action = getActionAt(Qt.point(mouse.x, mouse.y))
+                if (action && action !== -1) {
+                    action.trigger()
+                }
             } else {
                 var actionIndex = getActionAt(Qt.point(mouse.x, mouse.y))
                 if (actionIndex !== -1) {
