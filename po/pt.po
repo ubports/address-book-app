@@ -1,4 +1,4 @@
-# Tamil translation for address-book-app
+# Portuguese translation for address-book-app
 # Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the address-book-app package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-16 09:55-0300\n"
-"PO-Revision-Date: 2014-01-14 19:48+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Tamil <ta@li.org>\n"
+"PO-Revision-Date: 2014-07-18 00:15+0000\n"
+"Last-Translator: Filipe André Pinho <Unknown>\n"
+"Language-Team: Portuguese <pt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -28,7 +28,7 @@ msgstr ""
 
 #: src/imports/ContactEdit/ContactEditor.qml:322
 msgid "Add Field"
-msgstr ""
+msgstr "Adicionar campo"
 
 #: src/imports/ContactList/ContactListPage.qml:462
 msgid "Add contact"
@@ -55,18 +55,18 @@ msgstr ""
 
 #: src/imports/Common/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
-msgstr ""
+msgstr "Tem a certeza que quer remover todos os contactos seleccionados?"
 
 #: src/imports/Common/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
-msgstr ""
+msgstr "Tem a certeza que quer remover este contacto?"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:133
 #: src/imports/ContactEdit/ContactEditor.qml:372
 #: src/imports/ContactList/ContactListPage.qml:418
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:37
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: src/imports/ContactList/ContactListPage.qml:330
 msgid "Cancel selection"
@@ -86,13 +86,13 @@ msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
-msgstr ""
+msgstr "País"
 
 #: src/imports/ContactEdit/ContactEditor.qml:337
 #: src/imports/ContactList/ContactListPage.qml:235
 #: src/imports/ContactList/ContactListPage.qml:355
 msgid "Delete"
-msgstr ""
+msgstr "Apagar"
 
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:53
 msgid "Done"
@@ -101,14 +101,14 @@ msgstr ""
 #: src/imports/ContactEdit/ContactEditor.qml:141
 #: src/imports/ContactView/ContactView.qml:217
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:57
 #: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:23
 #: src/imports/ContactView/ContactDetailEmailsView.qml:23
 #: src/imports/ContactView/ContactDetailEmailsView.qml:26
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 #: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:28
 msgid "Enter a number"
@@ -125,15 +125,15 @@ msgstr ""
 #: src/imports/ContactView/ContactFetchError.qml:25
 #: src/imports/MainWindow.qml:112
 msgid "Error"
-msgstr ""
+msgstr "Erro"
 
 #: src/imports/ContactView/ContactView.qml:195
 msgid "Favorite"
-msgstr ""
+msgstr "Favorito"
 
 #: src/imports/Ubuntu/Contacts/ContactListView.qml:348
 msgid "Favourites"
-msgstr ""
+msgstr "Favoritos"
 
 #: src/imports/ContactEdit/ContactDetailNameEditor.qml:83
 msgid "First name"
@@ -158,15 +158,15 @@ msgstr ""
 
 #: src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
-msgstr ""
+msgstr "Importar vCards"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
 msgid "Importing..."
-msgstr ""
+msgstr "A importar..."
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
 msgid "Jabber"
-msgstr ""
+msgstr "Jabber"
 
 #: src/imports/ContactEdit/ContactDetailNameEditor.qml:83
 msgid "Last name"
@@ -222,11 +222,11 @@ msgstr ""
 #: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:24
 #: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:30
 msgid "Phone"
-msgstr ""
+msgstr "Telefone"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
-msgstr ""
+msgstr "Código postal"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:63
 msgid "Professional Details"
@@ -251,7 +251,7 @@ msgstr ""
 
 #: src/imports/ContactEdit/ContactEditor.qml:385
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
 
 #: src/imports/ContactList/ContactListPage.qml:396
 msgid "Search"
@@ -275,11 +275,11 @@ msgstr ""
 
 #: src/imports/ContactView/ContactView.qml:206
 msgid "Share"
-msgstr ""
+msgstr "Partilhar"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
 msgid "Skype"
-msgstr ""
+msgstr "Skype"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:61
 #: src/imports/ContactView/ContactDetailOnlineAccountsView.qml:27
@@ -327,12 +327,12 @@ msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
-msgstr ""
+msgstr "Yahoo"
 
 #: src/imports/Common/RemoveContactsDialog.qml:62
 #: src/imports/ContactList/OnlineAccountsMessage.qml:36
 msgid "Yes"
-msgstr ""
+msgstr "Sim"
 
 #: src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
