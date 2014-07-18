@@ -668,7 +668,10 @@ Item {
 
         listView: view
         // only enable FastScroll if the we have more than 2 pages of content and sections is enabled
-        enabled: showSections && (view.contentHeight > (view.height * 2)) && (view.height >= minimumHeight)
+        enabled: showSections &&
+                 (view.contentHeight > (view.height * 2)) &&
+                 (view.height >= minimumHeight) &&
+                 (view.contentY > 0)
 
         anchors {
             top: view.top

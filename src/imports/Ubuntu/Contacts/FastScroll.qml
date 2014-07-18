@@ -144,6 +144,8 @@ Item {
             if (isVisible) {
                 rail.opacity = 1.0
                 hideTimer.stop()
+            } else if (!root.enabled) {
+                rail.opacity = 0.0
             } else {
                 hideTimer.restart()
             }
