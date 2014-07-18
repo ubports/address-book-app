@@ -236,6 +236,7 @@ Item {
             if (internal.desireSection != internal.currentSection) {
                 var idx = Sections.getIndexFor(internal.desireSection)
                 if (idx !== -1) {
+                    listView.cancelFlick()
                     listView.positionViewAtIndex(idx, ListView.Beginning)
                 }
             }
