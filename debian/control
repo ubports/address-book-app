@@ -41,7 +41,7 @@ Depends: libqt5contacts5,
          qtdeclarative5-ubuntu-content0.1,
          qtdeclarative5-ubuntu-history0.1,
          qtdeclarative5-ubuntu-keyboard-extensions0.1,
-         qtdeclarative5-ubuntu-telephony-phonenumber0.1,
+         qtdeclarative5-ubuntu-telephony-phonenumber0.1 (>= 0.1+14.10.20140715.1),
          ${misc:Depends},
          ${shlibs:Depends},
 Description: Address Book application
