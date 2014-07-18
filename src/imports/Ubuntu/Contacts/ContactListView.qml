@@ -520,8 +520,6 @@ Item {
                 }
             }
         }
-
-        height: Math.min(root.height, contentHeight)
         onError: root.error(message)
         onInfoRequested: root.infoRequested(contact)
         onDetailClicked: root.detailClicked(contact, detail, action)
@@ -574,6 +572,9 @@ Item {
         IntersectionFilter {
             id: contactsFilter
 
+            // avoid runtime warning "depends on non-NOTIFYable properties"
+            readonly property alias filtersProxy: contactsFilter.filters
+
             property bool active: {
                 var filters_ = []
                 if (contactTermFilter.value.length > 0) {
@@ -587,7 +588,7 @@ Item {
                 }
 
                 // check if the filter has changed
-                var oldFilters = contactsFilter.filters
+                var oldFilters = filtersProxy
                 if (oldFilters.length !== filters_.length) {
                     contactsFilter.filters = filters_
                 } else {

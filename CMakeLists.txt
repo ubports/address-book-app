@@ -21,6 +21,13 @@ find_package(PkgConfig REQUIRED)
 find_program(INTLTOOL_MERGE intltool-merge)
 find_program(INTLTOOL_EXTRACT intltool-extract)
 
+if(NOT INTLTOOL_MERGE)
+    message(FATAL_ERROR "intltool-merge not found. Try install intltool package;")
+endif()
+if(NOT INTLTOOL_EXTRACT)
+    message(FATAL_ERROR "intltool-extract not found. Try install intltool package;")
+endif()
+
 set(ADDRESS_BOOK_APP_DIR ${CMAKE_INSTALL_DATADIR}/address-book-app)
 set(ADDRESS_BOOK_APP_FULL_DIR ${CMAKE_INSTALL_FULL_DATADIR}/address-book-app)
 set(ADDRESS_BOOK_APP_NAME "Address Book")
