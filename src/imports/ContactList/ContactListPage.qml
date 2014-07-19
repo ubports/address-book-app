@@ -139,7 +139,7 @@ PageWithBottomEdge {
     {
         newPhoneToAdd = phoneNumber
         state = "newphone"
-        contactList.positionViewAtBeginning()
+        contactList.reset()
     }
 
     title: i18n.tr("Contacts")
@@ -484,7 +484,6 @@ PageWithBottomEdge {
             PropertyChanges {
                 target: contactList
                 detailToPick: -1
-                favouritesIsSelected: false
             }
         },
         State {
