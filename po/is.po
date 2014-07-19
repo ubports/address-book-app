@@ -1,347 +1,339 @@
-# Gaelic; Scottish translation for address-book-app
+# Icelandic translation for address-book-app
 # Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the address-book-app package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
-# Michael Bauer <fios@akerbeltz.org>, 2014.
-# GunChleoc <fios@foramnagaidhlig.net>, 2014.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-16 09:55-0300\n"
-"PO-Revision-Date: 2014-07-18 11:46+0000\n"
-"Last-Translator: GunChleoc <Unknown>\n"
-"Language-Team: Fòram na Gàidhlig http://www.foramnagaidhlig.net\n"
+"PO-Revision-Date: 2014-07-18 11:03+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Icelandic <is@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2014-07-19 06:19+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
-"Language: gd\n"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
 msgid "%1 vCards imported"
-msgstr "Chaidh %1 vCards ion-phortachadh"
+msgstr ""
 
 #: src/imports/ContactList/ContactListPage.qml:202
 msgid "+ New Contact"
-msgstr "+ Neach-aithne ùr"
+msgstr ""
 
 #: src/imports/ContactEdit/ContactEditor.qml:322
 msgid "Add Field"
-msgstr "Cuir raon ris"
+msgstr ""
 
 #: src/imports/ContactList/ContactListPage.qml:462
 msgid "Add contact"
-msgstr "Cuir neach-aithne ris"
+msgstr ""
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:59
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
 #: src/imports/ContactView/ContactDetailAddressesView.qml:24
 msgid "Address"
-msgstr "Seòladh"
+msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:77
 #: src/imports/ContactView/ContactDetailSyncTargetView.qml:48
 msgid "Addressbook"
-msgstr "Leabhar nan seòladh"
+msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:61
 msgid "Aim"
-msgstr "Aim"
+msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactListView.qml:316
 msgid "All"
-msgstr "Na h-uile"
+msgstr ""
 
 #: src/imports/Common/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
 msgstr ""
-"A bheil thu cinnteach gu bheil thu a h-uile neach-aithne a thagh thu a "
-"thoirt air falbh?"
 
 #: src/imports/Common/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
 msgstr ""
-"A bheil thu cinnteach gu bheil thu airson an neach-aithne seo a thoirt air "
-"falbh?"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:133
 #: src/imports/ContactEdit/ContactEditor.qml:372
 #: src/imports/ContactList/ContactListPage.qml:418
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:37
 msgid "Cancel"
-msgstr "Sguir dheth"
+msgstr ""
 
 #: src/imports/ContactList/ContactListPage.qml:330
 msgid "Cancel selection"
-msgstr "Sguir dhen taghadh"
+msgstr ""
 
 #: src/imports/ContactList/VCardImportDialog.qml:80
 msgid "Close"
-msgstr "Dùin"
+msgstr ""
 
 #: src/imports/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
-msgstr "Cha deach an neach-aithne a lorg"
+msgstr ""
 
 #: src/imports/ContactList/ContactListPage.qml:146
 msgid "Contacts"
-msgstr "Luchd-aithne"
+msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
-msgstr "Dùthaich"
+msgstr ""
 
 #: src/imports/ContactEdit/ContactEditor.qml:337
 #: src/imports/ContactList/ContactListPage.qml:235
 #: src/imports/ContactList/ContactListPage.qml:355
 msgid "Delete"
-msgstr "Sguab às"
+msgstr ""
 
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:53
 msgid "Done"
-msgstr "Deiseil"
+msgstr ""
 
 #: src/imports/ContactEdit/ContactEditor.qml:141
 #: src/imports/ContactView/ContactView.qml:217
 msgid "Edit"
-msgstr "Deasaich"
+msgstr ""
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:57
 #: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:23
 #: src/imports/ContactView/ContactDetailEmailsView.qml:23
 #: src/imports/ContactView/ContactDetailEmailsView.qml:26
 msgid "Email"
-msgstr "Post-d"
+msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:28
 msgid "Enter a number"
-msgstr "Cuir a-steach àireamh"
+msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:28
 msgid "Enter a social alias"
-msgstr "Cuir a-steach ainm-brèige sòisealta"
+msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:27
 msgid "Enter an email address"
-msgstr "Cuir a-steach seòladh puist-d"
+msgstr ""
 
 #: src/imports/ContactView/ContactFetchError.qml:25
 #: src/imports/MainWindow.qml:112
 msgid "Error"
-msgstr "Mearachd"
+msgstr ""
 
 #: src/imports/ContactView/ContactView.qml:195
 msgid "Favorite"
-msgstr "Annsachd"
+msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactListView.qml:348
 msgid "Favourites"
-msgstr "Annsachdan"
+msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailNameEditor.qml:83
 msgid "First name"
-msgstr "Ainm"
+msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactListView.qml:442
 msgid "Frequently called"
-msgstr "Air a ghairm gu tric"
+msgstr ""
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:116
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:99
 msgid "Home"
-msgstr "Dachaigh"
+msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "ICQ"
-msgstr "ICQ"
+msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:24
 msgid "IM"
-msgstr "IM"
+msgstr ""
 
 #: src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
-msgstr "Ion-phortaich vCards"
+msgstr ""
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
 msgid "Importing..."
-msgstr "'Ga ion-phortachadh..."
+msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
 msgid "Jabber"
-msgstr "Jabber"
+msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailNameEditor.qml:83
 msgid "Last name"
-msgstr "Sloinneadh"
+msgstr ""
 
 #: src/imports/ContactEdit/AvatarImport.qml:71
 msgid "Loading"
-msgstr "'Ga luchdadh"
+msgstr ""
 
 #: src/imports/ContactList/ContactListPage.qml:320
 msgid "Loading..."
-msgstr "'Ga luchdadh..."
+msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:32
 msgid "Locality"
-msgstr "Àite"
+msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
 msgid "MSN"
-msgstr "MSN"
+msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:103
 msgid "Mobile"
-msgstr "Fòn-làimhe"
+msgstr ""
 
 #: src/imports/Common/RemoveContactsDialog.qml:44
 msgid "Multiple contacts"
-msgstr "Iomadh neach-aithne"
+msgstr ""
 
 #: src/imports/ContactEdit/TextInputDetail.qml:74
 msgid "Next"
-msgstr "Air adhart"
+msgstr ""
 
 #: src/imports/Common/RemoveContactsDialog.qml:74
 #: src/imports/ContactList/OnlineAccountsMessage.qml:48
 msgid "No"
-msgstr "Chan eil"
+msgstr ""
 
 #: src/imports/Common/RemoveContactsDialog.qml:40
 msgid "No contact selected."
-msgstr "Cha deach neach-aithne a thaghadh."
+msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Organization"
-msgstr "Buidheann"
+msgstr ""
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:118
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:107
 msgid "Other"
-msgstr "Eile"
+msgstr ""
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:55
 #: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:24
 #: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:30
 msgid "Phone"
-msgstr "Fòn"
+msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
-msgstr "Còd-puist"
+msgstr ""
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:63
 msgid "Professional Details"
-msgstr "Fiosrachadh obrach"
+msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:23
 #: src/imports/ContactView/ContactDetailOrganizationsView.qml:27
 msgid "Professional details"
-msgstr "Fiosrachadh obrach"
+msgstr ""
 
 #: src/imports/ContactList/ContactListPage.qml:372
 msgid "Quit"
-msgstr "Fàg an-seo"
+msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:33
 msgid "Region"
-msgstr "Roinn-dùthcha"
+msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:31
 msgid "Role"
-msgstr "Dreuchd"
+msgstr ""
 
 #: src/imports/ContactEdit/ContactEditor.qml:385
 msgid "Save"
-msgstr "Sàbhail"
+msgstr ""
 
 #: src/imports/ContactList/ContactListPage.qml:396
 msgid "Search"
-msgstr "Lorg"
+msgstr ""
 
 #: src/imports/ContactList/ContactListPage.qml:355
 msgid "Select"
-msgstr "Tagh"
+msgstr ""
 
 #: src/imports/ContactList/ContactListPage.qml:339
 msgid "Select All"
-msgstr "Tagh na h-uile"
+msgstr ""
 
 #: src/imports/ContactList/ContactListPage.qml:512
 msgid "Select Contacts"
-msgstr "Tagh luchd-aithne"
+msgstr ""
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:116
 msgid "Select a field"
-msgstr "Tagh raon"
+msgstr ""
 
 #: src/imports/ContactView/ContactView.qml:206
 msgid "Share"
-msgstr "Co-roinn"
+msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
 msgid "Skype"
-msgstr "Skype"
+msgstr ""
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:61
 #: src/imports/ContactView/ContactDetailOnlineAccountsView.qml:27
 msgid "Social"
-msgstr "Sòisealta"
+msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:31
 msgid "Street"
-msgstr "Sràid"
+msgstr ""
 
 #: src/imports/ContactList/ContactListPage.qml:387
 msgid "Sync"
-msgstr "Sioncronaich"
+msgstr ""
 
 #: src/imports/ContactList/ContactListPage.qml:387
 msgid "Syncing"
-msgstr "'Ga shioncronachadh"
+msgstr ""
 
 #: src/imports/ContactList/ContactListPage.qml:320
 msgid "Syncing..."
-msgstr "'Ga shioncronachadh..."
+msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:32
 msgid "Title"
-msgstr "Tiotal"
+msgstr ""
 
 #: src/imports/ContactView/ContactDetailOnlineAccountsView.qml:30
 msgid "Touch"
-msgstr "Beantainn"
+msgstr ""
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:117
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:101
 msgid "Work"
-msgstr "Obair"
+msgstr ""
 
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
 msgid "Work Mobile"
-msgstr "Fòn-làimhe na h-obrach"
+msgstr ""
 
 #: src/imports/ContactList/OnlineAccountsMessage.qml:28
 msgid ""
 "Would you like to sync contacts\n"
 "from online accounts now?"
 msgstr ""
-"A bheil thu airson an luchd-aithne a shioncronachadh\n"
-"o na cunntasan air loidhne an-dràsta?"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
-msgstr "Yahoo"
+msgstr ""
 
 #: src/imports/Common/RemoveContactsDialog.qml:62
 #: src/imports/ContactList/OnlineAccountsMessage.qml:36
 msgid "Yes"
-msgstr "Tha"
+msgstr ""
 
 #: src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
-msgstr "Chan eil neach-aithne agad."
+msgstr ""

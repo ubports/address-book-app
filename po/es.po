@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-16 09:55-0300\n"
-"PO-Revision-Date: 2014-07-06 07:23+0000\n"
+"PO-Revision-Date: 2014-07-18 11:44+0000\n"
 "Last-Translator: Paco Molinero <paco@byasl.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-18 05:27+0000\n"
+"X-Launchpad-Export-Date: 2014-07-19 06:19+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
@@ -24,7 +24,7 @@ msgstr "%1 vCards importadas"
 
 #: src/imports/ContactList/ContactListPage.qml:202
 msgid "+ New Contact"
-msgstr ""
+msgstr "+Contacto nuevo"
 
 #: src/imports/ContactEdit/ContactEditor.qml:322
 msgid "Add Field"
@@ -32,7 +32,7 @@ msgstr "Añadir campo"
 
 #: src/imports/ContactList/ContactListPage.qml:462
 msgid "Add contact"
-msgstr ""
+msgstr "Añadir contacto"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:59
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
@@ -239,7 +239,7 @@ msgstr "Detalles profesionales"
 
 #: src/imports/ContactList/ContactListPage.qml:372
 msgid "Quit"
-msgstr ""
+msgstr "Salir"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:33
 msgid "Region"
