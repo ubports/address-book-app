@@ -672,7 +672,7 @@ Item {
         enabled: showSections &&
                  (view.contentHeight > (view.height * 2)) &&
                  (view.height >= minimumHeight) &&
-                 (view.contentY > 0)
+                 (((view.contentY - view.originY) - view.headerItem.height) >= 0) // hearder already invisble
 
         anchors {
             top: view.top
