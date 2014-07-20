@@ -139,11 +139,11 @@ MainView {
         }
     }
 
-//    // If application was called from uri handler and lost the focus reset the app to normal state
-//    onAppActiveChanged: {
-//        if (!appActive && mainStack.contactListPage) {
-//            mainStack.quitOnDepth = -1
-//            mainStack.contactListPage.returnToNormalState()
-//        }
-//    }
+    // If application was called from uri handler and lost the focus reset the app to normal state
+    onAppActiveChanged: {
+        if (!appActive && mainStack.contactListPage) {
+            mainStack.quitOnDepth = -1
+            mainStack.contactListPage.returnToNormalState()
+        }
+    }
 }
