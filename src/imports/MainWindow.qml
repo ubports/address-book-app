@@ -29,7 +29,7 @@ MainView {
     height: units.gu(71)
     anchorToKeyboard: false
     // FIXME: very slow
-    //useDeprecatedToolbar: false
+    useDeprecatedToolbar: false
 
     signal applicationReady()
 
