@@ -17,12 +17,10 @@
 import QtQuick 2.2
 import QtContacts 5.0
 
-import Ubuntu.Components 0.1
-import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components 1.1
+import Ubuntu.Components.ListItems 1.0 as ListItem
 import Ubuntu.Contacts 0.1 as ContactsUI
-import Ubuntu.Components.Popups 0.1 as Popups
 import Ubuntu.Content 0.1 as ContentHub
-import "../ContactEdit"
 import "../Common"
 
 PageWithBottomEdge {
@@ -142,18 +140,6 @@ PageWithBottomEdge {
     }
 
     title: i18n.tr("Contacts")
-
-    //bottom edge page
-    bottomEdgePageComponent: ContactEditor {
-        //WORKAROUND: SKD changes the page header as soon as the page get created
-        // setting active false will avoid that
-        active: false
-        enabled: false
-
-        initialFocusSection: "name"
-        model: contactList.listModel
-        contact: mainPage.createEmptyContact("")
-    }
     bottomEdgeTitle: "+"
     bottomEdgeEnabled: !contactList.isInSelectionMode
 
@@ -193,7 +179,7 @@ PageWithBottomEdge {
         }
     }
 
-    flickable: null //contactList.fastScrolling ? null : contactList.view
+    flickable: null
     ContactsUI.ContactListView {
         id: contactList
         objectName: "contactListView"
@@ -334,143 +320,143 @@ PageWithBottomEdge {
         }
     }
 
-    ToolbarItems {
-        id: toolbarItemsSelectionMode
-
-        visible: false
-        back: ToolbarButton {
-            action: Action {
-                text: i18n.tr("Cancel selection")
-                iconName: "close"
-                onTriggered: contactList.cancelSelection()
-            }
-        }
-
-        ToolbarButton {
-            action: Action {
-                objectName: "selectAll"
-                text: i18n.tr("Select All")
-                iconName: "filter"
-                onTriggered: {
-                    if (contactList.selectedItems.count === contactList.count) {
-                        contactList.clearSelection()
-                    } else {
-                        contactList.selectAll()
-                    }
-                }
-                visible: contactList.isInSelectionMode
-            }
-        }
-
-        ToolbarButton {
-            action: Action {
-                objectName: "doneSelection"
-                text: mainPage.pickMode ? i18n.tr("Select") : i18n.tr("Delete")
-                iconName: mainPage.pickMode ? "select" : "delete"
-                onTriggered: contactList.endSelection()
-                visible: contactList.isInSelectionMode
-            }
-        }
-    }
-
-    ToolbarButton {
-        id: quitButton
-
-        visible: false
-        action: Action {
-            objectName: "quitApp"
-
-            visible: mainPage.allowToQuit
-            iconName: "back"
-            text: i18n.tr("Quit")
-            onTriggered: {
-                application.goBackToSourceApp()
-                mainPage.returnToNormalState()
-            }
-        }
-    }
-
-    ToolbarItems {
-        id: toolbarItemsNormalMode
-
-        visible: false
-        back: mainPage.allowToQuit ? quitButton : null
-
-        ToolbarButton {
-            objectName: "Sync"
-            action: Action {
-                visible: mainPage.syncEnabled
-                text: application.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
-                iconName: "reload"
-                enabled: !application.syncing
-                onTriggered: application.startSync()
-            }
-        }
-        ToolbarButton {
-            objectName: "Search"
-            action: Action {
-                text: i18n.tr("Search")
-                visible: !mainPage.searching
-                iconName: "search"
-                onTriggered: {
-                    mainPage.state = (mainPage.state === "newphone" ? "newphoneSearching" : "searching")
-                    searchField.forceActiveFocus()
-                }
-            }
-        }
-    }
-
-    ToolbarItems {
-        id: toolbarItemsSearch
-
-        visible: false
-        back: ToolbarButton {
-            visible: false
-            action: Action {
-                objectName: "cancelSearch"
-
-                visible: mainPage.searching
-                iconName: "close"
-                text: i18n.tr("Cancel")
-                onTriggered: mainPage.state = (mainPage.state === "newphoneSearching" ? "newphone" : "")
-            }
-        }
-    }
 
     TextField {
         id: searchField
 
-        visible: mainPage.searching
         anchors {
             left: parent.left
-            leftMargin: units.gu(2)
             right: parent.right
             rightMargin: units.gu(2)
-            topMargin: units.gu(1.5)
-            bottomMargin: units.gu(1.5)
-            verticalCenter: parent.verticalCenter
         }
+
+        visible: mainPage.searching
         onTextChanged: contactList.currentIndex = -1
         inputMethodHints: Qt.ImhNoPredictiveText
+        placeholderText: i18n.tr("Search for contact name or phone")
     }
+
+    state: "default"
     states: [
-        State {
-            name: ""
+        PageHeadState {
+            id: defaultState
+            name: "default"
+
+            backAction: Action {
+                visible: mainPage.allowToQuit
+                iconName: "back"
+                text: i18n.tr("Quit")
+                onTriggered: {
+                    application.goBackToSourceApp()
+                    mainPage.returnToNormalState()
+                }
+            }
+
+            actions: [
+                Action {
+                    visible: mainPage.syncEnabled
+                    text: application.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
+                    iconName: "reload"
+                    enabled: !application.syncing
+                    onTriggered: application.startSync()
+                },
+                Action {
+                    text: i18n.tr("Search")
+                    iconName: "search"
+                    onTriggered: {
+                        mainPage.state = (mainPage.state === "newphone" ? "newphoneSearching" : "searching")
+                        searchField.forceActiveFocus()
+                    }
+                }
+            ]
+
+            PropertyChanges {
+                target: mainPage.head
+                backAction: defaultState.backAction
+                actions: defaultState.actions
+            }
             PropertyChanges {
                 target: searchField
                 text: ""
-            }
-            PropertyChanges {
-                target: mainPage
-                newPhoneToAdd: ""
             }
         },
-        State {
-            name: "newphone"
+        PageHeadState {
+            id: searchingState
+
+            name: "searching"
+
+            backAction: Action {
+                iconName: "close"
+                text: i18n.tr("Cancel")
+                onTriggered: mainPage.state = (mainPage.state === "newphoneSearching" ? "newphone" : "default")
+            }
+
+            PropertyChanges {
+                target: mainPage.head
+                backAction: searchingState.backAction
+                contents: searchField
+            }
+            PropertyChanges {
+                target: contactList
+                showFavourites: false
+            }
             PropertyChanges {
                 target: searchField
                 text: ""
             }
+        },
+
+        PageHeadState {
+            id: selectionState
+
+            name: "selection"
+            when: contactList.isInSelectionMode
+
+            backAction: Action {
+                text: i18n.tr("Cancel selection")
+                iconName: "close"
+                onTriggered: contactList.cancelSelection()
+            }
+
+            actions: [
+                Action {
+                    text: i18n.tr("Select All")
+                    iconName: "filter"
+                    onTriggered: {
+                        if (contactList.selectedItems.count === contactList.count) {
+                            contactList.clearSelection()
+                        } else {
+                            contactList.selectAll()
+                        }
+                    }
+                    visible: contactList.isInSelectionMode
+                },
+                Action {
+                    text: mainPage.pickMode ? i18n.tr("Select") : i18n.tr("Delete")
+                    iconName: mainPage.pickMode ? "select" : "delete"
+                    onTriggered: contactList.endSelection()
+                    visible: contactList.isInSelectionMode
+                }
+            ]
+
+            PropertyChanges {
+                target: mainPage.head
+                backAction: selectionState.backAction
+                actions: selectionState.actions
+            }
+
+            PropertyChanges {
+                target: mainPage
+                bottomEdgeEnabled: false
+                title: i18n.tr("Select Contacts")
+            }
+
+        },
+        PageHeadState {
+            name: "newphone"
+            extend: "default"
+            head: mainPage.head
+
             PropertyChanges {
                 target: addNewContactButton
                 visible: true
@@ -485,15 +471,14 @@ PageWithBottomEdge {
                 detailToPick: -1
             }
         },
-        State {
+        PageHeadState {
             name: "newphoneSearching"
+            extend: "searching"
+            head: mainPage.head
+
             PropertyChanges {
                 target: addNewContactButton
                 visible: true
-            }
-            PropertyChanges {
-                target: mainPage
-                bottomEdgeEnabled: false
             }
             PropertyChanges {
                 target: contactList
@@ -501,38 +486,10 @@ PageWithBottomEdge {
             }
             PropertyChanges {
                 target: mainPage
-                __customHeaderContents: searchField
-                tools: toolbarItemsSearch
-            }
-            PropertyChanges {
-                target: contactList
-                showFavourites: false
-            }
-        },
-        State {
-            name: "searching"
-            PropertyChanges {
-                target: mainPage
-                __customHeaderContents: searchField
-                tools: toolbarItemsSearch
-            }
-            PropertyChanges {
-                target: contactList
-                showFavourites: false
-            }
-        },
-        State {
-            name: "selection"
-            when: contactList.isInSelectionMode
-            PropertyChanges {
-                target: mainPage
-                tools: toolbarItemsSelectionMode
                 bottomEdgeEnabled: false
-                title: i18n.tr("Select Contacts")
             }
         }
     ]
-    tools: toolbarItemsNormalMode
     onActiveChanged: {
         if (active && addNewContactButton.visible) {
             contactList.positionViewAtBeginning()
@@ -611,6 +568,7 @@ PageWithBottomEdge {
     }
 
     Component.onCompleted: {
+        application.elapsed()
         if ((contactList.count === 0) &&
                    application.firstRun &&
                    !mainPage.syncEnabled) {
@@ -621,12 +579,12 @@ PageWithBottomEdge {
             contactList.listModel.importContacts("file://" + TEST_DATA)
         }
 
-        mainPage.setBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                                   {model: contactList.listModel,
-                                    contact: mainPage.createEmptyContact(""),
-                                    active: false,
-                                    enabled: false,
-                                    initialFocusSection: "name"})
+//        mainPage.setBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+//                                   {model: contactList.listModel,
+//                                    contact: mainPage.createEmptyContact(""),
+//                                    active: false,
+//                                    enabled: false,
+//                                    initialFocusSection: "name"})
         pageStack.contactListPage = mainPage
     }
 }

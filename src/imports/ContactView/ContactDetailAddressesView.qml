@@ -16,7 +16,7 @@
 
 import QtQuick 2.2
 import QtContacts 5.0 as QtContacts
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
 
 ContactDetailGroupWithTypeView {
     id: root

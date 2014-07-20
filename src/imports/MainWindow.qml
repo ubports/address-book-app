@@ -15,10 +15,9 @@
  */
 
 import QtQuick 2.2
-import QtContacts 5.0
-import Ubuntu.Components 0.1
-import Ubuntu.Components.Popups 0.1 as Popups
-import Ubuntu.Content 0.1 as ContentHub
+import Ubuntu.Components 1.1
+import Ubuntu.Components.Popups 1.0 as Popups
+
 
 MainView {
     id: mainWindow
@@ -29,7 +28,8 @@ MainView {
     width: units.gu(40)
     height: units.gu(71)
     anchorToKeyboard: false
-    useDeprecatedToolbar: false
+    // FIXME: very slow
+    //useDeprecatedToolbar: false
 
     signal applicationReady()
 
@@ -106,9 +106,10 @@ MainView {
     }
 
     Component.onCompleted: {
+        application.elapsed()
         i18n.domain = "address-book-app"
         i18n.bindtextdomain("address-book-app", i18nDirectory)
-        mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"))
+        mainStack.push(Qt.resolvedUrl("./ContactList/ContactListPage.qml"))
         mainWindow.applicationReady()
     }
 
@@ -138,31 +139,11 @@ MainView {
         }
     }
 
-    Connections {
-        target: ContentHub.ContentHub
-        onExportRequested: {
-            // enter in pick mode
-            mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"),
-                           {pickMode: true,
-                            contentHubTransfer: transfer})
-        }
-        onImportRequested: {
-            if (transfer.state === ContentHub.ContentTransfer.Charged) {
-                var urls = []
-                for(var i=0; i < transfer.items.length; i++) {
-                    urls.push(transfer.items[i].url)
-                }
-                mainStack.importContactRequested(urls)
-            }
-        }
-    }
-
-
-    // If application was called from uri handler and lost the focus reset the app to normal state
-    onAppActiveChanged: {
-        if (!appActive && mainStack.contactListPage) {
-            mainStack.quitOnDepth = -1
-            mainStack.contactListPage.returnToNormalState()
-        }
-    }
+//    // If application was called from uri handler and lost the focus reset the app to normal state
+//    onAppActiveChanged: {
+//        if (!appActive && mainStack.contactListPage) {
+//            mainStack.quitOnDepth = -1
+//            mainStack.contactListPage.returnToNormalState()
+//        }
+//    }
 }

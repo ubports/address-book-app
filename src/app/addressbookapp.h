@@ -60,6 +60,9 @@ public Q_SLOTS:
     // sync monitor
     void startSync() const;
 
+    // debug
+    void elapsed() const;
+
 private:
     void callQMLMethod(const QString name, QStringList args);
     void connectWithSyncMonitor();
