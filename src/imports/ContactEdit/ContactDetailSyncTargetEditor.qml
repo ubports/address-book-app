@@ -111,5 +111,11 @@ ContactDetailBase {
 
         containerHeight: sources.model && sources.model.contacts.length > 4 ? itemHeight * 4 : sources.model ? itemHeight * sources.model.contacts.length : 0
     }
+
+    onActiveChanged: {
+        if (active) {
+            sourceModel.update()
+        }
+    }
 }
 

@@ -137,6 +137,7 @@ PageWithBottomEdge {
     {
         newPhoneToAdd = phoneNumber
         state = "newphone"
+        contactList.reset()
     }
 
     title: i18n.tr("Contacts")

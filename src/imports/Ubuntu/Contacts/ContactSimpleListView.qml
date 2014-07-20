@@ -167,6 +167,7 @@ MultipleSelectionListView {
 
     /* internal */
     property var _currentSwipedItem: null
+    property double _expandPosition: -1
 
     /*!
       This handler is called when any error occurs in the contact model
@@ -286,6 +287,14 @@ MultipleSelectionListView {
         dirtyModel.restart()
     }
 
+    onContentYChanged: {
+        if (currentIndex != -1) {
+            if (Math.abs(_expandPosition - contentY) >= units.gu(5)) {
+                currentIndex = -1
+            }
+        }
+    }
+
     listDelegate: ContactDelegate {
         id: contactDelegate
 
@@ -360,6 +369,7 @@ MultipleSelectionListView {
             // check if we should expand and display the details picker
             } else if (detailToPick !== -1) {
                 contactListView.currentIndex = index
+                contactListView._expandPosition = contactListView.contentY
                 return
             } else if (detailToPick == -1) {
                 contactListView.detailClicked(contact, null, "")

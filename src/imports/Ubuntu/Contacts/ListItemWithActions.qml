@@ -240,9 +240,7 @@ Item {
             value: 1.0
         }
         ScriptAction {
-            script: {
-                root.activeAction.triggered(root)
-            }
+            script: root.activeAction.triggered(root)
         }
         PauseAnimation {
             duration: 500
@@ -283,7 +281,7 @@ Item {
             } else if (main.x > 0) {
                 var action = getActionAt(Qt.point(mouse.x, mouse.y))
                 if (action && action !== -1) {
-                    action.trigger()
+                    action.triggered(root)
                 }
             } else {
                 var actionIndex = getActionAt(Qt.point(mouse.x, mouse.y))

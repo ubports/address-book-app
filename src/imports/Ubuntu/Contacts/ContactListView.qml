@@ -204,6 +204,7 @@ Item {
       This property holds a list with the index of selected items
     */
     readonly property alias isInSelectionMode: view.isInSelectionMode
+
     /*!
       This handler is called when the selection mode is finished without be canceled
     */
@@ -284,6 +285,16 @@ Item {
         }
         root.filter = newFilter
     }
+    function reset()
+    {
+        if (view.favouritesIsSelected) {
+            root.changeFilter(root.filter)
+            view.favouritesIsSelected = false
+        } else {
+            positionViewAtBeginning()
+        }
+    }
+
     /*!
       Causes the list to update
       \l autoUpdate
@@ -672,7 +683,7 @@ Item {
         enabled: showSections &&
                  (view.contentHeight > (view.height * 2)) &&
                  (view.height >= minimumHeight) &&
-                 (view.contentY > 0)
+                 (((view.contentY - view.originY) - view.headerItem.height) >= 0) // hearder already invisble
 
         anchors {
             top: view.top

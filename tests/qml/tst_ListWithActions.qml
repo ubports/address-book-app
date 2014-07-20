@@ -225,6 +225,7 @@ Item {
             mouseClick(item, item.actionThreshold, item.height / 2)
             itemList.signalSpy.wait()
             compare(itemList.signalSpy.count, 1)
+            compare(itemList.signalSpy.signalArguments[0][0].iconName, "delete")
         }
 
         function test_activeRightActions_data()
