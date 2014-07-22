@@ -397,6 +397,7 @@ PageWithBottomEdge {
                 backAction: searchingState.backAction
                 contents: searchField
             }
+
             PropertyChanges {
                 target: contactList
                 showFavourites: false
@@ -406,7 +407,6 @@ PageWithBottomEdge {
                 text: ""
             }
         },
-
         PageHeadState {
             id: selectionState
 

@@ -267,10 +267,15 @@ MultipleSelectionListView {
             }
             height: units.gu(3)
             Label {
-                anchors.fill: parent
+                anchors {
+                    top: parent.top
+                    left: parent.left
+                    right: parent.right
+                }
+                height: units.gu(2)
                 verticalAlignment: Text.AlignVCenter
                 text: section != "" ? section : "#"
-                font.pointSize: 76
+                fontSize: "small"
             }
             ListItem.ThinDivider {
                 anchors {

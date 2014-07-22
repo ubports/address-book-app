@@ -97,7 +97,6 @@ ListItemWithActions {
                 verticalCenter: parent.verticalCenter
                 right: infoIcon.left
             }
-            font.pointSize: 88
             color: UbuntuColors.lightAubergine
             text: contact ? ContactsJS.formatToDisplay(contact, root.titleDetail, root.titleFields, "") : root.defaultTitle
             elide: Text.ElideRight
