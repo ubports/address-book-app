@@ -186,7 +186,7 @@ PageWithBottomEdge {
         objectName: "contactListView"
 
         showFavourites: false
-        header: Rectangle {
+        header:  Item {
             id: addNewContactButton
             objectName: "addNewContact"
 
@@ -194,8 +194,8 @@ PageWithBottomEdge {
                 left: parent.left
                 right: parent.right
             }
+            visible: false
             height: visible ? units.gu(8) : 0
-            color: Theme.palette.normal.background
 
             Rectangle {
                 anchors.fill: parent
@@ -203,13 +203,41 @@ PageWithBottomEdge {
                 opacity: addNewContactButtonArea.pressed ?  1.0 : 0.0
             }
 
-            Label {
-                anchors.centerIn: parent
-                text: i18n.tr("+ Create New")
-                fontSize: "large"
+            UbuntuShape {
+                id: addIcon
+
+                anchors {
+                    left: parent.left
+                    top: parent.top
+                    bottom: parent.bottom
+                    margins: units.gu(1)
+                }
+                width: height
+                radius: "medium"
+                color: Theme.palette.normal.overlay
+                Image {
+                    anchors.centerIn: parent
+                    width: units.gu(2)
+                    height: units.gu(2)
+                    source: "image://theme/add"
+                }
             }
 
-            visible: false
+            Label {
+                id: name
+
+                anchors {
+                    left: addIcon.right
+                    leftMargin: units.gu(2)
+                    verticalCenter: parent.verticalCenter
+                    right: parent.right
+                    rightMargin: units.gu(2)
+                }
+                color: UbuntuColors.lightAubergine
+                text: i18n.tr("+ Create New")
+                elide: Text.ElideRight
+            }
+
             MouseArea {
                 id: addNewContactButtonArea
 
