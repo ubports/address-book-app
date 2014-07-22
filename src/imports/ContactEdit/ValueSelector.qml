@@ -155,8 +155,9 @@ Item {
                     height: parent.height + units.gu(0.5)
                     anchors.centerIn: parent
                     onClicked: {
+                        timer.stop()
                         currentIndex = index
-                        timer.restart()
+                        root.state = ""
                     }
                 }
             }
