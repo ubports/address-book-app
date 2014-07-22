@@ -193,9 +193,6 @@ Page {
             clip: true
             y: -bottomEdge.tipHeight
             anchors.horizontalCenter: parent.horizontalCenter
-            Behavior on y {
-                UbuntuNumberAnimation {}
-            }
 
             UbuntuShape {
                 id: tip
@@ -243,10 +240,6 @@ Page {
             }
 
             onPressed: bottomEdge.state = "floating"
-        }
-
-        Behavior on y {
-            UbuntuNumberAnimation {}
         }
 
         state: "collapsed"
@@ -310,10 +303,16 @@ Page {
             Transition {
                 to: "expanded"
                 SequentialAnimation {
-                    UbuntuNumberAnimation {
-                        targets: [bottomEdge,tip]
-                        properties: "y,opacity"
-                        duration: UbuntuAnimation.SlowDuration
+                    ParallelAnimation {
+                        UbuntuNumberAnimation {
+                            targets: [bottomEdge]
+                            properties: "y"
+                            duration: UbuntuAnimation.SlowDuration
+                        }
+                        UbuntuNumberAnimation {
+                            target: tip
+                            property: "opacity"
+                        }
                     }
                     ScriptAction {
                         script: page._pushPage()
