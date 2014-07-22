@@ -321,7 +321,6 @@ PageWithBottomEdge {
         }
     }
 
-
     TextField {
         id: searchField
 
@@ -341,8 +340,8 @@ PageWithBottomEdge {
     states: [
         PageHeadState {
             id: defaultState
-            name: "default"
 
+            name: "default"
             backAction: Action {
                 visible: mainPage.allowToQuit
                 iconName: "back"
@@ -352,7 +351,6 @@ PageWithBottomEdge {
                     mainPage.returnToNormalState()
                 }
             }
-
             actions: [
                 Action {
                     visible: mainPage.syncEnabled
@@ -370,7 +368,6 @@ PageWithBottomEdge {
                     }
                 }
             ]
-
             PropertyChanges {
                 target: mainPage.head
                 backAction: defaultState.backAction
@@ -385,11 +382,13 @@ PageWithBottomEdge {
             id: searchingState
 
             name: "searching"
-
             backAction: Action {
                 iconName: "close"
                 text: i18n.tr("Cancel")
-                onTriggered: mainPage.state = (mainPage.state === "newphoneSearching" ? "newphone" : "default")
+                onTriggered: {
+                    contactList.forceActiveFocus()
+                    mainPage.state = (mainPage.state === "newphoneSearching" ? "newphone" : "default")
+                }
             }
 
             PropertyChanges {
@@ -412,13 +411,11 @@ PageWithBottomEdge {
 
             name: "selection"
             when: contactList.isInSelectionMode
-
             backAction: Action {
                 text: i18n.tr("Cancel selection")
                 iconName: "close"
                 onTriggered: contactList.cancelSelection()
             }
-
             actions: [
                 Action {
                     text: i18n.tr("Select All")
@@ -439,13 +436,11 @@ PageWithBottomEdge {
                     visible: contactList.isInSelectionMode
                 }
             ]
-
             PropertyChanges {
                 target: mainPage.head
                 backAction: selectionState.backAction
                 actions: selectionState.actions
             }
-
             PropertyChanges {
                 target: mainPage
                 bottomEdgeEnabled: false
@@ -457,7 +452,6 @@ PageWithBottomEdge {
             name: "newphone"
             extend: "default"
             head: mainPage.head
-
             PropertyChanges {
                 target: addNewContactButton
                 visible: true
@@ -476,7 +470,6 @@ PageWithBottomEdge {
             name: "newphoneSearching"
             extend: "searching"
             head: mainPage.head
-
             PropertyChanges {
                 target: addNewContactButton
                 visible: true

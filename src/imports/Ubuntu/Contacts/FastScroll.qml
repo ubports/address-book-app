@@ -75,7 +75,7 @@ Item {
         radius: height * 0.3
         height: pinSize * 2
         width: height
-        opacity: internal.fastScrolling ? 1.0 : 0.0
+        opacity: internal.fastScrolling && root.enabled ? 1.0 : 0.0
         x: -cursor.width - units.gu(3)
         y: {
             if (internal.currentItem) {
