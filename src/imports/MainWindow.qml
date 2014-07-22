@@ -25,12 +25,6 @@ MainView {
     property string modelErrorMessage: ""
     readonly property bool appActive: Qt.application.active
 
-    width: units.gu(40)
-    height: units.gu(71)
-    anchorToKeyboard: false
-    // FIXME: very slow
-    useDeprecatedToolbar: false
-
     signal applicationReady()
 
     function contact(contactId)
@@ -81,6 +75,11 @@ MainView {
             mainStack.contactListPage.addNewPhone(phoneNumer)
         }
     }
+
+    width: units.gu(40)
+    height: units.gu(71)
+    anchorToKeyboard: false
+    useDeprecatedToolbar: false
 
     PageStack {
         id: mainStack
@@ -135,6 +134,16 @@ MainView {
         onOpened: {
             for (var i = 0; i < uris.length; ++i) {
                 application.parseUrl(uris[i])
+            }
+        }
+    }
+
+    Loader {
+        asynchronous: true
+        source: Qt.resolvedUrl("ContentHubProxy.qml")
+        onStatusChanged: {
+            if (status === Loader.Ready) {
+                item.pageStack = mainStack
             }
         }
     }
