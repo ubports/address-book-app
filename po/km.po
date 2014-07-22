@@ -8,31 +8,31 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-16 09:55-0300\n"
-"PO-Revision-Date: 2014-02-10 03:10+0000\n"
+"PO-Revision-Date: 2014-07-22 03:14+0000\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <km@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-18 05:27+0000\n"
+"X-Launchpad-Export-Date: 2014-07-22 07:17+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
 msgid "%1 vCards imported"
-msgstr ""
+msgstr "បាន​នាំចូល %1 vCards"
 
 #: src/imports/ContactList/ContactListPage.qml:202
 msgid "+ New Contact"
-msgstr ""
+msgstr "ទំនាក់ទំនង​ថ្មី +"
 
 #: src/imports/ContactEdit/ContactEditor.qml:322
 msgid "Add Field"
-msgstr ""
+msgstr "បន្ថែម​វាល"
 
 #: src/imports/ContactList/ContactListPage.qml:462
 msgid "Add contact"
-msgstr ""
+msgstr "បន្ថែម​ទំនាក់ទំនង"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:59
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
@@ -43,7 +43,7 @@ msgstr "អាសយដ្ឋាន"
 #: src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:77
 #: src/imports/ContactView/ContactDetailSyncTargetView.qml:48
 msgid "Addressbook"
-msgstr ""
+msgstr "សៀវភៅ​អាសយដ្ឋាន"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:61
 msgid "Aim"
@@ -51,15 +51,15 @@ msgstr "Aim"
 
 #: src/imports/Ubuntu/Contacts/ContactListView.qml:316
 msgid "All"
-msgstr ""
+msgstr "ទាំងអស់"
 
 #: src/imports/Common/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
-msgstr ""
+msgstr "តើ​អ្នក​ប្រាកដ​ថា អ្នក​ចង់​លុប​ទំនាក់ទំនង​ដែល​បាន​ជ្រើស​ទាំងអស់?"
 
 #: src/imports/Common/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
-msgstr ""
+msgstr "តើ​អ្នក​ប្រាកដ​ថា អ្នក​ចង់​លុប​ទំនាក់ទំនង​នេះ​ឬ?"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:133
 #: src/imports/ContactEdit/ContactEditor.qml:372
@@ -70,11 +70,11 @@ msgstr "បោះបង់"
 
 #: src/imports/ContactList/ContactListPage.qml:330
 msgid "Cancel selection"
-msgstr ""
+msgstr "បោះបង់​ការ​ជ្រើស"
 
 #: src/imports/ContactList/VCardImportDialog.qml:80
 msgid "Close"
-msgstr ""
+msgstr "បិទ​"
 
 #: src/imports/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
@@ -141,7 +141,7 @@ msgstr "នាម​ខ្លួន"
 
 #: src/imports/Ubuntu/Contacts/ContactListView.qml:442
 msgid "Frequently called"
-msgstr ""
+msgstr "បាន​ហៅ​ញឹកញាប់"
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:116
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:99
@@ -158,11 +158,11 @@ msgstr "IM"
 
 #: src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
-msgstr ""
+msgstr "នាំចូល vCards"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
 msgid "Importing..."
-msgstr ""
+msgstr "កំពុង​នាំចូល..."
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
 msgid "Jabber"
@@ -178,7 +178,7 @@ msgstr "ផ្ទុក"
 
 #: src/imports/ContactList/ContactListPage.qml:320
 msgid "Loading..."
-msgstr ""
+msgstr "កំពុង​ផ្ទុក..."
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:32
 msgid "Locality"
@@ -194,20 +194,20 @@ msgstr "ចល័ត"
 
 #: src/imports/Common/RemoveContactsDialog.qml:44
 msgid "Multiple contacts"
-msgstr ""
+msgstr "ទំនាក់ទំនង​ច្រើន"
 
 #: src/imports/ContactEdit/TextInputDetail.qml:74
 msgid "Next"
-msgstr ""
+msgstr "បន្ទាប់"
 
 #: src/imports/Common/RemoveContactsDialog.qml:74
 #: src/imports/ContactList/OnlineAccountsMessage.qml:48
 msgid "No"
-msgstr ""
+msgstr "ទេ"
 
 #: src/imports/Common/RemoveContactsDialog.qml:40
 msgid "No contact selected."
-msgstr ""
+msgstr "គ្មាន​ទំនាក់ទំនង​បាន​ជ្រើស។"
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Organization"
@@ -230,7 +230,7 @@ msgstr "កូដ​ប្រៃសណីយ៍​"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:63
 msgid "Professional Details"
-msgstr ""
+msgstr "ព័ត៌មាន​លម្អិត​អាជីព"
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:23
 #: src/imports/ContactView/ContactDetailOrganizationsView.qml:27
@@ -239,7 +239,7 @@ msgstr "ព័ត៌មាន​លម្អិត​វិជ្ជាជីវ
 
 #: src/imports/ContactList/ContactListPage.qml:372
 msgid "Quit"
-msgstr ""
+msgstr "ចេញ"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -255,7 +255,7 @@ msgstr "រក្សា​​ទុក​​"
 
 #: src/imports/ContactList/ContactListPage.qml:396
 msgid "Search"
-msgstr ""
+msgstr "ស្វែងរក"
 
 #: src/imports/ContactList/ContactListPage.qml:355
 msgid "Select"
@@ -263,19 +263,19 @@ msgstr "ជ្រើស"
 
 #: src/imports/ContactList/ContactListPage.qml:339
 msgid "Select All"
-msgstr ""
+msgstr "​ជ្រើស​ទាំងអស់"
 
 #: src/imports/ContactList/ContactListPage.qml:512
 msgid "Select Contacts"
-msgstr ""
+msgstr "ជ្រើស​ទំនាក់ទំនង"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:116
 msgid "Select a field"
-msgstr ""
+msgstr "ជ្រើស​វាល"
 
 #: src/imports/ContactView/ContactView.qml:206
 msgid "Share"
-msgstr ""
+msgstr "ចែក​រំលែក"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
 msgid "Skype"
@@ -292,15 +292,15 @@ msgstr "ផ្លូវ"
 
 #: src/imports/ContactList/ContactListPage.qml:387
 msgid "Sync"
-msgstr ""
+msgstr "ធ្វើ​សមកាលកម្ម"
 
 #: src/imports/ContactList/ContactListPage.qml:387
 msgid "Syncing"
-msgstr ""
+msgstr "ធ្វើ​សមកាលកម្ម"
 
 #: src/imports/ContactList/ContactListPage.qml:320
 msgid "Syncing..."
-msgstr ""
+msgstr "ធ្វើសមកាលកម្ម..."
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:32
 msgid "Title"
@@ -324,6 +324,8 @@ msgid ""
 "Would you like to sync contacts\n"
 "from online accounts now?"
 msgstr ""
+"តើ​អ្នក​ចង់​ធ្វើ​សមកាលកម្ម​ទំនាក់ទំនង\n"
+"ពី​គណនី​លើ​បណ្ដាញ​ឥឡូវ?"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
@@ -332,8 +334,8 @@ msgstr "Yahoo"
 #: src/imports/Common/RemoveContactsDialog.qml:62
 #: src/imports/ContactList/OnlineAccountsMessage.qml:36
 msgid "Yes"
-msgstr ""
+msgstr "បាទ/​ចាស"
 
 #: src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
-msgstr ""
+msgstr "អ្នក​មិន​មាន​ទំនាក់ទំនង​ទេ។"
