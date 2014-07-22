@@ -288,11 +288,22 @@ Item {
     function reset()
     {
         if (view.favouritesIsSelected) {
-            root.changeFilter(root.filter)
-            view.favouritesIsSelected = false
+            showAllContacts()
         } else {
             positionViewAtBeginning()
         }
+    }
+    function showFavoritesContacts()
+    {
+        //WORKAROUND: clear the model before start populate it with the new contacts
+        //otherwise the model will wait for all contacts before show any new contact
+        root.changeFilter(root.filter)
+        view.favouritesIsSelected = true
+    }
+    function showAllContacts()
+    {
+        root.changeFilter(root.filter)
+        view.favouritesIsSelected = false
     }
 
     /*!
@@ -332,12 +343,7 @@ Item {
                 color: view.favouritesIsSelected ? UbuntuColors.warmGrey : UbuntuColors.orange
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: {
-                        //WORKAROUND: clear the model before start populate it with the new contacts
-                        //otherwise the model will wait for all contacts before show any new contact
-                        root.changeFilter(root.filter)
-                        view.favouritesIsSelected = false
-                    }
+                    onClicked: showAllContacts()
                 }
             }
 
@@ -364,7 +370,7 @@ Item {
                 color: view.favouritesIsSelected ? UbuntuColors.orange : UbuntuColors.warmGrey
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: view.favouritesIsSelected = true
+                    onClicked: showFavoritesContacts()
                 }
             }
         }

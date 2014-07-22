@@ -185,6 +185,7 @@ PageWithBottomEdge {
         id: contactList
         objectName: "contactListView"
 
+        showFavourites: false
         header: Rectangle {
             id: addNewContactButton
             objectName: "addNewContact"
@@ -336,6 +337,22 @@ PageWithBottomEdge {
         placeholderText: i18n.tr("Search for contact name or phone")
     }
 
+    Connections {
+        target: mainPage.head.sections
+        onSelectedIndexChanged: {
+            switch (mainPage.head.sections.selectedIndex) {
+            case 0:
+                contactList.showAllContacts()
+                break;
+            case 1:
+                contactList.showFavoritesContacts()
+                break;
+            default:
+                break;
+            }
+        }
+    }
+
     state: "default"
     states: [
         PageHeadState {
@@ -372,6 +389,7 @@ PageWithBottomEdge {
                 target: mainPage.head
                 backAction: defaultState.backAction
                 actions: defaultState.actions
+                sections.model: ["All", "Favorites"]
             }
             PropertyChanges {
                 target: searchField
@@ -573,12 +591,12 @@ PageWithBottomEdge {
             contactList.listModel.importContacts("file://" + TEST_DATA)
         }
 
-//        mainPage.setBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-//                                   {model: contactList.listModel,
-//                                    contact: mainPage.createEmptyContact(""),
-//                                    active: false,
-//                                    enabled: false,
-//                                    initialFocusSection: "name"})
+        mainPage.setBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                                   {model: contactList.listModel,
+                                    contact: mainPage.createEmptyContact(""),
+                                    active: false,
+                                    enabled: false,
+                                    initialFocusSection: "name"})
         pageStack.contactListPage = mainPage
     }
 }

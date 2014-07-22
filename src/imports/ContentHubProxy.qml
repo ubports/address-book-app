@@ -18,24 +18,25 @@ import QtQuick 2.2
 import Ubuntu.Content 0.1 as ContentHub
 
 QtObject {
-    property Component pageStack: null
-
-    Connections {
-        target: ContentHub.ContentHub
-        onExportRequested: {
-            // enter in pick mode
-            pageStack.push(Qt.createComponent("ContactList/ContactListPage.qml"),
-                           {pickMode: true,
-                            contentHubTransfer: transfer})
-        }
-        onImportRequested: {
-            if (transfer.state === ContentHub.ContentTransfer.Charged) {
-                var urls = []
-                for(var i=0; i < transfer.items.length; i++) {
-                    urls.push(transfer.items[i].url)
+    property QtObject pageStack: null
+    property list<QtObject> objects: [
+        Connections {
+            target: ContentHub.ContentHub
+            onExportRequested: {
+                // enter in pick mode
+                pageStack.push(Qt.createComponent("ContactList/ContactListPage.qml"),
+                               {pickMode: true,
+                                contentHubTransfer: transfer})
+            }
+            onImportRequested: {
+                if (transfer.state === ContentHub.ContentTransfer.Charged) {
+                    var urls = []
+                    for(var i=0; i < transfer.items.length; i++) {
+                        urls.push(transfer.items[i].url)
+                    }
+                    pageStack.importContactRequested(urls)
                 }
-                pageStack.importContactRequested(urls)
             }
         }
-    }
+    ]
 }
