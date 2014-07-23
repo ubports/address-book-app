@@ -287,13 +287,8 @@ MultipleSelectionListView {
         dirtyModel.restart()
     }
 
-    onFlickStarted: {
-        if (currentIndex != -1) {
-            if (Math.abs(_expandPosition - contentY) >= units.gu(5)) {
-                currentIndex = -1
-            }
-        }
-    }
+    highlightFollowsCurrentItem: !view.flicking
+    onFlickStarted: currentIndex = -1
 
     listDelegate: ContactDelegate {
         id: contactDelegate
@@ -394,7 +389,6 @@ MultipleSelectionListView {
         model: root.listModel
         onContactFetched: contactListView.infoRequested(contact)
     }
-
     // This is a workaround to make sure the spinner will disappear if the model is empty
     // FIXME: implement a model property to say if the model still busy or not
     Item {
