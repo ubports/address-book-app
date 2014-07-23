@@ -287,7 +287,7 @@ MultipleSelectionListView {
         dirtyModel.restart()
     }
 
-    onContentYChanged: {
+    onFlickStarted: {
         if (currentIndex != -1) {
             if (Math.abs(_expandPosition - contentY) >= units.gu(5)) {
                 currentIndex = -1
