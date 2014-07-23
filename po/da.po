@@ -1,339 +1,342 @@
 # Danish translation for address-book-app
 # Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
 # This file is distributed under the same license as the address-book-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+# Ask Hjorth Larsen <asklarsen@gmail.com>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-16 09:55-0300\n"
-"PO-Revision-Date: 2014-07-20 20:42+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: Danish <da@li.org>\n"
+"PO-Revision-Date: 2014-07-22 15:40+0000\n"
+"Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
+"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-21 07:05+0000\n"
+"X-Launchpad-Export-Date: 2014-07-23 07:00+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
 msgid "%1 vCards imported"
-msgstr ""
+msgstr "%1 vCards importeret"
 
 #: src/imports/ContactList/ContactListPage.qml:202
 msgid "+ New Contact"
-msgstr ""
+msgstr "+ Ny kontant"
 
 #: src/imports/ContactEdit/ContactEditor.qml:322
 msgid "Add Field"
-msgstr ""
+msgstr "Tilføj felt"
 
 #: src/imports/ContactList/ContactListPage.qml:462
 msgid "Add contact"
-msgstr ""
+msgstr "Tilføj kontant"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:59
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
 #: src/imports/ContactView/ContactDetailAddressesView.qml:24
 msgid "Address"
-msgstr ""
+msgstr "Adresse"
 
 #: src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:77
 #: src/imports/ContactView/ContactDetailSyncTargetView.qml:48
 msgid "Addressbook"
-msgstr ""
+msgstr "Adressebog"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:61
 msgid "Aim"
-msgstr ""
+msgstr "Aim"
 
 #: src/imports/Ubuntu/Contacts/ContactListView.qml:316
 msgid "All"
-msgstr ""
+msgstr "Alle"
 
 #: src/imports/Common/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
-msgstr ""
+msgstr "Er du sikker på at du vil fjerne alle de valgte konti?"
 
 #: src/imports/Common/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
-msgstr ""
+msgstr "Er du sikker på at du vil fjerne denne kontakt?"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:133
 #: src/imports/ContactEdit/ContactEditor.qml:372
 #: src/imports/ContactList/ContactListPage.qml:418
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:37
 msgid "Cancel"
-msgstr ""
+msgstr "Annullér"
 
 #: src/imports/ContactList/ContactListPage.qml:330
 msgid "Cancel selection"
-msgstr ""
+msgstr "Annullér valg"
 
 #: src/imports/ContactList/VCardImportDialog.qml:80
 msgid "Close"
-msgstr ""
+msgstr "Luk"
 
 #: src/imports/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
-msgstr ""
+msgstr "Kontakt ikke fundet"
 
 #: src/imports/ContactList/ContactListPage.qml:146
 msgid "Contacts"
-msgstr ""
+msgstr "Kontakter"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
-msgstr ""
+msgstr "Land"
 
 #: src/imports/ContactEdit/ContactEditor.qml:337
 #: src/imports/ContactList/ContactListPage.qml:235
 #: src/imports/ContactList/ContactListPage.qml:355
 msgid "Delete"
-msgstr ""
+msgstr "Slet"
 
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:53
 msgid "Done"
-msgstr ""
+msgstr "Færdig"
 
 #: src/imports/ContactEdit/ContactEditor.qml:141
 #: src/imports/ContactView/ContactView.qml:217
 msgid "Edit"
-msgstr ""
+msgstr "Redigér"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:57
 #: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:23
 #: src/imports/ContactView/ContactDetailEmailsView.qml:23
 #: src/imports/ContactView/ContactDetailEmailsView.qml:26
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 #: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:28
 msgid "Enter a number"
-msgstr ""
+msgstr "Indtast et tal"
 
 #: src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:28
 msgid "Enter a social alias"
-msgstr ""
+msgstr "Indtast et kaldenavn"
 
 #: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:27
 msgid "Enter an email address"
-msgstr ""
+msgstr "Indtast en e-mail-adresse"
 
 #: src/imports/ContactView/ContactFetchError.qml:25
 #: src/imports/MainWindow.qml:112
 msgid "Error"
-msgstr ""
+msgstr "Fejl"
 
 #: src/imports/ContactView/ContactView.qml:195
 msgid "Favorite"
-msgstr ""
+msgstr "Favorit"
 
 #: src/imports/Ubuntu/Contacts/ContactListView.qml:348
 msgid "Favourites"
-msgstr ""
+msgstr "Favoritter"
 
 #: src/imports/ContactEdit/ContactDetailNameEditor.qml:83
 msgid "First name"
-msgstr ""
+msgstr "Fornavn"
 
 #: src/imports/Ubuntu/Contacts/ContactListView.qml:442
 msgid "Frequently called"
-msgstr ""
+msgstr "Oftest ringet til"
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:116
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:99
 msgid "Home"
-msgstr ""
+msgstr "Hjem"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "ICQ"
-msgstr ""
+msgstr "ICQ"
 
 #: src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:24
 msgid "IM"
-msgstr ""
+msgstr "Lynbeskeder"
 
 #: src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
-msgstr ""
+msgstr "Importér vCards"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
 msgid "Importing..."
-msgstr ""
+msgstr "Importerer..."
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
 msgid "Jabber"
-msgstr ""
+msgstr "Jabber"
 
 #: src/imports/ContactEdit/ContactDetailNameEditor.qml:83
 msgid "Last name"
-msgstr ""
+msgstr "Efternavn"
 
 #: src/imports/ContactEdit/AvatarImport.qml:71
 msgid "Loading"
-msgstr ""
+msgstr "Indlæser"
 
 #: src/imports/ContactList/ContactListPage.qml:320
 msgid "Loading..."
-msgstr ""
+msgstr "Indlæser..."
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:32
 msgid "Locality"
-msgstr ""
+msgstr "Lokalitet"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:103
 msgid "Mobile"
-msgstr ""
+msgstr "Mobil"
 
 #: src/imports/Common/RemoveContactsDialog.qml:44
 msgid "Multiple contacts"
-msgstr ""
+msgstr "Flere kontakter"
 
 #: src/imports/ContactEdit/TextInputDetail.qml:74
 msgid "Next"
-msgstr ""
+msgstr "Næste"
 
 #: src/imports/Common/RemoveContactsDialog.qml:74
 #: src/imports/ContactList/OnlineAccountsMessage.qml:48
 msgid "No"
-msgstr ""
+msgstr "Nej"
 
 #: src/imports/Common/RemoveContactsDialog.qml:40
 msgid "No contact selected."
-msgstr ""
+msgstr "Ingen kontakt valgt."
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Organization"
-msgstr ""
+msgstr "Organisation"
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:118
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:107
 msgid "Other"
-msgstr ""
+msgstr "Andet"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:55
 #: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:24
 #: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:30
 msgid "Phone"
-msgstr ""
+msgstr "Telefon"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
-msgstr ""
+msgstr "Postnummer"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:63
 msgid "Professional Details"
-msgstr ""
+msgstr "Arbejdsdetaljer"
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:23
 #: src/imports/ContactView/ContactDetailOrganizationsView.qml:27
 msgid "Professional details"
-msgstr ""
+msgstr "Arbejdsdetaljer"
 
 #: src/imports/ContactList/ContactListPage.qml:372
 msgid "Quit"
-msgstr ""
+msgstr "Afslut"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:33
 msgid "Region"
-msgstr ""
+msgstr "Region"
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:31
 msgid "Role"
-msgstr ""
+msgstr "Rolle"
 
 #: src/imports/ContactEdit/ContactEditor.qml:385
 msgid "Save"
-msgstr ""
+msgstr "Gem"
 
 #: src/imports/ContactList/ContactListPage.qml:396
 msgid "Search"
-msgstr ""
+msgstr "Søg"
 
 #: src/imports/ContactList/ContactListPage.qml:355
 msgid "Select"
-msgstr ""
+msgstr "Vælg"
 
 #: src/imports/ContactList/ContactListPage.qml:339
 msgid "Select All"
-msgstr ""
+msgstr "Vælg alle"
 
 #: src/imports/ContactList/ContactListPage.qml:512
 msgid "Select Contacts"
-msgstr ""
+msgstr "Vælg kontakter"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:116
 msgid "Select a field"
-msgstr ""
+msgstr "Vælg et felt"
 
 #: src/imports/ContactView/ContactView.qml:206
 msgid "Share"
-msgstr ""
+msgstr "Del"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
 msgid "Skype"
-msgstr ""
+msgstr "Skype"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:61
 #: src/imports/ContactView/ContactDetailOnlineAccountsView.qml:27
 msgid "Social"
-msgstr ""
+msgstr "Socialt"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:31
 msgid "Street"
-msgstr ""
+msgstr "Gade"
 
 #: src/imports/ContactList/ContactListPage.qml:387
 msgid "Sync"
-msgstr ""
+msgstr "Synkronisering"
 
 #: src/imports/ContactList/ContactListPage.qml:387
 msgid "Syncing"
-msgstr ""
+msgstr "Synkroniserer"
 
 #: src/imports/ContactList/ContactListPage.qml:320
 msgid "Syncing..."
-msgstr ""
+msgstr "Synkroniserer..."
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:32
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: src/imports/ContactView/ContactDetailOnlineAccountsView.qml:30
 msgid "Touch"
-msgstr ""
+msgstr "Berøring"
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:117
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:101
 msgid "Work"
-msgstr ""
+msgstr "Arbejde"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
 msgid "Work Mobile"
-msgstr ""
+msgstr "Arbejdsmobil"
 
 #: src/imports/ContactList/OnlineAccountsMessage.qml:28
 msgid ""
 "Would you like to sync contacts\n"
 "from online accounts now?"
 msgstr ""
+"Vil du synkronisere kontakter\n"
+"fra andre onlinekonti nu?"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
-msgstr ""
+msgstr "Yahoo"
 
 #: src/imports/Common/RemoveContactsDialog.qml:62
 #: src/imports/ContactList/OnlineAccountsMessage.qml:36
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
-msgstr ""
+msgstr "Du har ingen kontakter."
