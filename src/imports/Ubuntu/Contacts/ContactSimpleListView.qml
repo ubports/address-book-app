@@ -167,7 +167,6 @@ MultipleSelectionListView {
 
     /* internal */
     property var _currentSwipedItem: null
-    property double _expandPosition: -1
 
     /*!
       This handler is called when any error occurs in the contact model
@@ -287,9 +286,7 @@ MultipleSelectionListView {
         dirtyModel.restart()
     }
 
-    highlightFollowsCurrentItem: !view.flicking
-    onFlickStarted: currentIndex = -1
-
+    onFlickStarted: view.currentIndex = -1
     listDelegate: ContactDelegate {
         id: contactDelegate
 
@@ -300,6 +297,7 @@ MultipleSelectionListView {
             removalAnimation.start()
         }
 
+        flicking: contactListView.flicking
         width: parent.width
         selected: contactListView.multiSelectionEnabled && contactListView.isSelected(contactDelegate)
         defaultAvatarUrl: contactListView.defaultAvatarImageUrl
@@ -326,6 +324,7 @@ MultipleSelectionListView {
                 }
             }
         }
+
 
         // used by swipe to delete
         removalAnimation: SequentialAnimation {
@@ -363,8 +362,8 @@ MultipleSelectionListView {
                 return
             // check if we should expand and display the details picker
             } else if (detailToPick !== -1) {
+                //view.highlightFollowsCurrentItem = true
                 contactListView.currentIndex = index
-                contactListView._expandPosition = contactListView.contentY
                 return
             } else if (detailToPick == -1) {
                 contactListView.detailClicked(contact, null, "")
