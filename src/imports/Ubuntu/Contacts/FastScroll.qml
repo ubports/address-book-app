@@ -56,6 +56,8 @@ Item {
     readonly property double minimumHeight: rail.height
 
     width: units.gu(7)
+    height: rail.height
+
     onListViewChanged: {
         if (listView && listView.model) {
             internal.initDirtyObserver();

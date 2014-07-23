@@ -692,10 +692,8 @@ Item {
                  (((view.contentY - view.originY) - view.headerItem.height) >= 0) // hearder already invisble
 
         anchors {
-            top: view.top
-            topMargin: units.gu(0.5)
-            bottom: view.bottom
             right: parent.right
+            verticalCenter: parent.verticalCenter
         }
     }
 }
