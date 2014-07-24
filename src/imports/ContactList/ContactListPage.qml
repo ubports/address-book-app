@@ -251,10 +251,8 @@ PageWithBottomEdge {
         anchors {
             top: parent.top
             left: parent.left
-            leftMargin: units.gu(1)
             bottom: keyboard.top
             right: parent.right
-            rightMargin: units.gu(1)
         }
         filterTerm: searchField.text
         detailToPick: ContactDetail.PhoneNumber

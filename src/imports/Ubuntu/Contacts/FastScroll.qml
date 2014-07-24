@@ -144,9 +144,9 @@ Item {
                                  (listView.currentIndex == -1)
         anchors {
             right: parent.right
-            rightMargin: units.gu(1)
+            rightMargin: units.gu(2)
             left: parent.left
-            leftMargin: units.gu(3)
+            leftMargin: units.gu(2)
             top: parent.top
         }
         height: childrenRect.height

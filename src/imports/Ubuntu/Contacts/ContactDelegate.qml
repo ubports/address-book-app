@@ -83,7 +83,9 @@ ListItemWithActions {
                 left: parent.left
                 top: parent.top
                 bottom: parent.bottom
-                margins: units.gu(1)
+                topMargin: units.gu(1)
+                bottomMargin: units.gu(1)
+                leftMargin: units.gu(2)
             }
             width: root.showAvatar ? height : 0
             visible: width > 0
@@ -96,7 +98,9 @@ ListItemWithActions {
                 left: avatar.right
                 leftMargin: units.gu(2)
                 verticalCenter: parent.verticalCenter
-                right: infoIcon.left
+                right: parent.right
+                rightMargin: infoIcon.anchors.rightMargin + infoIcon.height
+
             }
             color: UbuntuColors.lightAubergine
             text: contact ? ContactsJS.formatToDisplay(contact, root.titleDetail, root.titleFields, "") : root.defaultTitle

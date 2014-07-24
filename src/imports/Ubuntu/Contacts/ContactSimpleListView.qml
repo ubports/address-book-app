@@ -262,7 +262,7 @@ MultipleSelectionListView {
             anchors {
                 left: parent.left
                 right: parent.right
-                margins: units.gu(1)
+                margins: units.gu(2)
             }
             height: units.gu(3)
             Label {
