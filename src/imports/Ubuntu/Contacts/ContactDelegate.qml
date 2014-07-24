@@ -32,6 +32,7 @@ ListItemWithActions {
     property variant titleFields: [ Name.FirstName, Name.LastName ]
     property bool detailsShown: false
     property int loaderOpacity: 0.0
+    property bool flicking: false
 
     signal clicked(int index, QtObject contact)
     signal pressAndHold(int index, QtObject contact)
@@ -180,7 +181,9 @@ ListItemWithActions {
     Behavior on height {
         id: behaviorOnHeight
 
-        enabled: false
+        property bool active: false
+
+        enabled: active && !root.flicking
         UbuntuNumberAnimation { }
     }
 
@@ -200,7 +203,7 @@ ListItemWithActions {
             }
             PropertyChanges {
                 target: behaviorOnHeight
-                enabled: true
+                active: true
             }
         }
     ]
@@ -209,10 +212,6 @@ ListItemWithActions {
             from: "expanded"
             to: ""
             SequentialAnimation {
-                UbuntuNumberAnimation {
-                    target: root
-                    properties: "height, loaderOpacity"
-                }
                 PropertyAction {
                     target: root
                     property: "clip"
@@ -243,6 +242,7 @@ ListItemWithActions {
                     properties: "ListView.delayRemove"
                     value: true
                 }
+
             }
         }
     ]

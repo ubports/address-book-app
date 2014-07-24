@@ -303,7 +303,9 @@ Item {
             if (internal.desireSection !== section) {
                 internal.desireSection = section
                 moveIndicator(section)
-                timerScroll.restart()
+                if (dragArea.pressed) {
+                    timerScroll.restart()
+                }
             }
         }
 
@@ -316,3 +318,4 @@ Item {
         }
     }
 }
+
