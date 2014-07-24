@@ -139,8 +139,9 @@ Item {
     Column {
         id: rail
 
-        property bool isVisible: root.enabled && (listView.moving || dragArea.pressed)
-
+        property bool isVisible: root.enabled &&
+                                 (listView.moving || dragArea.pressed) &&
+                                 (listView.currentIndex == -1)
         anchors {
             right: parent.right
             rightMargin: units.gu(2)

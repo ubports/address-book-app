@@ -212,6 +212,11 @@ ListItemWithActions {
             from: "expanded"
             to: ""
             SequentialAnimation {
+                UbuntuNumberAnimation {
+                    target: root
+                    properties: "height,loaderOpacity"
+                    duration: root.flicking ? 0 : UbuntuAnimation.FastDuration
+                }
                 PropertyAction {
                     target: root
                     property: "clip"
