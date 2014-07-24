@@ -286,6 +286,7 @@ MultipleSelectionListView {
         dirtyModel.restart()
     }
 
+    onFlickStarted: view.currentIndex = -1
     listDelegate: ContactDelegate {
         id: contactDelegate
 
@@ -296,6 +297,7 @@ MultipleSelectionListView {
             removalAnimation.start()
         }
 
+        flicking: contactListView.flicking
         width: parent.width
         selected: contactListView.multiSelectionEnabled && contactListView.isSelected(contactDelegate)
         defaultAvatarUrl: contactListView.defaultAvatarImageUrl
@@ -322,6 +324,7 @@ MultipleSelectionListView {
                 }
             }
         }
+
 
         // used by swipe to delete
         removalAnimation: SequentialAnimation {
@@ -359,6 +362,7 @@ MultipleSelectionListView {
                 return
             // check if we should expand and display the details picker
             } else if (detailToPick !== -1) {
+                //view.highlightFollowsCurrentItem = true
                 contactListView.currentIndex = index
                 return
             } else if (detailToPick == -1) {
@@ -384,7 +388,6 @@ MultipleSelectionListView {
         model: root.listModel
         onContactFetched: contactListView.infoRequested(contact)
     }
-
     // This is a workaround to make sure the spinner will disappear if the model is empty
     // FIXME: implement a model property to say if the model still busy or not
     Item {

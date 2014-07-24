@@ -75,7 +75,7 @@ Item {
         radius: height * 0.3
         height: pinSize * 2
         width: height
-        opacity: internal.fastScrolling ? 1.0 : 0.0
+        opacity: internal.fastScrolling && root.enabled ? 1.0 : 0.0
         x: -cursor.width - units.gu(3)
         y: {
             if (internal.currentItem) {
@@ -144,6 +144,8 @@ Item {
             if (isVisible) {
                 rail.opacity = 1.0
                 hideTimer.stop()
+            } else if (!root.enabled) {
+                rail.opacity = 0.0
             } else {
                 hideTimer.restart()
             }
@@ -167,7 +169,7 @@ Item {
                 horizontalAlignment: Text.AlignHCenter
                 text: internal.fastScrolling && internal.targetSection == modelData ? "" : modelData
                 fontSize: "x-small"
-                color: internal.currentItem.text === text ? Theme.palette.selected.foregroundText : Theme.palette.selected.backgroundText
+                color: internal.currentItem && (internal.currentItem.text === text) ? Theme.palette.selected.foregroundText : Theme.palette.selected.backgroundText
                 opacity: !internal.modelDirty && Sections.contains(text) ? 1.0 : 0.5
             }
         }
@@ -236,6 +238,7 @@ Item {
             if (internal.desireSection != internal.currentSection) {
                 var idx = Sections.getIndexFor(internal.desireSection)
                 if (idx !== -1) {
+                    listView.cancelFlick()
                     listView.positionViewAtIndex(idx, ListView.Beginning)
                 }
             }
@@ -290,7 +293,9 @@ Item {
             if (internal.desireSection !== section) {
                 internal.desireSection = section
                 moveIndicator(section)
-                timerScroll.restart()
+                if (dragArea.pressed) {
+                    timerScroll.restart()
+                }
             }
         }
 
@@ -303,3 +308,4 @@ Item {
         }
     }
 }
+

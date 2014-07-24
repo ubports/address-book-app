@@ -61,6 +61,8 @@ class AddressBookAppTestCase(AutopilotTestCase):
                 vcard_data = AddressBookAppTestCase.VCARD_PATH_BIN
 
         os.environ["ADDRESS_BOOK_TEST_DATA"] = vcard_data
+        os.environ["LANG"] = "en_US.UTF-8"
+        os.environ["LANGUAGE"] ="en_US"
         if vcard_data != "":
             print("Using vcard %s" % vcard_data)
         if os.path.exists(self.app_bin):
