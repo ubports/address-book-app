@@ -23,7 +23,7 @@ Page {
     id: picker
 
     property var contactModel
-    property var contact
+    property var contacts
     property var curTransfer
 
     ContentHub.ContentPeerPicker {
@@ -36,7 +36,7 @@ Page {
             picker.curTransfer = peer.request();
             if (picker.curTransfer.state === ContentHub.ContentTransfer.InProgress) {
                 var vCardUrl = "file:///tmp/vcard_" + encodeURIComponent(contact.contactId) + ".vcf"
-                picker.contactModel.exportContacts(vCardUrl, [], [picker.contact])
+                picker.contactModel.exportContacts(vCardUrl, [], picker.contacts)
             }
         }
 

@@ -19,8 +19,10 @@ import QtContacts 5.0
 
 import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 1.0 as ListItem
+import Ubuntu.Components.Popups 1.0 as Popups
 import Ubuntu.Contacts 0.1 as ContactsUI
 import Ubuntu.Content 0.1 as ContentHub
+
 import "../Common"
 
 PageWithBottomEdge {
@@ -249,8 +251,10 @@ PageWithBottomEdge {
         anchors {
             top: parent.top
             left: parent.left
+            leftMargin: units.gu(1)
             bottom: keyboard.top
             right: parent.right
+            rightMargin: units.gu(1)
         }
         filterTerm: searchField.text
         detailToPick: ContactDetail.PhoneNumber
@@ -294,25 +298,6 @@ PageWithBottomEdge {
                 Qt.openUrlExternally("message:///" + encodeURIComponent(detail.number))
             else if ((mainPage.state === "newphone") || (mainPage.state === "newphoneSearching")) {
                 mainPage.addPhoneToContact(contact.contactId, mainPage.newPhoneToAdd)
-            }
-        }
-
-        onSelectionDone: {
-            if (pickMode) {
-                var contacts = []
-                for (var i=0; i < items.count; i++) {
-                    contacts.push(items.get(i).model.contact)
-                }
-                contactExporter.exportContacts(contacts)
-            } else {
-                var contacts = []
-
-                for (var i=0, iMax=items.count; i < iMax; i++) {
-                    contacts.push(items.get(i).model.contact)
-                }
-
-                var dialog = PopupUtils.open(removeContactDialog, null)
-                dialog.contacts = contacts
             }
         }
 
@@ -465,7 +450,7 @@ PageWithBottomEdge {
             actions: [
                 Action {
                     text: i18n.tr("Select All")
-                    iconName: "filter"
+                    iconName: "select"
                     onTriggered: {
                         if (contactList.selectedItems.count === contactList.count) {
                             contactList.clearSelection()
@@ -476,10 +461,41 @@ PageWithBottomEdge {
                     visible: contactList.isInSelectionMode
                 },
                 Action {
-                    text: mainPage.pickMode ? i18n.tr("Select") : i18n.tr("Delete")
-                    iconName: mainPage.pickMode ? "select" : "delete"
-                    onTriggered: contactList.endSelection()
+                    text: i18n.tr("Share")
+                    iconName: "share"
                     visible: contactList.isInSelectionMode
+                    onTriggered: {
+                        var contacts = []
+                        var items = contactList.selectedItems
+
+                        for (var i=0; i < items.count; i++) {
+                            contacts.push(items.get(i).model.contact)
+                        }
+                        if (mainPage.pickMode) {
+                            contactExporter.exportContacts(contacts)
+                        } else {
+                            pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
+                                           { contactModel: root.model, contacts: contacts })
+                        }
+                    }
+                },
+                Action {
+                    text: i18n.tr("Delete")
+                    iconName: "delete"
+                    visible: contactList.isInSelectionMode && !mainPage.pickMode
+                    onTriggered: {
+
+                        var contacts = []
+                        var items = contactList.selectedItems
+
+                        for (var i=0, iMax=items.count; i < iMax; i++) {
+                            contacts.push(items.get(i).model.contact)
+                        }
+
+                        var dialog = PopupUtils.open(removeContactDialog, null)
+                        dialog.contacts = contacts
+                        contactList.endSelection()
+                    }
                 }
             ]
             PropertyChanges {
@@ -489,10 +505,9 @@ PageWithBottomEdge {
             }
             PropertyChanges {
                 target: mainPage
-                bottomEdhgeEnabled: false
-                title: i18n.tr("Select Contacts")
+                bottomEdgeEnabled: false
+                title: " "
             }
-
         },
         PageHeadState {
             name: "newphone"

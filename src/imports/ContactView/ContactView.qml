@@ -207,7 +207,7 @@ Page {
                 iconName: "share"
                 onTriggered: {
                     pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
-                                   { contactModel: root.model, contact: root.contact})
+                                   { contactModel: root.model, contacts: [root.contact] })
                 }
             }
         }

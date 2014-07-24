@@ -271,7 +271,7 @@ MultipleSelectionListView {
                     left: parent.left
                     right: parent.right
                 }
-                height: units.gu(2)
+                height: units.gu(3)
                 verticalAlignment: Text.AlignVCenter
                 text: section != "" ? section : "#"
                 fontSize: "small"
