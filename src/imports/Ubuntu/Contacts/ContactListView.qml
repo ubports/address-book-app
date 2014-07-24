@@ -411,17 +411,13 @@ Item {
             }
         }
 
-        onFlickStarted: Qt.inputMethod.hide()
+        onFlickStarted: forceActiveFocus()
 
         anchors {
             top: itemHeader.bottom
             left: parent.left
             right: parent.right
             bottom: parent.bottom
-            rightMargin: fastScroll.showing ? fastScroll.width - units.gu(1) : 0
-            Behavior on rightMargin {
-                UbuntuNumberAnimation {}
-            }
         }
 
         // WORKAROUND: The SDK header causes the contactY to move to a wrong postion

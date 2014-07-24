@@ -489,7 +489,7 @@ PageWithBottomEdge {
             }
             PropertyChanges {
                 target: mainPage
-                bottomEdgeEnabled: false
+                bottomEdhgeEnabled: false
                 title: i18n.tr("Select Contacts")
             }
 

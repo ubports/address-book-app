@@ -70,6 +70,15 @@ Item {
         }
     }
 
+    Connections {
+        target: listView
+        onCurrentIndexChanged: {
+            if (currentIndex != -1) {
+                rail.opacity = 0.0
+            }
+        }
+    }
+
     Rectangle {
         id: magnified
 
@@ -100,7 +109,6 @@ Item {
             UbuntuNumberAnimation {}
         }
     }
-
 
     Rectangle {
         id: cursor
