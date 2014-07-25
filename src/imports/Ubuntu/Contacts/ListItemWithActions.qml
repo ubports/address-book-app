@@ -28,7 +28,7 @@ Item {
     property var activeItem: null
     property bool triggerActionOnMouseRelease: false
     property color color: Theme.palette.normal.background
-    property color selectedColor: Theme.palette.selected.background
+    property color selectedColor: Theme.palette.normal.foreground
     property bool selected: false
     default property alias contents: main.children
 
@@ -206,7 +206,7 @@ Item {
             }
         }
         Behavior on color {
-            UbuntuColorAnimation {}
+           ColorAnimation {}
         }
     }
 

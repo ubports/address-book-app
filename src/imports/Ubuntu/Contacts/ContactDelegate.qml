@@ -24,7 +24,6 @@ ListItemWithActions {
     id: root
 
     property bool showAvatar: true
-    property bool selected: false
     property bool isCurrentItem: false
     property string defaultAvatarUrl: ""
     property string defaultTitle: ""
@@ -59,6 +58,15 @@ ListItemWithActions {
         anchors {
             left: parent.left
             right: parent.right
+        }
+
+        Rectangle {
+            anchors.fill: parent
+            color: "black"
+            opacity: root.detailsShown ? 0.1 : 0.0
+            Behavior on opacity {
+                NumberAnimation { }
+            }
         }
 
         ContactAvatar {
