@@ -341,11 +341,10 @@ ContactsUI.PageWithBottomEdge {
             right: parent.right
             rightMargin: units.gu(2)
         }
-
         visible: mainPage.searching
         onTextChanged: contactList.currentIndex = -1
         inputMethodHints: Qt.ImhNoPredictiveText
-        placeholderText: i18n.tr("Search for contact name or phone")
+        placeholderText: i18n.tr("Search...")
     }
 
     Connections {

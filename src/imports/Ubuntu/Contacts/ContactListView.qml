@@ -62,13 +62,6 @@ Item {
     */
     property var filter: null
     /*!
-      \qmlproperty bool showFavourites
-
-      This property holds if the option to switch between favourite and all contacts should be visible
-      By default this is set to true.
-    */
-    property alias showFavourites: view.showFavourites
-    /*!
       \qmlproperty bool showAvatar
 
       This property holds if the contact avatar will appear on the list or not.
@@ -315,67 +308,6 @@ Item {
         contactsModel.update()
     }
 
-    Rectangle {
-        id: itemHeader
-
-        visible: root.showFavourites && (root.filterTerm.length === 0)
-        height: visible ? units.gu(2) : 0
-        anchors {
-            left: parent.left
-            right: parent.right
-            top: parent.top
-        }
-        color: Theme.palette.normal.overlay
-
-        Row {
-            anchors.fill: parent
-            Label {
-                id: lblAll
-
-                anchors {
-                    top: parent.top
-                    bottom: parent.bottom
-                }
-                width: parent.width / 2
-                text: i18n.dtr("address-book-app", "All")
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                color: view.favouritesIsSelected ? UbuntuColors.warmGrey : UbuntuColors.orange
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: showAllContacts()
-                }
-            }
-
-            Rectangle {
-                anchors {
-                    top: parent.top
-                    bottom: parent.bottom
-                    margins: units.gu(1)
-                }
-                width: 1
-            }
-
-            Label {
-                id: lblFavourites
-
-                anchors {
-                    top: parent.top
-                    bottom: parent.bottom
-                }
-                width: parent.width / 2
-                text: i18n.dtr("address-book-app", "Favourites")
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                color: view.favouritesIsSelected ? UbuntuColors.orange : UbuntuColors.warmGrey
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: showFavoritesContacts()
-                }
-            }
-        }
-    }
-
     onFilterTermChanged: contactSearchTimeout.restart()
 
     // colapse contacts if the keyboard appears
@@ -412,13 +344,7 @@ Item {
         }
 
         onFlickStarted: forceActiveFocus()
-
-        anchors {
-            top: itemHeader.bottom
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-        }
+        anchors.fill: parent
 
         // WORKAROUND: The SDK header causes the contactY to move to a wrong postion
         // calling the positionViewAtBeginning after the list created fix that
