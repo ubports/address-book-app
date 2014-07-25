@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-16 09:55-0300\n"
-"PO-Revision-Date: 2014-07-23 10:29+0000\n"
-"Last-Translator: Kristóf Kiszel <Unknown>\n"
+"PO-Revision-Date: 2014-07-24 08:21+0000\n"
+"Last-Translator: Gabor Kelemen <kelemeng@openscope.org>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-24 06:32+0000\n"
+"X-Launchpad-Export-Date: 2014-07-25 07:53+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
@@ -78,11 +78,11 @@ msgstr "Bezárás"
 
 #: src/imports/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
-msgstr "A kapcsolat nem található"
+msgstr "A névjegy nem található"
 
 #: src/imports/ContactList/ContactListPage.qml:146
 msgid "Contacts"
-msgstr "Kapcsolatok"
+msgstr "Névjegyek"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
@@ -267,7 +267,7 @@ msgstr "Összes kijelölése"
 
 #: src/imports/ContactList/ContactListPage.qml:512
 msgid "Select Contacts"
-msgstr "Névjegyek kiválasztása"
+msgstr "Válasszon névjegyeket"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:116
 msgid "Select a field"
