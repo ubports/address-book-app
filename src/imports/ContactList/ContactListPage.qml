@@ -25,7 +25,7 @@ import Ubuntu.Content 0.1 as ContentHub
 
 import "../Common"
 
-PageWithBottomEdge {
+ContactsUI.PageWithBottomEdge {
     id: mainPage
     objectName: "contactListPage"
 

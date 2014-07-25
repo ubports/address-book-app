@@ -34,7 +34,7 @@ QtObject {
                     for(var i=0; i < transfer.items.length; i++) {
                         urls.push(transfer.items[i].url)
                     }
-                    pageStack.importContactRequested(urls)
+                    pageStack.contactList.importContact(urls)
                 }
             }
         }

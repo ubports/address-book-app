@@ -18,6 +18,7 @@ set(CONTACT_COMPONENTS_QMLS
     MostCalledModel.qml
     MultipleSelectionListView.qml
     MultipleSelectionVisualModel.qml
+    PageWithBottomEdge.qml
     qmldir
 )
 
