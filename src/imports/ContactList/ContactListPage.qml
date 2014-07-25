@@ -187,7 +187,6 @@ ContactsUI.PageWithBottomEdge {
         id: contactList
         objectName: "contactListView"
 
-        showFavourites: false
         header:  Item {
             id: addNewContactButton
             objectName: "addNewContact"

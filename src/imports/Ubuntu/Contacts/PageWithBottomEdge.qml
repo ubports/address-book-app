@@ -77,8 +77,8 @@ Page {
     property bool reloadBottomEdgePage: true
 
     readonly property alias bottomEdgePage: edgeLoader.item
-    readonly property bool isReady: (tip.opacity === 0.0)
-    readonly property bool isCollapsed: (tip.opacity === 1.0)
+    readonly property bool isReady: (bottomEdge.y === 0)
+    readonly property bool isCollapsed: (bottomEdge.y === page.height)
     readonly property bool bottomEdgePageLoaded: (edgeLoader.status == Loader.Ready)
 
     property bool _showEdgePageWhenReady: false
