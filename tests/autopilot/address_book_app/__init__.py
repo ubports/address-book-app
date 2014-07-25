@@ -128,12 +128,12 @@ class MainWindow(ubuntuuitoolkit.MainView):
         self.click_action_button("save")
         bottom_swipe_page.isCollapsed.wait_for(True)
 
-    def done_selection(self):
+    def done_selection(self, actionName):
         """
         Press the 'doneSelection' button
         """
         bottom_swipe_page = self.get_contact_list_page()
-        self.click_action_button("doneSelection")
+        self.click_action_button(actionName)
         bottom_swipe_page.isCollapsed.wait_for(True)
 
     def get_toolbar(self):

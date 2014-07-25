@@ -457,6 +457,7 @@ ContactsUI.PageWithBottomEdge {
                     visible: contactList.isInSelectionMode
                 },
                 Action {
+                    objectName: "share"
                     text: i18n.tr("Share")
                     iconName: "share"
                     visible: contactList.isInSelectionMode
@@ -469,13 +470,15 @@ ContactsUI.PageWithBottomEdge {
                         }
                         if (mainPage.pickMode) {
                             contactExporter.exportContacts(contacts)
+                            mainPage.pickMode = false
                         } else {
                             pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
-                                           { contactModel: root.model, contacts: contacts })
+                                           { contactModel: contactList.model, contacts: contacts })
                         }
                     }
                 },
                 Action {
+                    objectName: "delete"
                     text: i18n.tr("Delete")
                     iconName: "delete"
                     visible: contactList.isInSelectionMode && !mainPage.pickMode

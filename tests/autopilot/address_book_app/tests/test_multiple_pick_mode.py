@@ -25,45 +25,45 @@ class TestMultiplePickerMode(AddressBookAppTestCase):
         pick_page = self.app.main_window.get_contact_list_pick_page()
         contacts = pick_page.select_many("ContactDelegate")
 
-        # all selection marks should be invisible
-        selection_marks = []
-        mark_to_contacts = {}
+        # all items should be invisible
+        items = []
+        item_to_contacts = {}
         for contact in contacts:
             if (contact.visible):
-                mark = contact.select_single("QQuickRectangle", objectName="selectionMark")
-                self.assertThat(mark.opacity, Eventually(Equals(0.0)))
-                selection_marks.append(mark)
-                mark_to_contacts[mark] = contact
+                item = contact.select_single("QQuickRectangle", objectName="mainItem")
+                self.assertThat(item.color, Eventually(Equals(contact.color)))
+                items.append(item)
+                item_to_contacts[item] = contact
 
         # click on mark 1
-        selected_marks = [ selection_marks[1] ]
-        self.pointing_device.click_object(selection_marks[1])
+        selected_items = [ items[1] ]
+        self.pointing_device.click_object(items[1])
 
-        for mark in selection_marks:
-            if mark in selected_marks:
-                self.assertThat(mark_to_contacts[mark].selected, Eventually(Equals(True)))
+        for item in items:
+            if item in selected_items:
+                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(True)))
             else:
-                self.assertThat(mark_to_contacts[mark].selected, Eventually(Equals(False)))
+                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(False)))
 
         # click on mark 2
-        selected_marks.append(selection_marks[2])
-        self.pointing_device.click_object(selection_marks[2])
+        selected_items.append(items[2])
+        self.pointing_device.click_object(items[2])
 
-        for mark in selection_marks:
-            if mark in selected_marks:
-                self.assertThat(mark_to_contacts[mark].selected, Eventually(Equals(True)))
+        for item in items:
+            if item in selected_items:
+                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(True)))
             else:
-                self.assertThat(mark_to_contacts[mark].selected, Eventually(Equals(False)))
+                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(False)))
 
         # click on mark 0
-        selected_marks.append(selection_marks[0])
-        self.pointing_device.click_object(selection_marks[0])
+        selected_items.append(items[0])
+        self.pointing_device.click_object(items[0])
 
-        for mark in selection_marks:
-            if mark in selected_marks:
-                self.assertThat(mark_to_contacts[mark].selected, Eventually(Equals(True)))
+        for item in items:
+            if item in selected_items:
+                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(True)))
             else:
-                self.assertThat(mark_to_contacts[mark].selected, Eventually(Equals(False)))
+                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(False)))
 
         buttons = pick_page.select_many("Button", objectName="DialogButtons.acceptButton")
         for b in buttons:

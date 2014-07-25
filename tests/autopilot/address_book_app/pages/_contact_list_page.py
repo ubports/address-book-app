@@ -32,8 +32,8 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
 
     def __init__(self, *args):
         self.contacts = None
-        self.selection_marks = []
-        self.selected_marks = []
+        self.items = []
+        self.selected_items = []
         super(ContactListPage, self).__init__(*args)
 
     def open_contact(self, index):
@@ -60,31 +60,31 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
     def get_contacts(self):
         """
         Returns a list of ContactDelegate objects and populate
-        self.selection_marks
+        self.items
         """
         time.sleep(1)
         self.contacts = self.select_many("ContactDelegate")
-        self.selection_marks = []
+        self.items = []
         for contact in self.contacts:
             if contact.visible:
-                mark = contact.select_single("QQuickRectangle",
-                                             objectName="selectionMark")
-            self.selection_marks.append(mark)
+                item = contact.select_single("QQuickRectangle",
+                                             objectName="mainItem")
+            self.items.append(item)
         return self.contacts
 
     def start_selection(self, idx):
         view = self._get_list_view()
         if not view.isInSelectionMode:
             self.get_contacts()
-            self.selected_marks.append(self.selection_marks[idx])
+            self.selected_items.append(self.items[idx])
             self.pointing_device.move_to_object(self.contacts[idx])
             self.pointing_device.press()
             time.sleep(2.0)
             self.pointing_device.release()
             view.isInSelectionMode.wait_for(True)
         else:
-            self.selected_marks.append(self.selection_marks[idx])
-            self.pointing_device.click_object(self.selection_marks[idx])
+            self.selected_items.append(self.items[idx])
+            self.pointing_device.click_object(self.items[idx])
 
 
     def select_contacts_by_index(self, indices):
@@ -98,13 +98,13 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
 
             # Select matching indices
             for idx in indices[1:]:
-                self.selected_marks.append(self.selection_marks[idx])
-                self.pointing_device.click_object(self.selection_marks[idx])
+                self.selected_items.append(self.items[idx])
+                self.pointing_device.click_object(self.items[idx])
 
     def deselect_all(self):
         """Deselect every contacts"""
         contacts = self.select_many("ContactDelegate")
-        self.selected_marks = []
+        self.selected_items = []
         for contact in contacts:
             if contact.selected:
                 mark = contact.select_single("QQuickRectangle",
@@ -133,7 +133,7 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
             raise
 
     def delete(self, main_window):
-        main_window.done_selection()
+        main_window.done_selection("delete")
         dialog = main_window.wait_select_single("RemoveContactsDialog",
             objectName="removeContactsDialog")
         self.click_button(main_window, "removeContactsDialog.Yes")
