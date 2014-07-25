@@ -148,7 +148,7 @@ Page {
         interval: 3000
         running: true
         repeat: false
-        onTriggered: tip.y = tip.invisiblePosition
+        onTriggered: tip.hiden = true
     }
 
     Rectangle {
@@ -172,12 +172,14 @@ Page {
             id: tip
             objectName: "bottomEdgeTip"
 
+            property bool hiden: false
+
             readonly property double visiblePosition: (page.height - bottomEdge.y) < units.gu(1) ? -bottomEdge.tipHeight + (page.height - bottomEdge.y) : 0
-            readonly property double invisiblePosition: -units.gu(1)
+            readonly property double invisiblePosition: (page.height - bottomEdge.y) < units.gu(1) ? -units.gu(1) : 0
 
             z: -1
             anchors.horizontalCenter: parent.horizontalCenter
-            y: visiblePosition
+            y: hiden ? invisiblePosition : visiblePosition
 
             width: tipLabel.paintedWidth + units.gu(6)
             height: bottomEdge.tipHeight + units.gu(1)
@@ -248,12 +250,13 @@ Page {
             }
 
             onClicked: {
-                tip.y = tip.visiblePosition
+                tip.hiden = false
                 hideIndicator.restart()
             }
         }
 
         state: "collapsed"
+        onStateChanged: console.debug("State Changed:" + state)
         states: [
             State {
                 name: "collapsed"
@@ -268,10 +271,6 @@ Page {
                 PropertyChanges {
                     target: hideIndicator
                     running: true
-                }
-                PropertyChanges {
-                    target: tip
-                    y: tip.visiblePosition
                 }
             },
             State {
@@ -295,6 +294,10 @@ Page {
                 PropertyChanges {
                     target: hideIndicator
                     running: false
+                }
+                PropertyChanges {
+                    target: tip
+                    hiden: false
                 }
             }
         ]
@@ -343,6 +346,7 @@ Page {
                             // load a new bottom page in memory
                             edgeLoader.active = true
 
+                            tip.hiden = false
                             hideIndicator.restart()
                         }
                     }
@@ -352,8 +356,8 @@ Page {
                 from: "floating"
                 to: "collapsed"
                 UbuntuNumberAnimation {
-                    targets: [bottomEdge,tip]
-                    properties: "y,opacity"
+                    target: bottomEdge
+                    property: "opacity"
                 }
             }
         ]
