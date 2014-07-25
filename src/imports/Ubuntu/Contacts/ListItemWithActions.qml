@@ -27,7 +27,9 @@ Item {
     property Action activeAction: null
     property var activeItem: null
     property bool triggerActionOnMouseRelease: false
-    property alias color: main.color
+    property color color: Theme.palette.normal.background
+    property color selectedColor: Theme.palette.selected.background
+    property bool selected: false
     default property alias contents: main.children
 
     readonly property double actionWidth: units.gu(5)
@@ -193,8 +195,8 @@ Item {
             top: parent.top
             bottom: parent.bottom
         }
-
         width: parent.width
+        color: root.selected ? root.selectedColor : root.color
         Behavior on x {
             UbuntuNumberAnimation {
                 id: mainItemMoving
@@ -202,6 +204,9 @@ Item {
                 easing.type: Easing.OutElastic
                 duration: UbuntuAnimation.SlowDuration
             }
+        }
+        Behavior on color {
+            UbuntuColorAnimation {}
         }
     }
 

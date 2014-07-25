@@ -48,7 +48,6 @@ ListItemWithActions {
     height: delegate.height
     implicitHeight: delegate.height + (pickerLoader.item ? pickerLoader.item.height : 0)
     width: parent ? parent.width : 0
-    color: Theme.palette.normal.background
 
     onItemClicked: root.clicked(index, contact)
     onItemPressAndHold: root.pressAndHold(index, contact)
@@ -60,18 +59,6 @@ ListItemWithActions {
         anchors {
             left: parent.left
             right: parent.right
-        }
-
-        Rectangle {
-            id: selectionMark
-            objectName: "selectionMark"
-
-            anchors.fill: parent
-            color: "black"
-            opacity: root.selected || root.detailsShown ? root.selected ? 0.2 : 0.1 : 0.0
-            Behavior on opacity {
-                NumberAnimation { }
-            }
         }
 
         ContactAvatar {
