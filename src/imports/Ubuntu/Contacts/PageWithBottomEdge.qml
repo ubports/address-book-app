@@ -195,6 +195,12 @@ Page {
                 height: bottomEdge.tipHeight
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
+                opacity: tip.hiden ? 0.0 : 1.0
+                Behavior on opacity {
+                    UbuntuNumberAnimation {
+                        duration: UbuntuAnimation.SnapDuration
+                    }
+                }
             }
             Behavior on y {
                 UbuntuNumberAnimation {
