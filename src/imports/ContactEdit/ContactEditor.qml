@@ -381,7 +381,7 @@ Page {
             action: Action {
                 objectName: "save"
 
-                iconName: "save"
+                iconName: "ok"
                 text: i18n.tr("Save")
                 enabled: !nameEditor.isEmpty() || !phonesEditor.isEmpty()
                 onTriggered: contactEditor.save()

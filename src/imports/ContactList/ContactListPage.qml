@@ -139,6 +139,7 @@ PageWithBottomEdge {
     {
         newPhoneToAdd = phoneNumber
         state = "newphone"
+        contactList.reset()
     }
 
     title: i18n.tr("Contacts")
@@ -432,7 +433,10 @@ PageWithBottomEdge {
                 visible: mainPage.searching
                 iconName: "close"
                 text: i18n.tr("Cancel")
-                onTriggered: mainPage.state = (mainPage.state === "newphoneSearching" ? "newphone" : "")
+                onTriggered: {
+                    contactList.forceActiveFocus()
+                    mainPage.state = (mainPage.state === "newphoneSearching" ? "newphone" : "")
+                }
             }
         }
     }

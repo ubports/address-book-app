@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-17 06:37+0000\n"
+"X-Launchpad-Export-Date: 2014-07-18 05:28+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
@@ -337,9 +337,3 @@ msgstr "是"
 #: src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "没有任何联系人。"
-
-#~ msgid "Contacts Address Book"
-#~ msgstr "联系人地址簿"
-
-#~ msgid "US"
-#~ msgstr "CN"

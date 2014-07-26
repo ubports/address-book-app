@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-16 09:55-0300\n"
-"PO-Revision-Date: 2014-07-13 17:03+0000\n"
+"PO-Revision-Date: 2014-07-19 13:02+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-17 06:37+0000\n"
+"X-Launchpad-Export-Date: 2014-07-20 06:18+0000\n"
 "X-Generator: Launchpad (build 17114)\n"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
@@ -24,7 +24,7 @@ msgstr "Імпортовано %1 візитівок"
 
 #: src/imports/ContactList/ContactListPage.qml:202
 msgid "+ New Contact"
-msgstr ""
+msgstr "+ Новий контакт"
 
 #: src/imports/ContactEdit/ContactEditor.qml:322
 msgid "Add Field"
@@ -32,7 +32,7 @@ msgstr "Додати поле"
 
 #: src/imports/ContactList/ContactListPage.qml:462
 msgid "Add contact"
-msgstr ""
+msgstr "Додати контакт"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:59
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
@@ -239,7 +239,7 @@ msgstr "Професійні дані"
 
 #: src/imports/ContactList/ContactListPage.qml:372
 msgid "Quit"
-msgstr ""
+msgstr "Вийти"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -339,9 +339,3 @@ msgstr "Так"
 #: src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "У вас немає записів контактів."
-
-#~ msgid "Contacts Address Book"
-#~ msgstr "Адресна книга контактів"
-
-#~ msgid "US"
-#~ msgstr "UA"
