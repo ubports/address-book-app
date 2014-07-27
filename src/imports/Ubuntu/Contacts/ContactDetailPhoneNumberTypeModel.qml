@@ -41,9 +41,11 @@ ListModel {
         } else if (contexts.indexOf(QtContacts.ContactDetail.ContextOther) > -1) {
             return 4
         } else {
-            // phone without context is and voice type is other
+            // phone without context and voice type is other
             if (subTypes && subTypes.indexOf(QtContacts.PhoneNumber.Voice) > -1) {
                 return 4
+            } else if (subTypes && subTypes.indexOf(QtContacts.PhoneNumber.Mobile) > -1) {
+                return 2
             } else {
                 return 2 // Default value is "Mobile"
             }
@@ -59,11 +61,11 @@ ListModel {
             return false
         }
 
-        if (listA.length != listB.length) {
+        if (listA.length !== listB.length) {
             return false
         }
         for(var i=0; i < listA.length; i++) {
-            if (listA[i] != listB[i]) {
+            if (listA[i] !== listB[i]) {
                 return false
             }
         }
@@ -79,7 +81,9 @@ ListModel {
         var newSubTypes = []
         var newContext = []
 
-        newContext.push(modelData.context)
+        if (modelData.context !== -1) {
+            newContext.push(modelData.context)
+        }
         newSubTypes.push(modelData.subType)
 
         var changed  = false
@@ -101,7 +105,7 @@ ListModel {
         append({"value": "Work", "label": i18n.dtr("address-book-app", "Work"), "icon": null,
                "context": QtContacts.ContactDetail.ContextWork, "subType": QtContacts.PhoneNumber.Voice })
         append({"value": "Mobile", "label": i18n.dtr("address-book-app", "Mobile"), "icon": null,
-                "context": QtContacts.ContactDetail.ContextHome, "subType": QtContacts.PhoneNumber.Mobile })
+                "context": -1, "subType": QtContacts.PhoneNumber.Mobile })
         append({"value": "Mobile-Work", "label": i18n.dtr("address-book-app", "Work Mobile"), "icon": null,
                 "context": QtContacts.ContactDetail.ContextWork, "subType": QtContacts.PhoneNumber.Mobile })
         append({"value": "Other", "label": i18n.dtr("address-book-app", "Other"), "icon": null,
