@@ -61,7 +61,7 @@ MainView {
     {
         mainStack.resetStack()
         if (mainStack.contactListPage) {
-            mainStack.contactListPage.startPickMode(single == "true")
+            mainStack.contactListPage.startPickMode(single == "true", null)
         }
     }
 

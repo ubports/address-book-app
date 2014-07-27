@@ -118,8 +118,9 @@ PageWithBottomEdge {
         }
     }
 
-    function startPickMode(isSingleSelection)
+    function startPickMode(isSingleSelection, activeTransfer)
     {
+        contentHubTransfer = activeTransfer
         pickMode = true
         pickMultipleContacts = !isSingleSelection
         contactList.startSelection()
@@ -304,9 +305,11 @@ PageWithBottomEdge {
         onSelectionCanceled: {
             if (pickMode) {
                 if (contentHubTransfer) {
-                    contentHubTransfer.state = ContentTransfer.Aborted
+                    contentHubTransfer.state = ContentHub.ContentTransfer.Aborted
                 }
-                pageStack.pop()
+                pickMode = false
+                contentHubTransfer = null
+                state = ""
                 application.returnVcard("")
             }
         }
@@ -609,7 +612,9 @@ PageWithBottomEdge {
             } else {
                 console.error("Fail to export contacts:" + error)
             }
-            pageStack.pop()
+            activeTransfer = null
+            pickMode = false
+            state = ""
             application.returnVcard(url)
         }
     }
