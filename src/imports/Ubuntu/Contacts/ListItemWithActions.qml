@@ -128,6 +128,14 @@ Item {
                 source: Qt.resolvedUrl("ListItemWithActionsCheckBox.qml")
                 anchors.leftMargin: units.gu(2)
             }
+            PropertyChanges {
+                target: root
+                locked: true
+            }
+            PropertyChanges {
+                target: main
+                x: 0
+            }
         }
     ]
 
