@@ -173,7 +173,7 @@ Page {
         onContactFetched: {
             root.contact = contact
             if (root.addPhoneToContact != "") {
-                var detailSourceTemplate = "import QtContacts 5.0; PhoneNumber{ number: \"" + root.addPhoneToContact + "\" }"
+                var detailSourceTemplate = "import QtContacts 5.0; PhoneNumber{ number: \"" + root.addPhoneToContact.trim() + "\" }"
                 var newDetail = Qt.createQmlObject(detailSourceTemplate, root.contact)
                 if (newDetail) {
                     root.contact.addDetail(newDetail)

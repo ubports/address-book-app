@@ -177,6 +177,10 @@ MultipleSelectionListView {
     */
     signal detailClicked(QtObject contact, QtObject detail, string action)
     /*!
+      This handler is called when add contact detail in the list receives a click
+    */
+    signal addDetailClicked(QtObject contact, int detailType)
+    /*!
       This handler is called when details button on contact delegate is clicked
     */
     signal infoRequested(QtObject contact)
@@ -316,6 +320,7 @@ MultipleSelectionListView {
         rightSideActions: contactListView.rightSideActions
 
         onDetailClicked: contactListView.detailClicked(contact, detail, action)
+        onAddDetailClicked: contactListView.addDetailClicked(contact, detailType)
         onInfoRequested: contactListView._fetchContact(index, contact)
 
         // collapse the item before remove it, to avoid crash

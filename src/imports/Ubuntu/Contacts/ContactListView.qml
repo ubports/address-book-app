@@ -219,6 +219,10 @@ Item {
     */
     signal detailClicked(QtObject contact, QtObject detail, string action)
     /*!
+      This handler is called when add contact detail in the list receives a click
+    */
+    signal addDetailClicked(QtObject contact, int detailType)
+    /*!
       This handler is called when a unknown contact is clicked, the label contains the phone number
     */
     signal addContactClicked(string label)
@@ -436,6 +440,7 @@ Item {
                         }
                         onInfoRequested: root.infoRequested(contact)
                         onDetailClicked: root.detailClicked(contact, detail, action)
+                        onAddDetailClicked: root.addDetailClicked(contact, detailType)
                         onAddContactClicked: root.addContactClicked(label)
                         onCurrentIndexChanged:  {
                             if (currentIndex !== -1) {
@@ -462,6 +467,7 @@ Item {
         onError: root.error(message)
         onInfoRequested: root.infoRequested(contact)
         onDetailClicked: root.detailClicked(contact, detail, action)
+        onAddDetailClicked: root.addDetailClicked(contact, detailType)
         onSelectionDone: root.selectionDone(items)
         onSelectionCanceled: root.selectionCanceled()
         onContactDisappeared: root.contactDisappeared(contact)

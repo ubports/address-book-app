@@ -298,6 +298,8 @@ ContactsUI.PageWithBottomEdge {
             }
         }
 
+        onAddDetailClicked: mainPage.addPhoneToContact(contact.contactId, " ")
+
         onSelectionCanceled: {
             if (pickMode) {
                 if (contentHubTransfer) {

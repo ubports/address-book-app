@@ -38,10 +38,16 @@ ListItemWithActions {
     signal detailClicked(QtObject contact, QtObject detail, string action)
     signal infoRequested(int index, QtObject contact)
     signal addContactClicked(string label)
+    signal addDetailClicked(QtObject contact, int detailType)
 
     function _onDetailClicked(detail, action)
     {
         detailClicked(contact, detail, action)
+    }
+
+    function _onAddDetailClicked(detail, detailType)
+    {
+        addDetailClicked(contact, detailType)
     }
 
     implicitHeight: defaultHeight + (pickerLoader.item ? pickerLoader.item.height : 0)
@@ -165,6 +171,7 @@ ListItemWithActions {
             if (status == Loader.Ready) {
                 pickerLoader.item.updateDetails(contact)
                 pickerLoader.item.detailClicked.connect(root._onDetailClicked)
+                pickerLoader.item.addDetailClicked.connect(root._onAddDetailClicked)
             }
         }
 

@@ -23,6 +23,7 @@ Item {
     id: root
 
     signal detailClicked(QtObject detail, string action)
+    signal addDetailClicked(int detailType)
 
     function containsPointer(item, point)
     {
@@ -49,11 +50,47 @@ Item {
         height: childrenRect.height
         width: parent.width
 
-        ListItem.Standard {
+        Item {
             id: noNumberMessage
-            showDivider: false
-            text: "No phone numbers."
+
+            anchors {
+                left: parent.left
+                right: parent.right
+                verticalCenter: parent.verticalCenter
+            }
+
+            height: units.gu(8)
+            Rectangle {
+                anchors {
+                    fill: parent
+                    leftMargin: units.gu(-2)
+                    rightMargin: units.gu(-2)
+                }
+                color: Theme.palette.selected.background
+                opacity: noNumberMessageArea.pressed ?  1.0 : 0.0
+                Behavior on opacity {
+                    UbuntuNumberAnimation {}
+                }
+            }
+            Label {
+                anchors {
+                    verticalCenter: parent.verticalCenter
+                    left: parent.left
+                    leftMargin: units.gu(8)
+                    right: parent.right
+                }
+
+                text: i18n.tr("Add number...")
+                color: UbuntuColors.lightAubergine
+            }
             visible: phoneNumberEntries.count == 0
+            MouseArea {
+                id: noNumberMessageArea
+
+                anchors.fill: parent
+                enabled: parent.visible
+                onClicked: root.addDetailClicked(QtContacts.ContactDetail.PhoneNumber)
+            }
         }
 
         Repeater {

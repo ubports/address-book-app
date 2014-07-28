@@ -29,6 +29,7 @@ VisualDataModel {
 
     signal clicked(int index, QtObject contact)
     signal detailClicked(QtObject contact, QtObject detail, string action)
+    signal addDetailClicked(QtObject object, int detailType)
     signal infoRequested(int index, QtObject contact)
     signal addContactClicked(string label)
     signal loaded()
@@ -60,6 +61,7 @@ VisualDataModel {
         property var contents
 
         onDetailClicked: root.detailClicked(contact, detail, action)
+        onAddDetailClicked: root.addDetailClicked(contact, detailType)
         onInfoRequested: root.infoRequested(index, contact)
         onAddContactClicked: root.addContactClicked(label)
 
