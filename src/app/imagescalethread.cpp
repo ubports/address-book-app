@@ -19,6 +19,7 @@
 #include <QImage>
 #include <QImageReader>
 #include <QFile>
+#include <QDir>
 #include <QDebug>
 
 ImageScaleThread::ImageScaleThread(const QUrl &imageUrl, QObject *parent)
@@ -57,7 +58,7 @@ void ImageScaleThread::run()
     }
 
     // Create the temporary file
-    m_tmpFile = new QTemporaryFile("avatar_XXXXXX.png");
+    m_tmpFile = new QTemporaryFile(QString("%1/avatar_XXXXXX.png").arg(QDir::tempPath()));
     if (!m_tmpFile->open()) {
         return;
     }
