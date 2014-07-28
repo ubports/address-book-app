@@ -238,9 +238,11 @@ Item {
                 left: selectionIcon.right
                 leftMargin: units.gu(2)
                 top: parent.top
+                topMargin: units.gu(1)
                 right: parent.right
                 rightMargin: units.gu(2)
                 bottom: parent.bottom
+                bottomMargin: units.gu(1)
             }
         }
 
