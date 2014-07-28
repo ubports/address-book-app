@@ -305,6 +305,7 @@ MultipleSelectionListView {
         flicking: contactListView.flicking
         width: parent.width
         selected: contactListView.multiSelectionEnabled && contactListView.isSelected(contactDelegate)
+        selectionMode: contactListView.isInSelectionMode
         defaultAvatarUrl: contactListView.defaultAvatarImageUrl
         titleDetail: contactListView.titleDetail
         titleFields: contactListView.titleFields

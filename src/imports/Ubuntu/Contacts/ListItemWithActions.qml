@@ -28,9 +28,10 @@ Item {
     property var activeItem: null
     property bool triggerActionOnMouseRelease: false
     property color color: Theme.palette.normal.background
-    property color selectedColor: Theme.palette.normal.foreground
+    property color selectedColor: "#E6E6E6"
     property bool selected: false
-    default property alias contents: main.children
+    property bool selectionMode: false
+    default property alias contents: mainContents.children
 
     readonly property double actionWidth: units.gu(5)
     readonly property double leftActionWidth: units.gu(10)
@@ -118,6 +119,18 @@ Item {
         main.x = 0
     }
 
+    states: [
+        State {
+            name: "select"
+            when: selectionMode || selected
+            PropertyChanges {
+                target: selectionIcon
+                width: units.gu(3)
+                anchors.leftMargin: units.gu(2)
+            }
+        }
+    ]
+
     height: defaultHeight
     clip: height !== defaultHeight
 
@@ -195,8 +208,42 @@ Item {
             top: parent.top
             bottom: parent.bottom
         }
+
         width: parent.width
         color: root.selected ? root.selectedColor : root.color
+
+        Icon {
+            id: selectionIcon
+
+            name: "select"
+            anchors {
+                left: main.left
+                verticalCenter: main.verticalCenter
+            }
+
+            color:  root.selected ? Theme.palette.selected.foreground: Theme.palette.normal.foreground
+            height: units.gu(3)
+            width: 0
+            visible: width === units.gu(3)
+            Behavior on width {
+                NumberAnimation {}
+            }
+        }
+
+
+        Item {
+            id: mainContents
+
+            anchors {
+                left: selectionIcon.right
+                leftMargin: units.gu(2)
+                top: parent.top
+                right: parent.right
+                rightMargin: units.gu(2)
+                bottom: parent.bottom
+            }
+        }
+
         Behavior on x {
             UbuntuNumberAnimation {
                 id: mainItemMoving

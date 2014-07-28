@@ -61,9 +61,15 @@ ListItemWithActions {
         }
 
         Rectangle {
-            anchors.fill: parent
-            color: "black"
-            opacity: root.detailsShown ? 0.1 : 0.0
+            anchors {
+                fill: parent
+                leftMargin: units.gu(-2)
+                rightMargin: units.gu(-2)
+                topMargin: units.gu(-1)
+                bottomMargin: units.gu(-1)
+            }
+            color: "#E6E6E6"
+            opacity: root.detailsShown ? 1.0 : 0.0
             Behavior on opacity {
                 NumberAnimation { }
             }
@@ -80,7 +86,6 @@ ListItemWithActions {
                 bottom: parent.bottom
                 topMargin: units.gu(1)
                 bottomMargin: units.gu(1)
-                leftMargin: units.gu(2)
             }
             width: root.showAvatar ? height : 0
             visible: width > 0
