@@ -84,8 +84,6 @@ ListItemWithActions {
                 left: parent.left
                 top: parent.top
                 bottom: parent.bottom
-                topMargin: units.gu(1)
-                bottomMargin: units.gu(1)
             }
             width: root.showAvatar ? height : 0
             visible: width > 0
