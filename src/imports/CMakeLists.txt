@@ -1,6 +1,7 @@
 project(imports)
 
 set(ADDRESS_BOOK_APP_QMLS
+    ContentHubProxy.qml
     MainWindow.qml
 )
 
