@@ -15,6 +15,7 @@ set(CONTACT_COMPONENTS_QMLS
     FastScroll.qml
     FastScroll.js
     ListItemWithActions.qml
+    ListItemWithActionsCheckBox.qml
     MostCalledModel.qml
     MultipleSelectionListView.qml
     MultipleSelectionVisualModel.qml

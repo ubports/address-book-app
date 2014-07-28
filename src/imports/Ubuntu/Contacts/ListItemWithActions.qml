@@ -125,7 +125,7 @@ Item {
             when: selectionMode || selected
             PropertyChanges {
                 target: selectionIcon
-                width: units.gu(3)
+                source: Qt.resolvedUrl("ListItemWithActionsCheckBox.qml")
                 anchors.leftMargin: units.gu(2)
             }
         }
@@ -212,19 +212,15 @@ Item {
         width: parent.width
         color: root.selected ? root.selectedColor : root.color
 
-        Icon {
+        Loader {
             id: selectionIcon
 
-            name: "select"
             anchors {
                 left: main.left
                 verticalCenter: main.verticalCenter
             }
-
-            color:  root.selected ? Theme.palette.selected.foreground: Theme.palette.normal.foreground
-            height: units.gu(3)
-            width: 0
-            visible: width === units.gu(3)
+            width: (status === Loader.Ready) ? item.implicitWidth : 0
+            visible: (status === Loader.Ready) && (item.width === item.implicitWidth)
             Behavior on width {
                 NumberAnimation {}
             }

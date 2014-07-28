@@ -44,8 +44,7 @@ ListItemWithActions {
         detailClicked(contact, detail, action)
     }
 
-    height: delegate.height
-    implicitHeight: delegate.height + (pickerLoader.item ? pickerLoader.item.height : 0)
+    implicitHeight: defaultHeight + (pickerLoader.item ? pickerLoader.item.height : 0)
     width: parent ? parent.width : 0
 
     onItemClicked: root.clicked(index, contact)
@@ -54,11 +53,11 @@ ListItemWithActions {
     Item {
         id: delegate
 
-        height: units.gu(8)
         anchors {
             left: parent.left
             right: parent.right
         }
+        height: units.gu(6)
 
         Rectangle {
             anchors {
