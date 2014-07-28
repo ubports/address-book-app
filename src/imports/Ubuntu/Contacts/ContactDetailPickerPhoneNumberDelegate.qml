@@ -44,6 +44,7 @@ Item {
 
         anchors {
             top: parent.top
+            topMargin: units.gu(1)
             left: parent.left
             right: parent.right
         }
@@ -56,10 +57,9 @@ Item {
             anchors {
                 left: parent.left
                 right: parent.right
-                verticalCenter: parent.verticalCenter
             }
 
-            height: units.gu(8)
+            height: visible ? units.gu(8) : 0
             Rectangle {
                 anchors {
                     fill: parent
