@@ -56,7 +56,7 @@ MainView {
     {
         mainStack.resetStack()
         if (mainStack.contactListPage) {
-            mainStack.contactListPage.startPickMode(single == "true")
+            mainStack.contactListPage.startPickMode(single == "true", null)
         }
     }
 
@@ -101,6 +101,14 @@ MainView {
             }
         }
 
+        onContactListPageChanged: {
+            if (contentHubLoader.status === Loader.Ready) {
+                contentHubLoader.item.pageStack = mainStack
+            } else {
+                contentHubLoader.setSource(Qt.resolvedUrl("ContentHubProxy.qml"), {"pageStack": mainStack})
+            }
+        }
+
         anchors.fill: parent
     }
 
@@ -139,6 +147,8 @@ MainView {
     }
 
     Loader {
+        id: contentHubLoader
+
         asynchronous: true
         source: Qt.resolvedUrl("ContentHubProxy.qml")
         onStatusChanged: {
