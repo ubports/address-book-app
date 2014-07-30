@@ -31,6 +31,7 @@ Item {
     property color selectedColor: "#E6E6E6"
     property bool selected: false
     property bool selectionMode: false
+    property alias internalAnchors: mainContents.anchors
     default property alias contents: mainContents.children
 
     readonly property double actionWidth: units.gu(5)
