@@ -77,13 +77,12 @@ Page {
     property bool reloadBottomEdgePage: true
 
     readonly property alias bottomEdgePage: edgeLoader.item
-    readonly property bool isReady: (bottomEdge.y === 0)
+    readonly property bool isReady: ((bottomEdge.y === 0) && bottomEdgePageLoaded && edgeLoader.item.active)
     readonly property bool isCollapsed: (bottomEdge.y === page.height)
     readonly property bool bottomEdgePageLoaded: (edgeLoader.status == Loader.Ready)
 
     property bool _showEdgePageWhenReady: false
     property int _areaWhenExpanded: 0
-    property var _initialProperties: {}
 
     signal bottomEdgeReleased()
     signal bottomEdgeDismissed()
@@ -97,7 +96,6 @@ Page {
 
     function setBottomEdgePage(source, properties)
     {
-        _initialProperties = properties
         edgeLoader.setSource(source, properties)
     }
 
@@ -264,7 +262,6 @@ Page {
         }
 
         state: "collapsed"
-        onStateChanged: console.debug("State Changed:" + state)
         states: [
             State {
                 name: "collapsed"
@@ -351,13 +348,7 @@ Page {
                             // notify
                             page.bottomEdgeDismissed()
 
-                            // load a new bottom page in memory
-                            if (edgeLoader.source != "") {
-                                edgeLoader.setSource(edgeLoader.source, page._initialProperties)
-                            }
-
                             edgeLoader.active = true
-
                             tip.hiden = false
                             hideIndicator.restart()
                         }
@@ -374,25 +365,30 @@ Page {
             }
         ]
 
-        Loader {
-            id: edgeLoader
-
-            z: 1
-            active: true
-            asynchronous: true
+        Item {
             anchors.fill: parent
+            clip: true
 
-            //WORKAROUND: The SDK move the page contents down to allocate space for the header we need to avoid that during the page dragging
-            Binding {
-                target: edgeLoader
-                property: "anchors.topMargin"
-                value: edgeLoader.item && edgeLoader.item.flickable ? edgeLoader.item.flickable.contentY : 0
-                when: (edgeLoader.status === Loader.Ready && !page.isReady)
-            }
+            Loader {
+                id: edgeLoader
 
-            onLoaded: {
-                if (page.isReady && edgeLoader.item.active != true) {
-                    page._pushPage()
+                z: 1
+                active: true
+                asynchronous: true
+                anchors.fill: parent
+
+                //WORKAROUND: The SDK move the page contents down to allocate space for the header we need to avoid that during the page dragging
+                Binding {
+                    target: edgeLoader.status === Loader.Ready ? edgeLoader : null
+                    property: "anchors.topMargin"
+                    value:  edgeLoader.item && edgeLoader.item.flickable ? edgeLoader.item.flickable.contentY : 0
+                    when: !page.isReady
+                }
+
+                onLoaded: {
+                    if (page.isReady && edgeLoader.item.active !== true) {
+                        page._pushPage()
+                    }
                 }
             }
         }
