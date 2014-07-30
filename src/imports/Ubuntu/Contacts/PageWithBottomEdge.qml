@@ -83,6 +83,7 @@ Page {
 
     property bool _showEdgePageWhenReady: false
     property int _areaWhenExpanded: 0
+    property var _initialProperties: {}
 
     signal bottomEdgeReleased()
     signal bottomEdgeDismissed()
@@ -96,6 +97,7 @@ Page {
 
     function setBottomEdgePage(source, properties)
     {
+        _initialProperties = properties
         edgeLoader.setSource(source, properties)
     }
 
@@ -350,6 +352,10 @@ Page {
                             page.bottomEdgeDismissed()
 
                             // load a new bottom page in memory
+                            if (edgeLoader.source != "") {
+                                edgeLoader.setSource(edgeLoader.source, page._initialProperties)
+                            }
+
                             edgeLoader.active = true
 
                             tip.hiden = false
