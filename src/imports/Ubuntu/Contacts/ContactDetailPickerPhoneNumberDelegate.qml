@@ -15,7 +15,6 @@
  */
 
 import QtQuick 2.2
-import Ubuntu.Components.ListItems 1.0 as ListItem
 import Ubuntu.Components 1.1
 import QtContacts 5.0 as QtContacts
 
@@ -96,31 +95,28 @@ Item {
         Repeater {
             id: phoneNumberEntries
 
-            ListItem.Subtitled {
+            SubtitledWithColors {
                 anchors {
                     left: parent.left
-                    leftMargin: units.gu(7)
+                    leftMargin: units.gu(6)
                     right: parent.right
                 }
-                showDivider: false
-                // TODO: change text font color to UbuntuColors.lightAubergine
-                // see bug #1324128
                 text: modelData.number
                 subText: phoneTypeModel.get(phoneTypeModel.getTypeIndex(modelData)).label
-                onClicked: root.detailClicked(modelData, "")
+                onClicked: root.detailClicked(modelData, "call")
+                textColor: UbuntuColors.lightAubergine
 
-                Row {
-                    id: icons
-
+                MouseArea {
                     anchors {
                         top: parent.top
-                        right: parent.right
                         bottom: parent.bottom
+                        right: parent.right
+                        rightMargin: units.gu(1)
                     }
+                    width: units.gu(4)
 
-                    width: childrenRect.width
-                    spacing: units.gu(2)
-
+                    z: 100
+                    onClicked: root.detailClicked(modelData, "message")
                     Icon {
                         id: messageIcon
 
@@ -128,27 +124,6 @@ Item {
                         height: units.gu(3)
                         width: height
                         anchors.verticalCenter: parent.verticalCenter
-                    }
-                    Icon {
-                        id: callIcon
-
-                        name: "call-start"
-                        height: units.gu(3)
-                        width: height
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-                }
-                // WORKAROUND: SDK ListItem.Subtitled does not provide the mouse arg on onClicked event
-                // without that we can not check where the user clicked
-                MouseArea {
-                    anchors.fill: icons
-                    z: 100
-                    onClicked: {
-                        var point = Qt.point(mouse.x, mouse.y)
-                        if (root.containsPointer(messageIcon, point))
-                            root.detailClicked(modelData, "message")
-                        if (root.containsPointer(callIcon, point))
-                            root.detailClicked(modelData, "call")
                     }
                 }
             }

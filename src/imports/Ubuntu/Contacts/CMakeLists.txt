@@ -20,6 +20,7 @@ set(CONTACT_COMPONENTS_QMLS
     MultipleSelectionListView.qml
     MultipleSelectionVisualModel.qml
     PageWithBottomEdge.qml
+    SubtitledWithColors.qml
     qmldir
 )
 
