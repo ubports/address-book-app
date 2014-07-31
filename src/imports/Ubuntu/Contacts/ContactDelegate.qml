@@ -128,7 +128,12 @@ ListItemWithActions {
             }
 
             MouseArea {
-                anchors.fill: parent
+                anchors {
+                    fill: parent
+                    // make the mouse area bigger (easy to click)
+                    margins: units.gu(-2)
+                }
+
                 onClicked: {
                     if (contact) {
                         root.infoRequested(index, contact)
