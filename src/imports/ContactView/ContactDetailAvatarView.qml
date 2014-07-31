@@ -28,9 +28,37 @@ ContactDetailBase {
     implicitWidth: units.gu(10)
 
     Connections {
-        target: root.contact ? root.contact.detail(ContactDetail.Avatar) : null
+        id: connections
+
+        function updateTarget()
+        {
+            if (root.contact) {
+                var avatarDetail = root.contact.detail(ContactDetail.Avatar)
+                if (avatarDetail) {
+                    return avatarDetail
+                } else  {
+                    return root.contact
+                }
+            }
+            return null
+        }
+
+        target: updateTarget()
         ignoreUnknownSignals: true
-        onDetailChanged: avatar.reload()
+        onContactChanged: {
+            var avatarDetail = root.contact.detail(ContactDetail.Avatar)
+            if (avatarDetail) {
+                avatar.reload()
+                connections.target = avatarDetail
+            }
+        }
+        onDetailChanged: {
+            var avatarDetail = root.contact.detail(ContactDetail.Avatar)
+            if (avatarDetail === null) {
+                connections.target = root.contact
+            }
+            avatar.reload()
+        }
     }
 
     ContactsUI.ContactAvatar {

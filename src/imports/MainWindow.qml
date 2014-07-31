@@ -15,10 +15,9 @@
  */
 
 import QtQuick 2.2
-import QtContacts 5.0
-import Ubuntu.Components 0.1
-import Ubuntu.Components.Popups 0.1 as Popups
-import Ubuntu.Content 0.1 as ContentHub
+import Ubuntu.Components 1.0
+import Ubuntu.Components.Popups 1.0 as Popups
+
 
 MainView {
     id: mainWindow
@@ -62,7 +61,7 @@ MainView {
     {
         mainStack.resetStack()
         if (mainStack.contactListPage) {
-            mainStack.contactListPage.startPickMode(single == "true")
+            mainStack.contactListPage.startPickMode(single == "true", null)
         }
     }
 
@@ -102,6 +101,14 @@ MainView {
             }
         }
 
+        onContactListPageChanged: {
+            if (contentHubLoader.status === Loader.Ready) {
+                contentHubLoader.item.pageStack = mainStack
+            } else {
+                contentHubLoader.setSource(Qt.resolvedUrl("ContentHubProxy.qml"), {"pageStack": mainStack})
+            }
+        }
+
         anchors.fill: parent
     }
 
@@ -138,25 +145,11 @@ MainView {
         }
     }
 
-    Connections {
-        target: ContentHub.ContentHub
-        onExportRequested: {
-            // enter in pick mode
-            mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"),
-                           {pickMode: true,
-                            contentHubTransfer: transfer})
-        }
-        onImportRequested: {
-            if (transfer.state === ContentHub.ContentTransfer.Charged) {
-                var urls = []
-                for(var i=0; i < transfer.items.length; i++) {
-                    urls.push(transfer.items[i].url)
-                }
-                mainStack.importContactRequested(urls)
-            }
-        }
-    }
+    Loader {
+        id: contentHubLoader
 
+        asynchronous: true
+    }
 
     // If application was called from uri handler and lost the focus reset the app to normal state
     onAppActiveChanged: {

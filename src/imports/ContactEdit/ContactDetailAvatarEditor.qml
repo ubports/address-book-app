@@ -30,8 +30,9 @@ ContactDetailBase {
     }
 
     function save() {
+        // create the avatar detail
         if (avatarImage.source != root.defaultAvatar) {
-            if (root.detail && (root.detail === avatarImage.source)) {
+            if (root.detail && (root.detail.imageUrl === avatarImage.source)) {
                 return false
             } else {
                 // create the avatar detail
