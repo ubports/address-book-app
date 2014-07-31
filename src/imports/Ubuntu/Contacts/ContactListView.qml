@@ -191,6 +191,14 @@ Item {
        This property indicates whether or not the contact model should be updated automatically, default value is true.
     */
     property alias autoUpdate: contactsModel.autoUpdate
+
+    /*!
+      \qmlproperty bool autoHideKeyboard
+
+       This property indicates if the OSK should disapear when the list starts to  flick.
+    */
+    property bool autoHideKeyboard: true
+
     /*!
       \qmlproperty bool isInSelectionMode
 
@@ -351,7 +359,10 @@ Item {
             }
         }
 
-        onFlickStarted: forceActiveFocus()
+        onFlickStarted: {
+            if (autoHideKeyboard)
+                forceActiveFocus()
+        }
         anchors.fill: parent
 
         // WORKAROUND: The SDK header causes the contactY to move to a wrong postion
