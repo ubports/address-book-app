@@ -19,7 +19,7 @@ endforeach(PO_FILE)
 
 find_program(XGETTEXT_EXECUTABLE xgettext)
 if(XGETTEXT_EXECUTABLE)
-    add_custom_target(${POT_FILE} ALL
+    add_custom_target(${POT_FILE}
         COMMENT "Generating translation template"
         COMMAND ${INTLTOOL_EXTRACT} --update --type=gettext/ini
                 --srcdir=${CMAKE_SOURCE_DIR} data/${DESKTOP_FILE}.in.in
