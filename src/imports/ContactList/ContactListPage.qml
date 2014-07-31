@@ -48,7 +48,7 @@ ContactsUI.PageWithBottomEdge {
     {
         // these two states are the only state that need to be reset
         if (state == "newphoneSearching" || state == "newphone") {
-            state = ""
+            state = "default"
         }
         application.callbackApplication = ""
     }
@@ -129,7 +129,7 @@ ContactsUI.PageWithBottomEdge {
     function moveListToContact(contact)
     {
         contactIndex = contact
-        mainPage.state = ""
+        mainPage.state = "default"
         // this means a new contact was created
         if (mainPage.allowToQuit) {
             application.goBackToSourceApp()
@@ -283,7 +283,7 @@ ContactsUI.PageWithBottomEdge {
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
 
         onInfoRequested: {
-            mainPage.state = ""
+            mainPage.state = "default"
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
                            {model: contactList.listModel,
                             contact: contact})
@@ -308,9 +308,10 @@ ContactsUI.PageWithBottomEdge {
                 }
                 pickMode = false
                 contentHubTransfer = null
-                state = ""
+                console.debug("UPDATE STATE:" +  mainPage.state )
                 application.returnVcard("")
             }
+            mainPage.state = "default"
         }
 
         onError: pageStack.contactModelError(error)
@@ -368,6 +369,7 @@ ContactsUI.PageWithBottomEdge {
     }
 
     state: "default"
+    onStateChanged: console.debug("STATE CHANGEDDDDD" + state)
     states: [
         PageHeadState {
             id: defaultState
@@ -429,10 +431,6 @@ ContactsUI.PageWithBottomEdge {
                 contents: searchField
             }
 
-            PropertyChanges {
-                target: contactList
-                showFavourites: false
-            }
             PropertyChanges {
                 target: searchField
                 text: ""
@@ -623,7 +621,7 @@ ContactsUI.PageWithBottomEdge {
             }
             activeTransfer = null
             pickMode = false
-            state = ""
+            mainPage.state = "defautl"
             application.returnVcard(url)
         }
     }

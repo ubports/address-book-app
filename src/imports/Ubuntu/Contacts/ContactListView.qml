@@ -294,13 +294,17 @@ Item {
     {
         //WORKAROUND: clear the model before start populate it with the new contacts
         //otherwise the model will wait for all contacts before show any new contact
-        root.changeFilter(root.filter)
-        view.favouritesIsSelected = true
+        if (!view.favouritesIsSelected) {
+            root.changeFilter(root.filter)
+            view.favouritesIsSelected = true
+        }
     }
     function showAllContacts()
     {
-        root.changeFilter(root.filter)
-        view.favouritesIsSelected = false
+        if (view.favouritesIsSelected) {
+            root.changeFilter(root.filter)
+            view.favouritesIsSelected = false
+        }
     }
 
     /*!
