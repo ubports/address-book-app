@@ -146,5 +146,5 @@ class MainWindow(ubuntuuitoolkit.MainView):
         Press the 'Add' button and return the contact editor page
         """
         bottom_swipe_page = self.get_contact_list_page()
-        bottom_swipe_page.revel_bottom_edge_page()
+        bottom_swipe_page.reveal_bottom_edge_page()
         return self.get_contact_edit_page()
