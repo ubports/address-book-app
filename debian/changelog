@@ -1,3 +1,11 @@
+address-book-app (0.2+14.10.20140731-0ubuntu1) utopic; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Used empty context for cell phones details. Fixed content hub import
+    and export. Fixed avatar view on contact details. (LP: #1346278)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 31 Jul 2014 20:00:51 +0000
+
 address-book-app (0.2+14.10.20140724-0ubuntu1) utopic; urgency=low
 
   [ Renato Araujo Oliveira Filho ]
