@@ -16,8 +16,8 @@
 
 import QtQuick 2.2
 import QtContacts 5.0
-import Ubuntu.Components 0.1
-import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components 1.1
+import Ubuntu.Components.ListItems 1.0 as ListItem
 
 /*!
     \qmltype ContactListView
@@ -61,13 +61,6 @@ Item {
       \sa Filter
     */
     property var filter: null
-    /*!
-      \qmlproperty bool showFavourites
-
-      This property holds if the option to switch between favourite and all contacts should be visible
-      By default this is set to true.
-    */
-    property alias showFavourites: view.showFavourites
     /*!
       \qmlproperty bool showAvatar
 
@@ -198,6 +191,14 @@ Item {
        This property indicates whether or not the contact model should be updated automatically, default value is true.
     */
     property alias autoUpdate: contactsModel.autoUpdate
+
+    /*!
+      \qmlproperty bool autoHideKeyboard
+
+       This property indicates if the OSK should disapear when the list starts to  flick.
+    */
+    property bool autoHideKeyboard: true
+
     /*!
       \qmlproperty bool isInSelectionMode
 
@@ -225,6 +226,10 @@ Item {
       This handler is called when any contact detail in the list receives a click
     */
     signal detailClicked(QtObject contact, QtObject detail, string action)
+    /*!
+      This handler is called when add contact detail in the list receives a click
+    */
+    signal addDetailClicked(QtObject contact, int detailType)
     /*!
       This handler is called when a unknown contact is clicked, the label contains the phone number
     */
@@ -288,10 +293,25 @@ Item {
     function reset()
     {
         if (view.favouritesIsSelected) {
-            root.changeFilter(root.filter)
-            view.favouritesIsSelected = false
+            showAllContacts()
         } else {
             positionViewAtBeginning()
+        }
+    }
+    function showFavoritesContacts()
+    {
+        //WORKAROUND: clear the model before start populate it with the new contacts
+        //otherwise the model will wait for all contacts before show any new contact
+        if (!view.favouritesIsSelected) {
+            root.changeFilter(root.filter)
+            view.favouritesIsSelected = true
+        }
+    }
+    function showAllContacts()
+    {
+        if (view.favouritesIsSelected) {
+            root.changeFilter(root.filter)
+            view.favouritesIsSelected = false
         }
     }
 
@@ -302,72 +322,6 @@ Item {
     function update()
     {
         contactsModel.update()
-    }
-
-    Rectangle {
-        id: itemHeader
-
-        visible: root.showFavourites && (root.filterTerm.length === 0)
-        height: visible ? units.gu(2) : 0
-        anchors {
-            left: parent.left
-            right: parent.right
-            top: parent.top
-        }
-        color: Theme.palette.normal.overlay
-
-        Row {
-            anchors.fill: parent
-            Label {
-                id: lblAll
-
-                anchors {
-                    top: parent.top
-                    bottom: parent.bottom
-                }
-                width: parent.width / 2
-                text: i18n.dtr("address-book-app", "All")
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                color: view.favouritesIsSelected ? UbuntuColors.warmGrey : UbuntuColors.orange
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        //WORKAROUND: clear the model before start populate it with the new contacts
-                        //otherwise the model will wait for all contacts before show any new contact
-                        root.changeFilter(root.filter)
-                        view.favouritesIsSelected = false
-                    }
-                }
-            }
-
-            Rectangle {
-                anchors {
-                    top: parent.top
-                    bottom: parent.bottom
-                    margins: units.gu(1)
-                }
-                width: 1
-            }
-
-            Label {
-                id: lblFavourites
-
-                anchors {
-                    top: parent.top
-                    bottom: parent.bottom
-                }
-                width: parent.width / 2
-                text: i18n.dtr("address-book-app", "Favourites")
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                color: view.favouritesIsSelected ? UbuntuColors.orange : UbuntuColors.warmGrey
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: view.favouritesIsSelected = true
-                }
-            }
-        }
     }
 
     onFilterTermChanged: contactSearchTimeout.restart()
@@ -405,18 +359,11 @@ Item {
             }
         }
 
-        onFlickStarted: Qt.inputMethod.hide()
-
-        anchors {
-            top: itemHeader.bottom
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-            rightMargin: fastScroll.showing ? fastScroll.width - units.gu(1) : 0
-            Behavior on rightMargin {
-                UbuntuNumberAnimation {}
-            }
+        onFlickStarted: {
+            if (autoHideKeyboard)
+                forceActiveFocus()
         }
+        anchors.fill: parent
 
         // WORKAROUND: The SDK header causes the contactY to move to a wrong postion
         // calling the positionViewAtBeginning after the list created fix that
@@ -508,6 +455,7 @@ Item {
                         }
                         onInfoRequested: root.infoRequested(contact)
                         onDetailClicked: root.detailClicked(contact, detail, action)
+                        onAddDetailClicked: root.addDetailClicked(contact, detailType)
                         onAddContactClicked: root.addContactClicked(label)
                         onCurrentIndexChanged:  {
                             if (currentIndex !== -1) {
@@ -534,6 +482,7 @@ Item {
         onError: root.error(message)
         onInfoRequested: root.infoRequested(contact)
         onDetailClicked: root.detailClicked(contact, detail, action)
+        onAddDetailClicked: root.addDetailClicked(contact, detailType)
         onSelectionDone: root.selectionDone(items)
         onSelectionCanceled: root.selectionCanceled()
         onContactDisappeared: root.contactDisappeared(contact)
@@ -683,13 +632,11 @@ Item {
         enabled: showSections &&
                  (view.contentHeight > (view.height * 2)) &&
                  (view.height >= minimumHeight) &&
-                 (((view.contentY - view.originY) - view.headerItem.height) >= 0) // hearder already invisble
+                 (((view.contentY - view.originY) - view.headerItem.height) >= 0)// hearder already invisble
 
         anchors {
-            top: view.top
-            topMargin: units.gu(0.5)
-            bottom: view.bottom
             right: parent.right
+            verticalCenter: parent.verticalCenter
         }
     }
 }

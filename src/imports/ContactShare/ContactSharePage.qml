@@ -16,14 +16,14 @@
 
 import QtQuick 2.2
 import QtContacts 5.0
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
 import Ubuntu.Content 0.1 as ContentHub
 
 Page {
     id: picker
 
     property var contactModel
-    property var contact
+    property var contacts
     property var curTransfer
 
     ContentHub.ContentPeerPicker {
@@ -36,7 +36,7 @@ Page {
             picker.curTransfer = peer.request();
             if (picker.curTransfer.state === ContentHub.ContentTransfer.InProgress) {
                 var vCardUrl = "file:///tmp/vcard_" + encodeURIComponent(contact.contactId) + ".vcf"
-                picker.contactModel.exportContacts(vCardUrl, [], [picker.contact])
+                picker.contactModel.exportContacts(vCardUrl, [], picker.contacts)
             }
         }
 

@@ -15,7 +15,7 @@
  */
 
 import QtQuick 2.2
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
 
 Item {
     id: root
@@ -27,8 +27,12 @@ Item {
     property Action activeAction: null
     property var activeItem: null
     property bool triggerActionOnMouseRelease: false
-    property alias color: main.color
-    default property alias contents: main.children
+    property color color: Theme.palette.normal.background
+    property color selectedColor: "#E6E6E6"
+    property bool selected: false
+    property bool selectionMode: false
+    property alias internalAnchors: mainContents.anchors
+    default property alias contents: mainContents.children
 
     readonly property double actionWidth: units.gu(5)
     readonly property double leftActionWidth: units.gu(10)
@@ -116,6 +120,26 @@ Item {
         main.x = 0
     }
 
+    states: [
+        State {
+            name: "select"
+            when: selectionMode || selected
+            PropertyChanges {
+                target: selectionIcon
+                source: Qt.resolvedUrl("ListItemWithActionsCheckBox.qml")
+                anchors.leftMargin: units.gu(2)
+            }
+            PropertyChanges {
+                target: root
+                locked: true
+            }
+            PropertyChanges {
+                target: main
+                x: 0
+            }
+        }
+    ]
+
     height: defaultHeight
     clip: height !== defaultHeight
 
@@ -195,6 +219,40 @@ Item {
         }
 
         width: parent.width
+        color: root.selected ? root.selectedColor : root.color
+
+        Loader {
+            id: selectionIcon
+
+            anchors {
+                left: main.left
+                verticalCenter: main.verticalCenter
+            }
+            width: (status === Loader.Ready) ? item.implicitWidth : 0
+            visible: (status === Loader.Ready) && (item.width === item.implicitWidth)
+            Behavior on width {
+                NumberAnimation {
+                    duration: UbuntuAnimation.SnapDuration
+                }
+            }
+        }
+
+
+        Item {
+            id: mainContents
+
+            anchors {
+                left: selectionIcon.right
+                leftMargin: units.gu(2)
+                top: parent.top
+                topMargin: units.gu(1)
+                right: parent.right
+                rightMargin: units.gu(2)
+                bottom: parent.bottom
+                bottomMargin: units.gu(1)
+            }
+        }
+
         Behavior on x {
             UbuntuNumberAnimation {
                 id: mainItemMoving
@@ -202,6 +260,9 @@ Item {
                 easing.type: Easing.OutElastic
                 duration: UbuntuAnimation.SlowDuration
             }
+        }
+        Behavior on color {
+           ColorAnimation {}
         }
     }
 

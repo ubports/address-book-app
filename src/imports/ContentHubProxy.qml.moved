@@ -24,7 +24,9 @@ QtObject {
             target: ContentHub.ContentHub
             onExportRequested: {
                 // enter in pick mode
-                pageStack.contactListPage.startPickMode(false, transfer)
+                pageStack.push(Qt.createComponent("ContactList/ContactListPage.qml"),
+                               {pickMode: true,
+                                contentHubTransfer: transfer})
             }
             onImportRequested: {
                 if (transfer.state === ContentHub.ContentTransfer.Charged) {
@@ -32,7 +34,7 @@ QtObject {
                     for(var i=0; i < transfer.items.length; i++) {
                         urls.push(transfer.items[i].url)
                     }
-                    pageStack.contactListPage.importContact(urls)
+                    pageStack.contactList.importContact(urls)
                 }
             }
         }

@@ -16,15 +16,14 @@
 
 import QtQuick 2.2
 import QtContacts 5.0
-import Ubuntu.Components 0.1
-import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components 1.1
+import Ubuntu.Components.ListItems 1.0 as ListItem
 import "Contacts.js" as ContactsJS
 
 ListItemWithActions {
     id: root
 
     property bool showAvatar: true
-    property bool selected: false
     property bool isCurrentItem: false
     property string defaultAvatarUrl: ""
     property string defaultTitle: ""
@@ -39,16 +38,20 @@ ListItemWithActions {
     signal detailClicked(QtObject contact, QtObject detail, string action)
     signal infoRequested(int index, QtObject contact)
     signal addContactClicked(string label)
+    signal addDetailClicked(QtObject contact, int detailType)
 
     function _onDetailClicked(detail, action)
     {
         detailClicked(contact, detail, action)
     }
 
-    height: delegate.height
-    implicitHeight: delegate.height + (pickerLoader.item ? pickerLoader.item.height : 0)
+    function _onAddDetailClicked(detail, detailType)
+    {
+        addDetailClicked(contact, detailType)
+    }
+
+    implicitHeight: defaultHeight + (pickerLoader.item ? pickerLoader.item.height : 0)
     width: parent ? parent.width : 0
-    color: Theme.palette.normal.background
 
     onItemClicked: root.clicked(index, contact)
     onItemPressAndHold: root.pressAndHold(index, contact)
@@ -56,19 +59,22 @@ ListItemWithActions {
     Item {
         id: delegate
 
-        height: units.gu(8)
         anchors {
             left: parent.left
             right: parent.right
         }
+        height: units.gu(6)
 
         Rectangle {
-            id: selectionMark
-            objectName: "selectionMark"
-
-            anchors.fill: parent
-            color: "black"
-            opacity: root.selected || root.detailsShown ? root.selected ? 0.2 : 0.1 : 0.0
+            anchors {
+                fill: parent
+                leftMargin: units.gu(-2)
+                rightMargin: units.gu(-2)
+                topMargin: units.gu(-1)
+                bottomMargin: units.gu(-1)
+            }
+            color: "#E6E6E6"
+            opacity: root.detailsShown ? 1.0 : 0.0
             Behavior on opacity {
                 NumberAnimation { }
             }
@@ -83,7 +89,6 @@ ListItemWithActions {
                 left: parent.left
                 top: parent.top
                 bottom: parent.bottom
-                margins: units.gu(1)
             }
             width: root.showAvatar ? height : 0
             visible: width > 0
@@ -96,9 +101,10 @@ ListItemWithActions {
                 left: avatar.right
                 leftMargin: units.gu(2)
                 verticalCenter: parent.verticalCenter
-                right: infoIcon.left
+                right: parent.right
+                rightMargin: infoIcon.anchors.rightMargin + infoIcon.height
+
             }
-            font.pointSize: 88
             color: UbuntuColors.lightAubergine
             text: contact ? ContactsJS.formatToDisplay(contact, root.titleDetail, root.titleFields, "") : root.defaultTitle
             elide: Text.ElideRight
@@ -122,7 +128,12 @@ ListItemWithActions {
             }
 
             MouseArea {
-                anchors.fill: parent
+                anchors {
+                    fill: parent
+                    // make the mouse area bigger (easy to click)
+                    margins: units.gu(-2)
+                }
+
                 onClicked: {
                     if (contact) {
                         root.infoRequested(index, contact)
@@ -165,6 +176,7 @@ ListItemWithActions {
             if (status == Loader.Ready) {
                 pickerLoader.item.updateDetails(contact)
                 pickerLoader.item.detailClicked.connect(root._onDetailClicked)
+                pickerLoader.item.addDetailClicked.connect(root._onAddDetailClicked)
             }
         }
 
@@ -213,6 +225,11 @@ ListItemWithActions {
             from: "expanded"
             to: ""
             SequentialAnimation {
+                UbuntuNumberAnimation {
+                    target: root
+                    properties: "height,loaderOpacity"
+                    duration: root.flicking ? 0 : UbuntuAnimation.FastDuration
+                }
                 PropertyAction {
                     target: root
                     property: "clip"

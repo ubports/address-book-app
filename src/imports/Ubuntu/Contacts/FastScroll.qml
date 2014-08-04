@@ -56,6 +56,8 @@ Item {
     readonly property double minimumHeight: rail.height
 
     width: units.gu(7)
+    height: rail.height
+
     onListViewChanged: {
         if (listView && listView.model) {
             internal.initDirtyObserver();
@@ -65,6 +67,15 @@ Item {
                     internal.initDirtyObserver();
                 }
             });
+        }
+    }
+
+    Connections {
+        target: listView
+        onCurrentIndexChanged: {
+            if (currentIndex != -1) {
+                rail.opacity = 0.0
+            }
         }
     }
 
@@ -99,7 +110,6 @@ Item {
         }
     }
 
-
     Rectangle {
         id: cursor
 
@@ -129,8 +139,9 @@ Item {
     Column {
         id: rail
 
-        property bool isVisible: root.enabled && (listView.moving || dragArea.pressed)
-
+        property bool isVisible: root.enabled &&
+                                 (listView.moving || dragArea.pressed) &&
+                                 (listView.currentIndex == -1)
         anchors {
             right: parent.right
             rightMargin: units.gu(2)

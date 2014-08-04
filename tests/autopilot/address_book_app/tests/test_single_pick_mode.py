@@ -24,45 +24,51 @@ class TestSinglePickerMode(AddressBookAppTestCase):
     def test_select_single_contact(self):
         pick_page = self.app.main_window.get_contact_list_pick_page()
         contacts = pick_page.select_many("ContactDelegate")
-        # all selection marks should be invisible
-        selection_marks = []
-        mark_to_contacts = {}
+        # all selection items should be invisible
+        selected_items = []
+        item_to_contacts = {}
         for contact in contacts:
             if (contact.visible):
-                mark = contact.select_single("QQuickRectangle", objectName="selectionMark")
-                self.assertThat(mark.opacity, Eventually(Equals(0.0)))
-                selection_marks.append(mark)
-                mark_to_contacts[mark] = contact
+                item = contact.select_single("QQuickRectangle", objectName="mainItem")
+                self.assertThat(item.color, Eventually(Equals(contact.color)))
+                selected_items.append(item)
+                item_to_contacts[item] = contact
 
-        # click on mark 1
-        selected_mark = selection_marks[1]
-        self.pointing_device.click_object(selected_mark)
+        # click on item 1
+        selected_item = selected_items[1]
+        self.pointing_device.click_object(selected_item)
 
-        for mark in selection_marks:
-            if mark == selected_mark:
-                self.assertThat(mark_to_contacts[mark].selected, Eventually(Equals(True)))
+        for item in selected_items:
+            if item == selected_item:
+                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(True)))
+                self.assertThat(item.color, Eventually(Equals(contact.selectedColor)))
             else:
-                self.assertThat(mark_to_contacts[mark].selected, Eventually(Equals(False)))
+                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(False)))
+                self.assertThat(item.color, Eventually(Equals(contact.color)))
 
-        # click on mark 2
-        selected_mark = selection_marks[2]
-        self.pointing_device.click_object(selected_mark)
+        # click on item 2
+        selected_item = selected_items[2]
+        self.pointing_device.click_object(selected_item)
 
-        for mark in selection_marks:
-            if mark == selected_mark:
-                self.assertThat(mark_to_contacts[mark].selected, Eventually(Equals(True)))
+        for item in selected_items:
+            if item == selected_item:
+                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(True)))
+                self.assertThat(item.color, Eventually(Equals(contact.selectedColor)))
             else:
-                self.assertThat(mark_to_contacts[mark].selected, Eventually(Equals(False)))
+                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(False)))
+                self.assertThat(item.color, Eventually(Equals(contact.color)))
 
-        # click on mark 0
-        selected_mark = selection_marks[0]
-        self.pointing_device.click_object(selected_mark)
+        # click on item 0
+        selected_item = selected_items[0]
+        self.pointing_device.click_object(selected_item)
 
-        for mark in selection_marks:
-            if mark == selected_mark:
-                self.assertThat(mark_to_contacts[mark].selected, Eventually(Equals(True)))
+        for item in selected_items:
+            if item == selected_item:
+                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(True)))
+                self.assertThat(item.color, Eventually(Equals(contact.selectedColor)))
             else:
-                self.assertThat(mark_to_contacts[mark].selected, Eventually(Equals(False)))
+                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(False)))
+                self.assertThat(item.color, Eventually(Equals(contact.color)))
 
         buttons = pick_page.select_many("Button", objectName="DialogButtons.acceptButton")
         for b in buttons:

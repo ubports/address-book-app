@@ -15,7 +15,7 @@
  */
 
 import QtQuick 2.2
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
 
 Item {
     id: root
@@ -155,8 +155,9 @@ Item {
                     height: parent.height + units.gu(0.5)
                     anchors.centerIn: parent
                     onClicked: {
+                        timer.stop()
                         currentIndex = index
-                        timer.restart()
+                        root.state = ""
                     }
                 }
             }

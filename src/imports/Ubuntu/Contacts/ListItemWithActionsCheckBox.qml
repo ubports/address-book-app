@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2013 Canonical, Ltd.
+ * Copyright (C) 2012-2014 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,18 +15,11 @@
  */
 
 import QtQuick 2.2
-import QtContacts 5.0 as QtContacts
 import Ubuntu.Components 1.1
-import Ubuntu.Contacts 0.1
 
-import "../Common"
-
-ContactDetailGroupWithTypeView {
-    detailType: QtContacts.ContactDetail.OnlineAccount
-    fields: [ QtContacts.OnlineAccount.AccountUri ]
-    title: i18n.tr("Social")
-    typeModel: ContactDetailOnlineAccountTypeModel { }
-    defaultAction: Action {
-        text: i18n.tr("Touch")
-    }
+CheckBox {
+    checked: root.selected
+    width: implicitWidth
+    // disable item mouse area to avoid conflicts with parent mouse area
+    __mouseArea.enabled: false
 }
