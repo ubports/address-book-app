@@ -32,11 +32,13 @@
 #include <QIcon>
 #include <QSettings>
 #include <QTimer>
-
+#include <QElapsedTimer>
 
 #include <QQmlEngine>
 
 #define ADDRESS_BOOK_FIRST_RUN_KEY          "first-run"
+
+static QElapsedTimer s_elapsed;
 
 static void printUsage(const QStringList& arguments)
 {
@@ -104,6 +106,7 @@ AddressBookApp::AddressBookApp(int &argc, char **argv)
       m_testMode(false),
       m_withArgs(false)
 {
+    s_elapsed.start();
     setOrganizationName("com.ubuntu.address-book");
     setApplicationName("AddressBookApp");
 }
@@ -447,6 +450,11 @@ void AddressBookApp::startSync() const
     if (m_syncMonitor && !isSyncing()) {
         m_syncMonitor->call("sync", QStringList() << "contacts");
     }
+}
+
+void AddressBookApp::elapsed() const
+{
+    qDebug() << "ELAPSED:" << s_elapsed.elapsed() / 1000.0;
 }
 
 bool AddressBookApp::isSyncing() const

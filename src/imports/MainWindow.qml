@@ -25,11 +25,6 @@ MainView {
     property string modelErrorMessage: ""
     readonly property bool appActive: Qt.application.active
 
-    width: units.gu(40)
-    height: units.gu(71)
-    anchorToKeyboard: false
-    useDeprecatedToolbar: false
-
     signal applicationReady()
 
     function contact(contactId)
@@ -81,6 +76,11 @@ MainView {
         }
     }
 
+    width: units.gu(40)
+    height: units.gu(71)
+    anchorToKeyboard: false
+    useDeprecatedToolbar: false
+
     PageStack {
         id: mainStack
 
@@ -113,9 +113,10 @@ MainView {
     }
 
     Component.onCompleted: {
+        application.elapsed()
         i18n.domain = "address-book-app"
         i18n.bindtextdomain("address-book-app", i18nDirectory)
-        mainStack.push(Qt.createComponent("ContactList/ContactListPage.qml"))
+        mainStack.push(Qt.resolvedUrl("./ContactList/ContactListPage.qml"))
         mainWindow.applicationReady()
     }
 
@@ -149,6 +150,12 @@ MainView {
         id: contentHubLoader
 
         asynchronous: true
+        source: Qt.resolvedUrl("ContentHubProxy.qml")
+        onStatusChanged: {
+            if (status === Loader.Ready) {
+                item.pageStack = mainStack
+            }
+        }
     }
 
     // If application was called from uri handler and lost the focus reset the app to normal state
@@ -157,5 +164,12 @@ MainView {
             mainStack.quitOnDepth = -1
             mainStack.contactListPage.returnToNormalState()
         }
+    }
+
+    Image {
+        source: Qt.resolvedUrl("grid.jpg")
+        asynchronous: true
+        anchors.fill: parent
+        opacity: 0.3
     }
 }

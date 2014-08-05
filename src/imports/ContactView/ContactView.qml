@@ -16,10 +16,10 @@
 
 import QtQuick 2.2
 import QtContacts 5.0
-import Ubuntu.Components 0.1
-import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components 1.1
+import Ubuntu.Components.ListItems 1.0 as ListItem
 import Ubuntu.Contacts 0.1 as ContactsUI
-import Ubuntu.Components.Popups 0.1 as Popups
+import Ubuntu.Components.Popups 1.0 as Popups
 
 Page {
     id: root
@@ -173,7 +173,7 @@ Page {
         onContactFetched: {
             root.contact = contact
             if (root.addPhoneToContact != "") {
-                var detailSourceTemplate = "import QtContacts 5.0; PhoneNumber{ number: \"" + root.addPhoneToContact + "\" }"
+                var detailSourceTemplate = "import QtContacts 5.0; PhoneNumber{ number: \"" + root.addPhoneToContact.trim() + "\" }"
                 var newDetail = Qt.createQmlObject(detailSourceTemplate, root.contact)
                 if (newDetail) {
                     root.contact.addDetail(newDetail)
@@ -207,7 +207,7 @@ Page {
                 iconName: "share"
                 onTriggered: {
                     pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
-                                   { contactModel: root.model, contact: root.contact})
+                                   { contactModel: root.model, contacts: [root.contact] })
                 }
             }
         }

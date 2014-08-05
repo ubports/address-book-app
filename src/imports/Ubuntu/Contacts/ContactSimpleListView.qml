@@ -17,8 +17,8 @@
 import QtQuick 2.2
 import QtContacts 5.0
 import Ubuntu.Contacts 0.1
-import Ubuntu.Components 0.1
-import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components 1.1
+import Ubuntu.Components.ListItems 1.0 as ListItem
 
 import "ContactList.js" as Sections
 
@@ -177,6 +177,10 @@ MultipleSelectionListView {
     */
     signal detailClicked(QtObject contact, QtObject detail, string action)
     /*!
+      This handler is called when add contact detail in the list receives a click
+    */
+    signal addDetailClicked(QtObject contact, int detailType)
+    /*!
       This handler is called when details button on contact delegate is clicked
     */
     signal infoRequested(QtObject contact)
@@ -262,20 +266,27 @@ MultipleSelectionListView {
             anchors {
                 left: parent.left
                 right: parent.right
-                margins: units.gu(1)
+                margins: units.gu(2)
             }
-            height: units.gu(3)
+            height: units.gu(4)
             Label {
-                anchors.fill: parent
+                id: title
+
+                anchors {
+                    top: parent.top
+                    left: parent.left
+                    right: parent.right
+                }
+                height: units.gu(3)
                 verticalAlignment: Text.AlignVCenter
                 text: section != "" ? section : "#"
-                font.pointSize: 76
+                fontSize: "small"
             }
             ListItem.ThinDivider {
                 anchors {
                     left: parent.left
                     right: parent.right
-                    bottom: parent.bottom
+                    top: title.bottom
                 }
             }
         }
@@ -300,6 +311,7 @@ MultipleSelectionListView {
         flicking: contactListView.flicking
         width: parent.width
         selected: contactListView.multiSelectionEnabled && contactListView.isSelected(contactDelegate)
+        selectionMode: contactListView.isInSelectionMode
         defaultAvatarUrl: contactListView.defaultAvatarImageUrl
         titleDetail: contactListView.titleDetail
         titleFields: contactListView.titleFields
@@ -310,6 +322,7 @@ MultipleSelectionListView {
         rightSideActions: contactListView.rightSideActions
 
         onDetailClicked: contactListView.detailClicked(contact, detail, action)
+        onAddDetailClicked: contactListView.addDetailClicked(contact, detailType)
         onInfoRequested: contactListView._fetchContact(index, contact)
 
         // collapse the item before remove it, to avoid crash

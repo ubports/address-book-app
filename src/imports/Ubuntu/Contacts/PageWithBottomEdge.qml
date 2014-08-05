@@ -62,8 +62,8 @@
 
 */
 
-import QtQuick 2.0
-import Ubuntu.Components 0.1
+import QtQuick 2.2
+import Ubuntu.Components 1.1
 
 Page {
     id: page
@@ -77,8 +77,8 @@ Page {
     property bool reloadBottomEdgePage: true
 
     readonly property alias bottomEdgePage: edgeLoader.item
-    readonly property bool isReady: (tip.opacity === 0.0)
-    readonly property bool isCollapsed: (tip.opacity === 1.0)
+    readonly property bool isReady: ((bottomEdge.y === 0) && bottomEdgePageLoaded && edgeLoader.item.active)
+    readonly property bool isCollapsed: (bottomEdge.y === page.height)
     readonly property bool bottomEdgePageLoaded: (edgeLoader.status == Loader.Ready)
 
     property bool _showEdgePageWhenReady: false
@@ -148,7 +148,7 @@ Page {
         interval: 3000
         running: true
         repeat: false
-        onTriggered: tipContainer.y = -units.gu(1)
+        onTriggered: tip.hiden = true
     }
 
     Rectangle {
@@ -168,6 +168,47 @@ Page {
         height: page.height
         y: height
 
+        UbuntuShape {
+            id: tip
+            objectName: "bottomEdgeTip"
+
+            property bool hiden: false
+
+            readonly property double visiblePosition: (page.height - bottomEdge.y) < units.gu(1) ? -bottomEdge.tipHeight + (page.height - bottomEdge.y) : 0
+            readonly property double invisiblePosition: (page.height - bottomEdge.y) < units.gu(1) ? -units.gu(1) : 0
+
+            z: -1
+            anchors.horizontalCenter: parent.horizontalCenter
+            y: hiden ? invisiblePosition : visiblePosition
+
+            width: tipLabel.paintedWidth + units.gu(6)
+            height: bottomEdge.tipHeight + units.gu(1)
+            color: Theme.palette.normal.overlay
+            Label {
+                id: tipLabel
+
+                anchors {
+                    top: parent.top
+                    left: parent.left
+                    right: parent.right
+                }
+                height: bottomEdge.tipHeight
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                opacity: tip.hiden ? 0.0 : 1.0
+                Behavior on opacity {
+                    UbuntuNumberAnimation {
+                        duration: UbuntuAnimation.SnapDuration
+                    }
+                }
+            }
+            Behavior on y {
+                UbuntuNumberAnimation {
+                    duration: UbuntuAnimation.SnapDuration
+                }
+            }
+        }
+
         Rectangle {
             id: shadow
 
@@ -177,6 +218,7 @@ Page {
             }
             height: units.gu(1)
             y: -height
+            z: -2
             opacity: 0.0
             gradient: Gradient {
                 GradientStop { position: 0.0; color: "transparent" }
@@ -184,46 +226,17 @@ Page {
             }
         }
 
-        Item {
-            id: tipContainer
-            objectName: "bottomEdgeTip"
-
-            width: childrenRect.width
-            height: bottomEdge.tipHeight
-            clip: true
-            y: -bottomEdge.tipHeight
-            anchors.horizontalCenter: parent.horizontalCenter
-            Behavior on y {
-                UbuntuNumberAnimation {}
-            }
-
-            UbuntuShape {
-                id: tip
-
-                width: tipLabel.paintedWidth + units.gu(6)
-                height: bottomEdge.tipHeight + units.gu(1)
-                color: Theme.palette.normal.overlay
-                Label {
-                    id: tipLabel
-
-                    anchors {
-                        top: parent.top
-                        left: parent.left
-                        right: parent.right
-                    }
-                    height: bottomEdge.tipHeight
-                    verticalAlignment: Text.AlignVCenter
-                    horizontalAlignment: Text.AlignHCenter
-                }
-            }
-        }
-
         MouseArea {
+            id: mouseArea
+
             preventStealing: true
-            drag.axis: Drag.YAxis
-            drag.target: bottomEdge
-            drag.minimumY: bottomEdge.pageStartY
-            drag.maximumY: page.height
+            drag {
+                axis: Drag.YAxis
+                target: bottomEdge
+                minimumY: bottomEdge.pageStartY
+                maximumY: page.height
+                threshold: 100
+            }
 
             anchors {
                 left: parent.left
@@ -242,11 +255,10 @@ Page {
                 }
             }
 
-            onPressed: bottomEdge.state = "floating"
-        }
-
-        Behavior on y {
-            UbuntuNumberAnimation {}
+            onClicked: {
+                tip.hiden = false
+                hideIndicator.restart()
+            }
         }
 
         state: "collapsed"
@@ -262,10 +274,6 @@ Page {
                     opacity: 1.0
                 }
                 PropertyChanges {
-                    target: tipContainer
-                    y: -bottomEdge.tipHeight
-                }
-                PropertyChanges {
                     target: hideIndicator
                     running: true
                 }
@@ -277,20 +285,13 @@ Page {
                     y: bottomEdge.pageStartY
                 }
                 PropertyChanges {
-                    target: tip
-                    opacity: 0.0
-                }
-                PropertyChanges {
-                    target: tipContainer
-                    y: -bottomEdge.tipHeight
-                }
-                PropertyChanges {
                     target: hideIndicator
                     running: false
                 }
             },
             State {
                 name: "floating"
+                when: mouseArea.drag.active
                 PropertyChanges {
                     target: shadow
                     opacity: 1.0
@@ -300,8 +301,8 @@ Page {
                     running: false
                 }
                 PropertyChanges {
-                    target: tipContainer
-                    y: -bottomEdge.tipHeight
+                    target: tip
+                    hiden: false
                 }
             }
         ]
@@ -311,8 +312,8 @@ Page {
                 to: "expanded"
                 SequentialAnimation {
                     UbuntuNumberAnimation {
-                        targets: [bottomEdge,tip]
-                        properties: "y,opacity"
+                        target: bottomEdge
+                        property: "y"
                         duration: UbuntuAnimation.SlowDuration
                     }
                     ScriptAction {
@@ -333,8 +334,8 @@ Page {
                         }
                     }
                     UbuntuNumberAnimation {
-                        targets: [bottomEdge,tip]
-                        properties: "y,opacity"
+                        target: bottomEdge
+                        property: "y"
                         duration: UbuntuAnimation.SlowDuration
                     }
                     ScriptAction {
@@ -347,9 +348,8 @@ Page {
                             // notify
                             page.bottomEdgeDismissed()
 
-                            // load a new bottom page in memory
                             edgeLoader.active = true
-
+                            tip.hiden = false
                             hideIndicator.restart()
                         }
                     }
@@ -359,31 +359,36 @@ Page {
                 from: "floating"
                 to: "collapsed"
                 UbuntuNumberAnimation {
-                    targets: [bottomEdge,tip]
-                    properties: "y,opacity"
+                    target: bottomEdge
+                    property: "opacity"
                 }
             }
         ]
 
-        Loader {
-            id: edgeLoader
-
-            z: 1
-            active: true
-            asynchronous: true
+        Item {
             anchors.fill: parent
+            clip: true
 
-            //WORKAROUND: The SDK move the page contents down to allocate space for the header we need to avoid that during the page dragging
-            Binding {
-                target: edgeLoader
-                property: "anchors.topMargin"
-                value: edgeLoader.item && edgeLoader.item.flickable ? edgeLoader.item.flickable.contentY : 0
-                when: (edgeLoader.status === Loader.Ready && !page.isReady)
-            }
+            Loader {
+                id: edgeLoader
 
-            onLoaded: {
-                if (page.isReady && edgeLoader.item.active != true) {
-                    page._pushPage()
+                z: 1
+                active: true
+                asynchronous: true
+                anchors.fill: parent
+
+                //WORKAROUND: The SDK move the page contents down to allocate space for the header we need to avoid that during the page dragging
+                Binding {
+                    target: edgeLoader.status === Loader.Ready ? edgeLoader : null
+                    property: "anchors.topMargin"
+                    value:  edgeLoader.item && edgeLoader.item.flickable ? edgeLoader.item.flickable.contentY : 0
+                    when: !page.isReady
+                }
+
+                onLoaded: {
+                    if (page.isReady && edgeLoader.item.active !== true) {
+                        page._pushPage()
+                    }
                 }
             }
         }

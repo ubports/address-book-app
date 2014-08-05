@@ -17,15 +17,15 @@
 import QtQuick 2.2
 import QtContacts 5.0
 
-import Ubuntu.Components 0.1
-import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components 1.1
+import Ubuntu.Components.ListItems 1.0 as ListItem
+import Ubuntu.Components.Popups 1.0 as Popups
 import Ubuntu.Contacts 0.1 as ContactsUI
-import Ubuntu.Components.Popups 0.1 as Popups
 import Ubuntu.Content 0.1 as ContentHub
-import "../ContactEdit"
+
 import "../Common"
 
-PageWithBottomEdge {
+ContactsUI.PageWithBottomEdge {
     id: mainPage
     objectName: "contactListPage"
 
@@ -48,7 +48,7 @@ PageWithBottomEdge {
     {
         // these two states are the only state that need to be reset
         if (state == "newphoneSearching" || state == "newphone") {
-            state = ""
+            state = "default"
         }
         application.callbackApplication = ""
     }
@@ -129,7 +129,7 @@ PageWithBottomEdge {
     function moveListToContact(contact)
     {
         contactIndex = contact
-        mainPage.state = ""
+        mainPage.state = "default"
         // this means a new contact was created
         if (mainPage.allowToQuit) {
             application.goBackToSourceApp()
@@ -144,18 +144,6 @@ PageWithBottomEdge {
     }
 
     title: i18n.tr("Contacts")
-
-    //bottom edge page
-    bottomEdgePageComponent: ContactEditor {
-        //WORKAROUND: SKD changes the page header as soon as the page get created
-        // setting active false will avoid that
-        active: false
-        enabled: false
-
-        initialFocusSection: "name"
-        model: contactList.listModel
-        contact: mainPage.createEmptyContact("")
-    }
     bottomEdgeTitle: "+"
     bottomEdgeEnabled: !contactList.isInSelectionMode
 
@@ -195,12 +183,12 @@ PageWithBottomEdge {
         }
     }
 
-    flickable: null //contactList.fastScrolling ? null : contactList.view
+    flickable: null
     ContactsUI.ContactListView {
         id: contactList
         objectName: "contactListView"
 
-        header: Rectangle {
+        header:  Item {
             id: addNewContactButton
             objectName: "addNewContact"
 
@@ -208,8 +196,8 @@ PageWithBottomEdge {
                 left: parent.left
                 right: parent.right
             }
+            visible: false
             height: visible ? units.gu(8) : 0
-            color: Theme.palette.normal.background
 
             Rectangle {
                 anchors.fill: parent
@@ -217,13 +205,41 @@ PageWithBottomEdge {
                 opacity: addNewContactButtonArea.pressed ?  1.0 : 0.0
             }
 
-            Label {
-                anchors.centerIn: parent
-                text: i18n.tr("+ Create New")
-                fontSize: "large"
+            UbuntuShape {
+                id: addIcon
+
+                anchors {
+                    left: parent.left
+                    top: parent.top
+                    bottom: parent.bottom
+                    margins: units.gu(1)
+                }
+                width: height
+                radius: "medium"
+                color: Theme.palette.normal.overlay
+                Image {
+                    anchors.centerIn: parent
+                    width: units.gu(2)
+                    height: units.gu(2)
+                    source: "image://theme/add"
+                }
             }
 
-            visible: false
+            Label {
+                id: name
+
+                anchors {
+                    left: addIcon.right
+                    leftMargin: units.gu(2)
+                    verticalCenter: parent.verticalCenter
+                    right: parent.right
+                    rightMargin: units.gu(2)
+                }
+                color: UbuntuColors.lightAubergine
+                text: i18n.tr("+ Create New")
+                elide: Text.ElideRight
+            }
+
             MouseArea {
                 id: addNewContactButtonArea
 
@@ -267,7 +283,7 @@ PageWithBottomEdge {
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
 
         onInfoRequested: {
-            mainPage.state = ""
+            mainPage.state = "default"
             pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
                            {model: contactList.listModel,
                             contact: contact})
@@ -283,24 +299,7 @@ PageWithBottomEdge {
             }
         }
 
-        onSelectionDone: {
-            if (pickMode) {
-                var contacts = []
-                for (var i=0; i < items.count; i++) {
-                    contacts.push(items.get(i).model.contact)
-                }
-                contactExporter.exportContacts(contacts)
-            } else {
-                var contacts = []
-
-                for (var i=0, iMax=items.count; i < iMax; i++) {
-                    contacts.push(items.get(i).model.contact)
-                }
-
-                var dialog = PopupUtils.open(removeContactDialog, null)
-                dialog.contacts = contacts
-            }
-        }
+        onAddDetailClicked: mainPage.addPhoneToContact(contact.contactId, " ")
 
         onSelectionCanceled: {
             if (pickMode) {
@@ -309,9 +308,10 @@ PageWithBottomEdge {
                 }
                 pickMode = false
                 contentHubTransfer = null
-                state = ""
+                console.debug("UPDATE STATE:" +  mainPage.state )
                 application.returnVcard("")
             }
+            mainPage.state = "default"
         }
 
         onError: pageStack.contactModelError(error)
@@ -338,146 +338,183 @@ PageWithBottomEdge {
         }
     }
 
-    ToolbarItems {
-        id: toolbarItemsSelectionMode
+    TextField {
+        id: searchField
 
-        visible: false
-        back: ToolbarButton {
-            action: Action {
-                text: i18n.tr("Cancel selection")
-                iconName: "close"
-                onTriggered: contactList.cancelSelection()
+        anchors {
+            left: parent.left
+            right: parent.right
+            rightMargin: units.gu(2)
+        }
+        visible: mainPage.searching
+        onTextChanged: contactList.currentIndex = -1
+        inputMethodHints: Qt.ImhNoPredictiveText
+        placeholderText: i18n.tr("Search...")
+    }
+
+    Connections {
+        target: mainPage.head.sections
+        onSelectedIndexChanged: {
+            switch (mainPage.head.sections.selectedIndex) {
+            case 0:
+                contactList.showAllContacts()
+                break;
+            case 1:
+                contactList.showFavoritesContacts()
+                break;
+            default:
+                break;
             }
         }
+    }
 
-        ToolbarButton {
-            action: Action {
-                objectName: "selectAll"
-                text: i18n.tr("Select All")
-                iconName: "filter"
+    state: "default"
+    onStateChanged: console.debug("STATE CHANGEDDDDD" + state)
+    states: [
+        PageHeadState {
+            id: defaultState
+
+            name: "default"
+            backAction: Action {
+                visible: mainPage.allowToQuit
+                iconName: "back"
+                text: i18n.tr("Quit")
                 onTriggered: {
-                    if (contactList.selectedItems.count === contactList.count) {
-                        contactList.clearSelection()
-                    } else {
-                        contactList.selectAll()
+                    application.goBackToSourceApp()
+                    mainPage.returnToNormalState()
+                }
+            }
+            actions: [
+                Action {
+                    visible: mainPage.syncEnabled
+                    text: application.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
+                    iconName: "reload"
+                    enabled: !application.syncing
+                    onTriggered: application.startSync()
+                },
+                Action {
+                    text: i18n.tr("Search")
+                    iconName: "search"
+                    onTriggered: {
+                        mainPage.state = (mainPage.state === "newphone" ? "newphoneSearching" : "searching")
+                        searchField.forceActiveFocus()
                     }
                 }
-                visible: contactList.isInSelectionMode
+            ]
+            PropertyChanges {
+                target: mainPage.head
+                backAction: defaultState.backAction
+                actions: defaultState.actions
+                sections.model: ["All", "Favorites"]
             }
-        }
-
-        ToolbarButton {
-            action: Action {
-                objectName: "doneSelection"
-                text: mainPage.pickMode ? i18n.tr("Select") : i18n.tr("Delete")
-                iconName: mainPage.pickMode ? "select" : "delete"
-                onTriggered: contactList.endSelection()
-                visible: contactList.isInSelectionMode
+            PropertyChanges {
+                target: searchField
+                text: ""
             }
-        }
-    }
+        },
+        PageHeadState {
+            id: searchingState
 
-    ToolbarButton {
-        id: quitButton
-
-        visible: false
-        action: Action {
-            objectName: "quitApp"
-
-            visible: mainPage.allowToQuit
-            iconName: "back"
-            text: i18n.tr("Quit")
-            onTriggered: {
-                application.goBackToSourceApp()
-                mainPage.returnToNormalState()
-            }
-        }
-    }
-
-    ToolbarItems {
-        id: toolbarItemsNormalMode
-
-        visible: false
-        back: mainPage.allowToQuit ? quitButton : null
-
-        ToolbarButton {
-            objectName: "Sync"
-            action: Action {
-                visible: mainPage.syncEnabled
-                text: application.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
-                iconName: "reload"
-                enabled: !application.syncing
-                onTriggered: application.startSync()
-            }
-        }
-        ToolbarButton {
-            objectName: "Search"
-            action: Action {
-                text: i18n.tr("Search")
-                visible: !mainPage.searching
-                iconName: "search"
-                onTriggered: {
-                    mainPage.state = (mainPage.state === "newphone" ? "newphoneSearching" : "searching")
-                    searchField.forceActiveFocus()
-                }
-            }
-        }
-    }
-
-    ToolbarItems {
-        id: toolbarItemsSearch
-
-        visible: false
-        back: ToolbarButton {
-            visible: false
-            action: Action {
-                objectName: "cancelSearch"
-
-                visible: mainPage.searching
+            name: "searching"
+            backAction: Action {
                 iconName: "close"
                 text: i18n.tr("Cancel")
                 onTriggered: {
                     contactList.forceActiveFocus()
-                    mainPage.state = (mainPage.state === "newphoneSearching" ? "newphone" : "")
+                    mainPage.state = (mainPage.state === "newphoneSearching" ? "newphone" : "default")
                 }
             }
-        }
-    }
 
-    TextField {
-        id: searchField
+            PropertyChanges {
+                target: mainPage.head
+                backAction: searchingState.backAction
+                contents: searchField
+            }
 
-        visible: mainPage.searching
-        anchors {
-            left: parent.left
-            leftMargin: units.gu(2)
-            right: parent.right
-            rightMargin: units.gu(2)
-            topMargin: units.gu(1.5)
-            bottomMargin: units.gu(1.5)
-            verticalCenter: parent.verticalCenter
-        }
-        onTextChanged: contactList.currentIndex = -1
-        inputMethodHints: Qt.ImhNoPredictiveText
-    }
-    states: [
-        State {
-            name: ""
             PropertyChanges {
                 target: searchField
                 text: ""
+            }
+        },
+        PageHeadState {
+            id: selectionState
+
+            name: "selection"
+            when: contactList.isInSelectionMode
+            backAction: Action {
+                text: i18n.tr("Cancel selection")
+                iconName: "close"
+                onTriggered: contactList.cancelSelection()
+            }
+            actions: [
+                Action {
+                    text: i18n.tr("Select All")
+                    iconName: "select"
+                    onTriggered: {
+                        if (contactList.selectedItems.count === contactList.count) {
+                            contactList.clearSelection()
+                        } else {
+                            contactList.selectAll()
+                        }
+                    }
+                    visible: contactList.isInSelectionMode
+                },
+                Action {
+                    objectName: "share"
+                    text: i18n.tr("Share")
+                    iconName: "share"
+                    visible: contactList.isInSelectionMode
+                    onTriggered: {
+                        var contacts = []
+                        var items = contactList.selectedItems
+
+                        for (var i=0; i < items.count; i++) {
+                            contacts.push(items.get(i).model.contact)
+                        }
+                        if (mainPage.pickMode) {
+                            contactExporter.exportContacts(contacts)
+                            mainPage.pickMode = false
+                        } else {
+                            pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
+                                           { contactModel: contactList.model, contacts: contacts })
+                        }
+                    }
+                },
+                Action {
+                    objectName: "delete"
+                    text: i18n.tr("Delete")
+                    iconName: "delete"
+                    visible: contactList.isInSelectionMode && !mainPage.pickMode
+                    onTriggered: {
+
+                        var contacts = []
+                        var items = contactList.selectedItems
+
+                        for (var i=0, iMax=items.count; i < iMax; i++) {
+                            contacts.push(items.get(i).model.contact)
+                        }
+
+                        var dialog = PopupUtils.open(removeContactDialog, null)
+                        dialog.contacts = contacts
+                        contactList.endSelection()
+                    }
+                }
+            ]
+            PropertyChanges {
+                target: mainPage.head
+                backAction: selectionState.backAction
+                actions: selectionState.actions
             }
             PropertyChanges {
                 target: mainPage
-                newPhoneToAdd: ""
+                bottomEdgeEnabled: false
+                title: " "
             }
         },
-        State {
+        PageHeadState {
             name: "newphone"
-            PropertyChanges {
-                target: searchField
-                text: ""
-            }
+            extend: "default"
+            head: mainPage.head
             PropertyChanges {
                 target: addNewContactButton
                 visible: true
@@ -492,15 +529,13 @@ PageWithBottomEdge {
                 detailToPick: -1
             }
         },
-        State {
+        PageHeadState {
             name: "newphoneSearching"
+            extend: "searching"
+            head: mainPage.head
             PropertyChanges {
                 target: addNewContactButton
                 visible: true
-            }
-            PropertyChanges {
-                target: mainPage
-                bottomEdgeEnabled: false
             }
             PropertyChanges {
                 target: contactList
@@ -508,38 +543,10 @@ PageWithBottomEdge {
             }
             PropertyChanges {
                 target: mainPage
-                __customHeaderContents: searchField
-                tools: toolbarItemsSearch
-            }
-            PropertyChanges {
-                target: contactList
-                showFavourites: false
-            }
-        },
-        State {
-            name: "searching"
-            PropertyChanges {
-                target: mainPage
-                __customHeaderContents: searchField
-                tools: toolbarItemsSearch
-            }
-            PropertyChanges {
-                target: contactList
-                showFavourites: false
-            }
-        },
-        State {
-            name: "selection"
-            when: contactList.isInSelectionMode
-            PropertyChanges {
-                target: mainPage
-                tools: toolbarItemsSelectionMode
                 bottomEdgeEnabled: false
-                title: i18n.tr("Select Contacts")
             }
         }
     ]
-    tools: toolbarItemsNormalMode
     onActiveChanged: {
         if (active && addNewContactButton.visible) {
             contactList.positionViewAtBeginning()
@@ -614,12 +621,13 @@ PageWithBottomEdge {
             }
             activeTransfer = null
             pickMode = false
-            state = ""
+            mainPage.state = "defautl"
             application.returnVcard(url)
         }
     }
 
     Component.onCompleted: {
+        application.elapsed()
         if ((contactList.count === 0) &&
                    application.firstRun &&
                    !mainPage.syncEnabled) {
