@@ -89,6 +89,12 @@ ContactDetailBase {
         }
     }
 
+    ActivityIndicator {
+        anchors.centerIn: avatar
+        running: (avatarImport.importDialog != null)
+        visible: running
+    }
+
     AvatarImport {
         id: avatarImport
 
