@@ -188,10 +188,7 @@ Item {
                Item {
                    property alias image: img
 
-                   anchors {
-                       top: parent.top
-                       bottom: parent.bottom
-                   }
+                   height: rightActionsView.height
                    width: root.actionWidth
 
                    Icon {

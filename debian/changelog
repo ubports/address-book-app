@@ -1,3 +1,22 @@
+address-book-app (0.2+14.10.20140805-0ubuntu1) utopic; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Gustavo Pichorim Boiko ]
+  * Visual update. Update import to use only Ubuntu.Components 1.1.
+    Async load content hub component. Update ListWithActions API to
+    support selection. Update ContactList API, remove all|favorite
+    header. .
+
+  [ Renato Araujo Oliveira Filho ]
+  * Visual update. Update import to use only Ubuntu.Components 1.1.
+    Async load content hub component. Update ListWithActions API to
+    support selection. Update ContactList API, remove all|favorite
+    header. .
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 05 Aug 2014 12:53:11 +0000
+
 address-book-app (0.2+14.10.20140731-0ubuntu1) utopic; urgency=low
 
   [ Renato Araujo Oliveira Filho ]
