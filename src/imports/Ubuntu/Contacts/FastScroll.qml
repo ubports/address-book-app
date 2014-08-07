@@ -178,9 +178,9 @@ Item {
                 width: pinSize
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
-                text: internal.fastScrolling && internal.targetSection == modelData ? "" : modelData
+                text: modelData
                 fontSize: "x-small"
-                color: internal.currentItem && (internal.currentItem.text === text) ? Theme.palette.selected.foregroundText : Theme.palette.selected.backgroundText
+                color: cursor.y === y ? "white" : Theme.palette.selected.backgroundText
                 opacity: !internal.modelDirty && Sections.contains(text) ? 1.0 : 0.5
             }
         }
