@@ -140,7 +140,7 @@ Item {
         id: rail
 
         property bool isVisible: root.enabled &&
-                                 (listView.moving || dragArea.pressed) &&
+                                 (listView.flicking || dragArea.pressed) &&
                                  (listView.currentIndex == -1)
         anchors {
             right: parent.right
