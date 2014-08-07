@@ -320,7 +320,7 @@ Page {
                     objectName: "addNewFieldButton"
 
                     text: i18n.tr("Add Field")
-                    gradient: UbuntuColors.greyGradient
+                    strokeColor: UbuntuColors.warmGrey
                     anchors {
                         top: parent.top
                         bottom: parent.bottom
@@ -336,6 +336,7 @@ Page {
 
                     text: i18n.tr("Delete")
                     visible: !contactEditor.isNewContact
+                    color: "red"
                     anchors {
                         top: parent.top
                         bottom: parent.bottom
