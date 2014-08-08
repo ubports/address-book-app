@@ -46,7 +46,7 @@ Item {
             anchors.fill: parent
 
             Repeater {
-                model: 5
+                model: 3
 
                 ListItemWithActions {
                     id: listWithActions
@@ -60,7 +60,7 @@ Item {
                     triggerActionOnMouseRelease: true
                     Rectangle {
                         anchors.fill: parent
-                        color: "blue"
+                        color: "green"
                     }
 
                     leftSideAction: Action {
@@ -95,11 +95,38 @@ Item {
             }
 
             Repeater {
-                model: 5
+                model: 3
 
                 ListItemWithActions {
                     id: listWithNoRightActions
                     objectName: "listWithNoRightActions" + index
+
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                    }
+                    height: units.gu(8)
+                    triggerActionOnMouseRelease: true
+                    Rectangle {
+                        anchors.fill: parent
+                        color: "pink"
+                    }
+
+                    leftSideAction: Action {
+                        objectName: "deleteAction2"
+
+                        iconName: "delete"
+                        onTriggered: itemList.actionTriggered(deleteAction, value)
+                    }
+                }
+            }
+
+            Repeater {
+                model: 3
+
+                ListItemWithActions {
+                    id: listWithInvisibleActions
+                    objectName: "listWithInvisibleActions"+ index
 
                     anchors {
                         left: parent.left
@@ -118,6 +145,35 @@ Item {
                         iconName: "delete"
                         onTriggered: itemList.actionTriggered(deleteAction, value)
                     }
+
+                    rightSideActions: [
+                        Action {
+                            id: messageAction2
+
+                            iconName: "message"
+                            onTriggered: itemList.actionTriggered(messageAction2)
+                        },
+                        Action {
+                            id: shareAction2
+
+                            iconName: "share"
+                            visible: false
+                            onTriggered: itemList.actionTriggered(shareAction2)
+                        },
+                        Action {
+                            id: contactAction2
+
+                            iconName: "stock_contact"
+                            onTriggered: itemList.actionTriggered(contactAction2)
+                        },
+                        Action {
+                            id: infoAction2
+
+                            iconName: "info"
+                            visible: false
+                            onTriggered: itemList.actionTriggered(shareAction2)
+                        }
+                    ]
                 }
             }
         }
@@ -276,6 +332,16 @@ Item {
             mouseMoveSlowly(item, startX, y, -startX, y, 10, 100)
             var mainItem = findChild(item, "mainItem")
             compare(mainItem.x, 0)
+        }
+
+        function test_not_visibleActions()
+        {
+            var item = swipeToLeft("listWithInvisibleActions2", -1, true)
+            compare(item._visibleRightSideActions.length, 2)
+
+            // check if only 2 actions is visible
+            var mainItem = findChild(item, "mainItem")
+            tryCompare(mainItem, "x", (item.actionWidth * -2) - units.gu(6))
         }
     }
 }

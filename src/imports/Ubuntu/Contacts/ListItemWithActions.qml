@@ -41,6 +41,9 @@ Item {
     readonly property string swipeState: main.x == 0 ? "Normal" : main.x > 0 ? "LeftToRight" : "RightToLeft"
     readonly property alias swipping: mainItemMoving.running
 
+    /* internal */
+    property var _visibleRightSideActions: filterVisibleActions(rightSideActions)
+
     signal itemClicked(var mouse)
     signal itemPressAndHold(var mouse)
 
@@ -48,11 +51,11 @@ Item {
     {
         var actionFullWidth = actionWidth + units.gu(2)
         var xOffset = Math.abs(main.x)
-        var index = Math.min(Math.floor(xOffset / actionFullWidth), rightSideActions.length)
+        var index = Math.min(Math.floor(xOffset / actionFullWidth), _visibleRightSideActions.length)
 
         if (index < 1) {
             main.x = 0
-        } else if (index === rightSideActions.length) {
+        } else if (index === _visibleRightSideActions.length) {
             main.x = -rightActionsView.width
         } else {
             main.x = -(actionFullWidth * index)
@@ -104,11 +107,11 @@ Item {
             (main.x > -rightActionsView.width)) {
             var actionFullWidth = actionWidth + units.gu(2)
             var xOffset = Math.abs(main.x)
-            var index = Math.min(Math.floor(xOffset / actionFullWidth), rightSideActions.length)
+            var index = Math.min(Math.floor(xOffset / actionFullWidth), _visibleRightSideActions.length)
             index = index - 1
             if (index > -1) {
                 root.activeItem = rightActionsRepeater.itemAt(index)
-                root.activeAction = root.rightSideActions[index]
+                root.activeAction = root._visibleRightSideActions[index]
             }
         } else {
             root.activeAction = null
@@ -118,6 +121,18 @@ Item {
     function resetSwipe()
     {
         main.x = 0
+    }
+
+    function filterVisibleActions(actions)
+    {
+        var visibleActions = []
+        for(var i = 0; i < actions.length; i++) {
+            var action = actions[i]
+            if (action.visible) {
+                visibleActions.push(action)
+            }
+        }
+        return visibleActions
     }
 
     states: [
@@ -167,7 +182,7 @@ Item {
         }
     }
 
-    Item {
+    Rectangle {
        id: rightActionsView
 
        anchors {
@@ -176,15 +191,16 @@ Item {
            leftMargin: units.gu(1)
            bottom: main.bottom
        }
-       visible: rightSideActions.length > 0
+       visible: _visibleRightSideActions.length > 0
        width: rightActionsRepeater.count > 0 ? rightActionsRepeater.count * (root.actionWidth + units.gu(2)) + actionThreshold : 0
+       color: "white"
        Row {
            anchors.fill: parent
            spacing: units.gu(2)
            Repeater {
                id: rightActionsRepeater
 
-               model: rightSideActions
+               model: _visibleRightSideActions
                Item {
                    property alias image: img
 
@@ -197,10 +213,10 @@ Item {
                        anchors.centerIn: parent
                        width: units.gu(3)
                        height: units.gu(3)
-                       name: iconName
+                       name: modelData.iconName
                        color: root.activeAction === modelData || !root.triggerActionOnMouseRelease ? UbuntuColors.lightAubergine : Theme.palette.selected.background
                    }
-               }
+              }
            }
        }
     }
@@ -314,7 +330,7 @@ Item {
     MouseArea {
         id: mouseArea
 
-        property bool locked: root.locked || ((root.leftSideAction === null) && (root.rightSideActions.count === 0))
+        property bool locked: root.locked || ((root.leftSideAction === null) && (root._visibleRightSideActions.count === 0))
         property bool manual: false
 
         anchors.fill: parent
@@ -345,7 +361,7 @@ Item {
                 var actionIndex = getActionAt(Qt.point(mouse.x, mouse.y))
                 if (actionIndex !== -1) {
                     root.activeItem = rightActionsRepeater.itemAt(actionIndex)
-                    root.activeAction = root.rightSideActions[actionIndex]
+                    root.activeAction = root._visibleRightSideActions[actionIndex]
                     triggerAction.start()
                     return
                 }
