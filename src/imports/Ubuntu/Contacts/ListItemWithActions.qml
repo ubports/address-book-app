@@ -56,7 +56,7 @@ Item {
         if (index < 1) {
             main.x = 0
         } else if (index === _visibleRightSideActions.length) {
-            main.x = -rightActionsView.width
+            main.x = -(rightActionsView.width - units.gu(2))
         } else {
             main.x = -(actionFullWidth * index)
         }
@@ -103,8 +103,8 @@ Item {
 
     function updateActiveAction()
     {
-        if ((main.x <= -root.actionWidth) &&
-            (main.x > -rightActionsView.width)) {
+        if ((main.x <= -(root.actionWidth + units.gu(2))) &&
+            (main.x > -(rightActionsView.width - units.gu(2)))) {
             var actionFullWidth = actionWidth + units.gu(2)
             var xOffset = Math.abs(main.x)
             var index = Math.min(Math.floor(xOffset / actionFullWidth), _visibleRightSideActions.length)
@@ -188,14 +188,20 @@ Item {
        anchors {
            top: main.top
            left: main.right
-           leftMargin: units.gu(1)
            bottom: main.bottom
        }
        visible: _visibleRightSideActions.length > 0
-       width: rightActionsRepeater.count > 0 ? rightActionsRepeater.count * (root.actionWidth + units.gu(2)) + actionThreshold : 0
+       width: rightActionsRepeater.count > 0 ? rightActionsRepeater.count * (root.actionWidth + units.gu(2)) + root.actionThreshold + units.gu(2) : 0
        color: "white"
        Row {
-           anchors.fill: parent
+           anchors{
+               top: parent.top
+               left: parent.left
+               leftMargin: units.gu(2)
+               right: parent.right
+               rightMargin: units.gu(2)
+               bottom: parent.bottom
+           }
            spacing: units.gu(2)
            Repeater {
                id: rightActionsRepeater
@@ -337,7 +343,7 @@ Item {
         drag {
             target: locked ? null : main
             axis: Drag.XAxis
-            minimumX: rightActionsView.visible ? -(rightActionsView.width + root.actionThreshold) : 0
+            minimumX: rightActionsView.visible ? -(rightActionsView.width) : 0
             maximumX: leftActionView.visible ? leftActionView.width : 0
         }
 
