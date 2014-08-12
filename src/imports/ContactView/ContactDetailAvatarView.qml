@@ -30,35 +30,9 @@ ContactDetailBase {
     Connections {
         id: connections
 
-        function updateTarget()
-        {
-            if (root.contact) {
-                var avatarDetail = root.contact.detail(ContactDetail.Avatar)
-                if (avatarDetail) {
-                    return avatarDetail
-                } else  {
-                    return root.contact
-                }
-            }
-            return null
-        }
-
-        target: updateTarget()
+        target: avatar.contactElement
         ignoreUnknownSignals: true
-        onContactChanged: {
-            var avatarDetail = root.contact.detail(ContactDetail.Avatar)
-            if (avatarDetail) {
-                avatar.reload()
-                connections.target = avatarDetail
-            }
-        }
-        onDetailChanged: {
-            var avatarDetail = root.contact.detail(ContactDetail.Avatar)
-            if (avatarDetail === null) {
-                connections.target = root.contact
-            }
-            avatar.reload()
-        }
+        onContactChanged: avatar.reload()
     }
 
     ContactsUI.ContactAvatar {
