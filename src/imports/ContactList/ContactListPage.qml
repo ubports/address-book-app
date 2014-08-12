@@ -369,7 +369,6 @@ ContactsUI.PageWithBottomEdge {
     }
 
     state: "default"
-    onStateChanged: console.debug("STATE CHANGEDDDDD" + state)
     states: [
         PageHeadState {
             id: defaultState
@@ -468,16 +467,18 @@ ContactsUI.PageWithBottomEdge {
                         var contacts = []
                         var items = contactList.selectedItems
 
-                        for (var i=0; i < items.count; i++) {
+                        for (var i=0, iMax=items.count; i < iMax; i++) {
                             contacts.push(items.get(i).model.contact)
                         }
+
                         if (mainPage.pickMode) {
                             contactExporter.exportContacts(contacts)
                             mainPage.pickMode = false
                         } else {
                             pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
-                                           { contactModel: contactList.model, contacts: contacts })
+                                           { contactModel: contactList.listModel, contacts: contacts })
                         }
+                        contactList.endSelection()
                     }
                 },
                 Action {
@@ -486,7 +487,6 @@ ContactsUI.PageWithBottomEdge {
                     iconName: "delete"
                     visible: contactList.isInSelectionMode && !mainPage.pickMode
                     onTriggered: {
-
                         var contacts = []
                         var items = contactList.selectedItems
 
