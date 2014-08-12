@@ -24,6 +24,7 @@ if(QMLTESTRUNNER_BIN AND XVFB_RUN_BIN)
     declare_qml_test("contact_editor" tst_ContactEditor.qml)
     declare_qml_test("contact_avatar" tst_ContactAvatar.qml)
     declare_qml_test("list_with_actions" tst_ListWithActions.qml)
+    declare_qml_test("vcard_parser" tst_VCardParser.qml)
 else()
     if (NOT QMLTESTRUNNER_BIN)
         message(WARNING "Qml tests disabled: qmltestrunner not found")
@@ -37,5 +38,6 @@ set(QML_TST_FILES
     tst_ContactEditor.qml
     tst_ContactAvatar.qml
     tst_ListWithActions.qml
+    tst_VCardParser.qml
 )
 add_custom_target(tst_QmlFiles ALL SOURCES ${QML_TST_FILES})
