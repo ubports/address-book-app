@@ -405,7 +405,7 @@ ContactsUI.PageWithBottomEdge {
                 target: mainPage.head
                 backAction: defaultState.backAction
                 actions: defaultState.actions
-                sections.model: ["All", "Favorites"]
+                sections.model: [i18n.tr("All"), i18n.tr("Favorites")]
             }
             PropertyChanges {
                 target: searchField

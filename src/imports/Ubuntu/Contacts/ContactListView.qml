@@ -427,7 +427,7 @@ Item {
                     Label {
                         anchors.fill: parent
                         verticalAlignment: Text.AlignVCenter
-                        text: i18n.tr("Frequently called")
+                        text: i18n.dtr("address-book-app", "Frequently called")
                         font.pointSize: 76
                     }
                     ListItem.ThinDivider {
