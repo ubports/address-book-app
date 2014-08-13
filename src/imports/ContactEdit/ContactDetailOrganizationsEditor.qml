@@ -20,7 +20,7 @@ import QtContacts 5.0 as QtContacts
 import "../Common"
 
 ContactDetailGroupWithTypeEditor {
-    title: i18n.tr("Professional details")
+    title: i18n.tr("Professional Details")
     typeModel: null
     detailQmlTypeName: "Organization"
     detailType: QtContacts.ContactDetail.Organization
