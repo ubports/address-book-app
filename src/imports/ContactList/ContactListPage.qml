@@ -236,6 +236,7 @@ ContactsUI.PageWithBottomEdge {
                     rightMargin: units.gu(2)
                 }
                 color: UbuntuColors.lightAubergine
+                // TRANSLATORS: this refers to creating a new contact
                 text: i18n.tr("+ Create New")
                 elide: Text.ElideRight
             }
@@ -405,7 +406,8 @@ ContactsUI.PageWithBottomEdge {
                 target: mainPage.head
                 backAction: defaultState.backAction
                 actions: defaultState.actions
-                sections.model: ["All", "Favorites"]
+                // TRANSLATORS: this refers to all contacts
+                sections.model: [i18n.tr("All"), i18n.tr("Favorites")]
             }
             PropertyChanges {
                 target: searchField

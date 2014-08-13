@@ -130,7 +130,7 @@ MainView {
             text: mainWindow.modelErrorMessage
 
             Button {
-                text: "Cancel"
+                text: i18n.tr("Cancel")
                 gradient: UbuntuColors.greyGradient
                 onClicked: PopupUtils.close(dialogue)
             }
