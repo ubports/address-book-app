@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-12 21:38-0300\n"
+"POT-Creation-Date: 2014-08-13 09:13-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,8 @@ msgstr ""
 msgid "%1 vCards imported"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:239
+#. TRANSLATORS: this refers to creating a new contact
+#: src/imports/ContactList/ContactListPage.qml:240
 msgid "+ Create New"
 msgstr ""
 
@@ -30,7 +31,7 @@ msgstr ""
 msgid "Add Field"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:525
+#: src/imports/ContactList/ContactListPage.qml:527
 msgid "Add contact"
 msgstr ""
 
@@ -53,7 +54,8 @@ msgstr ""
 msgid "Aim"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:408
+#. TRANSLATORS: this refers to all contacts
+#: src/imports/ContactList/ContactListPage.qml:410
 msgid "All"
 msgstr ""
 
@@ -67,13 +69,13 @@ msgstr ""
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:133
 #: src/imports/ContactEdit/ContactEditor.qml:373
-#: src/imports/ContactList/ContactListPage.qml:421
+#: src/imports/ContactList/ContactListPage.qml:423
 #: src/imports/MainWindow.qml:133
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:37
 msgid "Cancel"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:445
+#: src/imports/ContactList/ContactListPage.qml:447
 msgid "Cancel selection"
 msgstr ""
 
@@ -94,8 +96,8 @@ msgid "Country"
 msgstr ""
 
 #: src/imports/ContactEdit/ContactEditor.qml:337
-#: src/imports/ContactList/ContactListPage.qml:266
-#: src/imports/ContactList/ContactListPage.qml:485
+#: src/imports/ContactList/ContactListPage.qml:267
+#: src/imports/ContactList/ContactListPage.qml:487
 msgid "Delete"
 msgstr ""
 
@@ -136,7 +138,7 @@ msgstr ""
 msgid "Favorite"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:408
+#: src/imports/ContactList/ContactListPage.qml:410
 msgid "Favorites"
 msgstr ""
 
@@ -177,7 +179,7 @@ msgstr ""
 msgid "Last name"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:337
+#: src/imports/ContactList/ContactListPage.qml:338
 msgid "Loading..."
 msgstr ""
 
@@ -235,7 +237,7 @@ msgstr ""
 msgid "Professional Details"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:381
+#: src/imports/ContactList/ContactListPage.qml:382
 msgid "Quit"
 msgstr ""
 
@@ -251,15 +253,15 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:396
+#: src/imports/ContactList/ContactListPage.qml:397
 msgid "Search"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:352
+#: src/imports/ContactList/ContactListPage.qml:353
 msgid "Search..."
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:451
+#: src/imports/ContactList/ContactListPage.qml:453
 msgid "Select All"
 msgstr ""
 
@@ -267,7 +269,7 @@ msgstr ""
 msgid "Select a field"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:464
+#: src/imports/ContactList/ContactListPage.qml:466
 #: src/imports/ContactView/ContactView.qml:206
 msgid "Share"
 msgstr ""
@@ -285,15 +287,15 @@ msgstr ""
 msgid "Street"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:390
+#: src/imports/ContactList/ContactListPage.qml:391
 msgid "Sync"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:390
+#: src/imports/ContactList/ContactListPage.qml:391
 msgid "Syncing"
 msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:337
+#: src/imports/ContactList/ContactListPage.qml:338
 msgid "Syncing..."
 msgstr ""
 
