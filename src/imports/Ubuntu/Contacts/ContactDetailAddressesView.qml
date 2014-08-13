@@ -21,7 +21,7 @@ import Ubuntu.Components 1.1
 ContactDetailGroupWithTypeView {
     id: root
 
-    title: i18n.tr("Address")
+    title: i18n.dtr("address-book-app", "Address")
     defaultIcon: "image://theme/location"
     detailType: QtContacts.ContactDetail.Address
     fields: [ QtContacts.Address.Street,

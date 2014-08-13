@@ -16,10 +16,10 @@
 
 import QtQuick 2.2
 import QtContacts 5.0
-import Ubuntu.Components 1.1
-import Ubuntu.Components.ListItems 1.0 as ListItem
 
-import "../Common"
+import Ubuntu.Components 1.1
+import Ubuntu.Components.ListItems 1.0
+import Ubuntu.Contacts 0.1
 
 ContactDetailBase {
     id: root
@@ -83,7 +83,7 @@ ContactDetailBase {
         height: units.gu(4)
     }
 
-    ListItem.ThinDivider {
+    ThinDivider {
         id: divider
 
         anchors.top: label.bottom

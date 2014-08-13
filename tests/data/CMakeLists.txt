@@ -1,3 +1,5 @@
+project(test_data)
+
 set(AUTOPILOT_DATA
     vcard.vcf
 )

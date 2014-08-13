@@ -19,8 +19,6 @@ import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 1.0 as ListItem
 import QtContacts 5.0 as QtContacts
 
-import "../Common"
-
 ContactDetailGroupWithTypeBase {
     id: root
 

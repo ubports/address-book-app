@@ -16,9 +16,9 @@
 
 import QtQuick 2.2
 import Ubuntu.Components 1.1
-import Ubuntu.Components.Popups 1.0 as Popups
+import Ubuntu.Components.Popups 1.0
 
-Popups.Dialog {
+Dialog {
     objectName: "removeContactsDialog"
 
     property var contacts: []

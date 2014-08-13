@@ -16,10 +16,6 @@
 
 import QtQuick 2.2
 import QtContacts 5.0
-import Ubuntu.Components 1.1
-import Ubuntu.Contacts 0.1 as ContactsUI
-
-import "../Common"
 
 ContactDetailBase {
     id: root
@@ -61,8 +57,9 @@ ContactDetailBase {
         }
     }
 
-    ContactsUI.ContactAvatar {
+    ContactAvatar {
         id: avatar
+        objectName: "contactAvatarDetail"
 
         contactElement: root.contact
         anchors {

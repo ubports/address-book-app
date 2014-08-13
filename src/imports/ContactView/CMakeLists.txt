@@ -1,19 +1,6 @@
 set(CONTACT_VIEW_QMLS
-    ActionButton.qml
-    BasicFieldView.qml
-    ContactDetailAddressesView.qml
-    ContactDetailAvatarView.qml
-    ContactDetailEmailsView.qml
-    ContactDetailGroupWithTypeView.qml
-    ContactDetailNameView.qml
-    ContactDetailOnlineAccountsView.qml
-    ContactDetailOrganizationsView.qml
-    ContactDetailPhoneNumbersView.qml
-    ContactDetailPhoneNumberView.qml
     ContactDetailSyncTargetView.qml
-    ContactDetailWithTypeView.qml
     ContactFetchError.qml
-    ContactHeaderView.qml
     ContactView.qml
 )
 

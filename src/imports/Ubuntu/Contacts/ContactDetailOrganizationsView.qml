@@ -16,17 +16,17 @@
 
 import QtQuick 2.2
 import QtContacts 5.0 as QtContacts
-import Ubuntu.Components 1.1
-import Ubuntu.Contacts 0.1
 
-import "../Common"
 
 ContactDetailGroupWithTypeView {
-    detailType: QtContacts.ContactDetail.OnlineAccount
-    fields: [ QtContacts.OnlineAccount.AccountUri ]
-    title: i18n.tr("Social")
-    typeModel: ContactDetailOnlineAccountTypeModel { }
-    defaultAction: Action {
-        text: i18n.tr("Touch")
-    }
+    id: root
+
+    title: i18n.tr("Professional details")
+    defaultIcon: "image://theme/location"
+    detailType: QtContacts.ContactDetail.Organization
+    typeModel: null
+
+    fields: [ QtContacts.Organization.Name,
+              QtContacts.Organization.Role,
+              QtContacts.Organization.Title ]
 }

@@ -1,8 +1,5 @@
 set(CONTACT_COMMON_QMLS
-    ContactDetailBase.qml
     ContactDetailItem.qml
-    ContactDetailGroupBase.qml
-    ContactDetailGroupWithTypeBase.qml
     KeyboardRectangle.qml
     RemoveContactsDialog.qml
     StandardAnimation.qml
