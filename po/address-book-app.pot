@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-12 20:51-0300\n"
+"POT-Creation-Date: 2014-08-12 21:38-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -230,12 +230,9 @@ msgid "Post code"
 msgstr ""
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:63
-msgid "Professional Details"
-msgstr ""
-
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:23
 #: src/imports/ContactView/ContactDetailOrganizationsView.qml:27
-msgid "Professional details"
+msgid "Professional Details"
 msgstr ""
 
 #: src/imports/ContactList/ContactListPage.qml:381
