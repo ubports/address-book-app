@@ -15,33 +15,18 @@
  */
 
 import QtQuick 2.2
-import QtContacts 5.0
-import Ubuntu.Components 1.1
-import Ubuntu.Contacts 0.1 as ContactsUI
+import QtContacts 5.0 as QtContacts
 
-import "../Common"
 
-ContactDetailBase {
+ContactDetailGroupWithTypeView {
     id: root
 
-    implicitHeight: units.gu(8)
-    implicitWidth: units.gu(10)
+    title: i18n.tr("Professional Details")
+    defaultIcon: "image://theme/location"
+    detailType: QtContacts.ContactDetail.Organization
+    typeModel: null
 
-    Connections {
-        id: connections
-
-        target: avatar.contactElement
-        ignoreUnknownSignals: true
-        onContactChanged: avatar.reload()
-    }
-
-    ContactsUI.ContactAvatar {
-        id: avatar
-
-        contactElement: root.contact
-        anchors {
-            fill: parent
-            leftMargin: units.gu(2)
-        }
-    }
+    fields: [ QtContacts.Organization.Name,
+              QtContacts.Organization.Role,
+              QtContacts.Organization.Title ]
 }

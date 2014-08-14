@@ -15,16 +15,15 @@
  */
 
 import QtQuick 2.2
-import QtContacts 5.0 as QtContacts
-import Ubuntu.Contacts 0.1
+import QtContacts 5.0
 
-import "../Common"
+import Ubuntu.Contacts 0.1
 
 ContactDetailGroupWithTypeEditor {
     title: i18n.tr("Phone")
-    detailType: QtContacts.ContactDetail.PhoneNumber
+    detailType: ContactDetail.PhoneNumber
     detailQmlTypeName: "PhoneNumber"
-    fields: [ QtContacts.PhoneNumber.Number ]
+    fields: [ PhoneNumber.Number ]
     placeholderTexts: [ i18n.tr("Enter a number") ]
     typeModel: ContactDetailPhoneNumberTypeModel { }
     inputMethodHints: Qt.ImhDialableCharactersOnly

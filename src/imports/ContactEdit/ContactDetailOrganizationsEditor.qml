@@ -15,18 +15,16 @@
  */
 
 import QtQuick 2.2
-import QtContacts 5.0 as QtContacts
-
-import "../Common"
+import QtContacts 5.0
 
 ContactDetailGroupWithTypeEditor {
     title: i18n.tr("Professional Details")
     typeModel: null
     detailQmlTypeName: "Organization"
-    detailType: QtContacts.ContactDetail.Organization
-    fields: [ QtContacts.Organization.Name,
-              QtContacts.Organization.Role,
-              QtContacts.Organization.Title ]
+    detailType: ContactDetail.Organization
+    fields: [ Organization.Name,
+              Organization.Role,
+              Organization.Title ]
     placeholderTexts: [ i18n.tr("Organization"),
                         i18n.tr("Role"),
                         i18n.tr("Title")

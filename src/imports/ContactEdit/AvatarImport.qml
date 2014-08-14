@@ -15,9 +15,10 @@
  */
 
 import QtQuick 2.2
+
 import Ubuntu.Components 1.1
-import Ubuntu.Components.Popups 1.0 as Popups
-import Ubuntu.Content 0.1 as ContentHub
+import Ubuntu.Components.Popups 1.0
+import Ubuntu.Content 0.1
 
 Item {
     id: root
@@ -38,7 +39,7 @@ Item {
     Component {
         id: contentHubDialog
 
-        Popups.PopupBase {
+        PopupBase {
             id: dialogue
 
             property alias activeTransfer: signalConnections.target
@@ -49,21 +50,21 @@ Item {
             Rectangle {
                 anchors.fill: parent
 
-                ContentHub.ContentTransferHint {
+                ContentTransferHint {
                     anchors.fill: parent
                     activeTransfer: dialogue.activeTransfer
                 }
 
-                ContentHub.ContentPeerPicker {
+                ContentPeerPicker {
                     id: peerPicker
 
                     anchors.fill: parent
                     visible: dialogue.done
-                    contentType: ContentHub.ContentType.Pictures
-                    handler: ContentHub.ContentHandler.Source
+                    contentType: ContentType.Pictures
+                    handler: ContentHandler.Source
 
                     onPeerSelected: {
-                        peer.selectionType = ContentHub.ContentTransfer.Single
+                        peer.selectionType = ContentTransfer.Single
                         dialogue.activeTransfer = peer.request()
                     }
 
@@ -78,10 +79,10 @@ Item {
 
                 target: dialogue.activeTransfer
                 onStateChanged: {
-                    var done = ((dialogue.activeTransfer.state === ContentHub.ContentTransfer.Charged) ||
-                                (dialogue.activeTransfer.state === ContentHub.ContentTransfer.Aborted))
+                    var done = ((dialogue.activeTransfer.state === ContentTransfer.Charged) ||
+                                (dialogue.activeTransfer.state === ContentTransfer.Aborted))
 
-                    if (dialogue.activeTransfer.state === ContentHub.ContentTransfer.Charged) {
+                    if (dialogue.activeTransfer.state === ContentTransfer.Charged) {
                         dialogue.hide()
                         if (dialogue.activeTransfer.items.length > 0) {
                             root.avatarReceived(dialogue.activeTransfer.items[0].url)

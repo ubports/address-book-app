@@ -16,17 +16,23 @@
 
 import QtQuick 2.2
 import QtContacts 5.0 as QtContacts
-import Ubuntu.Components 1.1
 
 ContactDetailGroupWithTypeView {
     id: root
 
-    title: i18n.tr("Address")
-    defaultIcon: "image://theme/location"
-    detailType: QtContacts.ContactDetail.Address
-    fields: [ QtContacts.Address.Street,
-              QtContacts.Address.Locality,
-              QtContacts.Address.Region,
-              QtContacts.Address.Postcode,
-              QtContacts.Address.Country]
+    detailType: QtContacts.ContactDetail.PhoneNumber
+    fields: [ QtContacts.PhoneNumber.Number ]
+
+    title: i18n.tr("Phone")
+    typeModel: ContactDetailPhoneNumberTypeModel { }
+    detailDelegate: ContactDetailPhoneNumberView {
+        property variant detailType: detail && root.contact && root.typeModelReady ? root.getType(detail) : null
+
+        contact: root.contact
+        fields: root.fields
+        typeLabel: detailType ? detailType.label : ""
+
+        height: implicitHeight
+        width: root.width
+    }
 }

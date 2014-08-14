@@ -1,27 +1,42 @@
 set(CONTACT_COMPONENTS_PLUGIN "ubuntu-contacts-qml")
 
 set(CONTACT_COMPONENTS_QMLS
-    ContactList.js
+    ActionButton.qml
+    BasicFieldView.qml
     ContactAvatar.qml
     ContactDelegate.qml
+    ContactDetailAddressesView.qml
+    ContactDetailAvatarView.qml
+    ContactDetailBase.qml
+    ContactDetailEmailsView.qml
+    ContactDetailGroupBase.qml
+    ContactDetailGroupWithTypeBase.qml
+    ContactDetailGroupWithTypeView.qml
+    ContactDetailOnlineAccountsView.qml
     ContactDetailOnlineAccountTypeModel.qml
+    ContactDetailOrganizationsView.qml
+    ContactDetailPhoneNumbersView.qml
     ContactDetailPhoneNumberTypeModel.qml
+    ContactDetailPhoneNumberView.qml
     ContactDetailPickerPhoneNumberDelegate.qml
+    ContactDetailWithTypeView.qml
     ContactFetch.qml
+    ContactList.js
     ContactListView.qml
-    Contacts.js
+    ContactPreviewPage.qml
     ContactSimpleListView.qml
-    DialogButtons.qml
-    FastScroll.qml
+    Contacts.js
     FastScroll.js
-    ListItemWithActions.qml
+    FastScroll.qml
     ListItemWithActionsCheckBox.qml
+    ListItemWithActions.qml
     MostCalledModel.qml
     MultipleSelectionListView.qml
     MultipleSelectionVisualModel.qml
     PageWithBottomEdge.qml
-    SubtitledWithColors.qml
     qmldir
+    SubtitledWithColors.qml
+    VCardParser.qml
 )
 
 set(CONTACT_COMPONENTS_SRC
@@ -60,3 +75,4 @@ endforeach()
 if (NOT ${CMAKE_CURRENT_BINARY_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
     add_dependencies(${CONTACT_COMPONENTS_PLUGIN} copy_qml)
 endif()
+

@@ -15,8 +15,9 @@
  */
 
 import QtQuick 2.2
+import QtContacts 5.0
+
 import Ubuntu.Components 1.1
-import QtContacts 5.0 as QtContacts
 
 import "../Common"
 
@@ -53,11 +54,11 @@ ContactDetailItem {
 
     spacing: units.gu(1)
     detail: root.contact ? root.contact.name : null
-    fields: [ QtContacts.Name.FirstName, QtContacts.Name.LastName ]
+    fields: [ Name.FirstName, Name.LastName ]
 
     fieldDelegate: TextInputDetail {
         id: textInputDetail
-        objectName: detailToString(QtContacts.ContactDetail.Name, field)
+        objectName: detailToString(ContactDetail.Name, field)
 
         function checkIsEmpty() {
             if (field == -1) {
@@ -80,7 +81,7 @@ ContactDetailItem {
         x: units.gu(2)
         detail: root.detail
         height: units.gu(4)
-        placeholderText: field == QtContacts.Name.FirstName ? i18n.tr("First name") : i18n.tr("Last name")
+        placeholderText: field == Name.FirstName ? i18n.tr("First name") : i18n.tr("Last name")
         inputMethodHints: Qt.ImhNoPredictiveText
         onTextChanged: checkIsEmpty()
         onFieldChanged: checkIsEmpty()

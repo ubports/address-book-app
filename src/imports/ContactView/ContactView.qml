@@ -15,37 +15,19 @@
  */
 
 import QtQuick 2.2
-import QtContacts 5.0
 import Ubuntu.Components 1.1
-import Ubuntu.Components.ListItems 1.0 as ListItem
-import Ubuntu.Contacts 0.1 as ContactsUI
 import Ubuntu.Components.Popups 1.0 as Popups
+import Ubuntu.Contacts 0.1
 
-Page {
+ContactPreviewPage {
     id: root
     objectName: "contactViewPage"
 
-    property QtObject contact: null
     property alias model: contactFetch.model
     // used by main page to open the contact view on app startup
     property string contactId: ""
     property string addPhoneToContact: ""
 
-    function formatNameToDisplay(contact) {
-        if (!contact) {
-            return ""
-        }
-        if (contact.name) {
-            var detail = contact.name
-            return detail.firstName +" " + detail.lastName
-        } else if (contact.displayLabel && contact.displayLabel.label && contact.displayLabel.label !== "") {
-            return contact.displayLabel.label
-        } else {
-            return ""
-        }
-    }
-
-    title: formatNameToDisplay(contact)
     onActiveChanged: {
         if (active) {
             //WORKAROUND: to correct scroll back the page
@@ -60,97 +42,19 @@ Page {
         }
     }
 
-    Flickable {
-        id: flickable
-
-        flickableDirection: Flickable.VerticalFlick
-        anchors.fill: parent
-        //WORKAROUND: There is a bug on SDK page that causes the page to appear flicked with small contents
-        // see bug #1223050
-        contentHeight: Math.max(contents.height, parent.height) + units.gu(2)
-        contentWidth: parent.width
-        visible: !busyIndicator.visible
-
-        Column {
-            id: contents
-
-            height: childrenRect.height
-            anchors {
-                top: parent.top
-                topMargin: units.gu(2)
-                left: parent.left
-                right: parent.right
-            }
-
-            ContactDetailAvatarView {
-                contact: root.contact
-                anchors.left: parent.left
-                height: implicitHeight
-                width: implicitWidth
-            }
-
-            ContactDetailPhoneNumbersView {
-                objectName: "phones"
-
-                contact: root.contact
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-                height: implicitHeight
-            }
-
-            ContactDetailEmailsView {
-                objectName: "emails"
-
-                contact: root.contact
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-                height: implicitHeight
-            }
-
-            ContactDetailOnlineAccountsView {
-                contact: root.contact
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-                height: implicitHeight
-            }
-
-            ContactDetailAddressesView {
-                contact: root.contact
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-                height: implicitHeight
-            }
-
-            ContactDetailOrganizationsView {
-                contact: root.contact
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-                height: implicitHeight
-            }
-
-            ContactDetailSyncTargetView {
-                contact: root.contact
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-                height: implicitHeight
-            }
+    extensions: ContactDetailSyncTargetView {
+        contact: root.contact
+        anchors {
+            left: parent.left
+            right: parent.right
         }
+        height: implicitHeight
     }
 
     ActivityIndicator {
         id: busyIndicator
+
+        parent: root
 
         running: (root.contact === null) && contactFetch.running
         visible: running
@@ -161,7 +65,7 @@ Page {
         id: fetchErrorDialog
     }
 
-    ContactsUI.ContactFetch {
+    ContactFetch {
         id: contactFetch
 
         onContactRemoved: {
