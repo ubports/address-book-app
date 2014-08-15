@@ -15,64 +15,106 @@
  */
 
 import QtQuick 2.2
+
 import Ubuntu.Components 1.1
-import Ubuntu.Components.Popups 1.0 as Popups
-import Ubuntu.Content 0.1 as ContentHub
+import Ubuntu.Components.Popups 1.0
+import Ubuntu.Content 0.1
 
 Item {
     id: root
 
-    property var activeTransfer: null
-    property var loadingDialog: null
+    property var importDialog: null
 
     signal avatarReceived(string avatarUrl)
 
     function requestNewAvatar()
     {
-        if (!root.loadingDialog) {
-            root.loadingDialog = PopupUtils.open(loadingDialog, null)
-            root.activeTransfer = defaultSource.request();
-        }
-    }
-
-    ContentHub.ContentPeer {
-        id: defaultSource
-
-        contentType: ContentHub.ContentType.Pictures
-        handler: ContentHub.ContentHandler.Source
-        selectionType: ContentHub.ContentTransfer.Single
-    }
-
-    Connections {
-        target: root.activeTransfer
-        onStateChanged: {
-            var done = ((root.activeTransfer.state === ContentHub.ContentTransfer.Charged) ||
-                        (root.activeTransfer.state === ContentHub.ContentTransfer.Aborted));
-
-            if (root.activeTransfer.state === ContentHub.ContentTransfer.Charged) {
-                if (root.activeTransfer.items.length > 0) {
-                    root.avatarReceived(root.activeTransfer.items[0].url)
-                }
-            }
-
-            if (done) {
-                PopupUtils.close(root.loadingDialog)
-                root.loadingDialog = null
-            }
+        if (!root.importDialog) {
+            root.importDialog = PopupUtils.open(contentHubDialog, null)
+        } else {
+            console.warn("Import dialog already running")
         }
     }
 
     Component {
-        id: loadingDialog
+        id: contentHubDialog
 
-        Popups.Dialog {
+        PopupBase {
             id: dialogue
 
-            title: i18n.tr("Loading")
-            ActivityIndicator {
-                running: true
-                visible: running
+            property alias activeTransfer: signalConnections.target
+
+            parent: QuickUtils.rootItem(this)
+            focus: true
+
+            Rectangle {
+                anchors.fill: parent
+
+                ContentTransferHint {
+                    anchors.fill: parent
+                    activeTransfer: dialogue.activeTransfer
+                }
+
+                ContentPeerPicker {
+                    id: peerPicker
+
+                    anchors.fill: parent
+                    visible: dialogue.done
+                    contentType: ContentType.Pictures
+                    handler: ContentHandler.Source
+
+                    onPeerSelected: {
+                        peer.selectionType = ContentTransfer.Single
+                        dialogue.activeTransfer = peer.request()
+                    }
+
+                    onCancelPressed: {
+                        PopupUtils.close(root.importDialog)
+                    }
+                }
             }
+
+            Connections {
+                id: signalConnections
+
+                target: dialogue.activeTransfer
+                onStateChanged: {
+                    var done = ((dialogue.activeTransfer.state === ContentTransfer.Charged) ||
+                                (dialogue.activeTransfer.state === ContentTransfer.Aborted))
+
+                    if (dialogue.activeTransfer.state === ContentTransfer.Charged) {
+                        dialogue.hide()
+                        if (dialogue.activeTransfer.items.length > 0) {
+                            root.avatarReceived(dialogue.activeTransfer.items[0].url)
+                        }
+                    }
+
+                    if (done) {
+                        acceptTimer.restart()
+                    }
+                }
+            }
+
+            // WORKAROUND: Work around for application becoming insensitive to touch events
+            // if the dialog is dismissed while the application is inactive.
+            // Just listening for changes to Qt.application.active doesn't appear
+            // to be enough to resolve this, so it seems that something else needs
+            // to be happening first. As such there's a potential for a race
+            // condition here, although as yet no problem has been encountered.
+            Timer {
+                id: acceptTimer
+
+                interval: 100
+                repeat: true
+                running: false
+                onTriggered: {
+                   if(Qt.application.active) {
+                       PopupUtils.close(root.importDialog)
+                   }
+                }
+            }
+
+            Component.onDestruction: root.importDialog = null
         }
     }
 }

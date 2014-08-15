@@ -236,6 +236,7 @@ ContactsUI.PageWithBottomEdge {
                     rightMargin: units.gu(2)
                 }
                 color: UbuntuColors.lightAubergine
+                // TRANSLATORS: this refers to creating a new contact
                 text: i18n.tr("+ Create New")
                 elide: Text.ElideRight
             }
@@ -301,6 +302,7 @@ ContactsUI.PageWithBottomEdge {
 
         onAddDetailClicked: mainPage.addPhoneToContact(contact.contactId, " ")
 
+        onIsInSelectionModeChanged: mainPage.state = isInSelectionMode ? "selection"  : "default"
         onSelectionCanceled: {
             if (pickMode) {
                 if (contentHubTransfer) {
@@ -308,7 +310,6 @@ ContactsUI.PageWithBottomEdge {
                 }
                 pickMode = false
                 contentHubTransfer = null
-                console.debug("UPDATE STATE:" +  mainPage.state )
                 application.returnVcard("")
             }
             mainPage.state = "default"
@@ -369,7 +370,6 @@ ContactsUI.PageWithBottomEdge {
     }
 
     state: "default"
-    onStateChanged: console.debug("STATE CHANGEDDDDD" + state)
     states: [
         PageHeadState {
             id: defaultState
@@ -405,7 +405,8 @@ ContactsUI.PageWithBottomEdge {
                 target: mainPage.head
                 backAction: defaultState.backAction
                 actions: defaultState.actions
-                sections.model: ["All", "Favorites"]
+                // TRANSLATORS: this refers to all contacts
+                sections.model: [i18n.tr("All"), i18n.tr("Favorites")]
             }
             PropertyChanges {
                 target: searchField
@@ -440,7 +441,6 @@ ContactsUI.PageWithBottomEdge {
             id: selectionState
 
             name: "selection"
-            when: contactList.isInSelectionMode
             backAction: Action {
                 text: i18n.tr("Cancel selection")
                 iconName: "close"
@@ -468,16 +468,18 @@ ContactsUI.PageWithBottomEdge {
                         var contacts = []
                         var items = contactList.selectedItems
 
-                        for (var i=0; i < items.count; i++) {
+                        for (var i=0, iMax=items.count; i < iMax; i++) {
                             contacts.push(items.get(i).model.contact)
                         }
+
                         if (mainPage.pickMode) {
                             contactExporter.exportContacts(contacts)
                             mainPage.pickMode = false
                         } else {
                             pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
-                                           { contactModel: contactList.model, contacts: contacts })
+                                           { contactModel: contactList.listModel, contacts: contacts })
                         }
+                        contactList.endSelection()
                     }
                 },
                 Action {
@@ -486,7 +488,6 @@ ContactsUI.PageWithBottomEdge {
                     iconName: "delete"
                     visible: contactList.isInSelectionMode && !mainPage.pickMode
                     onTriggered: {
-
                         var contacts = []
                         var items = contactList.selectedItems
 

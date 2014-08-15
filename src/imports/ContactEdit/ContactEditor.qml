@@ -16,9 +16,10 @@
 
 import QtQuick 2.2
 import QtContacts 5.0
+
 import Ubuntu.Components 1.1
-import Ubuntu.Components.ListItems 1.0 as ListItem
-import Ubuntu.Components.Popups 1.0 as Popups
+import Ubuntu.Components.ListItems 1.0
+import Ubuntu.Components.Popups 1.0
 
 import "../Common"
 
@@ -288,7 +289,7 @@ Page {
                 height: implicitHeight
             }
 
-            ListItem.ThinDivider {}
+            ThinDivider {}
 
             Item {
                 anchors {
@@ -320,7 +321,7 @@ Page {
                     objectName: "addNewFieldButton"
 
                     text: i18n.tr("Add Field")
-                    gradient: UbuntuColors.greyGradient
+                    strokeColor: UbuntuColors.warmGrey
                     anchors {
                         top: parent.top
                         bottom: parent.bottom
@@ -336,6 +337,7 @@ Page {
 
                     text: i18n.tr("Delete")
                     visible: !contactEditor.isNewContact
+                    color: "red"
                     anchors {
                         top: parent.top
                         bottom: parent.bottom
@@ -343,7 +345,7 @@ Page {
                     }
                     width: (parent.width / 2) - units.gu(1)
                     onClicked: {
-                        var dialog = Popups.PopupUtils.open(removeContactDialog, null)
+                        var dialog = PopupUtils.open(removeContactDialog, null)
                         dialog.contacts = [contactEditor.contact]
                     }
                 }
@@ -427,13 +429,13 @@ Page {
             property var popPages: false
 
             onCanceled: {
-                Popups.PopupUtils.close(removeContactsDialogMessage)
+                PopupUtils.close(removeContactsDialogMessage)
             }
 
             onAccepted: {
                 popPages = true
                 removeContacts(contactEditor.model)
-                Popups.PopupUtils.close(removeContactsDialogMessage)
+                PopupUtils.close(removeContactsDialogMessage)
             }
 
             // hide virtual keyboard if necessary

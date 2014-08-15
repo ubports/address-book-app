@@ -15,18 +15,18 @@
  */
 
 import QtQuick 2.2
-import Ubuntu.Components 1.1
-import QtContacts 5.0 as QtContacts
-import Ubuntu.Components.ListItems 1.0 as ListItem
+import QtContacts 5.0
 
-import "../Common"
+import Ubuntu.Components 1.1
+import Ubuntu.Components.ListItems 1.0
+import Ubuntu.Contacts 0.1
 
 ContactDetailGroupWithTypeBase {
     id: root
 
     property string detailQmlTypeName
     property int currentItem: -1
-    property int fieldType: QtContacts.ContactDetail.FieldContext
+    property int fieldType: ContactDetail.FieldContext
     property variant placeholderTexts: []
     property int inputMethodHints: Qt.ImhNone
     property variant newDetails: []
@@ -96,7 +96,7 @@ ContactDetailGroupWithTypeBase {
         return changed
     }
 
-    headerDelegate: ListItem.Empty {
+    headerDelegate: Empty {
         id: header
         highlightWhenPressed: false
 

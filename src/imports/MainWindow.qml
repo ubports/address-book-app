@@ -130,7 +130,7 @@ MainView {
             text: mainWindow.modelErrorMessage
 
             Button {
-                text: "Cancel"
+                text: i18n.tr("Cancel")
                 gradient: UbuntuColors.greyGradient
                 onClicked: PopupUtils.close(dialogue)
             }
@@ -164,12 +164,5 @@ MainView {
             mainStack.quitOnDepth = -1
             mainStack.contactListPage.returnToNormalState()
         }
-    }
-
-    Image {
-        source: Qt.resolvedUrl("grid.jpg")
-        asynchronous: true
-        anchors.fill: parent
-        opacity: 0.3
     }
 }

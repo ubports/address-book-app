@@ -15,16 +15,15 @@
  */
 
 import QtQuick 2.2
-import QtContacts 5.0 as QtContacts
-import Ubuntu.Contacts 0.1
+import QtContacts 5.0
 
-import "../Common"
+import Ubuntu.Contacts 0.1
 
 ContactDetailGroupWithTypeEditor {
     title: i18n.tr("IM")
-    detailType: QtContacts.ContactDetail.OnlineAccount
+    detailType: ContactDetail.OnlineAccount
     detailQmlTypeName: "OnlineAccount"
-    fields: [ QtContacts.OnlineAccount.AccountUri ]
+    fields: [ OnlineAccount.AccountUri ]
     placeholderTexts: [ i18n.tr("Enter a social alias") ]
     typeModel: ContactDetailOnlineAccountTypeModel { }
     inputMethodHints: Qt.ImhEmailCharactersOnly

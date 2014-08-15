@@ -16,17 +16,17 @@
 
 import QtQuick 2.2
 import QtContacts 5.0 as QtContacts
-import Ubuntu.Components 1.1
+
 
 ContactDetailGroupWithTypeView {
     id: root
 
-    title: i18n.tr("Address")
+    title: i18n.tr("Professional Details")
     defaultIcon: "image://theme/location"
-    detailType: QtContacts.ContactDetail.Address
-    fields: [ QtContacts.Address.Street,
-              QtContacts.Address.Locality,
-              QtContacts.Address.Region,
-              QtContacts.Address.Postcode,
-              QtContacts.Address.Country]
+    detailType: QtContacts.ContactDetail.Organization
+    typeModel: null
+
+    fields: [ QtContacts.Organization.Name,
+              QtContacts.Organization.Role,
+              QtContacts.Organization.Title ]
 }

@@ -15,14 +15,15 @@
  */
 
 import QtQuick 2.2
-import QtContacts 5.0 as QtContacts
+import QtContacts 5.0
 
-import "../Common"
+import Ubuntu.Contacts 0.1
+
 
 ContactDetailGroupWithTypeEditor {
     title: i18n.tr("Email")
     detailQmlTypeName: "EmailAddress"
-    detailType: QtContacts.ContactDetail.Email
+    detailType: ContactDetail.Email
     fields: [ 0 ]
     placeholderTexts: [ i18n.tr("Enter an email address") ]
     inputMethodHints: Qt.ImhEmailCharactersOnly

@@ -79,7 +79,7 @@ Item {
                     right: parent.right
                 }
 
-                text: i18n.tr("Add number...")
+                text: i18n.dtr("address-book-app", "Add number...")
                 color: UbuntuColors.lightAubergine
             }
             visible: phoneNumberEntries.count == 0

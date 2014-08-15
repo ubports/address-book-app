@@ -29,7 +29,7 @@ UbuntuShape {
     property bool showAvatarPicture: (avatarUrl != fallbackAvatarUrl) || (initials.length === 0)
 
     readonly property alias initials: initialsLabel.text
-    readonly property string displayName: ContactsJS.formatToDisplay(contactElement, ContactDetail.Name, [Name.FirstName, Name.LastName], fallbackDisplayName)
+    readonly property alias displayName: initialsLabel.contactDisplayName
     readonly property alias avatarUrl: img.avatarUrl
 
     // this is necessary because the object does not monitor changes on avatarDetail object this will be very expesive and only happens in few cases,
@@ -37,6 +37,7 @@ UbuntuShape {
     function reload()
     {
         img.avatarUrl = Qt.binding(function() { return ContactsJS.getAvatar(contactElement, fallbackAvatarUrl) })
+        initialsLabel.contactDisplayName = Qt.binding(function() { return ContactsJS.formatToDisplay(contactElement, ContactDetail.Name, [Name.FirstName, Name.LastName], fallbackDisplayName) })
     }
 
     radius: "medium"
@@ -46,8 +47,10 @@ UbuntuShape {
         id: initialsLabel
         objectName: "avatarInitials"
 
+        property string contactDisplayName: ContactsJS.formatToDisplay(contactElement, ContactDetail.Name, [Name.FirstName, Name.LastName], fallbackDisplayName)
+
         anchors.centerIn: parent
-        text: Contacts.contactInitialsFromString(displayName)
+        text: Contacts.contactInitialsFromString(contactDisplayName)
         font.pointSize: 88
         color: UbuntuColors.lightAubergine
         visible: (img.status != Image.Ready)

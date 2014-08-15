@@ -15,19 +15,19 @@
  */
 
 import QtQuick 2.2
-import QtContacts 5.0 as QtContacts
+import QtContacts 5.0
 
-import "../Common"
+import Ubuntu.Contacts 0.1
 
 ContactDetailGroupWithTypeEditor {
     title: i18n.tr("Address")
     detailQmlTypeName: "Address"
-    detailType: QtContacts.ContactDetail.Address
-    fields: [ QtContacts.Address.Street,
-        QtContacts.Address.Locality,
-        QtContacts.Address.Region,
-        QtContacts.Address.Postcode,
-        QtContacts.Address.Country ]
+    detailType: ContactDetail.Address
+    fields: [ Address.Street,
+        Address.Locality,
+        Address.Region,
+        Address.Postcode,
+        Address.Country ]
     placeholderTexts: [ i18n.tr("Street"),
                         i18n.tr("Locality"),
                         i18n.tr("Region"),
