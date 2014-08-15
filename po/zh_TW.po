@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-16 09:55-0300\n"
-"PO-Revision-Date: 2014-07-22 17:07+0000\n"
+"PO-Revision-Date: 2014-08-14 16:19+0000\n"
 "Last-Translator: Walter Cheuk <wwycheuk@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-23 07:01+0000\n"
-"X-Generator: Launchpad (build 17114)\n"
+"X-Launchpad-Export-Date: 2014-08-15 06:28+0000\n"
+"X-Generator: Launchpad (build 17156)\n"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -182,7 +182,7 @@ msgstr "載入中…"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:32
 msgid "Locality"
-msgstr ""
+msgstr "所在地"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
 msgid "MSN"
@@ -230,12 +230,12 @@ msgstr "郵遞區號"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:63
 msgid "Professional Details"
-msgstr ""
+msgstr "專業詳情"
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:23
 #: src/imports/ContactView/ContactDetailOrganizationsView.qml:27
 msgid "Professional details"
-msgstr ""
+msgstr "專業詳情"
 
 #: src/imports/ContactList/ContactListPage.qml:372
 msgid "Quit"
@@ -247,7 +247,7 @@ msgstr "區域"
 
 #: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:31
 msgid "Role"
-msgstr ""
+msgstr "角色"
 
 #: src/imports/ContactEdit/ContactEditor.qml:385
 msgid "Save"
