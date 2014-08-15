@@ -302,6 +302,7 @@ ContactsUI.PageWithBottomEdge {
 
         onAddDetailClicked: mainPage.addPhoneToContact(contact.contactId, " ")
 
+        onIsInSelectionModeChanged: mainPage.state = isInSelectionMode ? "selection"  : "default"
         onSelectionCanceled: {
             if (pickMode) {
                 if (contentHubTransfer) {
@@ -309,7 +310,6 @@ ContactsUI.PageWithBottomEdge {
                 }
                 pickMode = false
                 contentHubTransfer = null
-                console.debug("UPDATE STATE:" +  mainPage.state )
                 application.returnVcard("")
             }
             mainPage.state = "default"
@@ -441,7 +441,6 @@ ContactsUI.PageWithBottomEdge {
             id: selectionState
 
             name: "selection"
-            when: contactList.isInSelectionMode
             backAction: Action {
                 text: i18n.tr("Cancel selection")
                 iconName: "close"
