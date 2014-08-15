@@ -1,3 +1,20 @@
+address-book-app (0.2+14.10.20140815-0ubuntu1) utopic; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Renato Araujo Oliveira Filho ]
+  * [Contacts] Created ContactPreviewPage component and extend it to be
+    used by other apps. [Contacts] Created VCardParser component.
+    [ContactListPage] Fixed contact share on multiselection mode.
+    [ListItemWithActions] Filter only visible right side actions.
+    [ContactEditorPage] Used ContentPeerPicker to pick a contact avatar.
+    [ContactEditorPage] Update "add field" "delete" buttons color.
+    [FastScroll] Avoid make the letter empty when scrolling over it,
+    this was causing problems on fast scroll. (LP: #1350506)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 15 Aug 2014 22:48:39 +0000
+
 address-book-app (0.2+14.10.20140806-0ubuntu1) utopic; urgency=low
 
   [ Ken VanDine ]
