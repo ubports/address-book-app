@@ -413,30 +413,16 @@ Item {
                 anchors {
                     left: parent.left
                     right: parent.right
+                    margins: units.gu(1)
                 }
                 height: visible ? childrenRect.height : 0
-
-                Rectangle {
-                    color: Theme.palette.normal.background
+                SectionDelegate {
                     anchors {
                         left: parent.left
                         right: parent.right
                         margins: units.gu(1)
                     }
-                    height: units.gu(3)
-                    Label {
-                        anchors.fill: parent
-                        verticalAlignment: Text.AlignVCenter
-                        text: i18n.dtr("address-book-app", "Frequently called")
-                        font.pointSize: 76
-                    }
-                    ListItem.ThinDivider {
-                        anchors {
-                            left: parent.left
-                            right: parent.right
-                            bottom: parent.bottom
-                        }
-                    }
+                    text: i18n.dtr("address-book-app", "Frequently called")
                 }
                 Repeater {
                     id: callerRepeat

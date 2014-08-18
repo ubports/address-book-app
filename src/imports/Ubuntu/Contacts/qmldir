@@ -39,4 +39,5 @@ internal FastScrollJs FastScroll.js
 internal FastScroll FastScroll.qml
 internal ListItemWithActionsCheckBox ListItemWithActionsCheckBox.qml
 internal MostCalledModel MostCalledModel.qml
+internal SectionDelegate SectionDelegate.qml
 internal SubtitledWithColors SubtitledWithColors.qml
