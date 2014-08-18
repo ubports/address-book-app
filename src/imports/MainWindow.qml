@@ -165,11 +165,4 @@ MainView {
             mainStack.contactListPage.returnToNormalState()
         }
     }
-
-    Image {
-        source: Qt.resolvedUrl("grid.jpg")
-        asynchronous: true
-        anchors.fill: parent
-        opacity: 0.3
-    }
 }

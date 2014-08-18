@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-07-16 09:55-0300\n"
-"PO-Revision-Date: 2014-07-28 11:56+0000\n"
+"PO-Revision-Date: 2014-08-16 13:13+0000\n"
 "Last-Translator: rob <linuxned@gmail.com>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-29 06:53+0000\n"
-"X-Generator: Launchpad (build 17131)\n"
+"X-Launchpad-Export-Date: 2014-08-17 06:39+0000\n"
+"X-Generator: Launchpad (build 17156)\n"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -325,7 +325,7 @@ msgid ""
 "from online accounts now?"
 msgstr ""
 "Wilt u nu de contacten synchroniseren\n"
-"van uw online-accounts?"
+"van uw online accounts?"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
