@@ -52,7 +52,7 @@ Item {
       This property holds a string that will be used to filter contacts on the list
       By default this is set to empty
     */
-    property string filterTerm: ""
+    property alias filterTerm: contactsModel.filterTerm
     /*!
       \qmlproperty Filter filter
 
@@ -60,7 +60,7 @@ Item {
 
       \sa Filter
     */
-    property var filter: null
+    property alias filter: contactsModel.externalFilter
     /*!
       \qmlproperty bool showAvatar
 
@@ -285,10 +285,7 @@ Item {
     }
     function changeFilter(newFilter)
     {
-        if (root.count > 0) {
-            contactsModel._clearModel = true
-        }
-        root.filter = newFilter
+        contactsModel.changeFilter(newFilter)
     }
     function reset()
     {
@@ -324,8 +321,6 @@ Item {
         contactsModel.update()
     }
 
-    onFilterTermChanged: contactSearchTimeout.restart()
-
     // colapse contacts if the keyboard appears
     Connections {
         target: Qt.inputMethod
@@ -341,7 +336,7 @@ Item {
         id: view
 
         property bool showFavourites: true
-        property bool favouritesIsSelected: false
+        property alias favouritesIsSelected: contactsModel.onlyFavorites
 
         function getSectionText(index) {
             var tag = listModel.contacts[index].tag.tag
@@ -488,139 +483,12 @@ Item {
         onContactDisappeared: root.contactDisappeared(contact)
         clip: true
 
-        InvalidFilter {
-            id: invalidFilter
-        }
-
-        DetailFilter {
-            id: favouritesFilter
-
-            detail: ContactDetail.Favorite
-            field: Favorite.Favorite
-            value: true
-            matchFlags: DetailFilter.MatchExactly
-        }
-
-        UnionFilter {
-            id: contactTermFilter
-
-            property string value: ""
-
-            DetailFilter {
-                detail: ContactDetail.DisplayLabel
-                field: DisplayLabel.Label
-                value: contactTermFilter.value
-                matchFlags: DetailFilter.MatchContains
-            }
-
-            DetailFilter {
-                detail: ContactDetail.PhoneNumber
-                field: PhoneNumber.Number
-                value: contactTermFilter.value
-                matchFlags: DetailFilter.MatchPhoneNumber
-            }
-
-            DetailFilter {
-                detail: ContactDetail.PhoneNumber
-                field: PhoneNumber.Number
-                value: contactTermFilter.value
-                matchFlags: DetailFilter.MatchContains
-            }
-        }
-
-
-        IntersectionFilter {
-            id: contactsFilter
-
-            // avoid runtime warning "depends on non-NOTIFYable properties"
-            readonly property alias filtersProxy: contactsFilter.filters
-
-            property bool active: {
-                var filters_ = []
-                if (contactTermFilter.value.length > 0) {
-                    filters_.push(contactTermFilter)
-                } else if (view.favouritesIsSelected) {
-                    filters_.push(favouritesFilter)
-                }
-
-                if (root.filter) {
-                    filters_.push(root.filter)
-                }
-
-                // check if the filter has changed
-                var oldFilters = filtersProxy
-                if (oldFilters.length !== filters_.length) {
-                    contactsFilter.filters = filters_
-                } else {
-                    for(var i=0; i < oldFilters.length; i++) {
-                        if (filters_.indexOf(oldFilters[i]) === -1) {
-                            contactsFilter.filters = filters_
-                        }
-                    }
-                }
-
-                return (filters_.length > 0)
-            }
-        }
-
-        Timer {
-            id: contactSearchTimeout
-
-            running: false
-            repeat: false
-            interval: 300
-            onTriggered: {
-                view.positionViewAtBeginning()
-
-                root.changeFilter(root.filter)
-                contactTermFilter.value = root.filterTerm
-
-                // manually update if autoUpdate is disabled
-                if (!root.autoUpdate) {
-                    contactsModel.update()
-                }
-            }
-        }
-
-        listModel: ContactModel {
+        listModel: ContactListModel {
             id: contactsModel
-
-            property bool _clearModel: false
 
             manager: root.manager
             sortOrders: root.sortOrders
             fetchHint: root.fetchHint
-            filter: {
-                if (contactsModel._clearModel) {
-                    return invalidFilter
-                } else if (contactsFilter.active) {
-                    return contactsFilter
-                } else {
-                    return null
-                }
-            }
-
-            onErrorChanged: {
-                if (error) {
-                    console.error("Contact List error:" + error)
-                }
-            }
-
-            onContactsChanged: {
-                //WORKAROUND: clear the model before start populate it with the new contacts
-                //otherwise the model will wait for all contacts before show any new contact
-
-                //after all contacts get removed we can populate the model again, this will show
-                //new contacts as soon as it arrives in the model
-                if (contactsModel._clearModel && contacts.length === 0) {
-                    contactsModel._clearModel = false
-                    // do a new update if autoUpdate is false
-                    if (!contactsModel.autoUpdate) {
-                        contactsModel.update()
-                    }
-
-                }
-            }
         }
     }
 
