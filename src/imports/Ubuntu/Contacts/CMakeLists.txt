@@ -35,6 +35,7 @@ set(CONTACT_COMPONENTS_QMLS
     MultipleSelectionVisualModel.qml
     PageWithBottomEdge.qml
     qmldir
+    SectionDelegate.qml
     SubtitledWithColors.qml
     VCardParser.qml
 )

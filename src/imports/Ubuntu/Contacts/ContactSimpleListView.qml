@@ -261,34 +261,13 @@ MultipleSelectionListView {
         property: showSections ? "contact.tag.tag" : ""
         criteria: ViewSection.FirstCharacter
         labelPositioning: ViewSection.InlineLabels
-        delegate: Rectangle {
-            color: Theme.palette.normal.background
+        delegate: SectionDelegate {
             anchors {
                 left: parent.left
                 right: parent.right
                 margins: units.gu(2)
             }
-            height: units.gu(4)
-            Label {
-                id: title
-
-                anchors {
-                    top: parent.top
-                    left: parent.left
-                    right: parent.right
-                }
-                height: units.gu(3)
-                verticalAlignment: Text.AlignVCenter
-                text: section != "" ? section : "#"
-                fontSize: "small"
-            }
-            ListItem.ThinDivider {
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    top: title.bottom
-                }
-            }
+            text: section != "" ? section : "#"
         }
     }
 
