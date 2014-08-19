@@ -7,32 +7,37 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-07-16 09:55-0300\n"
+"POT-Creation-Date: 2014-08-13 09:13-0300\n"
 "PO-Revision-Date: 2014-07-21 23:05+0000\n"
 "Last-Translator: Ibai Oihanguren Sala <Unknown>\n"
 "Language-Team: Basque <eu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-07-22 07:17+0000\n"
-"X-Generator: Launchpad (build 17114)\n"
+"X-Launchpad-Export-Date: 2014-08-19 06:58+0000\n"
+"X-Generator: Launchpad (build 17156)\n"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
 msgid "%1 vCards imported"
 msgstr "%1 vCard inportatuta"
 
-#: src/imports/ContactList/ContactListPage.qml:202
-msgid "+ New Contact"
-msgstr "+ Kontaktu berria"
+#. TRANSLATORS: this refers to creating a new contact
+#: src/imports/ContactList/ContactListPage.qml:240
+msgid "+ Create New"
+msgstr ""
 
 #: src/imports/ContactEdit/ContactEditor.qml:322
 msgid "Add Field"
 msgstr "Gehitu eremua"
 
-#: src/imports/ContactList/ContactListPage.qml:462
+#: src/imports/ContactList/ContactListPage.qml:527
 msgid "Add contact"
 msgstr "Gehitu kontaktua"
+
+#: src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
+msgid "Add number..."
+msgstr ""
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:59
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
@@ -40,7 +45,7 @@ msgstr "Gehitu kontaktua"
 msgid "Address"
 msgstr "Helbidea"
 
-#: src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:77
+#: src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:76
 #: src/imports/ContactView/ContactDetailSyncTargetView.qml:48
 msgid "Addressbook"
 msgstr "Helbide-liburua"
@@ -49,7 +54,8 @@ msgstr "Helbide-liburua"
 msgid "Aim"
 msgstr "Aim"
 
-#: src/imports/Ubuntu/Contacts/ContactListView.qml:316
+#. TRANSLATORS: this refers to all contacts
+#: src/imports/ContactList/ContactListPage.qml:410
 msgid "All"
 msgstr "Guztiak"
 
@@ -62,13 +68,14 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "Ziur kontaktu hau kendu nahi duzula?"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:133
-#: src/imports/ContactEdit/ContactEditor.qml:372
-#: src/imports/ContactList/ContactListPage.qml:418
+#: src/imports/ContactEdit/ContactEditor.qml:373
+#: src/imports/ContactList/ContactListPage.qml:423
+#: src/imports/MainWindow.qml:133
 #: src/imports/Ubuntu/Contacts/DialogButtons.qml:37
 msgid "Cancel"
 msgstr "Utzi"
 
-#: src/imports/ContactList/ContactListPage.qml:330
+#: src/imports/ContactList/ContactListPage.qml:447
 msgid "Cancel selection"
 msgstr "Deshautatu"
 
@@ -89,8 +96,8 @@ msgid "Country"
 msgstr "Herrialdea"
 
 #: src/imports/ContactEdit/ContactEditor.qml:337
-#: src/imports/ContactList/ContactListPage.qml:235
-#: src/imports/ContactList/ContactListPage.qml:355
+#: src/imports/ContactList/ContactListPage.qml:267
+#: src/imports/ContactList/ContactListPage.qml:487
 msgid "Delete"
 msgstr "Ezabatu"
 
@@ -123,7 +130,7 @@ msgid "Enter an email address"
 msgstr "Idatzi helbide elektroniko bat"
 
 #: src/imports/ContactView/ContactFetchError.qml:25
-#: src/imports/MainWindow.qml:112
+#: src/imports/MainWindow.qml:129
 msgid "Error"
 msgstr "Errorea"
 
@@ -131,20 +138,20 @@ msgstr "Errorea"
 msgid "Favorite"
 msgstr "Gogokoa"
 
-#: src/imports/Ubuntu/Contacts/ContactListView.qml:348
-msgid "Favourites"
-msgstr "Gogokoak"
+#: src/imports/ContactList/ContactListPage.qml:410
+msgid "Favorites"
+msgstr ""
 
 #: src/imports/ContactEdit/ContactDetailNameEditor.qml:83
 msgid "First name"
 msgstr "Izena"
 
-#: src/imports/Ubuntu/Contacts/ContactListView.qml:442
+#: src/imports/Ubuntu/Contacts/ContactListView.qml:430
 msgid "Frequently called"
 msgstr "Maiz deitua"
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:116
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:99
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:103
 msgid "Home"
 msgstr "Etxekoa"
 
@@ -172,11 +179,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Abizena"
 
-#: src/imports/ContactEdit/AvatarImport.qml:71
-msgid "Loading"
-msgstr "Kargatzen"
-
-#: src/imports/ContactList/ContactListPage.qml:320
+#: src/imports/ContactList/ContactListPage.qml:338
 msgid "Loading..."
 msgstr "Kargatzen..."
 
@@ -188,7 +191,7 @@ msgstr "Herria"
 msgid "MSN"
 msgstr "MSN"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:103
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:107
 msgid "Mobile"
 msgstr "Mugikorra"
 
@@ -214,7 +217,7 @@ msgid "Organization"
 msgstr "Erakundea"
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:118
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:107
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:111
 msgid "Other"
 msgstr "Bestelakoa"
 
@@ -229,15 +232,12 @@ msgid "Post code"
 msgstr "Posta-kodea"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:63
+#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:23
+#: src/imports/ContactView/ContactDetailOrganizationsView.qml:27
 msgid "Professional Details"
 msgstr "Laneko xehetasunak"
 
-#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:23
-#: src/imports/ContactView/ContactDetailOrganizationsView.qml:27
-msgid "Professional details"
-msgstr "Laneko xehetasunak"
-
-#: src/imports/ContactList/ContactListPage.qml:372
+#: src/imports/ContactList/ContactListPage.qml:382
 msgid "Quit"
 msgstr "Irten"
 
@@ -249,30 +249,27 @@ msgstr "Eskualdea"
 msgid "Role"
 msgstr "Lanpostua"
 
-#: src/imports/ContactEdit/ContactEditor.qml:385
+#: src/imports/ContactEdit/ContactEditor.qml:386
 msgid "Save"
 msgstr "Gorde"
 
-#: src/imports/ContactList/ContactListPage.qml:396
+#: src/imports/ContactList/ContactListPage.qml:397
 msgid "Search"
 msgstr "Bilatu"
 
-#: src/imports/ContactList/ContactListPage.qml:355
-msgid "Select"
-msgstr "Hautatu"
+#: src/imports/ContactList/ContactListPage.qml:353
+msgid "Search..."
+msgstr ""
 
-#: src/imports/ContactList/ContactListPage.qml:339
+#: src/imports/ContactList/ContactListPage.qml:453
 msgid "Select All"
 msgstr "Hautatu dena"
-
-#: src/imports/ContactList/ContactListPage.qml:512
-msgid "Select Contacts"
-msgstr "Hautatu kontaktuak"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:116
 msgid "Select a field"
 msgstr "Hautatu eremu bat"
 
+#: src/imports/ContactList/ContactListPage.qml:466
 #: src/imports/ContactView/ContactView.qml:206
 msgid "Share"
 msgstr "Partekatu"
@@ -290,15 +287,15 @@ msgstr "Sare sozialak"
 msgid "Street"
 msgstr "Kalea"
 
-#: src/imports/ContactList/ContactListPage.qml:387
+#: src/imports/ContactList/ContactListPage.qml:391
 msgid "Sync"
 msgstr "Sinkronizatu"
 
-#: src/imports/ContactList/ContactListPage.qml:387
+#: src/imports/ContactList/ContactListPage.qml:391
 msgid "Syncing"
 msgstr "Sinkronizatzen"
 
-#: src/imports/ContactList/ContactListPage.qml:320
+#: src/imports/ContactList/ContactListPage.qml:338
 msgid "Syncing..."
 msgstr "Sinkronizatzen..."
 
@@ -311,11 +308,11 @@ msgid "Touch"
 msgstr "Ukitu"
 
 #: src/imports/Common/ContactDetailGroupWithTypeBase.qml:117
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:101
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
 msgid "Work"
 msgstr "Lanekoa"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
 msgid "Work Mobile"
 msgstr "Laneko mugikorra"
 
