@@ -40,6 +40,7 @@ Item {
     readonly property double threshold: 0.4
     readonly property string swipeState: main.x == 0 ? "Normal" : main.x > 0 ? "LeftToRight" : "RightToLeft"
     readonly property alias swipping: mainItemMoving.running
+    readonly property bool _showActions: mouseArea.pressed || swipeState != "Normal" || swipping
 
     /* internal */
     property var _visibleRightSideActions: filterVisibleActions(rightSideActions)
@@ -175,7 +176,7 @@ Item {
                 centerIn: parent
                 horizontalCenterOffset: actionThreshold / 2
             }
-            name: leftSideAction ? leftSideAction.iconName : ""
+            name: leftSideAction && _showActions ? leftSideAction.iconName : ""
             color: Theme.palette.selected.field
             height: units.gu(3)
             width: units.gu(3)
@@ -206,7 +207,7 @@ Item {
            Repeater {
                id: rightActionsRepeater
 
-               model: _visibleRightSideActions
+               model: _showActions ? _visibleRightSideActions : []
                Item {
                    property alias image: img
 
