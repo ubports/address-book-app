@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-13 09:13-0300\n"
-"PO-Revision-Date: 2014-08-05 10:44+0000\n"
+"PO-Revision-Date: 2014-08-19 13:20+0000\n"
 "Last-Translator: Danial Behzadi <dani.behzi@gmail.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-19 06:58+0000\n"
-"X-Generator: Launchpad (build 17156)\n"
+"X-Launchpad-Export-Date: 2014-08-20 06:23+0000\n"
+"X-Generator: Launchpad (build 17163)\n"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -25,7 +25,7 @@ msgstr "%1 کارت مجازی وارد شد"
 #. TRANSLATORS: this refers to creating a new contact
 #: src/imports/ContactList/ContactListPage.qml:240
 msgid "+ Create New"
-msgstr ""
+msgstr "+ افزودن جدید"
 
 #: src/imports/ContactEdit/ContactEditor.qml:322
 msgid "Add Field"
@@ -37,7 +37,7 @@ msgstr "افزودن مخاطب"
 
 #: src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
-msgstr ""
+msgstr "افزودن شماره…"
 
 #: src/imports/ContactEdit/AddFieldDialog.qml:59
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
@@ -140,7 +140,7 @@ msgstr "محبوب"
 
 #: src/imports/ContactList/ContactListPage.qml:410
 msgid "Favorites"
-msgstr ""
+msgstr "برگزیده‌ها"
 
 #: src/imports/ContactEdit/ContactDetailNameEditor.qml:83
 msgid "First name"
@@ -259,7 +259,7 @@ msgstr "جست‌وجو"
 
 #: src/imports/ContactList/ContactListPage.qml:353
 msgid "Search..."
-msgstr ""
+msgstr "جست‌وجو…"
 
 #: src/imports/ContactList/ContactListPage.qml:453
 msgid "Select All"
