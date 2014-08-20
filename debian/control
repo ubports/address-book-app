@@ -27,6 +27,7 @@ Homepage: https://launchpad.net/address-book-app
 # just go ahead. ~phablet-team will notice and sync up the code again.
 Vcs-Bzr: https://code.launchpad.net/~phablet-team/address-book-app/trunk
 Vcs-Browser: http://bazaar.launchpad.net/~phablet-team/address-book-app/trunk/files
+X-Ubuntu-Use-Langpack: yes
 
 Package: address-book-app
 Architecture: amd64 armhf i386
