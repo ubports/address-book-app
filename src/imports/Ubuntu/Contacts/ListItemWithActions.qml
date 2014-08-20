@@ -56,7 +56,7 @@ Item {
         if (index < 1) {
             main.x = 0
         } else if (index === _visibleRightSideActions.length) {
-            main.x = -(rightActionsView.width - units.gu(2))
+            main.x = -(rightActionsView.width - units.gu(1))
         } else {
             main.x = -(actionFullWidth * index)
         }
