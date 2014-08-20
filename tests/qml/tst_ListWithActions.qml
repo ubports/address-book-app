@@ -341,7 +341,7 @@ Item {
 
             // check if only 2 actions is visible
             var mainItem = findChild(item, "mainItem")
-            tryCompare(mainItem, "x", (item.actionWidth * -2) - units.gu(6))
+            tryCompare(mainItem, "x", (item.actionWidth * -2) - units.gu(7))
         }
     }
 }
