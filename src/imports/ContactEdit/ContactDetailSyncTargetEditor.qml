@@ -52,7 +52,7 @@ ContactDetailBase {
     }
 
     property bool isNewContact: contact && contact.contactId === "qtcontacts:::"
-    property real myHeight: sources.containerHeight + units.gu(4) + label.height
+    property real myHeight: sources.currentlyExpanded ? sources.containerHeight + units.gu(6) + label.height : sources.itemHeight + units.gu(6) + label.height
 
     detail: root.contact ? contact.detail(ContactDetail.SyncTarget) : null
     implicitHeight: root.isNewContact &&  sources.model && (sources.model.contacts.length > 1) ? myHeight : 0
