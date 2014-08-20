@@ -1,6 +1,6 @@
 set(CONTACT_EDIT_QMLS
     AvatarImport.qml
-    AddFieldDialog.qml
+    ComboButtonAddField.qml
     ContactDetailAddressesEditor.qml
     ContactDetailAvatarEditor.qml
     ContactDetailEmailsEditor.qml
