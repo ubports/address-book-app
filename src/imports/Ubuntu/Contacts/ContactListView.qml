@@ -413,14 +413,13 @@ Item {
                 anchors {
                     left: parent.left
                     right: parent.right
-                    margins: units.gu(1)
                 }
                 height: visible ? childrenRect.height : 0
                 SectionDelegate {
                     anchors {
                         left: parent.left
                         right: parent.right
-                        margins: units.gu(1)
+                        margins: units.gu(2)
                     }
                     text: i18n.dtr("address-book-app", "Frequently called")
                 }
