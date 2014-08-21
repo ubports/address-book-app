@@ -71,5 +71,7 @@ UbuntuShape {
         height: visible ? units.gu(3) : avatar.height
         width: height
         visible: avatar.avatarUrl.indexOf("image://theme/") === 0
+        sourceSize.width: avatar.width
+        sourceSize.height: avatar.height
     }
 }

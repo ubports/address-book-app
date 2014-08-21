@@ -164,7 +164,6 @@ Page {
         }
         contentHeight: contents.height + units.gu(2)
         contentWidth: parent.width
-        //onContentYChanged: console.debug("WILL FLICK:" + scrollArea.verticalVelocity)
 
         //after add a new field we need to wait for the contentHeight to change to scroll to the correct position
         onContentHeightChanged: contactEditor.makeMeVisible(contactEditor.activeItem)
