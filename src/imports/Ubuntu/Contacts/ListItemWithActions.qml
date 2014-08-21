@@ -34,7 +34,7 @@ Item {
     property alias internalAnchors: mainContents.anchors
     default property alias contents: mainContents.children
 
-    readonly property double actionWidth: units.gu(5)
+    readonly property double actionWidth: units.gu(3.5)
     readonly property double leftActionWidth: units.gu(10)
     readonly property double actionThreshold: actionWidth * 0.4
     readonly property double threshold: 0.4
