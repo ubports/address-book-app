@@ -169,7 +169,7 @@ Item {
         }
         width: root.leftActionWidth + actionThreshold
         visible: leftSideAction
-        color: "red"
+        color: UbuntuColors.red
 
         Icon {
             anchors {
