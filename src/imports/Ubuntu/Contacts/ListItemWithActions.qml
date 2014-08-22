@@ -169,7 +169,7 @@ Item {
         }
         width: root.leftActionWidth + actionThreshold
         visible: leftSideAction
-        color: "red"
+        color: UbuntuColors.red
 
         Icon {
             anchors {
@@ -406,6 +406,7 @@ Item {
             top: parent.top
             bottom: parent.bottom
         }
-        width: mouseArea.drag.active ? units.gu(2) : 0
+        width: mouseArea.pressed ? units.gu(4) : 0
+        z: -1
     }
 }
