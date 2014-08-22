@@ -183,6 +183,8 @@ Item {
         id: listWithActionsTestCase
         name: 'listWithActionsTestCase'
 
+        readonly property real actionWidthArea: units.gu(5)
+
         when: windowShown
 
         function init()
@@ -243,10 +245,10 @@ Item {
             var endY = startY
 
             if (actionIndex !== -1) {
-                var actionsWidth = (actionIndex * units.gu(5))
+                var actionsWidth = (actionIndex * actionWidthArea)
                 endX = item.width - actionsWidth - units.gu(2) - (item.actionThreshold * 2)
             } else {
-                endX = units.gu(3) // avoid the safe area
+                endX = 0 // avoid the safe area
             }
 
             mousePress(item, startX, startY)
@@ -257,6 +259,7 @@ Item {
             if (release)
                 mouseRelease(item, endX, endY)
 
+            wait(1000)
             tryCompare(item, "swipeState", "RightToLeft")
             return {"item": item, "x": endX, "y": endY}
         }
@@ -318,7 +321,8 @@ Item {
         {
             var itemData = swipeToLeft("listWithActions2", -1, true)
             var actionOffset = (itemList.rightActionsLength - data.actionIndex) + 1
-            var clickX = itemData.item.width - ((actionOffset * (itemData.item.actionWidth + units.gu(2))) + itemData.item.actionWidth / 2)
+            var clickX = itemData.item.width - ((actionOffset * actionWidthArea) + (actionWidthArea / 2) - units.gu(2))
+
             mouseClick(itemData.item, clickX, itemData.item.height / 2)
             itemList.signalSpy.wait()
             compare(itemList.signalSpy.count, 1)
@@ -343,7 +347,7 @@ Item {
 
             // check if only 2 actions is visible
             var mainItem = findChild(itemData.item, "mainItem")
-            tryCompare(mainItem, "x", (units.gu(5) * -2) - units.gu(3) - itemData.item.actionThreshold)
+            tryCompare(mainItem, "x", (actionWidthArea * -2) - units.gu(1) - itemData.item.actionThreshold)
         }
 
         function test_fullSwipeUsingSafeArea()

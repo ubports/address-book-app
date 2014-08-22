@@ -406,7 +406,7 @@ Item {
             top: parent.top
             bottom: parent.bottom
         }
-        width: mouseArea.pressed ? units.gu(4) : 0
+        width: mouseArea.drag.active ? units.gu(4) : 0
         z: -1
     }
 }
