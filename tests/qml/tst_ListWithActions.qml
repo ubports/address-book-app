@@ -242,10 +242,12 @@ Item {
             var endX = 0
             var endY = startY
 
-            if (actionIndex !== -1)
-                endX = startX - ((actionIndex * (item.actionWidth + units.gu(2))) + item.actionThreshold + units.gu(1))
-            else
-                endX = 0
+            if (actionIndex !== -1) {
+                var actionsWidth = (actionIndex * units.gu(5))
+                endX = item.width - actionsWidth - units.gu(2) - (item.actionThreshold * 2)
+            } else {
+                endX = units.gu(3) // avoid the safe area
+            }
 
             mousePress(item, startX, startY)
             mouseMoveSlowly(item,
@@ -256,7 +258,7 @@ Item {
                 mouseRelease(item, endX, endY)
 
             tryCompare(item, "swipeState", "RightToLeft")
-            return item
+            return {"item": item, "x": endX, "y": endY}
         }
 
         function commom_data()
@@ -291,10 +293,10 @@ Item {
 
         function test_activeRightActions(data)
         {
-            var item = swipeToLeft("listWithActions2", data.actionIndex, false)
+            var itemData = swipeToLeft("listWithActions2", data.actionIndex, false)
             compare(itemList.signalSpy.count, 0)
-            compare(item.activeAction.iconName, data.iconName)
-            mouseRelease(item, 0, 0)
+            compare(itemData.item.activeAction.iconName, data.iconName)
+            mouseRelease(itemData.item, itemData.x, itemData.y)
             itemList.signalSpy.wait()
             compare(itemList.signalSpy.count, 1)
             compare(itemList.signalSpy.signalArguments[0][0].iconName, data.iconName)
@@ -302,9 +304,9 @@ Item {
 
         function test_lockOnFullSwipe()
         {
-            var item = swipeToLeft("listWithActions2", -1, true)
+            var itemData = swipeToLeft("listWithActions2", -1, true)
             compare(itemList.signalSpy.count, 0)
-            tryCompare(item, "swipeState", "RightToLeft")
+            tryCompare(itemData.item, "swipeState", "RightToLeft")
         }
 
         function test_fullSwipeAndClickOnAction_data()
@@ -314,10 +316,10 @@ Item {
 
         function test_fullSwipeAndClickOnAction(data)
         {
-            var item = swipeToLeft("listWithActions2", -1, true)
+            var itemData = swipeToLeft("listWithActions2", -1, true)
             var actionOffset = (itemList.rightActionsLength - data.actionIndex) + 1
-            var clickX = item.width - ((actionOffset * (item.actionWidth + units.gu(2))) + item.actionWidth / 2)
-            mouseClick(item, clickX, item.height / 2)
+            var clickX = itemData.item.width - ((actionOffset * (itemData.item.actionWidth + units.gu(2))) + itemData.item.actionWidth / 2)
+            mouseClick(itemData.item, clickX, itemData.item.height / 2)
             itemList.signalSpy.wait()
             compare(itemList.signalSpy.count, 1)
             compare(itemList.signalSpy.signalArguments[0][0].iconName, data.iconName)
@@ -336,13 +338,30 @@ Item {
 
         function test_not_visibleActions()
         {
-            var item = swipeToLeft("listWithInvisibleActions2", -1, true)
-            compare(item._visibleRightSideActions.length, 2)
+            var itemData = swipeToLeft("listWithInvisibleActions2", -1, true)
+            compare(itemData.item._visibleRightSideActions.length, 2)
 
             // check if only 2 actions is visible
-            var mainItem = findChild(item, "mainItem")
-            console.debug("SIZE: " + units.gu(1))
-            tryCompare(mainItem, "x", (item.actionWidth * -2) - units.gu(5) - item.actionThreshold)
+            var mainItem = findChild(itemData.item, "mainItem")
+            tryCompare(mainItem, "x", (units.gu(5) * -2) - units.gu(3) - itemData.item.actionThreshold)
+        }
+
+        function test_fullSwipeUsingSafeArea()
+        {
+            var item = findChild(itemList, "listWithActions2")
+            var startX = item.width / 4
+            var startY = item.height / 2
+            var endX = 0
+            var endY = startY
+
+            // move over the safe area
+            mousePress(item, startX, startY)
+            mouseMoveSlowly(item,
+                            startX, startY,
+                            endX - startX, endY - startY,
+                            10, 100)
+            mouseRelease(item, endX, endY)
+            tryCompare(item, "swipeState", "RightToLeft")
         }
     }
 }

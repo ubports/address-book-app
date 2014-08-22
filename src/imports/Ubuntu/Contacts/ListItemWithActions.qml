@@ -57,7 +57,7 @@ Item {
         if (index < 1) {
             main.x = 0
         } else if (index === _visibleRightSideActions.length) {
-            main.x = -(rightActionsView.width - units.gu(1))
+            main.x = -(rightActionsView.width - units.gu(2))
         } else {
             main.x = -(actionFullWidth * index)
         }
@@ -169,7 +169,7 @@ Item {
         }
         width: root.leftActionWidth + actionThreshold
         visible: leftSideAction
-        color: UbuntuColors.red
+        color: "red"
 
         Icon {
             anchors {
@@ -340,16 +340,25 @@ Item {
         property bool locked: root.locked || ((root.leftSideAction === null) && (root._visibleRightSideActions.count === 0))
         property bool manual: false
 
-        anchors.fill: parent
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+            right: parent.right
+            left: safeArea.right
+        }
         drag {
             target: locked ? null : main
             axis: Drag.XAxis
             minimumX: rightActionsView.visible ? -(rightActionsView.width) : 0
             maximumX: leftActionView.visible ? leftActionView.width : 0
+            threshold: root.actionThreshold
         }
 
         onReleased: {
-            if (root.triggerActionOnMouseRelease && root.activeAction) {
+            // if the mouse reach the safe are we should handle it as full swipe
+            if (mouse.x < 0) {
+                main.x = -(rightActionsView.width - units.gu(1))
+            } else if (root.triggerActionOnMouseRelease && root.activeAction) {
                 triggerAction.start()
             } else {
                 root.returnToBounds()
@@ -387,5 +396,16 @@ Item {
             }
         }
         z: -1
+    }
+
+    Item {
+        id: safeArea
+
+        anchors {
+            left: parent.left
+            top: parent.top
+            bottom: parent.bottom
+        }
+        width: mouseArea.drag.active ? units.gu(2) : 0
     }
 }
