@@ -347,7 +347,7 @@ Item {
 
             // check if only 2 actions is visible
             var mainItem = findChild(itemData.item, "mainItem")
-            tryCompare(mainItem, "x", (actionWidthArea * -2) - units.gu(1) - itemData.item.actionThreshold)
+            tryCompare(mainItem, "x", (actionWidthArea * -2) - units.gu(2) - itemData.item.actionThreshold)
         }
 
         function test_fullSwipeUsingSafeArea()

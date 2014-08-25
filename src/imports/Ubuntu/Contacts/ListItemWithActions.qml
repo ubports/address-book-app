@@ -34,7 +34,7 @@ Item {
     property alias internalAnchors: mainContents.anchors
     default property alias contents: mainContents.children
 
-    readonly property double actionWidth: units.gu(3.5)
+    readonly property double actionWidth: units.gu(4)
     readonly property double leftActionWidth: units.gu(10)
     readonly property double actionThreshold: actionWidth * 0.4
     readonly property double threshold: 0.4
@@ -81,20 +81,23 @@ Item {
         }
     }
 
-    function contains(item, point)
+    function contains(item, point, marginX)
     {
-        return (point.x >= item.x) && (point.x <= (item.x + item.width)) && (point.y >= item.y) && (point.y <= (item.y + item.height));
+        var itemStartX = item.x - marginX
+        var itemEndX = item.x + item.width + marginX
+        return (point.x >= itemStartX) && (point.x <= itemEndX) &&
+               (point.y >= item.y) && (point.y <= (item.y + item.height));
     }
 
     function getActionAt(point)
     {
-        if (contains(leftActionView, point)) {
+        if (contains(leftActionView, point, 0)) {
             return leftSideAction
-        } else if (contains(rightActionsView, point)) {
+        } else if (contains(rightActionsView, point, 0)) {
             var newPoint = root.mapToItem(rightActionsView, point.x, point.y)
             for (var i = 0; i < rightActionsRepeater.count; i++) {
                 var child = rightActionsRepeater.itemAt(i)
-                if (contains(child, newPoint)) {
+                if (contains(child, newPoint, units.gu(1))) {
                     return i
                 }
             }
