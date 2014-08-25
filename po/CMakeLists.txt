@@ -3,9 +3,12 @@ include(FindGettext)
 set(DOMAIN address-book-app)
 set(POT_FILE ${DOMAIN}.pot)
 file(GLOB PO_FILES *.po)
-file(GLOB_RECURSE I18N_SRCS RELATIVE ${CMAKE_SOURCE_DIR}
+file(GLOB_RECURSE I18N_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}/src/*.qml)
 list(SORT I18N_SRCS)
+
+file(RELATIVE_PATH DESKTOP_FILE_IN_IN ${CMAKE_CURRENT_SOURCE_DIR}
+     ${CMAKE_SOURCE_DIR}/data/${DESKTOP_FILE}.in.in)
 
 foreach(PO_FILE ${PO_FILES})
     get_filename_component(LANG ${PO_FILE} NAME_WE)
@@ -21,7 +24,7 @@ if(XGETTEXT_EXECUTABLE)
     add_custom_target(${POT_FILE}
         COMMENT "Generating translation template"
         COMMAND ${INTLTOOL_EXTRACT} --update --type=gettext/ini
-                --srcdir=${CMAKE_SOURCE_DIR}/data ${DESKTOP_FILE}.in.in
+                --srcdir=${CMAKE_CURRENT_SOURCE_DIR} ${DESKTOP_FILE_IN_IN}
 
         COMMAND ${XGETTEXT_EXECUTABLE} -o ${POT_FILE}
                 --c++ --qt --add-comments=TRANSLATORS
@@ -31,7 +34,7 @@ if(XGETTEXT_EXECUTABLE)
                 --package-name=${DOMAIN}
                 --copyright-holder='Canonical Ltd.'
                 -s -p ${CMAKE_CURRENT_SOURCE_DIR}
-                -D ${CMAKE_SOURCE_DIR} ${I18N_SRCS} 
-                -D ${CMAKE_CURRENT_BINARY_DIR} ${DESKTOP_FILE}.in.in.h
+                -D ${CMAKE_CURRENT_SOURCE_DIR} ${I18N_SRCS}
+                -D ${CMAKE_CURRENT_BINARY_DIR} ${DESKTOP_FILE_IN_IN}.h
     )
 endif()
