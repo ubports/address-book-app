@@ -334,7 +334,6 @@ Item {
                 view.currentIndex = -1
             }
         }
-
     }
 
     ContactSimpleListView {
@@ -385,7 +384,7 @@ Item {
             }
             parentView: view
             header: root.header
-            visible: view.favouritesIsSelected && (count > 0)
+            visible: view.favouritesIsSelected
         }
         onError: root.error(message)
         onInfoRequested: root.infoRequested(contact)

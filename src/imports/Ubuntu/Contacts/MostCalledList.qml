@@ -21,7 +21,6 @@ Column {
 
     property alias parentView: scrollAnimation.target
     property alias header: listHeader.children
-
     readonly property alias count: callerRepeat.count
 
     /* internal */
@@ -48,7 +47,7 @@ Column {
         scrollAnimation.restart()
     }
 
-    height: visible ? childrenRect.height : 0
+    height: visible && (callerRepeat.count > 0) ? childrenRect.height : 0
 
     SmoothedAnimation {
         id: scrollAnimation
@@ -92,6 +91,7 @@ Column {
                     root._nextCurrentIndex = currentIndex
                 }
             }
+
             // WORKAROUND: The SDK header causes the contactY to move to a wrong postion
             // calling the positionViewAtBeginning after the list created fix that
             onLoaded: moveToBegining.restart()
@@ -129,6 +129,4 @@ Column {
             calledModel.model.update()
         }
     }
-
-    Component.onCompleted: calledModel.model.update()
 }
