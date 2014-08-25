@@ -344,7 +344,8 @@ Item {
             top: parent.top
             bottom: parent.bottom
             right: parent.right
-            left: safeArea.right
+            left: parent.left
+            leftMargin: mouseArea.drag.active ? units.gu(4) : 0
         }
         drag {
             target: locked ? null : main
@@ -395,18 +396,6 @@ Item {
                 root.itemPressAndHold(mouse)
             }
         }
-        z: -1
-    }
-
-    Item {
-        id: safeArea
-
-        anchors {
-            left: parent.left
-            top: parent.top
-            bottom: parent.bottom
-        }
-        width: mouseArea.drag.active ? units.gu(4) : 0
         z: -1
     }
 }
