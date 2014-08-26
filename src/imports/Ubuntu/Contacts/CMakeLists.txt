@@ -31,6 +31,7 @@ set(CONTACT_COMPONENTS_QMLS
     FastScroll.qml
     ListItemWithActionsCheckBox.qml
     ListItemWithActions.qml
+    MostCalledList.qml
     MostCalledModel.qml
     MultipleSelectionListView.qml
     MultipleSelectionVisualModel.qml

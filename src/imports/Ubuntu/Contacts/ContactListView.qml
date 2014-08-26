@@ -1,4 +1,4 @@
-    /*
+/*
  * Copyright (C) 2012-2013 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -329,7 +329,6 @@ Item {
                 view.currentIndex = -1
             }
         }
-
     }
 
     ContactSimpleListView {
@@ -371,93 +370,16 @@ Item {
             onTriggered: view.positionViewAtBeginning()
         }
 
-        header: Column {
+        header: MostCalledList {
             id: mostCalledView
 
             anchors {
                 left: parent.left
                 right: parent.right
             }
-            onHeightChanged: {
-                if (calledModel.currentIndex != -1) {
-                    mostCalledView.makeItemVisible(callerRepeat.itemAt(calledModel.currentIndex))
-                }
-            }
-            Item {
-                id: headerContents
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-                height: childrenRect.height
-                children: root.header
-            }
-
-            Column {
-                function makeItemVisible(item)
-                {
-                     var itemY = mostCalledView.y + item.y
-                     var areaY = view.contentY
-                     if (itemY < areaY) {
-                         view.contentY = itemY
-                         view.returnToBounds()
-                     }
-                }
-
-                visible: view.favouritesIsSelected && (callerRepeat.count > 0)
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-                height: visible ? childrenRect.height : 0
-                SectionDelegate {
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                        margins: units.gu(2)
-                    }
-                    text: i18n.dtr("address-book-app", "Frequently called")
-                }
-                Repeater {
-                    id: callerRepeat
-
-                    model: MostCalledModel {
-                        id: calledModel
-
-                        readonly property bool visible: view.favouritesIsSelected
-
-                        onVisibleChanged: {
-                            // update the model every time that it became visible
-                            // in fact calling update only reloads the model data if it has changed
-                            if (visible) {
-                                model.update()
-                            }
-                        }
-                        onInfoRequested: root.infoRequested(contact)
-                        onDetailClicked: root.detailClicked(contact, detail, action)
-                        onAddDetailClicked: root.addDetailClicked(contact, detailType)
-                        onAddContactClicked: root.addContactClicked(label)
-                        onCurrentIndexChanged:  {
-                            if (currentIndex !== -1) {
-                                view.currentIndex = -1
-                            }
-                        }
-
-                        // WORKAROUND: The SDK header causes the contactY to move to a wrong postion
-                        // calling the positionViewAtBeginning after the list created fix that
-                        onLoaded: moveToBegining.restart()
-                    }
-                }
-
-                Connections {
-                    target: view
-                    onCurrentIndexChanged: {
-                        if (view.currentIndex !== -1) {
-                            calledModel.currentIndex = -1
-                        }
-                    }
-                }
-            }
+            parentView: view
+            header: root.header
+            visible: view.favouritesIsSelected
         }
         onError: root.error(message)
         onInfoRequested: root.infoRequested(contact)
