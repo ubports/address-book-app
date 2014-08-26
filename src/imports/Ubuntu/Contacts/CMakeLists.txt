@@ -22,6 +22,7 @@ set(CONTACT_COMPONENTS_QMLS
     ContactDetailWithTypeView.qml
     ContactFetch.qml
     ContactList.js
+    ContactListModel.qml
     ContactListView.qml
     ContactPreviewPage.qml
     ContactSimpleListView.qml
