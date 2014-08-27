@@ -20,7 +20,6 @@ Column {
     id: root
 
     property alias parentView: scrollAnimation.target
-    property alias header: listHeader.children
     readonly property alias count: callerRepeat.count
 
     /* internal */
@@ -47,23 +46,12 @@ Column {
         scrollAnimation.restart()
     }
 
-    height: visible && (callerRepeat.count > 0) ? childrenRect.height : 0
-
     SmoothedAnimation {
         id: scrollAnimation
 
         property: "contentY"
         velocity: parentView.highlightMoveVelocity
         duration: parentView.highlightMoveDuration
-    }
-
-    Item {
-        id: listHeader
-        anchors {
-            left: parent.left
-            right: parent.right
-        }
-        height: childrenRect.height
     }
 
     SectionDelegate {
@@ -73,6 +61,7 @@ Column {
             margins: units.gu(2)
         }
         text: i18n.dtr("address-book-app", "Frequently called")
+        visible: (root.count > 0)
     }
 
     Repeater {

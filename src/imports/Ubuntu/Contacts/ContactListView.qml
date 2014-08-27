@@ -370,16 +370,35 @@ Item {
             onTriggered: view.positionViewAtBeginning()
         }
 
-        header: MostCalledList {
-            id: mostCalledView
-
+        header: Column {
             anchors {
                 left: parent.left
                 right: parent.right
             }
-            parentView: view
-            header: root.header
-            visible: view.favouritesIsSelected
+            height: childrenRect.height
+
+            Item {
+                id: listHeader
+
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(1)
+                }
+                height: childrenRect.height
+                children: root.header
+            }
+            MostCalledList {
+                id: mostCalledView
+
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                parentView: view
+                visible: view.favouritesIsSelected
+                height: visible && (count > 0) ? childrenRect.height : 0
+            }
         }
         onError: root.error(message)
         onInfoRequested: root.infoRequested(contact)
