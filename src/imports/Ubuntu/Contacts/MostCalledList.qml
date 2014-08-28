@@ -32,7 +32,7 @@ Column {
             return
         }
 
-        var itemY = root.y + item.y
+        var itemY = parent.y + root.y + item.y
         var areaY = parentView.contentY
         if (itemY < areaY) {
             // move foward
