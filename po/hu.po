@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-13 09:13-0300\n"
-"PO-Revision-Date: 2014-08-19 11:10+0000\n"
+"PO-Revision-Date: 2014-08-27 14:40+0000\n"
 "Last-Translator: Richard Somlói <ricsipontaz@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-20 06:23+0000\n"
-"X-Generator: Launchpad (build 17163)\n"
+"X-Launchpad-Export-Date: 2014-08-28 06:29+0000\n"
+"X-Generator: Launchpad (build 17174)\n"
 
 #: src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -25,13 +25,13 @@ msgstr "%1 vCard importálva"
 #. TRANSLATORS: this refers to creating a new contact
 #: src/imports/ContactList/ContactListPage.qml:240
 msgid "+ Create New"
-msgstr "+ Új hozzáadása"
+msgstr "Új hozzáadása"
 
-#: src/imports/ContactEdit/ContactEditor.qml:322
+#: src/imports/ContactEdit/ContactEditor.qml:323
 msgid "Add Field"
 msgstr "Mező hozzáadása"
 
-#: src/imports/ContactList/ContactListPage.qml:527
+#: src/imports/ContactList/ContactListPage.qml:526
 msgid "Add contact"
 msgstr "Névjegy hozzáadása"
 
@@ -39,14 +39,14 @@ msgstr "Névjegy hozzáadása"
 msgid "Add number..."
 msgstr "Szám megadása…"
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:59
+#: src/imports/ContactEdit/AddFieldDialog.qml:60
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
-#: src/imports/ContactView/ContactDetailAddressesView.qml:24
+#: src/imports/Ubuntu/Contacts/ContactDetailAddressesView.qml:24
 msgid "Address"
 msgstr "Cím"
 
 #: src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:76
-#: src/imports/ContactView/ContactDetailSyncTargetView.qml:48
+#: src/imports/ContactView/ContactDetailSyncTargetView.qml:49
 msgid "Addressbook"
 msgstr "Címjegyzék"
 
@@ -55,7 +55,7 @@ msgid "Aim"
 msgstr "AIM"
 
 #. TRANSLATORS: this refers to all contacts
-#: src/imports/ContactList/ContactListPage.qml:410
+#: src/imports/ContactList/ContactListPage.qml:409
 msgid "All"
 msgstr "Összes"
 
@@ -67,15 +67,14 @@ msgstr "Biztosan törli az összes kijelölt névjegyet?"
 msgid "Are you sure that you want to remove this contact?"
 msgstr "Biztosan törli ezt a névjegyet?"
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:133
-#: src/imports/ContactEdit/ContactEditor.qml:373
-#: src/imports/ContactList/ContactListPage.qml:423
+#: src/imports/ContactEdit/AddFieldDialog.qml:134
+#: src/imports/ContactEdit/ContactEditor.qml:374
+#: src/imports/ContactList/ContactListPage.qml:422
 #: src/imports/MainWindow.qml:133
-#: src/imports/Ubuntu/Contacts/DialogButtons.qml:37
 msgid "Cancel"
 msgstr "Mégse"
 
-#: src/imports/ContactList/ContactListPage.qml:447
+#: src/imports/ContactList/ContactListPage.qml:445
 msgid "Cancel selection"
 msgstr "Kijelölés megszüntetése"
 
@@ -95,7 +94,7 @@ msgstr "Névjegyek"
 msgid "Country"
 msgstr "Ország"
 
-#: src/imports/ContactEdit/ContactEditor.qml:337
+#: src/imports/ContactEdit/ContactEditor.qml:338
 #: src/imports/ContactList/ContactListPage.qml:267
 #: src/imports/ContactList/ContactListPage.qml:487
 msgid "Delete"
@@ -105,27 +104,27 @@ msgstr "Törlés"
 msgid "Done"
 msgstr "Kész"
 
-#: src/imports/ContactEdit/ContactEditor.qml:141
-#: src/imports/ContactView/ContactView.qml:217
+#: src/imports/ContactEdit/ContactEditor.qml:142
+#: src/imports/ContactView/ContactView.qml:121
 msgid "Edit"
 msgstr "Szerkesztés"
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:57
-#: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:23
-#: src/imports/ContactView/ContactDetailEmailsView.qml:23
-#: src/imports/ContactView/ContactDetailEmailsView.qml:26
+#: src/imports/ContactEdit/AddFieldDialog.qml:58
+#: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:24
+#: src/imports/Ubuntu/Contacts/ContactDetailEmailsView.qml:23
+#: src/imports/Ubuntu/Contacts/ContactDetailEmailsView.qml:26
 msgid "Email"
 msgstr "E-mail"
 
-#: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:28
+#: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
 msgstr "Adjon meg egy számot"
 
-#: src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:28
+#: src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:27
 msgid "Enter a social alias"
 msgstr "Becenév megadása"
 
-#: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:27
+#: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:28
 msgid "Enter an email address"
 msgstr "E-mail cím megadása"
 
@@ -134,15 +133,15 @@ msgstr "E-mail cím megadása"
 msgid "Error"
 msgstr "Hiba"
 
-#: src/imports/ContactView/ContactView.qml:195
+#: src/imports/ContactView/ContactView.qml:99
 msgid "Favorite"
 msgstr "Kedvenc"
 
-#: src/imports/ContactList/ContactListPage.qml:410
+#: src/imports/ContactList/ContactListPage.qml:409
 msgid "Favorites"
 msgstr "Kedvencek"
 
-#: src/imports/ContactEdit/ContactDetailNameEditor.qml:83
+#: src/imports/ContactEdit/ContactDetailNameEditor.qml:84
 msgid "First name"
 msgstr "Keresztnév"
 
@@ -150,7 +149,7 @@ msgstr "Keresztnév"
 msgid "Frequently called"
 msgstr "Gyakran hívott"
 
-#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:116
+#: src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:115
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:103
 msgid "Home"
 msgstr "Otthoni"
@@ -159,7 +158,7 @@ msgstr "Otthoni"
 msgid "ICQ"
 msgstr "ICQ"
 
-#: src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:24
+#: src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:23
 msgid "IM"
 msgstr "Azonnali üzenet"
 
@@ -175,7 +174,7 @@ msgstr "Importálás…"
 msgid "Jabber"
 msgstr "Jabber"
 
-#: src/imports/ContactEdit/ContactDetailNameEditor.qml:83
+#: src/imports/ContactEdit/ContactDetailNameEditor.qml:84
 msgid "Last name"
 msgstr "Vezetéknév"
 
@@ -212,18 +211,18 @@ msgstr "Nem"
 msgid "No contact selected."
 msgstr "Nincs kijelölve névjegy."
 
-#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
+#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
 msgstr "Szervezet"
 
-#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:118
+#: src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:117
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:111
 msgid "Other"
 msgstr "Egyéb"
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:55
-#: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:24
-#: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:30
+#: src/imports/ContactEdit/AddFieldDialog.qml:56
+#: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:23
+#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumbersView.qml:26
 msgid "Phone"
 msgstr "Telefon"
 
@@ -231,13 +230,13 @@ msgstr "Telefon"
 msgid "Post code"
 msgstr "Irányítószám"
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:63
-#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:23
-#: src/imports/ContactView/ContactDetailOrganizationsView.qml:27
+#: src/imports/ContactEdit/AddFieldDialog.qml:64
+#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:21
+#: src/imports/Ubuntu/Contacts/ContactDetailOrganizationsView.qml:24
 msgid "Professional Details"
 msgstr "Munkahely adatai"
 
-#: src/imports/ContactList/ContactListPage.qml:382
+#: src/imports/ContactList/ContactListPage.qml:381
 msgid "Quit"
 msgstr "Kilépés"
 
@@ -245,15 +244,15 @@ msgstr "Kilépés"
 msgid "Region"
 msgstr "Régió"
 
-#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:31
+#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
 msgstr "Munkakör"
 
-#: src/imports/ContactEdit/ContactEditor.qml:386
+#: src/imports/ContactEdit/ContactEditor.qml:387
 msgid "Save"
 msgstr "Mentés"
 
-#: src/imports/ContactList/ContactListPage.qml:397
+#: src/imports/ContactList/ContactListPage.qml:396
 msgid "Search"
 msgstr "Keresés"
 
@@ -261,16 +260,16 @@ msgstr "Keresés"
 msgid "Search..."
 msgstr "Keresés…"
 
-#: src/imports/ContactList/ContactListPage.qml:453
+#: src/imports/ContactList/ContactListPage.qml:451
 msgid "Select All"
 msgstr "Összes kijelölése"
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:116
+#: src/imports/ContactEdit/AddFieldDialog.qml:117
 msgid "Select a field"
 msgstr "Válasszon mezőt"
 
-#: src/imports/ContactList/ContactListPage.qml:466
-#: src/imports/ContactView/ContactView.qml:206
+#: src/imports/ContactList/ContactListPage.qml:464
+#: src/imports/ContactView/ContactView.qml:110
 msgid "Share"
 msgstr "Megosztás"
 
@@ -278,20 +277,20 @@ msgstr "Megosztás"
 msgid "Skype"
 msgstr "Skype"
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:61
-#: src/imports/ContactView/ContactDetailOnlineAccountsView.qml:27
+#: src/imports/ContactEdit/AddFieldDialog.qml:62
+#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:24
 msgid "Social"
-msgstr "Közösségi"
+msgstr "Közösségi szolgáltatások"
 
 #: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:31
 msgid "Street"
 msgstr "Utca"
 
-#: src/imports/ContactList/ContactListPage.qml:391
+#: src/imports/ContactList/ContactListPage.qml:390
 msgid "Sync"
 msgstr "Szinkronizálás"
 
-#: src/imports/ContactList/ContactListPage.qml:391
+#: src/imports/ContactList/ContactListPage.qml:390
 msgid "Syncing"
 msgstr "Szinkronizálás"
 
@@ -299,15 +298,15 @@ msgstr "Szinkronizálás"
 msgid "Syncing..."
 msgstr "Szinkronizálás…"
 
-#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:32
+#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Title"
 msgstr "Beosztás"
 
-#: src/imports/ContactView/ContactDetailOnlineAccountsView.qml:30
+#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:27
 msgid "Touch"
 msgstr "Érintés"
 
-#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:117
+#: src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:116
 #: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
 msgid "Work"
 msgstr "Munka"
