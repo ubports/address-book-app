@@ -299,56 +299,80 @@ Page {
                 height: units.gu(2)
             }
 
-            Row {
+            ComboButtonAddField {
+                id: addNewFieldButton
+                objectName: "addNewFieldButton"
+
+                contact: contactEditor.contact
+                text: i18n.tr("Add Field")
                 anchors {
                     left: parent.left
                     right: parent.right
                     margins: units.gu(2)
                 }
-                height: units.gu(6)
-                spacing: units.gu(2)
-
-                // WORKAROUND: SDK uses a old version of qtquick components
-                activeFocusOnTab: true
-                onActiveFocusChanged: {
-                    if (activeFocus) {
-                        addNewFieldButton.forceActiveFocus()
+                height: implicitHeight
+                onHeightChanged: {
+                    if (expanded && (height === expandedHeight) && !scrollArea.atYEnd) {
+                        moveToBottom.start()
                     }
                 }
 
-                Button {
-                    id: addNewFieldButton
-                    objectName: "addNewFieldButton"
+                UbuntuNumberAnimation {
+                    id: moveToBottom
 
-                    text: i18n.tr("Add Field")
-                    strokeColor: UbuntuColors.warmGrey
-                    anchors {
-                        top: parent.top
-                        bottom: parent.bottom
-                        bottomMargin: units.gu(2)
-                    }
-                    width: (parent.width / 2) - units.gu(1)
-
-                    onClicked: addFieldDialog.showOptions()
+                    target: scrollArea
+                    property: "contentY"
+                    from: scrollArea.contentY
+                    to: Math.min(scrollArea.contentHeight - scrollArea.height,
+                                 scrollArea.contentY + (addNewFieldButton.height - addNewFieldButton.collapsedHeight - units.gu(3)))
                 }
 
-                Button {
-                    id: deleteButton
-
-                    text: i18n.tr("Delete")
-                    visible: !contactEditor.isNewContact
-                    color: "red"
-                    anchors {
-                        top: parent.top
-                        bottom: parent.bottom
-                        bottomMargin: units.gu(2)
-                    }
-                    width: (parent.width / 2) - units.gu(1)
-                    onClicked: {
-                        var dialog = PopupUtils.open(removeContactDialog, null)
-                        dialog.contacts = [contactEditor.contact]
+                onFieldSelected: {
+                    if (qmlTypeName) {
+                        var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + qmlTypeName + "{}", contactEditor)
+                        if (newDetail) {
+                            var newDetailsCopy = contactEditor.newDetails
+                            newDetailsCopy.push(newDetail)
+                            contactEditor.newDetails = newDetailsCopy
+                            contactEditor.contact.addDetail(newDetail)
+                        }
                     }
                 }
+            }
+
+
+            Item {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                height: units.gu(2)
+            }
+
+            Button {
+                id: deleteButton
+
+                text: i18n.tr("Delete")
+                visible: !contactEditor.isNewContact
+                color: "red"
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(2)
+                }
+                onClicked: {
+                    var dialog = PopupUtils.open(removeContactDialog, null)
+                    dialog.contacts = [contactEditor.contact]
+                }
+            }
+
+
+            Item {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                height: units.gu(2)
             }
         }
     }
@@ -403,30 +427,13 @@ Page {
         }
     }
 
-    AddFieldDialog {
-        id: addFieldDialog
-
-        contact: contactEditor.contact
-        onFieldSelected: {
-            if (qmlTypeName) {
-                var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + qmlTypeName + "{}", addFieldDialog)
-                if (newDetail) {
-                    var newDetailsCopy = contactEditor.newDetails
-                    newDetailsCopy.push(newDetail)
-                    contactEditor.newDetails = newDetailsCopy
-                    contactEditor.contact.addDetail(newDetail)
-                }
-            }
-        }
-    }
-
     Component {
         id: removeContactDialog
 
         RemoveContactsDialog {
             id: removeContactsDialogMessage
 
-            property var popPages: false
+            property bool popPages: false
 
             onCanceled: {
                 PopupUtils.close(removeContactsDialogMessage)

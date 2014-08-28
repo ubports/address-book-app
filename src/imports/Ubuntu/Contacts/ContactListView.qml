@@ -1,4 +1,4 @@
-    /*
+/*
  * Copyright (C) 2012-2013 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -52,7 +52,7 @@ Item {
       This property holds a string that will be used to filter contacts on the list
       By default this is set to empty
     */
-    property string filterTerm: ""
+    property alias filterTerm: contactsModel.filterTerm
     /*!
       \qmlproperty Filter filter
 
@@ -60,7 +60,7 @@ Item {
 
       \sa Filter
     */
-    property var filter: null
+    property alias filter: contactsModel.externalFilter
     /*!
       \qmlproperty bool showAvatar
 
@@ -285,10 +285,7 @@ Item {
     }
     function changeFilter(newFilter)
     {
-        if (root.count > 0) {
-            contactsModel._clearModel = true
-        }
-        root.filter = newFilter
+        contactsModel.changeFilter(newFilter)
     }
     function reset()
     {
@@ -324,8 +321,6 @@ Item {
         contactsModel.update()
     }
 
-    onFilterTermChanged: contactSearchTimeout.restart()
-
     // colapse contacts if the keyboard appears
     Connections {
         target: Qt.inputMethod
@@ -334,14 +329,13 @@ Item {
                 view.currentIndex = -1
             }
         }
-
     }
 
     ContactSimpleListView {
         id: view
 
         property bool showFavourites: true
-        property bool favouritesIsSelected: false
+        property alias favouritesIsSelected: contactsModel.onlyFavorites
 
         function getSectionText(index) {
             var tag = listModel.contacts[index].tag.tag
@@ -377,106 +371,33 @@ Item {
         }
 
         header: Column {
-            id: mostCalledView
-
             anchors {
                 left: parent.left
                 right: parent.right
             }
-            onHeightChanged: {
-                if (calledModel.currentIndex != -1) {
-                    mostCalledView.makeItemVisible(callerRepeat.itemAt(calledModel.currentIndex))
-                }
-            }
+            height: childrenRect.height
+
             Item {
-                id: headerContents
+                id: listHeader
+
                 anchors {
                     left: parent.left
                     right: parent.right
+                    margins: units.gu(1)
                 }
                 height: childrenRect.height
                 children: root.header
             }
+            MostCalledList {
+                id: mostCalledView
 
-            Column {
-                function makeItemVisible(item)
-                {
-                     var itemY = mostCalledView.y + item.y
-                     var areaY = view.contentY
-                     if (itemY < areaY) {
-                         view.contentY = itemY
-                         view.returnToBounds()
-                     }
-                }
-
-                visible: view.favouritesIsSelected && (callerRepeat.count > 0)
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
-                height: visible ? childrenRect.height : 0
-
-                Rectangle {
-                    color: Theme.palette.normal.background
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                        margins: units.gu(1)
-                    }
-                    height: units.gu(3)
-                    Label {
-                        anchors.fill: parent
-                        verticalAlignment: Text.AlignVCenter
-                        text: i18n.dtr("address-book-app", "Frequently called")
-                        font.pointSize: 76
-                    }
-                    ListItem.ThinDivider {
-                        anchors {
-                            left: parent.left
-                            right: parent.right
-                            bottom: parent.bottom
-                        }
-                    }
-                }
-                Repeater {
-                    id: callerRepeat
-
-                    model: MostCalledModel {
-                        id: calledModel
-
-                        readonly property bool visible: view.favouritesIsSelected
-
-                        onVisibleChanged: {
-                            // update the model every time that it became visible
-                            // in fact calling update only reloads the model data if it has changed
-                            if (visible) {
-                                model.update()
-                            }
-                        }
-                        onInfoRequested: root.infoRequested(contact)
-                        onDetailClicked: root.detailClicked(contact, detail, action)
-                        onAddDetailClicked: root.addDetailClicked(contact, detailType)
-                        onAddContactClicked: root.addContactClicked(label)
-                        onCurrentIndexChanged:  {
-                            if (currentIndex !== -1) {
-                                view.currentIndex = -1
-                            }
-                        }
-
-                        // WORKAROUND: The SDK header causes the contactY to move to a wrong postion
-                        // calling the positionViewAtBeginning after the list created fix that
-                        onLoaded: moveToBegining.restart()
-                    }
-                }
-
-                Connections {
-                    target: view
-                    onCurrentIndexChanged: {
-                        if (view.currentIndex !== -1) {
-                            calledModel.currentIndex = -1
-                        }
-                    }
-                }
+                parentView: view
+                visible: view.favouritesIsSelected
+                height: visible && (count > 0) ? childrenRect.height : 0
             }
         }
         onError: root.error(message)
@@ -488,139 +409,12 @@ Item {
         onContactDisappeared: root.contactDisappeared(contact)
         clip: true
 
-        InvalidFilter {
-            id: invalidFilter
-        }
-
-        DetailFilter {
-            id: favouritesFilter
-
-            detail: ContactDetail.Favorite
-            field: Favorite.Favorite
-            value: true
-            matchFlags: DetailFilter.MatchExactly
-        }
-
-        UnionFilter {
-            id: contactTermFilter
-
-            property string value: ""
-
-            DetailFilter {
-                detail: ContactDetail.DisplayLabel
-                field: DisplayLabel.Label
-                value: contactTermFilter.value
-                matchFlags: DetailFilter.MatchContains
-            }
-
-            DetailFilter {
-                detail: ContactDetail.PhoneNumber
-                field: PhoneNumber.Number
-                value: contactTermFilter.value
-                matchFlags: DetailFilter.MatchPhoneNumber
-            }
-
-            DetailFilter {
-                detail: ContactDetail.PhoneNumber
-                field: PhoneNumber.Number
-                value: contactTermFilter.value
-                matchFlags: DetailFilter.MatchContains
-            }
-        }
-
-
-        IntersectionFilter {
-            id: contactsFilter
-
-            // avoid runtime warning "depends on non-NOTIFYable properties"
-            readonly property alias filtersProxy: contactsFilter.filters
-
-            property bool active: {
-                var filters_ = []
-                if (contactTermFilter.value.length > 0) {
-                    filters_.push(contactTermFilter)
-                } else if (view.favouritesIsSelected) {
-                    filters_.push(favouritesFilter)
-                }
-
-                if (root.filter) {
-                    filters_.push(root.filter)
-                }
-
-                // check if the filter has changed
-                var oldFilters = filtersProxy
-                if (oldFilters.length !== filters_.length) {
-                    contactsFilter.filters = filters_
-                } else {
-                    for(var i=0; i < oldFilters.length; i++) {
-                        if (filters_.indexOf(oldFilters[i]) === -1) {
-                            contactsFilter.filters = filters_
-                        }
-                    }
-                }
-
-                return (filters_.length > 0)
-            }
-        }
-
-        Timer {
-            id: contactSearchTimeout
-
-            running: false
-            repeat: false
-            interval: 300
-            onTriggered: {
-                view.positionViewAtBeginning()
-
-                root.changeFilter(root.filter)
-                contactTermFilter.value = root.filterTerm
-
-                // manually update if autoUpdate is disabled
-                if (!root.autoUpdate) {
-                    contactsModel.update()
-                }
-            }
-        }
-
-        listModel: ContactModel {
+        listModel: ContactListModel {
             id: contactsModel
-
-            property bool _clearModel: false
 
             manager: root.manager
             sortOrders: root.sortOrders
             fetchHint: root.fetchHint
-            filter: {
-                if (contactsModel._clearModel) {
-                    return invalidFilter
-                } else if (contactsFilter.active) {
-                    return contactsFilter
-                } else {
-                    return null
-                }
-            }
-
-            onErrorChanged: {
-                if (error) {
-                    console.error("Contact List error:" + error)
-                }
-            }
-
-            onContactsChanged: {
-                //WORKAROUND: clear the model before start populate it with the new contacts
-                //otherwise the model will wait for all contacts before show any new contact
-
-                //after all contacts get removed we can populate the model again, this will show
-                //new contacts as soon as it arrives in the model
-                if (contactsModel._clearModel && contacts.length === 0) {
-                    contactsModel._clearModel = false
-                    // do a new update if autoUpdate is false
-                    if (!contactsModel.autoUpdate) {
-                        contactsModel.update()
-                    }
-
-                }
-            }
         }
     }
 

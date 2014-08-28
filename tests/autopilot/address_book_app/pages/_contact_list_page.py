@@ -68,7 +68,7 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
             if contact.visible:
                 item = contact.select_single("QQuickRectangle",
                                              objectName="mainItem")
-            self.items.append(item)
+                self.items.append(item)
         return self.contacts
 
     def start_selection(self, idx):

@@ -22,6 +22,7 @@ set(CONTACT_COMPONENTS_QMLS
     ContactDetailWithTypeView.qml
     ContactFetch.qml
     ContactList.js
+    ContactListModel.qml
     ContactListView.qml
     ContactPreviewPage.qml
     ContactSimpleListView.qml
@@ -30,11 +31,13 @@ set(CONTACT_COMPONENTS_QMLS
     FastScroll.qml
     ListItemWithActionsCheckBox.qml
     ListItemWithActions.qml
+    MostCalledList.qml
     MostCalledModel.qml
     MultipleSelectionListView.qml
     MultipleSelectionVisualModel.qml
     PageWithBottomEdge.qml
     qmldir
+    SectionDelegate.qml
     SubtitledWithColors.qml
     VCardParser.qml
 )

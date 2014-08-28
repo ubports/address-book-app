@@ -34,7 +34,6 @@ VisualDataModel {
     signal addContactClicked(string label)
     signal loaded()
 
-
     model: MostCalledContactsModel {
         id: mostCalledModel
 
@@ -49,6 +48,11 @@ VisualDataModel {
                 filterProperty: "senderId"
                 filterValue: "self"
                 matchFlags: HistoryFilter.MatchCaseSensitive
+            }
+            onCanFetchMoreChanged: {
+                if (count === 0) {
+                    mostCalledModel.update()
+                }
             }
         }
         onLoaded: root.loaded()

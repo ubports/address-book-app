@@ -41,7 +41,6 @@ MostCalledContactsModel::MostCalledContactsModel(QObject *parent)
     connect(this, SIGNAL(sourceModelChanged(QAbstractItemModel*)), SLOT(markAsOutdated()));
     connect(this, SIGNAL(maxCountChanged(uint)), SLOT(markAsOutdated()));
     connect(this, SIGNAL(startIntervalChanged(QDateTime)), SLOT(markAsOutdated()));
-    connect(this, SIGNAL(modelReset()), SIGNAL(outdatedChange(bool)));
 }
 
 MostCalledContactsModel::~MostCalledContactsModel()

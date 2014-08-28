@@ -34,12 +34,13 @@ Item {
     property alias internalAnchors: mainContents.anchors
     default property alias contents: mainContents.children
 
-    readonly property double actionWidth: units.gu(5)
+    readonly property double actionWidth: units.gu(4)
     readonly property double leftActionWidth: units.gu(10)
     readonly property double actionThreshold: actionWidth * 0.4
     readonly property double threshold: 0.4
     readonly property string swipeState: main.x == 0 ? "Normal" : main.x > 0 ? "LeftToRight" : "RightToLeft"
     readonly property alias swipping: mainItemMoving.running
+    readonly property bool _showActions: mouseArea.pressed || swipeState != "Normal" || swipping
 
     /* internal */
     property var _visibleRightSideActions: filterVisibleActions(rightSideActions)
@@ -80,20 +81,23 @@ Item {
         }
     }
 
-    function contains(item, point)
+    function contains(item, point, marginX)
     {
-        return (point.x >= item.x) && (point.x <= (item.x + item.width)) && (point.y >= item.y) && (point.y <= (item.y + item.height));
+        var itemStartX = item.x - marginX
+        var itemEndX = item.x + item.width + marginX
+        return (point.x >= itemStartX) && (point.x <= itemEndX) &&
+               (point.y >= item.y) && (point.y <= (item.y + item.height));
     }
 
     function getActionAt(point)
     {
-        if (contains(leftActionView, point)) {
+        if (contains(leftActionView, point, 0)) {
             return leftSideAction
-        } else if (contains(rightActionsView, point)) {
+        } else if (contains(rightActionsView, point, 0)) {
             var newPoint = root.mapToItem(rightActionsView, point.x, point.y)
             for (var i = 0; i < rightActionsRepeater.count; i++) {
                 var child = rightActionsRepeater.itemAt(i)
-                if (contains(child, newPoint)) {
+                if (contains(child, newPoint, units.gu(1))) {
                     return i
                 }
             }
@@ -168,14 +172,14 @@ Item {
         }
         width: root.leftActionWidth + actionThreshold
         visible: leftSideAction
-        color: "red"
+        color: UbuntuColors.red
 
         Icon {
             anchors {
                 centerIn: parent
                 horizontalCenterOffset: actionThreshold / 2
             }
-            name: leftSideAction ? leftSideAction.iconName : ""
+            name: leftSideAction && _showActions ? leftSideAction.iconName : ""
             color: Theme.palette.selected.field
             height: units.gu(3)
             width: units.gu(3)
@@ -206,7 +210,7 @@ Item {
            Repeater {
                id: rightActionsRepeater
 
-               model: _visibleRightSideActions
+               model: _showActions ? _visibleRightSideActions : []
                Item {
                    property alias image: img
 
@@ -339,16 +343,26 @@ Item {
         property bool locked: root.locked || ((root.leftSideAction === null) && (root._visibleRightSideActions.count === 0))
         property bool manual: false
 
-        anchors.fill: parent
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+            right: parent.right
+            left: parent.left
+            leftMargin: mouseArea.drag.active ? units.gu(4) : 0
+        }
         drag {
             target: locked ? null : main
             axis: Drag.XAxis
             minimumX: rightActionsView.visible ? -(rightActionsView.width) : 0
             maximumX: leftActionView.visible ? leftActionView.width : 0
+            threshold: root.actionThreshold
         }
 
         onReleased: {
-            if (root.triggerActionOnMouseRelease && root.activeAction) {
+            // if the mouse reach the safe are we should handle it as full swipe
+            if (mouse.x < 0) {
+                main.x = -(rightActionsView.width - units.gu(2))
+            } else if (root.triggerActionOnMouseRelease && root.activeAction) {
                 triggerAction.start()
             } else {
                 root.returnToBounds()

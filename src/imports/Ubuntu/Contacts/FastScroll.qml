@@ -57,6 +57,7 @@ Item {
 
     width: units.gu(7)
     height: rail.height
+    visible: enabled
 
     onListViewChanged: {
         if (listView && listView.model) {

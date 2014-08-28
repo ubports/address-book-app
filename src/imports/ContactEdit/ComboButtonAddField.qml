@@ -18,14 +18,13 @@ import QtQuick 2.2
 import QtContacts 5.0
 
 import Ubuntu.Components 1.1
-import Ubuntu.Components.Popups 1.0
+import Ubuntu.Components.ListItems 1.0
 
-
-Item {
+ComboButton {
     id: root
 
     property QtObject contact: null
-    property var currentDialog: null
+    property int selectedDetail: -1
     readonly property var validDetails: [ ContactDetail.PhoneNumber,
                                           ContactDetail.Email,
                                           ContactDetail.Address,
@@ -37,16 +36,8 @@ Item {
                                           // ContactDetail.Url
                                          ]
     readonly property var singleValueDetails: [ ContactDetail.Organization ]
-    signal fieldSelected(string fieldName, string qmlTypeName)
 
-    function showOptions()
-    {
-        if (currentDialog == null) {
-            // make sure the OSK disappear
-            root.forceActiveFocus()
-            currentDialog = PopupUtils.open(addFieldDialog, null)
-        }
-    }
+    signal fieldSelected(string fieldName, string qmlTypeName)
 
     function nameFromEnum(value)
     {
@@ -93,50 +84,44 @@ Item {
     function filterSingleDetails(details, contact)
     {
         var result = []
-        for(var i=0; i < details.length; i++) {
-            var det = details[i]
-            if (singleValueDetails.indexOf(det) != -1) {
-                if (contact.details(det).length === 0) {
+        if (contact) {
+            for(var i=0; i < details.length; i++) {
+                var det = details[i]
+                if (singleValueDetails.indexOf(det) != -1) {
+                    if (contact.details(det).length === 0) {
+                        result.push(det)
+                    }
+                } else {
                     result.push(det)
                 }
-            } else {
-                result.push(det)
             }
         }
         return result
     }
 
-    visible: false
-    Component {
-        id: addFieldDialog
+    collapsedHeight: units.gu(4)
+    implicitHeight: expanded ? expandedHeight : collapsedHeight
+    onClicked: expanded = !expanded
 
-        Dialog {
-            id: dialogue
-            objectName: "addFieldDialog"
+    // make sure that the signal will be fired after the item collapse
+    onHeightChanged: {
+        if (!expanded && (selectedDetail !== -1) && (height === collapsedHeight)) {
+            fieldSelected(root.nameFromEnum(selectedDetail), root.qmlTypeFromEnum(selectedDetail))
+            selectedDetail = -1
+        }
+    }
 
-            title: i18n.tr("Select a field")
-            Repeater {
-                model: root.filterSingleDetails(validDetails, root.contact)
-                Button {
-                    objectName: text
+    ListView {
+        id: view
+        objectName: "listViewOptions"
 
-                    text: root.nameFromEnum(modelData)
-                    onClicked: {
-                        root.fieldSelected(text, root.qmlTypeFromEnum(modelData))
-                        PopupUtils.close(root.currentDialog)
-                        root.currentDialog = null
-                    }
-                }
-            }
-            Button {
-                objectName: "cancel"
-
-                text: i18n.tr("Cancel")
-                gradient: UbuntuColors.greyGradient
-                onClicked: {
-                    PopupUtils.close(root.currentDialog)
-                    root.currentDialog = null
-                }
+        model: root.filterSingleDetails(validDetails, root.contact)
+        delegate: Standard {
+            objectName: text
+            text: root.nameFromEnum(modelData)
+            onClicked: {
+                root.selectedDetail = modelData
+                root.expanded = false
             }
         }
     }

@@ -68,18 +68,21 @@ class ContactEditor(_common.PageWithHeader):
         """
 
         add_field_button = self.select_single(
-            'Button', objectName='addNewFieldButton')
+            'ComboButtonAddField', objectName='addNewFieldButton')
         add_field_button.swipe_into_view()
 
         self.pointing_device.click_object(add_field_button)
+        add_field_button.height.wait_for(add_field_button.expandedHeight)
+        self.wait_to_stop_moving()
 
-        add_field_dialog = self.get_root_instance().wait_select_single(
-            'Dialog', objectName='addFieldDialog')
-        new_field_button = add_field_dialog.select_single(
-            'Button',
+        options_list = add_field_button.select_single("QQuickListView",
+            objectName="listViewOptions")
+        new_field_item = options_list.select_single("Standard",
             objectName=self._DETAIL_ALIAS[detail_name])
+        new_field_item.swipe_into_view()
 
-        self.pointing_device.click_object(new_field_button)
+        self.pointing_device.click_object(new_field_item)
+        add_field_button.height.wait_for(add_field_button.collapsedHeight)
 
     @autopilot.logging.log_action(logger.info)
     def fill_form(self, contact_information):

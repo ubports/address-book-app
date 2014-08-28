@@ -6,6 +6,7 @@ ContactAvatar 0.1 ContactAvatar.qml
 ContactDetailOnlineAccountTypeModel 0.1 ContactDetailOnlineAccountTypeModel.qml
 ContactDetailPhoneNumberTypeModel 0.1 ContactDetailPhoneNumberTypeModel.qml
 ContactFetch 0.1 ContactFetch.qml
+ContactListModel 0.1 ContactListModel.qml
 ContactListView 0.1 ContactListView.qml
 ContactPreviewPage 0.1 ContactPreviewPage.qml
 ListItemWithActions 0.1 ListItemWithActions.qml
@@ -38,5 +39,7 @@ internal ContactJs Contacts.js
 internal FastScrollJs FastScroll.js
 internal FastScroll FastScroll.qml
 internal ListItemWithActionsCheckBox ListItemWithActionsCheckBox.qml
+internal MostCalledList MostCalledList.qml
 internal MostCalledModel MostCalledModel.qml
+internal SectionDelegate SectionDelegate.qml
 internal SubtitledWithColors SubtitledWithColors.qml
