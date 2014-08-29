@@ -397,6 +397,7 @@ ContactsUI.PageWithBottomEdge {
                     iconName: "search"
                     onTriggered: {
                         mainPage.state = (mainPage.state === "newphone" ? "newphoneSearching" : "searching")
+                        contactList.showAllContacts()
                         searchField.forceActiveFocus()
                     }
                 }
