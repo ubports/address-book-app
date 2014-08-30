@@ -7,316 +7,315 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-13 09:13-0300\n"
-"PO-Revision-Date: 2014-08-14 16:19+0000\n"
+"POT-Creation-Date: 2014-08-25 14:32-0300\n"
+"PO-Revision-Date: 2014-08-29 11:19+0000\n"
 "Last-Translator: Walter Cheuk <wwycheuk@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-19 06:58+0000\n"
-"X-Generator: Launchpad (build 17156)\n"
+"X-Launchpad-Export-Date: 2014-08-30 07:44+0000\n"
+"X-Generator: Launchpad (build 17176)\n"
 
-#: src/imports/ContactList/VCardImportDialog.qml:72
+#: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
 msgid "%1 vCards imported"
 msgstr "已匯入 %1 份 vCard"
 
 #. TRANSLATORS: this refers to creating a new contact
-#: src/imports/ContactList/ContactListPage.qml:240
+#: ../src/imports/ContactList/ContactListPage.qml:240
 msgid "+ Create New"
-msgstr ""
+msgstr "+ 建立新的"
 
-#: src/imports/ContactEdit/ContactEditor.qml:322
+#: ../src/imports/ContactEdit/ContactEditor.qml:307
 msgid "Add Field"
 msgstr "新增欄位"
 
-#: src/imports/ContactList/ContactListPage.qml:527
+#: ../src/imports/ContactList/ContactListPage.qml:526
 msgid "Add contact"
 msgstr "新增聯絡人"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
-msgstr ""
+msgstr "加入號碼..."
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:59
-#: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
-#: src/imports/ContactView/ContactDetailAddressesView.qml:24
+#: ../src/imports/ContactEdit/ComboButtonAddField.qml:51
+#: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
+#: ../src/imports/Ubuntu/Contacts/ContactDetailAddressesView.qml:24
 msgid "Address"
 msgstr "地址"
 
-#: src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:76
-#: src/imports/ContactView/ContactDetailSyncTargetView.qml:48
+#: ../src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:76
+#: ../src/imports/ContactView/ContactDetailSyncTargetView.qml:49
 msgid "Addressbook"
 msgstr "通訊錄"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:61
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:61
 msgid "Aim"
 msgstr ""
 
 #. TRANSLATORS: this refers to all contacts
-#: src/imports/ContactList/ContactListPage.qml:410
+#: ../src/imports/ContactList/ContactListPage.qml:409
 msgid "All"
 msgstr "全部"
 
-#: src/imports/Common/RemoveContactsDialog.qml:51
+#: ../src/imports/Common/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
 msgstr "您確定要移除所有選取的聯絡人？"
 
-#: src/imports/Common/RemoveContactsDialog.qml:49
+#: ../src/imports/Common/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
 msgstr "您確定要移除這位聯絡人？"
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:133
-#: src/imports/ContactEdit/ContactEditor.qml:373
-#: src/imports/ContactList/ContactListPage.qml:423
-#: src/imports/MainWindow.qml:133
-#: src/imports/Ubuntu/Contacts/DialogButtons.qml:37
+#: ../src/imports/ContactEdit/ContactEditor.qml:398
+#: ../src/imports/ContactList/ContactListPage.qml:422
+#: ../src/imports/MainWindow.qml:133
 msgid "Cancel"
 msgstr "取消"
 
-#: src/imports/ContactList/ContactListPage.qml:447
+#: ../src/imports/ContactList/ContactListPage.qml:445
 msgid "Cancel selection"
 msgstr "取消選取"
 
-#: src/imports/ContactList/VCardImportDialog.qml:80
+#: ../src/imports/ContactList/VCardImportDialog.qml:80
 msgid "Close"
 msgstr "關閉"
 
-#: src/imports/ContactView/ContactFetchError.qml:26
+#: ../src/imports/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
 msgstr "找不到聯絡人"
 
-#: src/imports/ContactList/ContactListPage.qml:146
+#: ../src/imports/ContactList/ContactListPage.qml:146
+#: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "聯絡人"
 
-#: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
+#: ../data/address-book-app.desktop.in.in.h:2
+msgid "Contacts Address Book"
+msgstr "聯絡人通訊錄"
+
+#: ../data/address-book-app.desktop.in.in.h:3
+msgid "Contacts;People;Numbers"
+msgstr "Contacts;People;Numbers;聯絡人;人物;號碼;"
+
+#: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
 msgstr "國家"
 
-#: src/imports/ContactEdit/ContactEditor.qml:337
-#: src/imports/ContactList/ContactListPage.qml:267
-#: src/imports/ContactList/ContactListPage.qml:487
+#: ../src/imports/ContactEdit/ContactEditor.qml:355
+#: ../src/imports/ContactList/ContactListPage.qml:267
+#: ../src/imports/ContactList/ContactListPage.qml:487
 msgid "Delete"
 msgstr "刪除"
 
-#: src/imports/Ubuntu/Contacts/DialogButtons.qml:53
-msgid "Done"
-msgstr "完成"
-
-#: src/imports/ContactEdit/ContactEditor.qml:141
-#: src/imports/ContactView/ContactView.qml:217
+#: ../src/imports/ContactEdit/ContactEditor.qml:142
+#: ../src/imports/ContactView/ContactView.qml:121
 msgid "Edit"
 msgstr "編輯"
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:57
-#: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:23
-#: src/imports/ContactView/ContactDetailEmailsView.qml:23
-#: src/imports/ContactView/ContactDetailEmailsView.qml:26
+#: ../src/imports/ContactEdit/ComboButtonAddField.qml:49
+#: ../src/imports/ContactEdit/ContactDetailEmailsEditor.qml:24
+#: ../src/imports/Ubuntu/Contacts/ContactDetailEmailsView.qml:23
+#: ../src/imports/Ubuntu/Contacts/ContactDetailEmailsView.qml:26
 msgid "Email"
 msgstr "Email"
 
-#: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:28
+#: ../src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
 msgstr "請輸入號碼"
 
-#: src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:28
+#: ../src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:27
 msgid "Enter a social alias"
 msgstr "請輸入綽號"
 
-#: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:27
+#: ../src/imports/ContactEdit/ContactDetailEmailsEditor.qml:28
 msgid "Enter an email address"
 msgstr "請輸入 email 位址"
 
-#: src/imports/ContactView/ContactFetchError.qml:25
-#: src/imports/MainWindow.qml:129
+#: ../src/imports/ContactView/ContactFetchError.qml:25
+#: ../src/imports/MainWindow.qml:129
 msgid "Error"
 msgstr "錯誤"
 
-#: src/imports/ContactView/ContactView.qml:195
+#: ../src/imports/ContactView/ContactView.qml:99
 msgid "Favorite"
 msgstr "喜愛"
 
-#: src/imports/ContactList/ContactListPage.qml:410
+#: ../src/imports/ContactList/ContactListPage.qml:409
 msgid "Favorites"
-msgstr ""
+msgstr "最愛"
 
-#: src/imports/ContactEdit/ContactDetailNameEditor.qml:83
+#: ../src/imports/ContactEdit/ContactDetailNameEditor.qml:84
 msgid "First name"
 msgstr "名字"
 
-#: src/imports/Ubuntu/Contacts/ContactListView.qml:430
+#: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
 msgid "Frequently called"
 msgstr "經常撥打"
 
-#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:116
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:103
+#: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:115
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:103
 msgid "Home"
 msgstr "首頁"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "ICQ"
 msgstr "ICQ"
 
-#: src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:24
+#: ../src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:23
 msgid "IM"
 msgstr "即時通"
 
-#: src/imports/ContactList/VCardImportDialog.qml:71
+#: ../src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
 msgstr "匯入 vCard"
 
-#: src/imports/ContactList/VCardImportDialog.qml:72
+#: ../src/imports/ContactList/VCardImportDialog.qml:72
 msgid "Importing..."
 msgstr "匯入中…"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
 msgid "Jabber"
 msgstr "Jabber"
 
-#: src/imports/ContactEdit/ContactDetailNameEditor.qml:83
+#: ../src/imports/ContactEdit/ContactDetailNameEditor.qml:84
 msgid "Last name"
 msgstr "姓氏"
 
-#: src/imports/ContactList/ContactListPage.qml:338
+#: ../src/imports/ContactList/ContactListPage.qml:338
 msgid "Loading..."
 msgstr "載入中…"
 
-#: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:32
+#: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:32
 msgid "Locality"
 msgstr "所在地"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
 msgid "MSN"
 msgstr "MSN"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:107
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:107
 msgid "Mobile"
 msgstr "行動"
 
-#: src/imports/Common/RemoveContactsDialog.qml:44
+#: ../src/imports/Common/RemoveContactsDialog.qml:44
 msgid "Multiple contacts"
 msgstr "多位聯絡人"
 
-#: src/imports/ContactEdit/TextInputDetail.qml:74
+#: ../src/imports/ContactEdit/TextInputDetail.qml:74
 msgid "Next"
 msgstr "下一個"
 
-#: src/imports/Common/RemoveContactsDialog.qml:74
-#: src/imports/ContactList/OnlineAccountsMessage.qml:48
+#: ../src/imports/Common/RemoveContactsDialog.qml:74
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:48
 msgid "No"
 msgstr "無"
 
-#: src/imports/Common/RemoveContactsDialog.qml:40
+#: ../src/imports/Common/RemoveContactsDialog.qml:40
 msgid "No contact selected."
 msgstr "尚未選取聯絡人。"
 
-#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
+#: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
 msgstr "組織"
 
-#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:118
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:111
+#: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:117
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:111
 msgid "Other"
 msgstr "其他"
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:55
-#: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:24
-#: src/imports/ContactView/ContactDetailPhoneNumbersView.qml:30
+#: ../src/imports/ContactEdit/ComboButtonAddField.qml:47
+#: ../src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:23
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumbersView.qml:26
 msgid "Phone"
 msgstr "手機"
 
-#: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:34
+#: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
 msgstr "郵遞區號"
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:63
-#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:23
-#: src/imports/ContactView/ContactDetailOrganizationsView.qml:27
+#: ../src/imports/ContactEdit/ComboButtonAddField.qml:55
+#: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:21
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOrganizationsView.qml:24
 msgid "Professional Details"
 msgstr "專業詳情"
 
-#: src/imports/ContactList/ContactListPage.qml:382
+#: ../src/imports/ContactList/ContactListPage.qml:381
 msgid "Quit"
 msgstr "結束"
 
-#: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:33
+#: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:33
 msgid "Region"
 msgstr "區域"
 
-#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:31
+#: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
 msgstr "角色"
 
-#: src/imports/ContactEdit/ContactEditor.qml:386
+#: ../src/imports/ContactEdit/ContactEditor.qml:411
 msgid "Save"
 msgstr "儲存"
 
-#: src/imports/ContactList/ContactListPage.qml:397
+#: ../src/imports/ContactList/ContactListPage.qml:396
 msgid "Search"
 msgstr "搜尋"
 
-#: src/imports/ContactList/ContactListPage.qml:353
+#: ../src/imports/ContactList/ContactListPage.qml:353
 msgid "Search..."
-msgstr ""
+msgstr "搜尋..."
 
-#: src/imports/ContactList/ContactListPage.qml:453
+#: ../src/imports/ContactList/ContactListPage.qml:451
 msgid "Select All"
 msgstr "全部選取"
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:116
-msgid "Select a field"
-msgstr "選取欄位"
-
-#: src/imports/ContactList/ContactListPage.qml:466
-#: src/imports/ContactView/ContactView.qml:206
+#: ../src/imports/ContactList/ContactListPage.qml:464
+#: ../src/imports/ContactView/ContactView.qml:110
 msgid "Share"
 msgstr "分享"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
 msgid "Skype"
 msgstr "Skype"
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:61
-#: src/imports/ContactView/ContactDetailOnlineAccountsView.qml:27
+#: ../src/imports/ContactEdit/ComboButtonAddField.qml:53
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:24
 msgid "Social"
 msgstr "社交"
 
-#: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:31
+#: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:31
 msgid "Street"
 msgstr "街道"
 
-#: src/imports/ContactList/ContactListPage.qml:391
+#: ../src/imports/ContactList/ContactListPage.qml:390
 msgid "Sync"
 msgstr "同步"
 
-#: src/imports/ContactList/ContactListPage.qml:391
+#: ../src/imports/ContactList/ContactListPage.qml:390
 msgid "Syncing"
 msgstr "同步中"
 
-#: src/imports/ContactList/ContactListPage.qml:338
+#: ../src/imports/ContactList/ContactListPage.qml:338
 msgid "Syncing..."
 msgstr "同步中…"
 
-#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:32
+#: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Title"
 msgstr "職銜"
 
-#: src/imports/ContactView/ContactDetailOnlineAccountsView.qml:30
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:27
 msgid "Touch"
 msgstr ""
 
-#: src/imports/Common/ContactDetailGroupWithTypeBase.qml:117
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
+#: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:116
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
 msgid "Work"
 msgstr "辦公"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
 msgid "Work Mobile"
 msgstr "辦公手機"
 
-#: src/imports/ContactList/OnlineAccountsMessage.qml:28
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:28
 msgid ""
 "Would you like to sync contacts\n"
 "from online accounts now?"
@@ -324,15 +323,18 @@ msgstr ""
 "您是否要現在從線上帳號\n"
 "同步聯絡人資訊？"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
 msgstr "Yahoo"
 
-#: src/imports/Common/RemoveContactsDialog.qml:62
-#: src/imports/ContactList/OnlineAccountsMessage.qml:36
+#: ../src/imports/Common/RemoveContactsDialog.qml:62
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:36
 msgid "Yes"
 msgstr "是"
 
-#: src/imports/ContactList/OnlineAccountsMessage.qml:27
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "您尚無聯絡人。"
+
+#~ msgid "Select a field"
+#~ msgstr "選取欄位"
