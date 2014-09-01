@@ -47,7 +47,8 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
         contact_delegate = contacts[index]
         self.pointing_device.click_object(contact_delegate)
         contact_delegate.state.wait_for('expanded')
-        details_button = contact_delegate.wait_select_single(objectName="infoIcon")
+        details_button = contact_delegate.wait_select_single(
+            objectName='infoIcon')
         self.pointing_device.click_object(details_button)
         return self.get_root_instance().select_single(
             _contact_view.ContactView, objectName='contactViewPage')
@@ -85,7 +86,6 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
             self.selected_items.append(self.items[idx])
             self.pointing_device.click_object(self.items[idx])
 
-
     def select_contacts_by_index(self, indices):
         """ Select contacts corresponding to the list of index in indices
 
@@ -121,7 +121,7 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
             obj = self
         try:
             buttons = obj.select_many("Button",
-                                       objectName=objectname)
+                                      objectName=objectname)
             for button in buttons:
                 if button.visible:
                     self.pointing_device.click_object(button)
@@ -133,6 +133,6 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
 
     def delete(self, main_window):
         main_window.done_selection("delete")
-        dialog = main_window.wait_select_single("RemoveContactsDialog",
-            objectName="removeContactsDialog")
+        main_window.wait_select_single(
+            "RemoveContactsDialog", objectName="removeContactsDialog")
         self.click_button(main_window, "removeContactsDialog.Yes")
