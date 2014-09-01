@@ -54,8 +54,8 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
             _contact_view.ContactView, objectName='contactViewPage')
 
     def _get_list_view(self):
-        return self.wait_select_single("ContactListView",
-                                       objectName="contactListView")
+        return self.wait_select_single(
+            'ContactListView', objectName='contactListView')
 
     def get_contacts(self):
         """
@@ -63,12 +63,12 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
         self.items
         """
         time.sleep(1)
-        self.contacts = self.select_many("ContactDelegate")
+        self.contacts = self.select_many('ContactDelegate')
         self.items = []
         for contact in self.contacts:
             if contact.visible:
-                item = contact.select_single("QQuickRectangle",
-                                             objectName="mainItem")
+                item = contact.select_single(
+                    'QQuickRectangle', objectName='mainItem')
                 self.items.append(item)
         return self.contacts
 
@@ -102,12 +102,12 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
 
     def deselect_all(self):
         """Deselect every contacts"""
-        contacts = self.select_many("ContactDelegate")
+        contacts = self.select_many('ContactDelegate')
         self.selected_items = []
         for contact in contacts:
             if contact.selected:
-                mark = contact.select_single("QQuickRectangle",
-                                             objectName="selectionMark")
+                mark = contact.select_single(
+                    'QQuickRectangle', objectName='selectionMark')
                 self.pointing_device.click_object(mark)
 
     def click_button(self, parent, objectname):
@@ -120,8 +120,7 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
         else:
             obj = self
         try:
-            buttons = obj.select_many("Button",
-                                      objectName=objectname)
+            buttons = obj.select_many('"Button', objectName=objectname)
             for button in buttons:
                 if button.visible:
                     self.pointing_device.click_object(button)
@@ -132,7 +131,7 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
             raise
 
     def delete(self, main_window):
-        main_window.done_selection("delete")
+        main_window.done_selection('delete')
         main_window.wait_select_single(
-            "RemoveContactsDialog", objectName="removeContactsDialog")
-        self.click_button(main_window, "removeContactsDialog.Yes")
+            'RemoveContactsDialog', objectName='removeContactsDialog')
+        self.click_button(main_window, 'removeContactsDialog.Yes')
