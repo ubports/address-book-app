@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-25 14:32-0300\n"
+"POT-Creation-Date: 2014-08-30 17:19-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,7 @@ msgstr ""
 msgid "+ Create New"
 msgstr ""
 
-#: ../src/imports/ContactEdit/ContactEditor.qml:308
+#: ../src/imports/ContactEdit/ContactEditor.qml:307
 msgid "Add Field"
 msgstr ""
 
@@ -67,7 +67,7 @@ msgstr ""
 msgid "Are you sure that you want to remove this contact?"
 msgstr ""
 
-#: ../src/imports/ContactEdit/ContactEditor.qml:399
+#: ../src/imports/ContactEdit/ContactEditor.qml:398
 #: ../src/imports/ContactList/ContactListPage.qml:422
 #: ../src/imports/MainWindow.qml:133
 msgid "Cancel"
@@ -102,7 +102,7 @@ msgstr ""
 msgid "Country"
 msgstr ""
 
-#: ../src/imports/ContactEdit/ContactEditor.qml:356
+#: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:267
 #: ../src/imports/ContactList/ContactListPage.qml:487
 msgid "Delete"
@@ -149,12 +149,13 @@ msgstr ""
 msgid "First name"
 msgstr ""
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:425
+#: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
 msgid "Frequently called"
 msgstr ""
 
+#. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:115
-#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:103
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
 msgid "Home"
 msgstr ""
 
@@ -194,7 +195,8 @@ msgstr ""
 msgid "MSN"
 msgstr ""
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:107
+#. TRANSLATORS: This refers to mobile/cellphone phone label
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
 msgid "Mobile"
 msgstr ""
 
@@ -219,8 +221,9 @@ msgstr ""
 msgid "Organization"
 msgstr ""
 
+#. TRANSLATORS: This refers to any other phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:117
-#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:111
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:121
 msgid "Other"
 msgstr ""
 
@@ -252,7 +255,7 @@ msgstr ""
 msgid "Role"
 msgstr ""
 
-#: ../src/imports/ContactEdit/ContactEditor.qml:412
+#: ../src/imports/ContactEdit/ContactEditor.qml:411
 msgid "Save"
 msgstr ""
 
@@ -306,12 +309,14 @@ msgstr ""
 msgid "Touch"
 msgstr ""
 
+#. TRANSLATORS: This refers to landline work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:116
-#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
 msgid "Work"
 msgstr ""
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
+#. TRANSLATORS: This refers to mobile/cellphone work phone label
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:117
 msgid "Work Mobile"
 msgstr ""
 
