@@ -236,6 +236,7 @@ Page {
                 minimumY: bottomEdge.pageStartY
                 maximumY: page.height
             }
+            enabled: edgeLoader.status == Loader.Ready
 
             anchors {
                 left: parent.left
@@ -317,21 +318,21 @@ Page {
                     SmoothedAnimation {
                         target: bottomEdge
                         property: "y"
-                        duration: UbuntuAnimation.SlowDuration
-                        easing: Easing.Linear
+                        duration: UbuntuAnimation.FastDuration
+                        easing.type: Easing.Linear
                     }
                     SmoothedAnimation {
                         target: edgeLoader
                         property: "anchors.topMargin"
                         to: - units.gu(4)
-                        duration: UbuntuAnimation.SlowDuration
-                        easing: Easing.Linear
+                        duration: UbuntuAnimation.FastDuration
+                        easing.type: Easing.Linear
                     }
                     SmoothedAnimation {
                         target: edgeLoader
                         property: "anchors.topMargin"
                         to: 0
-                        duration: UbuntuAnimation.SlowDuration
+                        duration: UbuntuAnimation.FastDuration
                         easing: UbuntuAnimation.StandardEasing
                     }
                     ScriptAction {
