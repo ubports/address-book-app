@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-25 14:32-0300\n"
-"PO-Revision-Date: 2014-08-27 19:55+0000\n"
+"PO-Revision-Date: 2014-08-31 19:53+0000\n"
 "Last-Translator: Anne <anneonyme017@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-30 07:44+0000\n"
+"X-Launchpad-Export-Date: 2014-09-01 07:33+0000\n"
 "X-Generator: Launchpad (build 17176)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
@@ -92,11 +92,11 @@ msgstr "Contacts"
 
 #: ../data/address-book-app.desktop.in.in.h:2
 msgid "Contacts Address Book"
-msgstr ""
+msgstr "Carnet d'adresse"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
-msgstr ""
+msgstr "Contacts;Personnes;Numéros"
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
@@ -335,6 +335,3 @@ msgstr "Oui"
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "Vous n'avez pas de contacts."
-
-#~ msgid "Select a field"
-#~ msgstr "Sélectionner un champ"
