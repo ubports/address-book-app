@@ -235,7 +235,6 @@ Page {
                 target: bottomEdge
                 minimumY: bottomEdge.pageStartY
                 maximumY: page.height
-                threshold: 100
             }
 
             anchors {
@@ -253,11 +252,13 @@ Page {
                     bottomEdge.state = "collapsed"
                     bottomEdge.y = bottomEdge.height
                 }
+                if (!tip.hiden) {
+                    hideIndicator.restart()
+                }
             }
 
-            onClicked: {
+            onPressed: {
                 tip.hiden = false
-                hideIndicator.restart()
             }
         }
 
@@ -311,10 +312,27 @@ Page {
             Transition {
                 to: "expanded"
                 SequentialAnimation {
-                    UbuntuNumberAnimation {
+                    alwaysRunToEnd: true
+
+                    SmoothedAnimation {
                         target: bottomEdge
                         property: "y"
                         duration: UbuntuAnimation.SlowDuration
+                        easing: Easing.Linear
+                    }
+                    SmoothedAnimation {
+                        target: edgeLoader
+                        property: "anchors.topMargin"
+                        to: - units.gu(4)
+                        duration: UbuntuAnimation.SlowDuration
+                        easing: Easing.Linear
+                    }
+                    SmoothedAnimation {
+                        target: edgeLoader
+                        property: "anchors.topMargin"
+                        to: 0
+                        duration: UbuntuAnimation.SlowDuration
+                        easing: UbuntuAnimation.StandardEasing
                     }
                     ScriptAction {
                         script: page._pushPage()
@@ -325,6 +343,8 @@ Page {
                 from: "expanded"
                 to: "collapsed"
                 SequentialAnimation {
+                    alwaysRunToEnd: true
+
                     ScriptAction {
                         script: {
                             Qt.inputMethod.hide()
@@ -333,7 +353,7 @@ Page {
                             edgeLoader.item.active = false
                         }
                     }
-                    UbuntuNumberAnimation {
+                    SmoothedAnimation {
                         target: bottomEdge
                         property: "y"
                         duration: UbuntuAnimation.SlowDuration
@@ -372,8 +392,7 @@ Page {
             Loader {
                 id: edgeLoader
 
-                z: 1
-                active: true
+
                 asynchronous: true
                 anchors.fill: parent
 
