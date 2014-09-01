@@ -24,7 +24,7 @@ from autopilot.introspection.dbus import StateNotFoundError
 from address_book_app.pages import _common, _contact_view
 
 
-LOGGER = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
 class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
@@ -126,7 +126,7 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
                 if button.visible:
                     self.pointing_device.click_object(button)
         except StateNotFoundError:
-            LOGGER.error(
+            logger.error(
                 'Button with objectName "{0}" not found.'.format(objectname)
             )
             raise
