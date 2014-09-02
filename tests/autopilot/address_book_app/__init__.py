@@ -75,9 +75,9 @@ class MainWindow(ubuntuuitoolkit.MainView):
                                        objectName="contactViewPage")
 
     def get_contact_list_pick_page(self):
-        pages = self.select_many("ContactListPage",
-                                 objectName="contactListPage")
-        for p in pages:
+        contact_list_pages = self.select_many(
+            pages.ContactListPage, objectName='contactListPage')
+        for p in contact_list_pages:
             if p.pickMode:
                 return p
         return None
@@ -126,14 +126,6 @@ class MainWindow(ubuntuuitoolkit.MainView):
         """
         bottom_swipe_page = self.get_contact_list_page()
         self.click_action_button("save")
-        bottom_swipe_page.isCollapsed.wait_for(True)
-
-    def done_selection(self, actionName):
-        """
-        Press the 'doneSelection' button
-        """
-        bottom_swipe_page = self.get_contact_list_page()
-        self.click_action_button(actionName)
         bottom_swipe_page.isCollapsed.wait_for(True)
 
     def get_toolbar(self):
