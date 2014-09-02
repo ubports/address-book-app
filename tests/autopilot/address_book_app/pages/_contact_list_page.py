@@ -26,13 +26,15 @@ from address_book_app.pages import _common, _contact_view
 
 
 logger = logging.getLogger(__name__)
+log_action_info = autopilot.logging.log_action(logging.info)
+log_action_debug = autopilot.logging.log_action(logging.debug)
 
 
 class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
 
     """Autopilot helper for the Contact List page."""
 
-    @autopilot.logging.log_action(logger.info)
+    @log_action_info
     def open_contact(self, index):
         """Open the page with the contact information.
 
@@ -56,7 +58,7 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
             visible=True
         )
 
-    @autopilot.logging.log_action(logger.info)
+    @log_action_info
     def select_contacts(self, indices):
         """ Select contacts corresponding to the list of index in indices
 
@@ -74,7 +76,7 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
                 contact = self._get_contact_delegate(index)
                 self.pointing_device.click_object(contact)
 
-    @autopilot.logging.log_action(logger.debug)
+    @log_action_debug
     def _deselect_all(self):
         """Deselect all contacts."""
         view = self._get_list_view()
@@ -102,7 +104,7 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
         return self.wait_select_single(
             'ContactListView', objectName='contactListView')
 
-    @autopilot.logging.log_action(logger.info)
+    @log_action_info
     def delete_selected_contacts(self):
         self.get_header().click_action_button('delete')
         self.isCollapsed.wait_for(True)
