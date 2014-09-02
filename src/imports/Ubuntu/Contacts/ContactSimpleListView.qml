@@ -279,6 +279,7 @@ MultipleSelectionListView {
     onFlickStarted: view.currentIndex = -1
     listDelegate: ContactDelegate {
         id: contactDelegate
+        objectName: 'contactDelegate' + index
 
         property var removalAnimation
 

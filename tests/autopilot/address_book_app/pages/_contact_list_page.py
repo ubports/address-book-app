@@ -19,7 +19,8 @@
 import logging
 import time
 
-from autopilot.introspection.dbus import StateNotFoundError
+import autopilot.logging
+from autopilot import exceptions
 
 from address_book_app.pages import _common, _contact_view
 
@@ -36,6 +37,7 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
         self.selected_items = []
         super(ContactListPage, self).__init__(*args)
 
+    @autopilot.logging.log_action(logger.info)
     def open_contact(self, index):
         """Open the page with the contact information.
 
@@ -43,8 +45,8 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
         :return: The page with the contact information.
 
         """
-        contacts = self.get_contacts()
-        contact_delegate = contacts[index]
+        contact_delegate = self.select_single(
+            'ContactDelegate', objectName='contactDelegate{}'.format(index))
         self.pointing_device.click_object(contact_delegate)
         contact_delegate.state.wait_for('expanded')
         details_button = contact_delegate.wait_select_single(
@@ -58,8 +60,7 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
             'ContactListView', objectName='contactListView')
 
     def get_contacts(self):
-        """
-        Returns a list of ContactDelegate objects and populate
+        """Return a list of ContactDelegate objects and populate
         self.items
         """
         time.sleep(1)
@@ -124,7 +125,7 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
             for button in buttons:
                 if button.visible:
                     self.pointing_device.click_object(button)
-        except StateNotFoundError:
+        except exceptions.StateNotFoundError:
             logger.error(
                 'Button with objectName "{0}" not found.'.format(objectname)
             )
