@@ -151,6 +151,104 @@ Page {
         onTriggered: tip.hiden = true
     }
 
+
+    UbuntuShape {
+        id: tip
+        objectName: "bottomEdgeTip"
+
+        property bool hiden: false
+
+        anchors {
+            bottom: parent.bottom
+            horizontalCenter: bottomEdge.horizontalCenter
+            bottomMargin: hiden ? - height + units.gu(1) : -units.gu(1)
+            Behavior on bottomMargin {
+                UbuntuNumberAnimation {
+                    duration: UbuntuAnimation.SnapDuration
+                }
+            }
+        }
+
+        z: 1
+        width: tipLabel.paintedWidth + units.gu(6)
+        height: bottomEdge.tipHeight + units.gu(1)
+        color: Theme.palette.normal.overlay
+        Label {
+            id: tipLabel
+
+            anchors {
+                top: parent.top
+                left: parent.left
+                right: parent.right
+            }
+            height: bottomEdge.tipHeight
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            opacity: tip.hiden ? 0.0 : 1.0
+            Behavior on opacity {
+                UbuntuNumberAnimation {
+                    duration: UbuntuAnimation.SnapDuration
+                }
+            }
+        }
+    }
+
+    Rectangle {
+        id: shadow
+
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+        height: units.gu(1)
+        z: 1
+        opacity: 0.0
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: "transparent" }
+            GradientStop { position: 1.0; color: Qt.rgba(0, 0, 0, 0.2) }
+        }
+    }
+
+    MouseArea {
+        id: mouseArea
+
+        preventStealing: true
+        drag {
+            axis: Drag.YAxis
+            target: bottomEdge
+            minimumY: bottomEdge.pageStartY
+            maximumY: page.height
+        }
+        enabled: edgeLoader.status == Loader.Ready
+
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+
+        }
+        height: bottomEdge.tipHeight
+        z: 1
+
+        onReleased: {
+            page.bottomEdgeReleased()
+            if (bottomEdge.y < (page.height - bottomEdgeExpandThreshold - bottomEdge.tipHeight)) {
+                bottomEdge.state = "expanded"
+            } else {
+                bottomEdge.state = "collapsed"
+                bottomEdge.y = bottomEdge.height
+            }
+            if (!tip.hiden) {
+                hideIndicator.restart()
+            }
+        }
+
+        onPressed: {
+            tip.hiden = false
+        }
+    }
+
     Rectangle {
         id: bottomEdge
         objectName: "bottomEdge"
@@ -161,108 +259,14 @@ Page {
         z: 1
         color: Theme.palette.normal.background
         parent: page
+        clip: true
         anchors {
             left: parent.left
             right: parent.right
         }
         height: page.height
         y: height
-
-        UbuntuShape {
-            id: tip
-            objectName: "bottomEdgeTip"
-
-            property bool hiden: false
-
-            readonly property double visiblePosition: (page.height - bottomEdge.y) < units.gu(1) ? -bottomEdge.tipHeight + (page.height - bottomEdge.y) : 0
-            readonly property double invisiblePosition: (page.height - bottomEdge.y) < units.gu(1) ? -units.gu(1) : 0
-
-            z: -1
-            anchors.horizontalCenter: parent.horizontalCenter
-            y: hiden ? invisiblePosition : visiblePosition
-
-            width: tipLabel.paintedWidth + units.gu(6)
-            height: bottomEdge.tipHeight + units.gu(1)
-            color: Theme.palette.normal.overlay
-            Label {
-                id: tipLabel
-
-                anchors {
-                    top: parent.top
-                    left: parent.left
-                    right: parent.right
-                }
-                height: bottomEdge.tipHeight
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                opacity: tip.hiden ? 0.0 : 1.0
-                Behavior on opacity {
-                    UbuntuNumberAnimation {
-                        duration: UbuntuAnimation.SnapDuration
-                    }
-                }
-            }
-            Behavior on y {
-                UbuntuNumberAnimation {
-                    duration: UbuntuAnimation.SnapDuration
-                }
-            }
-        }
-
-        Rectangle {
-            id: shadow
-
-            anchors {
-                left: parent.left
-                right: parent.right
-            }
-            height: units.gu(1)
-            y: -height
-            z: -2
-            opacity: 0.0
-            gradient: Gradient {
-                GradientStop { position: 0.0; color: "transparent" }
-                GradientStop { position: 1.0; color: Qt.rgba(0, 0, 0, 0.2) }
-            }
-        }
-
-        MouseArea {
-            id: mouseArea
-
-            preventStealing: true
-            drag {
-                axis: Drag.YAxis
-                target: bottomEdge
-                minimumY: bottomEdge.pageStartY
-                maximumY: page.height
-            }
-            enabled: edgeLoader.status == Loader.Ready
-
-            anchors {
-                left: parent.left
-                right: parent.right
-            }
-            height: bottomEdge.tipHeight
-            y: -height
-
-            onReleased: {
-                page.bottomEdgeReleased()
-                if (bottomEdge.y < (page.height - bottomEdgeExpandThreshold - bottomEdge.tipHeight)) {
-                    bottomEdge.state = "expanded"
-                } else {
-                    bottomEdge.state = "collapsed"
-                    bottomEdge.y = bottomEdge.height
-                }
-                if (!tip.hiden) {
-                    hideIndicator.restart()
-                }
-            }
-
-            onPressed: {
-                tip.hiden = false
-            }
-        }
-
+        visible: root.isCollapsed
         state: "collapsed"
         states: [
             State {
@@ -304,7 +308,7 @@ Page {
                 }
                 PropertyChanges {
                     target: tip
-                    hiden: false
+                    hiden: true
                 }
             }
         ]
@@ -386,29 +390,22 @@ Page {
             }
         ]
 
-        Item {
+        Loader {
+            id: edgeLoader
+
+            asynchronous: true
             anchors.fill: parent
-            clip: true
+            //WORKAROUND: The SDK move the page contents down to allocate space for the header we need to avoid that during the page dragging
+            Binding {
+                target: edgeLoader.status === Loader.Ready ? edgeLoader : null
+                property: "anchors.topMargin"
+                value:  edgeLoader.item && edgeLoader.item.flickable ? edgeLoader.item.flickable.contentY : 0
+                when: !page.isReady
+            }
 
-            Loader {
-                id: edgeLoader
-
-
-                asynchronous: true
-                anchors.fill: parent
-
-                //WORKAROUND: The SDK move the page contents down to allocate space for the header we need to avoid that during the page dragging
-                Binding {
-                    target: edgeLoader.status === Loader.Ready ? edgeLoader : null
-                    property: "anchors.topMargin"
-                    value:  edgeLoader.item && edgeLoader.item.flickable ? edgeLoader.item.flickable.contentY : 0
-                    when: !page.isReady
-                }
-
-                onLoaded: {
-                    if (page.isReady && edgeLoader.item.active !== true) {
-                        page._pushPage()
-                    }
+            onLoaded: {
+                if (page.isReady && edgeLoader.item.active !== true) {
+                    page._pushPage()
                 }
             }
         }
