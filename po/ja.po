@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-25 14:32-0300\n"
-"PO-Revision-Date: 2014-08-14 05:28+0000\n"
-"Last-Translator: Mitsuya Shibata <mty.shibata@gmail.com>\n"
+"PO-Revision-Date: 2014-09-02 06:58+0000\n"
+"Last-Translator: Kentaro Kazuhama <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-30 07:44+0000\n"
-"X-Generator: Launchpad (build 17176)\n"
+"X-Launchpad-Export-Date: 2014-09-02 07:20+0000\n"
+"X-Generator: Launchpad (build 17192)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -25,7 +25,7 @@ msgstr "%1件のvCardをインポートしました"
 #. TRANSLATORS: this refers to creating a new contact
 #: ../src/imports/ContactList/ContactListPage.qml:240
 msgid "+ Create New"
-msgstr ""
+msgstr "+ 新規作成"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:307
 msgid "Add Field"
@@ -37,7 +37,7 @@ msgstr "連絡先を追加"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
-msgstr ""
+msgstr "番号を追加する..."
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:51
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
@@ -143,7 +143,7 @@ msgstr "お気に入り"
 
 #: ../src/imports/ContactList/ContactListPage.qml:409
 msgid "Favorites"
-msgstr ""
+msgstr "お気に入り"
 
 #: ../src/imports/ContactEdit/ContactDetailNameEditor.qml:84
 msgid "First name"
@@ -262,7 +262,7 @@ msgstr "検索"
 
 #: ../src/imports/ContactList/ContactListPage.qml:353
 msgid "Search..."
-msgstr ""
+msgstr "検索…"
 
 #: ../src/imports/ContactList/ContactListPage.qml:451
 msgid "Select All"
@@ -335,6 +335,3 @@ msgstr "はい"
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "連絡先がありません。"
-
-#~ msgid "Select a field"
-#~ msgstr "フィールドを選択"
