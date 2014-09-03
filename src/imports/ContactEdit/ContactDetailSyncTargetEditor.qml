@@ -106,7 +106,7 @@ ContactDetailBase {
 
         delegate: OptionSelectorDelegate {
             text: contact.displayLabel.label
-            height: units.gu(5)
+            height: units.gu(4)
         }
 
         containerHeight: sources.model && sources.model.contacts.length > 4 ? itemHeight * 4 : sources.model ? itemHeight * sources.model.contacts.length : 0
