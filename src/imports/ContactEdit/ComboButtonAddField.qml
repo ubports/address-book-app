@@ -99,7 +99,7 @@ ComboButton {
         return result
     }
 
-    collapsedHeight: units.gu(4)
+    collapsedHeight: units.gu(5)
     implicitHeight: expanded ? expandedHeight : collapsedHeight
     onClicked: expanded = !expanded
 
