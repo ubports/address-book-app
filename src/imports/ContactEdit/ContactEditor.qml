@@ -354,7 +354,7 @@ Page {
 
                 text: i18n.tr("Delete")
                 visible: !contactEditor.isNewContact
-                color: "red"
+                color: UbuntuColors.red
                 anchors {
                     left: parent.left
                     right: parent.right
