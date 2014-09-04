@@ -19,6 +19,10 @@
 #include <QtContacts/QContactManager>
 #include <QtContacts/QContactFilter>
 #include <QtContacts/QContactPhoneNumber>
+#include <QtContacts/QContactIdFetchRequest>
+
+#include <QtCore/QMutexLocker>
+#include <QtCore/QCoreApplication>
 
 #include <QDebug>
 
@@ -45,6 +49,10 @@ MostCalledContactsModel::MostCalledContactsModel(QObject *parent)
 
 MostCalledContactsModel::~MostCalledContactsModel()
 {
+    while(!m_fetching.tryLock()) {
+        QCoreApplication::processEvents();
+    }
+    m_fetching.unlock();
 }
 
 QVariant MostCalledContactsModel::data(const QModelIndex &index, int role) const
@@ -161,14 +169,22 @@ QVariant MostCalledContactsModel::getSourceData(int row, int role)
 
 QString MostCalledContactsModel::fetchContactId(const QString &phoneNumber)
 {
+    QMutexLocker locker(&m_fetching);
+
     QContactFilter filter(QContactPhoneNumber::match(phoneNumber));
     QContactFetchHint hint;
     hint.setDetailTypesHint(QList<QContactDetail::DetailType>() << QContactDetail::TypeGuid);
-    QList<QContact> contacts = m_manager->contacts(filter, QList<QContactSortOrder>() , hint);
-    if (contacts.isEmpty()) {
+
+    QContactIdFetchRequest r;
+    r.setFilter(filter);
+    r.setManager(m_manager.data());
+    r.start();
+    r.waitForFinished();
+
+    if (r.ids().isEmpty()) {
         return QString();
     }
-    return contacts[0].id().toString();
+    return r.ids()[0].toString();
 }
 
 void MostCalledContactsModel::update()
