@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-25 14:32-0300\n"
-"PO-Revision-Date: 2014-09-01 07:17+0000\n"
+"PO-Revision-Date: 2014-08-26 06:59+0000\n"
 "Last-Translator: Fohanno Thierry <thierry.fohanno@ofis-bzh.org>\n"
 "Language-Team: Breton <br@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-02 07:20+0000\n"
-"X-Generator: Launchpad (build 17192)\n"
+"X-Launchpad-Export-Date: 2014-08-30 07:44+0000\n"
+"X-Generator: Launchpad (build 17176)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -92,11 +92,11 @@ msgstr "Darempredoù"
 
 #: ../data/address-book-app.desktop.in.in.h:2
 msgid "Contacts Address Book"
-msgstr "Karned chomlec'hioù"
+msgstr ""
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
-msgstr "Darempredoù;Tud;Niverennoù"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
@@ -335,3 +335,6 @@ msgstr "Ya"
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "N'ho peus darempred ebet."
+
+#~ msgid "Select a field"
+#~ msgstr "Diuzañ ur vaezienn"
