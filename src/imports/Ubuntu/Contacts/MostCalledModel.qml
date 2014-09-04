@@ -34,28 +34,32 @@ VisualDataModel {
     signal addContactClicked(string label)
     signal loaded()
 
+    HistoryEventModel {
+        id: eventModel
+
+        type: HistoryThreadModel.EventTypeVoice
+        sort: HistorySort {
+            sortField: "timestamp"
+            sortOrder: HistorySort.DescendingOrder
+        }
+        filter: HistoryFilter {
+            filterProperty: "senderId"
+            filterValue: "self"
+            matchFlags: HistoryFilter.MatchCaseSensitive
+        }
+        onCanFetchMoreChanged: {
+            if (count === 0) {
+                mostCalledModel.update()
+            }
+        }
+    }
+
     model: MostCalledContactsModel {
         id: mostCalledModel
 
         startInterval: new Date((new Date().getTime() - 2592000000)) // one month ago
-        sourceModel: HistoryEventModel {
-            type: HistoryThreadModel.EventTypeVoice
-            sort: HistorySort {
-                sortField: "timestamp"
-                sortOrder: HistorySort.DescendingOrder
-            }
-            filter: HistoryFilter {
-                filterProperty: "senderId"
-                filterValue: "self"
-                matchFlags: HistoryFilter.MatchCaseSensitive
-            }
-            onCanFetchMoreChanged: {
-                if (count === 0) {
-                    mostCalledModel.update()
-                }
-            }
-        }
         onLoaded: root.loaded()
+        sourceModel: eventModel
     }
 
     delegate: ContactDelegate {
