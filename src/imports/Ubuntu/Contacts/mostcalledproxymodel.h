@@ -20,6 +20,7 @@
 #include <QtCore/QAbstractListModel>
 #include <QtCore/QScopedPointer>
 #include <QtCore/QDateTime>
+#include <QtCore/QMutex>
 
 #include <QtContacts/QContactManager>
 
@@ -87,6 +88,7 @@ private:
     QDateTime m_startInterval;
     bool m_outdated;
     bool m_reloadingModel;
+    QMutex m_fetching;
 
     QString fetchContactId(const QString &phoneNumber);
     QVariant getSourceData(int row, int role);
