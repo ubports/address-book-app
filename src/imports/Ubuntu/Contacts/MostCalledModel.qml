@@ -34,8 +34,8 @@ VisualDataModel {
     signal addContactClicked(string label)
     signal loaded()
 
-    HistoryEventModel {
-        id: eventModel
+    property var baseModel: HistoryEventModel {
+        id: historyEventModel
 
         type: HistoryThreadModel.EventTypeVoice
         sort: HistorySort {
@@ -59,7 +59,7 @@ VisualDataModel {
 
         startInterval: new Date((new Date().getTime() - 2592000000)) // one month ago
         onLoaded: root.loaded()
-        sourceModel: eventModel
+        sourceModel: historyEventModel
     }
 
     delegate: ContactDelegate {
