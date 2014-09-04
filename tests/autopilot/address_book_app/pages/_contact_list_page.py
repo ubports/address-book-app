@@ -52,11 +52,16 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
             _contact_view.ContactView, objectName='contactViewPage')
 
     def _get_contact_delegate(self, index):
-        return self.select_single(
-            'ContactDelegate',
-            objectName='contactDelegate{}'.format(index),
-            visible=True
-        )
+        contact_delegates = self._get_sorted_contact_delegates()
+        return contact_delegates[index]
+
+    def _get_sorted_contact_delegates(self):
+        # FIXME this returns only the contact delegates that are loaded in
+        # memory. The list might be big, so not all delegates might be in
+        # memory at the same time.
+        contact_delegates = self.select_many('ContactDelegate', visible=True)
+        return sorted(
+            contact_delegates, key=lambda delegate: delegate.globalRect.y)
 
     @log_action_info
     def select_contacts(self, indices):
@@ -114,11 +119,7 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
 
     def get_contacts(self):
         """Return a list with the names of the contacts."""
-        contact_delegates = self.select_many('ContactDelegate', visible=True)
-        contact_delegates = sorted(
-            contact_delegates,
-            key=lambda delegate: delegate.globalRect.y)
-
+        contact_delegates = self._get_sorted_contact_delegates()
         name_labels = [
             delegate.select_single('Label', objectName='nameLabel') for
             delegate in contact_delegates
