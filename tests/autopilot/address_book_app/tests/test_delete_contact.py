@@ -1,40 +1,57 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 
-"""Tests for the Addressbook App"""
-
-# Copyright 2014 Canonical
+# Copyright (C) 2014 Canonical Ltd.
 #
-# This program is free software: you can redistribute it and/or modify it
-# under the terms of the GNU General Public License version 3, as published
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from testtools.matchers import Equals
-from address_book_app.tests import AddressBookAppTestCase
+"""Delete tests for the Addressbook App."""
+
+from address_book_app import tests
 
 
-class TestDeleteSelectContact(AddressBookAppTestCase):
+class TestDeleteSelectContact(tests.AddressBookAppTestCase):
+
     """
     Delete a contact using pick mode and verify the behavior of Cancel and
     Delete actions
     """
-    scenarios = [
-        ("single_cancel", {
-            "select": [1],
-            "action": "cancel"}),
-        ("multiple_cancel", {
-            "select": [1, 2],
-            "action": "cancel"}),
-        ("single_delete", {
-            "select": [1],
-            "action": "delete"}),
-        ("multiple_delete", {
-            "select": [1, 2],
-            "action": "delete"}),
+
+    PRELOAD_VCARD = True
+
+    ALL_CONTACTS = [
+        'teste test34',
+        'teste teste2',
+        'teste3 teste3',
     ]
 
-    def setUp(self):
-        AddressBookAppTestCase.PRELOAD_VCARD = True
-        super(TestDeleteSelectContact, self).setUp()
+    scenarios = [
+        ('single_cancel', {
+            'select': [ALL_CONTACTS[1]],
+            'action': 'cancel',
+            'expected_result': ALL_CONTACTS}),
+        ('multiple_cancel', {
+            'select': [ALL_CONTACTS[1], ALL_CONTACTS[2]],
+            'action': 'cancel',
+            'expected_result': ALL_CONTACTS}),
+        ('single_delete', {
+            'select': [ALL_CONTACTS[1]],
+            'action': 'delete',
+            'expected_result': [ALL_CONTACTS[0], ALL_CONTACTS[2]]}),
+        ('multiple_delete', {
+            'select': [ALL_CONTACTS[1], ALL_CONTACTS[2]],
+            'action': 'delete',
+            'expected_result': [ALL_CONTACTS[0]]}),
+    ]
 
     def test_select(self):
         """
@@ -45,19 +62,13 @@ class TestDeleteSelectContact(AddressBookAppTestCase):
         contact in the list before and after the action.
         Note that it doesn't check which contact has been deleted.
         """
-        listpage = self.app.main_window.get_contact_list_page()
-        contacts_before = listpage.get_contacts()
+        list_page = self.app.main_window.get_contact_list_page()
 
-        listpage.select_contacts_by_index(self.select)
-        deleted = []
+        indices = [self.ALL_CONTACTS.index(name) for name in self.select]
+        list_page.select_contacts(indices)
         if self.action == "cancel":
             self.app.main_window.cancel()
         elif self.action == "delete":
-            listpage.delete(self.app.main_window)
-            deleted = self.select
+            list_page.delete_selected_contacts()
 
-        contacts_after = listpage.get_contacts()
-        # TODO:
-        #   - Verify which contact have been deleted
-        self.assertThat(len(contacts_after), Equals(len(contacts_before) -
-                                                    len(deleted)))
+        self.assertEqual(list_page.get_contacts(), self.expected_result)

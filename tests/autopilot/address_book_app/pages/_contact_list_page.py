@@ -19,23 +19,22 @@
 import logging
 import time
 
-from autopilot.introspection.dbus import StateNotFoundError
+import autopilot.logging
+import ubuntuuitoolkit
 
 from address_book_app.pages import _common, _contact_view
 
 
-LOGGER = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
+log_action_info = autopilot.logging.log_action(logging.info)
+log_action_debug = autopilot.logging.log_action(logging.debug)
 
 
 class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
-    """ ContactListPage emulator class """
 
-    def __init__(self, *args):
-        self.contacts = None
-        self.items = []
-        self.selected_items = []
-        super(ContactListPage, self).__init__(*args)
+    """Autopilot helper for the Contact List page."""
 
+    @log_action_info
     def open_contact(self, index):
         """Open the page with the contact information.
 
@@ -43,96 +42,99 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
         :return: The page with the contact information.
 
         """
-        contacts = self.get_contacts()
-        contact_delegate = contacts[index]
+        contact_delegate = self._get_contact_delegate(index)
         self.pointing_device.click_object(contact_delegate)
         contact_delegate.state.wait_for('expanded')
-        details_button = contact_delegate.wait_select_single(objectName="infoIcon")
+        details_button = contact_delegate.wait_select_single(
+            objectName='infoIcon')
         self.pointing_device.click_object(details_button)
         return self.get_root_instance().select_single(
             _contact_view.ContactView, objectName='contactViewPage')
 
-    def _get_list_view(self):
-        return self.wait_select_single("ContactListView",
-                                       objectName="contactListView")
+    def _get_contact_delegate(self, index):
+        contact_delegates = self._get_sorted_contact_delegates()
+        return contact_delegates[index]
 
-    def get_contacts(self):
-        """
-        Returns a list of ContactDelegate objects and populate
-        self.items
-        """
-        time.sleep(1)
-        self.contacts = self.select_many("ContactDelegate")
-        self.items = []
-        for contact in self.contacts:
-            if contact.visible:
-                item = contact.select_single("QQuickRectangle",
-                                             objectName="mainItem")
-                self.items.append(item)
-        return self.contacts
+    def _get_sorted_contact_delegates(self):
+        # FIXME this returns only the contact delegates that are loaded in
+        # memory. The list might be big, so not all delegates might be in
+        # memory at the same time.
+        contact_delegates = self.select_many('ContactDelegate', visible=True)
+        return sorted(
+            contact_delegates, key=lambda delegate: delegate.globalRect.y)
 
-    def start_selection(self, idx):
-        view = self._get_list_view()
-        if not view.isInSelectionMode:
-            self.get_contacts()
-            self.selected_items.append(self.items[idx])
-            self.pointing_device.move_to_object(self.contacts[idx])
-            self.pointing_device.press()
-            time.sleep(2.0)
-            self.pointing_device.release()
-            view.isInSelectionMode.wait_for(True)
-        else:
-            self.selected_items.append(self.items[idx])
-            self.pointing_device.click_object(self.items[idx])
-
-
-    def select_contacts_by_index(self, indices):
+    @log_action_info
+    def select_contacts(self, indices):
         """ Select contacts corresponding to the list of index in indices
 
         :param indices: List of integers
+
         """
-        self.deselect_all()
+        self._deselect_all()
         if len(indices) > 0:
-            self.start_selection(indices[0])
+            view = self._get_list_view()
+            if not view.isInSelectionMode:
+                self._start_selection(indices[0])
+                indices = indices[1:]
 
-            # Select matching indices
-            for idx in indices[1:]:
-                self.selected_items.append(self.items[idx])
-                self.pointing_device.click_object(self.items[idx])
+            for index in indices:
+                contact = self._get_contact_delegate(index)
+                self.pointing_device.click_object(contact)
 
-    def deselect_all(self):
-        """Deselect every contacts"""
-        contacts = self.select_many("ContactDelegate")
-        self.selected_items = []
-        for contact in contacts:
-            if contact.selected:
-                mark = contact.select_single("QQuickRectangle",
-                                             objectName="selectionMark")
-                self.pointing_device.click_object(mark)
-
-    def click_button(self, parent, objectname):
-        """Press a button that matches objectname
-
-        :param objectname: Name of the object
-        """
-        if parent:
-            obj = parent
+    @log_action_debug
+    def _deselect_all(self):
+        """Deselect all contacts."""
+        view = self._get_list_view()
+        if view.isInSelectionMode:
+            contacts = self.select_many('ContactDelegate', visible=True)
+            for contact in contacts:
+                if contact.selected:
+                    logger.info('Deselect {}.'.format(contact.objectName))
+                    self.pointing_device.click_object(contact)
         else:
-            obj = self
-        try:
-            buttons = obj.select_many("Button",
-                                       objectName=objectname)
-            for button in buttons:
-                if button.visible:
-                    self.pointing_device.click_object(button)
-        except StateNotFoundError:
-            LOGGER.error(
-                'Button with objectName "{0}" not found.'.format(objectname)
-            )
-            raise
+            logger.debug('The page is not in selection mode.')
 
-    def delete(self, main_window):
-        main_window.done_selection("delete")
-        dialog = main_window.wait_select_single("RemoveContactsDialog",
-            objectName="removeContactsDialog")
-        self.click_button(main_window, "removeContactsDialog.Yes")
+    def _start_selection(self, index):
+        # TODO change this for click_object once the press duration
+        # parameter is added. See http://pad.lv/1268782
+        contact = self._get_contact_delegate(index)
+        self.pointing_device.move_to_object(contact)
+        self.pointing_device.press()
+        time.sleep(2.0)
+        self.pointing_device.release()
+        view = self._get_list_view()
+        view.isInSelectionMode.wait_for(True)
+
+    def _get_list_view(self):
+        return self.wait_select_single(
+            'ContactListView', objectName='contactListView')
+
+    @log_action_info
+    def delete_selected_contacts(self):
+        self.get_header().click_action_button('delete')
+        self.isCollapsed.wait_for(True)
+        dialog = self.get_root_instance().wait_select_single(
+            RemoveContactsDialog, objectName='removeContactsDialog')
+        dialog.confirm_removal()
+
+    def get_contacts(self):
+        """Return a list with the names of the contacts."""
+        contact_delegates = self._get_sorted_contact_delegates()
+        name_labels = [
+            delegate.select_single('Label', objectName='nameLabel') for
+            delegate in contact_delegates
+        ]
+        return [label.text for label in name_labels]
+
+
+class RemoveContactsDialog(
+        ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
+
+    """Autopilot helper for the Remove Contacts dialog."""
+
+    @autopilot.logging.log_action(logger.debug)
+    def confirm_removal(self):
+        button = self.select_single(
+            'Button', objectName='removeContactsDialog.Yes')
+        self.pointing_device.click_object(button)
+        self.wait_until_destroyed()
