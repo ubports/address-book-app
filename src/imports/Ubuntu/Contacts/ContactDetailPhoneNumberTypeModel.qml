@@ -100,15 +100,25 @@ ListModel {
     }
 
     Component.onCompleted: {
-        append({"value": "Home", "label": i18n.dtr("address-book-app", "Home"), "icon": null,
+        append({"value": "Home",
+                // TRANSLATORS: This refers to home landline phone label
+                "label": i18n.dtr("address-book-app", "Home"), "icon": null,
                 "context": QtContacts.ContactDetail.ContextHome, "subType": QtContacts.PhoneNumber.Voice })
-        append({"value": "Work", "label": i18n.dtr("address-book-app", "Work"), "icon": null,
-               "context": QtContacts.ContactDetail.ContextWork, "subType": QtContacts.PhoneNumber.Voice })
-        append({"value": "Mobile", "label": i18n.dtr("address-book-app", "Mobile"), "icon": null,
+        append({"value": "Work",
+                // TRANSLATORS: This refers to landline work phone label
+                "label": i18n.dtr("address-book-app", "Work"), "icon": null,
+                "context": QtContacts.ContactDetail.ContextWork, "subType": QtContacts.PhoneNumber.Voice })
+        append({"value": "Mobile",
+                // TRANSLATORS: This refers to mobile/cellphone phone label
+                "label": i18n.dtr("address-book-app", "Mobile"), "icon": null,
                 "context": -1, "subType": QtContacts.PhoneNumber.Mobile })
-        append({"value": "Mobile-Work", "label": i18n.dtr("address-book-app", "Work Mobile"), "icon": null,
+        append({"value": "Mobile-Work",
+                // TRANSLATORS: This refers to mobile/cellphone work phone label
+                "label": i18n.dtr("address-book-app", "Work Mobile"), "icon": null,
                 "context": QtContacts.ContactDetail.ContextWork, "subType": QtContacts.PhoneNumber.Mobile })
-        append({"value": "Other", "label": i18n.dtr("address-book-app", "Other"), "icon": null,
+        append({"value": "Other",
+                // TRANSLATORS: This refers to any other phone label
+                "label": i18n.dtr("address-book-app", "Other"), "icon": null,
                 "context": QtContacts.ContactDetail.ContextOther, "subType": QtContacts.PhoneNumber.Voice })
         loaded()
     }
