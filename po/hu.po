@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-25 14:32-0300\n"
-"PO-Revision-Date: 2014-08-29 09:31+0000\n"
+"PO-Revision-Date: 2014-09-03 09:53+0000\n"
 "Last-Translator: Richard Somlói <ricsipontaz@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-30 07:44+0000\n"
-"X-Generator: Launchpad (build 17176)\n"
+"X-Launchpad-Export-Date: 2014-09-04 08:34+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -164,7 +164,7 @@ msgstr "ICQ"
 
 #: ../src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:23
 msgid "IM"
-msgstr "Azonnali üzenet"
+msgstr "Azonnali üzenetküldés"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
@@ -320,8 +320,8 @@ msgid ""
 "Would you like to sync contacts\n"
 "from online accounts now?"
 msgstr ""
-"Szeretné most szinkronizálni a\n"
-"névjegyeket az online fiókokból?"
+"Szeretné szinkronizálni a névjegyeit\n"
+"valamelyik megadott fiókjából?"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
@@ -335,6 +335,3 @@ msgstr "Igen"
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "Nincsenek névjegyei."
-
-#~ msgid "Select a field"
-#~ msgstr "Válasszon mezőt"
