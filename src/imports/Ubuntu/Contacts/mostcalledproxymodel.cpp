@@ -53,7 +53,6 @@ MostCalledContactsModel::~MostCalledContactsModel()
 
     if (m_currentFetch) {
         m_currentFetch->cancel();
-        m_currentFetch = 0;
     }
 }
 
@@ -279,6 +278,7 @@ void MostCalledContactsModel::fetchContactIdDone()
 
     if (m_aboutToQuit) {
         m_currentFetch->deleteLater();
+        m_currentFetch = 0;
         return;
     }
 
@@ -291,6 +291,7 @@ void MostCalledContactsModel::fetchContactIdDone()
         registerCall(m_currentFetch->property("PHONE").toString(), id);
     }
     m_currentFetch->deleteLater();
+    m_currentFetch = 0;
     nextContact();
 }
 
