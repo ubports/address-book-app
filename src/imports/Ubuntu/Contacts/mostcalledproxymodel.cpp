@@ -25,9 +25,9 @@
 
 using namespace QtContacts;
 
-bool mostCalledContactsModelDataLessThan(const MostCalledContactsModelData &d1, const MostCalledContactsModelData &d2)
+bool mostCalledContactsModelDataGreaterThan(const MostCalledContactsModelData &d1, const MostCalledContactsModelData &d2)
 {
-    return d1.callCount < d2.callCount;
+    return d1.callCount > d2.callCount;
 }
 
 MostCalledContactsModel::MostCalledContactsModel(QObject *parent)
@@ -297,6 +297,9 @@ void MostCalledContactsModel::fetchContactIdDone()
 
 void MostCalledContactsModel::registerCall(const QString &phone, const QString &contactId)
 {
+    // update cache
+    m_phoneToContactCache.insert(phone, contactId);
+
     if (m_contactsData.contains(contactId)) {
         MostCalledContactsModelData &data = m_contactsData[contactId];
         data.callCount++;
@@ -326,7 +329,7 @@ void MostCalledContactsModel::parseResult()
     if (!m_contactsData.isEmpty()) {
         // sort by callCount
         QList<MostCalledContactsModelData> data = m_contactsData.values();
-        qSort(data.begin(), data.end(), mostCalledContactsModelDataLessThan);
+        qSort(data.begin(), data.end(), mostCalledContactsModelDataGreaterThan);
 
         // average
         m_average = qRound(((qreal) (m_totalCalls)) / m_contactsData.size());
