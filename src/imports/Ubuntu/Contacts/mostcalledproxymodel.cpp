@@ -19,10 +19,7 @@
 #include <QtContacts/QContactManager>
 #include <QtContacts/QContactFilter>
 #include <QtContacts/QContactPhoneNumber>
-#include <QtContacts/QContactIdFetchRequest>
-
-#include <QtCore/QMutexLocker>
-#include <QtCore/QCoreApplication>
+#include <QtContacts/QContactFetchRequest>
 
 #include <QDebug>
 
@@ -36,11 +33,13 @@ bool mostCalledContactsModelDataLessThan(const MostCalledContactsModelData &d1, 
 MostCalledContactsModel::MostCalledContactsModel(QObject *parent)
     : QAbstractListModel(parent),
       m_sourceModel(0),
+      m_currentFetch(0),
       m_manager(new QContactManager("galera")),
       m_maxCount(20),
       m_average(0),
       m_outdated(true),
-      m_reloadingModel(false)
+      m_reloadingModel(false),
+      m_aboutToQuit(false)
 {
     connect(this, SIGNAL(sourceModelChanged(QAbstractItemModel*)), SLOT(markAsOutdated()));
     connect(this, SIGNAL(maxCountChanged(uint)), SLOT(markAsOutdated()));
@@ -49,10 +48,13 @@ MostCalledContactsModel::MostCalledContactsModel(QObject *parent)
 
 MostCalledContactsModel::~MostCalledContactsModel()
 {
-    while(!m_fetching.tryLock()) {
-        QCoreApplication::processEvents();
+    m_aboutToQuit = true;
+    m_phones.clear();
+
+    if (m_currentFetch) {
+        m_currentFetch->cancel();
+        m_currentFetch = 0;
     }
-    m_fetching.unlock();
 }
 
 QVariant MostCalledContactsModel::data(const QModelIndex &index, int role) const
@@ -167,26 +169,6 @@ QVariant MostCalledContactsModel::getSourceData(int row, int role)
     return source->data(sourceIndex, role);
 }
 
-QString MostCalledContactsModel::fetchContactId(const QString &phoneNumber)
-{
-    QMutexLocker locker(&m_fetching);
-
-    QContactFilter filter(QContactPhoneNumber::match(phoneNumber));
-    QContactFetchHint hint;
-    hint.setDetailTypesHint(QList<QContactDetail::DetailType>() << QContactDetail::TypeGuid);
-
-    QContactIdFetchRequest r;
-    r.setFilter(filter);
-    r.setManager(m_manager.data());
-    r.start();
-    r.waitForFinished();
-
-    if (r.ids().isEmpty()) {
-        return QString();
-    }
-    return r.ids()[0].toString();
-}
-
 void MostCalledContactsModel::update()
 {
     // skip update if not necessary
@@ -194,24 +176,15 @@ void MostCalledContactsModel::update()
         return;
     }
 
-    Q_EMIT beginResetModel();
-
-    m_reloadingModel = true;
-    m_outdated = false;
-    m_data.clear();
-    m_average = 0;
-
     if (m_maxCount <= 0) {
         qWarning() << "update model requested with invalid maxCount";
-        Q_EMIT endResetModel();
-        m_reloadingModel = false;
+        m_outdated = false;
         return;
     }
 
     if (!m_startInterval.isValid()) {
         qWarning() << "Update model requested with invalid startInterval";
-        Q_EMIT endResetModel();
-        m_reloadingModel = false;
+        m_outdated = false;
         return;
     }
 
@@ -219,12 +192,20 @@ void MostCalledContactsModel::update()
     if (!source) {
         qWarning() << "Update model requested with null source model";
         m_outdated = false;
-        Q_EMIT endResetModel();
-        m_reloadingModel = false;
         return;
     }
 
-    QHash<int, QByteArray> roles = source->roleNames();
+    m_totalCalls = 0;
+    m_phones.clear();
+    m_phoneToContactCache.clear();
+    m_contactsData.clear();
+    queryContacts();
+}
+
+void MostCalledContactsModel::queryContacts()
+{
+    // get all phone in the date inteval
+    QHash<int, QByteArray> roles = sourceModel()->roleNames();
     int participantsRole = roles.key("participants", -1);
     int timestampRole = roles.key("timestamp", -1);
     int row = 0;
@@ -232,11 +213,6 @@ void MostCalledContactsModel::update()
     Q_ASSERT(participantsRole != -1);
     Q_ASSERT(timestampRole != -1);
 
-    QMap<QString, QString> phoneToContactCache;
-    QMap<QString, MostCalledContactsModelData > contactsData;
-
-    // get all call in the interval
-    int totalCalls = 0;
     while(true) {
         QVariant date = getSourceData(row, timestampRole);
 
@@ -253,41 +229,106 @@ void MostCalledContactsModel::update()
         QVariant participants = getSourceData(row, participantsRole);
         if (participants.isValid()) {
             Q_FOREACH(const QString phone, participants.toStringList()) {
-                QString contactId;
-                if (phoneToContactCache.contains(phone)) {
-                    contactId = phoneToContactCache.value(phone);
-                } else {
-                    contactId = fetchContactId(phone);
-                }
-
-                // skip uknown contacts
-                if (contactId.isEmpty()) {
-                    continue;
-                }
-
-                if (contactsData.contains(contactId)) {
-                    MostCalledContactsModelData &data = contactsData[contactId];
-                    data.callCount++;
-                } else {
-                    MostCalledContactsModelData data;
-                    data.contactId = contactId;
-                    data.phoneNumber = phone;
-                    data.callCount = 1;
-                    contactsData.insert(contactId, data);
-                }
-                totalCalls++;
+                m_phones << phone;
             }
         }
+
+        // next row
         row++;
     }
 
-    if (!contactsData.isEmpty()) {
+    // query for all phones
+    nextContact();
+}
+
+void MostCalledContactsModel::nextContact()
+{
+    if (m_phones.isEmpty()) {
+        parseResult();
+        return;
+    }
+
+    QString nextPhone = m_phones.takeFirst();
+
+    if (m_phoneToContactCache.contains(nextPhone)) {
+        registerCall(nextPhone, m_phoneToContactCache.value(nextPhone));
+        nextContact();
+        return;
+    } else {
+        QContactFilter filter(QContactPhoneNumber::match(nextPhone));
+        QContactFetchHint hint;
+        hint.setDetailTypesHint(QList<QContactDetail::DetailType>() << QContactDetail::TypeGuid);
+
+        m_currentFetch = new QContactFetchRequest;
+        m_currentFetch->setProperty("PHONE", nextPhone);
+        m_currentFetch->setFilter(filter);
+        m_currentFetch->setFetchHint(hint);
+        m_currentFetch->setManager(m_manager.data());
+
+        connect(m_currentFetch,
+                SIGNAL(stateChanged(QContactAbstractRequest::State)),
+                SLOT(fetchContactIdDone()));
+
+        m_currentFetch->start();
+    }
+}
+
+void MostCalledContactsModel::fetchContactIdDone()
+{
+    Q_ASSERT(m_currentFetch);
+
+    if (m_aboutToQuit) {
+        m_currentFetch->deleteLater();
+        return;
+    }
+
+    if (m_currentFetch->state() == QContactAbstractRequest::ActiveState) {
+        return;
+    }
+
+    if (!m_currentFetch->contacts().isEmpty()) {
+        QString id = m_currentFetch->contacts().at(0).id().toString();
+        registerCall(m_currentFetch->property("PHONE").toString(), id);
+    }
+    m_currentFetch->deleteLater();
+    nextContact();
+}
+
+void MostCalledContactsModel::registerCall(const QString &phone, const QString &contactId)
+{
+    if (m_contactsData.contains(contactId)) {
+        MostCalledContactsModelData &data = m_contactsData[contactId];
+        data.callCount++;
+    } else {
+        MostCalledContactsModelData data;
+        data.contactId = contactId;
+        data.phoneNumber = phone;
+        data.callCount = 1;
+        m_contactsData.insert(contactId, data);
+    }
+    m_totalCalls++;
+}
+
+void MostCalledContactsModel::parseResult()
+{
+    if (m_aboutToQuit) {
+        return;
+    }
+
+    Q_EMIT beginResetModel();
+
+    m_reloadingModel = true;
+    m_outdated = false;
+    m_data.clear();
+    m_average = 0;
+
+    if (!m_contactsData.isEmpty()) {
         // sort by callCount
-        QList<MostCalledContactsModelData> data = contactsData.values();
+        QList<MostCalledContactsModelData> data = m_contactsData.values();
         qSort(data.begin(), data.end(), mostCalledContactsModelDataLessThan);
 
         // average
-        m_average = qRound(((qreal) (totalCalls)) / contactsData.size());
+        m_average = qRound(((qreal) (m_totalCalls)) / m_contactsData.size());
         Q_FOREACH(const MostCalledContactsModelData &d, data) {
             if (d.callCount >= m_average) {
                 m_data << d;
@@ -298,11 +339,17 @@ void MostCalledContactsModel::update()
         }
     }
 
+    m_totalCalls = 0;
+    m_phones.clear();
+    m_phoneToContactCache.clear();
+    m_contactsData.clear();
+
     Q_EMIT endResetModel();
     m_reloadingModel = false;
     Q_EMIT callAverageChanged(m_average);
     Q_EMIT loaded();
 }
+
 
 void MostCalledContactsModel::markAsOutdated()
 {
@@ -316,3 +363,5 @@ void MostCalledContactsModel::markAsOutdated()
         Q_EMIT outdatedChange(m_outdated);
     }
 }
+
+
