@@ -17,11 +17,14 @@
 #ifndef __MOSTCALLEDCONTACTSMODEL_H__
 #define __MOSTCALLEDCONTACTSMODEL_H__
 
+
 #include <QtCore/QAbstractListModel>
 #include <QtCore/QScopedPointer>
 #include <QtCore/QDateTime>
+#include <QtCore/QMap>
 
 #include <QtContacts/QContactManager>
+#include <QtContacts/QContactFetchRequest>
 
 struct MostCalledContactsModelData
 {
@@ -77,9 +80,12 @@ Q_SIGNALS:
 
 private Q_SLOTS:
     void markAsOutdated();
+    void fetchContactIdDone();
 
 private:
     QAbstractItemModel *m_sourceModel;
+    QtContacts::QContactFetchRequest *m_currentFetch;
+
     QScopedPointer<QtContacts::QContactManager> m_manager;
     QList<MostCalledContactsModelData> m_data;
     uint m_maxCount;
@@ -87,9 +93,19 @@ private:
     QDateTime m_startInterval;
     bool m_outdated;
     bool m_reloadingModel;
+    bool m_aboutToQuit;
 
-    QString fetchContactId(const QString &phoneNumber);
+    QStringList m_phones;
+    QMap<QString, QString> m_phoneToContactCache;
+    QMap<QString, MostCalledContactsModelData > m_contactsData;
+    int m_totalCalls;
+
+    void fetchContactId(const QString &phoneNumber);
     QVariant getSourceData(int row, int role);
+    void queryContacts();
+    void nextContact();
+    void registerCall(const QString &phone, const QString &contactId);
+    void parseResult();
 };
 
 

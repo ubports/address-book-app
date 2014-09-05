@@ -60,6 +60,7 @@ Dialog {
             margins: units.gu(1)
         }
         text: i18n.tr("Yes")
+        color: UbuntuColors.green
         onClicked: accepted()
     }
 
@@ -70,8 +71,8 @@ Dialog {
             right: parent.right
             margins: units.gu(1)
         }
-        gradient: UbuntuColors.greyGradient
         text: i18n.tr("No")
+        color: UbuntuColors.red
         onClicked: canceled()
     }
 }

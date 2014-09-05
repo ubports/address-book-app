@@ -397,6 +397,7 @@ ContactsUI.PageWithBottomEdge {
                     iconName: "search"
                     onTriggered: {
                         mainPage.state = (mainPage.state === "newphone" ? "newphoneSearching" : "searching")
+                        contactList.showAllContacts()
                         searchField.forceActiveFocus()
                     }
                 }
@@ -422,6 +423,7 @@ ContactsUI.PageWithBottomEdge {
                 text: i18n.tr("Cancel")
                 onTriggered: {
                     contactList.forceActiveFocus()
+                    mainPage.head.sections.selectedIndex = 0
                     mainPage.state = (mainPage.state === "newphoneSearching" ? "newphone" : "default")
                 }
             }
