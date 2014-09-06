@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-25 14:32-0300\n"
+"POT-Creation-Date: 2014-08-30 17:19-0300\n"
 "PO-Revision-Date: 2014-09-01 08:29+0000\n"
 "Last-Translator: Sok Sophea <sksophea@gmail.com>\n"
 "Language-Team: Khmer <km@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-02 07:20+0000\n"
-"X-Generator: Launchpad (build 17192)\n"
+"X-Launchpad-Export-Date: 2014-09-06 07:32+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -31,7 +31,7 @@ msgstr "+ បង្កើត​ថ្មី"
 msgid "Add Field"
 msgstr "បន្ថែម​វាល"
 
-#: ../src/imports/ContactList/ContactListPage.qml:526
+#: ../src/imports/ContactList/ContactListPage.qml:528
 msgid "Add contact"
 msgstr "បន្ថែម​ទំនាក់ទំនង"
 
@@ -55,7 +55,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:409
+#: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "All"
 msgstr "ទាំងអស់"
 
@@ -68,12 +68,12 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "តើ​អ្នក​ប្រាកដ​ថា អ្នក​ចង់​លុប​ទំនាក់ទំនង​នេះ​ឬ?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:422
+#: ../src/imports/ContactList/ContactListPage.qml:423
 #: ../src/imports/MainWindow.qml:133
 msgid "Cancel"
 msgstr "បោះបង់"
 
-#: ../src/imports/ContactList/ContactListPage.qml:445
+#: ../src/imports/ContactList/ContactListPage.qml:447
 msgid "Cancel selection"
 msgstr "បោះបង់​ការ​ជ្រើស"
 
@@ -104,7 +104,7 @@ msgstr "ប្រទេស"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:267
-#: ../src/imports/ContactList/ContactListPage.qml:487
+#: ../src/imports/ContactList/ContactListPage.qml:489
 msgid "Delete"
 msgstr "លុប​"
 
@@ -141,7 +141,7 @@ msgstr "កំហុស"
 msgid "Favorite"
 msgstr "សំណព្វ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:409
+#: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "Favorites"
 msgstr "និយម"
 
@@ -153,8 +153,9 @@ msgstr "នាម​ខ្លួន"
 msgid "Frequently called"
 msgstr "បាន​ហៅ​ញឹកញាប់"
 
+#. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:115
-#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:103
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
 msgid "Home"
 msgstr "ផ្ទះ"
 
@@ -194,7 +195,8 @@ msgstr "មូលដ្ឋាន"
 msgid "MSN"
 msgstr "MSN"
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:107
+#. TRANSLATORS: This refers to mobile/cellphone phone label
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
 msgid "Mobile"
 msgstr "ចល័ត"
 
@@ -219,8 +221,9 @@ msgstr "គ្មាន​ទំនាក់ទំនង​បាន​ជ្រ
 msgid "Organization"
 msgstr "អង្គភាព"
 
+#. TRANSLATORS: This refers to any other phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:117
-#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:111
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:121
 msgid "Other"
 msgstr "ផ្សេងៗ"
 
@@ -264,11 +267,11 @@ msgstr "ស្វែងរក"
 msgid "Search..."
 msgstr "ស្វែងរក..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:451
+#: ../src/imports/ContactList/ContactListPage.qml:453
 msgid "Select All"
 msgstr "​ជ្រើស​ទាំងអស់"
 
-#: ../src/imports/ContactList/ContactListPage.qml:464
+#: ../src/imports/ContactList/ContactListPage.qml:466
 #: ../src/imports/ContactView/ContactView.qml:110
 msgid "Share"
 msgstr "ចែក​រំលែក"
@@ -306,12 +309,14 @@ msgstr "ចំណងជើង"
 msgid "Touch"
 msgstr "ប៉ះ"
 
+#. TRANSLATORS: This refers to landline work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:116
-#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
 msgid "Work"
 msgstr "កន្លែងធ្វើការ"
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
+#. TRANSLATORS: This refers to mobile/cellphone work phone label
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:117
 msgid "Work Mobile"
 msgstr "ទូរស័ព្ទ​ចល័ត​កន្លែង​ធ្វើការ"
 

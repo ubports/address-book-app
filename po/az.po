@@ -7,20 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-25 14:32-0300\n"
-"PO-Revision-Date: 2014-08-31 08:42+0000\n"
+"POT-Creation-Date: 2014-08-30 17:19-0300\n"
+"PO-Revision-Date: 2014-09-05 14:45+0000\n"
 "Last-Translator: Nicat Məmmədov <n1c4t97@gmail.com>\n"
 "Language-Team: Azerbaijani <az@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-01 07:33+0000\n"
-"X-Generator: Launchpad (build 17176)\n"
+"X-Launchpad-Export-Date: 2014-09-06 07:32+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
 msgid "%1 vCards imported"
-msgstr ""
+msgstr "%1 vCard idxal edildi"
 
 #. TRANSLATORS: this refers to creating a new contact
 #: ../src/imports/ContactList/ContactListPage.qml:240
@@ -29,9 +29,9 @@ msgstr "+ Yenisini Yarat"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:307
 msgid "Add Field"
-msgstr ""
+msgstr "Sәtir әlavә et"
 
-#: ../src/imports/ContactList/ContactListPage.qml:526
+#: ../src/imports/ContactList/ContactListPage.qml:528
 msgid "Add contact"
 msgstr "Kontakt əlavə et"
 
@@ -52,10 +52,10 @@ msgstr "Ünvan Kitabçası"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:61
 msgid "Aim"
-msgstr ""
+msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:409
+#: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "All"
 msgstr "Hamısı"
 
@@ -68,14 +68,14 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "Bu nömrәni silmәk iatәdiyinizdәn әminsiniz?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:422
+#: ../src/imports/ContactList/ContactListPage.qml:423
 #: ../src/imports/MainWindow.qml:133
 msgid "Cancel"
 msgstr "İmtina"
 
-#: ../src/imports/ContactList/ContactListPage.qml:445
+#: ../src/imports/ContactList/ContactListPage.qml:447
 msgid "Cancel selection"
-msgstr ""
+msgstr "Seçimdәn imtina et"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:80
 msgid "Close"
@@ -104,7 +104,7 @@ msgstr "Ölkə"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:267
-#: ../src/imports/ContactList/ContactListPage.qml:487
+#: ../src/imports/ContactList/ContactListPage.qml:489
 msgid "Delete"
 msgstr "Sil"
 
@@ -126,7 +126,7 @@ msgstr "Nömrәni daxil edin"
 
 #: ../src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:27
 msgid "Enter a social alias"
-msgstr ""
+msgstr "Sosial ad daxil edin"
 
 #: ../src/imports/ContactEdit/ContactDetailEmailsEditor.qml:28
 msgid "Enter an email address"
@@ -141,7 +141,7 @@ msgstr "Xəta"
 msgid "Favorite"
 msgstr "Seçilmiş"
 
-#: ../src/imports/ContactList/ContactListPage.qml:409
+#: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "Favorites"
 msgstr "Seçilmişlər"
 
@@ -151,10 +151,11 @@ msgstr "Adı"
 
 #: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
 msgid "Frequently called"
-msgstr ""
+msgstr "Tez-tez zәng olunanlar"
 
+#. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:115
-#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:103
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
 msgid "Home"
 msgstr "Ana Səhifə"
 
@@ -164,11 +165,11 @@ msgstr "ICQ"
 
 #: ../src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:23
 msgid "IM"
-msgstr ""
+msgstr "IM"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
-msgstr ""
+msgstr "vCard idxal elә"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 msgid "Importing..."
@@ -188,13 +189,14 @@ msgstr "Yüklənir..."
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:32
 msgid "Locality"
-msgstr ""
+msgstr "Yer"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
 msgid "MSN"
 msgstr "MSN"
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:107
+#. TRANSLATORS: This refers to mobile/cellphone phone label
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
 msgid "Mobile"
 msgstr "Mobil"
 
@@ -219,8 +221,9 @@ msgstr "Heç bir kontakt seçilmәyib."
 msgid "Organization"
 msgstr "Təşkilat"
 
+#. TRANSLATORS: This refers to any other phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:117
-#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:111
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:121
 msgid "Other"
 msgstr "Digər"
 
@@ -232,13 +235,13 @@ msgstr "Telefon"
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
-msgstr ""
+msgstr "Poçt indeksi"
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:55
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:21
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOrganizationsView.qml:24
 msgid "Professional Details"
-msgstr ""
+msgstr "Professional Təfərrüatlar"
 
 #: ../src/imports/ContactList/ContactListPage.qml:381
 msgid "Quit"
@@ -264,11 +267,11 @@ msgstr "Axtar"
 msgid "Search..."
 msgstr "Axtar..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:451
+#: ../src/imports/ContactList/ContactListPage.qml:453
 msgid "Select All"
 msgstr "Hamısını Seç"
 
-#: ../src/imports/ContactList/ContactListPage.qml:464
+#: ../src/imports/ContactList/ContactListPage.qml:466
 #: ../src/imports/ContactView/ContactView.qml:110
 msgid "Share"
 msgstr "Paylaş"
@@ -306,12 +309,14 @@ msgstr "Başlıq"
 msgid "Touch"
 msgstr "Toxun"
 
+#. TRANSLATORS: This refers to landline work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:116
-#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
 msgid "Work"
 msgstr "İş"
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
+#. TRANSLATORS: This refers to mobile/cellphone work phone label
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:117
 msgid "Work Mobile"
 msgstr "İş Cib Telefonu"
 
