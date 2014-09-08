@@ -142,21 +142,11 @@ Page {
         z: 1
     }
 
-    Timer {
-        id: hideIndicator
-
-        interval: 3000
-        running: true
-        repeat: false
-        onTriggered: tip.hiden = true
-    }
-
-
     UbuntuShape {
         id: tip
         objectName: "bottomEdgeTip"
 
-        property bool hiden: false
+        property bool hiden: (activeFocus === false) || ((bottomEdge.y - units.gu(1)) < tip.y)
 
         anchors {
             bottom: parent.bottom
@@ -239,14 +229,9 @@ Page {
                 bottomEdge.state = "collapsed"
                 bottomEdge.y = bottomEdge.height
             }
-            if (!tip.hiden) {
-                hideIndicator.restart()
-            }
         }
 
-        onPressed: {
-            tip.hiden = false
-        }
+        onPressed: tip.forceActiveFocus()
     }
 
     Rectangle {
@@ -256,6 +241,7 @@ Page {
         readonly property int tipHeight: units.gu(3)
         readonly property int pageStartY: 0
 
+        onYChanged: console.debug("Y: " + tip.y + " + EDGE:" + bottomEdge.y + "SHOULD: " +  (bottomEdge.y < tip.y))
         z: 1
         color: Theme.palette.normal.background
         parent: page
@@ -279,20 +265,12 @@ Page {
                     target: tip
                     opacity: 1.0
                 }
-                PropertyChanges {
-                    target: hideIndicator
-                    running: true
-                }
             },
             State {
                 name: "expanded"
                 PropertyChanges {
                     target: bottomEdge
                     y: bottomEdge.pageStartY
-                }
-                PropertyChanges {
-                    target: hideIndicator
-                    running: false
                 }
             },
             State {
@@ -301,14 +279,6 @@ Page {
                 PropertyChanges {
                     target: shadow
                     opacity: 1.0
-                }
-                PropertyChanges {
-                    target: hideIndicator
-                    running: false
-                }
-                PropertyChanges {
-                    target: tip
-                    hiden: true
                 }
             }
         ]
@@ -368,14 +338,15 @@ Page {
                             // destroy current bottom page
                             if (page.reloadBottomEdgePage) {
                                 edgeLoader.active = false
+                                // tip will receive focus on page active true
+                            } else {
+                                tip.forceActiveFocus()
                             }
 
                             // notify
                             page.bottomEdgeDismissed()
 
                             edgeLoader.active = true
-                            tip.hiden = false
-                            hideIndicator.restart()
                         }
                     }
                 }
@@ -404,6 +375,7 @@ Page {
             }
 
             onLoaded: {
+                tip.forceActiveFocus()
                 if (page.isReady && edgeLoader.item.active !== true) {
                     page._pushPage()
                 }
