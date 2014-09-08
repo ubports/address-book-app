@@ -148,6 +148,7 @@ Page {
 
         property bool hiden: (activeFocus === false) || ((bottomEdge.y - units.gu(1)) < tip.y)
 
+        enabled: mouseArea.enabled
         anchors {
             bottom: parent.bottom
             horizontalCenter: bottomEdge.horizontalCenter
@@ -241,7 +242,6 @@ Page {
         readonly property int tipHeight: units.gu(3)
         readonly property int pageStartY: 0
 
-        onYChanged: console.debug("Y: " + tip.y + " + EDGE:" + bottomEdge.y + "SHOULD: " +  (bottomEdge.y < tip.y))
         z: 1
         color: Theme.palette.normal.background
         parent: page

@@ -39,6 +39,7 @@ class PageWithBottomEdge(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
         """Bring the bottom edge page to the screen"""
         try:
             action_item = self.wait_select_single(objectName='bottomEdgeTip')
+            action_item.enabled.wait_for(True)
             start_x = (action_item.globalRect.x +
                        (action_item.globalRect.width * 0.5))
             start_y = action_item.globalRect.y + (action_item.height * 0.2)
