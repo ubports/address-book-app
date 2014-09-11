@@ -6,316 +6,322 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-13 09:13-0300\n"
-"PO-Revision-Date: 2014-08-26 16:46+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-08-30 17:19-0300\n"
+"PO-Revision-Date: 2014-09-07 04:31+0000\n"
 "Last-Translator: David Planella <david.planella@ubuntu.com>\n"
 "Language-Team: Catalan <ca@li.org>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-08-27 07:46+0000\n"
-"X-Generator: Launchpad (build 17174)\n"
+"X-Launchpad-Export-Date: 2014-09-08 06:58+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 
-#: src/imports/ContactList/VCardImportDialog.qml:72
+#: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
 msgid "%1 vCards imported"
 msgstr "S'han importat %1 targetes vCard"
 
 #. TRANSLATORS: this refers to creating a new contact
-#: src/imports/ContactList/ContactListPage.qml:240
+#: ../src/imports/ContactList/ContactListPage.qml:240
 msgid "+ Create New"
 msgstr "+ Contacte nou"
 
-#: src/imports/ContactEdit/ContactEditor.qml:323
+#: ../src/imports/ContactEdit/ContactEditor.qml:307
 msgid "Add Field"
 msgstr "Afegeix un camp"
 
-#: src/imports/ContactList/ContactListPage.qml:526
+#: ../src/imports/ContactList/ContactListPage.qml:526
 msgid "Add contact"
 msgstr "Afegeix un contacte"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
 msgstr "Afegeix un número..."
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:60
-#: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
-#: src/imports/Ubuntu/Contacts/ContactDetailAddressesView.qml:24
+#: ../src/imports/ContactEdit/ComboButtonAddField.qml:51
+#: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
+#: ../src/imports/Ubuntu/Contacts/ContactDetailAddressesView.qml:24
 msgid "Address"
 msgstr "Adreça"
 
-#: src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:76
-#: src/imports/ContactView/ContactDetailSyncTargetView.qml:49
+#: ../src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:76
+#: ../src/imports/ContactView/ContactDetailSyncTargetView.qml:49
 msgid "Addressbook"
 msgstr "Llibreta d'adreces"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:61
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:61
 msgid "Aim"
 msgstr "AIM"
 
 #. TRANSLATORS: this refers to all contacts
-#: src/imports/ContactList/ContactListPage.qml:409
+#: ../src/imports/ContactList/ContactListPage.qml:409
 msgid "All"
 msgstr "Tots"
 
-#: src/imports/Common/RemoveContactsDialog.qml:51
+#: ../src/imports/Common/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
 msgstr "Segur que voleu suprimir tots els contactes seleccionats?"
 
-#: src/imports/Common/RemoveContactsDialog.qml:49
+#: ../src/imports/Common/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
 msgstr "Segur que voleu suprimir aquest contacte?"
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:134
-#: src/imports/ContactEdit/ContactEditor.qml:374
-#: src/imports/ContactList/ContactListPage.qml:422
-#: src/imports/MainWindow.qml:133
+#: ../src/imports/ContactEdit/ContactEditor.qml:398
+#: ../src/imports/ContactList/ContactListPage.qml:422
+#: ../src/imports/MainWindow.qml:133
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: src/imports/ContactList/ContactListPage.qml:445
+#: ../src/imports/ContactList/ContactListPage.qml:445
 msgid "Cancel selection"
 msgstr "Cancel·la la selecció"
 
-#: src/imports/ContactList/VCardImportDialog.qml:80
+#: ../src/imports/ContactList/VCardImportDialog.qml:80
 msgid "Close"
 msgstr "Tanca"
 
-#: src/imports/ContactView/ContactFetchError.qml:26
+#: ../src/imports/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
 msgstr "No s'ha trobat el contacte"
 
-#: src/imports/ContactList/ContactListPage.qml:146
+#: ../src/imports/ContactList/ContactListPage.qml:146
+#: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Contactes"
 
-#: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
+#: ../data/address-book-app.desktop.in.in.h:2
+msgid "Contacts Address Book"
+msgstr "Contactes"
+
+#: ../data/address-book-app.desktop.in.in.h:3
+msgid "Contacts;People;Numbers"
+msgstr "Contactes; adreces; gent; amics; números"
+
+#: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
 msgstr "País"
 
-#: src/imports/ContactEdit/ContactEditor.qml:338
-#: src/imports/ContactList/ContactListPage.qml:267
-#: src/imports/ContactList/ContactListPage.qml:487
+#: ../src/imports/ContactEdit/ContactEditor.qml:355
+#: ../src/imports/ContactList/ContactListPage.qml:267
+#: ../src/imports/ContactList/ContactListPage.qml:487
 msgid "Delete"
 msgstr "Suprimeix"
 
-#: src/imports/Ubuntu/Contacts/DialogButtons.qml:53
-msgid "Done"
-msgstr "Fet"
-
-#: src/imports/ContactEdit/ContactEditor.qml:142
-#: src/imports/ContactView/ContactView.qml:121
+#: ../src/imports/ContactEdit/ContactEditor.qml:142
+#: ../src/imports/ContactView/ContactView.qml:121
 msgid "Edit"
 msgstr "Edita"
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:58
-#: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:24
-#: src/imports/Ubuntu/Contacts/ContactDetailEmailsView.qml:23
-#: src/imports/Ubuntu/Contacts/ContactDetailEmailsView.qml:26
+#: ../src/imports/ContactEdit/ComboButtonAddField.qml:49
+#: ../src/imports/ContactEdit/ContactDetailEmailsEditor.qml:24
+#: ../src/imports/Ubuntu/Contacts/ContactDetailEmailsView.qml:23
+#: ../src/imports/Ubuntu/Contacts/ContactDetailEmailsView.qml:26
 msgid "Email"
 msgstr "Adreça electrònica"
 
-#: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:27
+#: ../src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
 msgstr "Introduïu un número"
 
-#: src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:27
+#: ../src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:27
 msgid "Enter a social alias"
 msgstr "Escriviu un sobrenom"
 
-#: src/imports/ContactEdit/ContactDetailEmailsEditor.qml:28
+#: ../src/imports/ContactEdit/ContactDetailEmailsEditor.qml:28
 msgid "Enter an email address"
 msgstr "Escriviu una adreça electrònica"
 
-#: src/imports/ContactView/ContactFetchError.qml:25
-#: src/imports/MainWindow.qml:129
+#: ../src/imports/ContactView/ContactFetchError.qml:25
+#: ../src/imports/MainWindow.qml:129
 msgid "Error"
 msgstr "Error"
 
-#: src/imports/ContactView/ContactView.qml:99
+#: ../src/imports/ContactView/ContactView.qml:99
 msgid "Favorite"
 msgstr "Preferit"
 
-#: src/imports/ContactList/ContactListPage.qml:409
+#: ../src/imports/ContactList/ContactListPage.qml:409
 msgid "Favorites"
 msgstr "Preferits"
 
-#: src/imports/ContactEdit/ContactDetailNameEditor.qml:84
+#: ../src/imports/ContactEdit/ContactDetailNameEditor.qml:84
 msgid "First name"
 msgstr "Nom"
 
-#: src/imports/Ubuntu/Contacts/ContactListView.qml:430
+#: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
 msgid "Frequently called"
 msgstr "Trucats freqüentment"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:115
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:103
+#. TRANSLATORS: This refers to home landline phone label
+#: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:115
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
 msgid "Home"
 msgstr "Casa"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "ICQ"
 msgstr "ICQ"
 
-#: src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:23
+#: ../src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:23
 msgid "IM"
 msgstr "Missatgeria instantània"
 
-#: src/imports/ContactList/VCardImportDialog.qml:71
+#: ../src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
 msgstr "Importa targetes vCard"
 
-#: src/imports/ContactList/VCardImportDialog.qml:72
+#: ../src/imports/ContactList/VCardImportDialog.qml:72
 msgid "Importing..."
 msgstr "S'està important..."
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
 msgid "Jabber"
 msgstr "Jabber"
 
-#: src/imports/ContactEdit/ContactDetailNameEditor.qml:84
+#: ../src/imports/ContactEdit/ContactDetailNameEditor.qml:84
 msgid "Last name"
 msgstr "Cognoms"
 
-#: src/imports/ContactList/ContactListPage.qml:338
+#: ../src/imports/ContactList/ContactListPage.qml:338
 msgid "Loading..."
 msgstr "S'està carregant..."
 
-#: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:32
+#: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:32
 msgid "Locality"
 msgstr "Localitat"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
 msgid "MSN"
 msgstr "MSN"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:107
+#. TRANSLATORS: This refers to mobile/cellphone phone label
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
 msgid "Mobile"
 msgstr "Mòbil"
 
-#: src/imports/Common/RemoveContactsDialog.qml:44
+#: ../src/imports/Common/RemoveContactsDialog.qml:44
 msgid "Multiple contacts"
 msgstr "Múltiples contactes"
 
-#: src/imports/ContactEdit/TextInputDetail.qml:74
+#: ../src/imports/ContactEdit/TextInputDetail.qml:74
 msgid "Next"
 msgstr "Següent"
 
-#: src/imports/Common/RemoveContactsDialog.qml:74
-#: src/imports/ContactList/OnlineAccountsMessage.qml:48
+#: ../src/imports/Common/RemoveContactsDialog.qml:74
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:48
 msgid "No"
 msgstr "No"
 
-#: src/imports/Common/RemoveContactsDialog.qml:40
+#: ../src/imports/Common/RemoveContactsDialog.qml:40
 msgid "No contact selected."
 msgstr "No s'ha seleccionat cap contacte."
 
-#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:28
+#: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
 msgstr "Organització"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:117
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:111
+#. TRANSLATORS: This refers to any other phone label
+#: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:117
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:121
 msgid "Other"
 msgstr "Un altre"
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:56
-#: src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:23
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumbersView.qml:26
+#: ../src/imports/ContactEdit/ComboButtonAddField.qml:47
+#: ../src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:23
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumbersView.qml:26
 msgid "Phone"
 msgstr "Telèfon"
 
-#: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:34
+#: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
 msgstr "Codi postal"
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:64
-#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:21
-#: src/imports/Ubuntu/Contacts/ContactDetailOrganizationsView.qml:24
+#: ../src/imports/ContactEdit/ComboButtonAddField.qml:55
+#: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:21
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOrganizationsView.qml:24
 msgid "Professional Details"
 msgstr "Detalls professionals"
 
-#: src/imports/ContactList/ContactListPage.qml:381
+#: ../src/imports/ContactList/ContactListPage.qml:381
 msgid "Quit"
 msgstr "Surt"
 
-#: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:33
+#: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:33
 msgid "Region"
 msgstr "Regió"
 
-#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:29
+#: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
 msgstr "Rol"
 
-#: src/imports/ContactEdit/ContactEditor.qml:387
+#: ../src/imports/ContactEdit/ContactEditor.qml:411
 msgid "Save"
 msgstr "Desa"
 
-#: src/imports/ContactList/ContactListPage.qml:396
+#: ../src/imports/ContactList/ContactListPage.qml:396
 msgid "Search"
 msgstr "Cerca"
 
-#: src/imports/ContactList/ContactListPage.qml:353
+#: ../src/imports/ContactList/ContactListPage.qml:353
 msgid "Search..."
 msgstr "Cerca..."
 
-#: src/imports/ContactList/ContactListPage.qml:451
+#: ../src/imports/ContactList/ContactListPage.qml:451
 msgid "Select All"
 msgstr "Selecciona-ho tot"
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:117
-msgid "Select a field"
-msgstr "Seleccioneu un camp"
-
-#: src/imports/ContactList/ContactListPage.qml:464
-#: src/imports/ContactView/ContactView.qml:110
+#: ../src/imports/ContactList/ContactListPage.qml:464
+#: ../src/imports/ContactView/ContactView.qml:110
 msgid "Share"
 msgstr "Comparteix"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
 msgid "Skype"
 msgstr "Skype"
 
-#: src/imports/ContactEdit/AddFieldDialog.qml:62
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:24
+#: ../src/imports/ContactEdit/ComboButtonAddField.qml:53
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:24
 msgid "Social"
 msgstr "Social"
 
-#: src/imports/ContactEdit/ContactDetailAddressesEditor.qml:31
+#: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:31
 msgid "Street"
 msgstr "Carrer"
 
-#: src/imports/ContactList/ContactListPage.qml:390
+#: ../src/imports/ContactList/ContactListPage.qml:390
 msgid "Sync"
 msgstr "Sincronitza"
 
-#: src/imports/ContactList/ContactListPage.qml:390
+#: ../src/imports/ContactList/ContactListPage.qml:390
 msgid "Syncing"
 msgstr "S'està sincronitzant"
 
-#: src/imports/ContactList/ContactListPage.qml:338
+#: ../src/imports/ContactList/ContactListPage.qml:338
 msgid "Syncing..."
 msgstr "S'està sincronitzant..."
 
-#: src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
+#: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Title"
 msgstr "Títol"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:27
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:27
 msgid "Touch"
 msgstr "Toca"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:116
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
+#. TRANSLATORS: This refers to landline work phone label
+#: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:116
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
 msgid "Work"
 msgstr "Feina"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
+#. TRANSLATORS: This refers to mobile/cellphone work phone label
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:117
 msgid "Work Mobile"
 msgstr "Mòbil de la feina"
 
-#: src/imports/ContactList/OnlineAccountsMessage.qml:28
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:28
 msgid ""
 "Would you like to sync contacts\n"
 "from online accounts now?"
@@ -323,15 +329,15 @@ msgstr ""
 "Voleu sincronitzar els contactes\n"
 "dels comptes en línia ara?"
 
-#: src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
 msgstr "Yahoo"
 
-#: src/imports/Common/RemoveContactsDialog.qml:62
-#: src/imports/ContactList/OnlineAccountsMessage.qml:36
+#: ../src/imports/Common/RemoveContactsDialog.qml:62
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:36
 msgid "Yes"
 msgstr "Sí"
 
-#: src/imports/ContactList/OnlineAccountsMessage.qml:27
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "No teniu cap contacte"
