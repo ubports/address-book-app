@@ -36,8 +36,6 @@ Rectangle {
             left: parent.left
             right: parent.right
             bottom: parent.bottom
-            leftMargin: 0
-            rightMargin: 0
         }
     }
 }
