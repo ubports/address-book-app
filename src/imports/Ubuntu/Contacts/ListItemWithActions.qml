@@ -360,7 +360,7 @@ Item {
 
         onReleased: {
             // if the mouse reach the safe are we should handle it as full swipe
-            if (mouse.x < 0) {
+            if (mouse.x < 0 && (main.x < 0)) {
                 main.x = -(rightActionsView.width - units.gu(2))
             } else if (root.triggerActionOnMouseRelease && root.activeAction) {
                 triggerAction.start()
