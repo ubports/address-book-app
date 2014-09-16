@@ -1,8 +1,9 @@
+set(ADDRESS_BOOK_APP_ICON "address-book-app.png")
+set(ADDRESS_BOOK_APP_SYMBOLIC_ICON "address-book-app-symbolic.png")
+set(ADDRESS_BOOK_ARTWORK_PATH "${ADDRESS_BOOK_APP_FULL_DIR}/artwork")
+
 if(NOT CLICK_MODE)
-    set(XSCREENSHOT "X-Screenshot=${ADDRESS_BOOK_APP_FULL_DIR}/artwork/address-book-app-preview.png")
-    set(ADDRESS_BOOK_APP_ICON "address-book-app")
-else()
-    set(ADDRESS_BOOK_APP_ICON "address-book-app.svg")
+    set(XSCREENSHOT "X-Screenshot=${ADDRESS_BOOK_ARTWORK_PATH}/address-book-app-preview.png")
 endif()
 
 configure_file(${DESKTOP_FILE}.in.in ${DESKTOP_FILE}.in)
@@ -13,9 +14,6 @@ add_custom_target(${DESKTOP_FILE} ALL
 
 if(CLICK_MODE)
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${ADDRESS_BOOK_APP_DESKTOP_FILE}
-        DESTINATION ${CMAKE_INSTALL_BINDIR}
-    )
-    install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/${ADDRESS_BOOK_APP_ICON}
         DESTINATION ${CMAKE_INSTALL_BINDIR}
     )
 else()
