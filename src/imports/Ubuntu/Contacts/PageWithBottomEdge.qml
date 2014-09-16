@@ -146,13 +146,13 @@ Page {
         id: tip
         objectName: "bottomEdgeTip"
 
-        property bool hiden: (activeFocus === false) || ((bottomEdge.y - units.gu(1)) < tip.y)
+        property bool hidden: (activeFocus === false) || ((bottomEdge.y - units.gu(1)) < tip.y)
 
         enabled: mouseArea.enabled
         anchors {
             bottom: parent.bottom
             horizontalCenter: bottomEdge.horizontalCenter
-            bottomMargin: hiden ? - height + units.gu(1) : -units.gu(1)
+            bottomMargin: hidden ? - height + units.gu(1) : -units.gu(1)
             Behavior on bottomMargin {
                 UbuntuNumberAnimation {
                     duration: UbuntuAnimation.SnapDuration
@@ -175,7 +175,7 @@ Page {
             height: bottomEdge.tipHeight
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            opacity: tip.hiden ? 0.0 : 1.0
+            opacity: tip.hidden ? 0.0 : 1.0
             Behavior on opacity {
                 UbuntuNumberAnimation {
                     duration: UbuntuAnimation.SnapDuration
