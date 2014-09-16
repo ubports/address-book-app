@@ -1,5 +1,5 @@
 set(ADDRESS_BOOK_APP_ICON "address-book-app.png")
-set(ADDRESS_BOOK_APP_SYMBOLIC_ICON "address-book-app-symbolic.png")
+set(ADDRESS_BOOK_APP_SYMBOLIC_ICON "address-book-app-symbolic.svg")
 set(ADDRESS_BOOK_ARTWORK_PATH "${ADDRESS_BOOK_APP_FULL_DIR}/artwork")
 
 if(NOT CLICK_MODE)
