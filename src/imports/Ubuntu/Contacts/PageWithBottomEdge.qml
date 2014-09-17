@@ -204,6 +204,9 @@ Page {
     MouseArea {
         id: mouseArea
 
+        property real previousY: -1
+        property string dragDirection: "None"
+
         preventStealing: true
         drag {
             axis: Drag.YAxis
@@ -224,15 +227,30 @@ Page {
 
         onReleased: {
             page.bottomEdgeReleased()
-            if (bottomEdge.y < (page.height - bottomEdgeExpandThreshold - bottomEdge.tipHeight)) {
+            if ((dragDirection === "BottomToTop") &&
+                bottomEdge.y < (page.height - bottomEdgeExpandThreshold - bottomEdge.tipHeight)) {
                 bottomEdge.state = "expanded"
             } else {
                 bottomEdge.state = "collapsed"
-                bottomEdge.y = bottomEdge.height
             }
+            previousY = -1
+            dragDirection = "None"
         }
 
-        onPressed: tip.forceActiveFocus()
+        onPressed: {
+            previousY = mouse.y
+            tip.forceActiveFocus()
+        }
+
+        onMouseYChanged: {
+            var yOffset = previousY - mouseY
+            // skip if was a small move
+            if (Math.abs(yOffset) <= units.gu(2)) {
+                return
+            }
+            previousY = mouseY
+            dragDirection = yOffset > 0 ? "BottomToTop" : "TopToBottom"
+        }
     }
 
     Rectangle {
@@ -259,10 +277,6 @@ Page {
                 PropertyChanges {
                     target: bottomEdge
                     y: bottomEdge.height
-                }
-                PropertyChanges {
-                    target: tip
-                    opacity: 1.0
                 }
             },
             State {
@@ -353,9 +367,10 @@ Page {
             Transition {
                 from: "floating"
                 to: "collapsed"
-                UbuntuNumberAnimation {
+                SmoothedAnimation {
                     target: bottomEdge
-                    property: "opacity"
+                    property: "y"
+                    duration: UbuntuAnimation.FastDuration
                 }
             }
         ]
