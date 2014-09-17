@@ -92,41 +92,26 @@ ContactPreviewPage {
         }
     }
 
-    tools: ToolbarItems {
-        ToolbarButton {
-            action: Action {
-                objectName: "favorite"
-                text: i18n.tr("Favorite")
-                iconName: root.contact && root.contact.favorite.favorite ? "starred" : "non-starred"
-                onTriggered: {
-                    root.contact.favorite.favorite = !root.contact.favorite.favorite
-                    root.contact.save()
-                }
+    head.actions: [
+        Action {
+            objectName: "share"
+            text: i18n.tr("Share")
+            iconName: "share"
+            onTriggered: {
+                pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
+                               { contactModel: root.model, contacts: [root.contact] })
+            }
+        },
+        Action {
+            objectName: "edit"
+            text: i18n.tr("Edit")
+            iconName: "edit"
+            onTriggered: {
+                pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+                               { model: root.model, contact: root.contact})
             }
         }
-        ToolbarButton {
-            action: Action {
-                objectName: "share"
-                text: i18n.tr("Share")
-                iconName: "share"
-                onTriggered: {
-                    pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
-                                   { contactModel: root.model, contacts: [root.contact] })
-                }
-            }
-        }
-        ToolbarButton {
-            action: Action {
-                objectName: "edit"
-                text: i18n.tr("Edit")
-                iconName: "edit"
-                onTriggered: {
-                    pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
-                                   { model: root.model, contact: root.contact})
-                }
-            }
-        }
-    }
+    ]
 
     // This will load the contact information when the app was launched with
     // the URI: addressbook:///contact?id=<id>
