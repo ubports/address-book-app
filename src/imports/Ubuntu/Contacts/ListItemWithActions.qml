@@ -135,6 +135,7 @@ Item {
 
     function resetSwipe()
     {
+        mouseArea.state = ""
         main.x = 0
     }
 
@@ -335,7 +336,10 @@ Item {
             value: 1.0
         }
         ScriptAction {
-            script: root.activeAction.triggered(root)
+            script: {
+                root.activeAction.triggered(root)
+                mouseArea.state = ""
+            }
         }
         PauseAnimation {
             duration: 500
@@ -365,6 +369,23 @@ Item {
             threshold: root.actionThreshold
         }
 
+        states: [
+            State {
+                name: "LeftToRight"
+                PropertyChanges {
+                    target: mouseArea
+                    drag.maximumX: 0
+                }
+            },
+            State {
+                name: "RightToLeft"
+                PropertyChanges {
+                    target: mouseArea
+                    drag.minimumX: 0
+                }
+            }
+        ]
+
         onMouseXChanged: {
             var offset = (lastX - mouseX)
             if (Math.abs(offset) <= root.actionThreshold) {
@@ -379,12 +400,16 @@ Item {
         }
 
         onReleased: {
-            // if the mouse reach the safe are we should handle it as full swipe
             if (root.triggerActionOnMouseRelease && root.activeAction) {
                 triggerAction.start()
             } else {
                 root.returnToBounds(direction)
                 root.activeAction = null
+                if (!root.triggerActionOnMouseRelease && main.x != 0) {
+                    mouseArea.state = main.x > 0 ? "RightToLeft" : "LeftToRight"
+                } else {
+                    mouseArea.state = ""
+                }
             }
             lastX = -1
             direction = "None"
