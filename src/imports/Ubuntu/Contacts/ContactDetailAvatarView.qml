@@ -42,11 +42,11 @@ ContactDetailBase {
         visible: false
     }
 
-
     FastBlur {
         anchors.fill: imageBg
         source: imageBg
         radius: 32
+        visible: avatar.avatarUrl !== avatar.fallbackAvatarUrl
     }
 
     ContactAvatar {
@@ -62,6 +62,7 @@ ContactDetailBase {
             verticalCenter: parent.verticalCenter
             leftMargin: units.gu(2)
         }
+
     }
 
     ActionButton {
