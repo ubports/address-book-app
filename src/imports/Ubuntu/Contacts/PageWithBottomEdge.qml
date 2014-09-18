@@ -154,8 +154,14 @@ Page {
             horizontalCenter: bottomEdge.horizontalCenter
             bottomMargin: hidden ? - height + units.gu(1) : -units.gu(1)
             Behavior on bottomMargin {
-                UbuntuNumberAnimation {
-                    duration: UbuntuAnimation.SnapDuration
+                SequentialAnimation {
+                    // wait some msecs in case of the focus change again, to avoid flickering
+                    PauseAnimation {
+                        duration: 300
+                    }
+                    UbuntuNumberAnimation {
+                        duration: UbuntuAnimation.SnapDuration
+                    }
                 }
             }
         }
