@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-30 17:19-0300\n"
+"POT-Creation-Date: 2014-09-18 16:18-0300\n"
 "PO-Revision-Date: 2014-09-01 07:17+0000\n"
 "Last-Translator: Fohanno Thierry <thierry.fohanno@ofis-bzh.org>\n"
 "Language-Team: Breton <br@li.org>\n"
@@ -32,7 +32,7 @@ msgstr "+ Krouiñ unan nevez"
 msgid "Add Field"
 msgstr "Ouzhpennañ ur vaezienn"
 
-#: ../src/imports/ContactList/ContactListPage.qml:526
+#: ../src/imports/ContactList/ContactListPage.qml:528
 msgid "Add contact"
 msgstr "Ouzhpennañ un darempred"
 
@@ -56,7 +56,7 @@ msgid "Aim"
 msgstr "Palioù"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:409
+#: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "All"
 msgstr "An holl anezho"
 
@@ -69,12 +69,12 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "Ha sur oc'h e fell deoc'h lemel an darempred-mañ ?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:422
+#: ../src/imports/ContactList/ContactListPage.qml:423
 #: ../src/imports/MainWindow.qml:133
 msgid "Cancel"
 msgstr "Nullañ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:445
+#: ../src/imports/ContactList/ContactListPage.qml:447
 msgid "Cancel selection"
 msgstr "Nullañ an diuzadur"
 
@@ -103,14 +103,18 @@ msgstr "Darempredoù;Tud;Niverennoù"
 msgid "Country"
 msgstr "Bro"
 
+#: ../src/imports/ContactList/ContactListPage.qml:607
+msgid "Create a new contact by swiping up from the bottom of the screen."
+msgstr ""
+
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:267
-#: ../src/imports/ContactList/ContactListPage.qml:487
+#: ../src/imports/ContactList/ContactListPage.qml:489
 msgid "Delete"
 msgstr "Diverkañ"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
-#: ../src/imports/ContactView/ContactView.qml:121
+#: ../src/imports/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "Aozañ"
 
@@ -138,11 +142,7 @@ msgstr "Lakait ur chomlec'h postel"
 msgid "Error"
 msgstr "Fazi"
 
-#: ../src/imports/ContactView/ContactView.qml:99
-msgid "Favorite"
-msgstr "Gwellañ-deuet"
-
-#: ../src/imports/ContactList/ContactListPage.qml:409
+#: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "Favorites"
 msgstr "Gwellañ deuet"
 
@@ -268,12 +268,12 @@ msgstr "Klask"
 msgid "Search..."
 msgstr "Klask..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:451
+#: ../src/imports/ContactList/ContactListPage.qml:453
 msgid "Select All"
 msgstr "Diuzañ pep tra"
 
-#: ../src/imports/ContactList/ContactListPage.qml:464
-#: ../src/imports/ContactView/ContactView.qml:110
+#: ../src/imports/ContactList/ContactListPage.qml:466
+#: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Rannañ"
 
@@ -341,3 +341,6 @@ msgstr "Ya"
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "N'ho peus darempred ebet."
+
+#~ msgid "Favorite"
+#~ msgstr "Gwellañ-deuet"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-30 17:19-0300\n"
+"POT-Creation-Date: 2014-09-18 16:18-0300\n"
 "PO-Revision-Date: 2014-09-07 04:31+0000\n"
 "Last-Translator: David Planella <david.planella@ubuntu.com>\n"
 "Language-Team: Catalan <ca@li.org>\n"
@@ -32,7 +32,7 @@ msgstr "+ Contacte nou"
 msgid "Add Field"
 msgstr "Afegeix un camp"
 
-#: ../src/imports/ContactList/ContactListPage.qml:526
+#: ../src/imports/ContactList/ContactListPage.qml:528
 msgid "Add contact"
 msgstr "Afegeix un contacte"
 
@@ -56,7 +56,7 @@ msgid "Aim"
 msgstr "AIM"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:409
+#: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "All"
 msgstr "Tots"
 
@@ -69,12 +69,12 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "Segur que voleu suprimir aquest contacte?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:422
+#: ../src/imports/ContactList/ContactListPage.qml:423
 #: ../src/imports/MainWindow.qml:133
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: ../src/imports/ContactList/ContactListPage.qml:445
+#: ../src/imports/ContactList/ContactListPage.qml:447
 msgid "Cancel selection"
 msgstr "Cancel·la la selecció"
 
@@ -103,14 +103,18 @@ msgstr "Contactes; adreces; gent; amics; números"
 msgid "Country"
 msgstr "País"
 
+#: ../src/imports/ContactList/ContactListPage.qml:607
+msgid "Create a new contact by swiping up from the bottom of the screen."
+msgstr ""
+
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:267
-#: ../src/imports/ContactList/ContactListPage.qml:487
+#: ../src/imports/ContactList/ContactListPage.qml:489
 msgid "Delete"
 msgstr "Suprimeix"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
-#: ../src/imports/ContactView/ContactView.qml:121
+#: ../src/imports/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "Edita"
 
@@ -138,11 +142,7 @@ msgstr "Escriviu una adreça electrònica"
 msgid "Error"
 msgstr "Error"
 
-#: ../src/imports/ContactView/ContactView.qml:99
-msgid "Favorite"
-msgstr "Preferit"
-
-#: ../src/imports/ContactList/ContactListPage.qml:409
+#: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "Favorites"
 msgstr "Preferits"
 
@@ -268,12 +268,12 @@ msgstr "Cerca"
 msgid "Search..."
 msgstr "Cerca..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:451
+#: ../src/imports/ContactList/ContactListPage.qml:453
 msgid "Select All"
 msgstr "Selecciona-ho tot"
 
-#: ../src/imports/ContactList/ContactListPage.qml:464
-#: ../src/imports/ContactView/ContactView.qml:110
+#: ../src/imports/ContactList/ContactListPage.qml:466
+#: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Comparteix"
 
@@ -341,3 +341,6 @@ msgstr "Sí"
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "No teniu cap contacte"
+
+#~ msgid "Favorite"
+#~ msgstr "Preferit"

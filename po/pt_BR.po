@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-30 17:19-0300\n"
+"POT-Creation-Date: 2014-09-18 16:18-0300\n"
 "PO-Revision-Date: 2014-09-01 19:37+0000\n"
 "Last-Translator: Fábio Nogueira <deb-user-ba@ubuntu.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
@@ -32,7 +32,7 @@ msgstr "+ Criar novo"
 msgid "Add Field"
 msgstr "Adicionar campo"
 
-#: ../src/imports/ContactList/ContactListPage.qml:526
+#: ../src/imports/ContactList/ContactListPage.qml:528
 msgid "Add contact"
 msgstr "Adicionar contato"
 
@@ -56,7 +56,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:409
+#: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "All"
 msgstr "Todos"
 
@@ -69,12 +69,12 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "Você tem certeza que deseja remover este contato?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:422
+#: ../src/imports/ContactList/ContactListPage.qml:423
 #: ../src/imports/MainWindow.qml:133
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../src/imports/ContactList/ContactListPage.qml:445
+#: ../src/imports/ContactList/ContactListPage.qml:447
 msgid "Cancel selection"
 msgstr "Cancelar seleção"
 
@@ -103,14 +103,18 @@ msgstr "Contatos;Pessoas;Números"
 msgid "Country"
 msgstr "País"
 
+#: ../src/imports/ContactList/ContactListPage.qml:607
+msgid "Create a new contact by swiping up from the bottom of the screen."
+msgstr "Crie um novo contact deslizando para cima apartir da parte inferior da tela."
+
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:267
-#: ../src/imports/ContactList/ContactListPage.qml:487
+#: ../src/imports/ContactList/ContactListPage.qml:489
 msgid "Delete"
 msgstr "Apagar"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
-#: ../src/imports/ContactView/ContactView.qml:121
+#: ../src/imports/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "Editar"
 
@@ -138,11 +142,7 @@ msgstr "Entre com um endereço de e-mail"
 msgid "Error"
 msgstr "Erro"
 
-#: ../src/imports/ContactView/ContactView.qml:99
-msgid "Favorite"
-msgstr "Favorito"
-
-#: ../src/imports/ContactList/ContactListPage.qml:409
+#: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "Favorites"
 msgstr "Favoritos"
 
@@ -152,7 +152,7 @@ msgstr "Primeiro nome"
 
 #: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
 msgid "Frequently called"
-msgstr "Frequentemente chamado"
+msgstr "Mais chamados"
 
 #. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:115
@@ -268,12 +268,12 @@ msgstr "Pesquisar"
 msgid "Search..."
 msgstr "Pesquisar..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:451
+#: ../src/imports/ContactList/ContactListPage.qml:453
 msgid "Select All"
 msgstr "Selecionar todos"
 
-#: ../src/imports/ContactList/ContactListPage.qml:464
-#: ../src/imports/ContactView/ContactView.qml:110
+#: ../src/imports/ContactList/ContactListPage.qml:466
+#: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Compartilhar"
 
@@ -341,3 +341,6 @@ msgstr "Sim"
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "Você não tem contatos."
+
+#~ msgid "Favorite"
+#~ msgstr "Favorito"

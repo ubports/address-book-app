@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-30 17:19-0300\n"
+"POT-Creation-Date: 2014-09-18 16:18-0300\n"
 "PO-Revision-Date: 2014-09-02 08:20+0000\n"
 "Last-Translator: Víctor R. Ruiz <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -32,7 +32,7 @@ msgstr "+ Crear"
 msgid "Add Field"
 msgstr "Añadir campo"
 
-#: ../src/imports/ContactList/ContactListPage.qml:526
+#: ../src/imports/ContactList/ContactListPage.qml:528
 msgid "Add contact"
 msgstr "Añadir contacto"
 
@@ -56,7 +56,7 @@ msgid "Aim"
 msgstr "Propósito"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:409
+#: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "All"
 msgstr "Todo"
 
@@ -69,12 +69,12 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "¿Está seguro de querer eliminar este contacto?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:422
+#: ../src/imports/ContactList/ContactListPage.qml:423
 #: ../src/imports/MainWindow.qml:133
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../src/imports/ContactList/ContactListPage.qml:445
+#: ../src/imports/ContactList/ContactListPage.qml:447
 msgid "Cancel selection"
 msgstr "Cancelar selección"
 
@@ -103,14 +103,18 @@ msgstr "Contactos;Personas;Números"
 msgid "Country"
 msgstr "País"
 
+#: ../src/imports/ContactList/ContactListPage.qml:607
+msgid "Create a new contact by swiping up from the bottom of the screen."
+msgstr ""
+
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:267
-#: ../src/imports/ContactList/ContactListPage.qml:487
+#: ../src/imports/ContactList/ContactListPage.qml:489
 msgid "Delete"
 msgstr "Eliminar"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
-#: ../src/imports/ContactView/ContactView.qml:121
+#: ../src/imports/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "Editar"
 
@@ -138,11 +142,7 @@ msgstr "Escriba una dirección de correo electrónico"
 msgid "Error"
 msgstr "Error"
 
-#: ../src/imports/ContactView/ContactView.qml:99
-msgid "Favorite"
-msgstr "Favorito"
-
-#: ../src/imports/ContactList/ContactListPage.qml:409
+#: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "Favorites"
 msgstr "Favoritos"
 
@@ -268,12 +268,12 @@ msgstr "Buscar"
 msgid "Search..."
 msgstr "Buscar…"
 
-#: ../src/imports/ContactList/ContactListPage.qml:451
+#: ../src/imports/ContactList/ContactListPage.qml:453
 msgid "Select All"
 msgstr "Seleccionar todo"
 
-#: ../src/imports/ContactList/ContactListPage.qml:464
-#: ../src/imports/ContactView/ContactView.qml:110
+#: ../src/imports/ContactList/ContactListPage.qml:466
+#: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Compartir"
 
@@ -341,3 +341,6 @@ msgstr "Sí"
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "No tiene contactos."
+
+#~ msgid "Favorite"
+#~ msgstr "Favorito"

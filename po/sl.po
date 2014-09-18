@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-30 17:19-0300\n"
+"POT-Creation-Date: 2014-09-18 16:18-0300\n"
 "PO-Revision-Date: 2014-08-30 05:59+0000\n"
 "Last-Translator: Damir Jerovšek <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -32,7 +32,7 @@ msgstr "+ Ustvari nov"
 msgid "Add Field"
 msgstr "Dodaj polje"
 
-#: ../src/imports/ContactList/ContactListPage.qml:526
+#: ../src/imports/ContactList/ContactListPage.qml:528
 msgid "Add contact"
 msgstr "Dodaj stik"
 
@@ -56,7 +56,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:409
+#: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "All"
 msgstr "Vse"
 
@@ -69,12 +69,12 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "Ali ste prepričani, da želite odstraniti ta stik?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:422
+#: ../src/imports/ContactList/ContactListPage.qml:423
 #: ../src/imports/MainWindow.qml:133
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: ../src/imports/ContactList/ContactListPage.qml:445
+#: ../src/imports/ContactList/ContactListPage.qml:447
 msgid "Cancel selection"
 msgstr "Prekliči izbiro"
 
@@ -103,14 +103,18 @@ msgstr "Stiki;Ljudje;Številke"
 msgid "Country"
 msgstr "Država"
 
+#: ../src/imports/ContactList/ContactListPage.qml:607
+msgid "Create a new contact by swiping up from the bottom of the screen."
+msgstr ""
+
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:267
-#: ../src/imports/ContactList/ContactListPage.qml:487
+#: ../src/imports/ContactList/ContactListPage.qml:489
 msgid "Delete"
 msgstr "Izbriši"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
-#: ../src/imports/ContactView/ContactView.qml:121
+#: ../src/imports/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "Uredi"
 
@@ -138,11 +142,7 @@ msgstr "Vnesite naslov e-pošte"
 msgid "Error"
 msgstr "Napaka"
 
-#: ../src/imports/ContactView/ContactView.qml:99
-msgid "Favorite"
-msgstr "Priljubljeno"
-
-#: ../src/imports/ContactList/ContactListPage.qml:409
+#: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "Favorites"
 msgstr "Priljubljeni"
 
@@ -268,12 +268,12 @@ msgstr "Iskanje"
 msgid "Search..."
 msgstr "Iskanje ..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:451
+#: ../src/imports/ContactList/ContactListPage.qml:453
 msgid "Select All"
 msgstr "Izberi vse"
 
-#: ../src/imports/ContactList/ContactListPage.qml:464
-#: ../src/imports/ContactView/ContactView.qml:110
+#: ../src/imports/ContactList/ContactListPage.qml:466
+#: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Deli"
 
@@ -341,3 +341,6 @@ msgstr "Da"
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "Nimate stikov."
+
+#~ msgid "Favorite"
+#~ msgstr "Priljubljeno"
