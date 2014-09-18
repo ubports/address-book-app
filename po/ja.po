@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-30 17:19-0300\n"
-"PO-Revision-Date: 2014-09-02 06:58+0000\n"
+"PO-Revision-Date: 2014-09-18 06:50+0000\n"
 "Last-Translator: Kentaro Kazuhama <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-06 07:32+0000\n"
+"X-Launchpad-Export-Date: 2014-09-18 07:15+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
@@ -92,11 +92,11 @@ msgstr "連絡先"
 
 #: ../data/address-book-app.desktop.in.in.h:2
 msgid "Contacts Address Book"
-msgstr ""
+msgstr "連絡先"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
-msgstr ""
+msgstr "連絡先;人;番号"
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
