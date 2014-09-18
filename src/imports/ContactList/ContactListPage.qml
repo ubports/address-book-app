@@ -269,8 +269,12 @@ ContactsUI.PageWithBottomEdge {
         }
 
         onCountChanged: {
-            if (count > 0)
+            if (count > 0) {
                 mainPage.contactsLoaded = true
+                // break the binding, avoid the message to appear while searhing or switching to favorites
+                emptyStateScreen.visible = false
+
+            }
 
             if ((count > 0) && mainPage.onlineAccountsMessageDialog) {
                 // Because of some contacts can take longer to arrive due the dbus delay,
@@ -586,12 +590,14 @@ ContactsUI.PageWithBottomEdge {
 
     Column {
         id: emptyStateScreen
+
         anchors.centerIn: parent
         height: childrenRect.height
         width: childrenRect.width
         spacing: units.gu(2)
 
         visible: (contactList.count === 0 && !indicator.visible)
+
         Icon {
             id: emptyStateIcon
             anchors.horizontalCenter: emptyStateLabel.horizontalCenter
