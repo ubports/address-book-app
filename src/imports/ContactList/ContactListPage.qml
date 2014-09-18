@@ -584,6 +584,34 @@ ContactsUI.PageWithBottomEdge {
         id: keyboard
     }
 
+    Column {
+        id: emptyStateScreen
+        anchors.centerIn: parent
+        height: childrenRect.height
+        width: childrenRect.width
+        spacing: units.gu(2)
+
+        visible: (contactList.count === 0 && !indicator.visible)
+        Icon {
+            id: emptyStateIcon
+            anchors.horizontalCenter: emptyStateLabel.horizontalCenter
+            height: units.gu(5)
+            width: units.gu(5)
+            opacity: 0.3
+            name: "contact"
+        }
+        Label {
+            id: emptyStateLabel
+            width: mainPage.width - units.gu(12)
+            height: paintedHeight
+            text: i18n.tr("Create a new contact by swiping up from the bottom of the screen.")
+            color: "#5d5d5d"
+            fontSize: "x-large"
+            wrapMode: Text.WordWrap
+            horizontalAlignment: Text.AlignHCenter
+        }
+    }
+
     Connections {
         target: mainPage.contactModel
         onContactsChanged: {
