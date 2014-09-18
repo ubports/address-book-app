@@ -54,32 +54,30 @@ Item {
 
         // go back to normal state if swipping reverse
         if (direction === "LTR") {
-            main.x = 0
+            updatePosition(0)
             return
         } else if (!triggerActionOnMouseRelease) {
-            main.x = -rightActionsView.width + units.gu(2)
+            updatePosition(-rightActionsView.width + units.gu(2))
             return
         }
 
         var xOffset = Math.abs(main.x)
         var index = Math.min(Math.floor(xOffset / actionFullWidth), _visibleRightSideActions.length)
-
-        if (index < 1) {
-            main.x = 0
-        } else if (index === _visibleRightSideActions.length) {
-            main.x = -(rightActionsView.width - units.gu(2))
-        } else {
-            main.x = -(actionFullWidth * index)
+        var newX = 0
+      if (index === _visibleRightSideActions.length) {
+            newX = -(rightActionsView.width - units.gu(2))
+        } else if (index >= 1) {
+            newX = -(actionFullWidth * index)
         }
+        updatePosition(newX)
     }
 
     function returnToBoundsLTR(direction)
     {
         var finalX = leftActionWidth
-        if (direction === "RTL" || (main.x <= (finalX * root.threshold)))
-            main.x = 0
-        else
-            main.x = finalX
+        if ((direction === "RTL") || (main.x <= (finalX * root.threshold)))
+            finalX = 0
+        updatePosition(finalX)
     }
 
     function returnToBounds(direction)
@@ -88,6 +86,8 @@ Item {
             returnToBoundsRTL(direction)
         } else if (main.x > 0) {
             returnToBoundsLTR(direction)
+        } else {
+            updatePosition(0)
         }
     }
 
@@ -135,8 +135,7 @@ Item {
 
     function resetSwipe()
     {
-        mouseArea.state = ""
-        main.x = 0
+        updatePosition(0)
     }
 
     function filterVisibleActions(actions)
@@ -149,6 +148,16 @@ Item {
             }
         }
         return visibleActions
+    }
+
+    function updatePosition(pos)
+    {
+        if (!root.triggerActionOnMouseRelease && (pos !== 0)) {
+            mouseArea.state = pos > 0 ? "RightToLeft" : "LeftToRight"
+        } else {
+            mouseArea.state = ""
+        }
+        main.x = pos
     }
 
     states: [
@@ -405,11 +414,6 @@ Item {
             } else {
                 root.returnToBounds(direction)
                 root.activeAction = null
-                if (!root.triggerActionOnMouseRelease && main.x != 0) {
-                    mouseArea.state = main.x > 0 ? "RightToLeft" : "LeftToRight"
-                } else {
-                    mouseArea.state = ""
-                }
             }
             lastX = -1
             direction = "None"
