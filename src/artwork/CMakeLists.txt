@@ -1,4 +1,6 @@
 set(ADDRESS_BOOK_APP_ARTWORK
+    address-book-app.png
+    address-book-app-symbolic.svg
     address-book-app-preview.png
     birthday-cake.svg
     import-image.svg
