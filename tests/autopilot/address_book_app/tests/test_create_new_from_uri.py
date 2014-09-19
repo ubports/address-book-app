@@ -19,7 +19,6 @@ class TestCreateNewContactFromURI(AddressBookAppTestCase):
 
     def setUp(self):
         self.ARGS.append("addressbook:///create?phone=1234567890")
-        AddressBookAppTestCase.PRELOAD_VCARD = False
         super(TestCreateNewContactFromURI, self).setUp()
 
     def test_save_new_contact(self):

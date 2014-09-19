@@ -96,6 +96,7 @@ ListItemWithActions {
 
         Label {
             id: name
+            objectName: "nameLabel"
 
             anchors {
                 left: avatar.right

@@ -7,17 +7,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-30 17:19-0300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-18 16:18-0300\n"
 "PO-Revision-Date: 2014-09-12 16:34+0000\n"
 "Last-Translator: GunChleoc <Unknown>\n"
 "Language-Team: Fòram na Gàidhlig\n"
+"Language: gd\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2014-09-13 08:40+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
-"Language: gd\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -103,12 +103,16 @@ msgstr "Leabhar nan seòladh"
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
 msgstr ""
-"Contacts;People;Numbers;Leabhar nan seòladh;seòladh;seòlaidhean;neach-"
-"aithne;luchd-aithne;àireamhan;daoine"
+"Contacts;People;Numbers;Leabhar nan seòladh;seòladh;seòlaidhean;neach-aithne;"
+"luchd-aithne;àireamhan;daoine"
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
 msgstr "Dùthaich"
+
+#: ../src/imports/ContactList/ContactListPage.qml:607
+msgid "Create a new contact by swiping up from the bottom of the screen."
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:267
@@ -117,7 +121,7 @@ msgid "Delete"
 msgstr "Sguab às"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
-#: ../src/imports/ContactView/ContactView.qml:121
+#: ../src/imports/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "Deasaich"
 
@@ -144,10 +148,6 @@ msgstr "Cuir a-steach seòladh puist-d"
 #: ../src/imports/MainWindow.qml:129
 msgid "Error"
 msgstr "Mearachd"
-
-#: ../src/imports/ContactView/ContactView.qml:99
-msgid "Favorite"
-msgstr "Annsachd"
 
 #: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "Favorites"
@@ -280,7 +280,7 @@ msgid "Select All"
 msgstr "Tagh na h-uile"
 
 #: ../src/imports/ContactList/ContactListPage.qml:466
-#: ../src/imports/ContactView/ContactView.qml:110
+#: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Co-roinn"
 
@@ -348,3 +348,6 @@ msgstr "Tha"
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "Chan eil neach-aithne agad."
+
+#~ msgid "Favorite"
+#~ msgstr "Annsachd"

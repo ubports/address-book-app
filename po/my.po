@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-08-30 17:19-0300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-18 16:18-0300\n"
 "PO-Revision-Date: 2014-05-11 08:27+0000\n"
 "Last-Translator: Pyae Sone <Unknown>\n"
 "Language-Team: Burmese <my@li.org>\n"
+"Language: my\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -102,6 +103,10 @@ msgstr ""
 msgid "Country"
 msgstr "နိုင်ငံ"
 
+#: ../src/imports/ContactList/ContactListPage.qml:607
+msgid "Create a new contact by swiping up from the bottom of the screen."
+msgstr ""
+
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:267
 #: ../src/imports/ContactList/ContactListPage.qml:489
@@ -109,7 +114,7 @@ msgid "Delete"
 msgstr "ဖျက်မည်"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
-#: ../src/imports/ContactView/ContactView.qml:121
+#: ../src/imports/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "ပြင်ဆင်"
 
@@ -136,10 +141,6 @@ msgstr "အီးမေးလ်လိပ်စာတစ်ခုရိုက်
 #: ../src/imports/MainWindow.qml:129
 msgid "Error"
 msgstr "ချို့ယွင်းချက်"
-
-#: ../src/imports/ContactView/ContactView.qml:99
-msgid "Favorite"
-msgstr "နှစ်သက်ရာ"
 
 #: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "Favorites"
@@ -272,7 +273,7 @@ msgid "Select All"
 msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:466
-#: ../src/imports/ContactView/ContactView.qml:110
+#: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr ""
 
@@ -340,3 +341,6 @@ msgstr "ဟုတ်တယ်"
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "သင့်တွင်ဆက်သွယ်ရမည့်လူစာရင်းမရှိပါ။"
+
+#~ msgid "Favorite"
+#~ msgstr "နှစ်သက်ရာ"

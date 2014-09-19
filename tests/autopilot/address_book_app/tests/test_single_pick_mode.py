@@ -16,9 +16,10 @@ from address_book_app.tests import AddressBookAppTestCase
 class TestSinglePickerMode(AddressBookAppTestCase):
     """ Tests app in single picker mode"""
 
+    PRELOAD_VCARD = True
+
     def setUp(self):
         AddressBookAppTestCase.ARGS.append("addressbook:///pick?single=true")
-        AddressBookAppTestCase.PRELOAD_VCARD = True
         super(TestSinglePickerMode, self).setUp()
 
     def test_select_single_contact(self):

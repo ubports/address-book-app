@@ -52,7 +52,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
             os.environ['QTCONTACTS_MANAGER_OVERRIDE'] = 'galera'
         os.environ['ADDRESS_BOOK_APP_ICON_THEME'] = 'ubuntu-mobile'
         vcard_data = ""
-        if AddressBookAppTestCase.PRELOAD_VCARD:
+        if self.PRELOAD_VCARD:
             # Use vcard from source tree and fallback on installed vcard (from
             #  address-book-app-autopilot package)
             if os.path.exists(AddressBookAppTestCase.VCARD_PATH_DEV):
@@ -76,7 +76,6 @@ class AddressBookAppTestCase(AutopilotTestCase):
             self.launch_click_installed()
 
         AddressBookAppTestCase.ARGS = []
-        AddressBookAppTestCase.PRELOAD_VCARD = False
         self.main_window.visible.wait_for(True)
         self.app = address_book_app.AddressBookApp(self.app_proxy)
 

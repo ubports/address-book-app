@@ -46,7 +46,7 @@ Item {
             anchors.fill: parent
 
             Repeater {
-                model: 3
+                model: 2
 
                 ListItemWithActions {
                     id: listWithActions
@@ -95,7 +95,7 @@ Item {
             }
 
             Repeater {
-                model: 3
+                model: 2
 
                 ListItemWithActions {
                     id: listWithNoRightActions
@@ -122,7 +122,7 @@ Item {
             }
 
             Repeater {
-                model: 3
+                model: 2
 
                 ListItemWithActions {
                     id: listWithInvisibleActions
@@ -176,6 +176,47 @@ Item {
                     ]
                 }
             }
+
+            Repeater {
+                model: 2
+
+                ListItemWithActions {
+                    id: listWithActionsDoNotriggerOnMouseRelease
+                    objectName: "listWithActionsDoNotriggerOnMouseRelease"+ index
+
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                    }
+                    height: units.gu(8)
+                    triggerActionOnMouseRelease: false
+                    Rectangle {
+                        anchors.fill: parent
+                        color: "yellow"
+                    }
+                    rightSideActions: [
+                        Action {
+                            id: messageAction3
+
+                            iconName: "message"
+                            onTriggered: itemList.actionTriggered(messageAction3)
+                        },
+                        Action {
+                            id: shareAction3
+
+                            iconName: "share"
+                            onTriggered: itemList.actionTriggered(shareAction3)
+                        },
+                        Action {
+                            id: contactAction3
+
+                            iconName: "stock_contact"
+                            onTriggered: itemList.actionTriggered(contactAction3)
+                        }
+                    ]
+                }
+            }
+
         }
     }
 
@@ -275,14 +316,14 @@ Item {
 
         function test_cancelSwipeToDelete()
         {
-            var item = swipeToDeleteItem("listWithActions2")
+            var item = swipeToDeleteItem("listWithActions1")
             mouseClick(item, item.width / 2, item.height / 2)
             compare(itemList.signalSpy.count, 0)
         }
 
         function test_swipeToDelete()
         {
-            var item = swipeToDeleteItem("listWithActions2")
+            var item = swipeToDeleteItem("listWithActions1")
             mouseClick(item, item.actionThreshold, item.height / 2)
             itemList.signalSpy.wait()
             compare(itemList.signalSpy.count, 1)
@@ -296,7 +337,7 @@ Item {
 
         function test_activeRightActions(data)
         {
-            var itemData = swipeToLeft("listWithActions2", data.actionIndex, false)
+            var itemData = swipeToLeft("listWithActions1", data.actionIndex, false)
             compare(itemList.signalSpy.count, 0)
             compare(itemData.item.activeAction.iconName, data.iconName)
             mouseRelease(itemData.item, itemData.x, itemData.y)
@@ -307,7 +348,7 @@ Item {
 
         function test_lockOnFullSwipe()
         {
-            var itemData = swipeToLeft("listWithActions2", -1, true)
+            var itemData = swipeToLeft("listWithActions1", -1, true)
             compare(itemList.signalSpy.count, 0)
             tryCompare(itemData.item, "swipeState", "RightToLeft")
         }
@@ -319,7 +360,7 @@ Item {
 
         function test_fullSwipeAndClickOnAction(data)
         {
-            var itemData = swipeToLeft("listWithActions2", -1, true)
+            var itemData = swipeToLeft("listWithActions1", -1, true)
             var actionOffset = (itemList.rightActionsLength - data.actionIndex) + 1
             var clickX = itemData.item.width - ((actionOffset * actionWidthArea) + (actionWidthArea / 2) - units.gu(2))
 
@@ -331,7 +372,7 @@ Item {
 
         function test_noSwipeWithEmptyRightActions()
         {
-            var item = findChild(itemList, "listWithNoRightActions2")
+            var item = findChild(itemList, "listWithNoRightActions1")
             var startX = item.width - item.threshold
             var y = item.height / 2
             mousePress(item, startX, y)
@@ -342,7 +383,7 @@ Item {
 
         function test_not_visibleActions()
         {
-            var itemData = swipeToLeft("listWithInvisibleActions2", -1, true)
+            var itemData = swipeToLeft("listWithInvisibleActions1", -1, true)
             compare(itemData.item._visibleRightSideActions.length, 2)
 
             // check if only 2 actions is visible
@@ -350,15 +391,15 @@ Item {
             tryCompare(mainItem, "x", (actionWidthArea * -2) - units.gu(2) - itemData.item.actionThreshold)
         }
 
-        function test_fullSwipeUsingSafeArea()
+        function test_itemsThatDoNotTriggerActionsOnReleaseFullRevel()
         {
-            var item = findChild(itemList, "listWithActions2")
+            var item = findChild(itemList, "listWithActionsDoNotriggerOnMouseRelease1")
             var startX = item.width / 4
             var startY = item.height / 2
-            var endX = 0
+            var endX = startX - units.gu(2)
             var endY = startY
 
-            // move over the safe area
+            // move a small amount in to the left
             mousePress(item, startX, startY)
             mouseMoveSlowly(item,
                             startX, startY,
@@ -366,6 +407,43 @@ Item {
                             10, 100)
             mouseRelease(item, endX, endY)
             tryCompare(item, "swipeState", "RightToLeft")
+        }
+
+        function test_itemsThatDoNotTriggerActionsOnReleaseClickOnAction_data()
+        {
+            return commom_data()
+        }
+
+        function test_itemsThatDoNotTriggerActionsOnReleaseClickOnAction(data)
+        {
+            var itemData = swipeToLeft("listWithActionsDoNotriggerOnMouseRelease1", data.actionIndex, true)
+            tryCompare(itemData.item, "swipeState", "RightToLeft")
+            compare(itemList.signalSpy.count, 0)
+
+            var actionOffset = (itemList.rightActionsLength - data.actionIndex) + 1
+            console.debug("Action offset:" + actionOffset)
+            var clickX = itemData.item.width - ((actionOffset * actionWidthArea) + (actionWidthArea / 2) - units.gu(2))
+
+            mouseClick(itemData.item, clickX, itemData.item.height / 2)
+            itemList.signalSpy.wait()
+            compare(itemList.signalSpy.count, 1)
+            compare(itemList.signalSpy.signalArguments[0][0].iconName, data.iconName)
+        }
+
+        function test_itemsThatDoNotTriggerActionsOnReleaseDismissActions()
+        {
+            // swipe until the midle
+            var itemData = swipeToLeft("listWithActionsDoNotriggerOnMouseRelease1", 2, false)
+            tryCompare(itemData.item, "swipeState", "RightToLeft")
+
+            // swipe to dismiss
+            var finalX = itemData.x - units.gu(2)
+            mouseMoveSlowly(itemData.item,
+                            itemData.x, itemData.y,
+                            itemData.x - finalX, itemData.y,
+                            10, 100)
+            mouseRelease(itemData.item, finalX, itemData.y)
+            tryCompare(itemData.item, "swipeState", "Normal")
         }
     }
 }

@@ -269,8 +269,12 @@ ContactsUI.PageWithBottomEdge {
         }
 
         onCountChanged: {
-            if (count > 0)
+            if (count > 0) {
                 mainPage.contactsLoaded = true
+                // break the binding, avoid the message to appear while searhing or switching to favorites
+                emptyStateScreen.visible = false
+
+            }
 
             if ((count > 0) && mainPage.onlineAccountsMessageDialog) {
                 // Because of some contacts can take longer to arrive due the dbus delay,
@@ -582,6 +586,36 @@ ContactsUI.PageWithBottomEdge {
 
     KeyboardRectangle {
         id: keyboard
+    }
+
+    Column {
+        id: emptyStateScreen
+
+        anchors.centerIn: parent
+        height: childrenRect.height
+        width: childrenRect.width
+        spacing: units.gu(2)
+
+        visible: (contactList.count === 0 && !indicator.visible)
+
+        Icon {
+            id: emptyStateIcon
+            anchors.horizontalCenter: emptyStateLabel.horizontalCenter
+            height: units.gu(5)
+            width: units.gu(5)
+            opacity: 0.3
+            name: "contact"
+        }
+        Label {
+            id: emptyStateLabel
+            width: mainPage.width - units.gu(12)
+            height: paintedHeight
+            text: i18n.tr("Create a new contact by swiping up from the bottom of the screen.")
+            color: "#5d5d5d"
+            fontSize: "x-large"
+            wrapMode: Text.WordWrap
+            horizontalAlignment: Text.AlignHCenter
+        }
     }
 
     Connections {

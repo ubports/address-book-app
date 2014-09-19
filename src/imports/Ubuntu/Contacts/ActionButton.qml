@@ -18,16 +18,17 @@ import QtQuick 2.2
 import Ubuntu.Components 1.1
 
 AbstractButton {
-    id: messageActions
+    id: root
 
     property QtObject actions
     property alias iconName: icon.name
+    property real iconSize: units.gu(2.5)
 
     Icon {
         id: icon
 
         anchors.centerIn: parent
-        height: units.gu(2.5)
-        width: units.gu(2.5)
+        height: root.iconSize
+        width: root.iconSize
     }
 }

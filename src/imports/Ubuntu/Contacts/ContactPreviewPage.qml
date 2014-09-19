@@ -59,7 +59,6 @@ Page {
             height: childrenRect.height
             anchors {
                 top: parent.top
-                topMargin: units.gu(2)
                 left: parent.left
                 right: parent.right
             }

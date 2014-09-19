@@ -48,36 +48,46 @@ Item {
     signal itemClicked(var mouse)
     signal itemPressAndHold(var mouse)
 
-    function returnToBoundsRTL()
+    function returnToBoundsRTL(direction)
     {
         var actionFullWidth = actionWidth + units.gu(2)
+
+        // go back to normal state if swipping reverse
+        if (direction === "LTR") {
+            updatePosition(0)
+            return
+        } else if (!triggerActionOnMouseRelease) {
+            updatePosition(-rightActionsView.width + units.gu(2))
+            return
+        }
+
         var xOffset = Math.abs(main.x)
         var index = Math.min(Math.floor(xOffset / actionFullWidth), _visibleRightSideActions.length)
-
-        if (index < 1) {
-            main.x = 0
-        } else if (index === _visibleRightSideActions.length) {
-            main.x = -(rightActionsView.width - units.gu(2))
-        } else {
-            main.x = -(actionFullWidth * index)
+        var newX = 0
+      if (index === _visibleRightSideActions.length) {
+            newX = -(rightActionsView.width - units.gu(2))
+        } else if (index >= 1) {
+            newX = -(actionFullWidth * index)
         }
+        updatePosition(newX)
     }
 
-    function returnToBoundsLTR()
+    function returnToBoundsLTR(direction)
     {
         var finalX = leftActionWidth
-        if (main.x > (finalX * root.threshold))
-            main.x = finalX
-        else
-            main.x = 0
+        if ((direction === "RTL") || (main.x <= (finalX * root.threshold)))
+            finalX = 0
+        updatePosition(finalX)
     }
 
-    function returnToBounds()
+    function returnToBounds(direction)
     {
         if (main.x < 0) {
-            returnToBoundsRTL()
+            returnToBoundsRTL(direction)
         } else if (main.x > 0) {
-            returnToBoundsLTR()
+            returnToBoundsLTR(direction)
+        } else {
+            updatePosition(0)
         }
     }
 
@@ -107,7 +117,8 @@ Item {
 
     function updateActiveAction()
     {
-        if ((main.x <= -(root.actionWidth + units.gu(2))) &&
+        if (triggerActionOnMouseRelease &&
+            (main.x <= -(root.actionWidth + units.gu(2))) &&
             (main.x > -(rightActionsView.width - units.gu(2)))) {
             var actionFullWidth = actionWidth + units.gu(2)
             var xOffset = Math.abs(main.x)
@@ -124,7 +135,7 @@ Item {
 
     function resetSwipe()
     {
-        main.x = 0
+        updatePosition(0)
     }
 
     function filterVisibleActions(actions)
@@ -137,6 +148,16 @@ Item {
             }
         }
         return visibleActions
+    }
+
+    function updatePosition(pos)
+    {
+        if (!root.triggerActionOnMouseRelease && (pos !== 0)) {
+            mouseArea.state = pos > 0 ? "RightToLeft" : "LeftToRight"
+        } else {
+            mouseArea.state = ""
+        }
+        main.x = pos
     }
 
     states: [
@@ -224,7 +245,7 @@ Item {
                        width: units.gu(3)
                        height: units.gu(3)
                        name: modelData.iconName
-                       color: root.activeAction === modelData || !root.triggerActionOnMouseRelease ? UbuntuColors.lightAubergine : Theme.palette.selected.background
+                       color: root.activeAction === modelData ? UbuntuColors.lightAubergine : UbuntuColors.lightGrey
                    }
               }
            }
@@ -324,7 +345,10 @@ Item {
             value: 1.0
         }
         ScriptAction {
-            script: root.activeAction.triggered(root)
+            script: {
+                root.activeAction.triggered(root)
+                mouseArea.state = ""
+            }
         }
         PauseAnimation {
             duration: 500
@@ -342,14 +366,10 @@ Item {
 
         property bool locked: root.locked || ((root.leftSideAction === null) && (root._visibleRightSideActions.count === 0))
         property bool manual: false
+        property string direction: "None"
+        property real lastX: -1
 
-        anchors {
-            top: parent.top
-            bottom: parent.bottom
-            right: parent.right
-            left: parent.left
-            leftMargin: mouseArea.drag.active ? units.gu(4) : 0
-        }
+        anchors.fill: parent
         drag {
             target: locked ? null : main
             axis: Drag.XAxis
@@ -358,16 +378,45 @@ Item {
             threshold: root.actionThreshold
         }
 
+        states: [
+            State {
+                name: "LeftToRight"
+                PropertyChanges {
+                    target: mouseArea
+                    drag.maximumX: 0
+                }
+            },
+            State {
+                name: "RightToLeft"
+                PropertyChanges {
+                    target: mouseArea
+                    drag.minimumX: 0
+                }
+            }
+        ]
+
+        onMouseXChanged: {
+            var offset = (lastX - mouseX)
+            if (Math.abs(offset) <= root.actionThreshold) {
+                return
+            }
+            lastX = mouseX
+            direction = offset > 0 ? "RTL" : "LTR";
+        }
+
+        onPressed: {
+            lastX = mouse.x
+        }
+
         onReleased: {
-            // if the mouse reach the safe are we should handle it as full swipe
-            if (mouse.x < 0) {
-                main.x = -(rightActionsView.width - units.gu(2))
-            } else if (root.triggerActionOnMouseRelease && root.activeAction) {
+            if (root.triggerActionOnMouseRelease && root.activeAction) {
                 triggerAction.start()
             } else {
-                root.returnToBounds()
+                root.returnToBounds(direction)
                 root.activeAction = null
             }
+            lastX = -1
+            direction = "None"
         }
         onClicked: {
             if (main.x === 0) {
