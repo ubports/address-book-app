@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-30 17:19-0300\n"
-"PO-Revision-Date: 2014-08-29 11:44+0000\n"
+"PO-Revision-Date: 2014-09-18 11:18+0000\n"
 "Last-Translator: Ivo Xavier <ivofernandes12@gmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-06 07:32+0000\n"
+"X-Launchpad-Export-Date: 2014-09-19 08:10+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
@@ -57,7 +57,7 @@ msgstr "Aim"
 #. TRANSLATORS: this refers to all contacts
 #: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "All"
-msgstr "Todas"
+msgstr "Todos"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
