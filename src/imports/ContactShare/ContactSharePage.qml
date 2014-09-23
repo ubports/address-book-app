@@ -35,7 +35,7 @@ Page {
         onPeerSelected: {
             picker.curTransfer = peer.request();
             if (picker.curTransfer.state === ContentHub.ContentTransfer.InProgress) {
-                var vCardUrl = "file:///tmp/vcard_" + encodeURIComponent(contact.contactId) + ".vcf"
+                var vCardUrl = "file:///tmp/vcard_" + encodeURIComponent(picker.contacts[0].contactId) + ".vcf"
                 picker.contactModel.exportContacts(vCardUrl, [], picker.contacts)
             }
         }

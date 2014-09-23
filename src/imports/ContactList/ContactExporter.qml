@@ -20,15 +20,15 @@ import QtContacts 5.0
 Item {
     id: root
 
-    property var contacts: []
     property var contactModel
     property var outputFile
 
-    signal completed(int error)
+    signal contactExported(int error, string url)
+    signal contactFetched(var contacts)
 
-    function start() {
+    function start(contacts) {
         if (!contactModel) {
-            console.log("No contact model defined")
+            console.error("No contact model defined")
             return
         }
 
@@ -48,6 +48,7 @@ Item {
             priv.currentQueryId = contactModel.fetchContacts(ids)
         }
     }
+
     Item {
         id: priv
 
@@ -58,15 +59,18 @@ Item {
 
             onExportCompleted: {
                 priv.currentQueryId = -1
-                root.completed(error)
+                root.contactExported(error, root.outputFile)
             }
 
             onContactsFetched: {
                 // currentQueryId == -2 is used during a fetch using "memory" manager
                 if ((priv.currentQueryId == -2) || (requestId == priv.currentQueryId)) {
-                    root.contactModel.exportContacts(root.outputFile,
-                                                     [],
-                                                     fetchedContacts)
+                    if (root.outputFile !== "") {
+                        root.contactModel.exportContacts(root.outputFile,
+                                                         [],
+                                                         fetchedContacts)
+                    }
+                    root.contactFetched(fetchedContacts)
                 }
             }
         }
