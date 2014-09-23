@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-08-30 17:19-0300\n"
-"PO-Revision-Date: 2014-08-22 01:52+0000\n"
+"PO-Revision-Date: 2014-09-23 04:13+0000\n"
 "Last-Translator: Gheyret T.Kenji <Unknown>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-06 07:32+0000\n"
+"X-Launchpad-Export-Date: 2014-09-23 07:21+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
@@ -92,11 +92,11 @@ msgstr "ئالاقەداشلار"
 
 #: ../data/address-book-app.desktop.in.in.h:2
 msgid "Contacts Address Book"
-msgstr ""
+msgstr "ئادرېس دەپتىرى"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
-msgstr ""
+msgstr "ئالاقەداشلار;ئادەملەر;نومۇرلار"
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
@@ -241,7 +241,7 @@ msgstr "پوچتا نومۇرى"
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:21
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOrganizationsView.qml:24
 msgid "Professional Details"
-msgstr ""
+msgstr "تەۋەلىكى"
 
 #: ../src/imports/ContactList/ContactListPage.qml:381
 msgid "Quit"
