@@ -1,3 +1,21 @@
+address-book-app (0.2+14.10.20140919-0ubuntu1) utopic; urgency=low
+
+  [ Leo Arias ]
+  * [PageWithBottomEdge] Consider the drag direction to dismiss or show
+    the bottom edge page. [ContactListPage] Implemented empty state
+    message on contact list, based on messaging app [ContactViewPage]
+    Changed avatar view visuals. [Application] Move app icons as part of
+    the package. (LP: #1357945)
+
+  [ Renato Araujo Oliveira Filho ]
+  * [PageWithBottomEdge] Consider the drag direction to dismiss or show
+    the bottom edge page. [ContactListPage] Implemented empty state
+    message on contact list, based on messaging app [ContactViewPage]
+    Changed avatar view visuals. [Application] Move app icons as part of
+    the package. (LP: #1357945)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 19 Sep 2014 17:56:25 +0000
+
 address-book-app (0.2+14.10.20140905-0ubuntu1) utopic; urgency=low
 
   [ Renato Araujo Oliveira Filho ]
