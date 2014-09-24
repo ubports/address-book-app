@@ -6,16 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-18 16:18-0300\n"
 "PO-Revision-Date: 2014-08-29 23:51+0000\n"
 "Last-Translator: samson <Unknown>\n"
 "Language-Team: Amharic <am@li.org>\n"
-"Language: am\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-06 07:32+0000\n"
+"X-Launchpad-Export-Date: 2014-09-24 07:40+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
@@ -32,7 +31,7 @@ msgstr "+ አዲስ መፍጠሪያ"
 msgid "Add Field"
 msgstr "ሜዳ መጨመሪያ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:528
+#: ../src/imports/ContactList/ContactListPage.qml:532
 msgid "Add contact"
 msgstr "ግንኙነት መጨመሪያ"
 
@@ -56,7 +55,7 @@ msgid "Aim"
 msgstr "ኤይም"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:410
+#: ../src/imports/ContactList/ContactListPage.qml:414
 msgid "All"
 msgstr "ሁሉንም"
 
@@ -69,12 +68,12 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "በእርግጥ የተመረጡትን ግንኙነቶች በሙሉ ማስወገድ ይፈልጋሉ?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:423
+#: ../src/imports/ContactList/ContactListPage.qml:427
 #: ../src/imports/MainWindow.qml:133
 msgid "Cancel"
 msgstr "መሰረዣ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:447
+#: ../src/imports/ContactList/ContactListPage.qml:451
 msgid "Cancel selection"
 msgstr "ምርጫውን መሰረዣ"
 
@@ -103,13 +102,13 @@ msgstr "ግንኙነቶች: ሕዝብ: ቁጥሮች"
 msgid "Country"
 msgstr "አገር"
 
-#: ../src/imports/ContactList/ContactListPage.qml:607
+#: ../src/imports/ContactList/ContactListPage.qml:613
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:267
-#: ../src/imports/ContactList/ContactListPage.qml:489
+#: ../src/imports/ContactList/ContactListPage.qml:493
 msgid "Delete"
 msgstr "ማጥፊያ"
 
@@ -142,7 +141,7 @@ msgstr "የ ኢሜይል አድራሻ ያስገቡ"
 msgid "Error"
 msgstr "ስህተት"
 
-#: ../src/imports/ContactList/ContactListPage.qml:410
+#: ../src/imports/ContactList/ContactListPage.qml:414
 msgid "Favorites"
 msgstr "የምወዳቸው"
 
@@ -184,7 +183,7 @@ msgstr "ጃበር"
 msgid "Last name"
 msgstr "የ አባት ስም"
 
-#: ../src/imports/ContactList/ContactListPage.qml:338
+#: ../src/imports/ContactList/ContactListPage.qml:342
 msgid "Loading..."
 msgstr "በመጫን ላይ..."
 
@@ -244,7 +243,7 @@ msgstr "ፖስታ ሳጥን ቁጥር"
 msgid "Professional Details"
 msgstr "የ ባለሞያ ዝርዝር"
 
-#: ../src/imports/ContactList/ContactListPage.qml:381
+#: ../src/imports/ContactList/ContactListPage.qml:385
 msgid "Quit"
 msgstr "ማጥፊያ"
 
@@ -260,19 +259,19 @@ msgstr "ሚና"
 msgid "Save"
 msgstr "ማስቀመጫ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:396
+#: ../src/imports/ContactList/ContactListPage.qml:400
 msgid "Search"
 msgstr "መፈለጊያ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:353
+#: ../src/imports/ContactList/ContactListPage.qml:357
 msgid "Search..."
 msgstr "መፈለጊያ..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:453
+#: ../src/imports/ContactList/ContactListPage.qml:457
 msgid "Select All"
 msgstr "ሁሉንም መምረጫ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:466
+#: ../src/imports/ContactList/ContactListPage.qml:470
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "ማካፈያ"
@@ -290,15 +289,15 @@ msgstr "ሕብረተሰብ"
 msgid "Street"
 msgstr "መንገድ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:390
+#: ../src/imports/ContactList/ContactListPage.qml:394
 msgid "Sync"
 msgstr "ማስማሚያ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:390
+#: ../src/imports/ContactList/ContactListPage.qml:394
 msgid "Syncing"
 msgstr "በ ማስማማት ላይ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:338
+#: ../src/imports/ContactList/ContactListPage.qml:342
 msgid "Syncing..."
 msgstr "በ ማስማማት ላይ..."
 

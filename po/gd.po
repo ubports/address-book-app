@@ -7,17 +7,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-18 16:18-0300\n"
 "PO-Revision-Date: 2014-09-12 16:34+0000\n"
 "Last-Translator: GunChleoc <Unknown>\n"
 "Language-Team: Fòram na Gàidhlig\n"
-"Language: gd\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-13 08:40+0000\n"
+"X-Launchpad-Export-Date: 2014-09-24 07:40+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
+"Language: gd\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -33,7 +33,7 @@ msgstr "+ Cruthaich fear ùr"
 msgid "Add Field"
 msgstr "Cuir raon ris"
 
-#: ../src/imports/ContactList/ContactListPage.qml:528
+#: ../src/imports/ContactList/ContactListPage.qml:532
 msgid "Add contact"
 msgstr "Cuir neach-aithne ris"
 
@@ -57,7 +57,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:410
+#: ../src/imports/ContactList/ContactListPage.qml:414
 msgid "All"
 msgstr "Na h-uile"
 
@@ -74,12 +74,12 @@ msgstr ""
 "falbh?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:423
+#: ../src/imports/ContactList/ContactListPage.qml:427
 #: ../src/imports/MainWindow.qml:133
 msgid "Cancel"
 msgstr "Sguir dheth"
 
-#: ../src/imports/ContactList/ContactListPage.qml:447
+#: ../src/imports/ContactList/ContactListPage.qml:451
 msgid "Cancel selection"
 msgstr "Sguir dhen taghadh"
 
@@ -103,20 +103,20 @@ msgstr "Leabhar nan seòladh"
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
 msgstr ""
-"Contacts;People;Numbers;Leabhar nan seòladh;seòladh;seòlaidhean;neach-aithne;"
-"luchd-aithne;àireamhan;daoine"
+"Contacts;People;Numbers;Leabhar nan seòladh;seòladh;seòlaidhean;neach-"
+"aithne;luchd-aithne;àireamhan;daoine"
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
 msgstr "Dùthaich"
 
-#: ../src/imports/ContactList/ContactListPage.qml:607
+#: ../src/imports/ContactList/ContactListPage.qml:613
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:267
-#: ../src/imports/ContactList/ContactListPage.qml:489
+#: ../src/imports/ContactList/ContactListPage.qml:493
 msgid "Delete"
 msgstr "Sguab às"
 
@@ -149,7 +149,7 @@ msgstr "Cuir a-steach seòladh puist-d"
 msgid "Error"
 msgstr "Mearachd"
 
-#: ../src/imports/ContactList/ContactListPage.qml:410
+#: ../src/imports/ContactList/ContactListPage.qml:414
 msgid "Favorites"
 msgstr "Annsachdan"
 
@@ -191,7 +191,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Sloinneadh"
 
-#: ../src/imports/ContactList/ContactListPage.qml:338
+#: ../src/imports/ContactList/ContactListPage.qml:342
 msgid "Loading..."
 msgstr "'Ga luchdadh..."
 
@@ -251,7 +251,7 @@ msgstr "Còd-puist"
 msgid "Professional Details"
 msgstr "Fiosrachadh obrach"
 
-#: ../src/imports/ContactList/ContactListPage.qml:381
+#: ../src/imports/ContactList/ContactListPage.qml:385
 msgid "Quit"
 msgstr "Fàg an-seo"
 
@@ -267,19 +267,19 @@ msgstr "Dreuchd"
 msgid "Save"
 msgstr "Sàbhail"
 
-#: ../src/imports/ContactList/ContactListPage.qml:396
+#: ../src/imports/ContactList/ContactListPage.qml:400
 msgid "Search"
 msgstr "Lorg"
 
-#: ../src/imports/ContactList/ContactListPage.qml:353
+#: ../src/imports/ContactList/ContactListPage.qml:357
 msgid "Search..."
 msgstr "Lorg..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:453
+#: ../src/imports/ContactList/ContactListPage.qml:457
 msgid "Select All"
 msgstr "Tagh na h-uile"
 
-#: ../src/imports/ContactList/ContactListPage.qml:466
+#: ../src/imports/ContactList/ContactListPage.qml:470
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Co-roinn"
@@ -297,15 +297,15 @@ msgstr "Sòisealta"
 msgid "Street"
 msgstr "Sràid"
 
-#: ../src/imports/ContactList/ContactListPage.qml:390
+#: ../src/imports/ContactList/ContactListPage.qml:394
 msgid "Sync"
 msgstr "Sioncronaich"
 
-#: ../src/imports/ContactList/ContactListPage.qml:390
+#: ../src/imports/ContactList/ContactListPage.qml:394
 msgid "Syncing"
 msgstr "'Ga shioncronachadh"
 
-#: ../src/imports/ContactList/ContactListPage.qml:338
+#: ../src/imports/ContactList/ContactListPage.qml:342
 msgid "Syncing..."
 msgstr "'Ga shioncronachadh..."
 
