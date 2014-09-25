@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-18 16:18-0300\n"
-"PO-Revision-Date: 2014-08-31 11:18+0000\n"
+"PO-Revision-Date: 2014-09-24 09:25+0000\n"
 "Last-Translator: Jared Norris <jarednorris@ubuntu.com>\n"
 "Language-Team: English (Australia) <en_AU@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-24 07:41+0000\n"
+"X-Launchpad-Export-Date: 2014-09-25 06:48+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
@@ -104,7 +104,7 @@ msgstr "Country"
 
 #: ../src/imports/ContactList/ContactListPage.qml:613
 msgid "Create a new contact by swiping up from the bottom of the screen."
-msgstr ""
+msgstr "Create a new contact by swiping up from the bottom of the screen."
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:267
@@ -340,6 +340,3 @@ msgstr "Yes"
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "You have no contacts."
-
-#~ msgid "Favorite"
-#~ msgstr "Favourite"
