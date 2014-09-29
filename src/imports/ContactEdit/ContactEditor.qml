@@ -409,7 +409,8 @@ Page {
 
                 iconName: "ok"
                 text: i18n.tr("Save")
-                enabled: !nameEditor.isEmpty() || !phonesEditor.isEmpty()
+                // disable save button while avatar scale still running
+                enabled: !avatarEditor.busy && (!nameEditor.isEmpty() || !phonesEditor.isEmpty())
                 onTriggered: contactEditor.save()
             }
         }
