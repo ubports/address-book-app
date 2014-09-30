@@ -149,6 +149,7 @@ Page {
         property bool hidden: (activeFocus === false) || ((bottomEdge.y - units.gu(1)) < tip.y)
 
         enabled: mouseArea.enabled
+        visible: page.bottomEdgeEnabled
         anchors {
             bottom: parent.bottom
             horizontalCenter: bottomEdge.horizontalCenter
@@ -221,6 +222,7 @@ Page {
             maximumY: page.height
         }
         enabled: edgeLoader.status == Loader.Ready
+        visible: page.bottomEdgeEnabled
 
         anchors {
             left: parent.left
@@ -275,7 +277,7 @@ Page {
         }
         height: page.height
         y: height
-        visible: page.bottomEdgeEnabled && !page.isCollapsed
+        visible: !page.isCollapsed
         state: "collapsed"
         states: [
             State {
