@@ -463,7 +463,7 @@ ContactsUI.PageWithBottomEdge {
                             contactList.selectAll()
                         }
                     }
-                    visible: contactList.isInSelectionMode
+                    visible: contactList.multipleSelection
                 },
                 Action {
                     objectName: "share"
@@ -635,8 +635,12 @@ ContactsUI.PageWithBottomEdge {
             // send contacts back to source app (pick mode)
             if (error === ContactModel.ExportNoError) {
                 var obj = Qt.createQmlObject("import Ubuntu.Content 0.1;  ContentItem { url: '" + url + "' }", contactExporter)
-                activeTransfer.items = [obj]
-                activeTransfer.state = ContentHub.ContentTransfer.Charged
+                if (activeTransfer) {
+                    activeTransfer.items = [obj]
+                    activeTransfer.state = ContentHub.ContentTransfer.Charged
+                }  else {
+                    console.error("No active transfer")
+                }
             } else {
                 console.error("Fail to export contacts:" + error)
             }
