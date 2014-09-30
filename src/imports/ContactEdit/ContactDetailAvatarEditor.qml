@@ -23,6 +23,7 @@ import Ubuntu.Contacts 0.1
 ContactDetailBase {
     id: root
 
+    readonly property alias busy: activityIndicator.running
     readonly property string defaultAvatar: "image://theme/add"
 
     function isEmpty() {
@@ -90,6 +91,8 @@ ContactDetailBase {
     }
 
     ActivityIndicator {
+        id: activityIndicator
+
         anchors.centerIn: avatar
         running: (avatarImport.importDialog != null)
         visible: running
