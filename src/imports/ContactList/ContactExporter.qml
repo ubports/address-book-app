@@ -24,7 +24,7 @@ Item {
     property var outputFile
 
     signal contactExported(int error, string url)
-    signal contactFetched(var contacts)
+    signal contactsFetched(var contacts)
 
     function start(contacts) {
         if (!contactModel) {
@@ -70,7 +70,7 @@ Item {
                                                          [],
                                                          fetchedContacts)
                     }
-                    root.contactFetched(fetchedContacts)
+                    root.contactsFetched(fetchedContacts)
                 }
             }
         }

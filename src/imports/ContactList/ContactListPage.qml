@@ -650,7 +650,7 @@ ContactsUI.PageWithBottomEdge {
             application.returnVcard(url)
         }
 
-        onContactFetched: {
+        onContactsFetched: {
             // Share contacts to an application chosen by the user
             if (!mainPage.pickMode) {
                 pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
