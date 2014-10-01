@@ -26,7 +26,7 @@ Component {
         text: i18n.tr("Contact not found")
 
         Button {
-            text: "Cancel"
+            text: i18n.tr("Cancel")
             gradient: UbuntuColors.greyGradient
             onClicked: {
                 PopupUtils.close(dialogue)
