@@ -258,9 +258,7 @@ ContactsUI.PageWithBottomEdge {
         filterTerm: searchField.text
         detailToPick: ContactDetail.PhoneNumber
         multiSelectionEnabled: true
-        multipleSelection: !pickMode ||
-                           mainPage.pickMultipleContacts ||
-                           (contactExporter.active && contactExporter.isMultiple)
+        multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
 
         leftSideAction: Action {
             iconName: "delete"
@@ -305,7 +303,6 @@ ContactsUI.PageWithBottomEdge {
         }
 
         onAddDetailClicked: mainPage.addPhoneToContact(contact.contactId, " ")
-
         onIsInSelectionModeChanged: mainPage.state = isInSelectionMode ? "selection"  : "default"
         onSelectionCanceled: {
             if (pickMode) {
@@ -626,8 +623,6 @@ ContactsUI.PageWithBottomEdge {
         id: contactExporter
 
         property var activeTransfer: null
-        readonly property bool active: activeTransfer && (activeTransfer.state === ContentHub.ContentTransfer.InProgress && activeTransfer.direction === ContentHub.ContentTransfer.Import)
-        readonly property bool isMultiple: activeTransfer && (activeTransfer.selectionType === ContentHub.ContentTransfer.Multiple)
 
         contactModel: contactList.listModel
         outputFile: mainPage.pickMode ? "file:///tmp/address_book_app_export.vcf" : ""
