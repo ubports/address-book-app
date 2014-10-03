@@ -641,7 +641,7 @@ ContactsUI.PageWithBottomEdge {
             }
             activeTransfer = null
             mainPage.pickMode = false
-            mainPage.state = "defautl"
+            mainPage.state = "default"
             application.returnVcard(url)
         }
 
