@@ -258,9 +258,7 @@ ContactsUI.PageWithBottomEdge {
         filterTerm: searchField.text
         detailToPick: ContactDetail.PhoneNumber
         multiSelectionEnabled: true
-        multipleSelection: !pickMode ||
-                           mainPage.pickMultipleContacts ||
-                           (contactExporter.active && contactExporter.isMultiple)
+        multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
 
         leftSideAction: Action {
             iconName: "delete"
@@ -305,7 +303,6 @@ ContactsUI.PageWithBottomEdge {
         }
 
         onAddDetailClicked: mainPage.addPhoneToContact(contact.contactId, " ")
-
         onIsInSelectionModeChanged: mainPage.state = isInSelectionMode ? "selection"  : "default"
         onSelectionCanceled: {
             if (pickMode) {
@@ -463,7 +460,7 @@ ContactsUI.PageWithBottomEdge {
                             contactList.selectAll()
                         }
                     }
-                    visible: contactList.isInSelectionMode
+                    visible: contactList.multipleSelection
                 },
                 Action {
                     objectName: "share"
@@ -478,13 +475,7 @@ ContactsUI.PageWithBottomEdge {
                             contacts.push(items.get(i).model.contact)
                         }
 
-                        if (mainPage.pickMode) {
-                            contactExporter.exportContacts(contacts)
-                            mainPage.pickMode = false
-                        } else {
-                            pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
-                                           { contactModel: contactList.listModel, contacts: contacts })
-                        }
+                        contactExporter.start(contacts)
                         contactList.endSelection()
                     }
                 },
@@ -628,38 +619,38 @@ ContactsUI.PageWithBottomEdge {
         }
     }
 
-    QtObject {
+    ContactExporter {
         id: contactExporter
 
         property var activeTransfer: null
-        readonly property bool active: activeTransfer && (activeTransfer.state === ContentHub.ContentTransfer.InProgress && activeTransfer.direction === ContentHub.ContentTransfer.Import)
-        readonly property bool isMultiple: activeTransfer && (activeTransfer.selectionType === ContentHub.ContentTransfer.Multiple)
 
-        function exportContacts(contacts)
-        {
-            if (activeTransfer) {
-                var exportUrl = "file:///tmp/address_book_app_export.vcf"
-                mainPage.contactModel.exportCompleted.connect(contactExporter.onExportCompleted)
-                mainPage.contactModel.exportContacts(exportUrl, [], contacts)
-            } else {
-                console.error("Export requested with noo active transfer")
-            }
-        }
-
-        function onExportCompleted(error, url)
-        {
-            mainPage.contactModel.exportCompleted.disconnect(contactExporter.onExportCompleted)
+        contactModel: contactList.listModel
+        outputFile: mainPage.pickMode ? "file:///tmp/address_book_app_export.vcf" : ""
+        onContactExported: {
+            // send contacts back to source app (pick mode)
             if (error === ContactModel.ExportNoError) {
                 var obj = Qt.createQmlObject("import Ubuntu.Content 0.1;  ContentItem { url: '" + url + "' }", contactExporter)
-                activeTransfer.items = [obj]
-                activeTransfer.state = ContentHub.ContentTransfer.Charged
+                if (activeTransfer) {
+                    activeTransfer.items = [obj]
+                    activeTransfer.state = ContentHub.ContentTransfer.Charged
+                }  else {
+                    console.error("No active transfer")
+                }
             } else {
                 console.error("Fail to export contacts:" + error)
             }
             activeTransfer = null
-            pickMode = false
+            mainPage.pickMode = false
             mainPage.state = "defautl"
             application.returnVcard(url)
+        }
+
+        onContactsFetched: {
+            // Share contacts to an application chosen by the user
+            if (!mainPage.pickMode) {
+                pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
+                               { contactModel: contactExporter.contactModel, contacts: contacts })
+            }
         }
     }
 

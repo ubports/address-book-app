@@ -24,7 +24,8 @@ QtObject {
             target: ContentHub.ContentHub
             onExportRequested: {
                 // enter in pick mode
-                pageStack.contactListPage.startPickMode(false, transfer)
+                pageStack.contactListPage.startPickMode((transfer.selectionType === ContentHub.ContentTransfer.Single),
+                                                        transfer)
             }
             onImportRequested: {
                 if (transfer.state === ContentHub.ContentTransfer.Charged) {
