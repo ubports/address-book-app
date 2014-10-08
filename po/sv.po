@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-09-29 15:21+0200\n"
-"PO-Revision-Date: 2014-09-08 18:49+0000\n"
+"PO-Revision-Date: 2014-10-07 14:49+0000\n"
 "Last-Translator: Josef Andersson <Unknown>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-02 06:37+0000\n"
+"X-Launchpad-Export-Date: 2014-10-08 07:38+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 "Language: sv\n"
 
@@ -106,7 +106,7 @@ msgstr "Land"
 
 #: ../src/imports/ContactList/ContactListPage.qml:613
 msgid "Create a new contact by swiping up from the bottom of the screen."
-msgstr ""
+msgstr "Skapa en ny kontakt genom att svepa uppåt från botten av skärmen."
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:267
