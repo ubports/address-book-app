@@ -54,17 +54,27 @@ MainView {
 
     function pick(single)
     {
+        pickWithTransfer(single, null)
+    }
+
+    function pickWithTransfer(single, activeTransfer)
+    {
         mainStack.resetStack()
         if (mainStack.contactListPage) {
-            mainStack.contactListPage.startPickMode(single == "true", null)
+            mainStack.contactListPage.startPickMode(single == "true", activeTransfer)
         }
     }
 
     function importvcard(_url)
     {
+        importvcards([_url])
+    }
+
+    function importvcards(_urls)
+    {
         mainStack.resetStack()
         if (mainStack.contactListPage) {
-            mainStack.contactListPage.importContactRequested([_url])
+            mainStack.contactListPage.importContact(_urls)
         }
     }
 

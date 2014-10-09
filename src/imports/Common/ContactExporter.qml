@@ -73,9 +73,9 @@ Item {
         function generateOutputFileName(contacts)
         {
             if (contacts.length === 1) {
-                return "file:///tmp/%1.vcard".arg(contacts[0].displayLabel.label.replace(/\s/g, ''))
+                return "file:///tmp/%1.vcf".arg(contacts[0].displayLabel.label.replace(/\s/g, ''))
             } else {
-                return "file:///tmp/ubuntu_contacts.vcard";
+                return "file:///tmp/ubuntu_contacts.vcf";
             }
         }
 
