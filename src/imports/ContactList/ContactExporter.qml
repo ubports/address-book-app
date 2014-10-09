@@ -16,15 +16,17 @@
 
 import QtQuick 2.2
 import QtContacts 5.0
+import Ubuntu.Content 1.1
 
 Item {
     id: root
 
     property var contactModel
     property var outputFile
+    property var activeTransfer: null
 
-    signal contactExported(int error, string url)
     signal contactsFetched(var contacts)
+    signal done()
 
     function start(contacts) {
         if (!contactModel) {
@@ -59,7 +61,20 @@ Item {
 
             onExportCompleted: {
                 priv.currentQueryId = -1
-                root.contactExported(error, root.outputFile)
+
+                // send contacts back to source app (pick mode)
+                if (error === ContactModel.ExportNoError) {
+                    var obj = Qt.createQmlObject("import Ubuntu.Content 1.1;  ContentItem { url: '" + url + "' }", root)
+                    if (root.activeTransfer) {
+                        root.activeTransfer.items = [obj]
+                        root.activeTransfer.state = ContentTransfer.Charged
+                    } else {
+                        console.error("No active transfer")
+                    }
+                } else {
+                    console.error("Fail to export contacts:" + error)
+                }
+                root.done()
             }
 
             onContactsFetched: {
@@ -71,6 +86,17 @@ Item {
                                                          fetchedContacts)
                     }
                     root.contactsFetched(fetchedContacts)
+                }
+            }
+        }
+
+        Connections {
+            target: root.activeTransfer
+
+            onStateChanged: {
+                if (root.activeTransfer.state === ContentTransfer.Aborted) {
+                    root.activeTransfer = null
+                    root.done()
                 }
             }
         }

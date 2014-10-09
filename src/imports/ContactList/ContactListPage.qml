@@ -21,7 +21,7 @@ import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 1.0 as ListItem
 import Ubuntu.Components.Popups 1.0 as Popups
 import Ubuntu.Contacts 0.1 as ContactsUI
-import Ubuntu.Content 0.1 as ContentHub
+import Ubuntu.Content 1.1 as ContentHub
 
 import "../Common"
 
@@ -622,27 +622,12 @@ ContactsUI.PageWithBottomEdge {
     ContactExporter {
         id: contactExporter
 
-        property var activeTransfer: null
-
         contactModel: contactList.listModel
         outputFile: mainPage.pickMode ? "file:///tmp/address_book_app_export.vcf" : ""
-        onContactExported: {
-            // send contacts back to source app (pick mode)
-            if (error === ContactModel.ExportNoError) {
-                var obj = Qt.createQmlObject("import Ubuntu.Content 0.1;  ContentItem { url: '" + url + "' }", contactExporter)
-                if (activeTransfer) {
-                    activeTransfer.items = [obj]
-                    activeTransfer.state = ContentHub.ContentTransfer.Charged
-                }  else {
-                    console.error("No active transfer")
-                }
-            } else {
-                console.error("Fail to export contacts:" + error)
-            }
-            activeTransfer = null
+        onDone: {
             mainPage.pickMode = false
             mainPage.state = "default"
-            application.returnVcard(url)
+            application.returnVcard(contactExporter.outputFile)
         }
 
         onContactsFetched: {
