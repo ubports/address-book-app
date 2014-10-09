@@ -17,12 +17,13 @@
 import QtQuick 2.2
 import QtContacts 5.0
 import Ubuntu.Components 1.1
-import Ubuntu.Content 0.1 as ContentHub
+import Ubuntu.Content 1.1 as ContentHub
+import "../Common"
 
 Page {
     id: picker
 
-    property var contactModel
+    property alias contactModel: exporter.contactModel
     property var contacts
     property var curTransfer
 
@@ -33,30 +34,23 @@ Page {
         handler: ContentHub.ContentHandler.Share
 
         onPeerSelected: {
-            picker.curTransfer = peer.request();
-            if (picker.curTransfer.state === ContentHub.ContentTransfer.InProgress) {
-                var vCardUrl = "file:///tmp/vcard_" + (picker.contacts[0].displayLabel.label.replace(/\s/g, '')) + ".vcf"
-                picker.contactModel.exportContacts(vCardUrl, [], picker.contacts)
+            exporter.activeTransfer = peer.request();
+            if (exporter.activeTransfer.state === ContentHub.ContentTransfer.InProgress) {
+                exporter.start(picker.contacts)
             }
         }
 
-        onCancelPressed: pageStack.pop()
-    }
-
-    Connections {
-        target: picker.contactModel
-        onExportCompleted: {
-            if (picker.curTransfer && (picker.curTransfer.state === ContentHub.ContentTransfer.InProgress)) {
-                if (error === ContactModel.ExportNoError) {
-                    var obj = Qt.createQmlObject("import Ubuntu.Content 0.1;  ContentItem { url: '" + url + "' }", picker)
-                    picker.curTransfer.items = [ obj ]
-                    picker.curTransfer.state = ContentHub.ContentTransfer.Charged
-                } else {
-                    picker.curTransfer = ContentHub.ContentTransfer.Aborted
-                    console.error("Fail to export contact:" + error)
-                }
+        onCancelPressed: {
+            if (exporter.activeTransfer) {
+                exporter.activeTransfer.state = ContentHub.ContentTransfer.Aborted
             }
             pageStack.pop()
         }
+    }
+
+    ContactExporter {
+        id: exporter
+
+        onDone: pageStack.pop()
     }
 }

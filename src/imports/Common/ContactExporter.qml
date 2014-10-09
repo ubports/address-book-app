@@ -55,6 +55,29 @@ Item {
         id: priv
 
         property int currentQueryId: -1
+        readonly property var detailsBlackList: [ ContactDetail.Favorite, ContactDetail.Tag ]
+
+        function filterContactDetails(contact)
+        {
+            var newContact = Qt.createQmlObject("import QtContacts 5.0;  Contact { }", root)
+            var allDetails = contact.contactDetails
+            for(var i=0; i < allDetails.length; i++) {
+                var det = allDetails[i]
+                if (detailsBlackList.indexOf(det.type) == -1) {
+                    newContact.addDetail(det)
+                }
+            }
+            return newContact
+        }
+
+        function generateOutputFileName(contacts)
+        {
+            if (contacts.length === 1) {
+                return "file:///tmp/%1.vcard".arg(contacts[0].displayLabel.label.replace(/\s/g, ''))
+            } else {
+                return "file:///tmp/ubuntu_contacts.vcard";
+            }
+        }
 
         Connections {
             target: root.contactModel
@@ -72,6 +95,7 @@ Item {
                         console.error("No active transfer")
                     }
                 } else {
+                    root.activeTransfer = ContentHub.ContentTransfer.Aborted
                     console.error("Fail to export contacts:" + error)
                 }
                 root.done()
@@ -81,9 +105,17 @@ Item {
                 // currentQueryId == -2 is used during a fetch using "memory" manager
                 if ((priv.currentQueryId == -2) || (requestId == priv.currentQueryId)) {
                     if (root.outputFile !== "") {
+                        var contacts = []
+                        // remove unnecessary info from contacts
+                        for(var i=0; i < fetchedContacts.length; i++) {
+                            contacts.push(priv.filterContactDetails(fetchedContacts[i]))
+                        }
+                        // update outputFile with a friendly name
+                        root.outputFile = priv.generateOutputFileName(contacts)
+
                         root.contactModel.exportContacts(root.outputFile,
                                                          [],
-                                                         fetchedContacts)
+                                                         contacts)
                     }
                     root.contactsFetched(fetchedContacts)
                 }
