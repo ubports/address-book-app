@@ -33,7 +33,7 @@ QtObject {
                     for(var i=0; i < transfer.items.length; i++) {
                         urls.push(transfer.items[i].url)
                     }
-                    pageStack.importvcards(urls)
+                    mainWindow.importvcards(urls)
                 }
             }
         }
