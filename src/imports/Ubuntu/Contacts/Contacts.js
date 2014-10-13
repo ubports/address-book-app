@@ -31,50 +31,7 @@ function formatToDisplayWithDetails(contact, contactDetail, detailFields, defaul
 
 function formatToDisplay(contact, defaultTile)
 {
-    if (!contact) {
-        return defaultTitle
-    }
-
-    var detail = contact.detail(ContactDetail.Name)
-    if (detail) {
-        var fullName = (detail.firstName + " " + detail.lastName).trim()
-        if (fullName.length > 0) {
-            return fullName
-        }
-    }
-
-    detail = contact.detail(ContactDetail.Organization)
-    if (detail) {
-        if (detail.name && (detail.name.length > 0)) {
-            return detail.name
-        }
-    }
-
-    var details = contact.details(ContactDetail.PhoneNumber)
-    if (details.length > 0) {
-        detail = details[0]
-        if (detail.number && detail.number.length > 0) {
-            return detail.number
-        }
-    }
-
-    details = contact.details(ContactDetail.Email)
-    if (details.length > 0) {
-        detail = details[0]
-        if (detail.emailAddress && detail.emailAddress.length > 0) {
-            return detail.emailAddress
-        }
-    }
-
-    details = contact.details(ContactDetail.OnlineAccount)
-    if (details.length > 0) {
-        detail = details[0]
-        if (detail.accountUri && detail.accountUri.length > 0) {
-            return detail.accountUri
-        }
-    }
-
-    return defaultTile
+    return formatToDisplayWithDetails(contact, ContactDetail.DisplayLabel, [ DisplayLabel.Label ], defaultTitle)
 }
 
 function getAvatar(contact, defaultValue)
