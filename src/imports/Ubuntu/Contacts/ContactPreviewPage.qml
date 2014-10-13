@@ -20,6 +20,7 @@ import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 1.0 as ListItem
 import Ubuntu.Contacts 0.1 as ContactsUI
 import Ubuntu.Components.Popups 1.0 as Popups
+import "Contacts.js" as ContactsJS
 
 Page {
     id: root
@@ -27,21 +28,7 @@ Page {
     property QtObject contact: null
     property alias extensions: extensionsContents.children
 
-    function formatNameToDisplay(contact) {
-        if (!contact) {
-            return ""
-        }
-        if (contact.name) {
-            var detail = contact.name
-            return (detail.firstName + " " + detail.lastName).trim()
-        } else if (contact.displayLabel && contact.displayLabel.label && contact.displayLabel.label !== "") {
-            return contact.displayLabel.label
-        } else {
-            return ""
-        }
-    }
-
-    title: formatNameToDisplay(contact)
+    title: ContactsJS.formatToDisplay(contact, i18n.dtr("address-book-app", "No name"))
 
     Flickable {
         id: flickable

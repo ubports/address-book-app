@@ -26,7 +26,7 @@ ListItemWithActions {
     property bool showAvatar: true
     property bool isCurrentItem: false
     property string defaultAvatarUrl: ""
-    property string defaultTitle: ""
+    property string defaultTitle: i18n.dtr("address-book-app", "No name")
     property int titleDetail: ContactDetail.Name
     property variant titleFields: [ Name.FirstName, Name.LastName ]
     property bool detailsShown: false
@@ -107,7 +107,7 @@ ListItemWithActions {
 
             }
             color: UbuntuColors.lightAubergine
-            text: contact ? ContactsJS.formatToDisplay(contact, root.titleDetail, root.titleFields, "") : root.defaultTitle
+            text: contact ? ContactsJS.formatToDisplayWithDetails(contact, root.titleDetail, root.titleFields, "") : root.defaultTitle
             elide: Text.ElideRight
         }
 
