@@ -79,7 +79,7 @@ function formatToDisplay(contact, defaultTitle)
         }
     }
 
-    return defaultTile
+    return defaultTitle
 }
 
 function getAvatar(contact, defaultValue)
