@@ -30,6 +30,13 @@ Page {
 
     title: ContactsJS.formatToDisplay(contact, i18n.dtr("address-book-app", "No name"))
 
+    Connections {
+        target: contact
+        onContactChanged: {
+            root.title = ContactsJS.formatToDisplay(contact, i18n.dtr("address-book-app", "No name"))
+        }
+    }
+
     Flickable {
         id: flickable
 

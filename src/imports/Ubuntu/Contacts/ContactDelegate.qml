@@ -105,7 +105,7 @@ ListItemWithActions {
 
             }
             color: UbuntuColors.lightAubergine
-            text: root.displayLabel != "" ? root.displayLabel : tr.i18n("No name")
+            text: root.displayLabel != "" ? root.displayLabel : i18n.dtr("address-book-app", "No name")
             elide: Text.ElideRight
         }
 
