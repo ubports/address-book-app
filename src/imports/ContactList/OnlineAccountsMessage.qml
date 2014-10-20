@@ -17,35 +17,86 @@
 import QtQuick 2.2
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0 as Popups
+import Ubuntu.OnlineAccounts 0.1
+import Ubuntu.OnlineAccounts.Client 0.1
 
-Popups.Dialog {
-    width: units.gu(40)
-    height: units.gu(71)
+Item {
+    id: root
 
-    signal canceled()
-    signal accepted()
-    title: i18n.tr("You have no contacts.")
-    text: i18n.tr("Would you like to sync contacts\nfrom online accounts now?")
-    Button {
-        objectName: "onlineAccountsDialog.yesButton"
-        anchors {
-            left: parent.left
-            right: parent.right
-            margins: units.gu(1)
+    property var onlineAccountsMessageDialog: null
+    property bool enabled: true
+
+    function closeDialog()
+    {
+        if (onlineAccountsMessageDialog) {
+            PopupUtils.close(onlineAccountsMessageDialog)
+            onlineAccountsMessageDialog = null
         }
-        text: i18n.tr("Yes")
-        onClicked: accepted()
+        application.unsetFirstRun()
     }
 
-    Button {
-        objectName: "onlineAccountsDialog.noButton"
-        anchors {
-            left: parent.left
-            right: parent.right
-            margins: units.gu(1)
+    onEnabledChanged: {
+        if (!enabled) {
+            closeDialog()
         }
-        gradient: UbuntuColors.greyGradient
-        text: i18n.tr("No")
-        onClicked: canceled()
+    }
+
+    AccountServiceModel {
+        id: accounts
+        applicationId: "contacts-sync"
+        onCountChanged: {
+            if (count > 0) {
+                root.closeDialog()
+            }
+        }
+    }
+
+    Setup {
+        id: setup
+        applicationId: "contacts-sync"
+        providerId: "google"
+    }
+
+    Component {
+        id: noAccountDialog
+
+        Popups.Dialog {
+            width: units.gu(40)
+            height: units.gu(71)
+
+            title: i18n.tr("You have no contacts.")
+            text: i18n.tr("Would you like to sync contacts\nfrom online accounts now?")
+            Button {
+                objectName: "onlineAccountsDialog.yesButton"
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(1)
+                }
+                text: i18n.tr("Yes")
+                onClicked: {
+                    root.closeDialog()
+                    setup.exec()
+                }
+            }
+
+            Button {
+                objectName: "onlineAccountsDialog.noButton"
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(1)
+                }
+                gradient: UbuntuColors.greyGradient
+                text: i18n.tr("No")
+                onClicked: closeDialog()
+            }
+        }
+    }
+
+    Component.onCompleted: {
+        if (enabled && (accounts.count === 0)) {
+            root.onlineAccountsMessageDialog = PopupUtils.open(noAccountDialog, null)
+        }
     }
 }
