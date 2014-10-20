@@ -24,7 +24,6 @@ Item {
     id: root
 
     property var onlineAccountsMessageDialog: null
-    property bool enabled: true
 
     function closeDialog()
     {
@@ -33,12 +32,6 @@ Item {
             onlineAccountsMessageDialog = null
         }
         application.unsetFirstRun()
-    }
-
-    onEnabledChanged: {
-        if (!enabled) {
-            closeDialog()
-        }
     }
 
     AccountServiceModel {
@@ -95,7 +88,7 @@ Item {
     }
 
     Component.onCompleted: {
-        if (enabled && (accounts.count === 0)) {
+        if (accounts.count === 0) {
             root.onlineAccountsMessageDialog = PopupUtils.open(noAccountDialog, null)
         }
     }
