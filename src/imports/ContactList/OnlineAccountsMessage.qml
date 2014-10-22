@@ -58,7 +58,7 @@ Item {
             height: units.gu(71)
 
             title: i18n.tr("You have no contacts.")
-            text: i18n.tr("Would you like to sync contacts\nfrom online accounts now?")
+            text: i18n.tr("Would you like to sync contacts from your google online accounts now?")
             Button {
                 objectName: "onlineAccountsDialog.yesButton"
                 anchors {
