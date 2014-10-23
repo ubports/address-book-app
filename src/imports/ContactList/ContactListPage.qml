@@ -21,7 +21,7 @@ import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 1.0 as ListItem
 import Ubuntu.Components.Popups 1.0 as Popups
 import Ubuntu.Contacts 0.1 as ContactsUI
-import Ubuntu.Content 0.1 as ContentHub
+import Ubuntu.Content 1.1 as ContentHub
 
 import "../Common"
 
@@ -32,7 +32,6 @@ ContactsUI.PageWithBottomEdge {
     property bool pickMode: false
     property alias contentHubTransfer: contactExporter.activeTransfer
     property bool pickMultipleContacts: false
-    property var onlineAccountsMessageDialog: null
     property QtObject contactIndex: null
     property bool contactsLoaded: false
     property string newPhoneToAdd: ""
@@ -147,42 +146,6 @@ ContactsUI.PageWithBottomEdge {
     bottomEdgeTitle: "+"
     bottomEdgeEnabled: !contactList.isInSelectionMode
 
-    Component {
-        id: onlineAccountsDialog
-
-        OnlineAccountsMessage {
-            id: onlineAccountsMessage
-            onCanceled: {
-                mainPage.onlineAccountsMessageDialog = null
-                PopupUtils.close(onlineAccountsMessage)
-                application.unsetFirstRun()
-            }
-            onAccepted: {
-                Qt.openUrlExternally("settings:///system/online-accounts")
-                mainPage.onlineAccountsMessageDialog = null
-                PopupUtils.close(onlineAccountsMessage)
-                application.unsetFirstRun()
-            }
-        }
-    }
-
-    Component {
-        id: removeContactDialog
-
-        RemoveContactsDialog {
-            id: removeContactsDialogMessage
-
-            onCanceled: {
-                PopupUtils.close(removeContactsDialogMessage)
-            }
-
-            onAccepted: {
-                removeContacts(contactList.listModel)
-                PopupUtils.close(removeContactsDialogMessage)
-            }
-        }
-    }
-
     flickable: null
     ContactsUI.ContactListView {
         id: contactList
@@ -258,9 +221,7 @@ ContactsUI.PageWithBottomEdge {
         filterTerm: searchField.text
         detailToPick: ContactDetail.PhoneNumber
         multiSelectionEnabled: true
-        multipleSelection: !pickMode ||
-                           mainPage.pickMultipleContacts ||
-                           (contactExporter.active && contactExporter.isMultiple)
+        multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
 
         leftSideAction: Action {
             iconName: "delete"
@@ -305,7 +266,6 @@ ContactsUI.PageWithBottomEdge {
         }
 
         onAddDetailClicked: mainPage.addPhoneToContact(contact.contactId, " ")
-
         onIsInSelectionModeChanged: mainPage.state = isInSelectionMode ? "selection"  : "default"
         onSelectionCanceled: {
             if (pickMode) {
@@ -463,7 +423,7 @@ ContactsUI.PageWithBottomEdge {
                             contactList.selectAll()
                         }
                     }
-                    visible: contactList.isInSelectionMode
+                    visible: contactList.multipleSelection
                 },
                 Action {
                     objectName: "share"
@@ -478,13 +438,7 @@ ContactsUI.PageWithBottomEdge {
                             contacts.push(items.get(i).model.contact)
                         }
 
-                        if (mainPage.pickMode) {
-                            contactExporter.exportContacts(contacts)
-                            mainPage.pickMode = false
-                        } else {
-                            pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
-                                           { contactModel: contactList.listModel, contacts: contacts })
-                        }
+                        contactExporter.start(contacts)
                         contactList.endSelection()
                     }
                 },
@@ -628,49 +582,52 @@ ContactsUI.PageWithBottomEdge {
         }
     }
 
-    QtObject {
+    ContactExporter {
         id: contactExporter
 
-        property var activeTransfer: null
-        readonly property bool active: activeTransfer && (activeTransfer.state === ContentHub.ContentTransfer.InProgress && activeTransfer.direction === ContentHub.ContentTransfer.Import)
-        readonly property bool isMultiple: activeTransfer && (activeTransfer.selectionType === ContentHub.ContentTransfer.Multiple)
-
-        function exportContacts(contacts)
-        {
-            if (activeTransfer) {
-                var exportUrl = "file:///tmp/address_book_app_export.vcf"
-                mainPage.contactModel.exportCompleted.connect(contactExporter.onExportCompleted)
-                mainPage.contactModel.exportContacts(exportUrl, [], contacts)
-            } else {
-                console.error("Export requested with noo active transfer")
-            }
+        contactModel: contactList.listModel
+        outputFile: mainPage.pickMode ? "file:///tmp/address_book_app_export.vcf" : ""
+        onDone: {
+            mainPage.pickMode = false
+            mainPage.state = "default"
+            application.returnVcard(contactExporter.outputFile)
         }
 
-        function onExportCompleted(error, url)
-        {
-            mainPage.contactModel.exportCompleted.disconnect(contactExporter.onExportCompleted)
-            if (error === ContactModel.ExportNoError) {
-                var obj = Qt.createQmlObject("import Ubuntu.Content 0.1;  ContentItem { url: '" + url + "' }", contactExporter)
-                activeTransfer.items = [obj]
-                activeTransfer.state = ContentHub.ContentTransfer.Charged
-            } else {
-                console.error("Fail to export contacts:" + error)
+        onContactsFetched: {
+            // Share contacts to an application chosen by the user
+            if (!mainPage.pickMode) {
+                pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
+                               { contactModel: contactExporter.contactModel, contacts: contacts })
             }
-            activeTransfer = null
-            pickMode = false
-            mainPage.state = "defautl"
-            application.returnVcard(url)
+        }
+    }
+
+    Loader {
+        id: onlineAccount
+        source: (contactList.count === 0) &&
+                application.firstRun ? Qt.resolvedUrl("./OnlineAccountsMessage.qml") : ""
+    }
+
+
+    Component {
+        id: removeContactDialog
+
+        RemoveContactsDialog {
+            id: removeContactsDialogMessage
+
+            onCanceled: {
+                PopupUtils.close(removeContactsDialogMessage)
+            }
+
+            onAccepted: {
+                removeContacts(contactList.listModel)
+                PopupUtils.close(removeContactsDialogMessage)
+            }
         }
     }
 
     Component.onCompleted: {
         application.elapsed()
-        if ((contactList.count === 0) &&
-                   application.firstRun &&
-                   !mainPage.syncEnabled) {
-            mainPage.onlineAccountsMessageDialog = PopupUtils.open(onlineAccountsDialog, null)
-        }
-
         if (TEST_DATA !== "") {
             contactList.listModel.importContacts("file://" + TEST_DATA)
         }

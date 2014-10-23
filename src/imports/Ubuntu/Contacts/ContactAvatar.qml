@@ -37,7 +37,7 @@ UbuntuShape {
     function reload()
     {
         img.avatarUrl = Qt.binding(function() { return ContactsJS.getAvatar(contactElement, fallbackAvatarUrl) })
-        initialsLabel.contactDisplayName = Qt.binding(function() { return ContactsJS.formatToDisplay(contactElement, ContactDetail.Name, [Name.FirstName, Name.LastName], fallbackDisplayName) })
+        initialsLabel.contactDisplayName = Qt.binding(function() { return ContactsJS.formatToDisplayWithDetails(contactElement, ContactDetail.Name, [Name.FirstName, Name.LastName], fallbackDisplayName) })
     }
 
     radius: "medium"
@@ -47,7 +47,7 @@ UbuntuShape {
         id: initialsLabel
         objectName: "avatarInitials"
 
-        property string contactDisplayName: ContactsJS.formatToDisplay(contactElement, ContactDetail.Name, [Name.FirstName, Name.LastName], fallbackDisplayName)
+        property string contactDisplayName: ContactsJS.formatToDisplayWithDetails(contactElement, ContactDetail.Name, [Name.FirstName, Name.LastName], fallbackDisplayName)
 
         anchors.centerIn: parent
         text: Contacts.contactInitialsFromString(contactDisplayName)

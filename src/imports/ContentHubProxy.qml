@@ -24,7 +24,8 @@ QtObject {
             target: ContentHub.ContentHub
             onExportRequested: {
                 // enter in pick mode
-                pageStack.contactListPage.startPickMode(false, transfer)
+                mainWindow.pickWithTransfer((transfer.selectionType === ContentHub.ContentTransfer.Single),
+                                             transfer)
             }
             onImportRequested: {
                 if (transfer.state === ContentHub.ContentTransfer.Charged) {
@@ -32,7 +33,7 @@ QtObject {
                     for(var i=0; i < transfer.items.length; i++) {
                         urls.push(transfer.items[i].url)
                     }
-                    pageStack.contactListPage.importContact(urls)
+                    mainWindow.importvcards(urls)
                 }
             }
         }
