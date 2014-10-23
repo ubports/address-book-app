@@ -54,20 +54,6 @@ MultipleSelectionListView {
     property bool showAvatar: true
 
     /*!
-      \qmlproperty int titleDetail
-
-      This property holds the contact detail which will be used to display the contact title in the delegate
-      By default this is set to ContactDetail.Name.
-    */
-    property int titleDetail: ContactDetail.DisplayLabel
-    /*!
-      \qmlproperty list<int> titleFields
-
-      This property holds the list of all fields which will be used to display the contact title in the delegate
-      By default this is set to [ Name.FirstName, Name.LastName ]
-    */
-    property variant titleFields: [ DisplayLabel.Label ]
-    /*!
       \qmlproperty list<SortOrder> sortOrders
 
       This property holds a list of sort orders used by the contacts model.
@@ -101,7 +87,7 @@ MultipleSelectionListView {
         detailTypesHint: {
             var hints = [ ContactDetail.Tag,          // sections
                           ContactDetail.PhoneNumber,  // expansion
-                          contactListView.titleDetail ]
+                          ContactDetail.DisplayLabel ]
 
             if (contactListView.showAvatar) {
                 hints.push(ContactDetail.Avatar)
@@ -292,8 +278,6 @@ MultipleSelectionListView {
         selected: contactListView.multiSelectionEnabled && contactListView.isSelected(contactDelegate)
         selectionMode: contactListView.isInSelectionMode
         defaultAvatarUrl: contactListView.defaultAvatarImageUrl
-        titleDetail: contactListView.titleDetail
-        titleFields: contactListView.titleFields
         isCurrentItem: ListView.isCurrentItem
 
         // actions

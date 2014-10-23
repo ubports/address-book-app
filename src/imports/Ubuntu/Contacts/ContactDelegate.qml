@@ -26,12 +26,10 @@ ListItemWithActions {
     property bool showAvatar: true
     property bool isCurrentItem: false
     property string defaultAvatarUrl: ""
-    property string defaultTitle: ""
-    property int titleDetail: ContactDetail.Name
-    property variant titleFields: [ Name.FirstName, Name.LastName ]
     property bool detailsShown: false
     property int loaderOpacity: 0.0
     property bool flicking: false
+    readonly property string displayLabel: contact ? ContactsJS.formatToDisplay(contact, "") : ""
 
     signal clicked(int index, QtObject contact)
     signal pressAndHold(int index, QtObject contact)
@@ -84,7 +82,7 @@ ListItemWithActions {
             id: avatar
 
             contactElement: contact
-            fallbackDisplayName: name.text
+            fallbackDisplayName: root.displayLabel
             anchors {
                 left: parent.left
                 top: parent.top
@@ -107,7 +105,7 @@ ListItemWithActions {
 
             }
             color: UbuntuColors.lightAubergine
-            text: contact ? ContactsJS.formatToDisplay(contact, root.titleDetail, root.titleFields, "") : root.defaultTitle
+            text: root.displayLabel != "" ? root.displayLabel : i18n.dtr("address-book-app", "No name")
             elide: Text.ElideRight
         }
 

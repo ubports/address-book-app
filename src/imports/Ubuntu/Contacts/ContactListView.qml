@@ -69,20 +69,6 @@ Item {
     */
     property alias showAvatar: view.showAvatar
     /*!
-      \qmlproperty int titleDetail
-
-      This property holds the contact detail which will be used to display the contact title in the delegate
-      By default this is set to ContactDetail.Name.
-    */
-    property alias titleDetail: view.titleDetail
-    /*!
-      \qmlproperty list<int> titleFields
-
-      This property holds the list of all fields which will be used to display the contact title in the delegate
-      By default this is set to [ Name.FirstName, Name.LastName ]
-    */
-    property alias titleFields: view.titleFields
-    /*!
       \qmlproperty list<SortOrder> sortOrders
 
       This property holds a list of sort orders used by the contacts model.
