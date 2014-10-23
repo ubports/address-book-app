@@ -32,7 +32,6 @@ ContactsUI.PageWithBottomEdge {
     property bool pickMode: false
     property alias contentHubTransfer: contactExporter.activeTransfer
     property bool pickMultipleContacts: false
-    property var onlineAccountsMessageDialog: null
     property QtObject contactIndex: null
     property bool contactsLoaded: false
     property string newPhoneToAdd: ""
@@ -146,42 +145,6 @@ ContactsUI.PageWithBottomEdge {
     title: i18n.tr("Contacts")
     bottomEdgeTitle: "+"
     bottomEdgeEnabled: !contactList.isInSelectionMode
-
-    Component {
-        id: onlineAccountsDialog
-
-        OnlineAccountsMessage {
-            id: onlineAccountsMessage
-            onCanceled: {
-                mainPage.onlineAccountsMessageDialog = null
-                PopupUtils.close(onlineAccountsMessage)
-                application.unsetFirstRun()
-            }
-            onAccepted: {
-                Qt.openUrlExternally("settings:///system/online-accounts")
-                mainPage.onlineAccountsMessageDialog = null
-                PopupUtils.close(onlineAccountsMessage)
-                application.unsetFirstRun()
-            }
-        }
-    }
-
-    Component {
-        id: removeContactDialog
-
-        RemoveContactsDialog {
-            id: removeContactsDialogMessage
-
-            onCanceled: {
-                PopupUtils.close(removeContactsDialogMessage)
-            }
-
-            onAccepted: {
-                removeContacts(contactList.listModel)
-                PopupUtils.close(removeContactsDialogMessage)
-            }
-        }
-    }
 
     flickable: null
     ContactsUI.ContactListView {
@@ -639,14 +602,32 @@ ContactsUI.PageWithBottomEdge {
         }
     }
 
+    Loader {
+        id: onlineAccount
+        source: (contactList.count === 0) &&
+                application.firstRun ? Qt.resolvedUrl("./OnlineAccountsMessage.qml") : ""
+    }
+
+
+    Component {
+        id: removeContactDialog
+
+        RemoveContactsDialog {
+            id: removeContactsDialogMessage
+
+            onCanceled: {
+                PopupUtils.close(removeContactsDialogMessage)
+            }
+
+            onAccepted: {
+                removeContacts(contactList.listModel)
+                PopupUtils.close(removeContactsDialogMessage)
+            }
+        }
+    }
+
     Component.onCompleted: {
         application.elapsed()
-        if ((contactList.count === 0) &&
-                   application.firstRun &&
-                   !mainPage.syncEnabled) {
-            mainPage.onlineAccountsMessageDialog = PopupUtils.open(onlineAccountsDialog, null)
-        }
-
         if (TEST_DATA !== "") {
             contactList.listModel.importContacts("file://" + TEST_DATA)
         }

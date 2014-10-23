@@ -75,8 +75,6 @@ VisualDataModel {
 
         defaultAvatarUrl: "image://theme/contacts"
         width: parent ? parent.width : 0
-        titleDetail: ContactDetail.DisplayLabel
-        titleFields: [ DisplayLabel.Label ]
         isCurrentItem: root.currentIndex === index
         locked: true
 
