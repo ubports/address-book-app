@@ -425,13 +425,13 @@ ContactsUI.PageWithBottomEdge {
                             contactList.selectAll()
                         }
                     }
-                    visible: contactList.multipleSelection
+                    visible: contactList.multipleSelection && !mainPage.isEmpty
                 },
                 Action {
                     objectName: "share"
                     text: i18n.tr("Share")
                     iconName: "share"
-                    visible: contactList.isInSelectionMode
+                    visible: contactList.isInSelectionMode && !mainPage.isEmpty
                     onTriggered: {
                         var contacts = []
                         var items = contactList.selectedItems
