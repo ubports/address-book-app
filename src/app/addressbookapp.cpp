@@ -221,6 +221,11 @@ AddressBookApp::~AddressBookApp()
 {
     unsetFirstRun();
 
+    if (m_syncMonitor) {
+        m_syncMonitor->call("detach");
+        delete m_syncMonitor;
+    }
+
     if (m_view) {
         delete m_view;
     }
@@ -438,9 +443,11 @@ void AddressBookApp::connectWithSyncMonitor()
                                        "com.canonical.SyncMonitor");
     if (m_syncMonitor->lastError().isValid()) {
         qWarning() << "Fail to connect with sync monitor:" << m_syncMonitor->lastError();
+    } else {
+        connect(m_syncMonitor, SIGNAL(stateChanged()), SIGNAL(syncingChanged()));
+        connect(m_syncMonitor, SIGNAL(enabledServicesChanged()), SIGNAL(syncEnabledChanged()));
+        m_syncMonitor->call("attach");
     }
-    connect(m_syncMonitor, SIGNAL(stateChanged()), SIGNAL(syncingChanged()));
-    connect(m_syncMonitor, SIGNAL(enabledServicesChanged()), SIGNAL(syncEnabledChanged()));
     Q_EMIT syncEnabledChanged();
     Q_EMIT syncingChanged();
 }
