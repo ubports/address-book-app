@@ -1,5 +1,6 @@
 set(CONTACT_COMMON_QMLS
     ContactDetailItem.qml
+    ContactExporter.qml
     KeyboardRectangle.qml
     RemoveContactsDialog.qml
     StandardAnimation.qml

@@ -6,16 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 16:18-0300\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2014-09-29 15:21+0200\n"
 "PO-Revision-Date: 2014-08-29 11:19+0000\n"
 "Last-Translator: Walter Cheuk <wwycheuk@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-06 07:32+0000\n"
+"X-Launchpad-Export-Date: 2014-10-02 06:37+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
@@ -32,7 +31,7 @@ msgstr "+ 建立新的"
 msgid "Add Field"
 msgstr "新增欄位"
 
-#: ../src/imports/ContactList/ContactListPage.qml:528
+#: ../src/imports/ContactList/ContactListPage.qml:532
 msgid "Add contact"
 msgstr "新增聯絡人"
 
@@ -56,7 +55,7 @@ msgid "Aim"
 msgstr ""
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:410
+#: ../src/imports/ContactList/ContactListPage.qml:414
 msgid "All"
 msgstr "全部"
 
@@ -69,12 +68,13 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "您確定要移除這位聯絡人？"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:423
+#: ../src/imports/ContactList/ContactListPage.qml:427
+#: ../src/imports/ContactView/ContactFetchError.qml:29
 #: ../src/imports/MainWindow.qml:133
 msgid "Cancel"
 msgstr "取消"
 
-#: ../src/imports/ContactList/ContactListPage.qml:447
+#: ../src/imports/ContactList/ContactListPage.qml:451
 msgid "Cancel selection"
 msgstr "取消選取"
 
@@ -103,13 +103,13 @@ msgstr "Contacts;People;Numbers;聯絡人;人物;號碼;"
 msgid "Country"
 msgstr "國家"
 
-#: ../src/imports/ContactList/ContactListPage.qml:607
+#: ../src/imports/ContactList/ContactListPage.qml:613
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:267
-#: ../src/imports/ContactList/ContactListPage.qml:489
+#: ../src/imports/ContactList/ContactListPage.qml:493
 msgid "Delete"
 msgstr "刪除"
 
@@ -142,7 +142,7 @@ msgstr "請輸入 email 位址"
 msgid "Error"
 msgstr "錯誤"
 
-#: ../src/imports/ContactList/ContactListPage.qml:410
+#: ../src/imports/ContactList/ContactListPage.qml:414
 msgid "Favorites"
 msgstr "最愛"
 
@@ -184,7 +184,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "姓氏"
 
-#: ../src/imports/ContactList/ContactListPage.qml:338
+#: ../src/imports/ContactList/ContactListPage.qml:342
 msgid "Loading..."
 msgstr "載入中…"
 
@@ -244,7 +244,7 @@ msgstr "郵遞區號"
 msgid "Professional Details"
 msgstr "專業詳情"
 
-#: ../src/imports/ContactList/ContactListPage.qml:381
+#: ../src/imports/ContactList/ContactListPage.qml:385
 msgid "Quit"
 msgstr "結束"
 
@@ -260,19 +260,19 @@ msgstr "角色"
 msgid "Save"
 msgstr "儲存"
 
-#: ../src/imports/ContactList/ContactListPage.qml:396
+#: ../src/imports/ContactList/ContactListPage.qml:400
 msgid "Search"
 msgstr "搜尋"
 
-#: ../src/imports/ContactList/ContactListPage.qml:353
+#: ../src/imports/ContactList/ContactListPage.qml:357
 msgid "Search..."
 msgstr "搜尋..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:453
+#: ../src/imports/ContactList/ContactListPage.qml:457
 msgid "Select All"
 msgstr "全部選取"
 
-#: ../src/imports/ContactList/ContactListPage.qml:466
+#: ../src/imports/ContactList/ContactListPage.qml:470
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "分享"
@@ -290,15 +290,15 @@ msgstr "社交"
 msgid "Street"
 msgstr "街道"
 
-#: ../src/imports/ContactList/ContactListPage.qml:390
+#: ../src/imports/ContactList/ContactListPage.qml:394
 msgid "Sync"
 msgstr "同步"
 
-#: ../src/imports/ContactList/ContactListPage.qml:390
+#: ../src/imports/ContactList/ContactListPage.qml:394
 msgid "Syncing"
 msgstr "同步中"
 
-#: ../src/imports/ContactList/ContactListPage.qml:338
+#: ../src/imports/ContactList/ContactListPage.qml:342
 msgid "Syncing..."
 msgstr "同步中…"
 
@@ -341,6 +341,3 @@ msgstr "是"
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "您尚無聯絡人。"
-
-#~ msgid "Favorite"
-#~ msgstr "喜愛"

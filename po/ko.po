@@ -6,16 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 16:18-0300\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2014-09-29 15:21+0200\n"
 "PO-Revision-Date: 2014-07-19 07:49+0000\n"
 "Last-Translator: MinSik CHO <Unknown>\n"
 "Language-Team: Korean <ko@li.org>\n"
-"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-06 07:32+0000\n"
+"X-Launchpad-Export-Date: 2014-10-02 06:37+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
@@ -26,19 +25,19 @@ msgstr "%1 vCard를 가져왔습니다."
 #. TRANSLATORS: this refers to creating a new contact
 #: ../src/imports/ContactList/ContactListPage.qml:240
 msgid "+ Create New"
-msgstr ""
+msgstr "+ 새 연락처"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:307
 msgid "Add Field"
 msgstr "필드 추가"
 
-#: ../src/imports/ContactList/ContactListPage.qml:528
+#: ../src/imports/ContactList/ContactListPage.qml:532
 msgid "Add contact"
 msgstr "연락처 추가"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
-msgstr ""
+msgstr "번호 추가..."
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:51
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
@@ -56,7 +55,7 @@ msgid "Aim"
 msgstr "AIM"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:410
+#: ../src/imports/ContactList/ContactListPage.qml:414
 msgid "All"
 msgstr "모두"
 
@@ -69,12 +68,13 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "정말로 이 주소록을 삭제할까요?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:423
+#: ../src/imports/ContactList/ContactListPage.qml:427
+#: ../src/imports/ContactView/ContactFetchError.qml:29
 #: ../src/imports/MainWindow.qml:133
 msgid "Cancel"
 msgstr "취소"
 
-#: ../src/imports/ContactList/ContactListPage.qml:447
+#: ../src/imports/ContactList/ContactListPage.qml:451
 msgid "Cancel selection"
 msgstr "선택 해제"
 
@@ -93,23 +93,23 @@ msgstr "연락처"
 
 #: ../data/address-book-app.desktop.in.in.h:2
 msgid "Contacts Address Book"
-msgstr ""
+msgstr "주소록"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
-msgstr ""
+msgstr "Contacts;연락처;People;사람;Numbers;번호"
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
 msgstr "국가"
 
-#: ../src/imports/ContactList/ContactListPage.qml:607
+#: ../src/imports/ContactList/ContactListPage.qml:613
 msgid "Create a new contact by swiping up from the bottom of the screen."
-msgstr ""
+msgstr "화면 아래에서 위로 쓸어 새 연락처를 만듭니다."
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:267
-#: ../src/imports/ContactList/ContactListPage.qml:489
+#: ../src/imports/ContactList/ContactListPage.qml:493
 msgid "Delete"
 msgstr "삭제"
 
@@ -142,9 +142,9 @@ msgstr "이메일 주소를 입력하세요"
 msgid "Error"
 msgstr "오류"
 
-#: ../src/imports/ContactList/ContactListPage.qml:410
+#: ../src/imports/ContactList/ContactListPage.qml:414
 msgid "Favorites"
-msgstr ""
+msgstr "즐겨찾기"
 
 #: ../src/imports/ContactEdit/ContactDetailNameEditor.qml:84
 msgid "First name"
@@ -184,7 +184,7 @@ msgstr "재버"
 msgid "Last name"
 msgstr "성"
 
-#: ../src/imports/ContactList/ContactListPage.qml:338
+#: ../src/imports/ContactList/ContactListPage.qml:342
 msgid "Loading..."
 msgstr "불러오는 중..."
 
@@ -244,7 +244,7 @@ msgstr "우편 번호"
 msgid "Professional Details"
 msgstr "직업 정보"
 
-#: ../src/imports/ContactList/ContactListPage.qml:381
+#: ../src/imports/ContactList/ContactListPage.qml:385
 msgid "Quit"
 msgstr "끝내기"
 
@@ -260,19 +260,19 @@ msgstr "직위"
 msgid "Save"
 msgstr "저장"
 
-#: ../src/imports/ContactList/ContactListPage.qml:396
+#: ../src/imports/ContactList/ContactListPage.qml:400
 msgid "Search"
 msgstr "검색"
 
-#: ../src/imports/ContactList/ContactListPage.qml:353
+#: ../src/imports/ContactList/ContactListPage.qml:357
 msgid "Search..."
-msgstr ""
+msgstr "검색..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:453
+#: ../src/imports/ContactList/ContactListPage.qml:457
 msgid "Select All"
 msgstr "전체 선택"
 
-#: ../src/imports/ContactList/ContactListPage.qml:466
+#: ../src/imports/ContactList/ContactListPage.qml:470
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "공유"
@@ -290,15 +290,15 @@ msgstr "소셜"
 msgid "Street"
 msgstr "도로명"
 
-#: ../src/imports/ContactList/ContactListPage.qml:390
+#: ../src/imports/ContactList/ContactListPage.qml:394
 msgid "Sync"
 msgstr "동기화"
 
-#: ../src/imports/ContactList/ContactListPage.qml:390
+#: ../src/imports/ContactList/ContactListPage.qml:394
 msgid "Syncing"
 msgstr "동기화 중"
 
-#: ../src/imports/ContactList/ContactListPage.qml:338
+#: ../src/imports/ContactList/ContactListPage.qml:342
 msgid "Syncing..."
 msgstr "동기화 중..."
 
@@ -341,6 +341,3 @@ msgstr "예"
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "연락처가 없습니다."
-
-#~ msgid "Favorite"
-#~ msgstr "즐겨찾기"

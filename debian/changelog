@@ -1,3 +1,39 @@
+address-book-app (0.2+14.10.20141023~rtm-0ubuntu1) 14.09; urgency=low
+
+  [ CI bot ]
+  * Resync trunk
+
+  [ Renato Araujo Oliveira Filho ]
+  * Fetch the full contact before export it on contact list. Removed
+    "_X-Ubuntu-Splash-Title" key from desktop file. (LP: #1371243)
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 23 Oct 2014 16:22:40 +0000
+
+address-book-app (0.2+14.10.20141001-0ubuntu1) 14.09; urgency=low
+
+  [ CI bot ]
+  * Resync trunk
+
+  [ Albert Astals ]
+  * [PageWithBottomEdge] Make bottom edge hint invisible when not active
+    [ContactEditor] disable save button while avatar scale still running
+    [Application] Used new desktop entries to show a fake application
+    page during the startup. (LP: #1373196)
+
+  [ Renato Araujo Oliveira Filho ]
+  * [PageWithBottomEdge] Make bottom edge hint invisible when not active
+    [ContactEditor] disable save button while avatar scale still running
+    [Application] Used new desktop entries to show a fake application
+    page during the startup. (LP: #1373196)
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 01 Oct 2014 00:48:26 +0000
+
 address-book-app (0.2+14.10.20140919-0ubuntu1) utopic; urgency=low
 
   [ Leo Arias ]

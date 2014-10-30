@@ -6,16 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 16:18-0300\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2014-09-29 15:21+0200\n"
 "PO-Revision-Date: 2014-09-05 14:45+0000\n"
 "Last-Translator: Nicat Məmmədov <n1c4t97@gmail.com>\n"
 "Language-Team: Azerbaijani <az@li.org>\n"
-"Language: az\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-06 07:32+0000\n"
+"X-Launchpad-Export-Date: 2014-10-02 06:36+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
@@ -32,7 +31,7 @@ msgstr "+ Yenisini Yarat"
 msgid "Add Field"
 msgstr "Sәtir әlavә et"
 
-#: ../src/imports/ContactList/ContactListPage.qml:528
+#: ../src/imports/ContactList/ContactListPage.qml:532
 msgid "Add contact"
 msgstr "Kontakt əlavə et"
 
@@ -56,7 +55,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:410
+#: ../src/imports/ContactList/ContactListPage.qml:414
 msgid "All"
 msgstr "Hamısı"
 
@@ -69,12 +68,13 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "Bu nömrәni silmәk iatәdiyinizdәn әminsiniz?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:423
+#: ../src/imports/ContactList/ContactListPage.qml:427
+#: ../src/imports/ContactView/ContactFetchError.qml:29
 #: ../src/imports/MainWindow.qml:133
 msgid "Cancel"
 msgstr "İmtina"
 
-#: ../src/imports/ContactList/ContactListPage.qml:447
+#: ../src/imports/ContactList/ContactListPage.qml:451
 msgid "Cancel selection"
 msgstr "Seçimdәn imtina et"
 
@@ -103,13 +103,13 @@ msgstr "Kontaktlar;İnsanlar;Nömrәlәr"
 msgid "Country"
 msgstr "Ölkə"
 
-#: ../src/imports/ContactList/ContactListPage.qml:607
+#: ../src/imports/ContactList/ContactListPage.qml:613
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:267
-#: ../src/imports/ContactList/ContactListPage.qml:489
+#: ../src/imports/ContactList/ContactListPage.qml:493
 msgid "Delete"
 msgstr "Sil"
 
@@ -127,7 +127,7 @@ msgstr "Epoçt"
 
 #: ../src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
-msgstr "Nömrәni daxil edin"
+msgstr "Nömrə daxil edin"
 
 #: ../src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:27
 msgid "Enter a social alias"
@@ -142,7 +142,7 @@ msgstr "Epoçt ünvanını daxil edin"
 msgid "Error"
 msgstr "Xəta"
 
-#: ../src/imports/ContactList/ContactListPage.qml:410
+#: ../src/imports/ContactList/ContactListPage.qml:414
 msgid "Favorites"
 msgstr "Seçilmişlər"
 
@@ -184,7 +184,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Soyadı"
 
-#: ../src/imports/ContactList/ContactListPage.qml:338
+#: ../src/imports/ContactList/ContactListPage.qml:342
 msgid "Loading..."
 msgstr "Yüklənir..."
 
@@ -244,7 +244,7 @@ msgstr "Poçt indeksi"
 msgid "Professional Details"
 msgstr "Professional Təfərrüatlar"
 
-#: ../src/imports/ContactList/ContactListPage.qml:381
+#: ../src/imports/ContactList/ContactListPage.qml:385
 msgid "Quit"
 msgstr "Çıx"
 
@@ -260,19 +260,19 @@ msgstr "Vəzifə"
 msgid "Save"
 msgstr "Saxla"
 
-#: ../src/imports/ContactList/ContactListPage.qml:396
+#: ../src/imports/ContactList/ContactListPage.qml:400
 msgid "Search"
 msgstr "Axtar"
 
-#: ../src/imports/ContactList/ContactListPage.qml:353
+#: ../src/imports/ContactList/ContactListPage.qml:357
 msgid "Search..."
 msgstr "Axtar..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:453
+#: ../src/imports/ContactList/ContactListPage.qml:457
 msgid "Select All"
 msgstr "Hamısını Seç"
 
-#: ../src/imports/ContactList/ContactListPage.qml:466
+#: ../src/imports/ContactList/ContactListPage.qml:470
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Paylaş"
@@ -290,15 +290,15 @@ msgstr "Sosial"
 msgid "Street"
 msgstr "Küçə"
 
-#: ../src/imports/ContactList/ContactListPage.qml:390
+#: ../src/imports/ContactList/ContactListPage.qml:394
 msgid "Sync"
 msgstr "Sinxronlaşdır"
 
-#: ../src/imports/ContactList/ContactListPage.qml:390
+#: ../src/imports/ContactList/ContactListPage.qml:394
 msgid "Syncing"
 msgstr "Sinxronlaşdırılır"
 
-#: ../src/imports/ContactList/ContactListPage.qml:338
+#: ../src/imports/ContactList/ContactListPage.qml:342
 msgid "Syncing..."
 msgstr "Sinxronlaşdırılır..."
 
@@ -341,6 +341,3 @@ msgstr "Hə"
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "Heç bir kontaktınız yoxdu."
-
-#~ msgid "Favorite"
-#~ msgstr "Seçilmiş"

@@ -6,16 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-18 16:18-0300\n"
-"PO-Revision-Date: 2014-08-29 17:34+0000\n"
-"Last-Translator: Meriuță Cornel <meriutacornel@neacornel.eu>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2014-09-29 15:21+0200\n"
+"PO-Revision-Date: 2014-09-24 13:46+0000\n"
+"Last-Translator: Marian Vasile <marianvasile1972@gmail.com>\n"
 "Language-Team: Romanian <ro@li.org>\n"
-"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-09-06 07:32+0000\n"
+"X-Launchpad-Export-Date: 2014-10-02 06:37+0000\n"
 "X-Generator: Launchpad (build 17196)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
@@ -32,7 +31,7 @@ msgstr "+Creare contact nou"
 msgid "Add Field"
 msgstr "Adaugă câmp"
 
-#: ../src/imports/ContactList/ContactListPage.qml:528
+#: ../src/imports/ContactList/ContactListPage.qml:532
 msgid "Add contact"
 msgstr "Adăugare contact"
 
@@ -56,7 +55,7 @@ msgid "Aim"
 msgstr "Scop"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:410
+#: ../src/imports/ContactList/ContactListPage.qml:414
 msgid "All"
 msgstr "Tot"
 
@@ -69,12 +68,13 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "Sigur doriți să eliminați acest contact?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:423
+#: ../src/imports/ContactList/ContactListPage.qml:427
+#: ../src/imports/ContactView/ContactFetchError.qml:29
 #: ../src/imports/MainWindow.qml:133
 msgid "Cancel"
 msgstr "Anulează"
 
-#: ../src/imports/ContactList/ContactListPage.qml:447
+#: ../src/imports/ContactList/ContactListPage.qml:451
 msgid "Cancel selection"
 msgstr "Anulează selecția"
 
@@ -103,13 +103,15 @@ msgstr "Contacte;Persoane;Numere"
 msgid "Country"
 msgstr "Ţara"
 
-#: ../src/imports/ContactList/ContactListPage.qml:607
+#: ../src/imports/ContactList/ContactListPage.qml:613
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
+"Creați un contact nou prin glisarea din josul ecranului către marginea "
+"superioară."
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:267
-#: ../src/imports/ContactList/ContactListPage.qml:489
+#: ../src/imports/ContactList/ContactListPage.qml:493
 msgid "Delete"
 msgstr "Șterge"
 
@@ -142,7 +144,7 @@ msgstr "Introduceți o adresă de e-mail"
 msgid "Error"
 msgstr "Eroare"
 
-#: ../src/imports/ContactList/ContactListPage.qml:410
+#: ../src/imports/ContactList/ContactListPage.qml:414
 msgid "Favorites"
 msgstr "Favorite"
 
@@ -184,7 +186,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Nume de familie"
 
-#: ../src/imports/ContactList/ContactListPage.qml:338
+#: ../src/imports/ContactList/ContactListPage.qml:342
 msgid "Loading..."
 msgstr "Se încarcă..."
 
@@ -244,7 +246,7 @@ msgstr "Cod poștal"
 msgid "Professional Details"
 msgstr "Detalii profesionale"
 
-#: ../src/imports/ContactList/ContactListPage.qml:381
+#: ../src/imports/ContactList/ContactListPage.qml:385
 msgid "Quit"
 msgstr "Ieșire"
 
@@ -260,19 +262,19 @@ msgstr "Rol"
 msgid "Save"
 msgstr "Salvează"
 
-#: ../src/imports/ContactList/ContactListPage.qml:396
+#: ../src/imports/ContactList/ContactListPage.qml:400
 msgid "Search"
 msgstr "Căutare"
 
-#: ../src/imports/ContactList/ContactListPage.qml:353
+#: ../src/imports/ContactList/ContactListPage.qml:357
 msgid "Search..."
 msgstr "Căutare...."
 
-#: ../src/imports/ContactList/ContactListPage.qml:453
+#: ../src/imports/ContactList/ContactListPage.qml:457
 msgid "Select All"
 msgstr "Selectați tot"
 
-#: ../src/imports/ContactList/ContactListPage.qml:466
+#: ../src/imports/ContactList/ContactListPage.qml:470
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Partajare"
@@ -290,15 +292,15 @@ msgstr "Social"
 msgid "Street"
 msgstr "Stradă"
 
-#: ../src/imports/ContactList/ContactListPage.qml:390
+#: ../src/imports/ContactList/ContactListPage.qml:394
 msgid "Sync"
 msgstr "Sincronizare"
 
-#: ../src/imports/ContactList/ContactListPage.qml:390
+#: ../src/imports/ContactList/ContactListPage.qml:394
 msgid "Syncing"
 msgstr "Se sincronizează"
 
-#: ../src/imports/ContactList/ContactListPage.qml:338
+#: ../src/imports/ContactList/ContactListPage.qml:342
 msgid "Syncing..."
 msgstr "Sincronizare..."
 
@@ -341,6 +343,3 @@ msgstr "Da"
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
 msgid "You have no contacts."
 msgstr "Nu aveți contacte."
-
-#~ msgid "Favorite"
-#~ msgstr "Favorite"
