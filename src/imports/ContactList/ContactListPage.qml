@@ -36,6 +36,7 @@ ContactsUI.PageWithBottomEdge {
     property bool contactsLoaded: false
     property string newPhoneToAdd: ""
 
+    readonly property bool isEmpty: (contactList.count === 0)
     readonly property bool allowToQuit: (application.callbackApplication.length > 0)
     readonly property bool syncEnabled: application.syncEnabled
     readonly property var contactModel: contactList.listModel ? contactList.listModel : null
@@ -359,6 +360,7 @@ ContactsUI.PageWithBottomEdge {
                 Action {
                     text: i18n.tr("Search")
                     iconName: "search"
+                    visible: !mainPage.isEmpty
                     onTriggered: {
                         mainPage.state = (mainPage.state === "newphone" ? "newphoneSearching" : "searching")
                         contactList.showAllContacts()
@@ -550,7 +552,7 @@ ContactsUI.PageWithBottomEdge {
         width: childrenRect.width
         spacing: units.gu(2)
 
-        visible: (contactList.count === 0 && !indicator.visible)
+        visible: (mainPage.isEmpty && !indicator.visible)
 
         Icon {
             id: emptyStateIcon
@@ -564,7 +566,9 @@ ContactsUI.PageWithBottomEdge {
             id: emptyStateLabel
             width: mainPage.width - units.gu(12)
             height: paintedHeight
-            text: i18n.tr("Create a new contact by swiping up from the bottom of the screen.")
+            text: mainPage.pickMode ?
+                      i18n.tr("No Contacts.") :
+                      i18n.tr("Create a new contact by swiping up from the bottom of the screen.")
             color: "#5d5d5d"
             fontSize: "x-large"
             wrapMode: Text.WordWrap
