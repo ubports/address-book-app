@@ -14,30 +14,30 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-02 06:37+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-10-31 06:44+0000\n"
+"X-Generator: Launchpad (build 17211)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
 msgid "%1 vCards imported"
-msgstr ""
+msgstr "%1 vKad diimport"
 
 #. TRANSLATORS: this refers to creating a new contact
-#: ../src/imports/ContactList/ContactListPage.qml:240
+#: ../src/imports/ContactList/ContactListPage.qml:203
 msgid "+ Create New"
-msgstr ""
+msgstr "+ Cipta Baharu"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:307
 msgid "Add Field"
-msgstr ""
+msgstr "Tambah Medan"
 
-#: ../src/imports/ContactList/ContactListPage.qml:532
+#: ../src/imports/ContactList/ContactListPage.qml:486
 msgid "Add contact"
-msgstr ""
+msgstr "Tambah kenalan"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
-msgstr ""
+msgstr "Tambah nombor..."
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:51
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
@@ -48,68 +48,68 @@ msgstr "Alamat"
 #: ../src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:76
 #: ../src/imports/ContactView/ContactDetailSyncTargetView.qml:49
 msgid "Addressbook"
-msgstr ""
+msgstr "Buku Alamat"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:61
 msgid "Aim"
 msgstr "Matlamat"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:414
+#: ../src/imports/ContactList/ContactListPage.qml:374
 msgid "All"
-msgstr ""
+msgstr "Semua"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
-msgstr ""
+msgstr "Anda pasti mahu membuang semua kenalan terpilih?"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
-msgstr ""
+msgstr "Anda pasti mahu membuang kenalan ini?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:427
+#: ../src/imports/ContactList/ContactListPage.qml:387
 #: ../src/imports/ContactView/ContactFetchError.qml:29
-#: ../src/imports/MainWindow.qml:133
+#: ../src/imports/MainWindow.qml:143
 msgid "Cancel"
 msgstr "Batal"
 
-#: ../src/imports/ContactList/ContactListPage.qml:451
+#: ../src/imports/ContactList/ContactListPage.qml:411
 msgid "Cancel selection"
-msgstr ""
+msgstr "Batal pemilihan"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:80
 msgid "Close"
-msgstr ""
+msgstr "Tutup"
 
 #: ../src/imports/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
 msgstr "Kenalan tidak ditemui"
 
-#: ../src/imports/ContactList/ContactListPage.qml:146
+#: ../src/imports/ContactList/ContactListPage.qml:145
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Kenalan"
 
 #: ../data/address-book-app.desktop.in.in.h:2
 msgid "Contacts Address Book"
-msgstr ""
+msgstr "Buku Alamat Kenalan"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
-msgstr ""
+msgstr "Kenalan;Orang;Nombor"
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
 msgstr "Negara"
 
-#: ../src/imports/ContactList/ContactListPage.qml:613
+#: ../src/imports/ContactList/ContactListPage.qml:567
 msgid "Create a new contact by swiping up from the bottom of the screen."
-msgstr ""
+msgstr "Cipta kenalan baharu dengan meleret dari bawah ke atas skrin."
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
-#: ../src/imports/ContactList/ContactListPage.qml:267
-#: ../src/imports/ContactList/ContactListPage.qml:493
+#: ../src/imports/ContactList/ContactListPage.qml:228
+#: ../src/imports/ContactList/ContactListPage.qml:447
 msgid "Delete"
 msgstr "Padam"
 
@@ -138,13 +138,13 @@ msgid "Enter an email address"
 msgstr "Masukkan alamat emel"
 
 #: ../src/imports/ContactView/ContactFetchError.qml:25
-#: ../src/imports/MainWindow.qml:129
+#: ../src/imports/MainWindow.qml:139
 msgid "Error"
 msgstr "Ralat"
 
-#: ../src/imports/ContactList/ContactListPage.qml:414
+#: ../src/imports/ContactList/ContactListPage.qml:374
 msgid "Favorites"
-msgstr ""
+msgstr "Kegemaran"
 
 #: ../src/imports/ContactEdit/ContactDetailNameEditor.qml:84
 msgid "First name"
@@ -152,7 +152,7 @@ msgstr "Nama pertama"
 
 #: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
 msgid "Frequently called"
-msgstr ""
+msgstr "Kerap dipanggil"
 
 #. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:115
@@ -170,11 +170,11 @@ msgstr "IM"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
-msgstr ""
+msgstr "Import vKad"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 msgid "Importing..."
-msgstr ""
+msgstr "Mengimport..."
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
 msgid "Jabber"
@@ -184,9 +184,9 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Nama akhir"
 
-#: ../src/imports/ContactList/ContactListPage.qml:342
+#: ../src/imports/ContactList/ContactListPage.qml:302
 msgid "Loading..."
-msgstr ""
+msgstr "Memuatkan..."
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:32
 msgid "Locality"
@@ -203,20 +203,20 @@ msgstr "Bimbit"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:44
 msgid "Multiple contacts"
-msgstr ""
+msgstr "Kenalan berbilang"
 
 #: ../src/imports/ContactEdit/TextInputDetail.qml:74
 msgid "Next"
-msgstr ""
+msgstr "Berikutnya"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:74
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:48
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:84
 msgid "No"
-msgstr ""
+msgstr "Tidak"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:40
 msgid "No contact selected."
-msgstr ""
+msgstr "Tiada kenalan dipilih."
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -242,11 +242,11 @@ msgstr "Poskod"
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:21
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOrganizationsView.qml:24
 msgid "Professional Details"
-msgstr ""
+msgstr "Perincian Profesional"
 
-#: ../src/imports/ContactList/ContactListPage.qml:385
+#: ../src/imports/ContactList/ContactListPage.qml:345
 msgid "Quit"
-msgstr ""
+msgstr "Keluar"
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -260,22 +260,22 @@ msgstr "Peranan"
 msgid "Save"
 msgstr "Simpan"
 
-#: ../src/imports/ContactList/ContactListPage.qml:400
+#: ../src/imports/ContactList/ContactListPage.qml:360
 msgid "Search"
-msgstr ""
+msgstr "Gelintar"
 
-#: ../src/imports/ContactList/ContactListPage.qml:357
+#: ../src/imports/ContactList/ContactListPage.qml:317
 msgid "Search..."
-msgstr ""
+msgstr "Gelintar..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:457
+#: ../src/imports/ContactList/ContactListPage.qml:417
 msgid "Select All"
-msgstr ""
+msgstr "Pilih Semua"
 
-#: ../src/imports/ContactList/ContactListPage.qml:470
+#: ../src/imports/ContactList/ContactListPage.qml:430
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
-msgstr ""
+msgstr "Kongsi"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
 msgid "Skype"
@@ -290,17 +290,17 @@ msgstr "Sosial"
 msgid "Street"
 msgstr "Jalan"
 
-#: ../src/imports/ContactList/ContactListPage.qml:394
+#: ../src/imports/ContactList/ContactListPage.qml:354
 msgid "Sync"
-msgstr ""
+msgstr "Segerak"
 
-#: ../src/imports/ContactList/ContactListPage.qml:394
+#: ../src/imports/ContactList/ContactListPage.qml:354
 msgid "Syncing"
-msgstr ""
+msgstr "Menyegerak"
 
-#: ../src/imports/ContactList/ContactListPage.qml:342
+#: ../src/imports/ContactList/ContactListPage.qml:302
 msgid "Syncing..."
-msgstr ""
+msgstr "Menyegerak..."
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Title"
@@ -326,16 +326,18 @@ msgid ""
 "Would you like to sync contacts\n"
 "from online accounts now?"
 msgstr ""
+"Anda mauh segerakkan kenalan\n"
+"dari akaun atas-talian sekarang?"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
 msgstr "Yahoo"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:62
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:36
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:69
 msgid "Yes"
-msgstr ""
+msgstr "Ya"
 
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:60
 msgid "You have no contacts."
-msgstr ""
+msgstr "Anda tidak mempunyai kenalan."
