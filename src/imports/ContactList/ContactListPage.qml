@@ -374,6 +374,7 @@ ContactsUI.PageWithBottomEdge {
                 actions: defaultState.actions
                 // TRANSLATORS: this refers to all contacts
                 sections.model: [i18n.tr("All"), i18n.tr("Favorites")]
+                preset: ""
             }
             PropertyChanges {
                 target: searchField
@@ -398,6 +399,7 @@ ContactsUI.PageWithBottomEdge {
                 target: mainPage.head
                 backAction: searchingState.backAction
                 contents: searchField
+                preset: ""
             }
 
             PropertyChanges {
@@ -411,12 +413,12 @@ ContactsUI.PageWithBottomEdge {
             name: "selection"
             backAction: Action {
                 text: i18n.tr("Cancel selection")
-                iconName: "close"
+                iconName: "back"
                 onTriggered: contactList.cancelSelection()
             }
             actions: [
                 Action {
-                    text: i18n.tr("Select All")
+                    text: (contactList.selectedItems.count === contactList.count) ? i18n.tr("Unselect All") : i18n.tr("Select All")
                     iconName: "select"
                     onTriggered: {
                         if (contactList.selectedItems.count === contactList.count) {
@@ -431,7 +433,8 @@ ContactsUI.PageWithBottomEdge {
                     objectName: "share"
                     text: i18n.tr("Share")
                     iconName: "share"
-                    visible: contactList.isInSelectionMode && (contactList.selectedItems.count > 0)
+                    enabled: (contactList.selectedItems.count > 0)
+                    visible: contactList.isInSelectionMode
                     onTriggered: {
                         var contacts = []
                         var items = contactList.selectedItems
@@ -448,6 +451,7 @@ ContactsUI.PageWithBottomEdge {
                     objectName: "delete"
                     text: i18n.tr("Delete")
                     iconName: "delete"
+                    enabled: (contactList.selectedItems.count > 0)
                     visible: contactList.isInSelectionMode && !mainPage.pickMode
                     onTriggered: {
                         var contacts = []
@@ -467,6 +471,7 @@ ContactsUI.PageWithBottomEdge {
                 target: mainPage.head
                 backAction: selectionState.backAction
                 actions: selectionState.actions
+                preset: "select"
             }
             PropertyChanges {
                 target: mainPage
