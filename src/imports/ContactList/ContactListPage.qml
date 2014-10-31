@@ -431,7 +431,7 @@ ContactsUI.PageWithBottomEdge {
                     objectName: "share"
                     text: i18n.tr("Share")
                     iconName: "share"
-                    visible: contactList.isInSelectionMode && !mainPage.isEmpty
+                    visible: contactList.isInSelectionMode && (contactList.selectedItems.count > 0)
                     onTriggered: {
                         var contacts = []
                         var items = contactList.selectedItems
