@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-04 15:08+0100\n"
-"PO-Revision-Date: 2014-09-24 18:46+0000\n"
+"PO-Revision-Date: 2014-11-05 09:16+0000\n"
 "Last-Translator: Damir Jerovšek <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-11-05 07:06+0000\n"
+"X-Launchpad-Export-Date: 2014-11-06 06:39+0000\n"
 "X-Generator: Launchpad (build 17223)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
@@ -222,7 +222,7 @@ msgstr "Noben stik ni izbran."
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:36
 msgid "No name"
-msgstr ""
+msgstr "Brez imena"
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -329,7 +329,7 @@ msgstr "Službeni mobilni telefon"
 
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:61
 msgid "Would you like to sync contacts from your google online accounts now?"
-msgstr ""
+msgstr "Ali želite zdaj uskladiti stike iz vašega spletnega računa google?"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
