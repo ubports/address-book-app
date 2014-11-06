@@ -23,7 +23,32 @@ import Ubuntu.OnlineAccounts.Client 0.1
 Item {
     id: root
 
+    readonly property bool hasAccounts: (accounts.count > 0)
     property var onlineAccountsMessageDialog: null
+    property bool dialogVisible: false
+
+    // Add some delay before show or hid the dialog to avoid dialog to get created unnecessary
+    Behavior on dialogVisible {
+        SequentialAnimation {
+            PauseAnimation { duration: 500 }
+            ScriptAction {
+                script: {
+                    if (dialogVisible) {
+                        showDialog()
+                    } else {
+                        closeDialog()
+                    }
+                }
+            }
+        }
+    }
+
+    function showDialog()
+    {
+        if (root.onlineAccountsMessageDialog == null) {
+            root.onlineAccountsMessageDialog = PopupUtils.open(noAccountDialog, null)
+        }
+    }
 
     function closeDialog()
     {
@@ -84,12 +109,6 @@ Item {
                 text: i18n.tr("No")
                 onClicked: closeDialog()
             }
-        }
-    }
-
-    Component.onCompleted: {
-        if (accounts.count === 0) {
-            root.onlineAccountsMessageDialog = PopupUtils.open(noAccountDialog, null)
         }
     }
 }

@@ -236,14 +236,6 @@ ContactsUI.PageWithBottomEdge {
                 emptyStateScreen.visible = false
 
             }
-
-            if ((count > 0) && mainPage.onlineAccountsMessageDialog) {
-                // Because of some contacts can take longer to arrive due the dbus delay,
-                // we need to destroy the online account dialog if this happen
-                PopupUtils.close(mainPage.onlineAccountsMessageDialog)
-                mainPage.onlineAccountsMessageDialog = null
-                application.unsetFirstRun()
-            }
         }
 
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
@@ -514,16 +506,6 @@ ContactsUI.PageWithBottomEdge {
         }
     }
 
-    onSyncEnabledChanged: {
-        // close online account dialog if any account get registered
-        // while the app is running
-        if (syncEnabled && mainPage.onlineAccountsMessageDialog) {
-            PopupUtils.close(mainPage.onlineAccountsMessageDialog)
-            mainPage.onlineAccountsMessageDialog = null
-            application.unsetFirstRun()
-        }
-    }
-
     // We need to reset the page proprerties in case of the page was created pre-populated,
     // with phonenumber or contact.
     onBottomEdgeDismissed: {
@@ -550,7 +532,7 @@ ContactsUI.PageWithBottomEdge {
         width: childrenRect.width
         spacing: units.gu(2)
 
-        visible: (contactList.count === 0 && !indicator.visible)
+        visible: (contactList.count === 0 && !indicator.visible && (mainPage.newPhoneToAdd === ""))
 
         Icon {
             id: emptyStateIcon
@@ -604,10 +586,20 @@ ContactsUI.PageWithBottomEdge {
 
     Loader {
         id: onlineAccount
-        source: (contactList.count === 0) &&
-                application.firstRun ? Qt.resolvedUrl("./OnlineAccountsMessage.qml") : ""
+        asynchronous: true
+        source: Qt.resolvedUrl("./OnlineAccountsMessage.qml")
+        Binding {
+            target: onlineAccount.item
+            property: "dialogVisible"
+            when: onlineAccount.status === Loader.Ready
+            value: (contactList.count === 0) &&
+                   !mainPage.syncEnabled &&
+                   !mainPage.pickMode &&
+                   !onlineAccount.item.hasAccounts &&
+                   mainPage.newPhoneToAdd === "" &&
+                   application.firstRun
+        }
     }
-
 
     Component {
         id: removeContactDialog
