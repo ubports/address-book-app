@@ -27,7 +27,7 @@ Item {
     property var onlineAccountsMessageDialog: null
     property bool dialogVisible: false
 
-    // Add some delay before show or hid the dialog to avoid dialog to get created unnecessary
+    // Add some delay before show or hide the dialog to avoid dialog to get created unnecessary
     Behavior on dialogVisible {
         SequentialAnimation {
             PauseAnimation { duration: 500 }
