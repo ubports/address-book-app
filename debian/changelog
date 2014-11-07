@@ -1,3 +1,18 @@
+address-book-app (0.2+15.04.20141106-0ubuntu1) vivid; urgency=low
+
+  [ Martin Pitt ]
+  * update POT
+
+  [ Renato Araujo Oliveira Filho ]
+  * Call "attach" on sync monitor server to notify a new client
+    connection. We need to notify sync-monitor that we are attached to
+    him to start to receive signals. (LP: #1384707)
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 06 Nov 2014 22:40:18 +0000
+
 address-book-app (0.2+14.10.20141023~rtm-0ubuntu1) 14.09; urgency=low
 
   [ CI bot ]

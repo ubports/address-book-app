@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-29 15:21+0200\n"
+"POT-Creation-Date: 2014-11-04 15:08+0100\n"
 "PO-Revision-Date: 2014-09-24 09:25+0000\n"
 "Last-Translator: Jared Norris <jarednorris@ubuntu.com>\n"
 "Language-Team: English (Australia) <en_AU@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-02 06:37+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-05 07:06+0000\n"
+"X-Generator: Launchpad (build 17223)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -23,7 +23,7 @@ msgid "%1 vCards imported"
 msgstr "%1 vCards imported"
 
 #. TRANSLATORS: this refers to creating a new contact
-#: ../src/imports/ContactList/ContactListPage.qml:240
+#: ../src/imports/ContactList/ContactListPage.qml:203
 msgid "+ Create New"
 msgstr "+ Create New"
 
@@ -31,7 +31,7 @@ msgstr "+ Create New"
 msgid "Add Field"
 msgstr "Add Field"
 
-#: ../src/imports/ContactList/ContactListPage.qml:532
+#: ../src/imports/ContactList/ContactListPage.qml:486
 msgid "Add contact"
 msgstr "Add contact"
 
@@ -55,7 +55,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:414
+#: ../src/imports/ContactList/ContactListPage.qml:374
 msgid "All"
 msgstr "All"
 
@@ -68,13 +68,13 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "Are you sure that you want to remove this contact?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:427
+#: ../src/imports/ContactList/ContactListPage.qml:387
 #: ../src/imports/ContactView/ContactFetchError.qml:29
-#: ../src/imports/MainWindow.qml:133
+#: ../src/imports/MainWindow.qml:143
 msgid "Cancel"
 msgstr "Cancel"
 
-#: ../src/imports/ContactList/ContactListPage.qml:451
+#: ../src/imports/ContactList/ContactListPage.qml:411
 msgid "Cancel selection"
 msgstr "Cancel selection"
 
@@ -86,7 +86,7 @@ msgstr "Close"
 msgid "Contact not found"
 msgstr "Contact not found"
 
-#: ../src/imports/ContactList/ContactListPage.qml:146
+#: ../src/imports/ContactList/ContactListPage.qml:145
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Contacts"
@@ -103,13 +103,13 @@ msgstr "Contacts;People;Numbers"
 msgid "Country"
 msgstr "Country"
 
-#: ../src/imports/ContactList/ContactListPage.qml:613
+#: ../src/imports/ContactList/ContactListPage.qml:567
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "Create a new contact by swiping up from the bottom of the screen."
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
-#: ../src/imports/ContactList/ContactListPage.qml:267
-#: ../src/imports/ContactList/ContactListPage.qml:493
+#: ../src/imports/ContactList/ContactListPage.qml:228
+#: ../src/imports/ContactList/ContactListPage.qml:447
 msgid "Delete"
 msgstr "Delete"
 
@@ -138,11 +138,11 @@ msgid "Enter an email address"
 msgstr "Enter an email address"
 
 #: ../src/imports/ContactView/ContactFetchError.qml:25
-#: ../src/imports/MainWindow.qml:129
+#: ../src/imports/MainWindow.qml:139
 msgid "Error"
 msgstr "Error"
 
-#: ../src/imports/ContactList/ContactListPage.qml:414
+#: ../src/imports/ContactList/ContactListPage.qml:374
 msgid "Favorites"
 msgstr "Favourites"
 
@@ -184,7 +184,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Last name"
 
-#: ../src/imports/ContactList/ContactListPage.qml:342
+#: ../src/imports/ContactList/ContactListPage.qml:302
 msgid "Loading..."
 msgstr "Loading..."
 
@@ -210,13 +210,19 @@ msgid "Next"
 msgstr "Next"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:74
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:48
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:84
 msgid "No"
 msgstr "No"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:40
 msgid "No contact selected."
 msgstr "No contact selected."
+
+#: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:108
+#: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
+#: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:36
+msgid "No name"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -244,7 +250,7 @@ msgstr "Post code"
 msgid "Professional Details"
 msgstr "Professional Details"
 
-#: ../src/imports/ContactList/ContactListPage.qml:385
+#: ../src/imports/ContactList/ContactListPage.qml:345
 msgid "Quit"
 msgstr "Quit"
 
@@ -260,19 +266,19 @@ msgstr "Role"
 msgid "Save"
 msgstr "Save"
 
-#: ../src/imports/ContactList/ContactListPage.qml:400
+#: ../src/imports/ContactList/ContactListPage.qml:360
 msgid "Search"
 msgstr "Search"
 
-#: ../src/imports/ContactList/ContactListPage.qml:357
+#: ../src/imports/ContactList/ContactListPage.qml:317
 msgid "Search..."
 msgstr "Search..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:457
+#: ../src/imports/ContactList/ContactListPage.qml:417
 msgid "Select All"
 msgstr "Select All"
 
-#: ../src/imports/ContactList/ContactListPage.qml:470
+#: ../src/imports/ContactList/ContactListPage.qml:430
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Share"
@@ -290,15 +296,15 @@ msgstr "Social"
 msgid "Street"
 msgstr "Street"
 
-#: ../src/imports/ContactList/ContactListPage.qml:394
+#: ../src/imports/ContactList/ContactListPage.qml:354
 msgid "Sync"
 msgstr "Sync"
 
-#: ../src/imports/ContactList/ContactListPage.qml:394
+#: ../src/imports/ContactList/ContactListPage.qml:354
 msgid "Syncing"
 msgstr "Syncing"
 
-#: ../src/imports/ContactList/ContactListPage.qml:342
+#: ../src/imports/ContactList/ContactListPage.qml:302
 msgid "Syncing..."
 msgstr "Syncing..."
 
@@ -321,23 +327,26 @@ msgstr "Work"
 msgid "Work Mobile"
 msgstr "Work Mobile"
 
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:28
-msgid ""
-"Would you like to sync contacts\n"
-"from online accounts now?"
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:61
+msgid "Would you like to sync contacts from your google online accounts now?"
 msgstr ""
-"Would you like to sync contacts\n"
-"from online accounts now?"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
 msgstr "Yahoo"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:62
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:36
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:69
 msgid "Yes"
 msgstr "Yes"
 
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:60
 msgid "You have no contacts."
 msgstr "You have no contacts."
+
+#~ msgid ""
+#~ "Would you like to sync contacts\n"
+#~ "from online accounts now?"
+#~ msgstr ""
+#~ "Would you like to sync contacts\n"
+#~ "from online accounts now?"
