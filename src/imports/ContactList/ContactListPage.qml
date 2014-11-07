@@ -35,6 +35,7 @@ ContactsUI.PageWithBottomEdge {
     property QtObject contactIndex: null
     property bool contactsLoaded: false
     property string newPhoneToAdd: ""
+    property alias contactManager: contactList.manager
 
     readonly property bool allowToQuit: (application.callbackApplication.length > 0)
     readonly property bool syncEnabled: application.syncEnabled
@@ -586,6 +587,8 @@ ContactsUI.PageWithBottomEdge {
 
     Loader {
         id: onlineAccount
+        objectName: "onlineAccountLoader"
+
         asynchronous: true
         source: Qt.resolvedUrl("./OnlineAccountsMessage.qml")
         Binding {
@@ -620,7 +623,7 @@ ContactsUI.PageWithBottomEdge {
 
     Component.onCompleted: {
         application.elapsed()
-        if (TEST_DATA !== "") {
+        if ((typeof(TEST_DATA) !== "undefined") && (TEST_DATA !== "")) {
             contactList.listModel.importContacts("file://" + TEST_DATA)
         }
 
@@ -630,6 +633,9 @@ ContactsUI.PageWithBottomEdge {
                                     active: false,
                                     enabled: false,
                                     initialFocusSection: "name"})
-        pageStack.contactListPage = mainPage
+
+        if (pageStack && pageStack.contactListPage) {
+            pageStack.contactListPage = mainPage
+        }
     }
 }
