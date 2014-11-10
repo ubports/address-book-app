@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-29 15:21+0200\n"
+"POT-Creation-Date: 2014-11-04 15:08+0100\n"
 "PO-Revision-Date: 2014-09-05 14:45+0000\n"
 "Last-Translator: Nicat Məmmədov <n1c4t97@gmail.com>\n"
 "Language-Team: Azerbaijani <az@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-02 06:36+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-05 07:05+0000\n"
+"X-Generator: Launchpad (build 17223)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -23,7 +23,7 @@ msgid "%1 vCards imported"
 msgstr "%1 vCard idxal edildi"
 
 #. TRANSLATORS: this refers to creating a new contact
-#: ../src/imports/ContactList/ContactListPage.qml:240
+#: ../src/imports/ContactList/ContactListPage.qml:203
 msgid "+ Create New"
 msgstr "+ Yenisini Yarat"
 
@@ -31,7 +31,7 @@ msgstr "+ Yenisini Yarat"
 msgid "Add Field"
 msgstr "Sәtir әlavә et"
 
-#: ../src/imports/ContactList/ContactListPage.qml:532
+#: ../src/imports/ContactList/ContactListPage.qml:486
 msgid "Add contact"
 msgstr "Kontakt əlavə et"
 
@@ -55,7 +55,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:414
+#: ../src/imports/ContactList/ContactListPage.qml:374
 msgid "All"
 msgstr "Hamısı"
 
@@ -68,13 +68,13 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "Bu nömrәni silmәk iatәdiyinizdәn әminsiniz?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:427
+#: ../src/imports/ContactList/ContactListPage.qml:387
 #: ../src/imports/ContactView/ContactFetchError.qml:29
-#: ../src/imports/MainWindow.qml:133
+#: ../src/imports/MainWindow.qml:143
 msgid "Cancel"
 msgstr "İmtina"
 
-#: ../src/imports/ContactList/ContactListPage.qml:451
+#: ../src/imports/ContactList/ContactListPage.qml:411
 msgid "Cancel selection"
 msgstr "Seçimdәn imtina et"
 
@@ -86,7 +86,7 @@ msgstr "Bağla"
 msgid "Contact not found"
 msgstr "Nömrә tapılmadı"
 
-#: ../src/imports/ContactList/ContactListPage.qml:146
+#: ../src/imports/ContactList/ContactListPage.qml:145
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Kontaktlar"
@@ -103,13 +103,13 @@ msgstr "Kontaktlar;İnsanlar;Nömrәlәr"
 msgid "Country"
 msgstr "Ölkə"
 
-#: ../src/imports/ContactList/ContactListPage.qml:613
+#: ../src/imports/ContactList/ContactListPage.qml:567
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
-#: ../src/imports/ContactList/ContactListPage.qml:267
-#: ../src/imports/ContactList/ContactListPage.qml:493
+#: ../src/imports/ContactList/ContactListPage.qml:228
+#: ../src/imports/ContactList/ContactListPage.qml:447
 msgid "Delete"
 msgstr "Sil"
 
@@ -138,11 +138,11 @@ msgid "Enter an email address"
 msgstr "Epoçt ünvanını daxil edin"
 
 #: ../src/imports/ContactView/ContactFetchError.qml:25
-#: ../src/imports/MainWindow.qml:129
+#: ../src/imports/MainWindow.qml:139
 msgid "Error"
 msgstr "Xəta"
 
-#: ../src/imports/ContactList/ContactListPage.qml:414
+#: ../src/imports/ContactList/ContactListPage.qml:374
 msgid "Favorites"
 msgstr "Seçilmişlər"
 
@@ -184,7 +184,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Soyadı"
 
-#: ../src/imports/ContactList/ContactListPage.qml:342
+#: ../src/imports/ContactList/ContactListPage.qml:302
 msgid "Loading..."
 msgstr "Yüklənir..."
 
@@ -210,13 +210,19 @@ msgid "Next"
 msgstr "Növbəti"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:74
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:48
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:84
 msgid "No"
 msgstr "Yox"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:40
 msgid "No contact selected."
 msgstr "Heç bir kontakt seçilmәyib."
+
+#: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:108
+#: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
+#: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:36
+msgid "No name"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -244,7 +250,7 @@ msgstr "Poçt indeksi"
 msgid "Professional Details"
 msgstr "Professional Təfərrüatlar"
 
-#: ../src/imports/ContactList/ContactListPage.qml:385
+#: ../src/imports/ContactList/ContactListPage.qml:345
 msgid "Quit"
 msgstr "Çıx"
 
@@ -260,19 +266,19 @@ msgstr "Vəzifə"
 msgid "Save"
 msgstr "Saxla"
 
-#: ../src/imports/ContactList/ContactListPage.qml:400
+#: ../src/imports/ContactList/ContactListPage.qml:360
 msgid "Search"
 msgstr "Axtar"
 
-#: ../src/imports/ContactList/ContactListPage.qml:357
+#: ../src/imports/ContactList/ContactListPage.qml:317
 msgid "Search..."
 msgstr "Axtar..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:457
+#: ../src/imports/ContactList/ContactListPage.qml:417
 msgid "Select All"
 msgstr "Hamısını Seç"
 
-#: ../src/imports/ContactList/ContactListPage.qml:470
+#: ../src/imports/ContactList/ContactListPage.qml:430
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Paylaş"
@@ -290,15 +296,15 @@ msgstr "Sosial"
 msgid "Street"
 msgstr "Küçə"
 
-#: ../src/imports/ContactList/ContactListPage.qml:394
+#: ../src/imports/ContactList/ContactListPage.qml:354
 msgid "Sync"
 msgstr "Sinxronlaşdır"
 
-#: ../src/imports/ContactList/ContactListPage.qml:394
+#: ../src/imports/ContactList/ContactListPage.qml:354
 msgid "Syncing"
 msgstr "Sinxronlaşdırılır"
 
-#: ../src/imports/ContactList/ContactListPage.qml:342
+#: ../src/imports/ContactList/ContactListPage.qml:302
 msgid "Syncing..."
 msgstr "Sinxronlaşdırılır..."
 
@@ -321,23 +327,26 @@ msgstr "İş"
 msgid "Work Mobile"
 msgstr "İş Cib Telefonu"
 
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:28
-msgid ""
-"Would you like to sync contacts\n"
-"from online accounts now?"
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:61
+msgid "Would you like to sync contacts from your google online accounts now?"
 msgstr ""
-"Onlayn hesablardan\n"
-"kontaktları indicә sinxronlaşdırmaq istәyirsiz?"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
 msgstr "Yahoo"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:62
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:36
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:69
 msgid "Yes"
 msgstr "Hə"
 
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:60
 msgid "You have no contacts."
 msgstr "Heç bir kontaktınız yoxdu."
+
+#~ msgid ""
+#~ "Would you like to sync contacts\n"
+#~ "from online accounts now?"
+#~ msgstr ""
+#~ "Onlayn hesablardan\n"
+#~ "kontaktları indicә sinxronlaşdırmaq istәyirsiz?"

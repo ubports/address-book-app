@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-09-29 15:21+0200\n"
-"PO-Revision-Date: 2014-09-24 09:14+0000\n"
+"POT-Creation-Date: 2014-11-04 15:08+0100\n"
+"PO-Revision-Date: 2014-11-05 07:22+0000\n"
 "Last-Translator: Fohanno Thierry <thierry.fohanno@ofis-bzh.org>\n"
 "Language-Team: Breton <br@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-02 06:37+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-06 06:39+0000\n"
+"X-Generator: Launchpad (build 17223)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -23,7 +23,7 @@ msgid "%1 vCards imported"
 msgstr "%1 vKartenn enporzhiet"
 
 #. TRANSLATORS: this refers to creating a new contact
-#: ../src/imports/ContactList/ContactListPage.qml:240
+#: ../src/imports/ContactList/ContactListPage.qml:203
 msgid "+ Create New"
 msgstr "+ Krouiñ unan nevez"
 
@@ -31,7 +31,7 @@ msgstr "+ Krouiñ unan nevez"
 msgid "Add Field"
 msgstr "Ouzhpennañ ur vaezienn"
 
-#: ../src/imports/ContactList/ContactListPage.qml:532
+#: ../src/imports/ContactList/ContactListPage.qml:486
 msgid "Add contact"
 msgstr "Ouzhpennañ un darempred"
 
@@ -55,7 +55,7 @@ msgid "Aim"
 msgstr "Palioù"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:414
+#: ../src/imports/ContactList/ContactListPage.qml:374
 msgid "All"
 msgstr "An holl anezho"
 
@@ -68,13 +68,13 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "Ha sur oc'h e fell deoc'h lemel an darempred-mañ ?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:427
+#: ../src/imports/ContactList/ContactListPage.qml:387
 #: ../src/imports/ContactView/ContactFetchError.qml:29
-#: ../src/imports/MainWindow.qml:133
+#: ../src/imports/MainWindow.qml:143
 msgid "Cancel"
 msgstr "Nullañ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:451
+#: ../src/imports/ContactList/ContactListPage.qml:411
 msgid "Cancel selection"
 msgstr "Nullañ an diuzadur"
 
@@ -86,7 +86,7 @@ msgstr "Serriñ"
 msgid "Contact not found"
 msgstr "N'eo ket kavet an darempred"
 
-#: ../src/imports/ContactList/ContactListPage.qml:146
+#: ../src/imports/ContactList/ContactListPage.qml:145
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Darempredoù"
@@ -103,13 +103,13 @@ msgstr "Darempredoù;Tud;Niverennoù"
 msgid "Country"
 msgstr "Bro"
 
-#: ../src/imports/ContactList/ContactListPage.qml:613
+#: ../src/imports/ContactList/ContactListPage.qml:567
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "Krouiñ un darempred nevez dre riklañ adalek traoñ ar skramm."
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
-#: ../src/imports/ContactList/ContactListPage.qml:267
-#: ../src/imports/ContactList/ContactListPage.qml:493
+#: ../src/imports/ContactList/ContactListPage.qml:228
+#: ../src/imports/ContactList/ContactListPage.qml:447
 msgid "Delete"
 msgstr "Diverkañ"
 
@@ -138,11 +138,11 @@ msgid "Enter an email address"
 msgstr "Lakait ur chomlec'h postel"
 
 #: ../src/imports/ContactView/ContactFetchError.qml:25
-#: ../src/imports/MainWindow.qml:129
+#: ../src/imports/MainWindow.qml:139
 msgid "Error"
 msgstr "Fazi"
 
-#: ../src/imports/ContactList/ContactListPage.qml:414
+#: ../src/imports/ContactList/ContactListPage.qml:374
 msgid "Favorites"
 msgstr "Gwellañ deuet"
 
@@ -184,7 +184,7 @@ msgstr "Flapañ"
 msgid "Last name"
 msgstr "Anv"
 
-#: ../src/imports/ContactList/ContactListPage.qml:342
+#: ../src/imports/ContactList/ContactListPage.qml:302
 msgid "Loading..."
 msgstr "O kargañ..."
 
@@ -210,13 +210,19 @@ msgid "Next"
 msgstr "War-lerc'h"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:74
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:48
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:84
 msgid "No"
 msgstr "Ket"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:40
 msgid "No contact selected."
 msgstr "N'eus darempred diuzet ebet"
+
+#: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:108
+#: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
+#: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:36
+msgid "No name"
+msgstr "Anv ebet"
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -244,7 +250,7 @@ msgstr "Kod-post"
 msgid "Professional Details"
 msgstr "Munudoù micherel"
 
-#: ../src/imports/ContactList/ContactListPage.qml:385
+#: ../src/imports/ContactList/ContactListPage.qml:345
 msgid "Quit"
 msgstr "Mont kuit"
 
@@ -260,19 +266,19 @@ msgstr "Karg"
 msgid "Save"
 msgstr "Enrollañ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:400
+#: ../src/imports/ContactList/ContactListPage.qml:360
 msgid "Search"
 msgstr "Klask"
 
-#: ../src/imports/ContactList/ContactListPage.qml:357
+#: ../src/imports/ContactList/ContactListPage.qml:317
 msgid "Search..."
 msgstr "Klask..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:457
+#: ../src/imports/ContactList/ContactListPage.qml:417
 msgid "Select All"
 msgstr "Diuzañ pep tra"
 
-#: ../src/imports/ContactList/ContactListPage.qml:470
+#: ../src/imports/ContactList/ContactListPage.qml:430
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Rannañ"
@@ -290,15 +296,15 @@ msgstr "Sokial"
 msgid "Street"
 msgstr "Straed"
 
-#: ../src/imports/ContactList/ContactListPage.qml:394
+#: ../src/imports/ContactList/ContactListPage.qml:354
 msgid "Sync"
 msgstr "Sink"
 
-#: ../src/imports/ContactList/ContactListPage.qml:394
+#: ../src/imports/ContactList/ContactListPage.qml:354
 msgid "Syncing"
 msgstr "O sinkronelaat"
 
-#: ../src/imports/ContactList/ContactListPage.qml:342
+#: ../src/imports/ContactList/ContactListPage.qml:302
 msgid "Syncing..."
 msgstr "O sinkronelaat..."
 
@@ -321,23 +327,28 @@ msgstr "Labour"
 msgid "Work Mobile"
 msgstr "Pellgomzer hezoug labour"
 
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:28
-msgid ""
-"Would you like to sync contacts\n"
-"from online accounts now?"
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:61
+msgid "Would you like to sync contacts from your google online accounts now?"
 msgstr ""
-"Ha fellout a ra deoc'h sinkronelaat an darempredoù\n"
-"diwar gontoù enlinenn bremañ ?"
+"Ha fellout a ra deoc'h sinkronelaat darempredoù eus ho kontoù enlinenn "
+"google bremañ ?"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
 msgstr "Yahoo"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:62
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:36
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:69
 msgid "Yes"
 msgstr "Ya"
 
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:27
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:60
 msgid "You have no contacts."
 msgstr "N'ho peus darempred ebet."
+
+#~ msgid ""
+#~ "Would you like to sync contacts\n"
+#~ "from online accounts now?"
+#~ msgstr ""
+#~ "Ha fellout a ra deoc'h sinkronelaat an darempredoù\n"
+#~ "diwar gontoù enlinenn bremañ ?"
