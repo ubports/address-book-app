@@ -39,6 +39,7 @@ Item {
         property string callbackApplication: ""
         property bool syncEnabled: false
         property bool firstRun: true
+        property bool disableOnlineAccounts: true
 
         function elapsed()
         {

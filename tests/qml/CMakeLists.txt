@@ -20,20 +20,8 @@ macro(DECLARE_QML_TEST TST_NAME TST_QML_FILE)
     )
 endmacro()
 
-macro(DECLARE_QML_TEST_WITH_DBUS TST_NAME TST_QML_FILE)
-    if(USE_XVFB)
-        set(COMMAND_PREFIX ${XVFB_RUN_BIN} -p -a -p -s -p "-screen 0 1024x768x24" -p)
-    else()
-        set(COMMAND_PREFIX "")
-    endif()
-    add_test(NAME ${TST_NAME}
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        COMMAND ${DBUS_RUNNER} --task ${COMMAND_PREFIX} ${QMLTESTRUNNER_BIN} -p -import -p ${imports_BINARY_DIR} -p -input -p ${CMAKE_CURRENT_SOURCE_DIR}/${TST_QML_FILE}
-    )
-endmacro()
-
 if(QMLTESTRUNNER_BIN AND XVFB_RUN_BIN)
-    declare_qml_test_with_dbus("contact_list" tst_ContactList.qml)
+    declare_qml_test("contact_list" tst_ContactList.qml)
     declare_qml_test("contact_editor" tst_ContactEditor.qml)
     declare_qml_test("contact_avatar" tst_ContactAvatar.qml)
     declare_qml_test("list_with_actions" tst_ListWithActions.qml)
