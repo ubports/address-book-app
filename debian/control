@@ -3,6 +3,7 @@ Section: x11
 Priority: optional
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 Build-Depends: cmake,
+               dbus-test-runner [i386 amd64 armhf],
                debhelper (>= 9),
                dh-translations,
                libgl1-mesa-dev | libgl-dev,

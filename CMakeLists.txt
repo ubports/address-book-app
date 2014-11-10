@@ -20,6 +20,7 @@ find_package(PkgConfig REQUIRED)
 
 find_program(INTLTOOL_MERGE intltool-merge)
 find_program(INTLTOOL_EXTRACT intltool-extract)
+find_program(DBUS_RUNNER dbus-test-runner)
 
 if(NOT INTLTOOL_MERGE)
     message(FATAL_ERROR "intltool-merge not found. Try install intltool package;")
