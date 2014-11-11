@@ -1,6 +1,7 @@
 set(CONTACT_LIST_QMLS
     ContactListPage.qml
     OnlineAccountsMessage.qml
+    OnlineAccountsHelper.qml
     VCardImportDialog.qml
 )
 

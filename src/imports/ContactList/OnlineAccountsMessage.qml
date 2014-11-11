@@ -17,13 +17,36 @@
 import QtQuick 2.2
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0 as Popups
-import Ubuntu.OnlineAccounts 0.1
-import Ubuntu.OnlineAccounts.Client 0.1
 
 Item {
     id: root
 
+    property bool hasAccounts: false
     property var onlineAccountsMessageDialog: null
+    property bool dialogVisible: false
+
+    // Add some delay before show or hide the dialog to avoid dialog to get created unnecessary
+    Behavior on dialogVisible {
+        SequentialAnimation {
+            PauseAnimation { duration: 500 }
+            ScriptAction {
+                script: {
+                    if (dialogVisible) {
+                        showDialog()
+                    } else {
+                        closeDialog()
+                    }
+                }
+            }
+        }
+    }
+
+    function showDialog()
+    {
+        if (root.onlineAccountsMessageDialog == null) {
+            root.onlineAccountsMessageDialog = PopupUtils.open(noAccountDialog, null)
+        }
+    }
 
     function closeDialog()
     {
@@ -34,20 +57,16 @@ Item {
         application.unsetFirstRun()
     }
 
-    AccountServiceModel {
-        id: accounts
-        applicationId: "contacts-sync"
-        onCountChanged: {
-            if (count > 0) {
-                root.closeDialog()
-            }
-        }
-    }
+    Loader {
+        id: onlineAccountHelper
 
-    Setup {
-        id: setup
-        applicationId: "contacts-sync"
-        providerId: "google"
+        source: application.disableOnlineAccounts ? "" : Qt.resolvedUrl("OnlineAccountsHelper.qml")
+        Binding {
+            target: root
+            property: "hasAccounts"
+            value: onlineAccountHelper.item ? onlineAccountHelper.item.hasContactAccounts : false
+            when: onlineAccountHelper.status === Loader.Ready
+        }
     }
 
     Component {
@@ -69,7 +88,9 @@ Item {
                 text: i18n.tr("Yes")
                 onClicked: {
                     root.closeDialog()
-                    setup.exec()
+                    if (onlineAccountHelper.item) {
+                        onlineAccountHelper.item.setupExec()
+                    }
                 }
             }
 
@@ -84,12 +105,6 @@ Item {
                 text: i18n.tr("No")
                 onClicked: closeDialog()
             }
-        }
-    }
-
-    Component.onCompleted: {
-        if (accounts.count === 0) {
-            root.onlineAccountsMessageDialog = PopupUtils.open(noAccountDialog, null)
         }
     }
 }
