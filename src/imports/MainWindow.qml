@@ -32,6 +32,8 @@ MainView {
         mainStack.resetStack()
         if (mainStack.contactListPage) {
             mainStack.contactListPage.showContact(contactId)
+        } else {
+            console.error("Contact preview requested but ContactListPage not loaded")
         }
         mainStack.quitOnDepth = 1
     }
@@ -41,6 +43,8 @@ MainView {
         mainStack.resetStack()
         if (mainStack.contactListPage) {
             mainStack.contactListPage.createContactWithPhoneNumber(phoneNumber)
+        } else {
+            console.error("Contact creation requested but ContactListPage not loaded")
         }
     }
 
@@ -49,11 +53,14 @@ MainView {
         mainStack.resetStack()
         if (mainStack.contactListPage) {
             mainStack.contactListPage.addPhoneToContact(contactId, phoneNumber)
+        } else {
+            console.error("Add phone to contact requested but ContactListPage not loaded")
         }
     }
 
     function pick(single)
     {
+        console.debug("Pick mode:" + single)
         pickWithTransfer(single, null)
     }
 
@@ -62,6 +69,8 @@ MainView {
         mainStack.resetStack()
         if (mainStack.contactListPage) {
             mainStack.contactListPage.startPickMode(single === "true", activeTransfer)
+        } else {
+            console.error("Pick mode requested but ContactListPage not loaded")
         }
     }
 
@@ -75,6 +84,8 @@ MainView {
         mainStack.resetStack()
         if (mainStack.contactListPage) {
             mainStack.contactListPage.importContact(_urls)
+        } else {
+            console.error("Import vcard requested but ContactListPage not loaded")
         }
     }
 
@@ -83,6 +94,8 @@ MainView {
         mainStack.resetStack()
         if (mainStack.contactListPage) {
             mainStack.contactListPage.addNewPhone(phoneNumer)
+        } else {
+            console.error("Add new phone requested but ContactListPage not loaded")
         }
     }
 
@@ -159,7 +172,8 @@ MainView {
     Loader {
         id: contentHubLoader
 
-        asynchronous: true
+        //We can not use async load, the export requested signal can be received before the component get ready
+        //asynchronous: true
         source: Qt.resolvedUrl("ContentHubProxy.qml")
         onStatusChanged: {
             if (status === Loader.Ready) {

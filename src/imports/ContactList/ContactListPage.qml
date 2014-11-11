@@ -464,7 +464,6 @@ ContactsUI.PageWithBottomEdge {
                 target: mainPage.head
                 backAction: selectionState.backAction
                 actions: selectionState.actions
-                preset: "select"
             }
             PropertyChanges {
                 target: mainPage
