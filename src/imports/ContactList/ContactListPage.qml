@@ -551,7 +551,7 @@ ContactsUI.PageWithBottomEdge {
             width: mainPage.width - units.gu(12)
             height: paintedHeight
             text: mainPage.pickMode ?
-                      i18n.tr("No Contacts.") :
+                      i18n.tr("You have no contacts.") :
                       i18n.tr("Create a new contact by swiping up from the bottom of the screen.")
             color: "#5d5d5d"
             fontSize: "x-large"
