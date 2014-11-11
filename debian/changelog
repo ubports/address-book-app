@@ -1,3 +1,21 @@
+address-book-app (0.2+15.04.20141111.1-0ubuntu1) vivid; urgency=low
+
+  [ CI bot ]
+  * Resync trunk
+
+  [ Renato Araujo Oliveira Filho ]
+  * Avoid show online account dialog if the app was called from another
+    app. Close the online account dialog if a new contact get created.
+    (LP: #1390128)
+  * Show "No contacts." for empty list in pick mode. Hide search button
+    if the list is empty. Make the "share" and "select" buttons
+    invisible if the contact list is empty. (LP: #1387659)
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 11 Nov 2014 15:21:41 +0000
+
 address-book-app (0.2+15.04.20141106-0ubuntu1) vivid; urgency=low
 
   [ Martin Pitt ]
