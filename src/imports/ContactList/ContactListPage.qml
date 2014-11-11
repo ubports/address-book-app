@@ -367,7 +367,6 @@ ContactsUI.PageWithBottomEdge {
                 actions: defaultState.actions
                 // TRANSLATORS: this refers to all contacts
                 sections.model: [i18n.tr("All"), i18n.tr("Favorites")]
-                preset: ""
             }
             PropertyChanges {
                 target: searchField
@@ -392,7 +391,6 @@ ContactsUI.PageWithBottomEdge {
                 target: mainPage.head
                 backAction: searchingState.backAction
                 contents: searchField
-                preset: ""
             }
 
             PropertyChanges {
