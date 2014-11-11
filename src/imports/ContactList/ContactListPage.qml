@@ -37,6 +37,7 @@ ContactsUI.PageWithBottomEdge {
     property string newPhoneToAdd: ""
     property alias contactManager: contactList.manager
 
+    readonly property bool isEmpty: (contactList.count === 0)
     readonly property bool allowToQuit: (application.callbackApplication.length > 0)
     readonly property bool syncEnabled: application.syncEnabled
     readonly property var contactModel: contactList.listModel ? contactList.listModel : null
@@ -352,6 +353,7 @@ ContactsUI.PageWithBottomEdge {
                 Action {
                     text: i18n.tr("Search")
                     iconName: "search"
+                    visible: !mainPage.isEmpty
                     onTriggered: {
                         mainPage.state = (mainPage.state === "newphone" ? "newphoneSearching" : "searching")
                         contactList.showAllContacts()
@@ -402,12 +404,12 @@ ContactsUI.PageWithBottomEdge {
             name: "selection"
             backAction: Action {
                 text: i18n.tr("Cancel selection")
-                iconName: "close"
+                iconName: "back"
                 onTriggered: contactList.cancelSelection()
             }
             actions: [
                 Action {
-                    text: i18n.tr("Select All")
+                    text: (contactList.selectedItems.count === contactList.count) ? i18n.tr("Unselect All") : i18n.tr("Select All")
                     iconName: "select"
                     onTriggered: {
                         if (contactList.selectedItems.count === contactList.count) {
@@ -416,12 +418,13 @@ ContactsUI.PageWithBottomEdge {
                             contactList.selectAll()
                         }
                     }
-                    visible: contactList.multipleSelection
+                    visible: contactList.multipleSelection && !mainPage.isEmpty
                 },
                 Action {
                     objectName: "share"
                     text: i18n.tr("Share")
                     iconName: "share"
+                    enabled: (contactList.selectedItems.count > 0)
                     visible: contactList.isInSelectionMode
                     onTriggered: {
                         var contacts = []
@@ -439,6 +442,7 @@ ContactsUI.PageWithBottomEdge {
                     objectName: "delete"
                     text: i18n.tr("Delete")
                     iconName: "delete"
+                    enabled: (contactList.selectedItems.count > 0)
                     visible: contactList.isInSelectionMode && !mainPage.pickMode
                     onTriggered: {
                         var contacts = []
@@ -532,8 +536,7 @@ ContactsUI.PageWithBottomEdge {
         height: childrenRect.height
         width: childrenRect.width
         spacing: units.gu(2)
-
-        visible: (contactList.count === 0 && !indicator.visible && (mainPage.newPhoneToAdd === ""))
+        visible: (mainPage.isEmpty && !indicator.visible && (mainPage.newPhoneToAdd === ""))
 
         Icon {
             id: emptyStateIcon
@@ -547,7 +550,9 @@ ContactsUI.PageWithBottomEdge {
             id: emptyStateLabel
             width: mainPage.width - units.gu(12)
             height: paintedHeight
-            text: i18n.tr("Create a new contact by swiping up from the bottom of the screen.")
+            text: mainPage.pickMode ?
+                      i18n.tr("You have no contacts.") :
+                      i18n.tr("Create a new contact by swiping up from the bottom of the screen.")
             color: "#5d5d5d"
             fontSize: "x-large"
             wrapMode: Text.WordWrap
