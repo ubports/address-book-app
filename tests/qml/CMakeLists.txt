@@ -21,6 +21,7 @@ macro(DECLARE_QML_TEST TST_NAME TST_QML_FILE)
 endmacro()
 
 if(QMLTESTRUNNER_BIN AND XVFB_RUN_BIN)
+    declare_qml_test("contact_list" tst_ContactList.qml)
     declare_qml_test("contact_editor" tst_ContactEditor.qml)
     declare_qml_test("contact_avatar" tst_ContactAvatar.qml)
     declare_qml_test("list_with_actions" tst_ListWithActions.qml)
@@ -38,6 +39,7 @@ set(QML_TST_FILES
     ContactUtil.js
     tst_ContactEditor.qml
     tst_ContactAvatar.qml
+    tst_ContactList.qml
     tst_ListWithActions.qml
     tst_ContactPreviewPage.qml
     tst_VCardParser.qml
