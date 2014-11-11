@@ -598,6 +598,7 @@ ContactsUI.PageWithBottomEdge {
             value: (contactList.count === 0) &&
                    !mainPage.syncEnabled &&
                    !mainPage.pickMode &&
+                   onlineAccount.item &&
                    !onlineAccount.item.hasAccounts &&
                    mainPage.newPhoneToAdd === "" &&
                    application.firstRun
@@ -634,7 +635,7 @@ ContactsUI.PageWithBottomEdge {
                                     enabled: false,
                                     initialFocusSection: "name"})
 
-        if (pageStack && pageStack.contactListPage) {
+        if (pageStack) {
             pageStack.contactListPage = mainPage
         }
     }
