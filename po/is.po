@@ -10,14 +10,14 @@ msgstr ""
 "Project-Id-Version: po_address-book-app-is\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-04 15:08+0100\n"
-"PO-Revision-Date: 2014-09-30 12:12+0000\n"
+"PO-Revision-Date: 2014-11-12 16:11+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: icelandic <translation-team-is@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-11-05 07:06+0000\n"
-"X-Generator: Launchpad (build 17223)\n"
+"X-Launchpad-Export-Date: 2014-11-13 06:37+0000\n"
+"X-Generator: Launchpad (build 17241)\n"
 "Language: is\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
@@ -226,7 +226,7 @@ msgstr "Enginn tengiliður valinn."
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:36
 msgid "No name"
-msgstr ""
+msgstr "Ekkert nafn"
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -333,7 +333,7 @@ msgstr "Vinnufarsími"
 
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:61
 msgid "Would you like to sync contacts from your google online accounts now?"
-msgstr ""
+msgstr "Viltu samræma núna tengiliði við Google-netreikninga?"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
