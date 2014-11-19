@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-04 15:08+0100\n"
-"PO-Revision-Date: 2014-09-24 23:05+0000\n"
+"PO-Revision-Date: 2014-11-19 04:42+0000\n"
 "Last-Translator: Gheyret T.Kenji <Unknown>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-11-05 07:06+0000\n"
-"X-Generator: Launchpad (build 17223)\n"
+"X-Launchpad-Export-Date: 2014-11-19 06:24+0000\n"
+"X-Generator: Launchpad (build 17252)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -224,7 +224,7 @@ msgstr "ئالاقەداش تاللانمىدى."
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:36
 msgid "No name"
-msgstr ""
+msgstr "ئاتسىز"
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -331,7 +331,7 @@ msgstr "خىزمەت يانفونى"
 
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:61
 msgid "Would you like to sync contacts from your google online accounts now?"
-msgstr ""
+msgstr "گۇگىل تور ھېساباتىدىكى ئالاقەداشلارنى ھازىرلا قەدەمداشلامسىز؟"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
