@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2014-11-04 15:08+0100\n"
-"PO-Revision-Date: 2014-10-15 14:36+0000\n"
+"PO-Revision-Date: 2014-11-23 07:20+0000\n"
 "Last-Translator: Pau Iranzo <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-11-05 07:06+0000\n"
-"X-Generator: Launchpad (build 17223)\n"
+"X-Launchpad-Export-Date: 2014-11-24 06:20+0000\n"
+"X-Generator: Launchpad (build 17252)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -224,7 +224,7 @@ msgstr "No s'ha seleccionat cap contacte."
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:36
 msgid "No name"
-msgstr ""
+msgstr "Sense nom"
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -331,7 +331,7 @@ msgstr "Mòbil de la faena"
 
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:61
 msgid "Would you like to sync contacts from your google online accounts now?"
-msgstr ""
+msgstr "Voleu sincronitzar els contactes del compte en línia de Google?"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
