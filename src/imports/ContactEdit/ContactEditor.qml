@@ -394,7 +394,7 @@ Page {
             action: Action {
                 objectName: "cancel"
 
-                iconName: "close"
+                iconName: "back"
                 text: i18n.tr("Cancel")
                 onTriggered: {
                     contactEditor.cancel()

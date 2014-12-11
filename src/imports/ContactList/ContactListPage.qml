@@ -378,7 +378,7 @@ ContactsUI.PageWithBottomEdge {
 
             name: "searching"
             backAction: Action {
-                iconName: "close"
+                iconName: "back"
                 text: i18n.tr("Cancel")
                 onTriggered: {
                     contactList.forceActiveFocus()
