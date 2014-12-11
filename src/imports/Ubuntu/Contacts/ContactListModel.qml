@@ -78,14 +78,7 @@ ContactModel {
                 detail: ContactDetail.PhoneNumber
                 field: PhoneNumber.Number
                 value: contactTermFilter.value
-                matchFlags: DetailFilter.MatchPhoneNumber
-            }
-
-            DetailFilter {
-                detail: ContactDetail.PhoneNumber
-                field: PhoneNumber.Number
-                value: contactTermFilter.value
-                matchFlags: DetailFilter.MatchContains
+                matchFlags: DetailFilter.MatchPhoneNumber | DetailFilter.MatchContains
             }
         },
         IntersectionFilter {
