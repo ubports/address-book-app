@@ -1,3 +1,14 @@
+address-book-app (0.2+15.04.20141211-0ubuntu1) vivid; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Renato Araujo Oliveira Filho ]
+  * Fix phone number search to find the search term in any position of
+    the field value. (LP: #1400468)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 11 Dec 2014 16:27:05 +0000
+
 address-book-app (0.2+15.04.20141111.1-0ubuntu1) vivid; urgency=low
 
   [ CI bot ]
