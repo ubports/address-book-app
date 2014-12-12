@@ -1,4 +1,4 @@
-address-book-app (0.2+15.04.20141211-0ubuntu2) UNRELEASED; urgency=medium
+address-book-app (0.2+15.04.20141211-0ubuntu2) vivid; urgency=medium
 
   * debian/control: fixing gles dependency for address-book-app-autopilot
 
