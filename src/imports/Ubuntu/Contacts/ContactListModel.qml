@@ -66,23 +66,30 @@ ContactModel {
             id: contactTermFilter
 
             property string value: ""
-            readonly property bool hasNumbers: {
-                var re = /\d/
-                return re.test(value)
-            }
-
-            DetailFilter {
-                detail: ContactDetail.DisplayLabel
-                field: DisplayLabel.Label
-                value: contactTermFilter.value
-                matchFlags: DetailFilter.MatchContains
-            }
-
-            DetailFilter {
+            property var phoneNumberFilter: DetailFilter {
                 detail: ContactDetail.PhoneNumber
                 field: PhoneNumber.Number
                 value: contactTermFilter.value
-                matchFlags: (contactTermFilter.hasNumbers ?  (DetailFilter.MatchPhoneNumber | DetailFilter.MatchContains) : DetailFilter.MatchPhoneNumber)
+                matchFlags: (DetailFilter.MatchPhoneNumber | DetailFilter.MatchContains)
+            }
+
+            filters: [
+                DetailFilter {
+                    detail: ContactDetail.DisplayLabel
+                    field: DisplayLabel.Label
+                    value: contactTermFilter.value
+                    matchFlags: DetailFilter.MatchContains
+                }
+            ]
+
+            onValueChanged: {
+                var containsLetter = /^[a-zA-Z]/.test(value)
+
+                if (containsLetter && (filters.length > 1)) {
+                    filters = [filters[0]]
+                } else if (!containsLetter) {
+                    filters = [filters[0], phoneNumberFilter]
+                }
             }
         },
         IntersectionFilter {

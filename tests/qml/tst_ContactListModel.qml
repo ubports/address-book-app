@@ -86,6 +86,21 @@ Item {
 
             root.contactListModelObj.filterTerm = "F"
             tryCompare(root.contactListModelObj, "contactCount", 3)
+
+            root.contactListModelObj.filterTerm = "tal6"
+            tryCompare(root.contactListModelObj, "contactCount", 1)
+        }
+
+        function test_searchByNameAndNumber()
+        {
+            root.contactListModelObj.filterTerm = "First"
+            tryCompare(root.contactListModelObj, "contactCount", 1)
+
+            root.contactListModelObj.filterTerm = "555"
+            tryCompare(root.contactListModelObj, "contactCount", 1)
+
+            root.contactListModelObj.filterTerm = "1"
+            tryCompare(root.contactListModelObj, "contactCount", 3)
         }
     }
 }
