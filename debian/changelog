@@ -1,3 +1,16 @@
+address-book-app (0.2+15.04.20141215.1-0ubuntu1) vivid; urgency=low
+
+  [ Bill Filler ]
+  * fix search by name (LP: #1400468)
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Renato Araujo Oliveira Filho ]
+  * fix search by name (LP: #1400468)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 15 Dec 2014 22:15:58 +0000
+
 address-book-app (0.2+15.04.20141211-0ubuntu2) vivid; urgency=medium
 
   * debian/control: fixing gles dependency for address-book-app-autopilot
