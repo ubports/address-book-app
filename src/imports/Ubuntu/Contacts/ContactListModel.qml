@@ -16,6 +16,7 @@
 
 import QtQuick 2.2
 import QtContacts 5.0
+import Ubuntu.Contacts 0.1
 
 ContactModel {
     id: root
@@ -75,9 +76,9 @@ ContactModel {
 
             filters: [
                 DetailFilter {
-                    detail: ContactDetail.DisplayLabel
-                    field: DisplayLabel.Label
-                    value: contactTermFilter.value
+                    detail: ContactDetail.ExtendedDetail
+                    field: root.manager === "galera" ? ExtendedDetail.Data : ContactDetail.DisplayLabel
+                    value: root.manager === "galera" ? Contacts.normalized(contactTermFilter.value) : contactTermFilter.value
                     matchFlags: DetailFilter.MatchContains
                 }
             ]

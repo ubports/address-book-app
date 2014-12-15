@@ -28,6 +28,7 @@ public:
     UbuntuContacts(QObject *parent = 0);
 
     Q_INVOKABLE QString contactInitialsFromString(const QString &value);
+    Q_INVOKABLE QString normalized(const QString &value);
 };
 
 #endif //_UBUNTU_CONTACTS_H_
