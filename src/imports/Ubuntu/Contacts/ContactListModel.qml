@@ -66,6 +66,10 @@ ContactModel {
             id: contactTermFilter
 
             property string value: ""
+            readonly property bool hasNumbers: {
+                var re = /\d/
+                return re.test(value)
+            }
 
             DetailFilter {
                 detail: ContactDetail.DisplayLabel
@@ -78,7 +82,7 @@ ContactModel {
                 detail: ContactDetail.PhoneNumber
                 field: PhoneNumber.Number
                 value: contactTermFilter.value
-                matchFlags: DetailFilter.MatchPhoneNumber | DetailFilter.MatchContains
+                matchFlags: (contactTermFilter.hasNumbers ?  (DetailFilter.MatchPhoneNumber | DetailFilter.MatchContains) : DetailFilter.MatchPhoneNumber)
             }
         },
         IntersectionFilter {
