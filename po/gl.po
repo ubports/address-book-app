@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-11-20 06:27+0000\n"
-"X-Generator: Launchpad (build 17252)\n"
+"X-Launchpad-Export-Date: 2014-12-19 06:52+0000\n"
+"X-Generator: Launchpad (build 17286)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -23,7 +23,7 @@ msgid "%1 vCards imported"
 msgstr "%1 vCards importadas"
 
 #. TRANSLATORS: this refers to creating a new contact
-#: ../src/imports/ContactList/ContactListPage.qml:203
+#: ../src/imports/ContactList/ContactListPage.qml:204
 msgid "+ Create New"
 msgstr "+ Crear un novo"
 
@@ -31,7 +31,7 @@ msgstr "+ Crear un novo"
 msgid "Add Field"
 msgstr "Engadir un campo"
 
-#: ../src/imports/ContactList/ContactListPage.qml:486
+#: ../src/imports/ContactList/ContactListPage.qml:479
 msgid "Add contact"
 msgstr "Engadir contacto"
 
@@ -55,7 +55,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:374
+#: ../src/imports/ContactList/ContactListPage.qml:367
 msgid "All"
 msgstr "Todos"
 
@@ -68,13 +68,13 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "Está certo de eliminar este contacto?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:387
+#: ../src/imports/ContactList/ContactListPage.qml:380
 #: ../src/imports/ContactView/ContactFetchError.qml:29
 #: ../src/imports/MainWindow.qml:143
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../src/imports/ContactList/ContactListPage.qml:411
+#: ../src/imports/ContactList/ContactListPage.qml:404
 msgid "Cancel selection"
 msgstr "Cancelar selección"
 
@@ -86,7 +86,7 @@ msgstr "Pechar"
 msgid "Contact not found"
 msgstr "Non se atopou o contacto"
 
-#: ../src/imports/ContactList/ContactListPage.qml:145
+#: ../src/imports/ContactList/ContactListPage.qml:146
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Contactos"
@@ -103,13 +103,13 @@ msgstr "Contactos;Persoas;Números"
 msgid "Country"
 msgstr "País"
 
-#: ../src/imports/ContactList/ContactListPage.qml:567
+#: ../src/imports/ContactList/ContactListPage.qml:550
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "Cree un contacto esvarando o dedo desde o fondo da pantalla."
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
-#: ../src/imports/ContactList/ContactListPage.qml:228
-#: ../src/imports/ContactList/ContactListPage.qml:447
+#: ../src/imports/ContactList/ContactListPage.qml:229
+#: ../src/imports/ContactList/ContactListPage.qml:440
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -142,7 +142,7 @@ msgstr "Introduza un enderezo de correo electrónico"
 msgid "Error"
 msgstr "Erro"
 
-#: ../src/imports/ContactList/ContactListPage.qml:374
+#: ../src/imports/ContactList/ContactListPage.qml:367
 msgid "Favorites"
 msgstr "Favoritos"
 
@@ -184,7 +184,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Apelidos"
 
-#: ../src/imports/ContactList/ContactListPage.qml:302
+#: ../src/imports/ContactList/ContactListPage.qml:295
 msgid "Loading..."
 msgstr "Cargando…"
 
@@ -205,12 +205,14 @@ msgstr "Móbil"
 msgid "Multiple contacts"
 msgstr "Contactos múltiples"
 
-#: ../src/imports/ContactEdit/TextInputDetail.qml:74
+#. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
+#. this word must be less than 5 characters
+#: ../src/imports/ContactEdit/TextInputDetail.qml:76
 msgid "Next"
 msgstr "Seg."
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:74
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:84
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:105
 msgid "No"
 msgstr "Non"
 
@@ -250,7 +252,7 @@ msgstr "Código postal"
 msgid "Professional Details"
 msgstr "Información profesional"
 
-#: ../src/imports/ContactList/ContactListPage.qml:345
+#: ../src/imports/ContactList/ContactListPage.qml:338
 msgid "Quit"
 msgstr "Saír"
 
@@ -266,19 +268,19 @@ msgstr "Función"
 msgid "Save"
 msgstr "Gardar"
 
-#: ../src/imports/ContactList/ContactListPage.qml:360
+#: ../src/imports/ContactList/ContactListPage.qml:353
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/imports/ContactList/ContactListPage.qml:317
+#: ../src/imports/ContactList/ContactListPage.qml:310
 msgid "Search..."
 msgstr "Buscar..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:417
+#: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "Select All"
 msgstr "Selecionar todo"
 
-#: ../src/imports/ContactList/ContactListPage.qml:430
+#: ../src/imports/ContactList/ContactListPage.qml:423
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Compartir"
@@ -296,15 +298,15 @@ msgstr "Social"
 msgid "Street"
 msgstr "Rúa"
 
-#: ../src/imports/ContactList/ContactListPage.qml:354
+#: ../src/imports/ContactList/ContactListPage.qml:347
 msgid "Sync"
 msgstr "Sincronizar"
 
-#: ../src/imports/ContactList/ContactListPage.qml:354
+#: ../src/imports/ContactList/ContactListPage.qml:347
 msgid "Syncing"
 msgstr "Sincronización"
 
-#: ../src/imports/ContactList/ContactListPage.qml:302
+#: ../src/imports/ContactList/ContactListPage.qml:295
 msgid "Syncing..."
 msgstr "Sincronizando..."
 
@@ -327,7 +329,7 @@ msgstr "Traballo"
 msgid "Work Mobile"
 msgstr "Móbil do traballo"
 
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:61
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:80
 msgid "Would you like to sync contacts from your google online accounts now?"
 msgstr "Desexa sincronizar os contactos das contas en liña de google?"
 
@@ -336,11 +338,11 @@ msgid "Yahoo"
 msgstr "Yahoo"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:62
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:69
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:88
 msgid "Yes"
 msgstr "Si"
 
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:60
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:79
 msgid "You have no contacts."
 msgstr "Non ten contactos."
 

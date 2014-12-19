@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-11-09 06:53+0000\n"
-"X-Generator: Launchpad (build 17231)\n"
+"X-Launchpad-Export-Date: 2014-12-19 06:51+0000\n"
+"X-Generator: Launchpad (build 17286)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -23,7 +23,7 @@ msgid "%1 vCards imported"
 msgstr "%1 vCard inportatuta"
 
 #. TRANSLATORS: this refers to creating a new contact
-#: ../src/imports/ContactList/ContactListPage.qml:203
+#: ../src/imports/ContactList/ContactListPage.qml:204
 msgid "+ Create New"
 msgstr "+ Sortu berria"
 
@@ -31,7 +31,7 @@ msgstr "+ Sortu berria"
 msgid "Add Field"
 msgstr "Gehitu eremua"
 
-#: ../src/imports/ContactList/ContactListPage.qml:486
+#: ../src/imports/ContactList/ContactListPage.qml:479
 msgid "Add contact"
 msgstr "Gehitu kontaktua"
 
@@ -55,7 +55,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:374
+#: ../src/imports/ContactList/ContactListPage.qml:367
 msgid "All"
 msgstr "Guztiak"
 
@@ -68,13 +68,13 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "Ziur kontaktu hau kendu nahi duzula?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:387
+#: ../src/imports/ContactList/ContactListPage.qml:380
 #: ../src/imports/ContactView/ContactFetchError.qml:29
 #: ../src/imports/MainWindow.qml:143
 msgid "Cancel"
 msgstr "Utzi"
 
-#: ../src/imports/ContactList/ContactListPage.qml:411
+#: ../src/imports/ContactList/ContactListPage.qml:404
 msgid "Cancel selection"
 msgstr "Deshautatu"
 
@@ -86,7 +86,7 @@ msgstr "Itxi"
 msgid "Contact not found"
 msgstr "Ez da kontaktua aurkitu"
 
-#: ../src/imports/ContactList/ContactListPage.qml:145
+#: ../src/imports/ContactList/ContactListPage.qml:146
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Kontaktuak"
@@ -103,13 +103,13 @@ msgstr "Kontaktuak;Jendea;Zenbakiak"
 msgid "Country"
 msgstr "Herrialdea"
 
-#: ../src/imports/ContactList/ContactListPage.qml:567
+#: ../src/imports/ContactList/ContactListPage.qml:550
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "Sortu kontaktu berri bat hatza pantailaren azpitik gorantz pasaz."
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
-#: ../src/imports/ContactList/ContactListPage.qml:228
-#: ../src/imports/ContactList/ContactListPage.qml:447
+#: ../src/imports/ContactList/ContactListPage.qml:229
+#: ../src/imports/ContactList/ContactListPage.qml:440
 msgid "Delete"
 msgstr "Ezabatu"
 
@@ -142,7 +142,7 @@ msgstr "Idatzi helbide elektroniko bat"
 msgid "Error"
 msgstr "Errorea"
 
-#: ../src/imports/ContactList/ContactListPage.qml:374
+#: ../src/imports/ContactList/ContactListPage.qml:367
 msgid "Favorites"
 msgstr "Gogokoak"
 
@@ -184,7 +184,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Abizena"
 
-#: ../src/imports/ContactList/ContactListPage.qml:302
+#: ../src/imports/ContactList/ContactListPage.qml:295
 msgid "Loading..."
 msgstr "Kargatzen..."
 
@@ -205,12 +205,14 @@ msgstr "Mugikorra"
 msgid "Multiple contacts"
 msgstr "Kontaktu anitzekoa"
 
-#: ../src/imports/ContactEdit/TextInputDetail.qml:74
+#. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
+#. this word must be less than 5 characters
+#: ../src/imports/ContactEdit/TextInputDetail.qml:76
 msgid "Next"
 msgstr "Hurrengoa"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:74
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:84
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:105
 msgid "No"
 msgstr "Ez"
 
@@ -250,7 +252,7 @@ msgstr "Posta-kodea"
 msgid "Professional Details"
 msgstr "Laneko xehetasunak"
 
-#: ../src/imports/ContactList/ContactListPage.qml:345
+#: ../src/imports/ContactList/ContactListPage.qml:338
 msgid "Quit"
 msgstr "Irten"
 
@@ -266,19 +268,19 @@ msgstr "Lanpostua"
 msgid "Save"
 msgstr "Gorde"
 
-#: ../src/imports/ContactList/ContactListPage.qml:360
+#: ../src/imports/ContactList/ContactListPage.qml:353
 msgid "Search"
 msgstr "Bilatu"
 
-#: ../src/imports/ContactList/ContactListPage.qml:317
+#: ../src/imports/ContactList/ContactListPage.qml:310
 msgid "Search..."
 msgstr "Bilatu..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:417
+#: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "Select All"
 msgstr "Hautatu dena"
 
-#: ../src/imports/ContactList/ContactListPage.qml:430
+#: ../src/imports/ContactList/ContactListPage.qml:423
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Partekatu"
@@ -296,15 +298,15 @@ msgstr "Sare sozialak"
 msgid "Street"
 msgstr "Kalea"
 
-#: ../src/imports/ContactList/ContactListPage.qml:354
+#: ../src/imports/ContactList/ContactListPage.qml:347
 msgid "Sync"
 msgstr "Sinkronizatu"
 
-#: ../src/imports/ContactList/ContactListPage.qml:354
+#: ../src/imports/ContactList/ContactListPage.qml:347
 msgid "Syncing"
 msgstr "Sinkronizatzen"
 
-#: ../src/imports/ContactList/ContactListPage.qml:302
+#: ../src/imports/ContactList/ContactListPage.qml:295
 msgid "Syncing..."
 msgstr "Sinkronizatzen..."
 
@@ -327,7 +329,7 @@ msgstr "Lanekoa"
 msgid "Work Mobile"
 msgstr "Laneko mugikorra"
 
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:61
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:80
 msgid "Would you like to sync contacts from your google online accounts now?"
 msgstr ""
 "Sinkronizatu nahi dituzu kontaktuak zure Google-en lineako kontuetatik orain?"
@@ -337,11 +339,11 @@ msgid "Yahoo"
 msgstr "Yahoo"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:62
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:69
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:88
 msgid "Yes"
 msgstr "Bai"
 
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:60
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:79
 msgid "You have no contacts."
 msgstr "Ez duzu kontakturik."
 

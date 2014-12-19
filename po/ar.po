@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-11-05 07:05+0000\n"
-"X-Generator: Launchpad (build 17223)\n"
+"X-Launchpad-Export-Date: 2014-12-19 06:51+0000\n"
+"X-Generator: Launchpad (build 17286)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -23,7 +23,7 @@ msgid "%1 vCards imported"
 msgstr ""
 
 #. TRANSLATORS: this refers to creating a new contact
-#: ../src/imports/ContactList/ContactListPage.qml:203
+#: ../src/imports/ContactList/ContactListPage.qml:204
 msgid "+ Create New"
 msgstr ""
 
@@ -31,7 +31,7 @@ msgstr ""
 msgid "Add Field"
 msgstr ""
 
-#: ../src/imports/ContactList/ContactListPage.qml:486
+#: ../src/imports/ContactList/ContactListPage.qml:479
 msgid "Add contact"
 msgstr ""
 
@@ -55,7 +55,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:374
+#: ../src/imports/ContactList/ContactListPage.qml:367
 msgid "All"
 msgstr "الكل"
 
@@ -68,13 +68,13 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:387
+#: ../src/imports/ContactList/ContactListPage.qml:380
 #: ../src/imports/ContactView/ContactFetchError.qml:29
 #: ../src/imports/MainWindow.qml:143
 msgid "Cancel"
 msgstr "إلغاء"
 
-#: ../src/imports/ContactList/ContactListPage.qml:411
+#: ../src/imports/ContactList/ContactListPage.qml:404
 msgid "Cancel selection"
 msgstr ""
 
@@ -86,7 +86,7 @@ msgstr ""
 msgid "Contact not found"
 msgstr "لم يُعثر على الشخص"
 
-#: ../src/imports/ContactList/ContactListPage.qml:145
+#: ../src/imports/ContactList/ContactListPage.qml:146
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "الأشخاص"
@@ -103,13 +103,13 @@ msgstr ""
 msgid "Country"
 msgstr "الدولة"
 
-#: ../src/imports/ContactList/ContactListPage.qml:567
+#: ../src/imports/ContactList/ContactListPage.qml:550
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
-#: ../src/imports/ContactList/ContactListPage.qml:228
-#: ../src/imports/ContactList/ContactListPage.qml:447
+#: ../src/imports/ContactList/ContactListPage.qml:229
+#: ../src/imports/ContactList/ContactListPage.qml:440
 msgid "Delete"
 msgstr "حذف"
 
@@ -142,7 +142,7 @@ msgstr "أدخِل بريدا إلكترونيا"
 msgid "Error"
 msgstr "خطأ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:374
+#: ../src/imports/ContactList/ContactListPage.qml:367
 msgid "Favorites"
 msgstr ""
 
@@ -184,7 +184,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "اسم العائلة"
 
-#: ../src/imports/ContactList/ContactListPage.qml:302
+#: ../src/imports/ContactList/ContactListPage.qml:295
 msgid "Loading..."
 msgstr "يُحمّل..."
 
@@ -205,12 +205,14 @@ msgstr "الهاتف المحمول"
 msgid "Multiple contacts"
 msgstr ""
 
-#: ../src/imports/ContactEdit/TextInputDetail.qml:74
+#. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
+#. this word must be less than 5 characters
+#: ../src/imports/ContactEdit/TextInputDetail.qml:76
 msgid "Next"
 msgstr "التالي"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:74
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:84
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:105
 msgid "No"
 msgstr "لا"
 
@@ -250,7 +252,7 @@ msgstr "الرمز البريدي"
 msgid "Professional Details"
 msgstr ""
 
-#: ../src/imports/ContactList/ContactListPage.qml:345
+#: ../src/imports/ContactList/ContactListPage.qml:338
 msgid "Quit"
 msgstr ""
 
@@ -266,19 +268,19 @@ msgstr "الوظيفة"
 msgid "Save"
 msgstr "حفظ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:360
+#: ../src/imports/ContactList/ContactListPage.qml:353
 msgid "Search"
 msgstr ""
 
-#: ../src/imports/ContactList/ContactListPage.qml:317
+#: ../src/imports/ContactList/ContactListPage.qml:310
 msgid "Search..."
 msgstr ""
 
-#: ../src/imports/ContactList/ContactListPage.qml:417
+#: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "Select All"
 msgstr ""
 
-#: ../src/imports/ContactList/ContactListPage.qml:430
+#: ../src/imports/ContactList/ContactListPage.qml:423
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr ""
@@ -296,15 +298,15 @@ msgstr "اجتماعي"
 msgid "Street"
 msgstr "الشارع"
 
-#: ../src/imports/ContactList/ContactListPage.qml:354
+#: ../src/imports/ContactList/ContactListPage.qml:347
 msgid "Sync"
 msgstr "زامن"
 
-#: ../src/imports/ContactList/ContactListPage.qml:354
+#: ../src/imports/ContactList/ContactListPage.qml:347
 msgid "Syncing"
 msgstr "المزامنة"
 
-#: ../src/imports/ContactList/ContactListPage.qml:302
+#: ../src/imports/ContactList/ContactListPage.qml:295
 msgid "Syncing..."
 msgstr "يزامن..."
 
@@ -327,7 +329,7 @@ msgstr "العمل"
 msgid "Work Mobile"
 msgstr "هاتف العمل المحمول"
 
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:61
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:80
 msgid "Would you like to sync contacts from your google online accounts now?"
 msgstr ""
 
@@ -336,11 +338,11 @@ msgid "Yahoo"
 msgstr "Yahoo"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:62
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:69
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:88
 msgid "Yes"
 msgstr "نعم"
 
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:60
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:79
 msgid "You have no contacts."
 msgstr "ليس لديك أي أشخاص."
 

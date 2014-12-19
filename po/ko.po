@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-11-05 07:06+0000\n"
-"X-Generator: Launchpad (build 17223)\n"
+"X-Launchpad-Export-Date: 2014-12-19 06:52+0000\n"
+"X-Generator: Launchpad (build 17286)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -23,7 +23,7 @@ msgid "%1 vCards imported"
 msgstr "%1 vCard를 가져왔습니다."
 
 #. TRANSLATORS: this refers to creating a new contact
-#: ../src/imports/ContactList/ContactListPage.qml:203
+#: ../src/imports/ContactList/ContactListPage.qml:204
 msgid "+ Create New"
 msgstr "+ 새 연락처"
 
@@ -31,7 +31,7 @@ msgstr "+ 새 연락처"
 msgid "Add Field"
 msgstr "필드 추가"
 
-#: ../src/imports/ContactList/ContactListPage.qml:486
+#: ../src/imports/ContactList/ContactListPage.qml:479
 msgid "Add contact"
 msgstr "연락처 추가"
 
@@ -55,7 +55,7 @@ msgid "Aim"
 msgstr "AIM"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:374
+#: ../src/imports/ContactList/ContactListPage.qml:367
 msgid "All"
 msgstr "모두"
 
@@ -68,13 +68,13 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "정말로 이 주소록을 삭제할까요?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:387
+#: ../src/imports/ContactList/ContactListPage.qml:380
 #: ../src/imports/ContactView/ContactFetchError.qml:29
 #: ../src/imports/MainWindow.qml:143
 msgid "Cancel"
 msgstr "취소"
 
-#: ../src/imports/ContactList/ContactListPage.qml:411
+#: ../src/imports/ContactList/ContactListPage.qml:404
 msgid "Cancel selection"
 msgstr "선택 해제"
 
@@ -86,7 +86,7 @@ msgstr "닫기"
 msgid "Contact not found"
 msgstr "연락처를 찾을 수 없습니다"
 
-#: ../src/imports/ContactList/ContactListPage.qml:145
+#: ../src/imports/ContactList/ContactListPage.qml:146
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "연락처"
@@ -103,13 +103,13 @@ msgstr "Contacts;연락처;People;사람;Numbers;번호"
 msgid "Country"
 msgstr "국가"
 
-#: ../src/imports/ContactList/ContactListPage.qml:567
+#: ../src/imports/ContactList/ContactListPage.qml:550
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "화면 아래에서 위로 쓸어 새 연락처를 만듭니다."
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
-#: ../src/imports/ContactList/ContactListPage.qml:228
-#: ../src/imports/ContactList/ContactListPage.qml:447
+#: ../src/imports/ContactList/ContactListPage.qml:229
+#: ../src/imports/ContactList/ContactListPage.qml:440
 msgid "Delete"
 msgstr "삭제"
 
@@ -142,7 +142,7 @@ msgstr "이메일 주소를 입력하세요"
 msgid "Error"
 msgstr "오류"
 
-#: ../src/imports/ContactList/ContactListPage.qml:374
+#: ../src/imports/ContactList/ContactListPage.qml:367
 msgid "Favorites"
 msgstr "즐겨찾기"
 
@@ -184,7 +184,7 @@ msgstr "재버"
 msgid "Last name"
 msgstr "성"
 
-#: ../src/imports/ContactList/ContactListPage.qml:302
+#: ../src/imports/ContactList/ContactListPage.qml:295
 msgid "Loading..."
 msgstr "불러오는 중..."
 
@@ -205,12 +205,14 @@ msgstr "휴대전화"
 msgid "Multiple contacts"
 msgstr "여러 연락처"
 
-#: ../src/imports/ContactEdit/TextInputDetail.qml:74
+#. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
+#. this word must be less than 5 characters
+#: ../src/imports/ContactEdit/TextInputDetail.qml:76
 msgid "Next"
 msgstr "다음"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:74
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:84
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:105
 msgid "No"
 msgstr "아니오"
 
@@ -250,7 +252,7 @@ msgstr "우편 번호"
 msgid "Professional Details"
 msgstr "직업 정보"
 
-#: ../src/imports/ContactList/ContactListPage.qml:345
+#: ../src/imports/ContactList/ContactListPage.qml:338
 msgid "Quit"
 msgstr "끝내기"
 
@@ -266,19 +268,19 @@ msgstr "직위"
 msgid "Save"
 msgstr "저장"
 
-#: ../src/imports/ContactList/ContactListPage.qml:360
+#: ../src/imports/ContactList/ContactListPage.qml:353
 msgid "Search"
 msgstr "검색"
 
-#: ../src/imports/ContactList/ContactListPage.qml:317
+#: ../src/imports/ContactList/ContactListPage.qml:310
 msgid "Search..."
 msgstr "검색..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:417
+#: ../src/imports/ContactList/ContactListPage.qml:410
 msgid "Select All"
 msgstr "전체 선택"
 
-#: ../src/imports/ContactList/ContactListPage.qml:430
+#: ../src/imports/ContactList/ContactListPage.qml:423
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "공유"
@@ -296,15 +298,15 @@ msgstr "소셜"
 msgid "Street"
 msgstr "도로명"
 
-#: ../src/imports/ContactList/ContactListPage.qml:354
+#: ../src/imports/ContactList/ContactListPage.qml:347
 msgid "Sync"
 msgstr "동기화"
 
-#: ../src/imports/ContactList/ContactListPage.qml:354
+#: ../src/imports/ContactList/ContactListPage.qml:347
 msgid "Syncing"
 msgstr "동기화 중"
 
-#: ../src/imports/ContactList/ContactListPage.qml:302
+#: ../src/imports/ContactList/ContactListPage.qml:295
 msgid "Syncing..."
 msgstr "동기화 중..."
 
@@ -327,7 +329,7 @@ msgstr "직업"
 msgid "Work Mobile"
 msgstr "업무용 휴대전화"
 
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:61
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:80
 msgid "Would you like to sync contacts from your google online accounts now?"
 msgstr ""
 
@@ -336,11 +338,11 @@ msgid "Yahoo"
 msgstr "야후"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:62
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:69
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:88
 msgid "Yes"
 msgstr "예"
 
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:60
+#: ../src/imports/ContactList/OnlineAccountsMessage.qml:79
 msgid "You have no contacts."
 msgstr "연락처가 없습니다."
 
