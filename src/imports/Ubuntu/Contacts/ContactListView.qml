@@ -311,7 +311,7 @@ Item {
     Connections {
         target: Qt.inputMethod
         onVisibleChanged: {
-            if (visible) {
+            if (Qt.inputMethod.visible) {
                 view.currentIndex = -1
             }
         }
