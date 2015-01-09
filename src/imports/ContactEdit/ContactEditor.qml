@@ -139,7 +139,7 @@ Page {
         lastPhoneField.forceActiveFocus()
     }
 
-    title: i18n.tr("Edit")
+    title: isNewContact ? i18n.tr("New contact") : i18n.tr("Edit")
 
     Timer {
         id: focusTimer
