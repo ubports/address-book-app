@@ -1,3 +1,18 @@
+address-book-app (0.2+15.04.20150111-0ubuntu1) vivid; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Renato Araujo Oliveira Filho ]
+  * Reset ListWithAction swipe state if list view start to flicking (LP:
+    #1383870)
+  * Replaced "X" (close icon) to "<" (back icon) on application header.
+    (LP: #1373517, #1373494)
+  * Implemented search for unaccented contact names. (LP: #1367906)
+  * Fix check for keyboard visibility. (LP: #1404309)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Sun, 11 Jan 2015 23:38:55 +0000
+
 address-book-app (0.2+15.04.20141215.1-0ubuntu1) vivid; urgency=low
 
   [ Bill Filler ]
