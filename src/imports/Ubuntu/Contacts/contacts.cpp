@@ -39,3 +39,19 @@ QString UbuntuContacts::contactInitialsFromString(const QString &value)
 
     return initials;
 }
+
+QString UbuntuContacts::normalized(const QString &value)
+{
+    QString s2 = value.normalized(QString::NormalizationForm_D);
+    QString out;
+
+    for (int i=0, j=s2.length(); i<j; i++)
+    {
+        // strip diacritic marks
+        if (s2.at(i).category() != QChar::Mark_NonSpacing &&
+            s2.at(i).category() != QChar::Mark_SpacingCombining) {
+            out.append(s2.at(i));
+        }
+    }
+    return out;
+}
