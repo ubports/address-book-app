@@ -53,6 +53,11 @@ ListItemWithActions {
 
     onItemClicked: root.clicked(index, contact)
     onItemPressAndHold: root.pressAndHold(index, contact)
+    onFlickingChanged: {
+        if (flicking) {
+            resetSwipe()
+        }
+    }
 
     Item {
         id: delegate
