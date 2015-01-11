@@ -139,7 +139,7 @@ Page {
         lastPhoneField.forceActiveFocus()
     }
 
-    title: i18n.tr("Edit")
+    title: isNewContact ? i18n.tr("New contact") : i18n.tr("Edit")
 
     Timer {
         id: focusTimer
@@ -394,7 +394,7 @@ Page {
             action: Action {
                 objectName: "cancel"
 
-                iconName: "close"
+                iconName: "back"
                 text: i18n.tr("Cancel")
                 onTriggered: {
                     contactEditor.cancel()
