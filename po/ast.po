@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-12-19 06:51+0000\n"
-"X-Generator: Launchpad (build 17286)\n"
+"X-Launchpad-Export-Date: 2015-01-19 06:28+0000\n"
+"X-Generator: Launchpad (build 17304)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -23,7 +23,7 @@ msgid "%1 vCards imported"
 msgstr "%1 vCards importaes"
 
 #. TRANSLATORS: this refers to creating a new contact
-#: ../src/imports/ContactList/ContactListPage.qml:204
+#: ../src/imports/ContactList/ContactListPage.qml:205
 msgid "+ Create New"
 msgstr "+ Crear nuevu"
 
@@ -31,7 +31,7 @@ msgstr "+ Crear nuevu"
 msgid "Add Field"
 msgstr "Amestar campu"
 
-#: ../src/imports/ContactList/ContactListPage.qml:479
+#: ../src/imports/ContactList/ContactListPage.qml:483
 msgid "Add contact"
 msgstr "Amestar contautu"
 
@@ -55,7 +55,7 @@ msgid "Aim"
 msgstr "Propósitu"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:367
+#: ../src/imports/ContactList/ContactListPage.qml:369
 msgid "All"
 msgstr "Too"
 
@@ -68,13 +68,13 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "¿De xuru que quies desaniciar esti contautu?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:380
+#: ../src/imports/ContactList/ContactListPage.qml:382
 #: ../src/imports/ContactView/ContactFetchError.qml:29
-#: ../src/imports/MainWindow.qml:143
+#: ../src/imports/MainWindow.qml:156
 msgid "Cancel"
 msgstr "Encaboxar"
 
-#: ../src/imports/ContactList/ContactListPage.qml:404
+#: ../src/imports/ContactList/ContactListPage.qml:406
 msgid "Cancel selection"
 msgstr "Encaboxar seleición"
 
@@ -86,7 +86,7 @@ msgstr "Zarrar"
 msgid "Contact not found"
 msgstr "Nun s'alcontró'l contautu"
 
-#: ../src/imports/ContactList/ContactListPage.qml:146
+#: ../src/imports/ContactList/ContactListPage.qml:147
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Contautos"
@@ -103,14 +103,14 @@ msgstr "Contautos;Xente;Númberos"
 msgid "Country"
 msgstr "País"
 
-#: ../src/imports/ContactList/ContactListPage.qml:550
+#: ../src/imports/ContactList/ContactListPage.qml:555
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
 "Pa crear un contautu nuevu, esliza dende la parte inferior hacia arriba."
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
-#: ../src/imports/ContactList/ContactListPage.qml:229
-#: ../src/imports/ContactList/ContactListPage.qml:440
+#: ../src/imports/ContactList/ContactListPage.qml:230
+#: ../src/imports/ContactList/ContactListPage.qml:443
 msgid "Delete"
 msgstr "Desaniciar"
 
@@ -139,11 +139,11 @@ msgid "Enter an email address"
 msgstr "Escribi una direición de corréu-e"
 
 #: ../src/imports/ContactView/ContactFetchError.qml:25
-#: ../src/imports/MainWindow.qml:139
+#: ../src/imports/MainWindow.qml:152
 msgid "Error"
 msgstr "Fallu"
 
-#: ../src/imports/ContactList/ContactListPage.qml:367
+#: ../src/imports/ContactList/ContactListPage.qml:369
 msgid "Favorites"
 msgstr "Favoritos"
 
@@ -185,7 +185,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Apellíu"
 
-#: ../src/imports/ContactList/ContactListPage.qml:295
+#: ../src/imports/ContactList/ContactListPage.qml:296
 msgid "Loading..."
 msgstr "Cargando…"
 
@@ -221,7 +221,7 @@ msgstr "Non"
 msgid "No contact selected."
 msgstr "Nun se seleicionó contautu."
 
-#: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:108
+#: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:113
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:36
 msgid "No name"
@@ -253,7 +253,7 @@ msgstr "Códigu postal"
 msgid "Professional Details"
 msgstr "Detalles profesionales"
 
-#: ../src/imports/ContactList/ContactListPage.qml:338
+#: ../src/imports/ContactList/ContactListPage.qml:339
 msgid "Quit"
 msgstr "Colar"
 
@@ -269,19 +269,19 @@ msgstr "Oficiu"
 msgid "Save"
 msgstr "Guardar"
 
-#: ../src/imports/ContactList/ContactListPage.qml:353
+#: ../src/imports/ContactList/ContactListPage.qml:354
 msgid "Search"
 msgstr "Guetar"
 
-#: ../src/imports/ContactList/ContactListPage.qml:310
+#: ../src/imports/ContactList/ContactListPage.qml:311
 msgid "Search..."
 msgstr "Guetar..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:410
+#: ../src/imports/ContactList/ContactListPage.qml:412
 msgid "Select All"
 msgstr "Esbillar Too"
 
-#: ../src/imports/ContactList/ContactListPage.qml:423
+#: ../src/imports/ContactList/ContactListPage.qml:425
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Compartir"
@@ -299,15 +299,15 @@ msgstr "Social"
 msgid "Street"
 msgstr "Cai"
 
-#: ../src/imports/ContactList/ContactListPage.qml:347
+#: ../src/imports/ContactList/ContactListPage.qml:348
 msgid "Sync"
 msgstr "Sincronizar"
 
-#: ../src/imports/ContactList/ContactListPage.qml:347
+#: ../src/imports/ContactList/ContactListPage.qml:348
 msgid "Syncing"
 msgstr "Sincronizando"
 
-#: ../src/imports/ContactList/ContactListPage.qml:295
+#: ../src/imports/ContactList/ContactListPage.qml:296
 msgid "Syncing..."
 msgstr "Sincronizando..."
 
@@ -343,6 +343,7 @@ msgstr "Yahoo"
 msgid "Yes"
 msgstr "Sí"
 
+#: ../src/imports/ContactList/ContactListPage.qml:554
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:79
 msgid "You have no contacts."
 msgstr "Nun tienes contautos."

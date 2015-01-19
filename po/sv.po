@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-12-19 06:52+0000\n"
-"X-Generator: Launchpad (build 17286)\n"
+"X-Launchpad-Export-Date: 2015-01-19 06:28+0000\n"
+"X-Generator: Launchpad (build 17304)\n"
 "Language: sv\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
@@ -24,7 +24,7 @@ msgid "%1 vCards imported"
 msgstr "%1 vCards importerade"
 
 #. TRANSLATORS: this refers to creating a new contact
-#: ../src/imports/ContactList/ContactListPage.qml:204
+#: ../src/imports/ContactList/ContactListPage.qml:205
 msgid "+ Create New"
 msgstr "+ Skapa ny"
 
@@ -32,7 +32,7 @@ msgstr "+ Skapa ny"
 msgid "Add Field"
 msgstr "Lägg till fält"
 
-#: ../src/imports/ContactList/ContactListPage.qml:479
+#: ../src/imports/ContactList/ContactListPage.qml:483
 msgid "Add contact"
 msgstr "Lägg till kontakt"
 
@@ -56,7 +56,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:367
+#: ../src/imports/ContactList/ContactListPage.qml:369
 msgid "All"
 msgstr "Alla"
 
@@ -69,13 +69,13 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "Vill du ta bort den här kontakten?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:380
+#: ../src/imports/ContactList/ContactListPage.qml:382
 #: ../src/imports/ContactView/ContactFetchError.qml:29
-#: ../src/imports/MainWindow.qml:143
+#: ../src/imports/MainWindow.qml:156
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: ../src/imports/ContactList/ContactListPage.qml:404
+#: ../src/imports/ContactList/ContactListPage.qml:406
 msgid "Cancel selection"
 msgstr "Avbryt val"
 
@@ -87,7 +87,7 @@ msgstr "Stäng"
 msgid "Contact not found"
 msgstr "Kontakten hittades inte"
 
-#: ../src/imports/ContactList/ContactListPage.qml:146
+#: ../src/imports/ContactList/ContactListPage.qml:147
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Kontakter"
@@ -104,13 +104,13 @@ msgstr "Kontakter;Personer;Nummer"
 msgid "Country"
 msgstr "Land"
 
-#: ../src/imports/ContactList/ContactListPage.qml:550
+#: ../src/imports/ContactList/ContactListPage.qml:555
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "Skapa en ny kontakt genom att svepa uppåt från botten av skärmen."
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
-#: ../src/imports/ContactList/ContactListPage.qml:229
-#: ../src/imports/ContactList/ContactListPage.qml:440
+#: ../src/imports/ContactList/ContactListPage.qml:230
+#: ../src/imports/ContactList/ContactListPage.qml:443
 msgid "Delete"
 msgstr "Ta bort"
 
@@ -139,11 +139,11 @@ msgid "Enter an email address"
 msgstr "Ange e-postadress"
 
 #: ../src/imports/ContactView/ContactFetchError.qml:25
-#: ../src/imports/MainWindow.qml:139
+#: ../src/imports/MainWindow.qml:152
 msgid "Error"
 msgstr "Fel"
 
-#: ../src/imports/ContactList/ContactListPage.qml:367
+#: ../src/imports/ContactList/ContactListPage.qml:369
 msgid "Favorites"
 msgstr "Favoriter"
 
@@ -185,7 +185,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Efternamn"
 
-#: ../src/imports/ContactList/ContactListPage.qml:295
+#: ../src/imports/ContactList/ContactListPage.qml:296
 msgid "Loading..."
 msgstr "Läser in…"
 
@@ -221,11 +221,11 @@ msgstr "Nej"
 msgid "No contact selected."
 msgstr "Ingen kontakt markerad."
 
-#: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:108
+#: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:113
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:36
 msgid "No name"
-msgstr ""
+msgstr "Namn saknas"
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -253,7 +253,7 @@ msgstr "Postnummer"
 msgid "Professional Details"
 msgstr "Yrkesinformation"
 
-#: ../src/imports/ContactList/ContactListPage.qml:338
+#: ../src/imports/ContactList/ContactListPage.qml:339
 msgid "Quit"
 msgstr "Avsluta"
 
@@ -269,19 +269,19 @@ msgstr "Roll"
 msgid "Save"
 msgstr "Spara"
 
-#: ../src/imports/ContactList/ContactListPage.qml:353
+#: ../src/imports/ContactList/ContactListPage.qml:354
 msgid "Search"
 msgstr "Sök"
 
-#: ../src/imports/ContactList/ContactListPage.qml:310
+#: ../src/imports/ContactList/ContactListPage.qml:311
 msgid "Search..."
 msgstr "Sök…"
 
-#: ../src/imports/ContactList/ContactListPage.qml:410
+#: ../src/imports/ContactList/ContactListPage.qml:412
 msgid "Select All"
 msgstr "Markera alla"
 
-#: ../src/imports/ContactList/ContactListPage.qml:423
+#: ../src/imports/ContactList/ContactListPage.qml:425
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Dela ut"
@@ -299,15 +299,15 @@ msgstr "Socialt"
 msgid "Street"
 msgstr "Gatuadress"
 
-#: ../src/imports/ContactList/ContactListPage.qml:347
+#: ../src/imports/ContactList/ContactListPage.qml:348
 msgid "Sync"
 msgstr "Synkronisera"
 
-#: ../src/imports/ContactList/ContactListPage.qml:347
+#: ../src/imports/ContactList/ContactListPage.qml:348
 msgid "Syncing"
 msgstr "Synkroniserar"
 
-#: ../src/imports/ContactList/ContactListPage.qml:295
+#: ../src/imports/ContactList/ContactListPage.qml:296
 msgid "Syncing..."
 msgstr "Synkroniserar…"
 
@@ -332,7 +332,7 @@ msgstr "Arbetsmobil"
 
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:80
 msgid "Would you like to sync contacts from your google online accounts now?"
-msgstr ""
+msgstr "Vill du synkronisera kontakter från ditt google-nätkonto nu?"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
@@ -343,6 +343,7 @@ msgstr "Yahoo"
 msgid "Yes"
 msgstr "Ja"
 
+#: ../src/imports/ContactList/ContactListPage.qml:554
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:79
 msgid "You have no contacts."
 msgstr "Du har inga kontakter."
