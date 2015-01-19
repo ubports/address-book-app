@@ -423,7 +423,7 @@ ContactsUI.PageWithBottomEdge {
                 Action {
                     objectName: "share"
                     text: i18n.tr("Share")
-                    iconName: "share"
+                    iconName: mainPage.pickMode ? "tick" : "share"
                     enabled: (contactList.selectedItems.count > 0)
                     visible: contactList.isInSelectionMode
                     onTriggered: {
