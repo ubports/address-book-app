@@ -1,3 +1,11 @@
+address-book-app (0.2+15.04.20150120-0ubuntu1) vivid; urgency=low
+
+  [ Renato Araujo Oliveira Filho ]
+  * Use the "tick" icon to confirm button while in Pick mode. (LP:
+    #1411323)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 20 Jan 2015 21:33:58 +0000
+
 address-book-app (0.2+15.04.20150111-0ubuntu1) vivid; urgency=low
 
   [ Ubuntu daily release ]
