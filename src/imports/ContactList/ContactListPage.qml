@@ -327,6 +327,11 @@ ContactsUI.PageWithBottomEdge {
         }
     }
 
+    Component {
+        id: simCardImportPage
+        ContactsUI.SIMCardImportPage {}
+    }
+
     state: "default"
     states: [
         PageHeadState {
@@ -358,6 +363,13 @@ ContactsUI.PageWithBottomEdge {
                         mainPage.state = (mainPage.state === "newphone" ? "newphoneSearching" : "searching")
                         contactList.showAllContacts()
                         searchField.forceActiveFocus()
+                    }
+                },
+                Action {
+                    text: i18n.tr("Import")
+                    iconName: "save-to"
+                    onTriggered: {
+                        pageStack.push(simCardImportPage)
                     }
                 }
             ]

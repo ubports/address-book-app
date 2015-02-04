@@ -17,6 +17,7 @@
 #include "plugin.h"
 #include "mostcalledproxymodel.h"
 #include "contacts.h"
+#include "simcardcontacts.h"
 
 #include <QQmlEngine>
 #include <qqml.h>
@@ -39,4 +40,5 @@ void UbuntuContactsPlugin::registerTypes(const char *uri)
     // @uri Ubuntu.Contacts
     qmlRegisterSingletonType<UbuntuContacts>(uri, 0, 1, "Contacts", contactsProvider);
     qmlRegisterType<MostCalledContactsModel>(uri, 0, 1, "MostCalledContactsModel");
+    qmlRegisterType<SimCardContacts>(uri, 0, 1, "SimCardContacts");
 }

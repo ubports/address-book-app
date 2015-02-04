@@ -20,6 +20,7 @@ ContactDetailBase 0.1 ContactDetailBase.qml
 ContactDetailGroupBase 0.1 ContactDetailGroupBase.qml
 ContactDetailGroupWithTypeBase 0.1 ContactDetailGroupWithTypeBase.qml
 ContactDetailGroupWithTypeView 0.1 ContactDetailGroupWithTypeView.qml
+SIMCardImportPage 0.1 SIMCardImportPage.qml
 
 internal BasicFieldView BasicFieldView.qml
 internal ContactAvatar ContactAvatar.qml
