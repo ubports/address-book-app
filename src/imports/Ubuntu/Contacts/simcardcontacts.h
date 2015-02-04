@@ -40,8 +40,9 @@ Q_SIGNALS:
     void contactsChanged();
 
 public Q_SLOTS:
-    void onModemChanged(const QStringList &modems);
+    void onModemChanged();
     void onPhoneBookImported(const QString &vcardData);
+    void onPhoneBookImportFail();
 
 private:
     QScopedPointer<QOfonoManager> m_ofonoManager;
@@ -53,6 +54,7 @@ private:
     void writeData();
     void reloadContacts();
     void cancel();
+    void importDone();
 
 };
 

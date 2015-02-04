@@ -17,7 +17,9 @@
 #include "simcardcontacts.h"
 
 #include <QDebug>
+#include <QDBusConnection>
 #include <qofonophonebook.h>
+#include <qofono-qt5/dbus/ofonophonebook.h>
 
 SimCardContacts::SimCardContacts(QObject *parent)
     : QObject(parent),
@@ -27,7 +29,10 @@ SimCardContacts::SimCardContacts(QObject *parent)
     reloadContacts();
     connect(m_ofonoManager.data(),
             SIGNAL(modemsChanged(QStringList)),
-            SLOT(onModemChanged(QStringList)));
+            SLOT(onModemChanged()));
+    connect(m_ofonoManager.data(),
+            SIGNAL(availableChanged(bool)),
+            SLOT(onModemChanged()));
 }
 
 SimCardContacts::~SimCardContacts()
@@ -48,14 +53,16 @@ QString SimCardContacts::contacts() const
 QUrl SimCardContacts::vcardFile() const
 {
     if (m_dataFile) {
+        qDebug() << "VCARD FILE NAME" << m_dataFile->fileName();
         return QUrl::fromLocalFile(m_dataFile->fileName());
     } else {
         return QUrl();
     }
 }
 
-void SimCardContacts::onModemChanged(const QStringList &modems)
+void SimCardContacts::onModemChanged()
 {
+    qDebug() << "Modem changed" << m_ofonoManager->modems();
     reloadContacts();
 }
 
@@ -65,14 +72,28 @@ void SimCardContacts::onPhoneBookImported(const QString &vcardData)
     Q_ASSERT(pb);
 
     if (!m_pendingModems.removeOne(pb)) {
-        return;
+        qWarning() << "fail to remove modem from pending modems;";
     }
 
     m_vcards << vcardData;
     if (m_pendingModems.isEmpty()) {
-        writeData();
-        m_importing.unlock();
-        Q_EMIT contactsChanged();
+        importDone();
+    }
+    pb->deleteLater();
+}
+
+void SimCardContacts::onPhoneBookImportFail()
+{
+    QOfonoPhonebook *pb = qobject_cast<QOfonoPhonebook*>(QObject::sender());
+    Q_ASSERT(pb);
+    qDebug() << "Fail to import contacts from:" << pb->modemPath();
+
+    if (!m_pendingModems.removeOne(pb)) {
+        qWarning() << "fail to remove modem from pending modems;";
+    }
+
+    if (m_pendingModems.isEmpty()) {
+        importDone();
     }
     pb->deleteLater();
 }
@@ -90,11 +111,17 @@ void SimCardContacts::writeData()
             m_dataFile->write(data.toUtf8());
         }
         m_dataFile->close();
+        qDebug() << "FILE WRITE ON" << m_dataFile->fileName();
     }
 }
 
 void SimCardContacts::reloadContacts()
 {
+    if (!m_ofonoManager->available()) {
+        qDebug() << "Manager not available;";
+        return;
+    }
+
     if (!m_importing.tryLock()) {
         qWarning() << "Imort from sim card in progress.";
         cancel();
@@ -103,24 +130,50 @@ void SimCardContacts::reloadContacts()
             return;
         }
     }
+    QStringList modems = m_ofonoManager->modems();
+    qDebug() << "IMPORTING" << modems;
     m_vcards.clear();
 
-    Q_FOREACH(const QString &modem, m_ofonoManager->modems()) {
+    int modemsCount = 0;
+    Q_FOREACH(const QString &modem, modems) {
         QOfonoPhonebook *pb = new QOfonoPhonebook(this);
         m_pendingModems << pb;
-        connect(pb,
-                SIGNAL(importReady(QString)),
-                SLOT(onPhoneBookImported(QString)));
         pb->setModemPath(modem);
-        pb->beginImport();
+
+        if (!pb->isValid()) {
+            qDebug() << "MODEM INVALID:" << pb->modemPath() << modem;
+        } else {
+            qDebug() << "MODEM IS VALID" << pb->modemPath() << modem;
+            modemsCount++;
+            qDebug() << pb->modemPath() << pb->importing();
+            connect(pb,
+                    SIGNAL(importReady(QString)),
+                    SLOT(onPhoneBookImported(QString)));
+            connect(pb,
+                    SIGNAL(importFailed()),
+                    SLOT(onPhoneBookImportFail()));
+            pb->beginImport();
+        }
+    }
+
+    if (modemsCount == 0) {
+        importDone();
     }
 }
 
 void SimCardContacts::cancel()
 {
     Q_FOREACH(QOfonoPhonebook *pb, m_pendingModems) {
+        pb->disconnect(pb);
         pb->deleteLater();
     }
     m_pendingModems.clear();
     m_importing.unlock();
+}
+
+void SimCardContacts::importDone()
+{
+    writeData();
+    m_importing.unlock();
+    Q_EMIT contactsChanged();
 }

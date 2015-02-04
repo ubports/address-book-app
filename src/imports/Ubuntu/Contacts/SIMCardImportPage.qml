@@ -19,8 +19,11 @@ import Ubuntu.Components 1.1
 import Ubuntu.Contacts 0.1
 
 Page {
-    id: contactEditor
+    id: root
     objectName: "SIMCardImportPage"
+
+    readonly property string exportFile: "file:///tmp/ubuntu_contacts_sim.vcf"
+    property var targetModel: null
 
     title: i18n.tr("Select contacts to import")
 
@@ -31,15 +34,66 @@ Page {
         anchors.fill: parent
         multiSelectionEnabled: true
         multipleSelection: true
+        showSections: false
+        visible: !indicator.visible
 
         manager: "memory"
         onSelectionCanceled: pageStack.pop()
     }
 
+    Column {
+        id: indicator
+
+        property alias title: activityLabel.text
+
+        anchors.centerIn: root
+        spacing: units.gu(2)
+        visible: false
+
+        ActivityIndicator {
+            id: activity
+
+            anchors.horizontalCenter: parent.horizontalCenter
+            running: indicator.visible
+        }
+        Label {
+            id: activityLabel
+
+            anchors.horizontalCenter: activity.horizontalCenter
+        }
+    }
+
     SimCardContacts {
         id: simCardContacts
+        property bool contactImported: false
+
         Component.onCompleted: {
-            contactList.listModel.importContacts(simCardContacts.vcardFile)
+            root.state = "loading"
+            if (vcardFile != "") {
+                contactImported = true
+                contactList.listModel.importContacts(vcardFile)
+            }
+        }
+        onVcardFileChanged: {
+            if ((vcardFile != "") && !contactImported) {
+                contactImported = true
+                contactList.listModel.importContacts(vcardFile)
+            }
+        }
+    }
+
+    Connections {
+        target: contactList.listModel
+        onImportCompleted: {
+            contactList.startSelection()
+            root.state = ""
+        }
+
+        onExportCompleted: {
+             if (targetModel) {
+                targetModel.importContacts(root.exportFile)
+             }
+             pageStack.pop()
         }
     }
 
@@ -63,7 +117,36 @@ Page {
             iconName: "tick"
             enabled: (contactList.selectedItems.count > 0)
             onTriggered: {
-                //TODO
+                root.state = "importing"
+                var contacts = []
+                var items = contactList.selectedItems
+
+                for (var i=0, iMax=items.count; i < iMax; i++) {
+                    contacts.push(items.get(i).model.contact.contactId)
+                }
+
+                contactList.listModel.exportContacts(root.exportFile,
+                                                     [],
+                                                     contacts)
+            }
+        }
+    ]
+
+    states: [
+        State {
+            name: "loading"
+            PropertyChanges {
+                target: indicator
+                title: i18n.tr("Loading")
+                visible: true
+            }
+        },
+        State {
+            name: "importing"
+            PropertyChanges {
+                target: indicator
+                title: i18n.tr("Importing")
+                visible: true
             }
         }
     ]

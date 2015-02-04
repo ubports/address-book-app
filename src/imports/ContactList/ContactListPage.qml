@@ -329,7 +329,9 @@ ContactsUI.PageWithBottomEdge {
 
     Component {
         id: simCardImportPage
-        ContactsUI.SIMCardImportPage {}
+        ContactsUI.SIMCardImportPage {
+            targetModel: contactList.listModel
+        }
     }
 
     state: "default"
