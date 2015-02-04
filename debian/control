@@ -21,6 +21,7 @@ Build-Depends: cmake,
                qtbase5-dev,
                qtdeclarative5-dev,
                qtpim5-dev,
+               libqofono-dev,
                thumbnailer-service,
                xvfb [i386 amd64 armhf],
 Standards-Version: 3.9.5
