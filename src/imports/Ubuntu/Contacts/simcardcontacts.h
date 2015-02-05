@@ -39,10 +39,12 @@ public:
 Q_SIGNALS:
     void contactsChanged();
 
-public Q_SLOTS:
+private Q_SLOTS:
     void onModemChanged();
     void onPhoneBookImported(const QString &vcardData);
     void onPhoneBookImportFail();
+    void onPhoneBookIsValidChanged(bool isValid);
+    void onImportTimeOut();
 
 private:
     QScopedPointer<QOfonoManager> m_ofonoManager;
@@ -50,6 +52,7 @@ private:
     QTemporaryFile *m_dataFile;
     QStringList m_vcards;
     QMutex m_importing;
+    QTimer m_importTimeOut;
 
     void writeData();
     void reloadContacts();

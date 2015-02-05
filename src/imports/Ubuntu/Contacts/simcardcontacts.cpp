@@ -21,6 +21,8 @@
 #include <qofonophonebook.h>
 #include <qofono-qt5/dbus/ofonophonebook.h>
 
+#define IMPORT_TIMEOUT 3000
+
 SimCardContacts::SimCardContacts(QObject *parent)
     : QObject(parent),
       m_ofonoManager(new QOfonoManager(this)),
@@ -33,6 +35,9 @@ SimCardContacts::SimCardContacts(QObject *parent)
     connect(m_ofonoManager.data(),
             SIGNAL(availableChanged(bool)),
             SLOT(onModemChanged()));
+    connect(&m_importTimeOut,
+            SIGNAL(timeout()),
+            SLOT(onImportTimeOut()));
 }
 
 SimCardContacts::~SimCardContacts()
@@ -86,16 +91,34 @@ void SimCardContacts::onPhoneBookImportFail()
 {
     QOfonoPhonebook *pb = qobject_cast<QOfonoPhonebook*>(QObject::sender());
     Q_ASSERT(pb);
-    qDebug() << "Fail to import contacts from:" << pb->modemPath();
+    qWarning() << "Fail to import contacts from:" << pb->modemPath();
 
-    if (!m_pendingModems.removeOne(pb)) {
-        qWarning() << "fail to remove modem from pending modems;";
-    }
-
+    m_pendingModems.removeOne(pb);
     if (m_pendingModems.isEmpty()) {
         importDone();
     }
     pb->deleteLater();
+}
+
+void SimCardContacts::onPhoneBookIsValidChanged(bool isValid)
+{
+    QOfonoPhonebook *pb = qobject_cast<QOfonoPhonebook*>(QObject::sender());
+    Q_ASSERT(pb);
+    if (isValid) {
+        pb->beginImport();
+    } else {
+        pb->deleteLater();
+        m_pendingModems.removeOne(pb);
+        if (m_pendingModems.isEmpty()) {
+            importDone();
+        }
+    }
+}
+
+void SimCardContacts::onImportTimeOut()
+{
+    cancel();
+    importDone();
 }
 
 void SimCardContacts::writeData()
@@ -131,38 +154,38 @@ void SimCardContacts::reloadContacts()
         }
     }
     QStringList modems = m_ofonoManager->modems();
-    qDebug() << "IMPORTING" << modems;
     m_vcards.clear();
 
-    int modemsCount = 0;
     Q_FOREACH(const QString &modem, modems) {
         QOfonoPhonebook *pb = new QOfonoPhonebook(this);
         m_pendingModems << pb;
         pb->setModemPath(modem);
 
+        connect(pb,
+                SIGNAL(importReady(QString)),
+                SLOT(onPhoneBookImported(QString)));
+        connect(pb,
+                SIGNAL(importFailed()),
+                SLOT(onPhoneBookImportFail()));
+
         if (!pb->isValid()) {
-            qDebug() << "MODEM INVALID:" << pb->modemPath() << modem;
+            connect(pb,
+                    SIGNAL(validChanged(bool)),
+                    SLOT(onPhoneBookIsValidChanged(bool)));
         } else {
-            qDebug() << "MODEM IS VALID" << pb->modemPath() << modem;
-            modemsCount++;
-            qDebug() << pb->modemPath() << pb->importing();
-            connect(pb,
-                    SIGNAL(importReady(QString)),
-                    SLOT(onPhoneBookImported(QString)));
-            connect(pb,
-                    SIGNAL(importFailed()),
-                    SLOT(onPhoneBookImportFail()));
             pb->beginImport();
         }
     }
 
-    if (modemsCount == 0) {
+    m_importTimeOut.start(IMPORT_TIMEOUT);
+    if (m_pendingModems.isEmpty()) {
         importDone();
     }
 }
 
 void SimCardContacts::cancel()
 {
+    m_importTimeOut.stop();
     Q_FOREACH(QOfonoPhonebook *pb, m_pendingModems) {
         pb->disconnect(pb);
         pb->deleteLater();
