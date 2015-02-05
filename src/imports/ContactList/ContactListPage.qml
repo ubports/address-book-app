@@ -156,6 +156,7 @@ ContactsUI.PageWithBottomEdge {
                             !mainPage.pickMode &&
                             !indicator.visible &&
                             (contactList.count === 0) &&
+                            filterTerm === "" &&
                              mainPage.newPhoneToAdd === ""
         anchors {
             top: parent.top
