@@ -155,6 +155,7 @@ ContactsUI.PageWithBottomEdge {
         showImportOptions:  !mainPage.syncEnabled &&
                             !mainPage.pickMode &&
                             !indicator.visible &&
+                            (contactList.count === 0) &&
                              mainPage.newPhoneToAdd === ""
         anchors {
             top: parent.top
