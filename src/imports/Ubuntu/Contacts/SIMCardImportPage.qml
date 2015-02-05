@@ -15,6 +15,7 @@
  */
 
 import QtQuick 2.2
+import QtContacts 5.0
 import Ubuntu.Components 1.1
 import Ubuntu.Contacts 0.1
 
@@ -25,7 +26,7 @@ Page {
     readonly property string exportFile: "file:///tmp/ubuntu_contacts_sim.vcf"
     property var targetModel: null
 
-    title: i18n.tr("Select contacts to import")
+    title: i18n.tr("Import contacts")
 
     ContactListView {
         id: contactList
@@ -90,8 +91,8 @@ Page {
         }
 
         onExportCompleted: {
-             if (targetModel) {
-                targetModel.importContacts(root.exportFile)
+            if ((error === ContactModel.ExportNoError) && targetModel) {
+                targetModel.importContacts(url)
              }
              pageStack.pop()
         }
@@ -122,7 +123,7 @@ Page {
                 var items = contactList.selectedItems
 
                 for (var i=0, iMax=items.count; i < iMax; i++) {
-                    contacts.push(items.get(i).model.contact.contactId)
+                    contacts.push(items.get(i).model.contact)
                 }
 
                 contactList.listModel.exportContacts(root.exportFile,

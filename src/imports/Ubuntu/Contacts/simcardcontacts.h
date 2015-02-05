@@ -22,6 +22,7 @@
 
 #include <qofonomanager.h>
 #include <qofonophonebook.h>
+#include <qofonomodem.h>
 
 class SimCardContacts : public QObject
 {
@@ -43,22 +44,23 @@ private Q_SLOTS:
     void onModemChanged();
     void onPhoneBookImported(const QString &vcardData);
     void onPhoneBookImportFail();
+    void onModemIsValidChanged(bool isValid);
     void onPhoneBookIsValidChanged(bool isValid);
     void onImportTimeOut();
 
 private:
     QScopedPointer<QOfonoManager> m_ofonoManager;
-    QList<QOfonoPhonebook*> m_pendingModems;
+    QSet<QObject*> m_pendingModems;
     QTemporaryFile *m_dataFile;
     QStringList m_vcards;
     QMutex m_importing;
-    QTimer m_importTimeOut;
 
     void writeData();
     void reloadContacts();
     void cancel();
     void importDone();
-
+    void importPhoneBook(QOfonoModem *modem);
+    void importPhoneBook(QOfonoPhonebook *phoneBook);
 };
 
 #endif
