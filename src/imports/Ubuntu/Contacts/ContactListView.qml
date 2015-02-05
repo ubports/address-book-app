@@ -390,28 +390,16 @@ Item {
                 visible: root.showAddNewButton
             }
 
-            // Import Options
-            Column {
-                id: importOptions
-
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-                visible: root.showImportOptions
-                height: visible ? childrenRect.height : 0
-
-                // Import from google
-                ContactListButtonDelegate {
-                    expandIcon: true
-                    iconSource: "image://theme/google"
-                    // TRANSLATORS: this refers to a new contact
-                    labelText: i18n.tr("Import contacts from Google")
-                    onClicked: onlineAccountHelper.item.setupExec()
-                    visible: onlineAccountHelper.status === Loader.Ready
-                }
-                // TODO: import from simcard
+            // Import from google
+            ContactListButtonDelegate {
+                expandIcon: true
+                iconSource: "image://theme/google"
+                // TRANSLATORS: this refers to a new contact
+                labelText: i18n.tr("Import contacts from Google")
+                visible: (onlineAccountHelper.status === Loader.Ready)
+                onClicked: onlineAccountHelper.item.setupExec()
             }
+            // TODO: import from simcard
 
             MostCalledList {
                 id: mostCalledView
