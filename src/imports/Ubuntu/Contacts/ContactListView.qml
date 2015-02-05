@@ -193,6 +193,20 @@ Item {
     readonly property alias isInSelectionMode: view.isInSelectionMode
 
     /*!
+      \qmlproperty bool showImportOptions
+
+      This property holds if the import options should be visible on the list
+    */
+    property bool showImportOptions: false
+
+    /*!
+      \qmlproperty bool showAddNewButton
+
+      This property holds if the add new button should be visible or not
+    */
+    property bool showAddNewButton: false
+
+    /*!
       This handler is called when the selection mode is finished without be canceled
     */
     signal selectionDone(var items)
@@ -224,6 +238,10 @@ Item {
       This handler is called when the contact delegate disapear (height === 0) caused by the function call makeDisappear
     */
     signal contactDisappeared(QtObject contact)
+    /*!
+      This handler is called when the button add new contact is clicked
+    */
+    signal addNewContactClicked()
 
     function startSelection()
     {
@@ -363,17 +381,38 @@ Item {
             }
             height: childrenRect.height
 
-            Item {
-                id: listHeader
+            // AddNewButton
+            ContactListButtonDelegate {
+                iconSource: "image://theme/add"
+                // TRANSLATORS: this refers to a new contact
+                labelText: i18n.tr("+ Create New")
+                onClicked: root.addNewContactClicked()
+                visible: root.showAddNewButton
+            }
+
+            // Import Options
+            Column {
+                id: importOptions
 
                 anchors {
                     left: parent.left
                     right: parent.right
-                    margins: units.gu(1)
                 }
-                height: childrenRect.height
-                children: root.header
+                visible: root.showImportOptions
+                height: visible ? childrenRect.height : 0
+
+                // Import from google
+                ContactListButtonDelegate {
+                    expandIcon: true
+                    iconSource: "image://theme/google"
+                    // TRANSLATORS: this refers to a new contact
+                    labelText: i18n.tr("Import contacts from Google")
+                    onClicked: onlineAccountHelper.item.setupExec()
+                    visible: onlineAccountHelper.status === Loader.Ready
+                }
+                // TODO: import from simcard
             }
+
             MostCalledList {
                 id: mostCalledView
 
@@ -418,5 +457,12 @@ Item {
             right: parent.right
             verticalCenter: parent.verticalCenter
         }
+    }
+
+    Loader {
+        id: onlineAccountHelper
+        asynchronous: true
+        source: (contactList.count === 0) &&
+                root.showImportOptions ? Qt.resolvedUrl("OnlineAccountsHelper.qml") : ""
     }
 }

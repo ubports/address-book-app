@@ -152,68 +152,10 @@ ContactsUI.PageWithBottomEdge {
     ContactsUI.ContactListView {
         id: contactList
         objectName: "contactListView"
-
-        header:  Item {
-            id: addNewContactButton
-            objectName: "addNewContact"
-
-            anchors {
-                left: parent.left
-                right: parent.right
-            }
-            visible: false
-            height: visible ? units.gu(8) : 0
-
-            Rectangle {
-                anchors.fill: parent
-                color: Theme.palette.selected.background
-                opacity: addNewContactButtonArea.pressed ?  1.0 : 0.0
-            }
-
-            UbuntuShape {
-                id: addIcon
-
-                anchors {
-                    left: parent.left
-                    top: parent.top
-                    bottom: parent.bottom
-                    margins: units.gu(1)
-                }
-                width: height
-                radius: "medium"
-                color: Theme.palette.normal.overlay
-                Image {
-                    anchors.centerIn: parent
-                    width: units.gu(2)
-                    height: units.gu(2)
-                    source: "image://theme/add"
-                }
-            }
-
-            Label {
-                id: name
-
-                anchors {
-                    left: addIcon.right
-                    leftMargin: units.gu(2)
-                    verticalCenter: parent.verticalCenter
-                    right: parent.right
-                    rightMargin: units.gu(2)
-                }
-                color: UbuntuColors.lightAubergine
-                // TRANSLATORS: this refers to creating a new contact
-                text: i18n.tr("+ Create New")
-                elide: Text.ElideRight
-            }
-
-            MouseArea {
-                id: addNewContactButtonArea
-
-                anchors.fill: parent
-                onClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
-            }
-        }
-
+        showImportOptions:  !mainPage.syncEnabled &&
+                            !mainPage.pickMode &&
+                            !indicator.visible &&
+                             mainPage.newPhoneToAdd === ""
         anchors {
             top: parent.top
             left: parent.left
@@ -241,6 +183,7 @@ ContactsUI.PageWithBottomEdge {
         }
 
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
+        onAddNewContactClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
 
         onInfoRequested: {
             mainPage.state = "default"
@@ -474,8 +417,8 @@ ContactsUI.PageWithBottomEdge {
             extend: "default"
             head: mainPage.head
             PropertyChanges {
-                target: addNewContactButton
-                visible: true
+                target: contactList
+                showAddNewButton: true
             }
             PropertyChanges {
                 target: mainPage
@@ -492,12 +435,9 @@ ContactsUI.PageWithBottomEdge {
             extend: "searching"
             head: mainPage.head
             PropertyChanges {
-                target: addNewContactButton
-                visible: true
-            }
-            PropertyChanges {
                 target: contactList
                 detailToPick: -1
+                showAddNewButton: true
             }
             PropertyChanges {
                 target: mainPage
@@ -506,7 +446,7 @@ ContactsUI.PageWithBottomEdge {
         }
     ]
     onActiveChanged: {
-        if (active && addNewContactButton.visible) {
+        if (active && contactList.showAddNewButton) {
             contactList.positionViewAtBeginning()
         }
     }
@@ -600,13 +540,7 @@ ContactsUI.PageWithBottomEdge {
             target: onlineAccount.item
             property: "dialogVisible"
             when: onlineAccount.status === Loader.Ready
-            value: (contactList.count === 0) &&
-                   !mainPage.syncEnabled &&
-                   !mainPage.pickMode &&
-                   onlineAccount.item &&
-                   !onlineAccount.item.hasAccounts &&
-                   mainPage.newPhoneToAdd === "" &&
-                   application.firstRun
+
         }
     }
 
