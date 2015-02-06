@@ -77,6 +77,9 @@ Item {
         {
             root.contactListViewObj = contactListCmp.createObject(mainView, {"manager": "memory"})
             waitForRendering(root.contactListViewObj)
+
+            var onlineAccountHelper = findChild(root.contactListViewObj, "onlineAccountHelper")
+            verify(onlineAccountHelper.sourceFile.indexOf("OnlineAccountsDummy.qml") > 0)
         }
 
         function cleanup()
@@ -117,12 +120,18 @@ Item {
         function test_importButtonsVisibility()
         {
             var importButton = findChild(root.contactListViewObj, "importFromOnlineAccountButton")
+            var onlineAccountHelper = findChild(root.contactListViewObj, "onlineAccountHelper")
+
             tryCompare(root.contactListViewObj, "showImportOptions", false)
             tryCompare(importButton, "visible", false)
+            tryCompare(onlineAccountHelper, "status", Loader.Null)
+            tryCompare(onlineAccountHelper, "isSearching", false)
             verify(importButton.height === 0)
 
             root.contactListViewObj.showImportOptions = true
             tryCompare(root.contactListViewObj, "showImportOptions", true)
+            tryCompare(root.contactListViewObj, "count", 0)
+            tryCompare(onlineAccountHelper, "status", Loader.Ready)
             tryCompare(importButton, "visible", true)
             verify(importButton.height > 0)
 
@@ -134,6 +143,7 @@ Item {
             // Button should not be visible during a search with empty results
             root.contactListViewObj.filterTerm = "xox"
             tryCompare(root.contactListViewObj, "count", 0)
+            tryCompare(onlineAccountHelper, "status", Loader.Null)
             tryCompare(importButton, "visible", false)
         }
 

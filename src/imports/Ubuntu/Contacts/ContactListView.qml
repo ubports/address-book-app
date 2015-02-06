@@ -455,14 +455,15 @@ Item {
         id: onlineAccountHelper
         objectName: "onlineAccountHelper"
 
+        readonly property bool isSearching: (root.filterTerm && root.filterTerm !== "")
         // if running on test mode does not load online account modules
         property string sourceFile: (typeof(runningOnTestMode) !== "undefined") ?
                                       Qt.resolvedUrl("OnlineAccountsDummy.qml") :
                                       Qt.resolvedUrl("OnlineAccountsHelper.qml")
 
         asynchronous: true
-        source: (view.count === 0) &&
-                (view.filterTerm !== "") &&
-                root.showImportOptions ? sourceFile : ""
+        source: root.showImportOptions &&
+                (root.count === 0) &&
+                !isSearching ? sourceFile : ""
     }
 }
