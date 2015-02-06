@@ -100,42 +100,5 @@ Item {
         {
             tryCompare(root.contactListPageObj, "contactManager", "memory")
         }
-
-        function test_welcomeDialogAppearOnFirstRun()
-        {
-            var dialog = findChild(root.contactListPageObj, "onlineAccountLoader")
-            // dialog visible
-            tryCompare(dialog, "status", Loader.Ready)
-            tryCompare(dialog.item, "dialogVisible", true)
-        }
-
-        function test_welcomeDialogDisappearOnSecondRun()
-        {
-            application.firstRun = false
-            var dialog = findChild(root.contactListPageObj, "onlineAccountLoader")
-            // dialog visible
-            tryCompare(dialog, "status", Loader.Ready)
-            tryCompare(dialog.item, "dialogVisible", false)
-        }
-
-        function test_welcomeDialogDisappearAfterCreateAContact()
-        {
-            var dialog = findChild(root.contactListPageObj, "onlineAccountLoader")
-            // dialog visible
-            tryCompare(dialog, "status", Loader.Ready)
-            tryCompare(dialog.item, "dialogVisible", true)
-
-            // create a contact
-            var view = findChild(root.contactListPageObj, "contactListView")
-            tryCompare(view, "count", 0)
-
-            var newContact = root.createContact("Phablet", "+558187042133", "phablet@ubuntu.com")
-            root.contactListPageObj.contactModel.saveContact(newContact)
-            tryCompare(view, "count", 1)
-
-            // dialog should dissapear
-            tryCompare(dialog.item, "dialogVisible", false)
-        }
-
     }
 }

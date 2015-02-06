@@ -383,6 +383,8 @@ Item {
 
             // AddNewButton
             ContactListButtonDelegate {
+                objectName: "addNewButton"
+
                 iconSource: "image://theme/add"
                 // TRANSLATORS: this refers to a new contact
                 labelText: i18n.tr("+ Create New")
@@ -392,6 +394,8 @@ Item {
 
             // Import from google
             ContactListButtonDelegate {
+                objectName: "importFromOnlineAccountButton"
+
                 expandIcon: true
                 iconSource: "image://theme/google"
                 // TRANSLATORS: this refers to a new contact
@@ -449,8 +453,11 @@ Item {
 
     Loader {
         id: onlineAccountHelper
+        objectName: "onlineAccountHelper"
+
         asynchronous: true
-        source: (contactList.count === 0) &&
+        source: (view.count === 0) &&
+                (view.filterTerm !== "") &&
                 root.showImportOptions ? Qt.resolvedUrl("OnlineAccountsHelper.qml") : ""
     }
 }

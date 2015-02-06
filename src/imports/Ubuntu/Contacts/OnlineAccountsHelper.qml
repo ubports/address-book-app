@@ -21,20 +21,13 @@ import Ubuntu.OnlineAccounts.Client 0.1
 Item {
     id: root
 
-    readonly property bool hasContactAccounts: (accounts.count > 0)
+    property bool running: false
 
     function setupExec()
     {
-         setup.exec()
-    }
-
-    AccountServiceModel {
-        id: accounts
-        applicationId: "contacts-sync"
-        onCountChanged: {
-            if (count > 0) {
-                root.closeDialog()
-            }
+        if (!root.running) {
+            root.running = true
+            setup.exec()
         }
     }
 
@@ -42,5 +35,8 @@ Item {
         id: setup
         applicationId: "contacts-sync"
         providerId: "google"
+        onFinished: {
+            root.running = false
+        }
     }
 }
