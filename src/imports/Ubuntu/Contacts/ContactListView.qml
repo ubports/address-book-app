@@ -378,6 +378,7 @@ Item {
             anchors {
                 left: parent.left
                 right: parent.right
+                margins: units.gu(1)
             }
             height: childrenRect.height
 
