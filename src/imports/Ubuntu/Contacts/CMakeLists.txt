@@ -36,6 +36,7 @@ set(CONTACT_COMPONENTS_QMLS
     MostCalledModel.qml
     MultipleSelectionListView.qml
     MultipleSelectionVisualModel.qml
+    OnlineAccountsDummy.qml
     OnlineAccountsHelper.qml
     PageWithBottomEdge.qml
     qmldir

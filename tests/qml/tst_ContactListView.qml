@@ -28,6 +28,8 @@ Item {
 
     property var application
     property var contactListViewObj
+    // enable dummy mode for contact list view
+    property bool runningOnTestMode: true
 
     width: units.gu(40)
     height: units.gu(80)

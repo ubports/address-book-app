@@ -455,9 +455,14 @@ Item {
         id: onlineAccountHelper
         objectName: "onlineAccountHelper"
 
+        // if running on test mode does not load online account modules
+        property string sourceFile: (typeof(runningOnTestMode) !== "undefined") ?
+                                      Qt.resolvedUrl("OnlineAccountsDummy.qml") :
+                                      Qt.resolvedUrl("OnlineAccountsHelper.qml")
+
         asynchronous: true
         source: (view.count === 0) &&
                 (view.filterTerm !== "") &&
-                root.showImportOptions ? Qt.resolvedUrl("OnlineAccountsHelper.qml") : ""
+                root.showImportOptions ? sourceFile : ""
     }
 }
