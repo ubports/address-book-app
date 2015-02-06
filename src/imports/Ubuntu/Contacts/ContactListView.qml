@@ -465,6 +465,7 @@ Item {
         asynchronous: true
         source: root.showImportOptions &&
                 (root.count === 0) &&
+                !view.favouritesIsSelected &&
                 !isSearching ? sourceFile : ""
     }
 }
