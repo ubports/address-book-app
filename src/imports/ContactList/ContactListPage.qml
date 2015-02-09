@@ -33,7 +33,6 @@ ContactsUI.PageWithBottomEdge {
     property alias contentHubTransfer: contactExporter.activeTransfer
     property bool pickMultipleContacts: false
     property QtObject contactIndex: null
-    property bool contactsLoaded: false
     property string newPhoneToAdd: ""
     property alias contactManager: contactList.manager
 
@@ -154,7 +153,6 @@ ContactsUI.PageWithBottomEdge {
         objectName: "contactListView"
         showImportOptions:  !mainPage.syncEnabled &&
                             !mainPage.pickMode &&
-                            !indicator.visible &&
                             mainPage.newPhoneToAdd === ""
         anchors {
             top: parent.top
@@ -175,7 +173,6 @@ ContactsUI.PageWithBottomEdge {
 
         onCountChanged: {
             if (count > 0) {
-                mainPage.contactsLoaded = true
                 // break the binding, avoid the message to appear while searhing or switching to favorites
                 emptyStateScreen.visible = false
 
@@ -217,27 +214,6 @@ ContactsUI.PageWithBottomEdge {
         }
 
         onError: pageStack.contactModelError(error)
-    }
-
-    Column {
-        id: indicator
-
-        anchors.centerIn: contactList
-        spacing: units.gu(2)
-        visible: ((contactList.loading && !mainPage.contactsLoaded) ||
-                  (application.syncing && (contactList.count === 0)))
-
-
-        ActivityIndicator {
-            id: activity
-
-            anchors.horizontalCenter: parent.horizontalCenter
-            running: indicator.visible
-        }
-        Label {
-            anchors.horizontalCenter: activity.horizontalCenter
-            text: contactList.loading ?  i18n.tr("Loading...") : i18n.tr("Syncing...")
-        }
     }
 
     TextField {
@@ -287,11 +263,11 @@ ContactsUI.PageWithBottomEdge {
             }
             actions: [
                 Action {
-                    visible: mainPage.syncEnabled
-                    text: application.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
+                    visible: contactList.syncEnabled
+                    text: contactList.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
                     iconName: "reload"
-                    enabled: !application.syncing
-                    onTriggered: application.startSync()
+                    enabled: !contactList.syncing
+                    onTriggered: contactList.sync()
                 },
                 Action {
                     text: i18n.tr("Search")
@@ -476,7 +452,9 @@ ContactsUI.PageWithBottomEdge {
         height: childrenRect.height
         width: childrenRect.width
         spacing: units.gu(2)
-        visible: (mainPage.isEmpty && !indicator.visible && (mainPage.newPhoneToAdd === ""))
+        visible: (mainPage.isEmpty &&
+                  !contactList.busy &&
+                  (mainPage.newPhoneToAdd === ""))
 
         Icon {
             id: emptyStateIcon

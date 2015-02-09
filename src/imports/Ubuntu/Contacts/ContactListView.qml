@@ -16,8 +16,10 @@
 
 import QtQuick 2.2
 import QtContacts 5.0
+
 import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 1.0 as ListItem
+import Ubuntu.SyncMonitor 0.1
 
 /*!
     \qmltype ContactListView
@@ -191,20 +193,36 @@ Item {
       This property holds a list with the index of selected items
     */
     readonly property alias isInSelectionMode: view.isInSelectionMode
-
     /*!
       \qmlproperty bool showImportOptions
 
       This property holds if the import options should be visible on the list
     */
     property bool showImportOptions: false
-
     /*!
       \qmlproperty bool showAddNewButton
 
       This property holds if the add new button should be visible or not
     */
     property bool showAddNewButton: false
+    /*!
+      \qmlproperty bool syncing
+
+      This property holds if the list is running a sync with online accounts or not
+    */
+    readonly property bool syncing: (syncMonitor.state === "syncing")
+    /*!
+      \qmlproperty bool syncEnabled
+
+      This property holds if there is online account to sync or not
+    */
+    property alias syncEnabled: syncMonitor.enabledServices ? syncMonitor.serviceIsEnabled("contacts") : false
+    /*!
+      \qmlproperty bool busy
+
+      This property holds if the list is busy or not
+    */
+    property alias busy: indicator.visible
 
     /*!
       This handler is called when the selection mode is finished without be canceled
@@ -325,6 +343,14 @@ Item {
         contactsModel.update()
     }
 
+    /*!
+      Start an online account sync opration
+    */
+    function sync()
+    {
+       syncMonitor.sync(["contacts"])
+    }
+
     // colapse contacts if the keyboard appears
     Connections {
         target: Qt.inputMethod
@@ -340,6 +366,7 @@ Item {
 
         property bool showFavourites: true
         property alias favouritesIsSelected: contactsModel.onlyFavorites
+        property bool contactsLoaded: false
 
         function getSectionText(index) {
             var tag = listModel.contacts[index].tag.tag
@@ -401,20 +428,12 @@ Item {
                 iconSource: "image://theme/google"
                 // TRANSLATORS: this refers to a new contact
                 labelText: i18n.tr("Import contacts from Google")
-                visible: (onlineAccountHelper.status === Loader.Ready)
+                visible: (onlineAccountHelper.status === Loader.Ready) && !indicator.visible
                 onClicked: onlineAccountHelper.item.setupExec()
-                showContents: !activity.running
 
                 // avoid show the button while the list still loading contacts
                 Behavior on visible {
                      PauseAnimation { duration: 500 }
-                }
-
-                ActivityIndicator {
-                    id: activity
-
-                    anchors.centerIn: parent
-                    running: onlineAccountHelper.item.running
                 }
             }
             // TODO: import from simcard
@@ -438,6 +457,12 @@ Item {
         onSelectionDone: root.selectionDone(items)
         onSelectionCanceled: root.selectionCanceled()
         onContactDisappeared: root.contactDisappeared(contact)
+        onCountChanged: {
+            if (view.count > 0) {
+                view.contactsLoaded = true
+            }
+        }
+
         clip: true
 
         listModel: ContactListModel {
@@ -446,6 +471,27 @@ Item {
             manager: root.manager
             sortOrders: root.sortOrders
             fetchHint: root.fetchHint
+        }
+    }
+
+    Column {
+        id: indicator
+
+        anchors.centerIn: view
+        spacing: units.gu(2)
+        visible: ((view.loading && !view.contactsLoaded) ||
+                  (root.syncing && (view.count === 0)) ||
+                  ((onlineAccountHelper.status == Loader.Ready)  && (onlineAccountHelper.item.running)))
+
+        ActivityIndicator {
+            id: activity
+
+            anchors.horizontalCenter: parent.horizontalCenter
+            running: indicator.visible
+        }
+        Label {
+            anchors.horizontalCenter: activity.horizontalCenter
+            text: root.syncing ? i18n.tr("Syncing...") : i18n.tr("Loading...")
         }
     }
 
@@ -463,6 +509,10 @@ Item {
             right: parent.right
             verticalCenter: parent.verticalCenter
         }
+    }
+
+    SyncMonitor {
+        id: syncMonitor
     }
 
     Loader {
