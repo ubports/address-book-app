@@ -446,6 +446,18 @@ ContactsUI.PageWithBottomEdge {
                   (mainPage.newPhoneToAdd === "") &&
                   !(contactList.filterTerm && contactList.filterTerm !== ""))
 
+        Behavior on visible {
+            SequentialAnimation {
+                 PauseAnimation {
+                     duration: !emptyStateScreen.visible ? 500 : 0
+                 }
+                 PropertyAction {
+                     target: emptyStateScreen
+                     property: "visible"
+                 }
+            }
+        }
+
         Icon {
             id: emptyStateIcon
             anchors.horizontalCenter: emptyStateLabel.horizontalCenter
