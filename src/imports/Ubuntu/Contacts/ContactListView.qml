@@ -422,19 +422,29 @@ Item {
 
             // Import from google
             ContactListButtonDelegate {
+                id: importFromGoogleButton
+
                 objectName: "importFromOnlineAccountButton"
 
+                visible: (onlineAccountHelper.status === Loader.Ready) &&
+                         !indicator.visible
                 expandIcon: true
                 iconSource: "image://theme/google"
                 // TRANSLATORS: this refers to a new contact
                 labelText: i18n.tr("Import contacts from Google")
-                visible: (onlineAccountHelper.status === Loader.Ready) &&
-                         !indicator.visible
                 onClicked: onlineAccountHelper.item.setupExec()
 
                 // avoid show the button while the list still loading contacts
                 Behavior on visible {
-                     PauseAnimation { duration: 500 }
+                    SequentialAnimation {
+                         PauseAnimation {
+                             duration: !importFromGoogleButton.visible ? 500 : 0
+                         }
+                         PropertyAction {
+                             target: importFromGoogleButton
+                             property: "visible"
+                         }
+                    }
                 }
             }
             // TODO: import from simcard

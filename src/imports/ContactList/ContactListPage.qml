@@ -168,15 +168,6 @@ ContactsUI.PageWithBottomEdge {
             text: i18n.tr("Delete")
             onTriggered: value.remove()
         }
-
-        onCountChanged: {
-            if (count > 0) {
-                // break the binding, avoid the message to appear while searhing or switching to favorites
-                emptyStateScreen.visible = false
-
-            }
-        }
-
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
         onAddNewContactClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
 
@@ -452,7 +443,8 @@ ContactsUI.PageWithBottomEdge {
         spacing: units.gu(2)
         visible: (mainPage.isEmpty &&
                   !contactList.busy &&
-                  (mainPage.newPhoneToAdd === ""))
+                  (mainPage.newPhoneToAdd === "") &&
+                  !(contactList.filterTerm && contactList.filterTerm !== ""))
 
         Icon {
             id: emptyStateIcon
