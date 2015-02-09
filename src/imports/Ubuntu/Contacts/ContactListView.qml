@@ -216,7 +216,7 @@ Item {
 
       This property holds if there is online account to sync or not
     */
-    property alias syncEnabled: syncMonitor.enabledServices ? syncMonitor.serviceIsEnabled("contacts") : false
+    readonly property bool syncEnabled: syncMonitor.enabledServices ? syncMonitor.serviceIsEnabled("contacts") : false
     /*!
       \qmlproperty bool busy
 
@@ -428,7 +428,8 @@ Item {
                 iconSource: "image://theme/google"
                 // TRANSLATORS: this refers to a new contact
                 labelText: i18n.tr("Import contacts from Google")
-                visible: (onlineAccountHelper.status === Loader.Ready) && !indicator.visible
+                visible: (onlineAccountHelper.status === Loader.Ready) &&
+                         !indicator.visible
                 onClicked: onlineAccountHelper.item.setupExec()
 
                 // avoid show the button while the list still loading contacts

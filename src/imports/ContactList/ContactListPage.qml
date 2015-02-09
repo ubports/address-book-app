@@ -38,7 +38,6 @@ ContactsUI.PageWithBottomEdge {
 
     readonly property bool isEmpty: (contactList.count === 0)
     readonly property bool allowToQuit: (application.callbackApplication.length > 0)
-    readonly property bool syncEnabled: application.syncEnabled
     readonly property var contactModel: contactList.listModel ? contactList.listModel : null
     readonly property bool searching: (state === "searching" || state === "newphoneSearching")
 
@@ -151,8 +150,7 @@ ContactsUI.PageWithBottomEdge {
     ContactsUI.ContactListView {
         id: contactList
         objectName: "contactListView"
-        showImportOptions:  !mainPage.syncEnabled &&
-                            !mainPage.pickMode &&
+        showImportOptions:  !mainPage.pickMode &&
                             mainPage.newPhoneToAdd === ""
         anchors {
             top: parent.top
@@ -505,20 +503,6 @@ ContactsUI.PageWithBottomEdge {
                 pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
                                { contactModel: contactExporter.contactModel, contacts: contacts })
             }
-        }
-    }
-
-    Loader {
-        id: onlineAccount
-        objectName: "onlineAccountLoader"
-
-        asynchronous: true
-        source: Qt.resolvedUrl("./OnlineAccountsMessage.qml")
-        Binding {
-            target: onlineAccount.item
-            property: "dialogVisible"
-            when: onlineAccount.status === Loader.Ready
-
         }
     }
 

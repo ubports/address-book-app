@@ -132,7 +132,8 @@ Item {
             tryCompare(root.contactListViewObj, "showImportOptions", true)
             tryCompare(root.contactListViewObj, "count", 0)
             tryCompare(onlineAccountHelper, "status", Loader.Ready)
-            tryCompare(importButton, "visible", true)
+            // need to wait a bit more until the list leave the loading state
+            tryCompare(importButton, "visible", true, 10000)
             verify(importButton.height > 0)
 
             // Button should disapear if the list is not empty
@@ -159,6 +160,8 @@ Item {
 
             // click
             var importButton = findChild(root.contactListViewObj, "importFromOnlineAccountButton")
+            // need to wait a bit more until the list leave the loading state
+            tryCompare(importButton, "visible", true, 10000)
             mouseClick(importButton, importButton.width / 2, importButton.height / 2)
             tryCompare(onlineAccountDialog.item, "running", true)
         }

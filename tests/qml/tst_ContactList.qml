@@ -35,9 +35,7 @@ Item {
     application: QtObject {
         id: appMock
 
-        property bool syncing: false
         property string callbackApplication: ""
-        property bool syncEnabled: false
         property bool firstRun: true
         property bool disableOnlineAccounts: true
 
@@ -79,6 +77,7 @@ Item {
         name: 'contactListTestCase'
 
         when: windowShown
+
 
         function init()
         {
