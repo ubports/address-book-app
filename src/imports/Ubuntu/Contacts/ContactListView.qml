@@ -403,6 +403,19 @@ Item {
                 labelText: i18n.tr("Import contacts from Google")
                 visible: (onlineAccountHelper.status === Loader.Ready)
                 onClicked: onlineAccountHelper.item.setupExec()
+                showContents: !activity.running
+
+                // avoid show the button while the list still loading contacts
+                Behavior on visible {
+                     PauseAnimation { duration: 500 }
+                }
+
+                ActivityIndicator {
+                    id: activity
+
+                    anchors.centerIn: parent
+                    running: onlineAccountHelper.item.running
+                }
             }
             // TODO: import from simcard
 
@@ -462,6 +475,7 @@ Item {
                                       Qt.resolvedUrl("OnlineAccountsDummy.qml") :
                                       Qt.resolvedUrl("OnlineAccountsHelper.qml")
 
+        anchors.fill: parent
         asynchronous: true
         source: root.showImportOptions &&
                 (root.count === 0) &&

@@ -15,6 +15,7 @@
  */
 
 import QtQuick 2.2
+import Ubuntu.Components 1.1
 import Ubuntu.OnlineAccounts 0.1
 import Ubuntu.OnlineAccounts.Client 0.1
 
@@ -30,7 +31,6 @@ Item {
             setup.exec()
         }
     }
-
     Setup {
         id: setup
         applicationId: "contacts-sync"

@@ -23,6 +23,7 @@ Item {
    property string iconSource
    property alias labelText: name.text
    property bool expandIcon: false
+   property bool showContents: true
    signal clicked()
 
    anchors {
@@ -59,6 +60,7 @@ Item {
            width: units.gu(2)
            height: units.gu(2)
        }
+       visible: root.showContents
    }
 
    Label {
@@ -73,6 +75,7 @@ Item {
        }
        color: UbuntuColors.lightAubergine
        elide: Text.ElideRight
+       visible: root.showContents
    }
 
    MouseArea {
@@ -80,5 +83,6 @@ Item {
 
        anchors.fill: parent
        onClicked: root.clicked()
+       visible: root.showContents
    }
 }
