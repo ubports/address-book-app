@@ -101,7 +101,6 @@ static void installIconPath()
 AddressBookApp::AddressBookApp(int &argc, char **argv)
     : QGuiApplication(argc, argv),
       m_view(0),
-      m_syncMonitor(0),
       m_pickingMode(false),
       m_testMode(false),
       m_withArgs(false)
@@ -213,18 +212,12 @@ bool AddressBookApp::setup()
         }
     }
 
-    connectWithSyncMonitor();
     return true;
 }
 
 AddressBookApp::~AddressBookApp()
 {
     unsetFirstRun();
-
-    if (m_syncMonitor) {
-        m_syncMonitor->call("detach");
-        delete m_syncMonitor;
-    }
 
     if (m_view) {
         delete m_view;
@@ -436,54 +429,9 @@ QUrl AddressBookApp::copyImage(QObject *contact, const QUrl &imageUrl)
     return imgThread->outputFile();
 }
 
-void AddressBookApp::connectWithSyncMonitor()
-{
-    m_syncMonitor = new QDBusInterface("com.canonical.SyncMonitor",
-                                       "/com/canonical/SyncMonitor",
-                                       "com.canonical.SyncMonitor");
-    if (m_syncMonitor->lastError().isValid()) {
-        qWarning() << "Fail to connect with sync monitor:" << m_syncMonitor->lastError();
-    } else {
-        connect(m_syncMonitor, SIGNAL(stateChanged()), SIGNAL(syncingChanged()));
-        connect(m_syncMonitor, SIGNAL(enabledServicesChanged()), SIGNAL(syncEnabledChanged()));
-        m_syncMonitor->call("attach");
-    }
-    Q_EMIT syncEnabledChanged();
-    Q_EMIT syncingChanged();
-}
-
-void AddressBookApp::startSync() const
-{
-    if (m_syncMonitor && !isSyncing()) {
-        m_syncMonitor->call("sync", QStringList() << "contacts");
-    }
-}
-
 void AddressBookApp::elapsed() const
 {
     qDebug() << "ELAPSED:" << s_elapsed.elapsed() / 1000.0;
-}
-
-bool AddressBookApp::isSyncing() const
-{
-    if (m_syncMonitor) {
-        return (m_syncMonitor->property("state").toString() == "syncing");
-    } else {
-        return false;
-    }
-}
-
-bool AddressBookApp::syncEnabled() const
-{
-    if (m_syncMonitor) {
-        QStringList enabledServices = m_syncMonitor->property("enabledServices").toStringList();
-        Q_FOREACH(const QString &value, enabledServices) {
-            if (value == "contacts") {
-                return true;
-            }
-        }
-    }
-    return false;
 }
 
 QString AddressBookApp::callbackApplication() const
