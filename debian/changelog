@@ -1,3 +1,17 @@
+address-book-app (0.2+15.04.20150210.2-0ubuntu1) vivid; urgency=medium
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Albert Astals Cid ]
+  * make address-book-app.pot
+
+  [ Renato Araujo Oliveira Filho ]
+  * Implement new empty state for contact list with support for contact
+    import options. (LP: #1417341)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 10 Feb 2015 21:42:45 +0000
+
 address-book-app (0.2+15.04.20150120-0ubuntu1) vivid; urgency=low
 
   [ Renato Araujo Oliveira Filho ]
