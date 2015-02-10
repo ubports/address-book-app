@@ -382,7 +382,7 @@ MultipleSelectionListView {
         Timer {
             id: timer
 
-            interval: 6000
+            interval: 3000
             running: true
             repeat: false
         }
