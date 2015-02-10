@@ -441,8 +441,9 @@ ContactsUI.PageWithBottomEdge {
         height: childrenRect.height
         width: childrenRect.width
         spacing: units.gu(2)
-        visible: (mainPage.isEmpty &&
-                  !contactList.busy &&
+        visible: (!contactList.busy &&
+                  !contactList.favouritesIsSelected &&
+                  mainPage.isEmpty &&
                   (mainPage.newPhoneToAdd === "") &&
                   !(contactList.filterTerm && contactList.filterTerm !== ""))
 
