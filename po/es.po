@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-11-04 15:08+0100\n"
-"PO-Revision-Date: 2014-11-05 15:21+0000\n"
-"Last-Translator: Leo Arias <leo.arias@canonical.com>\n"
+"POT-Creation-Date: 2015-02-10 10:07+0100\n"
+"PO-Revision-Date: 2015-02-10 11:00+0000\n"
+"Last-Translator: Albert Astals Cid <albert.astals@canonical.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-01-19 06:28+0000\n"
-"X-Generator: Launchpad (build 17304)\n"
+"X-Launchpad-Export-Date: 2015-02-11 06:27+0000\n"
+"X-Generator: Launchpad (build 17336)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -160,7 +160,7 @@ msgstr "Llamados frecuentemente"
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:115
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
 msgid "Home"
-msgstr "Inicio"
+msgstr "Casa"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "ICQ"
@@ -184,7 +184,7 @@ msgstr "Jabber"
 
 #: ../src/imports/ContactEdit/ContactDetailNameEditor.qml:84
 msgid "Last name"
-msgstr "Apellido"
+msgstr "Apellidos"
 
 #: ../src/imports/ContactList/ContactListPage.qml:296
 msgid "Loading..."
@@ -206,6 +206,10 @@ msgstr "Móvil"
 #: ../src/imports/Common/RemoveContactsDialog.qml:44
 msgid "Multiple contacts"
 msgstr "Múltiples contactos"
+
+#: ../src/imports/ContactEdit/ContactEditor.qml:142
+msgid "New contact"
+msgstr ""
 
 #. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
 #. this word must be less than 5 characters
@@ -319,6 +323,10 @@ msgstr "Título"
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:27
 msgid "Touch"
 msgstr "Toque"
+
+#: ../src/imports/ContactList/ContactListPage.qml:412
+msgid "Unselect All"
+msgstr ""
 
 #. TRANSLATORS: This refers to landline work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:116
