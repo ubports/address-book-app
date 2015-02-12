@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-11-04 15:08+0100\n"
+"POT-Creation-Date: 2015-02-10 10:07+0100\n"
 "PO-Revision-Date: 2014-07-19 07:49+0000\n"
 "Last-Translator: MinSik CHO <Unknown>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-01-19 06:28+0000\n"
-"X-Generator: Launchpad (build 17304)\n"
+"X-Launchpad-Export-Date: 2015-02-11 06:26+0000\n"
+"X-Generator: Launchpad (build 17336)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -205,6 +205,10 @@ msgstr "휴대전화"
 msgid "Multiple contacts"
 msgstr "여러 연락처"
 
+#: ../src/imports/ContactEdit/ContactEditor.qml:142
+msgid "New contact"
+msgstr "새 연락처"
+
 #. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
 #. this word must be less than 5 characters
 #: ../src/imports/ContactEdit/TextInputDetail.qml:76
@@ -224,7 +228,7 @@ msgstr "아무 주소록도 선택되지 않았습니다."
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:36
 msgid "No name"
-msgstr ""
+msgstr "이름 없음"
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -318,6 +322,10 @@ msgstr "제목"
 msgid "Touch"
 msgstr "터치"
 
+#: ../src/imports/ContactList/ContactListPage.qml:412
+msgid "Unselect All"
+msgstr "모두 선택 해제"
+
 #. TRANSLATORS: This refers to landline work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:116
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
@@ -331,7 +339,7 @@ msgstr "업무용 휴대전화"
 
 #: ../src/imports/ContactList/OnlineAccountsMessage.qml:80
 msgid "Would you like to sync contacts from your google online accounts now?"
-msgstr ""
+msgstr "지금 구글 온라인 계정의 연락처와 동시화하시겠습니까?"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"

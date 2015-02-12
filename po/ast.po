@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-11-04 15:08+0100\n"
-"PO-Revision-Date: 2014-11-08 18:22+0000\n"
+"POT-Creation-Date: 2015-02-10 10:07+0100\n"
+"PO-Revision-Date: 2015-02-11 21:14+0000\n"
 "Last-Translator: ivarela <ivarela@ubuntu.com>\n"
 "Language-Team: Asturian <ast@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-01-19 06:28+0000\n"
-"X-Generator: Launchpad (build 17304)\n"
+"X-Launchpad-Export-Date: 2015-02-12 07:06+0000\n"
+"X-Generator: Launchpad (build 17336)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -206,6 +206,10 @@ msgstr "Móvil"
 msgid "Multiple contacts"
 msgstr "Múltiples contautos"
 
+#: ../src/imports/ContactEdit/ContactEditor.qml:142
+msgid "New contact"
+msgstr "Contautu nuevu"
+
 #. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
 #. this word must be less than 5 characters
 #: ../src/imports/ContactEdit/TextInputDetail.qml:76
@@ -318,6 +322,10 @@ msgstr "Títulu"
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:27
 msgid "Touch"
 msgstr "Toque"
+
+#: ../src/imports/ContactList/ContactListPage.qml:412
+msgid "Unselect All"
+msgstr "Deseleicionar too"
 
 #. TRANSLATORS: This refers to landline work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:116
