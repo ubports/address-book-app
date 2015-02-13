@@ -25,12 +25,11 @@ Item {
     id: root
 
     property var contactModel
-    property var outputFile
+    property bool exportToDisk: true
     property var activeTransfer: null
 
-
     signal contactsFetched(var contacts)
-    signal done()
+    signal done(string outputFile)
 
     function start(contacts) {
         if (!contactModel) {
@@ -53,7 +52,8 @@ Item {
             ids.push(contacts[i].contactId)
         }
         if (ids.length == 0) {
-            completed(0)
+            console.debug("The contact list is empty")
+            done("")
         } else {
             priv.currentQueryId = contactModel.fetchContacts(ids)
         }
@@ -114,22 +114,21 @@ Item {
                     console.error("Fail to export contacts:" + error)
                 }
                 root.dismissBusyDialog()
-                root.done()
+                root.done(url)
             }
 
             onContactsFetched: {
                 // currentQueryId == -2 is used during a fetch using "memory" manager
                 if ((priv.currentQueryId == -2) || (requestId == priv.currentQueryId)) {
-                    if (root.outputFile !== "") {
+                    if (root.exportToDisk) {
                         var contacts = []
                         // remove unnecessary info from contacts
                         for(var i=0; i < fetchedContacts.length; i++) {
                             contacts.push(priv.filterContactDetails(fetchedContacts[i]))
                         }
                         // update outputFile with a friendly name
-                        root.outputFile = priv.generateOutputFileName(contacts)
-
-                        root.contactModel.exportContacts(root.outputFile,
+                        var outputFile = priv.generateOutputFileName(contacts)
+                        root.contactModel.exportContacts(outputFile,
                                                          [],
                                                          contacts)
                     }
@@ -145,7 +144,7 @@ Item {
             onStateChanged: {
                 if (root.activeTransfer.state === ContentTransfer.Aborted) {
                     root.activeTransfer = null
-                    root.done()
+                    root.done("")
                 }
             }
         }
