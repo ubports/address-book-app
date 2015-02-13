@@ -505,6 +505,7 @@ ContactsUI.PageWithBottomEdge {
         onContactsFetched: {
             // Share contacts to an application chosen by the user
             if (!mainPage.pickMode) {
+                contactExporter.dismissBusyDialog()
                 pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
                                { contactModel: contactExporter.contactModel, contacts: contacts })
             }

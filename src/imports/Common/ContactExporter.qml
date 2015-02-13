@@ -27,7 +27,7 @@ Item {
     property var contactModel
     property var outputFile
     property var activeTransfer: null
-    property var busyDialog: null
+
 
     signal contactsFetched(var contacts)
     signal done()
@@ -40,12 +40,12 @@ Item {
 
         // skip if a query is running
         if (priv.currentQueryId != -1) {
-            completed(0)
+            console.error("Export already running")
             return
         }
 
-        if (!root.busyDialog) {
-            root.busyDialog = PopupUtils.open(busyDialogComponent, root)
+        if (!priv.busyDialog) {
+            priv.busyDialog = PopupUtils.open(busyDialogComponent, root)
         }
 
         var ids = []
@@ -59,9 +59,18 @@ Item {
         }
     }
 
+    function dismissBusyDialog()
+    {
+        if (priv.busyDialog) {
+            PopupUtils.close(priv.busyDialog)
+            priv.busyDialog = null
+        }
+    }
+
     Item {
         id: priv
 
+        property var busyDialog: null
         property int currentQueryId: -1
         readonly property var detailsBlackList: [ ContactDetail.Favorite, ContactDetail.Tag ]
 
@@ -91,8 +100,6 @@ Item {
             target: root.contactModel
 
             onExportCompleted: {
-                priv.currentQueryId = -1
-
                 // send contacts back to source app (pick mode)
                 if (error === ContactModel.ExportNoError) {
                     var obj = Qt.createQmlObject("import Ubuntu.Content 1.1;  ContentItem { url: '" + url + "' }", root)
@@ -106,8 +113,7 @@ Item {
                     root.activeTransfer = ContentHub.ContentTransfer.Aborted
                     console.error("Fail to export contacts:" + error)
                 }
-                PopupUtils.close(root.busyDialog)
-                root.busyDialog = null
+                root.dismissBusyDialog()
                 root.done()
             }
 
@@ -128,6 +134,7 @@ Item {
                                                          contacts)
                     }
                     root.contactsFetched(fetchedContacts)
+                    priv.currentQueryId = -1
                 }
             }
         }
