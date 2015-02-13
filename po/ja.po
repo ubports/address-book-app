@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-02-10 10:07+0100\n"
+"POT-Creation-Date: 2015-02-10 10:11-0300\n"
 "PO-Revision-Date: 2014-10-10 13:43+0000\n"
 "Last-Translator: Mitsuya Shibata <mty.shibata@gmail.com>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-02-11 06:26+0000\n"
+"X-Launchpad-Export-Date: 2015-02-13 06:53+0000\n"
 "X-Generator: Launchpad (build 17336)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
@@ -22,8 +22,8 @@ msgstr ""
 msgid "%1 vCards imported"
 msgstr "%1件のvCardをインポートしました"
 
-#. TRANSLATORS: this refers to creating a new contact
-#: ../src/imports/ContactList/ContactListPage.qml:205
+#. TRANSLATORS: this refers to a new contact
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:418
 msgid "+ Create New"
 msgstr "+ 新規作成"
 
@@ -31,7 +31,7 @@ msgstr "+ 新規作成"
 msgid "Add Field"
 msgstr "フィールドを追加"
 
-#: ../src/imports/ContactList/ContactListPage.qml:483
+#: ../src/imports/ContactList/ContactListPage.qml:391
 msgid "Add contact"
 msgstr "連絡先を追加"
 
@@ -55,7 +55,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:369
+#: ../src/imports/ContactList/ContactListPage.qml:277
 msgid "All"
 msgstr "すべて"
 
@@ -68,13 +68,13 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "この連絡先を削除しますか？"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:382
+#: ../src/imports/ContactList/ContactListPage.qml:290
 #: ../src/imports/ContactView/ContactFetchError.qml:29
 #: ../src/imports/MainWindow.qml:156
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: ../src/imports/ContactList/ContactListPage.qml:406
+#: ../src/imports/ContactList/ContactListPage.qml:314
 msgid "Cancel selection"
 msgstr "選択を解除"
 
@@ -86,7 +86,7 @@ msgstr "閉じる"
 msgid "Contact not found"
 msgstr "連絡先が見つかりません"
 
-#: ../src/imports/ContactList/ContactListPage.qml:147
+#: ../src/imports/ContactList/ContactListPage.qml:145
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "連絡先"
@@ -103,13 +103,13 @@ msgstr "連絡先;人;番号"
 msgid "Country"
 msgstr "国"
 
-#: ../src/imports/ContactList/ContactListPage.qml:555
+#: ../src/imports/ContactList/ContactListPage.qml:476
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "画面の下からスワイプアップすると新規連絡先を作成します。"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
-#: ../src/imports/ContactList/ContactListPage.qml:230
-#: ../src/imports/ContactList/ContactListPage.qml:443
+#: ../src/imports/ContactList/ContactListPage.qml:168
+#: ../src/imports/ContactList/ContactListPage.qml:351
 msgid "Delete"
 msgstr "削除"
 
@@ -142,7 +142,7 @@ msgstr "メールアドレスを入力"
 msgid "Error"
 msgstr "エラー"
 
-#: ../src/imports/ContactList/ContactListPage.qml:369
+#: ../src/imports/ContactList/ContactListPage.qml:277
 msgid "Favorites"
 msgstr "お気に入り"
 
@@ -168,6 +168,11 @@ msgstr "ICQ"
 msgid "IM"
 msgstr "IM"
 
+#. TRANSLATORS: this refers to a new contact
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:434
+msgid "Import contacts from Google"
+msgstr ""
+
 #: ../src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
 msgstr "vCardsのインポート"
@@ -184,7 +189,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "姓"
 
-#: ../src/imports/ContactList/ContactListPage.qml:296
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:505
 msgid "Loading..."
 msgstr "読み込み中..."
 
@@ -216,7 +221,6 @@ msgid "Next"
 msgstr "次へ"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:74
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:105
 msgid "No"
 msgstr "いいえ"
 
@@ -256,7 +260,7 @@ msgstr "郵便番号"
 msgid "Professional Details"
 msgstr "所属"
 
-#: ../src/imports/ContactList/ContactListPage.qml:339
+#: ../src/imports/ContactList/ContactListPage.qml:247
 msgid "Quit"
 msgstr "終了"
 
@@ -272,19 +276,19 @@ msgstr "役職"
 msgid "Save"
 msgstr "保存"
 
-#: ../src/imports/ContactList/ContactListPage.qml:354
+#: ../src/imports/ContactList/ContactListPage.qml:262
 msgid "Search"
 msgstr "検索"
 
-#: ../src/imports/ContactList/ContactListPage.qml:311
+#: ../src/imports/ContactList/ContactListPage.qml:219
 msgid "Search..."
 msgstr "検索…"
 
-#: ../src/imports/ContactList/ContactListPage.qml:412
+#: ../src/imports/ContactList/ContactListPage.qml:320
 msgid "Select All"
 msgstr "すべて選択"
 
-#: ../src/imports/ContactList/ContactListPage.qml:425
+#: ../src/imports/ContactList/ContactListPage.qml:333
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "共有"
@@ -302,15 +306,15 @@ msgstr "SNS"
 msgid "Street"
 msgstr "番地等"
 
-#: ../src/imports/ContactList/ContactListPage.qml:348
+#: ../src/imports/ContactList/ContactListPage.qml:256
 msgid "Sync"
 msgstr "同期"
 
-#: ../src/imports/ContactList/ContactListPage.qml:348
+#: ../src/imports/ContactList/ContactListPage.qml:256
 msgid "Syncing"
 msgstr "同期中"
 
-#: ../src/imports/ContactList/ContactListPage.qml:296
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:505
 msgid "Syncing..."
 msgstr "同期しています..."
 
@@ -322,7 +326,7 @@ msgstr "肩書き"
 msgid "Touch"
 msgstr "Touch"
 
-#: ../src/imports/ContactList/ContactListPage.qml:412
+#: ../src/imports/ContactList/ContactListPage.qml:320
 msgid "Unselect All"
 msgstr ""
 
@@ -337,21 +341,15 @@ msgstr "勤務先"
 msgid "Work Mobile"
 msgstr "会社の携帯"
 
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:80
-msgid "Would you like to sync contacts from your google online accounts now?"
-msgstr ""
-
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
 msgstr "Yahoo"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:62
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:88
 msgid "Yes"
 msgstr "はい"
 
-#: ../src/imports/ContactList/ContactListPage.qml:554
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:79
+#: ../src/imports/ContactList/ContactListPage.qml:475
 msgid "You have no contacts."
 msgstr "連絡先がありません。"
 

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-02-10 10:07+0100\n"
+"POT-Creation-Date: 2015-02-10 10:11-0300\n"
 "PO-Revision-Date: 2014-01-15 01:39+0000\n"
 "Last-Translator: Hiwa <hiwa24@gmail.com>\n"
 "Language-Team: Kurdish (Sorani) <ckb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-02-11 06:27+0000\n"
+"X-Launchpad-Export-Date: 2015-02-13 06:54+0000\n"
 "X-Generator: Launchpad (build 17336)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
@@ -22,8 +22,8 @@ msgstr ""
 msgid "%1 vCards imported"
 msgstr ""
 
-#. TRANSLATORS: this refers to creating a new contact
-#: ../src/imports/ContactList/ContactListPage.qml:205
+#. TRANSLATORS: this refers to a new contact
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:418
 msgid "+ Create New"
 msgstr ""
 
@@ -31,7 +31,7 @@ msgstr ""
 msgid "Add Field"
 msgstr ""
 
-#: ../src/imports/ContactList/ContactListPage.qml:483
+#: ../src/imports/ContactList/ContactListPage.qml:391
 msgid "Add contact"
 msgstr ""
 
@@ -55,7 +55,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:369
+#: ../src/imports/ContactList/ContactListPage.qml:277
 msgid "All"
 msgstr ""
 
@@ -68,13 +68,13 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:382
+#: ../src/imports/ContactList/ContactListPage.qml:290
 #: ../src/imports/ContactView/ContactFetchError.qml:29
 #: ../src/imports/MainWindow.qml:156
 msgid "Cancel"
 msgstr "پاشگه‌زبوونه‌وه‌"
 
-#: ../src/imports/ContactList/ContactListPage.qml:406
+#: ../src/imports/ContactList/ContactListPage.qml:314
 msgid "Cancel selection"
 msgstr ""
 
@@ -86,7 +86,7 @@ msgstr ""
 msgid "Contact not found"
 msgstr "ناسراو نەدۆزرایەوە"
 
-#: ../src/imports/ContactList/ContactListPage.qml:147
+#: ../src/imports/ContactList/ContactListPage.qml:145
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "ناسراو"
@@ -103,13 +103,13 @@ msgstr ""
 msgid "Country"
 msgstr "وڵات"
 
-#: ../src/imports/ContactList/ContactListPage.qml:555
+#: ../src/imports/ContactList/ContactListPage.qml:476
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
-#: ../src/imports/ContactList/ContactListPage.qml:230
-#: ../src/imports/ContactList/ContactListPage.qml:443
+#: ../src/imports/ContactList/ContactListPage.qml:168
+#: ../src/imports/ContactList/ContactListPage.qml:351
 msgid "Delete"
 msgstr "سڕینه‌وه"
 
@@ -142,7 +142,7 @@ msgstr "ئیمەیڵ بنوسە"
 msgid "Error"
 msgstr "هەڵە"
 
-#: ../src/imports/ContactList/ContactListPage.qml:369
+#: ../src/imports/ContactList/ContactListPage.qml:277
 msgid "Favorites"
 msgstr ""
 
@@ -168,6 +168,11 @@ msgstr "ICQ"
 msgid "IM"
 msgstr "IM"
 
+#. TRANSLATORS: this refers to a new contact
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:434
+msgid "Import contacts from Google"
+msgstr ""
+
 #: ../src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
 msgstr ""
@@ -184,7 +189,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "دوا ناو"
 
-#: ../src/imports/ContactList/ContactListPage.qml:296
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:505
 msgid "Loading..."
 msgstr ""
 
@@ -216,7 +221,6 @@ msgid "Next"
 msgstr ""
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:74
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:105
 msgid "No"
 msgstr ""
 
@@ -256,7 +260,7 @@ msgstr "کۆدی پۆست"
 msgid "Professional Details"
 msgstr ""
 
-#: ../src/imports/ContactList/ContactListPage.qml:339
+#: ../src/imports/ContactList/ContactListPage.qml:247
 msgid "Quit"
 msgstr ""
 
@@ -272,19 +276,19 @@ msgstr "پله‌"
 msgid "Save"
 msgstr "پاشەکەوت"
 
-#: ../src/imports/ContactList/ContactListPage.qml:354
+#: ../src/imports/ContactList/ContactListPage.qml:262
 msgid "Search"
 msgstr ""
 
-#: ../src/imports/ContactList/ContactListPage.qml:311
+#: ../src/imports/ContactList/ContactListPage.qml:219
 msgid "Search..."
 msgstr ""
 
-#: ../src/imports/ContactList/ContactListPage.qml:412
+#: ../src/imports/ContactList/ContactListPage.qml:320
 msgid "Select All"
 msgstr ""
 
-#: ../src/imports/ContactList/ContactListPage.qml:425
+#: ../src/imports/ContactList/ContactListPage.qml:333
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr ""
@@ -302,15 +306,15 @@ msgstr "کۆمەڵایەتی"
 msgid "Street"
 msgstr "شەقام"
 
-#: ../src/imports/ContactList/ContactListPage.qml:348
+#: ../src/imports/ContactList/ContactListPage.qml:256
 msgid "Sync"
 msgstr ""
 
-#: ../src/imports/ContactList/ContactListPage.qml:348
+#: ../src/imports/ContactList/ContactListPage.qml:256
 msgid "Syncing"
 msgstr ""
 
-#: ../src/imports/ContactList/ContactListPage.qml:296
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:505
 msgid "Syncing..."
 msgstr ""
 
@@ -322,7 +326,7 @@ msgstr "پێشناو"
 msgid "Touch"
 msgstr "دەستلێدان"
 
-#: ../src/imports/ContactList/ContactListPage.qml:412
+#: ../src/imports/ContactList/ContactListPage.qml:320
 msgid "Unselect All"
 msgstr ""
 
@@ -337,20 +341,14 @@ msgstr "کار"
 msgid "Work Mobile"
 msgstr "مۆبایلی کار"
 
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:80
-msgid "Would you like to sync contacts from your google online accounts now?"
-msgstr ""
-
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
 msgstr "یاهو"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:62
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:88
 msgid "Yes"
 msgstr ""
 
-#: ../src/imports/ContactList/ContactListPage.qml:554
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:79
+#: ../src/imports/ContactList/ContactListPage.qml:475
 msgid "You have no contacts."
 msgstr ""
