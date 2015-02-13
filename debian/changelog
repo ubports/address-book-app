@@ -1,3 +1,15 @@
+address-book-app (0.2+15.04.20150213.2-0ubuntu1) vivid; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk
+  * New rebuild forced.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Show a dialog with a spinner while exporting contacts. (LP:
+    #1419854)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Fri, 13 Feb 2015 19:32:39 +0000
+
 address-book-app (0.2+15.04.20150210.2-0ubuntu1) vivid; urgency=medium
 
   [ Ubuntu daily release ]
