@@ -341,7 +341,6 @@ ContactsUI.PageWithBottomEdge {
                         for (var i=0, iMax=items.count; i < iMax; i++) {
                             contacts.push(items.get(i).model.contact)
                         }
-
                         contactExporter.start(contacts)
                         contactList.endSelection()
                     }
@@ -495,16 +494,17 @@ ContactsUI.PageWithBottomEdge {
         id: contactExporter
 
         contactModel: contactList.listModel
-        outputFile: mainPage.pickMode ? "file:///tmp/address_book_app_export.vcf" : ""
+        exportToDisk: mainPage.pickMode
         onDone: {
             mainPage.pickMode = false
             mainPage.state = "default"
-            application.returnVcard(contactExporter.outputFile)
+            application.returnVcard(outputFile)
         }
 
         onContactsFetched: {
             // Share contacts to an application chosen by the user
             if (!mainPage.pickMode) {
+                contactExporter.dismissBusyDialog()
                 pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
                                { contactModel: contactExporter.contactModel, contacts: contacts })
             }

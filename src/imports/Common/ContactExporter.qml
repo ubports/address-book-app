@@ -16,17 +16,20 @@
 
 import QtQuick 2.2
 import QtContacts 5.0
+
+import Ubuntu.Components 1.1
 import Ubuntu.Content 1.1
+import Ubuntu.Components.Popups 1.0
 
 Item {
     id: root
 
     property var contactModel
-    property var outputFile
+    property bool exportToDisk: true
     property var activeTransfer: null
 
     signal contactsFetched(var contacts)
-    signal done()
+    signal done(string outputFile)
 
     function start(contacts) {
         if (!contactModel) {
@@ -36,8 +39,12 @@ Item {
 
         // skip if a query is running
         if (priv.currentQueryId != -1) {
-            completed(0)
+            console.error("Export already running")
             return
+        }
+
+        if (!priv.busyDialog) {
+            priv.busyDialog = PopupUtils.open(busyDialogComponent, root)
         }
 
         var ids = []
@@ -45,15 +52,25 @@ Item {
             ids.push(contacts[i].contactId)
         }
         if (ids.length == 0) {
-            completed(0)
+            console.debug("The contact list is empty")
+            done("")
         } else {
             priv.currentQueryId = contactModel.fetchContacts(ids)
+        }
+    }
+
+    function dismissBusyDialog()
+    {
+        if (priv.busyDialog) {
+            PopupUtils.close(priv.busyDialog)
+            priv.busyDialog = null
         }
     }
 
     Item {
         id: priv
 
+        property var busyDialog: null
         property int currentQueryId: -1
         readonly property var detailsBlackList: [ ContactDetail.Favorite, ContactDetail.Tag ]
 
@@ -83,8 +100,6 @@ Item {
             target: root.contactModel
 
             onExportCompleted: {
-                priv.currentQueryId = -1
-
                 // send contacts back to source app (pick mode)
                 if (error === ContactModel.ExportNoError) {
                     var obj = Qt.createQmlObject("import Ubuntu.Content 1.1;  ContentItem { url: '" + url + "' }", root)
@@ -98,26 +113,27 @@ Item {
                     root.activeTransfer = ContentHub.ContentTransfer.Aborted
                     console.error("Fail to export contacts:" + error)
                 }
-                root.done()
+                root.dismissBusyDialog()
+                root.done(url)
             }
 
             onContactsFetched: {
                 // currentQueryId == -2 is used during a fetch using "memory" manager
                 if ((priv.currentQueryId == -2) || (requestId == priv.currentQueryId)) {
-                    if (root.outputFile !== "") {
+                    if (root.exportToDisk) {
                         var contacts = []
                         // remove unnecessary info from contacts
                         for(var i=0; i < fetchedContacts.length; i++) {
                             contacts.push(priv.filterContactDetails(fetchedContacts[i]))
                         }
                         // update outputFile with a friendly name
-                        root.outputFile = priv.generateOutputFileName(contacts)
-
-                        root.contactModel.exportContacts(root.outputFile,
+                        var outputFile = priv.generateOutputFileName(contacts)
+                        root.contactModel.exportContacts(outputFile,
                                                          [],
                                                          contacts)
                     }
                     root.contactsFetched(fetchedContacts)
+                    priv.currentQueryId = -1
                 }
             }
         }
@@ -128,8 +144,23 @@ Item {
             onStateChanged: {
                 if (root.activeTransfer.state === ContentTransfer.Aborted) {
                     root.activeTransfer = null
-                    root.done()
+                    root.done("")
                 }
+            }
+        }
+    }
+
+    Component {
+        id: busyDialogComponent
+
+        Dialog {
+            title: i18n.tr("Exporting contacts...")
+
+            ActivityIndicator {
+                id: activity
+
+                anchors.horizontalCenter: parent.horizontalCenter
+                running: true
             }
         }
     }
