@@ -16,7 +16,10 @@
 
 import QtQuick 2.2
 import QtContacts 5.0
+
+import Ubuntu.Components 1.1
 import Ubuntu.Content 1.1
+import Ubuntu.Components.Popups 1.0
 
 Item {
     id: root
@@ -24,6 +27,7 @@ Item {
     property var contactModel
     property var outputFile
     property var activeTransfer: null
+    property var busyDialog: null
 
     signal contactsFetched(var contacts)
     signal done()
@@ -38,6 +42,10 @@ Item {
         if (priv.currentQueryId != -1) {
             completed(0)
             return
+        }
+
+        if (!root.busyDialog) {
+            root.busyDialog = PopupUtils.open(busyDialogComponent, root)
         }
 
         var ids = []
@@ -98,6 +106,8 @@ Item {
                     root.activeTransfer = ContentHub.ContentTransfer.Aborted
                     console.error("Fail to export contacts:" + error)
                 }
+                PopupUtils.close(root.busyDialog)
+                root.busyDialog = null
                 root.done()
             }
 
@@ -130,6 +140,21 @@ Item {
                     root.activeTransfer = null
                     root.done()
                 }
+            }
+        }
+    }
+
+    Component {
+        id: busyDialogComponent
+
+        Dialog {
+            title: i18n.tr("Exporting contacts...")
+
+            ActivityIndicator {
+                id: activity
+
+                anchors.horizontalCenter: parent.horizontalCenter
+                running: true
             }
         }
     }
