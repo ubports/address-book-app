@@ -1,9 +1,18 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
-# Copyright 2013 Canonical
 #
-# This program is free software: you can redistribute it and/or modify it
-# under the terms of the GNU General Public License version 3, as published
+# Copyright (C) 2013, 2014, 2015 Canonical Ltd.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3, as published
 # by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 """address-book-app autopilot tests."""
 
@@ -17,7 +26,6 @@ from autopilot.platform import model
 from testtools.matchers import Equals
 
 import address_book_app
-from address_book_app import MainWindow
 from ubuntuuitoolkit import emulators as toolkit_emulators
 
 
@@ -62,22 +70,21 @@ class AddressBookAppTestCase(AutopilotTestCase):
 
         os.environ["ADDRESS_BOOK_TEST_DATA"] = vcard_data
         os.environ["LANG"] = "en_US.UTF-8"
-        os.environ["LANGUAGE"] ="en_US"
+        os.environ["LANGUAGE"] = "en_US"
         if vcard_data != "":
             print("Using vcard %s" % vcard_data)
         if os.path.exists(self.app_bin):
             print("Running from: %s" % (self.app_bin))
-            self.launch_test_local()
+            self.app = self.launch_test_local()
         elif os.path.exists(self.DEB_LOCALTION):
             print("Running from: %s" % (self.DEB_LOCALTION))
-            self.launch_test_installed()
+            self.app = self.launch_test_installed()
         else:
             print("Running from click package: address-book-app")
-            self.launch_click_installed()
+            self.app = self.launch_click_installed()
 
         AddressBookAppTestCase.ARGS = []
         self.main_window.visible.wait_for(True)
-        self.app = address_book_app.AddressBookApp(self.app_proxy)
 
     def tearDown(self):
         super(AddressBookAppTestCase, self).tearDown()
@@ -87,28 +94,29 @@ class AddressBookAppTestCase(AutopilotTestCase):
             subprocess.check_call(["/sbin/initctl", "start", "maliit-server"])
 
     def launch_test_local(self):
-        self.app_proxy = self.launch_test_application(
+        return self.launch_test_application(
             self.app_bin,
             *AddressBookAppTestCase.ARGS,
             app_type='qt',
-            emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
+            emulator_base=address_book_app.AddressBookApp)
 
     def launch_test_installed(self):
         df = "/usr/share/applications/address-book-app.desktop"
         self.ARGS.append("--desktop_file_hint=" + df)
-        self.app_proxy = self.launch_test_application(
+        return self.launch_test_application(
             "address-book-app",
             *AddressBookAppTestCase.ARGS,
             app_type='qt',
-            emulator_base=toolkit_emulators.UbuntuUIToolkitEmulatorBase)
+            emulator_base=address_book_app.AddressBookApp)
 
     def launch_click_installed(self):
-        self.app_proxy = self.launch_click_package(
-            "com.ubuntu.address-book")
+        return self.launch_click_package(
+            'com.ubuntu.address-book',
+            emulator_base=address_book_app.AddressBookApp)
 
     @property
     def main_window(self):
-        return self.app_proxy.select_single(MainWindow)
+        return self.app.main_window
 
     def select_a_value(self, field, value_selector, value):
         # Make sure the field has focus
@@ -239,14 +247,14 @@ class AddressBookAppTestCase(AutopilotTestCase):
         self.type_on_field(last_name_field, last_name)
 
         if phone_numbers:
-            phoneGroup = self.main_window.select_single(
+            self.main_window.select_single(
                 "ContactDetailGroupWithTypeEditor",
                 objectName="phones")
             for idx, number in enumerate(phone_numbers):
                 self.set_phone_number(idx, number)
 
         if email_address:
-            emailGroup = self.main_window.select_single(
+            self.main_window.select_single(
                 "ContactDetailGroupWithTypeEditor",
                 objectName="emails")
             for idx, address in enumerate(email_address):

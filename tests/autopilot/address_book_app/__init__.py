@@ -1,6 +1,6 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 #
-# Copyright (C) 2014 Canonical Ltd.
+# Copyright (C) 2014, 2015 Canonical Ltd.
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 3, as published
@@ -24,7 +24,10 @@ logging.basicConfig(filename='warning.log', level=logging.WARNING)
 
 import autopilot.logging
 import ubuntuuitoolkit
-from autopilot.introspection import dbus
+from autopilot import (
+    exceptions,
+    introspection
+)
 
 from address_book_app import pages
 
@@ -32,16 +35,30 @@ from address_book_app import pages
 logger = logging.getLogger(__name__)
 
 
-class AddressBookApp(object):
+class AddressBookApp(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
-    def __init__(self, app_proxy):
-        super(AddressBookApp, self).__init__()
-        self.app_proxy = app_proxy
-        self.main_window = self.app_proxy.select_single(MainWindow)
+    """Autopilot custom proxy object for the address book app."""
+
+    @classmethod
+    def validate_dbus_object(cls, path, state):
+        name = introspection.get_classname_from_path(path)
+        return (name == b'webbrowser-app' and
+                state['applicationName'][1] == 'webbrowser-app')
+
+    @property
+    def main_window(self):
+        return self.select_single(objectName='addressBookAppMainWindow')
 
 
-class MainWindow(ubuntuuitoolkit.MainView):
+class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
+
     """An emulator class that makes it easy to interact with the app."""
+
+    @classmethod
+    def validate_dbus_object(cls, path, state):
+        name = introspection.get_classname_from_path(path)
+        return (name == b'MainWindow' and
+                state['objectName'][1] == 'addressBookAppMainWindow')
 
     def get_contact_list_page(self):
         # ContactListPage is the only page that can appears multiple times
@@ -66,9 +83,7 @@ class MainWindow(ubuntuuitoolkit.MainView):
         for p in contact_editor_pages:
             if p.active:
                 return p
-        raise dbus.StateNotFoundError('contactEditorPage not found')
-        return None
-
+        raise exceptions.StateNotFoundError('contactEditorPage not found')
 
     def get_contact_view_page(self):
         return self.wait_select_single("ContactView",

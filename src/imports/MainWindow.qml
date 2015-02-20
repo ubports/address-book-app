@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2013 Canonical, Ltd.
+ * Copyright (C) 2012-2015 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@ import Ubuntu.Components.Popups 1.0 as Popups
 
 MainView {
     id: mainWindow
+    objectName: "addressBookAppMainWindow"
 
     property string modelErrorMessage: ""
     readonly property bool appActive: Qt.application.active
