@@ -1,3 +1,14 @@
+address-book-app (0.2+15.04.20150220-0ubuntu1) vivid; urgency=medium
+
+  [ Leo Arias ]
+  * On autopilot tests, select the main window by object name. Added a
+    custom proxy object for the application.
+
+  [ Albert Astals Cid ]
+  * Tell people this is a proper name not a word
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Fri, 20 Feb 2015 15:52:58 +0000
+
 address-book-app (0.2+15.04.20150213.2-0ubuntu1) vivid; urgency=medium
 
   [ CI Train Bot ]
