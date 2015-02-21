@@ -1,16 +1,16 @@
-# Finnish translation for address-book-app
-# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# Esperanto translation for address-book-app
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
 # This file is distributed under the same license as the address-book-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-10 10:11-0300\n"
-"PO-Revision-Date: 2015-02-20 13:42+0000\n"
-"Last-Translator: Mikko Ollila <wldchld@gmail.com>\n"
-"Language-Team: Finnish <fi@li.org>\n"
+"PO-Revision-Date: 2015-02-20 13:05+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Esperanto <eo@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,347 +20,336 @@ msgstr ""
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
 msgid "%1 vCards imported"
-msgstr "%1 vCardia tuotu"
+msgstr ""
 
 #. TRANSLATORS: this refers to a new contact
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:418
 msgid "+ Create New"
-msgstr "+ Luo uusi"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:307
 msgid "Add Field"
-msgstr "Lisää kenttä"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:390
 msgid "Add contact"
-msgstr "Lisää yhteystieto"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
-msgstr "Lisää numero..."
+msgstr ""
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:51
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
 #: ../src/imports/Ubuntu/Contacts/ContactDetailAddressesView.qml:24
 msgid "Address"
-msgstr "Osoite"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:76
 #: ../src/imports/ContactView/ContactDetailSyncTargetView.qml:49
 msgid "Addressbook"
-msgstr "Osoitekirja"
+msgstr ""
 
 #. TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "Aim"
-msgstr "Aim"
+msgstr ""
 
 #. TRANSLATORS: this refers to all contacts
 #: ../src/imports/ContactList/ContactListPage.qml:277
 msgid "All"
-msgstr "Kaikki"
+msgstr ""
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
-msgstr "Haluatko varmasti poistaa kaikki valitut yhteystiedot?"
+msgstr ""
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
-msgstr "Haluatko varmasti poistaa tämän yhteystiedon?"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
 #: ../src/imports/ContactList/ContactListPage.qml:290
 #: ../src/imports/ContactView/ContactFetchError.qml:29
 #: ../src/imports/MainWindow.qml:157
 msgid "Cancel"
-msgstr "Peru"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:314
 msgid "Cancel selection"
-msgstr "Peru valinta"
+msgstr ""
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:80
 msgid "Close"
-msgstr "Sulje"
+msgstr ""
 
 #: ../src/imports/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
-msgstr "Yhteystietoa ei löytynyt"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:145
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
-msgstr "Yhteystiedot"
+msgstr ""
 
 #: ../data/address-book-app.desktop.in.in.h:2
 msgid "Contacts Address Book"
-msgstr "Yhteystietojen osoitekirja"
+msgstr ""
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
 msgstr ""
-"Contacts;People;Numbers;kontaktit;ihmiset;henkilöt;numerot;yhteystiedot"
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
-msgstr "Maa"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:475
 msgid "Create a new contact by swiping up from the bottom of the screen."
-msgstr "Luo uusi yhteystieto vetämällä ylös näytön alaosasta."
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:168
 #: ../src/imports/ContactList/ContactListPage.qml:350
 msgid "Delete"
-msgstr "Poista"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
 #: ../src/imports/ContactView/ContactView.qml:107
 msgid "Edit"
-msgstr "Muokkaa"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:49
 #: ../src/imports/ContactEdit/ContactDetailEmailsEditor.qml:24
 #: ../src/imports/Ubuntu/Contacts/ContactDetailEmailsView.qml:23
 #: ../src/imports/Ubuntu/Contacts/ContactDetailEmailsView.qml:26
 msgid "Email"
-msgstr "Sähköposti"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
-msgstr "Anna numero"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:27
 msgid "Enter a social alias"
-msgstr "Anna kutsumanimi"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailEmailsEditor.qml:28
 msgid "Enter an email address"
-msgstr "Anna sähköpostiosoite"
+msgstr ""
 
 #: ../src/imports/ContactView/ContactFetchError.qml:25
 #: ../src/imports/MainWindow.qml:153
 msgid "Error"
-msgstr "Virhe"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:277
 msgid "Favorites"
-msgstr "Suosikit"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailNameEditor.qml:84
 msgid "First name"
-msgstr "Etunimi"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
 msgid "Frequently called"
-msgstr "Usein soitetut"
+msgstr ""
 
 #. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:115
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
 msgid "Home"
-msgstr "Koti"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:63
 msgid "ICQ"
-msgstr "ICQ"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:23
 msgid "IM"
-msgstr "Pikaviestin"
+msgstr ""
 
 #. TRANSLATORS: this refers to a new contact
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:434
 msgid "Import contacts from Google"
-msgstr "Tuo yhteystiedot Googlesta"
+msgstr ""
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
-msgstr "Tuo vCardeja"
+msgstr ""
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 msgid "Importing..."
-msgstr "Tuodaan..."
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
 msgid "Jabber"
-msgstr "Jabber"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailNameEditor.qml:84
 msgid "Last name"
-msgstr "Sukunimi"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:505
 msgid "Loading..."
-msgstr "Ladataan..."
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:32
 msgid "Locality"
-msgstr "Sijainti"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:66
 msgid "MSN"
-msgstr "MSN"
+msgstr ""
 
 #. TRANSLATORS: This refers to mobile/cellphone phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
 msgid "Mobile"
-msgstr "Matkapuhelin"
+msgstr ""
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:44
 msgid "Multiple contacts"
-msgstr "Useita yhteystietoja"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
 msgid "New contact"
-msgstr "Uusi yhteystieto"
+msgstr ""
 
 #. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
 #. this word must be less than 5 characters
 #: ../src/imports/ContactEdit/TextInputDetail.qml:76
 msgid "Next"
-msgstr "Seuraava"
+msgstr ""
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:74
 msgid "No"
-msgstr "Ei"
+msgstr ""
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:40
 msgid "No contact selected."
-msgstr "Yhteystietoa ei ole valittu."
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:113
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:36
 msgid "No name"
-msgstr "Ei nimeä"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
-msgstr "Organisaatio"
+msgstr ""
 
 #. TRANSLATORS: This refers to any other phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:117
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:121
 msgid "Other"
-msgstr "Muu"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:47
 #: ../src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:23
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumbersView.qml:26
 msgid "Phone"
-msgstr "Puhelin"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
-msgstr "Postinumero"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:55
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:21
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOrganizationsView.qml:24
 msgid "Professional Details"
-msgstr "Työtiedot"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:247
 msgid "Quit"
-msgstr "Poistu"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:33
 msgid "Region"
-msgstr "Alue"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
-msgstr "Rooli"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:411
 msgid "Save"
-msgstr "Tallenna"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:262
 msgid "Search"
-msgstr "Etsi"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:219
 msgid "Search..."
-msgstr "Etsi..."
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:320
 msgid "Select All"
-msgstr "Valitse kaikki"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:333
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
-msgstr "Jaa"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Skype"
-msgstr "Skype"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:53
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:24
 msgid "Social"
-msgstr "Sosiaaliset verkot"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:31
 msgid "Street"
-msgstr "Katuosoite"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:256
 msgid "Sync"
-msgstr "Synkronoi"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:256
 msgid "Syncing"
-msgstr "Synkronoidaan"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:505
 msgid "Syncing..."
-msgstr "Synkronoidaan..."
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Title"
-msgstr "Nimike"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:27
 msgid "Touch"
-msgstr "Touch"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:320
 msgid "Unselect All"
-msgstr "Poista valinnat"
+msgstr ""
 
 #. TRANSLATORS: This refers to landline work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:116
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
 msgid "Work"
-msgstr "Työ"
+msgstr ""
 
 #. TRANSLATORS: This refers to mobile/cellphone work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:117
 msgid "Work Mobile"
-msgstr "Matkapuhelin (työ)"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
 msgid "Yahoo"
-msgstr "Yahoo"
+msgstr ""
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:62
 msgid "Yes"
-msgstr "Kyllä"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:474
 msgid "You have no contacts."
-msgstr "Sinulla ei ole yhteystietoja."
-
-#~ msgid ""
-#~ "Would you like to sync contacts\n"
-#~ "from online accounts now?"
-#~ msgstr ""
-#~ "Haluatko synkronoida yhteystiedot\n"
-#~ "verkkotileiltä nyt?"
-
-#~ msgid "Would you like to sync contacts from your google online accounts now?"
-#~ msgstr "Haluatko synkronoida yhteystiedot Google-tililtäsi nyt?"
+msgstr ""
