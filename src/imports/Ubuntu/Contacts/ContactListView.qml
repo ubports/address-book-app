@@ -422,6 +422,7 @@ Item {
 
             Column {
                 id: importFromButtons
+                objectName: "importFromButtons"
 
                 readonly property bool isSearching: (root.filterTerm && root.filterTerm !== "")
 
@@ -429,12 +430,12 @@ Item {
                     left: parent.left
                     right: parent.right
                 }
+                height: childrenRect.height
 
                 visible: root.showImportOptions &&
                          !indicator.visible &&
                          (root.count === 0) &&
                          !view.favouritesIsSelected &&
-                         (typeof(runningOnTestMode) === "undefined")  &&
                          !isSearching
 
                 // avoid show the button while the list still loading contacts
@@ -467,7 +468,7 @@ Item {
                     id: importFromSimCard
 
                     visible: ((simContactsImportHelper.status === Loader.Ready) &&
-                              (simContactsImportHelper.item.hasContacts))
+                              (simContactsImportHelper.item.hasContacts === true))
                     expandIcon: true
                     iconSource: "image://theme/contact-group"
                     labelText: i18n.tr("Import contacts from sim card")
@@ -575,13 +576,15 @@ Item {
         objectName: "simContactsImportHelper"
 
         readonly property bool isSearching: (root.filterTerm && root.filterTerm !== "")
+        property string sourceFile: (typeof(runningOnTestMode) !== "undefined") ?
+                                      Qt.resolvedUrl("OnlineAccountsDummy.qml") :
+                                      Qt.resolvedUrl("SIMCardImportPage.qml")
 
         visible: false
         asynchronous: true
         source: root.showImportOptions &&
                 (root.count === 0) &&
                 !view.favouritesIsSelected &&
-                (typeof(runningOnTestMode) === "undefined") &&
-                !isSearching ? Qt.resolvedUrl("SIMCardImportPage.qml") : ""
+                !isSearching ? sourceFile : ""
     }
 }
