@@ -7,23 +7,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-11-04 15:08+0100\n"
-"PO-Revision-Date: 2014-11-06 01:57+0000\n"
+"POT-Creation-Date: 2015-02-10 10:11-0300\n"
+"PO-Revision-Date: 2015-02-13 00:17+0000\n"
 "Last-Translator: samson <Unknown>\n"
 "Language-Team: Amharic <am@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-01-19 06:28+0000\n"
-"X-Generator: Launchpad (build 17304)\n"
+"X-Launchpad-Export-Date: 2015-02-13 06:53+0000\n"
+"X-Generator: Launchpad (build 17336)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
 msgid "%1 vCards imported"
 msgstr "%1  የ ንግድ ካርድ መጥቷል"
 
-#. TRANSLATORS: this refers to creating a new contact
-#: ../src/imports/ContactList/ContactListPage.qml:205
+#. TRANSLATORS: this refers to a new contact
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:418
 msgid "+ Create New"
 msgstr "+ አዲስ መፍጠሪያ"
 
@@ -31,7 +31,7 @@ msgstr "+ አዲስ መፍጠሪያ"
 msgid "Add Field"
 msgstr "ሜዳ መጨመሪያ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:483
+#: ../src/imports/ContactList/ContactListPage.qml:391
 msgid "Add contact"
 msgstr "ግንኙነት መጨመሪያ"
 
@@ -55,7 +55,7 @@ msgid "Aim"
 msgstr "ኤይም"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:369
+#: ../src/imports/ContactList/ContactListPage.qml:277
 msgid "All"
 msgstr "ሁሉንም"
 
@@ -68,13 +68,13 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "በእርግጥ የተመረጡትን ግንኙነቶች በሙሉ ማስወገድ ይፈልጋሉ?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:382
+#: ../src/imports/ContactList/ContactListPage.qml:290
 #: ../src/imports/ContactView/ContactFetchError.qml:29
 #: ../src/imports/MainWindow.qml:156
 msgid "Cancel"
 msgstr "መሰረዣ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:406
+#: ../src/imports/ContactList/ContactListPage.qml:314
 msgid "Cancel selection"
 msgstr "ምርጫውን መሰረዣ"
 
@@ -86,7 +86,7 @@ msgstr "መዝጊያ"
 msgid "Contact not found"
 msgstr "ግንኙነት አልተገኘም"
 
-#: ../src/imports/ContactList/ContactListPage.qml:147
+#: ../src/imports/ContactList/ContactListPage.qml:145
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "ግንኙነቶች"
@@ -103,13 +103,13 @@ msgstr "ግንኙነቶች: ሕዝብ: ቁጥሮች"
 msgid "Country"
 msgstr "አገር"
 
-#: ../src/imports/ContactList/ContactListPage.qml:555
+#: ../src/imports/ContactList/ContactListPage.qml:476
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "አዲስ ግንኙነት ይፍጠሩ ከ መመልከቻው በታች በኩል ወደ ላይ በመጥረግ"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
-#: ../src/imports/ContactList/ContactListPage.qml:230
-#: ../src/imports/ContactList/ContactListPage.qml:443
+#: ../src/imports/ContactList/ContactListPage.qml:168
+#: ../src/imports/ContactList/ContactListPage.qml:351
 msgid "Delete"
 msgstr "ማጥፊያ"
 
@@ -142,7 +142,7 @@ msgstr "የ ኢሜይል አድራሻ ያስገቡ"
 msgid "Error"
 msgstr "ስህተት"
 
-#: ../src/imports/ContactList/ContactListPage.qml:369
+#: ../src/imports/ContactList/ContactListPage.qml:277
 msgid "Favorites"
 msgstr "የምወዳቸው"
 
@@ -168,6 +168,11 @@ msgstr "አይሲኪው"
 msgid "IM"
 msgstr "አይኤም"
 
+#. TRANSLATORS: this refers to a new contact
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:434
+msgid "Import contacts from Google"
+msgstr "ግንኙነት ከ ጉግል ማምጫ"
+
 #: ../src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
 msgstr "የ ንግድ ካርድ ማምጫ"
@@ -184,7 +189,7 @@ msgstr "ጃበር"
 msgid "Last name"
 msgstr "የ አባት ስም"
 
-#: ../src/imports/ContactList/ContactListPage.qml:296
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:505
 msgid "Loading..."
 msgstr "በመጫን ላይ..."
 
@@ -205,6 +210,10 @@ msgstr "ተንቀሳቃሽ"
 msgid "Multiple contacts"
 msgstr "በርካታ ግንኙነቶች"
 
+#: ../src/imports/ContactEdit/ContactEditor.qml:142
+msgid "New contact"
+msgstr "አዲስ ግንኙነት"
+
 #. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
 #. this word must be less than 5 characters
 #: ../src/imports/ContactEdit/TextInputDetail.qml:76
@@ -212,7 +221,6 @@ msgid "Next"
 msgstr "ይቀጥሉ"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:74
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:105
 msgid "No"
 msgstr "አይ"
 
@@ -252,7 +260,7 @@ msgstr "ፖስታ ሳጥን ቁጥር"
 msgid "Professional Details"
 msgstr "የ ባለሞያ ዝርዝር"
 
-#: ../src/imports/ContactList/ContactListPage.qml:339
+#: ../src/imports/ContactList/ContactListPage.qml:247
 msgid "Quit"
 msgstr "ማጥፊያ"
 
@@ -268,19 +276,19 @@ msgstr "ሚና"
 msgid "Save"
 msgstr "ማስቀመጫ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:354
+#: ../src/imports/ContactList/ContactListPage.qml:262
 msgid "Search"
 msgstr "መፈለጊያ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:311
+#: ../src/imports/ContactList/ContactListPage.qml:219
 msgid "Search..."
 msgstr "መፈለጊያ..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:412
+#: ../src/imports/ContactList/ContactListPage.qml:320
 msgid "Select All"
 msgstr "ሁሉንም መምረጫ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:425
+#: ../src/imports/ContactList/ContactListPage.qml:333
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "ማካፈያ"
@@ -298,15 +306,15 @@ msgstr "ሕብረተሰብ"
 msgid "Street"
 msgstr "መንገድ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:348
+#: ../src/imports/ContactList/ContactListPage.qml:256
 msgid "Sync"
 msgstr "ማስማሚያ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:348
+#: ../src/imports/ContactList/ContactListPage.qml:256
 msgid "Syncing"
 msgstr "በ ማስማማት ላይ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:296
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:505
 msgid "Syncing..."
 msgstr "በ ማስማማት ላይ..."
 
@@ -317,6 +325,10 @@ msgstr "አርእስት"
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:27
 msgid "Touch"
 msgstr "ተች"
+
+#: ../src/imports/ContactList/ContactListPage.qml:320
+msgid "Unselect All"
+msgstr "ሁሉንም አለመምረጥ"
 
 #. TRANSLATORS: This refers to landline work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:116
@@ -329,21 +341,15 @@ msgstr "ስራ"
 msgid "Work Mobile"
 msgstr "ተንቀሳቃሽ የስራ ስልክ"
 
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:80
-msgid "Would you like to sync contacts from your google online accounts now?"
-msgstr "የ እርስዎን ግንኙነቶች ከ ጉግል መስመር ላይ መግለጫ ጋር አሁን ማስማማት ይፈልጋሉ?"
-
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Yahoo"
 msgstr "ያሁ"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:62
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:88
 msgid "Yes"
 msgstr "አዎ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:554
-#: ../src/imports/ContactList/OnlineAccountsMessage.qml:79
+#: ../src/imports/ContactList/ContactListPage.qml:475
 msgid "You have no contacts."
 msgstr "ግንኙነት የለም"
 
@@ -353,3 +359,6 @@ msgstr "ግንኙነት የለም"
 #~ msgstr ""
 #~ "ግንኙነቶችን ማስማማት ይፈልጋሉ\n"
 #~ "መግለጫዎችን በ መስመር ላይ አሁን?"
+
+#~ msgid "Would you like to sync contacts from your google online accounts now?"
+#~ msgstr "የ እርስዎን ግንኙነቶች ከ ጉግል መስመር ላይ መግለጫ ጋር አሁን ማስማማት ይፈልጋሉ?"

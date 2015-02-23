@@ -23,6 +23,7 @@ endmacro()
 if(QMLTESTRUNNER_BIN AND XVFB_RUN_BIN)
     declare_qml_test("contact_list" tst_ContactList.qml)
     declare_qml_test("Contact_list_model" tst_ContactListModel.qml)
+    declare_qml_test("Contact_list_view" tst_ContactListView.qml)
     declare_qml_test("contact_editor" tst_ContactEditor.qml)
     declare_qml_test("contact_avatar" tst_ContactAvatar.qml)
     declare_qml_test("list_with_actions" tst_ListWithActions.qml)
@@ -42,6 +43,7 @@ set(QML_TST_FILES
     tst_ContactAvatar.qml
     tst_ContactList.qml
     tst_ContactListModel.qml
+    tst_ContactListView.qml
     tst_ListWithActions.qml
     tst_ContactPreviewPage.qml
     tst_VCardParser.qml

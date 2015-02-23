@@ -58,7 +58,8 @@ ListModel {
 
     Component.onCompleted: {
         //append({"value": 0, "label": i18n.dtr("address-book-app", "Other"), icon: "artwork:/protocol-other.svg"})
-        /*0*/   append({"value": 1, "label": i18n.dtr("address-book-app", "Aim"), "icon": "artwork:/protocol-aim.svg"})
+        /*0*/ // TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
+                append({"value": 1, "label": i18n.dtr("address-book-app", "Aim"), "icon": "artwork:/protocol-aim.svg"})
         /*1*/   append({"value": 2, "label": i18n.dtr("address-book-app", "ICQ"), "icon": "artwork:/protocol-icq.svg"})
         //append({"value": 3, "label": i18n.dtr("address-book-app", "IRC"), icon: "artwork:/protocol-irc.svg"})
         /*2*/   append({"value": 4, "label": i18n.dtr("address-book-app", "Jabber"), "icon": "artwork:/protocol-jabber.svg"})

@@ -33,13 +33,11 @@ ContactsUI.PageWithBottomEdge {
     property alias contentHubTransfer: contactExporter.activeTransfer
     property bool pickMultipleContacts: false
     property QtObject contactIndex: null
-    property bool contactsLoaded: false
     property string newPhoneToAdd: ""
     property alias contactManager: contactList.manager
 
     readonly property bool isEmpty: (contactList.count === 0)
     readonly property bool allowToQuit: (application.callbackApplication.length > 0)
-    readonly property bool syncEnabled: application.syncEnabled
     readonly property var contactModel: contactList.listModel ? contactList.listModel : null
     readonly property bool searching: (state === "searching" || state === "newphoneSearching")
 
@@ -152,68 +150,8 @@ ContactsUI.PageWithBottomEdge {
     ContactsUI.ContactListView {
         id: contactList
         objectName: "contactListView"
-
-        header:  Item {
-            id: addNewContactButton
-            objectName: "addNewContact"
-
-            anchors {
-                left: parent.left
-                right: parent.right
-            }
-            visible: false
-            height: visible ? units.gu(8) : 0
-
-            Rectangle {
-                anchors.fill: parent
-                color: Theme.palette.selected.background
-                opacity: addNewContactButtonArea.pressed ?  1.0 : 0.0
-            }
-
-            UbuntuShape {
-                id: addIcon
-
-                anchors {
-                    left: parent.left
-                    top: parent.top
-                    bottom: parent.bottom
-                    margins: units.gu(1)
-                }
-                width: height
-                radius: "medium"
-                color: Theme.palette.normal.overlay
-                Image {
-                    anchors.centerIn: parent
-                    width: units.gu(2)
-                    height: units.gu(2)
-                    source: "image://theme/add"
-                }
-            }
-
-            Label {
-                id: name
-
-                anchors {
-                    left: addIcon.right
-                    leftMargin: units.gu(2)
-                    verticalCenter: parent.verticalCenter
-                    right: parent.right
-                    rightMargin: units.gu(2)
-                }
-                color: UbuntuColors.lightAubergine
-                // TRANSLATORS: this refers to creating a new contact
-                text: i18n.tr("+ Create New")
-                elide: Text.ElideRight
-            }
-
-            MouseArea {
-                id: addNewContactButtonArea
-
-                anchors.fill: parent
-                onClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
-            }
-        }
-
+        showImportOptions:  !mainPage.pickMode &&
+                            mainPage.newPhoneToAdd === ""
         anchors {
             top: parent.top
             left: parent.left
@@ -230,17 +168,8 @@ ContactsUI.PageWithBottomEdge {
             text: i18n.tr("Delete")
             onTriggered: value.remove()
         }
-
-        onCountChanged: {
-            if (count > 0) {
-                mainPage.contactsLoaded = true
-                // break the binding, avoid the message to appear while searhing or switching to favorites
-                emptyStateScreen.visible = false
-
-            }
-        }
-
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
+        onAddNewContactClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
 
         onInfoRequested: {
             mainPage.state = "default"
@@ -274,27 +203,6 @@ ContactsUI.PageWithBottomEdge {
         }
 
         onError: pageStack.contactModelError(error)
-    }
-
-    Column {
-        id: indicator
-
-        anchors.centerIn: contactList
-        spacing: units.gu(2)
-        visible: ((contactList.loading && !mainPage.contactsLoaded) ||
-                  (application.syncing && (contactList.count === 0)))
-
-
-        ActivityIndicator {
-            id: activity
-
-            anchors.horizontalCenter: parent.horizontalCenter
-            running: indicator.visible
-        }
-        Label {
-            anchors.horizontalCenter: activity.horizontalCenter
-            text: contactList.loading ?  i18n.tr("Loading...") : i18n.tr("Syncing...")
-        }
     }
 
     TextField {
@@ -351,11 +259,11 @@ ContactsUI.PageWithBottomEdge {
             }
             actions: [
                 Action {
-                    visible: mainPage.syncEnabled
-                    text: application.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
+                    visible: contactList.syncEnabled
+                    text: contactList.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
                     iconName: "reload"
-                    enabled: !application.syncing
-                    onTriggered: application.startSync()
+                    enabled: !contactList.syncing
+                    onTriggered: contactList.sync()
                 },
                 Action {
                     text: i18n.tr("Search")
@@ -447,7 +355,6 @@ ContactsUI.PageWithBottomEdge {
                         for (var i=0, iMax=items.count; i < iMax; i++) {
                             contacts.push(items.get(i).model.contact)
                         }
-
                         contactExporter.start(contacts)
                         contactList.endSelection()
                     }
@@ -488,8 +395,8 @@ ContactsUI.PageWithBottomEdge {
             extend: "default"
             head: mainPage.head
             PropertyChanges {
-                target: addNewContactButton
-                visible: true
+                target: contactList
+                showAddNewButton: true
             }
             PropertyChanges {
                 target: mainPage
@@ -506,12 +413,9 @@ ContactsUI.PageWithBottomEdge {
             extend: "searching"
             head: mainPage.head
             PropertyChanges {
-                target: addNewContactButton
-                visible: true
-            }
-            PropertyChanges {
                 target: contactList
                 detailToPick: -1
+                showAddNewButton: true
             }
             PropertyChanges {
                 target: mainPage
@@ -520,7 +424,7 @@ ContactsUI.PageWithBottomEdge {
         }
     ]
     onActiveChanged: {
-        if (active && addNewContactButton.visible) {
+        if (active && contactList.showAddNewButton) {
             contactList.positionViewAtBeginning()
         }
     }
@@ -550,7 +454,23 @@ ContactsUI.PageWithBottomEdge {
         height: childrenRect.height
         width: childrenRect.width
         spacing: units.gu(2)
-        visible: (mainPage.isEmpty && !indicator.visible && (mainPage.newPhoneToAdd === ""))
+        visible: (!contactList.busy &&
+                  !contactList.favouritesIsSelected &&
+                  mainPage.isEmpty &&
+                  (mainPage.newPhoneToAdd === "") &&
+                  !(contactList.filterTerm && contactList.filterTerm !== ""))
+
+        Behavior on visible {
+            SequentialAnimation {
+                 PauseAnimation {
+                     duration: !emptyStateScreen.visible ? 500 : 0
+                 }
+                 PropertyAction {
+                     target: emptyStateScreen
+                     property: "visible"
+                 }
+            }
+        }
 
         Icon {
             id: emptyStateIcon
@@ -588,39 +508,20 @@ ContactsUI.PageWithBottomEdge {
         id: contactExporter
 
         contactModel: contactList.listModel
-        outputFile: mainPage.pickMode ? "file:///tmp/address_book_app_export.vcf" : ""
+        exportToDisk: mainPage.pickMode
         onDone: {
             mainPage.pickMode = false
             mainPage.state = "default"
-            application.returnVcard(contactExporter.outputFile)
+            application.returnVcard(outputFile)
         }
 
         onContactsFetched: {
             // Share contacts to an application chosen by the user
             if (!mainPage.pickMode) {
+                contactExporter.dismissBusyDialog()
                 pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
                                { contactModel: contactExporter.contactModel, contacts: contacts })
             }
-        }
-    }
-
-    Loader {
-        id: onlineAccount
-        objectName: "onlineAccountLoader"
-
-        asynchronous: true
-        source: Qt.resolvedUrl("./OnlineAccountsMessage.qml")
-        Binding {
-            target: onlineAccount.item
-            property: "dialogVisible"
-            when: onlineAccount.status === Loader.Ready
-            value: (contactList.count === 0) &&
-                   !mainPage.syncEnabled &&
-                   !mainPage.pickMode &&
-                   onlineAccount.item &&
-                   !onlineAccount.item.hasAccounts &&
-                   mainPage.newPhoneToAdd === "" &&
-                   application.firstRun
         }
     }
 

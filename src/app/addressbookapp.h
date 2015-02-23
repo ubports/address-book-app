@@ -26,8 +26,6 @@ class AddressBookApp : public QGuiApplication
 {
     Q_OBJECT
     Q_PROPERTY(bool firstRun READ isFirstRun CONSTANT)
-    Q_PROPERTY(bool syncing READ isSyncing NOTIFY syncingChanged)
-    Q_PROPERTY(bool syncEnabled READ syncEnabled NOTIFY syncEnabledChanged)
     Q_PROPERTY(QString callbackApplication READ callbackApplication WRITE setCallbackApplication NOTIFY callbackApplicationChanged)
 
 public:
@@ -35,8 +33,6 @@ public:
     virtual ~AddressBookApp();
 
     bool setup();
-    bool isSyncing() const;
-    bool syncEnabled() const;
 
     QString callbackApplication() const;
     void setCallbackApplication(const QString &application);
@@ -57,19 +53,14 @@ public Q_SLOTS:
     void sendTabEvent() const;
     void goBackToSourceApp();
 
-    // sync monitor
-    void startSync() const;
-
     // debug
     void elapsed() const;
 
 private:
     void callQMLMethod(const QString name, QStringList args);
-    void connectWithSyncMonitor();
 
 private:
     QQuickView *m_view;
-    QDBusInterface *m_syncMonitor;
     QString m_initialArg;
     QString m_callbackApplication;
     bool m_viewReady;
