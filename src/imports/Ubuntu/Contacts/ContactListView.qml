@@ -467,7 +467,7 @@ Item {
                     id: importFromSimCard
 
                     visible: ((simContactsImportHelper.status === Loader.Ready) &&
-                              (simContactsImportHeler.item.hasContacts))
+                              (simContactsImportHelper.item.hasContacts))
                     expandIcon: true
                     iconSource: "image://theme/contact-group"
                     labelText: i18n.tr("Import contacts from sim card")
