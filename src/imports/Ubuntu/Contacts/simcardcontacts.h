@@ -29,6 +29,7 @@ class SimCardContacts : public QObject
     Q_OBJECT
     Q_PROPERTY(QString contacts READ contacts NOTIFY contactsChanged)
     Q_PROPERTY(QUrl vcardFile READ vcardFile NOTIFY contactsChanged)
+    Q_PROPERTY(bool hasContacts READ hasContacts NOTIFY hasContactsChanged)
 
 public:
     SimCardContacts(QObject *parent=0);
@@ -36,9 +37,11 @@ public:
 
     QString contacts() const;
     QUrl vcardFile() const;
+    bool hasContacts() const;
 
 Q_SIGNALS:
     void contactsChanged();
+    void hasContactsChanged();
 
 private Q_SLOTS:
     void onModemChanged();

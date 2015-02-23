@@ -59,6 +59,11 @@ QUrl SimCardContacts::vcardFile() const
     }
 }
 
+bool SimCardContacts::hasContacts() const
+{
+    return !m_vcards.isEmpty();
+}
+
 void SimCardContacts::onModemChanged()
 {
     reloadContacts();
@@ -78,6 +83,7 @@ void SimCardContacts::onPhoneBookImported(const QString &vcardData)
         importDone();
     }
     pb->deleteLater();
+    Q_EMIT hasContactsChanged();
 }
 
 void SimCardContacts::onPhoneBookImportFail()
@@ -157,6 +163,7 @@ void SimCardContacts::reloadContacts()
     }
     QStringList modems = m_ofonoManager->modems();
     m_vcards.clear();
+    Q_EMIT hasContactsChanged();
 
     Q_FOREACH(const QString &modem, modems) {
         QOfonoModem *m = new QOfonoModem(this);

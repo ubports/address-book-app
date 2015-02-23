@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2012-2013 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -420,34 +420,61 @@ Item {
                 visible: root.showAddNewButton
             }
 
-            // Import from google
-            ContactListButtonDelegate {
-                id: importFromGoogleButton
+            Column {
+                id: importFromButtons
 
-                objectName: "importFromOnlineAccountButton"
+                readonly property bool isSearching: (root.filterTerm && root.filterTerm !== "")
 
-                visible: (onlineAccountHelper.status === Loader.Ready) &&
-                         !indicator.visible
-                expandIcon: true
-                iconSource: "image://theme/google"
-                // TRANSLATORS: this refers to a new contact
-                labelText: i18n.tr("Import contacts from Google")
-                onClicked: onlineAccountHelper.item.setupExec()
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+
+                visible: root.showImportOptions &&
+                         !indicator.visible &&
+                         (root.count === 0) &&
+                         !view.favouritesIsSelected &&
+                         (typeof(runningOnTestMode) === "undefined")  &&
+                         !isSearching
 
                 // avoid show the button while the list still loading contacts
                 Behavior on visible {
                     SequentialAnimation {
                          PauseAnimation {
-                             duration: !importFromGoogleButton.visible ? 500 : 0
+                             duration: !importFromButtons.visible ? 500 : 0
                          }
                          PropertyAction {
-                             target: importFromGoogleButton
+                             target: importFromButtons
                              property: "visible"
                          }
                     }
                 }
+
+                // Import from google
+                ContactListButtonDelegate {
+                    id: importFromGoogleButton
+
+                    objectName: "importFromOnlineAccountButton"
+
+                    visible: (onlineAccountHelper.status === Loader.Ready)
+                    expandIcon: true
+                    iconSource: "image://theme/google"
+                    labelText: i18n.tr("Import contacts from Google")
+                    onClicked: onlineAccountHelper.item.setupExec()
+                }
+
+                ContactListButtonDelegate {
+                    id: importFromSimCard
+
+                    visible: ((simContactsImportHelper.status === Loader.Ready) &&
+                              (simContactsImportHeler.item.hasContacts))
+                    expandIcon: true
+                    iconSource: "image://theme/contact-group"
+                    labelText: i18n.tr("Import contacts from sim card")
+                    onClicked: pageStack.push(simContactsImportHelper.item,
+                                              {"targetModel": view.listModel})
+                }
             }
-            // TODO: import from simcard
 
             MostCalledList {
                 id: mostCalledView
@@ -475,7 +502,6 @@ Item {
         }
 
         clip: true
-
         listModel: ContactListModel {
             id: contactsModel
 
@@ -542,5 +568,20 @@ Item {
                 (root.count === 0) &&
                 !view.favouritesIsSelected &&
                 !isSearching ? sourceFile : ""
+    }
+
+    Loader {
+        id: simContactsImportHelper
+        objectName: "simContactsImportHelper"
+
+        readonly property bool isSearching: (root.filterTerm && root.filterTerm !== "")
+
+        visible: false
+        asynchronous: true
+        source: root.showImportOptions &&
+                (root.count === 0) &&
+                !view.favouritesIsSelected &&
+                (typeof(runningOnTestMode) === "undefined") &&
+                !isSearching ? Qt.resolvedUrl("SIMCardImportPage.qml") : ""
     }
 }

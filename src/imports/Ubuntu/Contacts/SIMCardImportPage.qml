@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2015 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -24,6 +24,7 @@ Page {
     objectName: "SIMCardImportPage"
 
     readonly property string exportFile: "file:///tmp/ubuntu_contacts_sim.vcf"
+    readonly property alias hasContacts: simCardContacts.hasContacts
     property var targetModel: null
 
     title: i18n.tr("Import contacts")
@@ -66,6 +67,7 @@ Page {
 
     SimCardContacts {
         id: simCardContacts
+
         property bool contactImported: false
 
         Component.onCompleted: {
