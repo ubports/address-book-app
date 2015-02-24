@@ -430,7 +430,7 @@ Item {
                     left: parent.left
                     right: parent.right
                 }
-                height: childrenRect.height
+                height: visible ? childrenRect.height : 0
 
                 visible: root.showImportOptions &&
                          !indicator.visible &&
