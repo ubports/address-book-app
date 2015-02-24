@@ -470,7 +470,7 @@ Item {
                     visible: ((simContactsImportHelper.status === Loader.Ready) &&
                               (simContactsImportHelper.item.hasContacts === true))
                     expandIcon: true
-                    iconSource: "image://theme/contact-group"
+                    iconSource: "image://theme/save-to"
                     labelText: i18n.tr("Import contacts from sim card")
                     onClicked: pageStack.push(simContactsImportHelper.item,
                                               {"targetModel": view.listModel})

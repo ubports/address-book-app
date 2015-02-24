@@ -71,8 +71,8 @@ Page {
         property bool contactImported: false
 
         Component.onCompleted: {
-            root.state = "loading"
-            if (vcardFile != "") {
+            if (vcardFile != "" && !contactImported) {
+                root.state = "loading"
                 contactImported = true
                 contactList.listModel.importContacts(vcardFile)
             }
