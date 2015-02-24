@@ -31,7 +31,7 @@ Page {
 
     ContactListView {
         id: contactList
-        objectName: "contactListView"
+        objectName: "contactListViewFromSimCard"
 
         anchors.fill: parent
         multiSelectionEnabled: true
