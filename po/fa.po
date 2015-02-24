@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-02-10 10:11-0300\n"
+"POT-Creation-Date: 2015-02-23 09:33+0100\n"
 "PO-Revision-Date: 2015-02-12 21:37+0000\n"
 "Last-Translator: Danial Behzadi <dani.behzi@gmail.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-02-13 06:53+0000\n"
-"X-Generator: Launchpad (build 17336)\n"
+"X-Launchpad-Export-Date: 2015-02-24 05:48+0000\n"
+"X-Generator: Launchpad (build 17355)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -31,7 +31,7 @@ msgstr "+ افزودن جدید"
 msgid "Add Field"
 msgstr "افزودن زمینه"
 
-#: ../src/imports/ContactList/ContactListPage.qml:391
+#: ../src/imports/ContactList/ContactListPage.qml:390
 msgid "Add contact"
 msgstr "افزودن مخاطب"
 
@@ -50,7 +50,8 @@ msgstr "نشانی"
 msgid "Addressbook"
 msgstr "دفترچه نشانی"
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:61
+#. TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "Aim"
 msgstr "Aim"
 
@@ -70,7 +71,7 @@ msgstr "مطمئنید که می‌خواهید این مخاطب را بردا�
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
 #: ../src/imports/ContactList/ContactListPage.qml:290
 #: ../src/imports/ContactView/ContactFetchError.qml:29
-#: ../src/imports/MainWindow.qml:156
+#: ../src/imports/MainWindow.qml:157
 msgid "Cancel"
 msgstr "لغو"
 
@@ -103,13 +104,13 @@ msgstr "مخاطبین;مردم;شماره‌ها"
 msgid "Country"
 msgstr "کشور"
 
-#: ../src/imports/ContactList/ContactListPage.qml:476
+#: ../src/imports/ContactList/ContactListPage.qml:475
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "با لغزش به بالا از پایین صفحه، یک مخاطب جدید ایجاد کتید."
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:168
-#: ../src/imports/ContactList/ContactListPage.qml:351
+#: ../src/imports/ContactList/ContactListPage.qml:350
 msgid "Delete"
 msgstr "حذف"
 
@@ -138,9 +139,13 @@ msgid "Enter an email address"
 msgstr "یک نشانی ای‌میل وارد کنید"
 
 #: ../src/imports/ContactView/ContactFetchError.qml:25
-#: ../src/imports/MainWindow.qml:152
+#: ../src/imports/MainWindow.qml:153
 msgid "Error"
 msgstr "خطا"
+
+#: ../src/imports/Common/ContactExporter.qml:157
+msgid "Exporting contacts..."
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:277
 msgid "Favorites"
@@ -160,7 +165,7 @@ msgstr "لقب"
 msgid "Home"
 msgstr "خانه"
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:63
 msgid "ICQ"
 msgstr "ICQ"
 
@@ -181,7 +186,7 @@ msgstr "وارد کردن کارت‌های مجازی"
 msgid "Importing..."
 msgstr "در حال وارد کردن…"
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
 msgid "Jabber"
 msgstr "Jabber"
 
@@ -197,7 +202,7 @@ msgstr "در حال بار کردن…"
 msgid "Locality"
 msgstr "موقعیّت"
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:66
 msgid "MSN"
 msgstr "MSN"
 
@@ -293,7 +298,7 @@ msgstr "گزینش همه"
 msgid "Share"
 msgstr "به‌اشتراک گذاری"
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Skype"
 msgstr "اسکایپ"
 
@@ -341,7 +346,7 @@ msgstr "کار"
 msgid "Work Mobile"
 msgstr "تلفن همراه کاری"
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
 msgid "Yahoo"
 msgstr "یاهو"
 
@@ -349,7 +354,7 @@ msgstr "یاهو"
 msgid "Yes"
 msgstr "بله"
 
-#: ../src/imports/ContactList/ContactListPage.qml:475
+#: ../src/imports/ContactList/ContactListPage.qml:474
 msgid "You have no contacts."
 msgstr "شما هیچ مخاطبی ندارید."
 
