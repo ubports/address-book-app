@@ -259,6 +259,16 @@ ContactsUI.PageWithBottomEdge {
             }
             actions: [
                 Action {
+                    text: i18n.tr("Search")
+                    iconName: "search"
+                    visible: !mainPage.isEmpty
+                    onTriggered: {
+                        mainPage.state = (mainPage.state === "newphone" ? "newphoneSearching" : "searching")
+                        contactList.showAllContacts()
+                        searchField.forceActiveFocus()
+                    }
+                },
+                Action {
                     visible: contactList.syncEnabled
                     text: contactList.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
                     iconName: "reload"
@@ -270,16 +280,6 @@ ContactsUI.PageWithBottomEdge {
                     iconName: "save-to"
                     onTriggered: {
                         pageStack.push(simCardImportPage)
-                    }
-                },
-                Action {
-                    text: i18n.tr("Search")
-                    iconName: "search"
-                    visible: !mainPage.isEmpty
-                    onTriggered: {
-                        mainPage.state = (mainPage.state === "newphone" ? "newphoneSearching" : "searching")
-                        contactList.showAllContacts()
-                        searchField.forceActiveFocus()
                     }
                 }
             ]
