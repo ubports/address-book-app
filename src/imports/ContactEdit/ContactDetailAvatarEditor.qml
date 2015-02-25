@@ -74,6 +74,7 @@ ContactDetailBase {
 
         Image {
             id: avatarImage
+            objectName: "avatarImage"
 
             fillMode: Image.PreserveAspectCrop
             asynchronous: true
