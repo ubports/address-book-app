@@ -338,8 +338,12 @@ MultipleSelectionListView {
                 return
             // check if we should expand and display the details picker
             } else if (detailToPick !== -1) {
-                //view.highlightFollowsCurrentItem = true
                 contactListView.currentIndex = index
+                if (index == 0) {
+                    // WORKAROUND: Due the header the ListView does the wrong scolling for the first item
+                    contactListView.contentY = contactListView.headerItem.y + contactListView.headerItem.height
+                }
+
                 return
             } else if (detailToPick == -1) {
                 contactListView.detailClicked(contact, null, "")
