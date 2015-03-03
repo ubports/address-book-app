@@ -351,6 +351,20 @@ Item {
        syncMonitor.sync(["contacts"])
     }
 
+    function pushImportContactsPage()
+    {
+        // if loader was loaded use the item otherwiser create a new component
+        if (simContactsImportHelper.item) {
+            pageStack.push(simContactsImportHelper.item,
+                           {"objectName": "simCardImportPage",
+                            "targetModel": view.listModel})
+        } else {
+            pageStack.push(Qt.resolvedUrl("SIMCardImportPage.qml"),
+                           {"objectName": "simCardImportPage",
+                            "targetModel": view.listModel})
+        }
+    }
+
     // colapse contacts if the keyboard appears
     Connections {
         target: Qt.inputMethod
@@ -473,8 +487,7 @@ Item {
                     expandIcon: true
                     iconSource: "image://theme/save-to"
                     labelText: i18n.tr("Import contacts from sim card")
-                    onClicked: pageStack.push(simContactsImportHelper.item,
-                                              {"targetModel": view.listModel})
+                    onClicked: root.pushImportContactsPage()
                 }
             }
 

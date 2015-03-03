@@ -25,7 +25,7 @@ log_action_info = autopilot.logging.log_action(logging.info)
 log_action_debug = autopilot.logging.log_action(logging.debug)
 
 class SIMCardImportPage(_common.PageWithHeader):
-    """Autopilot helper for the ContactView page."""
+    """Autopilot helper for the SIMCardImportPage page."""
 
     def _get_sorted_contact_delegates(self):
         # FIXME this returns only the contact delegates that are loaded in
@@ -53,6 +53,19 @@ class SIMCardImportPage(_common.PageWithHeader):
     def _get_list_view(self):
         return self.wait_select_single(
             'ContactListView', objectName='contactListViewFromSimCard')
+
+    @log_action_debug
+    def _deselect_all(self):
+        """Deselect all contacts."""
+        view = self._get_list_view()
+        if view.isInSelectionMode:
+            contacts = self.select_many('ContactDelegate', visible=True)
+            for contact in contacts:
+                if contact.selected:
+                    logger.info('Deselect {}.'.format(contact.objectName))
+                    self.pointing_device.click_object(contact)
+        else:
+            logger.debug('The page is not in selection mode.')
 
     @log_action_info
     def get_contacts(self):

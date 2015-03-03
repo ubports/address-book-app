@@ -235,13 +235,6 @@ ContactsUI.PageWithBottomEdge {
         }
     }
 
-    Component {
-        id: simCardImportPage
-        ContactsUI.SIMCardImportPage {
-            targetModel: contactList.listModel
-        }
-    }
-
     state: "default"
     states: [
         PageHeadState {
@@ -279,9 +272,7 @@ ContactsUI.PageWithBottomEdge {
                     text: i18n.tr("Import")
                     objectName: "importFromSimHeaderButton"
                     iconName: "save-to"
-                    onTriggered: {
-                        pageStack.push(simCardImportPage)
-                    }
+                    onTriggered: contactList.pushImportContactsPage()
                 }
             ]
             PropertyChanges {

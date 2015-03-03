@@ -21,7 +21,6 @@ import Ubuntu.Contacts 0.1
 
 Page {
     id: root
-    objectName: "simCardImportPage"
 
     readonly property string exportFile: "file:///tmp/ubuntu_contacts_sim.vcf"
     readonly property alias hasContacts: simCardContacts.hasContacts

@@ -17,7 +17,6 @@ from address_book_app.tests import AddressBookAppTestCase
 class TestImportFromSimContact(AddressBookAppTestCase):
     """Tests import a contact from sim card"""
 
- 
     def test_impot_item_is_visible_on_the_list(self):
         import_from_sim_button = self.app.main_window.select_single(
             'ContactListButtonDelegate',
@@ -29,17 +28,17 @@ class TestImportFromSimContact(AddressBookAppTestCase):
         import_page = self.app.main_window.start_import_contacts()
 
         # contact list is empty
-        self.assertThat(len(list_page.get_contacts()), 0)        
-        
+        self.assertThat(len(list_page.get_contacts()), Equals(0))
+
         # import two contacts
         contacts = import_page.select_contacts([1,3])
-        self.assertThat(len(contacts), 2)        
+        self.assertThat(len(contacts), Equals(2))
         self.app.main_window.confirm_import()
 
-        # verify if the contact was imported      
+        # verify if the contact was imported
         new_contacts = list_page.get_contacts()
-        self.assertThat(len(new_contacts), 2)        
+        self.assertThat(len(new_contacts), Equals(2))
         for contact in new_contacts:
             contacts.remove(contact)
-        self.assertThat(len(contacts), 0)
+        self.assertThat(len(contacts), Equals(0))
 
