@@ -97,6 +97,12 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
                 return p
         return None
 
+    def start_import_contacts(self):
+        header = self.open_header()
+        self.click_action_button("importFromSimCardButton")
+        return self.wait_select_single(pages.SIMCardImportPage,
+                                       objectName="simCardImportPage")
+
     def get_contact_list_view(self):
         """
         Returns a ContactListView iobject for the current window
@@ -142,6 +148,13 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
         bottom_swipe_page = self.get_contact_list_page()
         self.click_action_button("save")
         bottom_swipe_page.isCollapsed.wait_for(True)
+
+    def confirm_import(self):
+        """
+        Press the 'confirm' button
+        """
+        header = self.open_header()
+        self.click_action_button("confirmImport")
 
     def get_toolbar(self):
         """Override base class so we get our expected Toolbar subclass."""

@@ -117,6 +117,8 @@ Page {
         },
         Action {
             text: i18n.tr("Import")
+            objectName: "confirmImport"
+
             iconName: "tick"
             enabled: (contactList.selectedItems.count > 0)
             onTriggered: {

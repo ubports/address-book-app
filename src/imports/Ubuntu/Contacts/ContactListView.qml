@@ -454,7 +454,6 @@ Item {
                 // Import from google
                 ContactListButtonDelegate {
                     id: importFromGoogleButton
-
                     objectName: "importFromOnlineAccountButton"
 
                     visible: (onlineAccountHelper.status === Loader.Ready)
@@ -464,8 +463,10 @@ Item {
                     onClicked: onlineAccountHelper.item.setupExec()
                 }
 
+                // Import from sim card
                 ContactListButtonDelegate {
                     id: importFromSimCard
+                    objectName: "importFromSimCardButton"
 
                     visible: ((simContactsImportHelper.status === Loader.Ready) &&
                               (simContactsImportHelper.item.hasContacts === true))

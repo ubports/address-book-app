@@ -277,6 +277,7 @@ ContactsUI.PageWithBottomEdge {
                 },
                 Action {
                     text: i18n.tr("Import")
+                    objectName: "importFromSimHeaderButton"
                     iconName: "save-to"
                     onTriggered: {
                         pageStack.push(simCardImportPage)
