@@ -40,6 +40,7 @@ Item {
 
         ContactListView {
             id: contactListPage
+            objectName: "contactListViewTest"
             anchors.fill: parent
         }
 
@@ -120,7 +121,7 @@ Item {
         function test_importButtonsVisibility()
         {
             var bottonsHeader = findChild(root.contactListViewObj, "importFromButtons")
-            var importButton = findChild(root.contactListViewObj, "importFromOnlineAccountButton")
+            var importButton = findChild(root.contactListViewObj, "contactListViewTest.importFromOnlineAccountButton")
             var onlineAccountHelper = findChild(root.contactListViewObj, "onlineAccountHelper")
 
             tryCompare(root.contactListViewObj, "showImportOptions", false)
@@ -163,7 +164,7 @@ Item {
 
             // click
             var bottonsHeader = findChild(root.contactListViewObj, "importFromButtons")
-            var importButton = findChild(root.contactListViewObj, "importFromOnlineAccountButton")
+            var importButton = findChild(root.contactListViewObj, "contactListViewTest.importFromOnlineAccountButton")
             // need to wait a bit more until the list leave the loading state
             tryCompare(bottonsHeader, "visible", true, 10000)
             mouseClick(importButton, importButton.width / 2, importButton.height / 2)
