@@ -12,8 +12,10 @@ from autopilot.matchers import Eventually
 
 from address_book_app import data
 from address_book_app.tests import AddressBookAppTestCase
+from address_book_app import helpers
 
-
+@skipUnless(helpers.is_phonesim_running(),
+            "this test needs to run under with-ofono-phonesim")
 class TestImportFromSimContact(AddressBookAppTestCase):
     """Tests import a contact from sim card"""
 
