@@ -8,6 +8,8 @@
 """Tests for the Addressbook App"""
 
 from testtools.matchers import Equals
+from testtools import skipUnless
+
 from autopilot.matchers import Eventually
 
 from address_book_app import data
