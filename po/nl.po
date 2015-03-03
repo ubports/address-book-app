@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-02-10 10:11-0300\n"
+"POT-Creation-Date: 2015-02-23 09:33+0100\n"
 "PO-Revision-Date: 2015-02-13 08:55+0000\n"
 "Last-Translator: rob <linuxned@gmail.com>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-02-14 06:34+0000\n"
-"X-Generator: Launchpad (build 17341)\n"
+"X-Launchpad-Export-Date: 2015-02-24 05:48+0000\n"
+"X-Generator: Launchpad (build 17355)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -31,7 +31,7 @@ msgstr "+ nieuw aanmaken"
 msgid "Add Field"
 msgstr "Veld toevoegen"
 
-#: ../src/imports/ContactList/ContactListPage.qml:391
+#: ../src/imports/ContactList/ContactListPage.qml:390
 msgid "Add contact"
 msgstr "Contact toevoegen"
 
@@ -50,7 +50,8 @@ msgstr "Adres"
 msgid "Addressbook"
 msgstr "Adresboek"
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:61
+#. TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "Aim"
 msgstr "Bestemming"
 
@@ -70,7 +71,7 @@ msgstr "Weet u zeker dat u dit contact wilt verwijderen?"
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
 #: ../src/imports/ContactList/ContactListPage.qml:290
 #: ../src/imports/ContactView/ContactFetchError.qml:29
-#: ../src/imports/MainWindow.qml:156
+#: ../src/imports/MainWindow.qml:157
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -103,14 +104,14 @@ msgstr "Contacts;People;Numbers;Contacten;Mensen;Nummers"
 msgid "Country"
 msgstr "Land"
 
-#: ../src/imports/ContactList/ContactListPage.qml:476
+#: ../src/imports/ContactList/ContactListPage.qml:475
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
 "Maak een nieuw contact aan door vanaf onderin het scherm omhoog te vegen."
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:168
-#: ../src/imports/ContactList/ContactListPage.qml:351
+#: ../src/imports/ContactList/ContactListPage.qml:350
 msgid "Delete"
 msgstr "Verwijderen"
 
@@ -139,9 +140,13 @@ msgid "Enter an email address"
 msgstr "Voer een e-mailadres in"
 
 #: ../src/imports/ContactView/ContactFetchError.qml:25
-#: ../src/imports/MainWindow.qml:152
+#: ../src/imports/MainWindow.qml:153
 msgid "Error"
 msgstr "Fout"
+
+#: ../src/imports/Common/ContactExporter.qml:157
+msgid "Exporting contacts..."
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:277
 msgid "Favorites"
@@ -161,7 +166,7 @@ msgstr "Vaak gebeld"
 msgid "Home"
 msgstr "Thuis"
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:63
 msgid "ICQ"
 msgstr "ICQ"
 
@@ -182,7 +187,7 @@ msgstr "vCards importeren"
 msgid "Importing..."
 msgstr "Importeren…"
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
 msgid "Jabber"
 msgstr "Jabber"
 
@@ -198,7 +203,7 @@ msgstr "Bezig met laden…"
 msgid "Locality"
 msgstr "Plaats"
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:66
 msgid "MSN"
 msgstr "MSN"
 
@@ -294,7 +299,7 @@ msgstr "Alles selecteren"
 msgid "Share"
 msgstr "Delen"
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Skype"
 msgstr "Skype"
 
@@ -342,7 +347,7 @@ msgstr "Werk"
 msgid "Work Mobile"
 msgstr "Mobiel werk"
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
 msgid "Yahoo"
 msgstr "Yahoo"
 
@@ -350,7 +355,7 @@ msgstr "Yahoo"
 msgid "Yes"
 msgstr "Ja"
 
-#: ../src/imports/ContactList/ContactListPage.qml:475
+#: ../src/imports/ContactList/ContactListPage.qml:474
 msgid "You have no contacts."
 msgstr "U heeft geen contacten."
 

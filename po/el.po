@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-02-10 10:11-0300\n"
+"POT-Creation-Date: 2015-02-23 09:33+0100\n"
 "PO-Revision-Date: 2014-08-20 17:07+0000\n"
 "Last-Translator: Simos Xenitellis <Unknown>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-02-13 06:53+0000\n"
-"X-Generator: Launchpad (build 17336)\n"
+"X-Launchpad-Export-Date: 2015-02-24 05:48+0000\n"
+"X-Generator: Launchpad (build 17355)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -31,7 +31,7 @@ msgstr ""
 msgid "Add Field"
 msgstr "Προσθήκη πεδίου"
 
-#: ../src/imports/ContactList/ContactListPage.qml:391
+#: ../src/imports/ContactList/ContactListPage.qml:390
 msgid "Add contact"
 msgstr "Προσθήκη επαφής"
 
@@ -50,7 +50,8 @@ msgstr "Διεύθυνση"
 msgid "Addressbook"
 msgstr ""
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:61
+#. TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "Aim"
 msgstr ""
 
@@ -70,7 +71,7 @@ msgstr ""
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
 #: ../src/imports/ContactList/ContactListPage.qml:290
 #: ../src/imports/ContactView/ContactFetchError.qml:29
-#: ../src/imports/MainWindow.qml:156
+#: ../src/imports/MainWindow.qml:157
 msgid "Cancel"
 msgstr "Ακύρωση"
 
@@ -103,13 +104,13 @@ msgstr ""
 msgid "Country"
 msgstr "Χώρα"
 
-#: ../src/imports/ContactList/ContactListPage.qml:476
+#: ../src/imports/ContactList/ContactListPage.qml:475
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:168
-#: ../src/imports/ContactList/ContactListPage.qml:351
+#: ../src/imports/ContactList/ContactListPage.qml:350
 msgid "Delete"
 msgstr "Διαγραφή"
 
@@ -138,9 +139,13 @@ msgid "Enter an email address"
 msgstr ""
 
 #: ../src/imports/ContactView/ContactFetchError.qml:25
-#: ../src/imports/MainWindow.qml:152
+#: ../src/imports/MainWindow.qml:153
 msgid "Error"
 msgstr "Σφάλμα"
+
+#: ../src/imports/Common/ContactExporter.qml:157
+msgid "Exporting contacts..."
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:277
 msgid "Favorites"
@@ -160,7 +165,7 @@ msgstr ""
 msgid "Home"
 msgstr "Οικία"
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:63
 msgid "ICQ"
 msgstr "ICQ"
 
@@ -181,7 +186,7 @@ msgstr ""
 msgid "Importing..."
 msgstr "Γίνεται εισαγωγή..."
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:64
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
 msgid "Jabber"
 msgstr "Jabber"
 
@@ -197,7 +202,7 @@ msgstr "Γίνεται φόρτωση..."
 msgid "Locality"
 msgstr ""
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:66
 msgid "MSN"
 msgstr "MSN"
 
@@ -293,7 +298,7 @@ msgstr ""
 msgid "Share"
 msgstr ""
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:67
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Skype"
 msgstr ""
 
@@ -341,7 +346,7 @@ msgstr ""
 msgid "Work Mobile"
 msgstr ""
 
-#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
 msgid "Yahoo"
 msgstr ""
 
@@ -349,6 +354,6 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: ../src/imports/ContactList/ContactListPage.qml:475
+#: ../src/imports/ContactList/ContactListPage.qml:474
 msgid "You have no contacts."
 msgstr ""

@@ -42,8 +42,8 @@ class AddressBookApp(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
     @classmethod
     def validate_dbus_object(cls, path, state):
         name = introspection.get_classname_from_path(path)
-        return (name == b'webbrowser-app' and
-                state['applicationName'][1] == 'webbrowser-app')
+        return (name == b'AddressBookApp' and
+                state['applicationName'][1] == 'AddressBookApp')
 
     @property
     def main_window(self):
