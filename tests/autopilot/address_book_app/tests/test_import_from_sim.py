@@ -21,7 +21,7 @@ class TestImportFromSimContact(AddressBookAppTestCase):
     def test_impot_item_is_visible_on_the_list(self):
         import_from_sim_button = self.app.main_window.select_single(
             'ContactListButtonDelegate',
-            objectName='importFromSimCardButton')
+            objectName='contactListView.importFromSimCardButton')
         self.assertThat(import_from_sim_button.visible, Eventually(Equals(True)))
 
     def test_import_from_sim(self):

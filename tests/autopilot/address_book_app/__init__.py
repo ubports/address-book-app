@@ -99,7 +99,7 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
 
     def start_import_contacts(self):
         header = self.open_header()
-        self.click_action_button("importFromSimCardButton")
+        self.click_action_button("importFromSimHeaderButton")
         return self.wait_select_single(pages.SIMCardImportPage,
                                        objectName="simCardImportPage")
 
