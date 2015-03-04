@@ -68,8 +68,6 @@ bool SimCardContacts::hasContacts() const
 
 void SimCardContacts::onPhoneBookIsValidChanged(bool isValid)
 {
-    qDebug() << "Phone book is valid" << isValid;
-
     QOfonoPhonebook *pb = qobject_cast<QOfonoPhonebook*>(QObject::sender());
     Q_ASSERT(pb);
     if (isValid) {
@@ -85,17 +83,7 @@ void SimCardContacts::onPhoneBookIsValidChanged(bool isValid)
 
 void SimCardContacts::onModemsChanged()
 {
-    qDebug() << "Modem changed";
-    if (!m_importing.tryLock()) {
-        qDebug() << "Import in progress.";
-        cancel();
-        if (!m_importing.tryLock()) {
-            qWarning() << "Fail to cancel current import";
-            return;
-        }
-    }
-    m_vcards.clear();
-    Q_EMIT contactsChanged();
+    startImport();
 
     Q_FOREACH(QOfonoModem *modem, m_availableModems) {
         importPhoneBook(modem);
@@ -108,7 +96,7 @@ void SimCardContacts::onModemsChanged()
 
 void SimCardContacts::onManagerChanged()
 {
-    qDebug() << "Manager Changed";
+    startImport();
 
     Q_FOREACH(QObject *m, m_availableModems) {
         disconnect(m);
@@ -117,13 +105,11 @@ void SimCardContacts::onManagerChanged()
     m_availableModems.clear();
 
     if (!m_ofonoManager->available()) {
-        qDebug() << "Manager not available;";
+        qWarning() << "Manager not available;";
         return;
     }
 
     QStringList modems = m_ofonoManager->modems();
-    qDebug() << "List contact from" << modems;
-
     Q_FOREACH(const QString &modem, modems) {
         QOfonoModem *m = new QOfonoModem(this);
 
@@ -150,7 +136,6 @@ bool SimCardContacts::importPhoneBook(QOfonoModem *modem)
         if (pb->isValid()) {
             importPhoneBook(pb);
         } else {
-            qDebug() << "Wait for phonebook became valid";
             connect(pb,
                     SIGNAL(validChanged(bool)),
                     SLOT(onPhoneBookIsValidChanged(bool)),
@@ -204,9 +189,22 @@ void SimCardContacts::onPhoneBookImportFail()
     pb->deleteLater();
 }
 
+void SimCardContacts::startImport()
+{
+    if (!m_importing.tryLock()) {
+        qDebug() << "Import in progress.";
+        cancel();
+        if (!m_importing.tryLock()) {
+            qWarning() << "Fail to cancel current import";
+            return;
+        }
+    }
+    m_vcards.clear();
+    Q_EMIT contactsChanged();
+}
+
 void SimCardContacts::importDone()
 {
-    qDebug() << "Import done";
     Q_ASSERT(m_pendingModems.isEmpty());
 
     writeData();

@@ -62,6 +62,7 @@ private:
     void writeData();
     void reloadContactsFromModem(QOfonoModem* modem);
     void cancel();
+    void startImport();
     void importDone();
     bool importPhoneBook(QOfonoModem *modem);
     void importPhoneBook(QOfonoPhonebook *phoneBook);
