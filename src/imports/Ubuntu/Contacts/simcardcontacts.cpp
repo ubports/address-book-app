@@ -68,6 +68,8 @@ bool SimCardContacts::hasContacts() const
 
 void SimCardContacts::onPhoneBookIsValidChanged(bool isValid)
 {
+    qDebug() << "Phone book is valid" << isValid;
+
     QOfonoPhonebook *pb = qobject_cast<QOfonoPhonebook*>(QObject::sender());
     Q_ASSERT(pb);
     if (isValid) {
@@ -83,6 +85,7 @@ void SimCardContacts::onPhoneBookIsValidChanged(bool isValid)
 
 void SimCardContacts::onModemsChanged()
 {
+    qDebug() << "Modem changed";
     if (!m_importing.tryLock()) {
         qDebug() << "Import in progress.";
         cancel();
@@ -97,10 +100,16 @@ void SimCardContacts::onModemsChanged()
     Q_FOREACH(QOfonoModem *modem, m_availableModems) {
         importPhoneBook(modem);
     }
+
+    if (m_pendingModems.size() == 0) {
+        importDone();
+    }
 }
 
 void SimCardContacts::onManagerChanged()
 {
+    qDebug() << "Manager Changed";
+
     Q_FOREACH(QObject *m, m_availableModems) {
         disconnect(m);
         m->deleteLater();
@@ -113,10 +122,16 @@ void SimCardContacts::onManagerChanged()
     }
 
     QStringList modems = m_ofonoManager->modems();
+    qDebug() << "List contact from" << modems;
+
     Q_FOREACH(const QString &modem, modems) {
         QOfonoModem *m = new QOfonoModem(this);
+
         m->setModemPath(modem);
         m_availableModems << m;
+
+        importPhoneBook(m);
+
         connect(m, SIGNAL(interfacesChanged(QStringList)),
                 SLOT(onModemsChanged()),
                 Qt::QueuedConnection);
@@ -124,24 +139,32 @@ void SimCardContacts::onManagerChanged()
                 SLOT(onModemsChanged()),
                 Qt::QueuedConnection);
     }
-
-    onModemsChanged();
 }
 
-void SimCardContacts::importPhoneBook(QOfonoModem *modem)
+bool SimCardContacts::importPhoneBook(QOfonoModem *modem)
 {
     if (hasPhoneBook(modem)) {
         QOfonoPhonebook *pb = new QOfonoPhonebook(this);
         pb->setModemPath(modem->modemPath());
+        m_pendingModems << pb;
         if (pb->isValid()) {
             importPhoneBook(pb);
+        } else {
+            qDebug() << "Wait for phonebook became valid";
+            connect(pb,
+                    SIGNAL(validChanged(bool)),
+                    SLOT(onPhoneBookIsValidChanged(bool)),
+                    Qt::QueuedConnection);
         }
+        return true;
+    } else {
+        qDebug() << "Modem" << modem->modemPath() << "does not have phonebook";
     }
+    return false;
 }
 
 void SimCardContacts::importPhoneBook(QOfonoPhonebook *phoneBook)
 {
-    m_pendingModems << phoneBook;
     connect(phoneBook,
             SIGNAL(importReady(QString)),
             SLOT(onPhoneBookImported(QString)));
@@ -183,6 +206,7 @@ void SimCardContacts::onPhoneBookImportFail()
 
 void SimCardContacts::importDone()
 {
+    qDebug() << "Import done";
     Q_ASSERT(m_pendingModems.isEmpty());
 
     writeData();

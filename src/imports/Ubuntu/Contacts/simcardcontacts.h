@@ -44,9 +44,9 @@ Q_SIGNALS:
 
 private Q_SLOTS:
     void onModemChanged();
+    void onPhoneBookIsValidChanged(bool isValid);
     void onPhoneBookImported(const QString &vcardData);
     void onPhoneBookImportFail();
-    void onPhoneBookIsValidChanged(bool isValid);
     void onManagerChanged();
     void onModemsChanged();
 
@@ -63,7 +63,7 @@ private:
     void reloadContactsFromModem(QOfonoModem* modem);
     void cancel();
     void importDone();
-    void importPhoneBook(QOfonoModem *modem);
+    bool importPhoneBook(QOfonoModem *modem);
     void importPhoneBook(QOfonoPhonebook *phoneBook);
 };
 
