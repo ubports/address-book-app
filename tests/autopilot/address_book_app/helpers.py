@@ -15,12 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from autopilot.platform import model
-
-import subprocess
-import sys
-import time
 import dbus
+
 
 def remove_phonesim():
     bus = dbus.SystemBus()
@@ -31,6 +27,7 @@ def remove_phonesim():
         return False
 
     manager.RemoveAll()
+
 
 def reset_phonesim():
     bus = dbus.SystemBus()
@@ -52,5 +49,4 @@ def is_phonesim_running():
     except dbus.exceptions.DBusException:
         return False
 
-    return True
-
+    return (manager)

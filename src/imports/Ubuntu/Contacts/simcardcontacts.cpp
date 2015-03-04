@@ -39,6 +39,12 @@ SimCardContacts::SimCardContacts(QObject *parent)
 
 SimCardContacts::~SimCardContacts()
 {
+    Q_FOREACH(QOfonoModem *m, m_availableModems) {
+        disconnect(m);
+        m->deleteLater();
+    }
+    m_availableModems.clear();
+
     cancel();
     delete m_dataFile;
 }
@@ -98,6 +104,7 @@ void SimCardContacts::onManagerChanged()
 {
     startImport();
 
+    // clear modem list
     Q_FOREACH(QObject *m, m_availableModems) {
         disconnect(m);
         m->deleteLater();
@@ -232,12 +239,6 @@ void SimCardContacts::cancel()
         m->deleteLater();
     }
     m_pendingPhoneBooks.clear();
-
-    Q_FOREACH(QOfonoModem *m, m_availableModems) {
-        disconnect(m);
-        m->deleteLater();
-    }
-    m_availableModems.clear();
 
     m_importing.unlock();
     m_vcards.clear();
