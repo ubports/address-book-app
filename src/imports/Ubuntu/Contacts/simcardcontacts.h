@@ -29,7 +29,7 @@ class SimCardContacts : public QObject
     Q_OBJECT
     Q_PROPERTY(QString contacts READ contacts NOTIFY contactsChanged)
     Q_PROPERTY(QUrl vcardFile READ vcardFile NOTIFY contactsChanged)
-    Q_PROPERTY(bool hasContacts READ hasContacts NOTIFY hasContactsChanged)
+    Q_PROPERTY(bool hasContacts READ hasContacts NOTIFY contactsChanged)
 
 public:
     SimCardContacts(QObject *parent=0);
@@ -41,25 +41,26 @@ public:
 
 Q_SIGNALS:
     void contactsChanged();
-    void hasContactsChanged();
 
 private Q_SLOTS:
     void onModemChanged();
     void onPhoneBookImported(const QString &vcardData);
     void onPhoneBookImportFail();
-    void onModemIsValidChanged(bool isValid);
     void onPhoneBookIsValidChanged(bool isValid);
-    void onImportTimeOut();
+    void onManagerChanged();
+    void onModemsChanged();
 
 private:
     QScopedPointer<QOfonoManager> m_ofonoManager;
     QSet<QObject*> m_pendingModems;
+    QSet<QOfonoModem*> m_availableModems;
     QTemporaryFile *m_dataFile;
     QStringList m_vcards;
     QMutex m_importing;
 
+    bool hasPhoneBook(QOfonoModem *modem);
     void writeData();
-    void reloadContacts();
+    void reloadContactsFromModem(QOfonoModem* modem);
     void cancel();
     void importDone();
     void importPhoneBook(QOfonoModem *modem);
