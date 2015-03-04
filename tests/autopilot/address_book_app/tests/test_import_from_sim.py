@@ -22,11 +22,22 @@ class TestImportFromSimContact(AddressBookAppTestCase):
     """Tests import a contact from sim card"""
 
     def test_impot_item_is_visible_on_the_list(self):
+        # contact list is empty
+        list_page = self.app.main_window.get_contact_list_page()
+        self.assertThat(len(list_page.get_contacts()), Equals(0))
+
+        # button should be visible if list is empty
         import_from_sim_button = self.app.main_window.select_single(
             'ContactListButtonDelegate',
             objectName='contactListView.importFromSimCardButton')
         self.assertThat(import_from_sim_button.visible, Eventually(Equals(True)))
 
+        # add a new contact
+        self.add_contact("Fulano", "de Tal", [self.PHONE_NUMBERS[0]])
+
+        # button should be invisible if list is not empty
+        self.assertThat(import_from_sim_button.visible, Eventually(Equals(False)))
+       
     def test_import_from_sim(self):
         list_page = self.app.main_window.get_contact_list_page()
         import_page = self.app.main_window.start_import_contacts()
