@@ -22,24 +22,35 @@ import sys
 import time
 import dbus
 
-def get_phonesim():
+def remove_phonesim():
     bus = dbus.SystemBus()
     try:
         manager = dbus.Interface(bus.get_object('org.ofono', '/'),
-                                 'org.ofono.Manager')
+                                 'org.ofono.phonesim.Manager')
     except dbus.exceptions.DBusException:
         return False
 
-    modems = manager.GetModems()
+    manager.RemoveAll()
 
-    for path, properties in modems:
-        if path == '/phonesim':
-            return properties
+def reset_phonesim():
+    bus = dbus.SystemBus()
+    try:
+        manager = dbus.Interface(bus.get_object('org.ofono', '/'),
+                                 'org.ofono.phonesim.Manager')
+    except dbus.exceptions.DBusException:
+        return False
 
-    return None
+    manager.Reset()
 
 
 def is_phonesim_running():
     """Determine whether we are running with phonesim."""
-    phonesim = get_phonesim()
-    return phonesim is not None
+    bus = dbus.SystemBus()
+    try:
+        manager = dbus.Interface(bus.get_object('org.ofono', '/'),
+                                 'org.ofono.phonesim.Manager')
+    except dbus.exceptions.DBusException:
+        return False
+
+    return True
+

@@ -21,6 +21,10 @@ from address_book_app import helpers
 class TestImportFromSimContact(AddressBookAppTestCase):
     """Tests import a contact from sim card"""
 
+    def setUp(self):        
+        super(TestImportFromSimContact, self).setUp()
+        helpers.reset_phonesim()
+    
     def test_impot_item_is_visible_on_the_list(self):
         # contact list is empty
         list_page = self.app.main_window.get_contact_list_page()
@@ -37,6 +41,18 @@ class TestImportFromSimContact(AddressBookAppTestCase):
 
         # button should be invisible if list is not empty
         self.assertThat(import_from_sim_button.visible, Eventually(Equals(False)))
+
+    def test_import_item_is_invisible_when_no_sim_card_is_present(self):
+        import_from_sim_button = self.app.main_window.select_single(
+            'ContactListButtonDelegate',
+            objectName='contactListView.importFromSimCardButton')
+        self.assertThat(import_from_sim_button.visible, Eventually(Equals(True)))
+
+        # remove all sim cards
+        helpers.remove_phonesim()
+
+        self.assertThat(import_from_sim_button.visible, Eventually(Equals(False)))
+
        
     def test_import_from_sim(self):
         list_page = self.app.main_window.get_contact_list_page()
