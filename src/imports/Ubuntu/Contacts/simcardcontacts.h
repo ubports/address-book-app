@@ -52,7 +52,7 @@ private Q_SLOTS:
 
 private:
     QScopedPointer<QOfonoManager> m_ofonoManager;
-    QSet<QObject*> m_pendingModems;
+    QSet<QOfonoPhonebook*> m_pendingPhoneBooks;
     QSet<QOfonoModem*> m_availableModems;
     QTemporaryFile *m_dataFile;
     QStringList m_vcards;

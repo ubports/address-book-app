@@ -73,11 +73,11 @@ void SimCardContacts::onPhoneBookIsValidChanged(bool isValid)
     if (isValid) {
         importPhoneBook(pb);
     } else {
-        m_pendingModems.remove(pb);
-        pb->deleteLater();
-        if (m_pendingModems.isEmpty()) {
+        m_pendingPhoneBooks.remove(pb);
+        if (m_pendingPhoneBooks.isEmpty()) {
             importDone();
         }
+        pb->deleteLater();
     }
 }
 
@@ -89,7 +89,7 @@ void SimCardContacts::onModemsChanged()
         importPhoneBook(modem);
     }
 
-    if (m_pendingModems.size() == 0) {
+    if (m_pendingPhoneBooks.size() == 0) {
         importDone();
     }
 }
@@ -132,7 +132,7 @@ bool SimCardContacts::importPhoneBook(QOfonoModem *modem)
     if (hasPhoneBook(modem)) {
         QOfonoPhonebook *pb = new QOfonoPhonebook(this);
         pb->setModemPath(modem->modemPath());
-        m_pendingModems << pb;
+        m_pendingPhoneBooks << pb;
         if (pb->isValid()) {
             importPhoneBook(pb);
         } else {
@@ -165,12 +165,9 @@ void SimCardContacts::onPhoneBookImported(const QString &vcardData)
     QOfonoPhonebook *pb = qobject_cast<QOfonoPhonebook*>(QObject::sender());
     Q_ASSERT(pb);
 
-    if (!m_pendingModems.remove(pb)) {
-        qWarning() << "fail to remove modem from pending modems;";
-    }
-
     m_vcards << vcardData;
-    if (m_pendingModems.isEmpty()) {
+    m_pendingPhoneBooks.remove(pb);
+    if (m_pendingPhoneBooks.isEmpty()) {
         importDone();
     }
     pb->deleteLater();
@@ -182,8 +179,8 @@ void SimCardContacts::onPhoneBookImportFail()
     Q_ASSERT(pb);
     qWarning() << "Fail to import contacts from:" << pb->modemPath();
 
-    m_pendingModems.remove(pb);
-    if (m_pendingModems.isEmpty()) {
+    m_pendingPhoneBooks.remove(pb);
+    if (m_pendingPhoneBooks.isEmpty()) {
         importDone();
     }
     pb->deleteLater();
@@ -230,11 +227,18 @@ void SimCardContacts::writeData()
 
 void SimCardContacts::cancel()
 {
-    Q_FOREACH(QObject *m, m_pendingModems) {
+    Q_FOREACH(QOfonoPhonebook *m, m_pendingPhoneBooks) {
         disconnect(m);
         m->deleteLater();
     }
-    m_pendingModems.clear();
+    m_pendingPhoneBooks.clear();
+
+    Q_FOREACH(QOfonoModem *m, m_availableModems) {
+        disconnect(m);
+        m->deleteLater();
+    }
+    m_availableModems.clear();
+
     m_importing.unlock();
     m_vcards.clear();
 }
