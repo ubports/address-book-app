@@ -26,7 +26,7 @@ Page {
     readonly property alias hasContacts: simCardContacts.hasContacts
     property var targetModel: null
 
-    title: i18n.tr("Import SIM Contacts")
+    title: i18n.tr("SIM contacts")
 
     ContactListView {
         id: contactList
