@@ -57,6 +57,7 @@ private:
     QTemporaryFile *m_dataFile;
     QStringList m_vcards;
     QMutex m_importing;
+    QTimer m_modemsChangedTimer;
 
     bool hasPhoneBook(QOfonoModem *modem);
     void writeData();

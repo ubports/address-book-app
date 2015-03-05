@@ -40,6 +40,12 @@ Page {
 
         manager: "memory"
         onSelectionCanceled: pageStack.pop()
+
+        Label {
+            anchors.centerIn: parent
+            text: i18n.tr("SIM card is empty")
+            visible: (contactList.count == 0 && root.state == "")
+        }
     }
 
     Column {

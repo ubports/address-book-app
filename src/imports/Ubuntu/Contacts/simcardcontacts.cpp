@@ -27,6 +27,8 @@ SimCardContacts::SimCardContacts(QObject *parent)
       m_dataFile(0)
 {
     onManagerChanged();
+    m_modemsChangedTimer.setInterval(1000);
+    m_modemsChangedTimer.setSingleShot(true);
     connect(m_ofonoManager.data(),
             SIGNAL(modemsChanged(QStringList)),
             SLOT(onManagerChanged()),
@@ -35,6 +37,9 @@ SimCardContacts::SimCardContacts(QObject *parent)
             SIGNAL(availableChanged(bool)),
             SLOT(onManagerChanged()),
             Qt::QueuedConnection);
+    connect(&m_modemsChangedTimer,
+            SIGNAL(timeout()),
+            SLOT(onModemsChanged()));
 }
 
 SimCardContacts::~SimCardContacts()
@@ -89,6 +94,7 @@ void SimCardContacts::onPhoneBookIsValidChanged(bool isValid)
 
 void SimCardContacts::onModemsChanged()
 {
+    qDebug() << "Modems changed";
     startImport();
 
     Q_FOREACH(QOfonoModem *modem, m_availableModems) {
@@ -126,11 +132,13 @@ void SimCardContacts::onManagerChanged()
         importPhoneBook(m);
 
         connect(m, SIGNAL(interfacesChanged(QStringList)),
-                SLOT(onModemsChanged()),
-                Qt::QueuedConnection);
+                &m_modemsChangedTimer, SLOT(start()));
         connect(m, SIGNAL(validChanged(bool)),
-                SLOT(onModemsChanged()),
-                Qt::QueuedConnection);
+                &m_modemsChangedTimer, SLOT(start()));
+    }
+
+    if (m_pendingPhoneBooks.size() == 0) {
+        importDone();
     }
 }
 
@@ -150,7 +158,7 @@ bool SimCardContacts::importPhoneBook(QOfonoModem *modem)
         }
         return true;
     } else {
-        qDebug() << "Modem" << modem->modemPath() << "does not have phonebook";
+        qDebug() << "Modem" << modem->modemPath() << "does not have phonebook interface";
     }
     return false;
 }
