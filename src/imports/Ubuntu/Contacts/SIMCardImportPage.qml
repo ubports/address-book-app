@@ -40,14 +40,16 @@ Page {
 
         manager: "memory"
         onSelectionCanceled: pageStack.pop()
+    }
 
-        Label {
-            anchors.centerIn: parent
-            text: i18n.tr("SIM card is empty")
-            visible: (contactList.count == 0 &&
-                      root.state === "" &&
-                      !contactList.busy)
-        }
+    Label {
+        id: statusMessage
+
+        anchors.centerIn: parent
+        text: i18n.tr("SIM card is empty")
+        visible: (contactList.count == 0 &&
+                  root.state === "" &&
+                  !contactList.busy)
     }
 
     Column {
@@ -90,6 +92,7 @@ Page {
                 contactList.listModel.importContacts(vcardFile)
             }
         }
+        onImportFail: root.state = "error"
     }
 
     Connections {
@@ -158,6 +161,14 @@ Page {
             PropertyChanges {
                 target: indicator
                 title: i18n.tr("Importing")
+                visible: true
+            }
+        },
+        State {
+            name: "error"
+            PropertyChanges {
+                target: statusMessage
+                text: i18n.tr("Fail to read SIM card")
                 visible: true
             }
         }

@@ -201,6 +201,7 @@ void SimCardContacts::onPhoneBookImportFail()
         importDone();
     }
     pb->deleteLater();
+    Q_EMIT importFail();
 }
 
 void SimCardContacts::startImport()

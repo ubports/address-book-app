@@ -41,6 +41,7 @@ public:
 
 Q_SIGNALS:
     void contactsChanged();
+    void importFail();
 
 private Q_SLOTS:
     void onModemChanged();
