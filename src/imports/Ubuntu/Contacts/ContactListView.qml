@@ -486,7 +486,7 @@ Item {
                               simContactsImportHelper.item.hasContacts)
                     expandIcon: true
                     iconSource: "image://theme/save-to"
-                    labelText: i18n.tr("Import contacts from sim card")
+                    labelText: i18n.tr("Import contacts from SIM card")
                     onClicked: root.pushImportContactsPage()
                 }
             }
