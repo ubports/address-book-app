@@ -99,7 +99,15 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
 
     def start_import_contacts(self):
         header = self.open_header()
-        self.click_action_button("importFromSimHeaderButton")
+        view = self.get_contact_list_view()
+        if view.count > 0:
+            self.click_action_button("importFromSimHeaderButton")
+        else:
+            import_buttom  = self.select_single(
+                'ContactListButtonDelegate',
+                objectName='contactListView.importFromSimCardButton')
+            self.pointing_device.click_object(import_buttom)
+
         return self.wait_select_single(pages.SIMCardImportPage,
                                        objectName="simCardImportPage")
 

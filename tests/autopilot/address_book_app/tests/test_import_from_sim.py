@@ -25,6 +25,12 @@ class TestImportFromSimContact(AddressBookAppTestCase):
         super(TestImportFromSimContact, self).setUp()
         helpers.reset_phonesim()
 
+        # wait list fully load
+        view = self.app.main_window.get_contact_list_view()
+        self.assertThat(
+            view.busy,
+            Eventually(Equals(False), timeout=30))
+
     def test_impot_item_is_visible_on_the_list(self):
         # contact list is empty
         list_page = self.app.main_window.get_contact_list_page()
@@ -59,37 +65,20 @@ class TestImportFromSimContact(AddressBookAppTestCase):
             import_from_sim_header_button.visible,
             Eventually(Equals(True)))
 
-    def test_import_item_is_invisible_when_no_sim_card_is_present(self):
-        import_from_sim_button = self.app.main_window.select_single(
-            'ContactListButtonDelegate',
-            objectName='contactListView.importFromSimCardButton')
-        self.assertThat(
-            import_from_sim_button.visible,
-            Eventually(Equals(True), timeout=30))
-
-        # remove all sim cards
-        helpers.remove_phonesim()
-
-        self.assertThat(
-            import_from_sim_button.visible,
-            Eventually(Equals(False), timeout=30))
-
     def test_import_from_sim(self):
         list_page = self.app.main_window.get_contact_list_page()
 
         # contact list is empty
         self.assertThat(len(list_page.get_contacts()), Equals(0))
 
-        # wait for sim card became available
-        import_from_sim_button = self.app.main_window.select_single(
-            'ContactListButtonDelegate',
-            objectName='contactListView.importFromSimCardButton')
-        self.assertThat(
-            import_from_sim_button.visible,
-            Eventually(Equals(True), timeout=30))
-
         # import two contacts
         import_page = self.app.main_window.start_import_contacts()
+
+        # check if the contacts is available
+        self.assertThat(
+            import_page.hasContacts,
+            Eventually(Equals(True), timeout=30))
+
         contacts = import_page.select_contacts([1, 3])
         self.assertThat(len(contacts), Equals(2))
         self.app.main_window.confirm_import()
@@ -100,3 +89,18 @@ class TestImportFromSimContact(AddressBookAppTestCase):
         for contact in new_contacts:
             contacts.remove(contact)
         self.assertThat(len(contacts), Equals(0))
+
+    def test_import_item_without_sim_card(self):
+        list_page = self.app.main_window.get_contact_list_page()
+
+        # contact list is empty
+        self.assertThat(len(list_page.get_contacts()), Equals(0))
+
+        # remove all sim cards
+        helpers.remove_phonesim()
+
+        # check if the contact list is empty
+        import_page = self.app.main_window.start_import_contacts()
+        self.assertThat(
+            import_page.hasContacts,
+            Eventually(Equals(False), timeout=30))
