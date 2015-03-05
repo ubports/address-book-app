@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-23 09:33+0100\n"
-"PO-Revision-Date: 2014-09-30 17:33+0000\n"
+"PO-Revision-Date: 2015-03-03 14:43+0000\n"
 "Last-Translator: Rafael Neri <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-02-24 05:48+0000\n"
-"X-Generator: Launchpad (build 17355)\n"
+"X-Launchpad-Export-Date: 2015-03-04 05:56+0000\n"
+"X-Generator: Launchpad (build 17361)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -147,7 +147,7 @@ msgstr "Erro"
 
 #: ../src/imports/Common/ContactExporter.qml:157
 msgid "Exporting contacts..."
-msgstr ""
+msgstr "Exportando contatos..."
 
 #: ../src/imports/ContactList/ContactListPage.qml:277
 msgid "Favorites"
@@ -178,7 +178,7 @@ msgstr "IM"
 #. TRANSLATORS: this refers to a new contact
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:434
 msgid "Import contacts from Google"
-msgstr ""
+msgstr "Importar contatos do Google"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
@@ -219,7 +219,7 @@ msgstr "Múltiplos contatos"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
 msgid "New contact"
-msgstr ""
+msgstr "Novo contato"
 
 #. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
 #. this word must be less than 5 characters
@@ -239,7 +239,7 @@ msgstr "Nenhum contato selecionado."
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:36
 msgid "No name"
-msgstr ""
+msgstr "Sem nome"
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -335,7 +335,7 @@ msgstr "Toque"
 
 #: ../src/imports/ContactList/ContactListPage.qml:320
 msgid "Unselect All"
-msgstr ""
+msgstr "Desmarcar tudo"
 
 #. TRANSLATORS: This refers to landline work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:116
