@@ -172,7 +172,9 @@ void SimCardContacts::onPhoneBookImported(const QString &vcardData)
     QOfonoPhonebook *pb = qobject_cast<QOfonoPhonebook*>(QObject::sender());
     Q_ASSERT(pb);
 
-    m_vcards << vcardData;
+    if (!vcardData.trimmed().isEmpty()) {
+        m_vcards << vcardData;
+    }
     m_pendingPhoneBooks.remove(pb);
     if (m_pendingPhoneBooks.isEmpty()) {
         importDone();

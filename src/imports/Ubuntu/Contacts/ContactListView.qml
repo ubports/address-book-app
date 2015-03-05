@@ -483,7 +483,7 @@ Item {
                     objectName: "%1.importFromSimCardButton".arg(root.objectName)
 
                     visible: ((simContactsImportHelper.status === Loader.Ready) &&
-                              (simContactsImportHelper.item.hasContacts === true))
+                              simContactsImportHelper.item.hasContacts)
                     expandIcon: true
                     iconSource: "image://theme/save-to"
                     labelText: i18n.tr("Import contacts from sim card")
