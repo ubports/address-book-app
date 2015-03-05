@@ -351,20 +351,6 @@ Item {
        syncMonitor.sync(["contacts"])
     }
 
-    function pushImportContactsPage()
-    {
-        // if loader was loaded use the item otherwiser create a new component
-        if (simContactsImportHelper.item) {
-            pageStack.push(simContactsImportHelper.item,
-                           {"objectName": "simCardImportPage",
-                            "targetModel": view.listModel})
-        } else {
-            pageStack.push(Qt.resolvedUrl("SIMCardImportPage.qml"),
-                           {"objectName": "simCardImportPage",
-                            "targetModel": view.listModel})
-        }
-    }
-
     // colapse contacts if the keyboard appears
     Connections {
         target: Qt.inputMethod
@@ -482,12 +468,14 @@ Item {
                     id: importFromSimCard
                     objectName: "%1.importFromSimCardButton".arg(root.objectName)
 
-                    visible: ((simContactsImportHelper.status === Loader.Ready) &&
-                              simContactsImportHelper.item.hasContacts)
                     expandIcon: true
                     iconSource: "image://theme/save-to"
                     labelText: i18n.tr("Import contacts from SIM card")
-                    onClicked: root.pushImportContactsPage()
+                    onClicked: {
+                        pageStack.push(Qt.resolvedUrl("SIMCardImportPage.qml"),
+                                       {"objectName": "simCardImportPage",
+                                        "targetModel": view.listModel})
+                    }
                 }
             }
 
@@ -578,23 +566,6 @@ Item {
                                       Qt.resolvedUrl("OnlineAccountsHelper.qml")
 
         anchors.fill: parent
-        asynchronous: true
-        source: root.showImportOptions &&
-                (root.count === 0) &&
-                !view.favouritesIsSelected &&
-                !isSearching ? sourceFile : ""
-    }
-
-    Loader {
-        id: simContactsImportHelper
-        objectName: "simContactsImportHelper"
-
-        readonly property bool isSearching: (root.filterTerm && root.filterTerm !== "")
-        property string sourceFile: (typeof(runningOnTestMode) !== "undefined") ?
-                                      Qt.resolvedUrl("OnlineAccountsDummy.qml") :
-                                      Qt.resolvedUrl("SIMCardImportPage.qml")
-
-        visible: false
         asynchronous: true
         source: root.showImportOptions &&
                 (root.count === 0) &&

@@ -272,8 +272,8 @@ ContactsUI.PageWithBottomEdge {
                     text: i18n.tr("Import")
                     objectName: "importFromSimHeaderButton"
                     iconName: "save-to"
-                    onTriggered: contactList.pushImportContactsPage()
                     visible: !mainPage.isEmpty
+                    onTriggered: pageStack.push(simCardImportPageComponent)
                 }
             ]
             PropertyChanges {
@@ -532,6 +532,15 @@ ContactsUI.PageWithBottomEdge {
                 removeContacts(contactList.listModel)
                 PopupUtils.close(removeContactsDialogMessage)
             }
+        }
+    }
+
+    Component {
+        id: simCardImportPageComponent
+
+        ContactsUI.SIMCardImportPage {
+            objectName: "simCardImportPage"
+            targetModel: contactList.listModel
         }
     }
 
