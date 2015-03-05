@@ -273,6 +273,7 @@ ContactsUI.PageWithBottomEdge {
                     objectName: "importFromSimHeaderButton"
                     iconName: "save-to"
                     onTriggered: contactList.pushImportContactsPage()
+                    visible: !mainPage.isEmpty
                 }
             ]
             PropertyChanges {
