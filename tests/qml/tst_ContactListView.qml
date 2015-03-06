@@ -168,6 +168,8 @@ Item {
             var importButton = findChild(root.contactListViewObj, "contactListViewTest.importFromOnlineAccountButton")
             // need to wait a bit more until the list leave the loading state
             tryCompare(bottonsHeader, "visible", true, 10000)
+            tryCompare(importButton, "visible", true, 10000)
+
             mouseClick(importButton, importButton.width / 2, importButton.height / 2)
             tryCompare(onlineAccountDialog.item, "running", true)
         }

@@ -471,6 +471,8 @@ Item {
                     expandIcon: true
                     iconSource: "image://theme/save-to"
                     labelText: i18n.tr("Import contacts from SIM card")
+                    // Does not show the button if the list is not in a pageStack
+                    visible: (typeof(pageStack) !== "undefined")
                     onClicked: {
                         pageStack.push(Qt.resolvedUrl("SIMCardImportPage.qml"),
                                        {"objectName": "simCardImportPage",
