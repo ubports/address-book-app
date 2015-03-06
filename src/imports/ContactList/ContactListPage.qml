@@ -269,11 +269,10 @@ ContactsUI.PageWithBottomEdge {
                     onTriggered: contactList.sync()
                 },
                 Action {
-                    text: i18n.tr("Import")
-                    objectName: "importFromSimHeaderButton"
-                    iconName: "save-to"
-                    visible: !mainPage.isEmpty
-                    onTriggered: pageStack.push(simCardImportPageComponent)
+                    text: i18n.tr("Settings")
+                    iconName: "settings"
+                    onTriggered: pageStack.push(Qt.resolvedUrl("../Settings/SettingsPage.qml"),
+                                                {"contactListModel": contactList.listModel})
                 }
             ]
             PropertyChanges {
@@ -532,15 +531,6 @@ ContactsUI.PageWithBottomEdge {
                 removeContacts(contactList.listModel)
                 PopupUtils.close(removeContactsDialogMessage)
             }
-        }
-    }
-
-    Component {
-        id: simCardImportPageComponent
-
-        ContactsUI.SIMCardImportPage {
-            objectName: "simCardImportPage"
-            targetModel: contactList.listModel
         }
     }
 
