@@ -90,7 +90,7 @@ Page {
             }
         }
         ListItem.Standard {
-            text: i18n.tr("Add google account")
+            text: i18n.tr("Add Google account")
             progression: true
             onClicked: onlineAccountsHelper.setupExec()
         }

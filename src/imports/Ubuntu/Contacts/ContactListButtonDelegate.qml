@@ -30,7 +30,7 @@ Item {
        left: parent.left
        right: parent.right
    }
-   height: units.gu(8)
+   height: visible ? units.gu(8) : 0
 
    Rectangle {
        anchors.fill: parent

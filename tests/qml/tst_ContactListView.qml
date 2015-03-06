@@ -169,6 +169,7 @@ Item {
             // need to wait a bit more until the list leave the loading state
             tryCompare(bottonsHeader, "visible", true, 10000)
             tryCompare(importButton, "visible", true, 10000)
+            tryCompare(bottonsHeader, "height", importButton.height)
 
             mouseClick(importButton, importButton.width / 2, importButton.height / 2)
             tryCompare(onlineAccountDialog.item, "running", true)
