@@ -44,12 +44,6 @@ class TestImportFromSimContact(AddressBookAppTestCase):
             import_from_sim_button.visible,
             Eventually(Equals(True), timeout=30))
 
-        # header button should be invisible if the list is empty
-        import_from_sim_header_button = list_page.get_button(
-            'importFromSimHeaderButton')
-        # if the action is invisilbe the button will not be found
-        self.assertThat(import_from_sim_header_button, Equals(None))
-
         # add a new contact
         self.add_contact("Fulano", "de Tal", ["(333) 123-4567"])
 
@@ -57,13 +51,6 @@ class TestImportFromSimContact(AddressBookAppTestCase):
         self.assertThat(
             import_from_sim_button.visible,
             Eventually(Equals(False), timeout=30))
-
-        # header button should be visible at this point
-        import_from_sim_header_button = list_page.get_button(
-            'importFromSimHeaderButton')
-        self.assertThat(
-            import_from_sim_header_button.visible,
-            Eventually(Equals(True)))
 
     def test_import_from_sim(self):
         list_page = self.app.main_window.get_contact_list_page()
