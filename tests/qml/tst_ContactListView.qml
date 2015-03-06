@@ -78,6 +78,7 @@ Item {
         {
             root.contactListViewObj = contactListCmp.createObject(mainView, {"manager": "memory"})
             waitForRendering(root.contactListViewObj)
+            tryCompare(contactListViewObj, "busy", false)
 
             var onlineAccountHelper = findChild(root.contactListViewObj, "onlineAccountHelper")
             verify(onlineAccountHelper.sourceFile.indexOf("OnlineAccountsDummy.qml") > 0)
