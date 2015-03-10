@@ -33,74 +33,43 @@ Page {
         id: myself
     }
 
-    Column {
+    flickable: null
+    Flickable {
+        id: numberFlickable
+        contentHeight: childrenRect.height
         anchors.fill: parent
+        clip: true
 
-        Repeater {
-            anchors {
+        Column {
+            anchors{
                 left: parent.left
                 right: parent.right
             }
-            model: myself
-            delegate: ListItem.Base {
+            height: childrenRect.height + units.gu(4)
+
+            Repeater {
                 anchors {
                     left: parent.left
                     right: parent.right
                 }
-                height: units.gu(8)
-
-                UbuntuShape {
-                    id: uShape
-
-                    anchors {
-                        left: parent.left
-                        top: parent.top
-                        topMargin: units.gu(1)
-                        bottom: parent.bottom
-                        bottomMargin: units.gu(1)
-                    }
-                    width: height
-                    radius: "medium"
-                    color: Theme.palette.normal.overlay
-
-                    Label {
-                        id: initialsLabel
-
-                        anchors.centerIn: parent
-                        text: i18n.tr("ME")
-                        font.pointSize: 88
-                        color: UbuntuColors.lightAubergine
-                    }
+                model: myself
+                delegate: ListItem.Standard {
+                   text: i18n.tr("<b>My phone number:</b> %1").arg(phoneNumber)
                 }
-
-                Label {
-                    id: name
-
-                    anchors {
-                        left: uShape.right
-                        leftMargin: units.gu(2)
-                        verticalCenter: parent.verticalCenter
-                        right: parent.right
-                        rightMargin: units.gu(2)
-                    }
-                    color: UbuntuColors.lightAubergine
-                    elide: Text.ElideRight
-                    text: phoneNumber
-                }
+                onCountChanged: numberFlickable.contentY = 0
+            }
+            ListItem.Standard {
+                text: i18n.tr("Add Google account")
+                progression: true
+                onClicked: onlineAccountsHelper.setupExec()
+            }
+            ListItem.Standard {
+                text: i18n.tr("Import from SIM")
+                progression: true
+                onClicked: pageStack.push(simCardImportPageComponent)
             }
         }
-        ListItem.Standard {
-            text: i18n.tr("Add Google account")
-            progression: true
-            onClicked: onlineAccountsHelper.setupExec()
-        }
-        ListItem.Standard {
-            text: i18n.tr("Import from SIM")
-            progression: true
-            onClicked: pageStack.push(simCardImportPageComponent)
-        }
     }
-
     ContactsUI.OnlineAccountsHelper {
         id: onlineAccountsHelper
     }
