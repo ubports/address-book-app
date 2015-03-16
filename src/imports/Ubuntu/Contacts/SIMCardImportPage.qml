@@ -32,9 +32,20 @@ Page {
     readonly property string exportFile: "file:///tmp/ubuntu_contacts_sim.vcf"
     readonly property alias hasContacts: simCardContacts.hasContacts
     property var targetModel: null
-    property var sims
+    property var sims: []
 
     title: i18n.tr("SIM contacts")
+
+    function lockedSIMCount()
+    {
+        var count = 0
+        for(var i=0; i < sims.length; i++) {
+            if (sims[i].simMng.pinRequired !== OfonoSimManager.NoPin) {
+                count++
+            }
+        }
+        return count
+    }
 
     // used by sims.js to retrieve sim card names
     GSettings {
@@ -58,6 +69,7 @@ Page {
         }
 
         Repeater {
+            id: lockedSIMRepeater
             anchors {
                 left: parent.left
                 right: parent.right
@@ -88,6 +100,7 @@ Page {
         multipleSelection: true
         showSections: false
         visible: !indicator.visible
+        showBusyIndicator: false
 
         manager: "memory"
         onSelectionCanceled: pageStack.pop()
@@ -98,9 +111,10 @@ Page {
 
         anchors.centerIn: parent
         text: i18n.tr("No contacts found")
-        visible: (contactList.count == 0 &&
-                  root.state === "" &&
-                  !contactList.busy)
+        visible: ((contactList.count === 0) &&
+                  (root.state === "") &&
+                  !contactList.busy &&
+                  (sims.length > root.lockedSIMCount()))
     }
 
     Column {
@@ -200,7 +214,9 @@ Page {
     states: [
         State {
             name: "loading"
-            when: simCardContacts.busy
+            when: (simCardContacts.busy &&
+                   contactList.busy &&
+                   (sims.length > root.lockedSIMCount()))
             PropertyChanges {
                 target: indicator
                 title: i18n.tr("Loading...")

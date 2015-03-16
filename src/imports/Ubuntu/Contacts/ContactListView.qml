@@ -222,7 +222,13 @@ Item {
 
       This property holds if the list is busy or not
     */
-    property alias busy: indicator.visible
+    property alias busy: indicator.isBusy
+    /*!
+      \qmlproperty bool showBusyIndicator
+
+      This property holds if the busy indicator should became visible
+    */
+    property bool showBusyIndicator: true
 
     /*!
       This handler is called when the selection mode is finished without be canceled
@@ -519,11 +525,14 @@ Item {
     Column {
         id: indicator
 
+        readonly property bool isBusy: ((view.loading && !view.contactsLoaded) ||
+                                        (root.syncing && (view.count === 0)) ||
+                                        ((onlineAccountHelper.status == Loader.Ready) &&
+                                         (onlineAccountHelper.item.running)))
+
         anchors.centerIn: view
         spacing: units.gu(2)
-        visible: ((view.loading && !view.contactsLoaded) ||
-                  (root.syncing && (view.count === 0)) ||
-                  ((onlineAccountHelper.status == Loader.Ready)  && (onlineAccountHelper.item.running)))
+        visible: root.showBusyIndicator && isBusy
 
         ActivityIndicator {
             id: activity
