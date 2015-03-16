@@ -214,9 +214,8 @@ Page {
     states: [
         State {
             name: "loading"
-            when: (simCardContacts.busy &&
-                   contactList.busy &&
-                   (sims.length > root.lockedSIMCount()))
+            when: (simCardContacts.busy || contactList.busy) &&
+                   (sims.length > root.lockedSIMCount())
             PropertyChanges {
                 target: indicator
                 title: i18n.tr("Loading...")
