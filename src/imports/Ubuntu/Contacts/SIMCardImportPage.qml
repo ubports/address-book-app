@@ -200,10 +200,10 @@ Page {
     states: [
         State {
             name: "loading"
+            when: simCardContacts.busy
             PropertyChanges {
                 target: indicator
-                when: simCardContacts.busy
-                title: i18n.tr("Loading")
+                title: i18n.tr("Loading...")
                 visible: true
             }
         },
@@ -211,7 +211,7 @@ Page {
             name: "importing"
             PropertyChanges {
                 target: indicator
-                title: i18n.tr("Importing")
+                title: i18n.tr("Importing...")
                 visible: true
             }
         },

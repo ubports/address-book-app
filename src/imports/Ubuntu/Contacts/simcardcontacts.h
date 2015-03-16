@@ -55,6 +55,7 @@ private Q_SLOTS:
     void onPhoneBookImportFail();
     void onManagerChanged();
     void onModemsChanged();
+    void reload();
 
 private:
     QScopedPointer<QOfonoManager> m_ofonoManager;

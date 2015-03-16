@@ -157,9 +157,10 @@ void SimCardContacts::onManagerChanged()
         importPhoneBook(m);
 
         connect(m, SIGNAL(interfacesChanged(QStringList)),
-                &m_modemsChangedTimer, SLOT(start()));
+                SLOT(reload()));
         connect(m, SIGNAL(validChanged(bool)),
-                &m_modemsChangedTimer, SLOT(start()));
+                SLOT(reload()));
+
     }
 
     if (m_pendingPhoneBooks.size() == 0) {
@@ -290,4 +291,10 @@ void SimCardContacts::cancel()
 bool SimCardContacts::hasPhoneBook(QOfonoModem *modem)
 {
     return (modem->isValid() && modem->interfaces().contains("org.ofono.Phonebook"));
+}
+
+void SimCardContacts::reload()
+{
+    m_modemsChangedTimer.start();
+    Q_EMIT busyChanged();
 }
