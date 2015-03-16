@@ -16,8 +16,12 @@
 
 import QtQuick 2.2
 import QtContacts 5.0
+
 import Ubuntu.Components 1.1
 import Ubuntu.Contacts 0.1
+import Ubuntu.Components.ListItems 1.0 as ListItem
+
+import MeeGo.QOfono 0.2
 
 Page {
     id: root
@@ -28,11 +32,49 @@ Page {
 
     title: i18n.tr("SIM contacts")
 
+    OfonoManager {
+        id: ofonoManager
+    }
+
+    Column {
+        id: lockedSIMList
+        anchors {
+            left: parent.left
+            right: parent.right
+        }
+        //height: childrenRect.height
+
+        Repeater {
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+            model: ofonoManager.modems
+            delegate: ListItem.Standard {
+                OfonoSimManager {
+                    id: simManager
+                    modemPath: modelData
+                }
+                visible: simManager.pinRequired !== OfonoSimManager.NoPin
+                text: i18n.tr("SIM %1 is locked").arg(index + 1)
+                control: Button {
+                    text: i18n.tr("Unlock")
+                    onClicked: Qt.openUrlExternally("settings:///system/security-privacy")
+                }
+            }
+        }
+    }
+
     ContactListView {
         id: contactList
         objectName: "contactListViewFromSimCard"
 
-        anchors.fill: parent
+        anchors {
+            left: parent.left
+            right: parent.right
+            top: lockedSIMList.bottom
+            bottom: parent.bottom
+        }
         multiSelectionEnabled: true
         multipleSelection: true
         showSections: false
@@ -46,7 +88,7 @@ Page {
         id: statusMessage
 
         anchors.centerIn: parent
-        text: i18n.tr("SIM card is empty")
+        text: i18n.tr("No contacts found")
         visible: (contactList.count == 0 &&
                   root.state === "" &&
                   !contactList.busy)
