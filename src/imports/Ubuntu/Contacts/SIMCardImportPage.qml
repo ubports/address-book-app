@@ -22,6 +22,9 @@ import Ubuntu.Contacts 0.1
 import Ubuntu.Components.ListItems 1.0 as ListItem
 
 import MeeGo.QOfono 0.2
+import GSettings 1.0
+
+import "sims.js" as Sims
 
 Page {
     id: root
@@ -29,11 +32,22 @@ Page {
     readonly property string exportFile: "file:///tmp/ubuntu_contacts_sim.vcf"
     readonly property alias hasContacts: simCardContacts.hasContacts
     property var targetModel: null
+    property var sims
 
     title: i18n.tr("SIM contacts")
 
+    // used by sims.js to retrieve sim card names
+    GSettings {
+        id: phoneSettings
+        schema.id: "com.ubuntu.phone"
+    }
+
     OfonoManager {
         id: ofonoManager
+        onModemsChanged: {
+            Sims.createQML(modems.slice(0).sort());
+            root.sims = Sims.getAll();
+        }
     }
 
     Column {
@@ -42,21 +56,16 @@ Page {
             left: parent.left
             right: parent.right
         }
-        //height: childrenRect.height
 
         Repeater {
             anchors {
                 left: parent.left
                 right: parent.right
             }
-            model: ofonoManager.modems
+            model: sims.length
             delegate: ListItem.Standard {
-                OfonoSimManager {
-                    id: simManager
-                    modemPath: modelData
-                }
-                visible: simManager.pinRequired !== OfonoSimManager.NoPin
-                text: i18n.tr("SIM %1 is locked").arg(index + 1)
+                visible: sims[index].simMng.pinRequired !== OfonoSimManager.NoPin
+                text: i18n.tr("%1 is locked").arg(sims[index].title)
                 control: Button {
                     text: i18n.tr("Unlock")
                     onClicked: Qt.openUrlExternally("settings:///system/security-privacy")
@@ -123,7 +132,6 @@ Page {
 
         Component.onCompleted: {
             if (vcardFile != "" && !contactImported) {
-                root.state = "loading"
                 contactImported = true
                 contactList.listModel.importContacts(vcardFile)
             }
@@ -194,6 +202,7 @@ Page {
             name: "loading"
             PropertyChanges {
                 target: indicator
+                when: simCardContacts.busy
                 title: i18n.tr("Loading")
                 visible: true
             }

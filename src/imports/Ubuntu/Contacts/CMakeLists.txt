@@ -36,12 +36,14 @@ set(CONTACT_COMPONENTS_QMLS
     MostCalledModel.qml
     MultipleSelectionListView.qml
     MultipleSelectionVisualModel.qml
+    Ofono.qml
     OnlineAccountsDummy.qml
     OnlineAccountsHelper.qml
     PageWithBottomEdge.qml
     qmldir
     SectionDelegate.qml
     SIMCardImportPage.qml
+    sims.js
     SubtitledWithColors.qml
     VCardParser.qml
 )

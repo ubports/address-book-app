@@ -77,6 +77,12 @@ bool SimCardContacts::hasContacts() const
     return !m_vcards.isEmpty();
 }
 
+bool SimCardContacts::busy() const
+{
+    return (m_modemsChangedTimer.isActive() ||
+            m_importingFlag);
+}
+
 void SimCardContacts::onPhoneBookIsValidChanged(bool isValid)
 {
     QOfonoPhonebook *pb = qobject_cast<QOfonoPhonebook*>(QObject::sender());
@@ -206,6 +212,8 @@ void SimCardContacts::onPhoneBookImportFail()
 
 void SimCardContacts::startImport()
 {
+    m_importingFlag = true;
+    Q_EMIT busyChanged();
     if (!m_importing.tryLock()) {
         qDebug() << "Import in progress.";
         cancel();
@@ -225,6 +233,8 @@ void SimCardContacts::importDone()
     writeData();
     m_importing.unlock();
     Q_EMIT contactsChanged();
+    m_importingFlag = false;
+    Q_EMIT busyChanged();
 }
 
 void SimCardContacts::writeData()
@@ -253,6 +263,9 @@ void SimCardContacts::cancel()
 
     m_importing.unlock();
     m_vcards.clear();
+
+    m_importingFlag = false;
+    Q_EMIT busyChanged();
 }
 
 bool SimCardContacts::hasPhoneBook(QOfonoModem *modem)
