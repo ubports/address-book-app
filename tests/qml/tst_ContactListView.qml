@@ -86,7 +86,7 @@ Item {
 
         function cleanup()
         {
-            root.contactListViewObj.destroy()
+            root.contactListViewObj = null
         }
 
         function test_managerProperty()
