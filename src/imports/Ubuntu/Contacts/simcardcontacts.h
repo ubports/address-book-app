@@ -41,6 +41,8 @@ public:
     bool hasContacts() const;
     bool busy() const;
 
+    Q_INVOKABLE void unlockModem(const QString &modemPath);
+
 Q_SIGNALS:
     void contactsChanged();
     void importFail();

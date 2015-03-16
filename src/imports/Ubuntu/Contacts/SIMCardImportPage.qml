@@ -68,7 +68,7 @@ Page {
                 text: i18n.tr("%1 is locked").arg(sims[index].title)
                 control: Button {
                     text: i18n.tr("Unlock")
-                    onClicked: Qt.openUrlExternally("settings:///system/security-privacy")
+                    onClicked: simCardContacts.unlockModem(sims[index].path)
                 }
             }
         }
