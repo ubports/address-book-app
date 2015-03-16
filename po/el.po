@@ -8,24 +8,24 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-23 09:33+0100\n"
-"PO-Revision-Date: 2014-08-20 17:07+0000\n"
-"Last-Translator: Simos Xenitellis <Unknown>\n"
+"PO-Revision-Date: 2015-03-15 22:12+0000\n"
+"Last-Translator: Constantinos Koniaris <kostas291@yahoo.com>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-02-24 05:48+0000\n"
-"X-Generator: Launchpad (build 17355)\n"
+"X-Launchpad-Export-Date: 2015-03-16 06:02+0000\n"
+"X-Generator: Launchpad (build 17389)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
 msgid "%1 vCards imported"
-msgstr ""
+msgstr "Εισήχθησαν %1 vCards"
 
 #. TRANSLATORS: this refers to a new contact
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:418
 msgid "+ Create New"
-msgstr ""
+msgstr "+ Δημιουργία νέας"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:307
 msgid "Add Field"
@@ -37,7 +37,7 @@ msgstr "Προσθήκη επαφής"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
-msgstr ""
+msgstr "Προσθήκη αριθμού..."
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:51
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
@@ -53,7 +53,7 @@ msgstr ""
 #. TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "Aim"
-msgstr ""
+msgstr "AIM"
 
 #. TRANSLATORS: this refers to all contacts
 #: ../src/imports/ContactList/ContactListPage.qml:277
@@ -62,11 +62,11 @@ msgstr "Όλες"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
-msgstr ""
+msgstr "Θέλετε σίγουρα να αφαιρέστε όλες τις επιλεγμένες επαφές;"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
-msgstr ""
+msgstr "Θέλετε σίγουρα να αφαιρέσετε αυτή την επαφή;"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
 #: ../src/imports/ContactList/ContactListPage.qml:290
@@ -77,7 +77,7 @@ msgstr "Ακύρωση"
 
 #: ../src/imports/ContactList/ContactListPage.qml:314
 msgid "Cancel selection"
-msgstr ""
+msgstr "Ακύρωση επιλογής"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:80
 msgid "Close"
@@ -94,11 +94,11 @@ msgstr "Επαφές"
 
 #: ../data/address-book-app.desktop.in.in.h:2
 msgid "Contacts Address Book"
-msgstr ""
+msgstr "Επαφές βιβλίου διευθύνσεων"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
-msgstr ""
+msgstr "Επαφές;Άνθρωποι;Αριθμοί"
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
@@ -128,15 +128,15 @@ msgstr "Ηλεκτρονική διεύθυνση"
 
 #: ../src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
-msgstr ""
+msgstr "Εισαγωγή ενός αριθμού"
 
 #: ../src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:27
 msgid "Enter a social alias"
-msgstr ""
+msgstr "Εισαγωγή ενός κοινωνικού ψευδώνυμου (alias)"
 
 #: ../src/imports/ContactEdit/ContactDetailEmailsEditor.qml:28
 msgid "Enter an email address"
-msgstr ""
+msgstr "Εισαγωγή μιας διεύθυνσης ηλεκτρονικής αλληλογραφίας"
 
 #: ../src/imports/ContactView/ContactFetchError.qml:25
 #: ../src/imports/MainWindow.qml:153
@@ -145,7 +145,7 @@ msgstr "Σφάλμα"
 
 #: ../src/imports/Common/ContactExporter.qml:157
 msgid "Exporting contacts..."
-msgstr ""
+msgstr "Εξαγωγή επαφών..."
 
 #: ../src/imports/ContactList/ContactListPage.qml:277
 msgid "Favorites"
@@ -153,11 +153,11 @@ msgstr "Αγαπημένα"
 
 #: ../src/imports/ContactEdit/ContactDetailNameEditor.qml:84
 msgid "First name"
-msgstr ""
+msgstr "Όνομα"
 
 #: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
 msgid "Frequently called"
-msgstr ""
+msgstr "Συχνά καλούμενος"
 
 #. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:115
@@ -171,16 +171,16 @@ msgstr "ICQ"
 
 #: ../src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:23
 msgid "IM"
-msgstr ""
+msgstr "IM"
 
 #. TRANSLATORS: this refers to a new contact
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:434
 msgid "Import contacts from Google"
-msgstr ""
+msgstr "Εισαγωγή επαφών από Google"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
-msgstr ""
+msgstr "Εισαγωγή VCards"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 msgid "Importing..."
@@ -200,7 +200,7 @@ msgstr "Γίνεται φόρτωση..."
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:32
 msgid "Locality"
-msgstr ""
+msgstr "Εντοπιότητα"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:66
 msgid "MSN"
@@ -213,119 +213,119 @@ msgstr "Κινητό"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:44
 msgid "Multiple contacts"
-msgstr ""
+msgstr "Πολλαπλές επαφές"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
 msgid "New contact"
-msgstr ""
+msgstr "Νέα επαφή"
 
 #. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
 #. this word must be less than 5 characters
 #: ../src/imports/ContactEdit/TextInputDetail.qml:76
 msgid "Next"
-msgstr ""
+msgstr "Επόμ."
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:74
 msgid "No"
-msgstr ""
+msgstr "Όχι"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:40
 msgid "No contact selected."
-msgstr ""
+msgstr "Δεν επελέγη καμία επαφή."
 
 #: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:113
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:36
 msgid "No name"
-msgstr ""
+msgstr "Χωρίς όνομα"
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
-msgstr ""
+msgstr "Οργανισμός"
 
 #. TRANSLATORS: This refers to any other phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:117
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:121
 msgid "Other"
-msgstr ""
+msgstr "Άλλο"
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:47
 #: ../src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:23
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumbersView.qml:26
 msgid "Phone"
-msgstr ""
+msgstr "Τηλέφωνο"
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
-msgstr ""
+msgstr "Τ.Κ."
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:55
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:21
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOrganizationsView.qml:24
 msgid "Professional Details"
-msgstr ""
+msgstr "Επαγγελματικές λεπτομέρειες"
 
 #: ../src/imports/ContactList/ContactListPage.qml:247
 msgid "Quit"
-msgstr ""
+msgstr "'Εξοδος"
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:33
 msgid "Region"
-msgstr ""
+msgstr "Περιφέρεια"
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
-msgstr ""
+msgstr "Ρόλος"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:411
 msgid "Save"
-msgstr ""
+msgstr "Αποθήκευση"
 
 #: ../src/imports/ContactList/ContactListPage.qml:262
 msgid "Search"
-msgstr ""
+msgstr "Αναζήτηση"
 
 #: ../src/imports/ContactList/ContactListPage.qml:219
 msgid "Search..."
-msgstr ""
+msgstr "Αναζήτηση..."
 
 #: ../src/imports/ContactList/ContactListPage.qml:320
 msgid "Select All"
-msgstr ""
+msgstr "Επιλογή όλων"
 
 #: ../src/imports/ContactList/ContactListPage.qml:333
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
-msgstr ""
+msgstr "Κοινοποίηση"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Skype"
-msgstr ""
+msgstr "Skype"
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:53
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:24
 msgid "Social"
-msgstr ""
+msgstr "Κοινωνικά"
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:31
 msgid "Street"
-msgstr ""
+msgstr "Οδός"
 
 #: ../src/imports/ContactList/ContactListPage.qml:256
 msgid "Sync"
-msgstr ""
+msgstr "Συγχρονισμός"
 
 #: ../src/imports/ContactList/ContactListPage.qml:256
 msgid "Syncing"
-msgstr ""
+msgstr "Γίνεται συγχρονισμός"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:505
 msgid "Syncing..."
-msgstr ""
+msgstr "Γίνεται συγχρονισμός..."
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Title"
-msgstr ""
+msgstr "Προσφώνηση"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:27
 msgid "Touch"
@@ -333,27 +333,27 @@ msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:320
 msgid "Unselect All"
-msgstr ""
+msgstr "Αποεπιλογή όλων"
 
 #. TRANSLATORS: This refers to landline work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:116
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
 msgid "Work"
-msgstr ""
+msgstr "Εργασία"
 
 #. TRANSLATORS: This refers to mobile/cellphone work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:117
 msgid "Work Mobile"
-msgstr ""
+msgstr "Κινητό εργασίας"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
 msgid "Yahoo"
-msgstr ""
+msgstr "Yahoo"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:62
 msgid "Yes"
-msgstr ""
+msgstr "Ναι"
 
 #: ../src/imports/ContactList/ContactListPage.qml:474
 msgid "You have no contacts."
-msgstr ""
+msgstr "Δεν έχετε επαφές."
