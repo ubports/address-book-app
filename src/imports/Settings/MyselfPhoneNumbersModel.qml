@@ -29,9 +29,10 @@ ListModel {
         for (var i = 0; i < simManagerList.count; i++) {
             var item = simManagerList.itemAt(i)
             if (item) {
-                var numbers = simManagerList.itemAt(i).subscriberNumbers
+                var numbers = item.subscriberNumbers
                 for (var n in numbers) {
-                    root.append({'phoneNumber': PhoneUtils.format(numbers[n])})
+                    root.append({'phoneNumber': PhoneUtils.format(numbers[n]),
+                                 'network': item.networkName })
                 }
             }
         }
@@ -48,12 +49,21 @@ ListModel {
             model: ofonoManager.modems
             delegate: Item {
                 property alias subscriberNumbers: simManager.subscriberNumbers
+                property alias networkName: networkRegistration.name
 
                 OfonoSimManager {
                     id: simManager
                     modemPath: modelData
                     onSubscriberNumbersChanged: {
                         console.debug("New numbers:" + subscriberNumbers)
+                        dirtyModel.restart()
+                    }
+                }
+
+                OfonoNetworkRegistration {
+                    id: networkRegistration
+                    modemPath: modelData
+                    onNameChanged: {
                         dirtyModel.restart()
                     }
                 }

@@ -53,8 +53,9 @@ Page {
                     right: parent.right
                 }
                 model: myself
-                delegate: ListItem.Standard {
-                   text: i18n.tr("<b>My phone number:</b> %1").arg(phoneNumber)
+                delegate: ListItem.Subtitled {
+                   text:  i18n.tr("My phone number: %1").arg(phoneNumber)
+                   subText: network != "" ? network : i18n.tr("SIM %1").arg(index)
                 }
                 onCountChanged: numberFlickable.contentY = 0
             }
