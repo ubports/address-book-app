@@ -478,11 +478,13 @@ Item {
                     iconSource: "image://theme/save-to"
                     labelText: i18n.tr("Import contacts from SIM card")
                     // Does not show the button if the list is not in a pageStack
-                    visible: (typeof(pageStack) !== "undefined")
+                    visible: (typeof(pageStack) !== "undefined") &&
+                             ((simList.sims.length > 0) && (simList.present.length > 0))
                     onClicked: {
                         pageStack.push(Qt.resolvedUrl("SIMCardImportPage.qml"),
                                        {"objectName": "simCardImportPage",
-                                        "targetModel": view.listModel})
+                                        "targetModel": view.listModel,
+                                        "sims": simList.sims})
                     }
                 }
             }
@@ -564,6 +566,10 @@ Item {
 
     SyncMonitor {
         id: syncMonitor
+    }
+
+    SIMList {
+        id: simList
     }
 
     Loader {

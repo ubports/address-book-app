@@ -18,12 +18,13 @@ import QtQuick 2.0
 import MeeGo.QOfono 0.2
 
 Item {
-    property alias simMng: simMng
-    property alias present: simMng.present
+    readonly property alias simMng: simMng
+    readonly property alias present: simMng.present
 
     property string path
     property string name
-    property string title: {
+
+    readonly property string title: {
         var number = simMng.subscriberNumbers[0] || simMng.subscriberIdentity;
         return name + (number ? " (" + number + ")" : "");
     }

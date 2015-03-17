@@ -1,8 +1,6 @@
 set(CONTACT_SETTINGS_QMLS
     MyselfPhoneNumbersModel.qml
     SettingsPage.qml
-    sims.js
-    Ofono.qml
 )
 
 install(FILES ${CONTACT_SETTINGS_QMLS}
