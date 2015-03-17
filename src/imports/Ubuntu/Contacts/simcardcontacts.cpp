@@ -83,25 +83,6 @@ bool SimCardContacts::busy() const
             m_importingFlag);
 }
 
-void SimCardContacts::unlockModem(const QString &modemPath)
-{
-    static const QString connService("com.ubuntu.connectivity1");
-    static const QString connObject("/com/ubuntu/connectivity1/Private");
-    static const QString connInterface("com.ubuntu.connectivity1.Private");
-    static const QString connUnlockmodemMethod("UnlockModem");
-
-    QDBusInterface connectivityIface (connService,
-                                      connObject,
-                                      connInterface,
-                                      QDBusConnection::sessionBus(),
-                                      this);
-
-    auto reply = connectivityIface.call(connUnlockmodemMethod, modemPath);
-    if (reply.type() == QDBusMessage::ErrorMessage) {
-        qWarning() << "Failed to unlock modem" << modemPath << reply.errorMessage();
-    }
-}
-
 void SimCardContacts::onPhoneBookIsValidChanged(bool isValid)
 {
     QOfonoPhonebook *pb = qobject_cast<QOfonoPhonebook*>(QObject::sender());
@@ -297,4 +278,23 @@ void SimCardContacts::reload()
 {
     m_modemsChangedTimer.start();
     Q_EMIT busyChanged();
+}
+
+void SimCardContacts::unlockModem(const QString &modemPath)
+{
+    static const QString connService("com.ubuntu.connectivity1");
+    static const QString connObject("/com/ubuntu/connectivity1/Private");
+    static const QString connInterface("com.ubuntu.connectivity1.Private");
+    static const QString connUnlockmodemMethod("UnlockModem");
+
+    QDBusInterface connectivityIface (connService,
+                                      connObject,
+                                      connInterface,
+                                      QDBusConnection::sessionBus(),
+                                      this);
+
+    auto reply = connectivityIface.call(connUnlockmodemMethod, modemPath);
+    if (reply.type() == QDBusMessage::ErrorMessage) {
+        qWarning() << "Failed to unlock modem" << modemPath << reply.errorMessage();
+    }
 }

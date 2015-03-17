@@ -47,6 +47,14 @@ Page {
         return count
     }
 
+    Timer {
+        id: simUnlocking
+
+        interval: 2000
+        repeat: false
+        running: false
+    }
+
     // used by sims.js to retrieve sim card names
     GSettings {
         id: phoneSettings
@@ -77,6 +85,12 @@ Page {
             model: sims.length
             delegate: ListItem.Standard {
                 visible: sims[index].simMng.pinRequired !== OfonoSimManager.NoPin
+                onVisibleChanged: {
+                    if (visible)
+                        simUnlocking.stop()
+                    else
+                        simUnlocking.start()
+                }
                 text: i18n.tr("%1 is locked").arg(sims[index].title)
                 control: Button {
                     text: i18n.tr("Unlock")
@@ -219,6 +233,15 @@ Page {
             PropertyChanges {
                 target: indicator
                 title: i18n.tr("Loading...")
+                visible: true
+            }
+        },
+        State {
+            name: "unlocking"
+            when: !simCardContacts.busy && (contactList.count == 0) && (simUnlocking.running)
+            PropertyChanges {
+                target: indicator
+                title: i18n.tr("Unlocking...")
                 visible: true
             }
         },
