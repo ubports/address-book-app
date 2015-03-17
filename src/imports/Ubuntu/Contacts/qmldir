@@ -44,7 +44,5 @@ internal FastScroll FastScroll.qml
 internal ListItemWithActionsCheckBox ListItemWithActionsCheckBox.qml
 internal MostCalledList MostCalledList.qml
 internal MostCalledModel MostCalledModel.qml
-internal Ofono Ofono.qml
 internal SectionDelegate SectionDelegate.qml
-internal sims sims.js
 internal SubtitledWithColors SubtitledWithColors.qml

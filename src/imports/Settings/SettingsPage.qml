@@ -21,16 +21,37 @@ import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 1.0 as ListItem
 import Ubuntu.Contacts 0.1 as ContactsUI
 
+import MeeGo.QOfono 0.2
+
+import GSettings 1.0
+
+import "sims.js" as Sims
+
 Page {
-    id: settingsPage
+    id: root
     objectName: "settingsPage"
 
     property var contactListModel
+    property var sims: []
 
     title: i18n.tr("Settings")
 
     MyselfPhoneNumbersModel {
         id: myself
+    }
+
+    OfonoManager {
+        id: ofonoManager
+        onModemsChanged: {
+            Sims.createQML(modems.slice(0).sort());
+            root.sims = Sims.getAll();
+        }
+    }
+
+    // used by sims.js to retrieve sim card names
+    GSettings {
+        id: phoneSettings
+        schema.id: "com.ubuntu.phone"
     }
 
     flickable: null
@@ -68,6 +89,7 @@ Page {
                 text: i18n.tr("Import from SIM")
                 progression: true
                 onClicked: pageStack.push(simCardImportPageComponent)
+                enabled: (sims.length > 0) && (Sims.getPresentCount() > 0)
             }
         }
     }
@@ -80,7 +102,8 @@ Page {
 
         ContactsUI.SIMCardImportPage {
             objectName: "simCardImportPage"
-            targetModel: settingsPage.contactListModel
+            targetModel: root.contactListModel
+            sims: root.sims
         }
     }
 }

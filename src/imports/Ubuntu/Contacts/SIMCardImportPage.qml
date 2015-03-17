@@ -22,9 +22,6 @@ import Ubuntu.Contacts 0.1
 import Ubuntu.Components.ListItems 1.0 as ListItem
 
 import MeeGo.QOfono 0.2
-import GSettings 1.0
-
-import "sims.js" as Sims
 
 Page {
     id: root
@@ -53,20 +50,6 @@ Page {
         interval: 2000
         repeat: false
         running: false
-    }
-
-    // used by sims.js to retrieve sim card names
-    GSettings {
-        id: phoneSettings
-        schema.id: "com.ubuntu.phone"
-    }
-
-    OfonoManager {
-        id: ofonoManager
-        onModemsChanged: {
-            Sims.createQML(modems.slice(0).sort());
-            root.sims = Sims.getAll();
-        }
     }
 
     Column {
