@@ -23,12 +23,17 @@
 class UbuntuContacts : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QString tempPath READ tempPath)
 
 public:
     UbuntuContacts(QObject *parent = 0);
 
+    QString tempPath() const;
+
     Q_INVOKABLE QString contactInitialsFromString(const QString &value);
     Q_INVOKABLE QString normalized(const QString &value);
+
+    Q_INVOKABLE bool removeFile(const QUrl &file);
 };
 
 #endif //_UBUNTU_CONTACTS_H_

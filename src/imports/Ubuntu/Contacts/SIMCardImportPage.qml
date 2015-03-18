@@ -26,7 +26,7 @@ import MeeGo.QOfono 0.2
 Page {
     id: root
 
-    readonly property string exportFile: "file:///tmp/ubuntu_contacts_sim.vcf"
+    readonly property string exportFile: "file://%1/ubuntu_contacts_sim.vcf".arg(Contacts.tempPath)
     readonly property alias hasContacts: simCardContacts.hasContacts
     property var targetModel: null
     property var sims: []
@@ -167,7 +167,7 @@ Page {
             if ((error === ContactModel.ExportNoError) && targetModel) {
                 targetModel.importContacts(url)
              }
-             pageStack.pop()
+            pageStack.pop()
         }
     }
 
@@ -245,4 +245,8 @@ Page {
             }
         }
     ]
+
+    Component.onDestruction: {
+        Contacts.removeFile(root.exportFile)
+    }
 }
