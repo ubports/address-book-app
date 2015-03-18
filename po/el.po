@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-02-23 09:33+0100\n"
-"PO-Revision-Date: 2015-03-15 22:12+0000\n"
-"Last-Translator: Constantinos Koniaris <kostas291@yahoo.com>\n"
+"PO-Revision-Date: 2015-03-17 14:55+0000\n"
+"Last-Translator: tzem <athmakrigiannis@gmail.com>\n"
 "Language-Team: Greek <el@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-03-16 06:02+0000\n"
-"X-Generator: Launchpad (build 17389)\n"
+"X-Launchpad-Export-Date: 2015-03-18 06:10+0000\n"
+"X-Generator: Launchpad (build 17403)\n"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -48,7 +48,7 @@ msgstr "Διεύθυνση"
 #: ../src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:76
 #: ../src/imports/ContactView/ContactDetailSyncTargetView.qml:49
 msgid "Addressbook"
-msgstr ""
+msgstr "Επαφές"
 
 #. TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
@@ -329,7 +329,7 @@ msgstr "Προσφώνηση"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:27
 msgid "Touch"
-msgstr ""
+msgstr "Αφή"
 
 #: ../src/imports/ContactList/ContactListPage.qml:320
 msgid "Unselect All"
