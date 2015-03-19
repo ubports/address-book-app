@@ -18,10 +18,17 @@
 
 #include <QtCore/QStringList>
 #include <QtCore/QDebug>
+#include <QtCore/QDir>
+#include <QtCore/QUrl>
 
 UbuntuContacts::UbuntuContacts(QObject *parent)
     : QObject(parent)
 {
+}
+
+QString UbuntuContacts::tempPath() const
+{
+    return QDir::tempPath();
 }
 
 QString UbuntuContacts::contactInitialsFromString(const QString &value)
@@ -54,4 +61,9 @@ QString UbuntuContacts::normalized(const QString &value)
         }
     }
     return out;
+}
+
+bool UbuntuContacts::removeFile(const QUrl &file)
+{
+    return QFile::remove(file.toLocalFile());
 }

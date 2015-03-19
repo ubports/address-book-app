@@ -18,6 +18,8 @@ find_package(Qt5Quick)
 find_package(Qt5DBus)
 find_package(PkgConfig REQUIRED)
 
+pkg_check_modules(QOfono qofono-qt5)
+
 find_program(INTLTOOL_MERGE intltool-merge)
 find_program(INTLTOOL_EXTRACT intltool-extract)
 find_program(DBUS_RUNNER dbus-test-runner)

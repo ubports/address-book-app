@@ -18,8 +18,10 @@ __all__ = [
     'ContactEditor',
     'ContactListPage',
     'ContactView',
+    'SIMCardImportPage',
 ]
 
 from address_book_app.pages._contact_editor import ContactEditor
 from address_book_app.pages._contact_list_page import ContactListPage
 from address_book_app.pages._contact_view import ContactView
+from address_book_app.pages._sim_card_import_page import SIMCardImportPage
