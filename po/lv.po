@@ -8,16 +8,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-02-23 09:33+0100\n"
+"POT-Creation-Date: 2015-03-16 17:52-0300\n"
 "PO-Revision-Date: 2015-03-01 07:36+0000\n"
 "Last-Translator: Rūdolfs Mazurs <Unknown>\n"
 "Language-Team: Latvian <lv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-03-02 05:38+0000\n"
-"X-Generator: Launchpad (build 17361)\n"
+"X-Launchpad-Export-Date: 2015-03-21 05:43+0000\n"
+"X-Generator: Launchpad (build 17405)\n"
 "Language: lv\n"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:77
+#, qt-format
+msgid "%1 is locked"
+msgstr ""
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -25,7 +30,7 @@ msgid "%1 vCards imported"
 msgstr "%1 vCards importētas"
 
 #. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:418
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:424
 msgid "+ Create New"
 msgstr "+ Izveidot jaunu"
 
@@ -33,7 +38,11 @@ msgstr "+ Izveidot jaunu"
 msgid "Add Field"
 msgstr "Pievienot lauku"
 
-#: ../src/imports/ContactList/ContactListPage.qml:390
+#: ../src/imports/Settings/SettingsPage.qml:67
+msgid "Add Google account"
+msgstr ""
+
+#: ../src/imports/ContactList/ContactListPage.qml:396
 msgid "Add contact"
 msgstr "Pievienot kontaktu"
 
@@ -58,7 +67,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:277
+#: ../src/imports/ContactList/ContactListPage.qml:283
 msgid "All"
 msgstr "Visi"
 
@@ -71,13 +80,13 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "Vai tiešām vēlāties izņemt šo kontaktu?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:290
+#: ../src/imports/ContactList/ContactListPage.qml:296
 #: ../src/imports/ContactView/ContactFetchError.qml:29
 #: ../src/imports/MainWindow.qml:157
 msgid "Cancel"
 msgstr "Atcelt"
 
-#: ../src/imports/ContactList/ContactListPage.qml:314
+#: ../src/imports/ContactList/ContactListPage.qml:320
 msgid "Cancel selection"
 msgstr "Atcelt izvēli"
 
@@ -106,13 +115,13 @@ msgstr "Kontakti;Cilvēki;Numuri"
 msgid "Country"
 msgstr "Valsts"
 
-#: ../src/imports/ContactList/ContactListPage.qml:475
+#: ../src/imports/ContactList/ContactListPage.qml:481
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "Izveidojiet jaunu kontaktu, velkot no ekrāna apakšas."
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:168
-#: ../src/imports/ContactList/ContactListPage.qml:350
+#: ../src/imports/ContactList/ContactListPage.qml:356
 msgid "Delete"
 msgstr "Dzēst"
 
@@ -149,7 +158,11 @@ msgstr "Kļūda"
 msgid "Exporting contacts..."
 msgstr "Eksportē kontaktus..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:277
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:243
+msgid "Fail to read SIM card"
+msgstr ""
+
+#: ../src/imports/ContactList/ContactListPage.qml:283
 msgid "Favorites"
 msgstr "Izlase"
 
@@ -175,16 +188,28 @@ msgstr "ICQ"
 msgid "IM"
 msgstr "IM"
 
-#. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:434
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:190
+msgid "Import"
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:468
 msgid "Import contacts from Google"
 msgstr "Importēt kontaktus no Google"
+
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:479
+msgid "Import contacts from SIM card"
+msgstr ""
+
+#: ../src/imports/Settings/SettingsPage.qml:72
+msgid "Import from SIM"
+msgstr ""
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
 msgstr "Importēt vCards"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:235
 msgid "Importing..."
 msgstr "Importē..."
 
@@ -196,7 +221,8 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Uzvārds"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:505
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:547
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:218
 msgid "Loading..."
 msgstr "Ielādē..."
 
@@ -217,6 +243,11 @@ msgstr "Mobilais tālrunis"
 msgid "Multiple contacts"
 msgstr "Vairāki kontakti"
 
+#: ../src/imports/Settings/SettingsPage.qml:61
+#, qt-format
+msgid "My phone number: %1"
+msgstr ""
+
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
 msgid "New contact"
 msgstr "Jauns kontakts"
@@ -234,6 +265,10 @@ msgstr "Nē"
 #: ../src/imports/Common/RemoveContactsDialog.qml:40
 msgid "No contact selected."
 msgstr "Nav izvēlēts neviens kontakts."
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:110
+msgid "No contacts found"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:113
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
@@ -279,11 +314,20 @@ msgstr "Reģions"
 msgid "Role"
 msgstr "Amats"
 
+#: ../src/imports/Settings/SettingsPage.qml:62
+#, qt-format
+msgid "SIM %1"
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:34
+msgid "SIM contacts"
+msgstr ""
+
 #: ../src/imports/ContactEdit/ContactEditor.qml:411
 msgid "Save"
 msgstr "Saglabāt"
 
-#: ../src/imports/ContactList/ContactListPage.qml:262
+#: ../src/imports/ContactList/ContactListPage.qml:255
 msgid "Search"
 msgstr "Meklēt"
 
@@ -291,11 +335,17 @@ msgstr "Meklēt"
 msgid "Search..."
 msgstr "Meklēt..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:320
+#: ../src/imports/ContactList/ContactListPage.qml:326
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:178
 msgid "Select All"
 msgstr "Izvēlēties visu"
 
-#: ../src/imports/ContactList/ContactListPage.qml:333
+#: ../src/imports/ContactList/ContactListPage.qml:272
+#: ../src/imports/Settings/SettingsPage.qml:30
+msgid "Settings"
+msgstr ""
+
+#: ../src/imports/ContactList/ContactListPage.qml:339
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Dalīties"
@@ -313,15 +363,15 @@ msgstr "Sociāls"
 msgid "Street"
 msgstr "Iela"
 
-#: ../src/imports/ContactList/ContactListPage.qml:256
+#: ../src/imports/ContactList/ContactListPage.qml:266
 msgid "Sync"
 msgstr "Sinhronizācija"
 
-#: ../src/imports/ContactList/ContactListPage.qml:256
+#: ../src/imports/ContactList/ContactListPage.qml:266
 msgid "Syncing"
 msgstr "Sinhronizē"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:505
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:547
 msgid "Syncing..."
 msgstr "Sinhronizē..."
 
@@ -333,7 +383,12 @@ msgstr "Nosaukums"
 msgid "Touch"
 msgstr "Pieskaras"
 
-#: ../src/imports/ContactList/ContactListPage.qml:320
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
+msgid "Unlock"
+msgstr ""
+
+#: ../src/imports/ContactList/ContactListPage.qml:326
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:177
 msgid "Unselect All"
 msgstr "Neizvēlēties neko"
 
@@ -356,7 +411,7 @@ msgstr "Yahoo"
 msgid "Yes"
 msgstr "Jā"
 
-#: ../src/imports/ContactList/ContactListPage.qml:474
+#: ../src/imports/ContactList/ContactListPage.qml:480
 msgid "You have no contacts."
 msgstr "Jums nav kontaktu."
 
