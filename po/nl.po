@@ -8,19 +8,19 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-03-16 17:52-0300\n"
-"PO-Revision-Date: 2015-03-03 15:29+0000\n"
+"PO-Revision-Date: 2015-03-21 09:54+0000\n"
 "Last-Translator: rob <linuxned@gmail.com>\n"
 "Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-03-21 05:43+0000\n"
+"X-Launchpad-Export-Date: 2015-03-22 05:30+0000\n"
 "X-Generator: Launchpad (build 17405)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:77
 #, qt-format
 msgid "%1 is locked"
-msgstr ""
+msgstr "%1 is vergrendeld"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -38,7 +38,7 @@ msgstr "Veld toevoegen"
 
 #: ../src/imports/Settings/SettingsPage.qml:67
 msgid "Add Google account"
-msgstr ""
+msgstr "Google-account toevoegen"
 
 #: ../src/imports/ContactList/ContactListPage.qml:396
 msgid "Add contact"
@@ -159,7 +159,7 @@ msgstr "Contacten exporteren…"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:243
 msgid "Fail to read SIM card"
-msgstr ""
+msgstr "Kon simkaart niet lezen"
 
 #: ../src/imports/ContactList/ContactListPage.qml:283
 msgid "Favorites"
@@ -189,7 +189,7 @@ msgstr "IM"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:190
 msgid "Import"
-msgstr ""
+msgstr "Importeren"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:468
 msgid "Import contacts from Google"
@@ -197,11 +197,11 @@ msgstr "Google-contacten importeren"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:479
 msgid "Import contacts from SIM card"
-msgstr ""
+msgstr "Contacten importeren vanaf simkaart"
 
 #: ../src/imports/Settings/SettingsPage.qml:72
 msgid "Import from SIM"
-msgstr ""
+msgstr "Importeren vanaf sim"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
@@ -245,7 +245,7 @@ msgstr "Meerdere contacten"
 #: ../src/imports/Settings/SettingsPage.qml:61
 #, qt-format
 msgid "My phone number: %1"
-msgstr ""
+msgstr "Mijn telefoonnummer: %1"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
 msgid "New contact"
@@ -267,7 +267,7 @@ msgstr "Geen contact geselecteerd"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:110
 msgid "No contacts found"
-msgstr ""
+msgstr "Geen contacten gevonden"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:113
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
@@ -316,11 +316,11 @@ msgstr "Functie"
 #: ../src/imports/Settings/SettingsPage.qml:62
 #, qt-format
 msgid "SIM %1"
-msgstr ""
+msgstr "Sim %1"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:34
 msgid "SIM contacts"
-msgstr ""
+msgstr "Simcontacten"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:411
 msgid "Save"
@@ -342,7 +342,7 @@ msgstr "Alles selecteren"
 #: ../src/imports/ContactList/ContactListPage.qml:272
 #: ../src/imports/Settings/SettingsPage.qml:30
 msgid "Settings"
-msgstr ""
+msgstr "Instellingen"
 
 #: ../src/imports/ContactList/ContactListPage.qml:339
 #: ../src/imports/ContactView/ContactView.qml:98
@@ -384,7 +384,7 @@ msgstr "Aanraken"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
 msgid "Unlock"
-msgstr ""
+msgstr "Ontgrendelen"
 
 #: ../src/imports/ContactList/ContactListPage.qml:326
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:177
