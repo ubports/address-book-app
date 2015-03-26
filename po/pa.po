@@ -8,19 +8,19 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-03-16 17:52-0300\n"
-"PO-Revision-Date: 2015-03-01 04:43+0000\n"
+"PO-Revision-Date: 2015-03-26 04:52+0000\n"
 "Last-Translator: Gursharnjit_Singh <ubuntuser13@gmail.com>\n"
 "Language-Team: Punjabi <pa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-03-21 05:43+0000\n"
-"X-Generator: Launchpad (build 17405)\n"
+"X-Launchpad-Export-Date: 2015-03-26 05:27+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:77
 #, qt-format
 msgid "%1 is locked"
-msgstr ""
+msgstr "%1 ਲਾਕ ਹੋਇਆ"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -38,7 +38,7 @@ msgstr "ਖੇਤਰ ਸ਼ਾਮਿਲ"
 
 #: ../src/imports/Settings/SettingsPage.qml:67
 msgid "Add Google account"
-msgstr ""
+msgstr "ਗੂਗਲ ਖਾਤਾ ਜੋੜੋ"
 
 #: ../src/imports/ContactList/ContactListPage.qml:396
 msgid "Add contact"
@@ -158,7 +158,7 @@ msgstr "ਸੰਪਰਕ ਬਰਾਮਦ ਕਰ ਰਿਹਾ..."
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:243
 msgid "Fail to read SIM card"
-msgstr ""
+msgstr "ਸਿਮ ਕਾਰਡ ਪੜਨ ਵਿੱਚ ਫ਼ੇਲ੍ਹ"
 
 #: ../src/imports/ContactList/ContactListPage.qml:283
 msgid "Favorites"
@@ -188,7 +188,7 @@ msgstr "IM"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:190
 msgid "Import"
-msgstr ""
+msgstr "ਆਮਦ"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:468
 msgid "Import contacts from Google"
@@ -196,11 +196,11 @@ msgstr "ਗੂਗਲ ਤੋਂ ਸੰਪਰਕਾਂ ਦੀ ਆਮਦ"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:479
 msgid "Import contacts from SIM card"
-msgstr ""
+msgstr "ਸਿਮ ਕਾਰਡ ਤੋਂ ਸੰਪਰਕਾਂ ਦੀ ਆਮਦ ਕਰੋ"
 
 #: ../src/imports/Settings/SettingsPage.qml:72
 msgid "Import from SIM"
-msgstr ""
+msgstr "ਸਿਮ ਤੋਂ ਆਮਦ"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
@@ -244,7 +244,7 @@ msgstr "ਬਹੁਤ ਸਾਰੇ ਸੰਪਰਕ"
 #: ../src/imports/Settings/SettingsPage.qml:61
 #, qt-format
 msgid "My phone number: %1"
-msgstr ""
+msgstr "ਮੇਰਾ ਫ਼ੋਨ ਨੰਬਰ: %1"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
 msgid "New contact"
@@ -266,7 +266,7 @@ msgstr "ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਚੁਣਿਆ"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:110
 msgid "No contacts found"
-msgstr ""
+msgstr "ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਮਿਲਿਆ"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:113
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
@@ -315,11 +315,11 @@ msgstr "ਕੰਮ"
 #: ../src/imports/Settings/SettingsPage.qml:62
 #, qt-format
 msgid "SIM %1"
-msgstr ""
+msgstr "ਸਿਮ %1"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:34
 msgid "SIM contacts"
-msgstr ""
+msgstr "ਸਿਮ ਸੰਪਰਕ"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:411
 msgid "Save"
@@ -341,7 +341,7 @@ msgstr "ਸਾਰੇ ਚੁਣੋ"
 #: ../src/imports/ContactList/ContactListPage.qml:272
 #: ../src/imports/Settings/SettingsPage.qml:30
 msgid "Settings"
-msgstr ""
+msgstr "ਸੈਟਿੰਗ"
 
 #: ../src/imports/ContactList/ContactListPage.qml:339
 #: ../src/imports/ContactView/ContactView.qml:98
@@ -383,7 +383,7 @@ msgstr "ਛੂਹ"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
 msgid "Unlock"
-msgstr ""
+msgstr "ਅਣਲਾਕ"
 
 #: ../src/imports/ContactList/ContactListPage.qml:326
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:177
