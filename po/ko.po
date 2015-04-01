@@ -7,15 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-02-23 09:33+0100\n"
+"POT-Creation-Date: 2015-03-16 17:52-0300\n"
 "PO-Revision-Date: 2014-07-19 07:49+0000\n"
 "Last-Translator: MinSik CHO <Unknown>\n"
 "Language-Team: Korean <ko@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-02-24 05:48+0000\n"
-"X-Generator: Launchpad (build 17355)\n"
+"X-Launchpad-Export-Date: 2015-03-21 05:43+0000\n"
+"X-Generator: Launchpad (build 17405)\n"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:77
+#, qt-format
+msgid "%1 is locked"
+msgstr ""
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -23,7 +28,7 @@ msgid "%1 vCards imported"
 msgstr "%1 vCard를 가져왔습니다."
 
 #. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:418
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:424
 msgid "+ Create New"
 msgstr "+ 새 연락처"
 
@@ -31,7 +36,11 @@ msgstr "+ 새 연락처"
 msgid "Add Field"
 msgstr "필드 추가"
 
-#: ../src/imports/ContactList/ContactListPage.qml:390
+#: ../src/imports/Settings/SettingsPage.qml:67
+msgid "Add Google account"
+msgstr ""
+
+#: ../src/imports/ContactList/ContactListPage.qml:396
 msgid "Add contact"
 msgstr "연락처 추가"
 
@@ -56,7 +65,7 @@ msgid "Aim"
 msgstr "AIM"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:277
+#: ../src/imports/ContactList/ContactListPage.qml:283
 msgid "All"
 msgstr "모두"
 
@@ -69,13 +78,13 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "정말로 이 주소록을 삭제할까요?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:290
+#: ../src/imports/ContactList/ContactListPage.qml:296
 #: ../src/imports/ContactView/ContactFetchError.qml:29
 #: ../src/imports/MainWindow.qml:157
 msgid "Cancel"
 msgstr "취소"
 
-#: ../src/imports/ContactList/ContactListPage.qml:314
+#: ../src/imports/ContactList/ContactListPage.qml:320
 msgid "Cancel selection"
 msgstr "선택 해제"
 
@@ -104,13 +113,13 @@ msgstr "Contacts;연락처;People;사람;Numbers;번호"
 msgid "Country"
 msgstr "국가"
 
-#: ../src/imports/ContactList/ContactListPage.qml:475
+#: ../src/imports/ContactList/ContactListPage.qml:481
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "화면 아래에서 위로 쓸어 새 연락처를 만듭니다."
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:168
-#: ../src/imports/ContactList/ContactListPage.qml:350
+#: ../src/imports/ContactList/ContactListPage.qml:356
 msgid "Delete"
 msgstr "삭제"
 
@@ -147,7 +156,11 @@ msgstr "오류"
 msgid "Exporting contacts..."
 msgstr "연락처를 내보내는 중..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:277
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:243
+msgid "Fail to read SIM card"
+msgstr ""
+
+#: ../src/imports/ContactList/ContactListPage.qml:283
 msgid "Favorites"
 msgstr "즐겨찾기"
 
@@ -173,16 +186,28 @@ msgstr "ICQ"
 msgid "IM"
 msgstr "메신져"
 
-#. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:434
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:190
+msgid "Import"
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:468
 msgid "Import contacts from Google"
 msgstr "구글에서 연락처 가져오기"
+
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:479
+msgid "Import contacts from SIM card"
+msgstr ""
+
+#: ../src/imports/Settings/SettingsPage.qml:72
+msgid "Import from SIM"
+msgstr ""
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
 msgstr "vCard 가져오기"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:235
 msgid "Importing..."
 msgstr "가져오는 중..."
 
@@ -194,7 +219,8 @@ msgstr "재버"
 msgid "Last name"
 msgstr "성"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:505
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:547
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:218
 msgid "Loading..."
 msgstr "불러오는 중..."
 
@@ -215,6 +241,11 @@ msgstr "휴대전화"
 msgid "Multiple contacts"
 msgstr "여러 연락처"
 
+#: ../src/imports/Settings/SettingsPage.qml:61
+#, qt-format
+msgid "My phone number: %1"
+msgstr ""
+
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
 msgid "New contact"
 msgstr "새 연락처"
@@ -232,6 +263,10 @@ msgstr "아니오"
 #: ../src/imports/Common/RemoveContactsDialog.qml:40
 msgid "No contact selected."
 msgstr "아무 주소록도 선택되지 않았습니다."
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:110
+msgid "No contacts found"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:113
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
@@ -277,11 +312,20 @@ msgstr "지역"
 msgid "Role"
 msgstr "직위"
 
+#: ../src/imports/Settings/SettingsPage.qml:62
+#, qt-format
+msgid "SIM %1"
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:34
+msgid "SIM contacts"
+msgstr ""
+
 #: ../src/imports/ContactEdit/ContactEditor.qml:411
 msgid "Save"
 msgstr "저장"
 
-#: ../src/imports/ContactList/ContactListPage.qml:262
+#: ../src/imports/ContactList/ContactListPage.qml:255
 msgid "Search"
 msgstr "검색"
 
@@ -289,11 +333,17 @@ msgstr "검색"
 msgid "Search..."
 msgstr "검색..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:320
+#: ../src/imports/ContactList/ContactListPage.qml:326
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:178
 msgid "Select All"
 msgstr "전체 선택"
 
-#: ../src/imports/ContactList/ContactListPage.qml:333
+#: ../src/imports/ContactList/ContactListPage.qml:272
+#: ../src/imports/Settings/SettingsPage.qml:30
+msgid "Settings"
+msgstr ""
+
+#: ../src/imports/ContactList/ContactListPage.qml:339
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "공유"
@@ -311,15 +361,15 @@ msgstr "소셜"
 msgid "Street"
 msgstr "도로명"
 
-#: ../src/imports/ContactList/ContactListPage.qml:256
+#: ../src/imports/ContactList/ContactListPage.qml:266
 msgid "Sync"
 msgstr "동기화"
 
-#: ../src/imports/ContactList/ContactListPage.qml:256
+#: ../src/imports/ContactList/ContactListPage.qml:266
 msgid "Syncing"
 msgstr "동기화 중"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:505
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:547
 msgid "Syncing..."
 msgstr "동기화 중..."
 
@@ -331,7 +381,12 @@ msgstr "제목"
 msgid "Touch"
 msgstr "터치"
 
-#: ../src/imports/ContactList/ContactListPage.qml:320
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
+msgid "Unlock"
+msgstr ""
+
+#: ../src/imports/ContactList/ContactListPage.qml:326
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:177
 msgid "Unselect All"
 msgstr "모두 선택 해제"
 
@@ -354,7 +409,7 @@ msgstr "야후"
 msgid "Yes"
 msgstr "예"
 
-#: ../src/imports/ContactList/ContactListPage.qml:474
+#: ../src/imports/ContactList/ContactListPage.qml:480
 msgid "You have no contacts."
 msgstr "연락처가 없습니다."
 

@@ -36,11 +36,14 @@ set(CONTACT_COMPONENTS_QMLS
     MostCalledModel.qml
     MultipleSelectionListView.qml
     MultipleSelectionVisualModel.qml
+    Ofono.qml
     OnlineAccountsDummy.qml
     OnlineAccountsHelper.qml
     PageWithBottomEdge.qml
     qmldir
     SectionDelegate.qml
+    SIMList.qml
+    SIMCardImportPage.qml
     SubtitledWithColors.qml
     VCardParser.qml
 )
@@ -52,13 +55,23 @@ set(CONTACT_COMPONENTS_SRC
     mostcalledproxymodel.cpp
     plugin.h
     plugin.cpp
+    simcardcontacts.h
+    simcardcontacts.cpp
+)
+
+include_directories(
+    ${QOfono_INCLUDE_DIRS}
 )
 
 add_library(${CONTACT_COMPONENTS_PLUGIN} MODULE
     ${CONTACT_COMPONENTS_SRC}
 )
 
-qt5_use_modules(${CONTACT_COMPONENTS_PLUGIN} Core Contacts Qml Quick)
+target_link_libraries(${CONTACT_COMPONENTS_PLUGIN}
+    ${QOfono_LIBRARIES}
+)
+
+qt5_use_modules(${CONTACT_COMPONENTS_PLUGIN} Core Contacts Qml Quick DBus)
 
 # make the files visible on qtcreator
 add_custom_target(contact_components_QmlFiles ALL SOURCES ${CONTACT_COMPONENTS_QMLS})

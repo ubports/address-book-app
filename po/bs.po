@@ -1,425 +1,414 @@
-# Italian translation for address-book-app
-# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# Bosnian translation for address-book-app
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
 # This file is distributed under the same license as the address-book-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-03-16 17:52-0300\n"
-"PO-Revision-Date: 2015-03-21 12:33+0000\n"
-"Last-Translator: Claudio Arseni <claudio.arseni@gmail.com>\n"
-"Language-Team: Italian <it@li.org>\n"
+"PO-Revision-Date: 2015-03-10 15:03+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Bosnian <bs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-03-22 05:30+0000\n"
+"X-Launchpad-Export-Date: 2015-03-21 05:42+0000\n"
 "X-Generator: Launchpad (build 17405)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:77
 #, qt-format
 msgid "%1 is locked"
-msgstr "%1 è bloccata"
+msgstr ""
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
 msgid "%1 vCards imported"
-msgstr "%1 vCard importata"
+msgstr ""
 
 #. TRANSLATORS: this refers to a new contact
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:424
 msgid "+ Create New"
-msgstr "+ Crea nuovo"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:307
 msgid "Add Field"
-msgstr "Aggiungi campo"
+msgstr ""
 
 #: ../src/imports/Settings/SettingsPage.qml:67
 msgid "Add Google account"
-msgstr "Aggiungi account Google"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:396
 msgid "Add contact"
-msgstr "Aggiungi contatto"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
-msgstr "Aggiungi numero..."
+msgstr ""
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:51
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
 #: ../src/imports/Ubuntu/Contacts/ContactDetailAddressesView.qml:24
 msgid "Address"
-msgstr "Indirizzo"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:76
 #: ../src/imports/ContactView/ContactDetailSyncTargetView.qml:49
 msgid "Addressbook"
-msgstr "Rubrica"
+msgstr ""
 
 #. TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "Aim"
-msgstr "Aim"
+msgstr ""
 
 #. TRANSLATORS: this refers to all contacts
 #: ../src/imports/ContactList/ContactListPage.qml:283
 msgid "All"
-msgstr "Tutti"
+msgstr ""
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
-msgstr "Rimuovere veramente tutti i contatti selezionati?"
+msgstr ""
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
-msgstr "Rimuovere veramente questo contatto?"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
 #: ../src/imports/ContactList/ContactListPage.qml:296
 #: ../src/imports/ContactView/ContactFetchError.qml:29
 #: ../src/imports/MainWindow.qml:157
 msgid "Cancel"
-msgstr "Annulla"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:320
 msgid "Cancel selection"
-msgstr "Annulla selezione"
+msgstr ""
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:80
 msgid "Close"
-msgstr "Chiudi"
+msgstr ""
 
 #: ../src/imports/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
-msgstr "Contatto non trovato"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:145
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
-msgstr "Contatti"
+msgstr ""
 
 #: ../data/address-book-app.desktop.in.in.h:2
 msgid "Contacts Address Book"
-msgstr "Rubrica"
+msgstr ""
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
-msgstr "Contatti;Persone;Numeri;Rubrica"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
-msgstr "Paese"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:481
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
-"Crea un nuovo contatto facendo scorrere dal basso verso l'alto dello schermo."
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:168
 #: ../src/imports/ContactList/ContactListPage.qml:356
 msgid "Delete"
-msgstr "Elimina"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
 #: ../src/imports/ContactView/ContactView.qml:107
 msgid "Edit"
-msgstr "Modifica"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:49
 #: ../src/imports/ContactEdit/ContactDetailEmailsEditor.qml:24
 #: ../src/imports/Ubuntu/Contacts/ContactDetailEmailsView.qml:23
 #: ../src/imports/Ubuntu/Contacts/ContactDetailEmailsView.qml:26
 msgid "Email"
-msgstr "Email"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
-msgstr "Inserire un numero"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:27
 msgid "Enter a social alias"
-msgstr "Inserire soprannome"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailEmailsEditor.qml:28
 msgid "Enter an email address"
-msgstr "Inserire indirizzo email"
+msgstr ""
 
 #: ../src/imports/ContactView/ContactFetchError.qml:25
 #: ../src/imports/MainWindow.qml:153
 msgid "Error"
-msgstr "Errore"
+msgstr ""
 
 #: ../src/imports/Common/ContactExporter.qml:157
 msgid "Exporting contacts..."
-msgstr "Esportazione contatti..."
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:243
 msgid "Fail to read SIM card"
-msgstr "Impossibile leggere la scheda SIM"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:283
 msgid "Favorites"
-msgstr "Preferiti"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailNameEditor.qml:84
 msgid "First name"
-msgstr "Nome"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
 msgid "Frequently called"
-msgstr "Chiamati più frequentemente"
+msgstr ""
 
 #. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:115
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
 msgid "Home"
-msgstr "Casa"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:63
 msgid "ICQ"
-msgstr "ICQ"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:23
 msgid "IM"
-msgstr "Messaggistica istantanea"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:190
 msgid "Import"
-msgstr "Importa"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:468
 msgid "Import contacts from Google"
-msgstr "Importa contatti da Google"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:479
 msgid "Import contacts from SIM card"
-msgstr "Importa contatti dalla scheda SIM"
+msgstr ""
 
 #: ../src/imports/Settings/SettingsPage.qml:72
 msgid "Import from SIM"
-msgstr "Importa da SIM"
+msgstr ""
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
-msgstr "Importa vCard"
+msgstr ""
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:235
 msgid "Importing..."
-msgstr "Importazione in corso..."
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
 msgid "Jabber"
-msgstr "Jabber"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailNameEditor.qml:84
 msgid "Last name"
-msgstr "Cognome"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:547
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:218
 msgid "Loading..."
-msgstr "Caricamento..."
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:32
 msgid "Locality"
-msgstr "Località"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:66
 msgid "MSN"
-msgstr "MSN"
+msgstr ""
 
 #. TRANSLATORS: This refers to mobile/cellphone phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
 msgid "Mobile"
-msgstr "Cellulare"
+msgstr ""
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:44
 msgid "Multiple contacts"
-msgstr "Contatti multipli"
+msgstr ""
 
 #: ../src/imports/Settings/SettingsPage.qml:61
 #, qt-format
 msgid "My phone number: %1"
-msgstr "Mio numero di telefono: %1"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
 msgid "New contact"
-msgstr "Nuovo contatto"
+msgstr ""
 
 #. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
 #. this word must be less than 5 characters
 #: ../src/imports/ContactEdit/TextInputDetail.qml:76
 msgid "Next"
-msgstr "Avanti"
+msgstr ""
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:74
 msgid "No"
-msgstr "No"
+msgstr ""
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:40
 msgid "No contact selected."
-msgstr "Nessun contatto selezionato."
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:110
 msgid "No contacts found"
-msgstr "Nessun contatto trovato"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:113
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:36
 msgid "No name"
-msgstr "Nessun nome"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
-msgstr "Società"
+msgstr ""
 
 #. TRANSLATORS: This refers to any other phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:117
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:121
 msgid "Other"
-msgstr "Altro"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:47
 #: ../src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:23
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumbersView.qml:26
 msgid "Phone"
-msgstr "Telefono"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
-msgstr "CAP"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:55
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:21
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOrganizationsView.qml:24
 msgid "Professional Details"
-msgstr "Dettagli sulla professione"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:247
 msgid "Quit"
-msgstr "Esci"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:33
 msgid "Region"
-msgstr "Provincia"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
-msgstr "Ruolo"
+msgstr ""
 
 #: ../src/imports/Settings/SettingsPage.qml:62
 #, qt-format
 msgid "SIM %1"
-msgstr "SIM %1"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:34
 msgid "SIM contacts"
-msgstr "Contatti SIM"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:411
 msgid "Save"
-msgstr "Salva"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:255
 msgid "Search"
-msgstr "Cerca"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:219
 msgid "Search..."
-msgstr "Cerca..."
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:326
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:178
 msgid "Select All"
-msgstr "Seleziona tutti"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:272
 #: ../src/imports/Settings/SettingsPage.qml:30
 msgid "Settings"
-msgstr "Impostazioni"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:339
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
-msgstr "Condividi"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Skype"
-msgstr "Skype"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:53
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:24
 msgid "Social"
-msgstr "Social"
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:31
 msgid "Street"
-msgstr "Via"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:266
 msgid "Sync"
-msgstr "Sincronizza"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:266
 msgid "Syncing"
-msgstr "Sincronizzazione"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:547
 msgid "Syncing..."
-msgstr "Sincronizzazione..."
+msgstr ""
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Title"
-msgstr "Titolo"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:27
 msgid "Touch"
-msgstr "Touch"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
 msgid "Unlock"
-msgstr "Sblocca"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:326
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:177
 msgid "Unselect All"
-msgstr "Deseleziona tutto"
+msgstr ""
 
 #. TRANSLATORS: This refers to landline work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:116
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
 msgid "Work"
-msgstr "Lavoro"
+msgstr ""
 
 #. TRANSLATORS: This refers to mobile/cellphone work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:117
 msgid "Work Mobile"
-msgstr "Cellulare lavoro"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
 msgid "Yahoo"
-msgstr "Yahoo!"
+msgstr ""
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:62
 msgid "Yes"
-msgstr "Sì"
+msgstr ""
 
 #: ../src/imports/ContactList/ContactListPage.qml:480
 msgid "You have no contacts."
-msgstr "Non è presente alcun contatto."
-
-#~ msgid ""
-#~ "Would you like to sync contacts\n"
-#~ "from online accounts now?"
-#~ msgstr ""
-#~ "Sincronizzare i contatti con\n"
-#~ "gli account online adesso?"
-
-#~ msgid "Would you like to sync contacts from your google online accounts now?"
-#~ msgstr "Sincronizzare ora i contatti degli account online di google?"
+msgstr ""

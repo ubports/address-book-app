@@ -126,6 +126,12 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
         ]
         return [label.text for label in name_labels]
 
+    def get_button(self, buttonName):
+        try:
+            return self.get_header()._get_action_button(buttonName)
+        except ubuntuuitoolkit.ToolkitException:
+            return None
+
 
 class RemoveContactsDialog(
         ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):

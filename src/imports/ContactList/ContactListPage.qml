@@ -252,13 +252,6 @@ ContactsUI.PageWithBottomEdge {
             }
             actions: [
                 Action {
-                    visible: contactList.syncEnabled
-                    text: contactList.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
-                    iconName: "reload"
-                    enabled: !contactList.syncing
-                    onTriggered: contactList.sync()
-                },
-                Action {
                     text: i18n.tr("Search")
                     iconName: "search"
                     visible: !mainPage.isEmpty
@@ -267,6 +260,19 @@ ContactsUI.PageWithBottomEdge {
                         contactList.showAllContacts()
                         searchField.forceActiveFocus()
                     }
+                },
+                Action {
+                    visible: contactList.syncEnabled
+                    text: contactList.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
+                    iconName: "reload"
+                    enabled: !contactList.syncing
+                    onTriggered: contactList.sync()
+                },
+                Action {
+                    text: i18n.tr("Settings")
+                    iconName: "settings"
+                    onTriggered: pageStack.push(Qt.resolvedUrl("../Settings/SettingsPage.qml"),
+                                                {"contactListModel": contactList.listModel})
                 }
             ]
             PropertyChanges {

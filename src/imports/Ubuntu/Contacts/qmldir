@@ -20,6 +20,9 @@ ContactDetailBase 0.1 ContactDetailBase.qml
 ContactDetailGroupBase 0.1 ContactDetailGroupBase.qml
 ContactDetailGroupWithTypeBase 0.1 ContactDetailGroupWithTypeBase.qml
 ContactDetailGroupWithTypeView 0.1 ContactDetailGroupWithTypeView.qml
+SIMCardImportPage 0.1 SIMCardImportPage.qml
+OnlineAccountsHelper 0.1 OnlineAccountsHelper.qml
+SIMList 0.1 SIMList.qml
 
 internal BasicFieldView BasicFieldView.qml
 internal ContactAvatar ContactAvatar.qml
@@ -42,5 +45,6 @@ internal FastScroll FastScroll.qml
 internal ListItemWithActionsCheckBox ListItemWithActionsCheckBox.qml
 internal MostCalledList MostCalledList.qml
 internal MostCalledModel MostCalledModel.qml
+internal Ofono Ofono.qml
 internal SectionDelegate SectionDelegate.qml
 internal SubtitledWithColors SubtitledWithColors.qml

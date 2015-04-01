@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2012-2013 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -222,7 +222,13 @@ Item {
 
       This property holds if the list is busy or not
     */
-    property alias busy: indicator.visible
+    property alias busy: indicator.isBusy
+    /*!
+      \qmlproperty bool showBusyIndicator
+
+      This property holds if the busy indicator should became visible
+    */
+    property bool showBusyIndicator: true
 
     /*!
       This handler is called when the selection mode is finished without be canceled
@@ -420,34 +426,68 @@ Item {
                 visible: root.showAddNewButton
             }
 
-            // Import from google
-            ContactListButtonDelegate {
-                id: importFromGoogleButton
+            Column {
+                id: importFromButtons
+                objectName: "importFromButtons"
 
-                objectName: "importFromOnlineAccountButton"
+                readonly property bool isSearching: (root.filterTerm && root.filterTerm !== "")
 
-                visible: (onlineAccountHelper.status === Loader.Ready) &&
-                         !indicator.visible
-                expandIcon: true
-                iconSource: "image://theme/google"
-                // TRANSLATORS: this refers to a new contact
-                labelText: i18n.tr("Import contacts from Google")
-                onClicked: onlineAccountHelper.item.setupExec()
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                height: visible ? childrenRect.height : 0
+
+                visible: root.showImportOptions &&
+                         !indicator.visible &&
+                         (root.count === 0) &&
+                         !view.favouritesIsSelected &&
+                         !isSearching
 
                 // avoid show the button while the list still loading contacts
                 Behavior on visible {
                     SequentialAnimation {
                          PauseAnimation {
-                             duration: !importFromGoogleButton.visible ? 500 : 0
+                             duration: !importFromButtons.visible ? 500 : 0
                          }
                          PropertyAction {
-                             target: importFromGoogleButton
+                             target: importFromButtons
                              property: "visible"
                          }
                     }
                 }
+
+                // Import from google
+                ContactListButtonDelegate {
+                    id: importFromGoogleButton
+                    objectName: "%1.importFromOnlineAccountButton".arg(root.objectName)
+
+                    visible: (onlineAccountHelper.status === Loader.Ready)
+                    expandIcon: true
+                    iconSource: "image://theme/google"
+                    labelText: i18n.tr("Import contacts from Google")
+                    onClicked: onlineAccountHelper.item.setupExec()
+                }
+
+                // Import from sim card
+                ContactListButtonDelegate {
+                    id: importFromSimCard
+                    objectName: "%1.importFromSimCardButton".arg(root.objectName)
+
+                    expandIcon: true
+                    iconSource: "image://theme/save-to"
+                    labelText: i18n.tr("Import contacts from SIM card")
+                    // Does not show the button if the list is not in a pageStack
+                    visible: (typeof(pageStack) !== "undefined") &&
+                             ((simList.sims.length > 0) && (simList.present.length > 0))
+                    onClicked: {
+                        pageStack.push(Qt.resolvedUrl("SIMCardImportPage.qml"),
+                                       {"objectName": "simCardImportPage",
+                                        "targetModel": view.listModel,
+                                        "sims": simList.sims})
+                    }
+                }
             }
-            // TODO: import from simcard
 
             MostCalledList {
                 id: mostCalledView
@@ -475,7 +515,6 @@ Item {
         }
 
         clip: true
-
         listModel: ContactListModel {
             id: contactsModel
 
@@ -488,11 +527,14 @@ Item {
     Column {
         id: indicator
 
+        readonly property bool isBusy: ((view.loading && !view.contactsLoaded) ||
+                                        (root.syncing && (view.count === 0)) ||
+                                        ((onlineAccountHelper.status == Loader.Ready) &&
+                                         (onlineAccountHelper.item.running)))
+
         anchors.centerIn: view
         spacing: units.gu(2)
-        visible: ((view.loading && !view.contactsLoaded) ||
-                  (root.syncing && (view.count === 0)) ||
-                  ((onlineAccountHelper.status == Loader.Ready)  && (onlineAccountHelper.item.running)))
+        visible: root.showBusyIndicator && isBusy
 
         ActivityIndicator {
             id: activity
@@ -524,6 +566,10 @@ Item {
 
     SyncMonitor {
         id: syncMonitor
+    }
+
+    SIMList {
+        id: simList
     }
 
     Loader {

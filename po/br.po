@@ -7,15 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-02-23 09:33+0100\n"
-"PO-Revision-Date: 2014-11-05 07:22+0000\n"
+"POT-Creation-Date: 2015-03-16 17:52-0300\n"
+"PO-Revision-Date: 2015-03-25 07:30+0000\n"
 "Last-Translator: Fohanno Thierry <thierry.fohanno@ofis-bzh.org>\n"
 "Language-Team: Breton <br@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-02-24 05:48+0000\n"
-"X-Generator: Launchpad (build 17355)\n"
+"X-Launchpad-Export-Date: 2015-03-26 05:27+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:77
+#, qt-format
+msgid "%1 is locked"
+msgstr "%1 zo prennet"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -23,7 +28,7 @@ msgid "%1 vCards imported"
 msgstr "%1 vKartenn enporzhiet"
 
 #. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:418
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:424
 msgid "+ Create New"
 msgstr "+ Krouiñ unan nevez"
 
@@ -31,7 +36,11 @@ msgstr "+ Krouiñ unan nevez"
 msgid "Add Field"
 msgstr "Ouzhpennañ ur vaezienn"
 
-#: ../src/imports/ContactList/ContactListPage.qml:390
+#: ../src/imports/Settings/SettingsPage.qml:67
+msgid "Add Google account"
+msgstr "Ouzhpennañ ur gont Google"
+
+#: ../src/imports/ContactList/ContactListPage.qml:396
 msgid "Add contact"
 msgstr "Ouzhpennañ un darempred"
 
@@ -56,7 +65,7 @@ msgid "Aim"
 msgstr "Palioù"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:277
+#: ../src/imports/ContactList/ContactListPage.qml:283
 msgid "All"
 msgstr "An holl anezho"
 
@@ -69,13 +78,13 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "Ha sur oc'h e fell deoc'h lemel an darempred-mañ ?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:290
+#: ../src/imports/ContactList/ContactListPage.qml:296
 #: ../src/imports/ContactView/ContactFetchError.qml:29
 #: ../src/imports/MainWindow.qml:157
 msgid "Cancel"
 msgstr "Nullañ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:314
+#: ../src/imports/ContactList/ContactListPage.qml:320
 msgid "Cancel selection"
 msgstr "Nullañ an diuzadur"
 
@@ -104,13 +113,13 @@ msgstr "Darempredoù;Tud;Niverennoù"
 msgid "Country"
 msgstr "Bro"
 
-#: ../src/imports/ContactList/ContactListPage.qml:475
+#: ../src/imports/ContactList/ContactListPage.qml:481
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "Krouiñ un darempred nevez dre riklañ adalek traoñ ar skramm."
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:168
-#: ../src/imports/ContactList/ContactListPage.qml:350
+#: ../src/imports/ContactList/ContactListPage.qml:356
 msgid "Delete"
 msgstr "Diverkañ"
 
@@ -145,9 +154,13 @@ msgstr "Fazi"
 
 #: ../src/imports/Common/ContactExporter.qml:157
 msgid "Exporting contacts..."
-msgstr ""
+msgstr "Oc'h ezporzhiañ darempredoù..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:277
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:243
+msgid "Fail to read SIM card"
+msgstr "N'eus ket bet gallet lenn ar gartenn SIM"
+
+#: ../src/imports/ContactList/ContactListPage.qml:283
 msgid "Favorites"
 msgstr "Gwellañ deuet"
 
@@ -173,16 +186,28 @@ msgstr "ICQ"
 msgid "IM"
 msgstr "Tamm flap"
 
-#. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:434
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:190
+msgid "Import"
+msgstr "Enporzhiañ"
+
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:468
 msgid "Import contacts from Google"
-msgstr ""
+msgstr "Enporzhiañ darempredoù eus Google"
+
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:479
+msgid "Import contacts from SIM card"
+msgstr "Enporzhiañ darempredoù diwar ar gartenn SIM"
+
+#: ../src/imports/Settings/SettingsPage.qml:72
+msgid "Import from SIM"
+msgstr "Enporzhiañ diwar ar gartenn SIM"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
 msgstr "Enporzhiañ vKartennoù"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:235
 msgid "Importing..."
 msgstr "Oc'h enporzhiañ..."
 
@@ -194,7 +219,8 @@ msgstr "Flapañ"
 msgid "Last name"
 msgstr "Anv"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:505
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:547
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:218
 msgid "Loading..."
 msgstr "O kargañ..."
 
@@ -215,9 +241,14 @@ msgstr "Pellgomzer hezoug"
 msgid "Multiple contacts"
 msgstr "Darempredoù liezek"
 
+#: ../src/imports/Settings/SettingsPage.qml:61
+#, qt-format
+msgid "My phone number: %1"
+msgstr "Ma niverenn bellgomz : %1"
+
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
 msgid "New contact"
-msgstr ""
+msgstr "Darempred nevez"
 
 #. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
 #. this word must be less than 5 characters
@@ -232,6 +263,10 @@ msgstr "Ket"
 #: ../src/imports/Common/RemoveContactsDialog.qml:40
 msgid "No contact selected."
 msgstr "N'eus darempred diuzet ebet"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:110
+msgid "No contacts found"
+msgstr "N'eus ket bet kavet darempredoù"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:113
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
@@ -277,11 +312,20 @@ msgstr "Rannvro"
 msgid "Role"
 msgstr "Karg"
 
+#: ../src/imports/Settings/SettingsPage.qml:62
+#, qt-format
+msgid "SIM %1"
+msgstr "SIM %1"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:34
+msgid "SIM contacts"
+msgstr "Darempredoù SIM"
+
 #: ../src/imports/ContactEdit/ContactEditor.qml:411
 msgid "Save"
 msgstr "Enrollañ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:262
+#: ../src/imports/ContactList/ContactListPage.qml:255
 msgid "Search"
 msgstr "Klask"
 
@@ -289,11 +333,17 @@ msgstr "Klask"
 msgid "Search..."
 msgstr "Klask..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:320
+#: ../src/imports/ContactList/ContactListPage.qml:326
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:178
 msgid "Select All"
 msgstr "Diuzañ pep tra"
 
-#: ../src/imports/ContactList/ContactListPage.qml:333
+#: ../src/imports/ContactList/ContactListPage.qml:272
+#: ../src/imports/Settings/SettingsPage.qml:30
+msgid "Settings"
+msgstr "Arventennoù"
+
+#: ../src/imports/ContactList/ContactListPage.qml:339
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Rannañ"
@@ -311,15 +361,15 @@ msgstr "Sokial"
 msgid "Street"
 msgstr "Straed"
 
-#: ../src/imports/ContactList/ContactListPage.qml:256
+#: ../src/imports/ContactList/ContactListPage.qml:266
 msgid "Sync"
 msgstr "Sink"
 
-#: ../src/imports/ContactList/ContactListPage.qml:256
+#: ../src/imports/ContactList/ContactListPage.qml:266
 msgid "Syncing"
 msgstr "O sinkronelaat"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:505
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:547
 msgid "Syncing..."
 msgstr "O sinkronelaat..."
 
@@ -331,9 +381,14 @@ msgstr "Titl"
 msgid "Touch"
 msgstr "Touch"
 
-#: ../src/imports/ContactList/ContactListPage.qml:320
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
+msgid "Unlock"
+msgstr "Dibrennañ"
+
+#: ../src/imports/ContactList/ContactListPage.qml:326
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:177
 msgid "Unselect All"
-msgstr ""
+msgstr "Diziuzañ pep tra"
 
 #. TRANSLATORS: This refers to landline work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:116
@@ -354,7 +409,7 @@ msgstr "Yahoo"
 msgid "Yes"
 msgstr "Ya"
 
-#: ../src/imports/ContactList/ContactListPage.qml:474
+#: ../src/imports/ContactList/ContactListPage.qml:480
 msgid "You have no contacts."
 msgstr "N'ho peus darempred ebet."
 
