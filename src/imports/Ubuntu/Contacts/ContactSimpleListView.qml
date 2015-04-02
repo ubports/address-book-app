@@ -340,9 +340,8 @@ MultipleSelectionListView {
                 contactListView.currentIndex = index
                 if (index == 0) {
                     // WORKAROUND: Due the header the ListView does the wrong scolling for the first item
-                    contactListView.contentY = contactListView.headerItem.y + contactListView.headerItem.height
+                    contactListView.positionViewAtIndex(0, ListView.Beginning)
                 }
-
                 return
             } else if (detailToPick == -1) {
                 contactListView.detailClicked(contact, null, "")
