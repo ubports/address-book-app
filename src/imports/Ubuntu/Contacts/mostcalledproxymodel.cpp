@@ -337,7 +337,7 @@ void MostCalledContactsModel::parseResult()
             if (d.callCount >= m_average) {
                 m_data << d;
             }
-            if ((uint) m_data.size() > m_maxCount) {
+            if ((uint) m_data.size() >= m_maxCount) {
                 break;
             }
         }
