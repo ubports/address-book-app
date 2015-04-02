@@ -1,3 +1,13 @@
+address-book-app (0.2+15.04.20150402-0ubuntu1) vivid; urgency=medium
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Fixed favorite list scroll to the first item.
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Thu, 02 Apr 2015 20:37:14 +0000
+
 address-book-app (0.2+15.04.20150319-0ubuntu1) vivid; urgency=medium
 
   [ CI Train Bot ]
