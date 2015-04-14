@@ -86,8 +86,11 @@ class TestImportFromSimContact(AddressBookAppTestCase):
         # remove all sim cards
         helpers.remove_phonesim()
 
-        # check if the contact list is empty
-        import_page = self.app.main_window.start_import_contacts()
+        # button should be visible if the sim card was removed
+        import_from_sim_button = self.app.main_window.select_single(
+            'ContactListButtonDelegate',
+            objectName='contactListView.importFromSimCardButton')
         self.assertThat(
-            import_page.hasContacts,
+            import_from_sim_button.visible,
             Eventually(Equals(False), timeout=30))
+
