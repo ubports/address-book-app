@@ -108,9 +108,9 @@ class TestAddContact(AddressBookAppTestCase):
             objectName="emails")
         self.assertThat(email_group.detailsCount, Eventually(Equals(3)))
 
-        emails = {"home@email.com" : "Home",
-                  "work@email.com" : "Work",
-                  "other@email.com" : "Other"}
+        emails = {"home@email.com": "Home",
+                  "work@email.com": "Work",
+                  "other@email.com": "Other"}
 
         # Check if they have the correct label
         for idx in range(3):
@@ -134,7 +134,8 @@ class TestAddContact(AddressBookAppTestCase):
         my_phones.append(data.Phone(type_="Home", number="(000) 000-0000"))
         my_phones.append(data.Phone(type_="Work", number="(000) 000-0001"))
         my_phones.append(data.Phone(type_="Mobile", number="(000) 000-0002"))
-        my_phones.append(data.Phone(type_="Work Mobile", number="(000) 000-0003"))
+        my_phones.append(data.Phone(type_="Work Mobile",
+                                    number="(000) 000-0003"))
         my_phones.append(data.Phone(type_="Other", number="(000) 000-0004"))
 
         test_contact = data.Contact(first_name="Sherlock",
@@ -156,11 +157,11 @@ class TestAddContact(AddressBookAppTestCase):
             objectName="phones")
         self.assertThat(phone_group.detailsCount, Eventually(Equals(5)))
 
-        phones = {"(000) 000-0000" : "Home",
-                  "(000) 000-0001" : "Work",
-                  "(000) 000-0002" : "Mobile",
-                  "(000) 000-0003" : "Work Mobile",
-                  "(000) 000-0004" : "Other"}
+        phones = {"(000) 000-0000": "Home",
+                  "(000) 000-0001": "Work",
+                  "(000) 000-0002": "Mobile",
+                  "(000) 000-0003": "Work Mobile",
+                  "(000) 000-0004": "Other"}
 
         # Check if they have the correct label
         for idx in range(5):

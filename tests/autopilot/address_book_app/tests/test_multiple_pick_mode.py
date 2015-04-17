@@ -31,20 +31,23 @@ class TestMultiplePickerMode(AddressBookAppTestCase):
         item_to_contacts = {}
         for contact in contacts:
             if (contact.visible):
-                item = contact.select_single("QQuickRectangle", objectName="mainItem")
+                item = contact.select_single("QQuickRectangle",
+                                             objectName="mainItem")
                 self.assertThat(item.color, Eventually(Equals(contact.color)))
                 items.append(item)
                 item_to_contacts[item] = contact
 
         # click on mark 1
-        selected_items = [ items[1] ]
+        selected_items = [items[1]]
         self.pointing_device.click_object(items[1])
 
         for item in items:
             if item in selected_items:
-                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(True)))
+                self.assertThat(item_to_contacts[item].selected,
+                                Eventually(Equals(True)))
             else:
-                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(False)))
+                self.assertThat(item_to_contacts[item].selected,
+                                Eventually(Equals(False)))
 
         # click on mark 2
         selected_items.append(items[2])
@@ -52,9 +55,11 @@ class TestMultiplePickerMode(AddressBookAppTestCase):
 
         for item in items:
             if item in selected_items:
-                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(True)))
+                self.assertThat(item_to_contacts[item].selected,
+                                Eventually(Equals(True)))
             else:
-                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(False)))
+                self.assertThat(item_to_contacts[item].selected,
+                                Eventually(Equals(False)))
 
         # click on mark 0
         selected_items.append(items[0])
@@ -62,12 +67,15 @@ class TestMultiplePickerMode(AddressBookAppTestCase):
 
         for item in items:
             if item in selected_items:
-                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(True)))
+                self.assertThat(item_to_contacts[item].selected,
+                                Eventually(Equals(True)))
             else:
-                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(False)))
+                self.assertThat(item_to_contacts[item].selected,
+                                Eventually(Equals(False)))
 
-        buttons = pick_page.select_many("Button", objectName="DialogButtons.acceptButton")
+        buttons = pick_page.select_many(
+            "Button",
+            objectName="DialogButtons.acceptButton")
         for b in buttons:
             if b.visible:
                 self.pointing_device.click_object(b)
-
