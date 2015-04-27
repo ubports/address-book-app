@@ -40,6 +40,7 @@ Item {
 
         ContactListView {
             id: contactListPage
+            objectName: "contactListViewTest"
             anchors.fill: parent
         }
 
@@ -77,6 +78,7 @@ Item {
         {
             root.contactListViewObj = contactListCmp.createObject(mainView, {"manager": "memory"})
             waitForRendering(root.contactListViewObj)
+            tryCompare(contactListViewObj, "busy", false)
 
             var onlineAccountHelper = findChild(root.contactListViewObj, "onlineAccountHelper")
             verify(onlineAccountHelper.sourceFile.indexOf("OnlineAccountsDummy.qml") > 0)
@@ -84,7 +86,7 @@ Item {
 
         function cleanup()
         {
-            root.contactListViewObj.destroy()
+            root.contactListViewObj = null
         }
 
         function test_managerProperty()
@@ -119,10 +121,12 @@ Item {
 
         function test_importButtonsVisibility()
         {
-            var importButton = findChild(root.contactListViewObj, "importFromOnlineAccountButton")
+            var bottonsHeader = findChild(root.contactListViewObj, "importFromButtons")
+            var importButton = findChild(root.contactListViewObj, "contactListViewTest.importFromOnlineAccountButton")
             var onlineAccountHelper = findChild(root.contactListViewObj, "onlineAccountHelper")
 
             tryCompare(root.contactListViewObj, "showImportOptions", false)
+            tryCompare(bottonsHeader, "visible", false)
             tryCompare(importButton, "visible", false)
             tryCompare(onlineAccountHelper, "status", Loader.Null)
             tryCompare(onlineAccountHelper, "isSearching", false)
@@ -133,7 +137,8 @@ Item {
             tryCompare(root.contactListViewObj, "count", 0)
             tryCompare(onlineAccountHelper, "status", Loader.Ready)
             // need to wait a bit more until the list leave the loading state
-            tryCompare(importButton, "visible", true, 10000)
+            tryCompare(bottonsHeader, "visible", true, 10000)
+            tryCompare(importButton, "visible", true)
             verify(importButton.height > 0)
 
             // Button should disapear if the list is not empty
@@ -159,9 +164,13 @@ Item {
             tryCompare(onlineAccountDialog.item, "running", false)
 
             // click
-            var importButton = findChild(root.contactListViewObj, "importFromOnlineAccountButton")
+            var bottonsHeader = findChild(root.contactListViewObj, "importFromButtons")
+            var importButton = findChild(root.contactListViewObj, "contactListViewTest.importFromOnlineAccountButton")
             // need to wait a bit more until the list leave the loading state
+            tryCompare(bottonsHeader, "visible", true, 10000)
             tryCompare(importButton, "visible", true, 10000)
+            tryCompare(bottonsHeader, "height", importButton.height)
+
             mouseClick(importButton, importButton.width / 2, importButton.height / 2)
             tryCompare(onlineAccountDialog.item, "running", true)
         }

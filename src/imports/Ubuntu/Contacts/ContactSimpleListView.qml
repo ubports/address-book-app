@@ -16,7 +16,6 @@
 
 import QtQuick 2.2
 import QtContacts 5.0
-import Ubuntu.Contacts 0.1
 import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 1.0 as ListItem
 
@@ -338,8 +337,11 @@ MultipleSelectionListView {
                 return
             // check if we should expand and display the details picker
             } else if (detailToPick !== -1) {
-                //view.highlightFollowsCurrentItem = true
                 contactListView.currentIndex = index
+                if (index == 0) {
+                    // WORKAROUND: Due the header the ListView does the wrong scolling for the first item
+                    contactListView.positionViewAtIndex(0, ListView.Beginning)
+                }
                 return
             } else if (detailToPick == -1) {
                 contactListView.detailClicked(contact, null, "")

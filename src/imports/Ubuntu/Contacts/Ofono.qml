@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2014 Canonical, Ltd.
+ * Copyright (C) 2015 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,26 +14,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _UBUNTU_CONTACTS_H_
-#define _UBUNTU_CONTACTS_H_
+import QtQuick 2.0
+import MeeGo.QOfono 0.2
 
-#include <QtCore/QObject>
-#include <QtCore/QString>
+Item {
+    readonly property alias simMng: simMng
+    readonly property alias present: simMng.present
 
-class UbuntuContacts : public QObject
-{
-    Q_OBJECT
-    Q_PROPERTY(QString tempPath READ tempPath)
+    property string path
+    property string name
 
-public:
-    UbuntuContacts(QObject *parent = 0);
+    readonly property string title: {
+        var number = simMng.subscriberNumbers[0] || simMng.subscriberIdentity;
+        return name + (number ? " (" + number + ")" : "");
+    }
 
-    QString tempPath() const;
-
-    Q_INVOKABLE QString contactInitialsFromString(const QString &value);
-    Q_INVOKABLE QString normalized(const QString &value);
-
-    Q_INVOKABLE bool removeFile(const QUrl &file);
-};
-
-#endif //_UBUNTU_CONTACTS_H_
+    OfonoSimManager {
+        id: simMng
+        modemPath: path
+    }
+}

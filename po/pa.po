@@ -7,15 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-02-23 09:33+0100\n"
-"PO-Revision-Date: 2015-02-14 12:08+0000\n"
+"POT-Creation-Date: 2015-03-16 17:52-0300\n"
+"PO-Revision-Date: 2015-03-26 04:52+0000\n"
 "Last-Translator: Gursharnjit_Singh <ubuntuser13@gmail.com>\n"
 "Language-Team: Punjabi <pa@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-02-24 05:48+0000\n"
-"X-Generator: Launchpad (build 17355)\n"
+"X-Launchpad-Export-Date: 2015-03-27 05:35+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:77
+#, qt-format
+msgid "%1 is locked"
+msgstr "%1 ਲਾਕ ਹੋਇਆ"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
@@ -23,7 +28,7 @@ msgid "%1 vCards imported"
 msgstr "%1 vCards ਆਮਦ ਹੋਏ"
 
 #. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:418
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:424
 msgid "+ Create New"
 msgstr "+ ਨਵਾਂ ਬਣਾਓ"
 
@@ -31,7 +36,11 @@ msgstr "+ ਨਵਾਂ ਬਣਾਓ"
 msgid "Add Field"
 msgstr "ਖੇਤਰ ਸ਼ਾਮਿਲ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:390
+#: ../src/imports/Settings/SettingsPage.qml:67
+msgid "Add Google account"
+msgstr "ਗੂਗਲ ਖਾਤਾ ਜੋੜੋ"
+
+#: ../src/imports/ContactList/ContactListPage.qml:396
 msgid "Add contact"
 msgstr "ਸੰਪਰਕ ਸ਼ਾਮਲ"
 
@@ -56,7 +65,7 @@ msgid "Aim"
 msgstr "ਟੀਚਾ"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ContactList/ContactListPage.qml:277
+#: ../src/imports/ContactList/ContactListPage.qml:283
 msgid "All"
 msgstr "ਸਾਰੇ"
 
@@ -69,13 +78,13 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "ਕੀ ਤੁਸੀਂ ਇਸ ਸੰਪਰਕ ਨੂੰ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
-#: ../src/imports/ContactList/ContactListPage.qml:290
+#: ../src/imports/ContactList/ContactListPage.qml:296
 #: ../src/imports/ContactView/ContactFetchError.qml:29
 #: ../src/imports/MainWindow.qml:157
 msgid "Cancel"
 msgstr "ਰੱਦ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:314
+#: ../src/imports/ContactList/ContactListPage.qml:320
 msgid "Cancel selection"
 msgstr "ਚੋਣ ਰੱਦ ਕਰੋ"
 
@@ -104,13 +113,13 @@ msgstr "ਸੰਪਰਕ;ਲੋਕ;ਨੰਬਰ;"
 msgid "Country"
 msgstr "ਦੇਸ਼"
 
-#: ../src/imports/ContactList/ContactListPage.qml:475
+#: ../src/imports/ContactList/ContactListPage.qml:481
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "ਸਕਰੀਨ ਦੇ ਤਲੇ ਨੂੰ ਉੱਪਰ ਖਿਸਕਾਉਣ ਦੁਆਰਾ ਇੱਕ ਨਵੇਂ ਸੰਪਰਕ ਦੀ ਰਚਨਾ ਕਰੋ"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:168
-#: ../src/imports/ContactList/ContactListPage.qml:350
+#: ../src/imports/ContactList/ContactListPage.qml:356
 msgid "Delete"
 msgstr "ਹਟਾਓ"
 
@@ -145,9 +154,13 @@ msgstr "ਖਾਮੀ"
 
 #: ../src/imports/Common/ContactExporter.qml:157
 msgid "Exporting contacts..."
-msgstr ""
+msgstr "ਸੰਪਰਕ ਬਰਾਮਦ ਕਰ ਰਿਹਾ..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:277
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:243
+msgid "Fail to read SIM card"
+msgstr "ਸਿਮ ਕਾਰਡ ਪੜਨ ਵਿੱਚ ਫ਼ੇਲ੍ਹ"
+
+#: ../src/imports/ContactList/ContactListPage.qml:283
 msgid "Favorites"
 msgstr "ਮਨਪਸੰਦ"
 
@@ -173,16 +186,28 @@ msgstr "ICQ"
 msgid "IM"
 msgstr "IM"
 
-#. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:434
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:190
+msgid "Import"
+msgstr "ਆਮਦ"
+
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:468
 msgid "Import contacts from Google"
 msgstr "ਗੂਗਲ ਤੋਂ ਸੰਪਰਕਾਂ ਦੀ ਆਮਦ"
+
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:479
+msgid "Import contacts from SIM card"
+msgstr "ਸਿਮ ਕਾਰਡ ਤੋਂ ਸੰਪਰਕਾਂ ਦੀ ਆਮਦ ਕਰੋ"
+
+#: ../src/imports/Settings/SettingsPage.qml:72
+msgid "Import from SIM"
+msgstr "ਸਿਮ ਤੋਂ ਆਮਦ"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
 msgstr "vCards ਆਮਦ"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:235
 msgid "Importing..."
 msgstr "ਆਮਦ ਕਰ ਰਿਹਾ"
 
@@ -194,7 +219,8 @@ msgstr "ਜੱਬਰ"
 msgid "Last name"
 msgstr "ਆਖਰੀ ਨਾਂ"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:505
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:547
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:218
 msgid "Loading..."
 msgstr "ਲੋਡ ਕਰ ਰਿਹਾ..."
 
@@ -215,6 +241,11 @@ msgstr "ਮੋਬਾਈਲ"
 msgid "Multiple contacts"
 msgstr "ਬਹੁਤ ਸਾਰੇ ਸੰਪਰਕ"
 
+#: ../src/imports/Settings/SettingsPage.qml:61
+#, qt-format
+msgid "My phone number: %1"
+msgstr "ਮੇਰਾ ਫ਼ੋਨ ਨੰਬਰ: %1"
+
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
 msgid "New contact"
 msgstr "ਨਵਾਂ ਸੰਪਰਕ"
@@ -232,6 +263,10 @@ msgstr "ਨਹੀਂ"
 #: ../src/imports/Common/RemoveContactsDialog.qml:40
 msgid "No contact selected."
 msgstr "ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਚੁਣਿਆ"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:110
+msgid "No contacts found"
+msgstr "ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਮਿਲਿਆ"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:113
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
@@ -277,11 +312,20 @@ msgstr "ਖੇਤਰ"
 msgid "Role"
 msgstr "ਕੰਮ"
 
+#: ../src/imports/Settings/SettingsPage.qml:62
+#, qt-format
+msgid "SIM %1"
+msgstr "ਸਿਮ %1"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:34
+msgid "SIM contacts"
+msgstr "ਸਿਮ ਸੰਪਰਕ"
+
 #: ../src/imports/ContactEdit/ContactEditor.qml:411
 msgid "Save"
 msgstr "ਸੰਭਾਲ੍ਹੋ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:262
+#: ../src/imports/ContactList/ContactListPage.qml:255
 msgid "Search"
 msgstr "ਖੋਜ"
 
@@ -289,11 +333,17 @@ msgstr "ਖੋਜ"
 msgid "Search..."
 msgstr "ਖੋਜ..."
 
-#: ../src/imports/ContactList/ContactListPage.qml:320
+#: ../src/imports/ContactList/ContactListPage.qml:326
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:178
 msgid "Select All"
 msgstr "ਸਾਰੇ ਚੁਣੋ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:333
+#: ../src/imports/ContactList/ContactListPage.qml:272
+#: ../src/imports/Settings/SettingsPage.qml:30
+msgid "Settings"
+msgstr "ਸੈਟਿੰਗ"
+
+#: ../src/imports/ContactList/ContactListPage.qml:339
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "ਸਾਂਝਾ ਕਰੋ"
@@ -311,15 +361,15 @@ msgstr "ਸਮਾਜਿਕ"
 msgid "Street"
 msgstr "ਗਲੀ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:256
+#: ../src/imports/ContactList/ContactListPage.qml:266
 msgid "Sync"
 msgstr "ਸਿੰਕ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:256
+#: ../src/imports/ContactList/ContactListPage.qml:266
 msgid "Syncing"
 msgstr "ਸਿੰਕ ਕਰ ਰਿਹਾ"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:505
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:547
 msgid "Syncing..."
 msgstr "ਸਿੰਕ ਕਰ ਰਿਹਾ..."
 
@@ -331,7 +381,12 @@ msgstr "ਸਿਰਲੇਖ"
 msgid "Touch"
 msgstr "ਛੂਹ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:320
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
+msgid "Unlock"
+msgstr "ਅਣਲਾਕ"
+
+#: ../src/imports/ContactList/ContactListPage.qml:326
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:177
 msgid "Unselect All"
 msgstr "ਕੋਈ ਨਾ ਚੁਣੋ"
 
@@ -354,6 +409,6 @@ msgstr "ਯਾਹੂ"
 msgid "Yes"
 msgstr "ਹਾਂ"
 
-#: ../src/imports/ContactList/ContactListPage.qml:474
+#: ../src/imports/ContactList/ContactListPage.qml:480
 msgid "You have no contacts."
 msgstr "ਤੁਹਾਡੇ ਕੋਲ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ।"

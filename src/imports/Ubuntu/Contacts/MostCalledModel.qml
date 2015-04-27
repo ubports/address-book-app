@@ -58,6 +58,7 @@ VisualDataModel {
         id: mostCalledModel
 
         startInterval: new Date((new Date().getTime() - 2592000000)) // one month ago
+        maxCount: 5
         onLoaded: root.loaded()
         sourceModel: historyEventModel
     }
