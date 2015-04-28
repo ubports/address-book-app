@@ -16,6 +16,8 @@
 
 import QtQuick 2.2
 
+import Ubuntu.AddressBook.Base 0.1
+
 ContactDetailBase {
     id: root
 

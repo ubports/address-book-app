@@ -19,7 +19,7 @@ import QtContacts 5.0
 
 import Ubuntu.Components 1.1
 
-import "../Common"
+import Ubuntu.AddressBook.Base 0.1
 
 ContactDetailItem {
     id: root

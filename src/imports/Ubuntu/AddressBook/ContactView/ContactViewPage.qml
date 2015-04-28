@@ -16,17 +16,27 @@
 
 import QtQuick 2.2
 import QtContacts 5.0
+
 import Ubuntu.Components 1.1
-import Ubuntu.Components.ListItems 1.0 as ListItem
-import Ubuntu.Contacts 0.1 as ContactsUI
-import Ubuntu.Components.Popups 1.0 as Popups
-import "Contacts.js" as ContactsJS
+import Ubuntu.Contacts 0.1
 
 Page {
     id: root
 
     property QtObject contact: null
+    property string contactId
     property alias extensions: extensionsContents.children
+    property alias model: contactFetch.model
+
+    signal contactFetched(var contact)
+    signal contactRemoved()
+
+    function fetchContact(contactId)
+    {
+        if (contactId !== "") {
+            contactFetch.fetchContact(contactId)
+        }
+    }
 
     title: ContactsJS.formatToDisplay(contact, i18n.dtr("address-book-app", "No name"))
 
@@ -35,6 +45,41 @@ Page {
         onContactChanged: {
             root.title = ContactsJS.formatToDisplay(contact, i18n.dtr("address-book-app", "No name"))
         }
+    }
+
+    // Pop page if the contact get removed
+    onContactChanged: {
+        if (!contact) {
+            root.contactRemoved()
+        }
+    }
+
+    onActiveChanged: {
+        if (active) {
+            //WORKAROUND: to correct scroll back the page
+            flickable.returnToBounds()
+        }
+    }
+
+    ActivityIndicator {
+        id: busyIndicator
+
+        parent: root
+        running: (root.contact === null) && contactFetch.running
+        visible: running
+        anchors.centerIn: parent
+    }
+
+    ContactFetchError {
+        id: fetchErrorDialog
+    }
+
+    ContactFetch {
+        id: contactFetch
+
+        onContactRemoved: root.contactRemoved()
+        onContactNotFound: Popups.PopupUtils.open(fetchErrorDialog, pageStack)
+        onContactFetched: root.contact = contact
     }
 
     Flickable {
@@ -126,6 +171,17 @@ Page {
                 }
                 height: childrenRect.height
             }
+        }
+    }
+
+    Component.onCompleted: {
+        if (contact == null) {
+            fetchContact(root.contactId)
+        }
+    }
+    onContactIdChanged: {
+        if (contact == null) {
+            fetchContact(root.contactId)
         }
     }
 }

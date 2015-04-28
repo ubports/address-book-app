@@ -23,7 +23,7 @@ import Ubuntu.Components.Popups 1.0 as Popups
 import Ubuntu.Contacts 0.1 as ContactsUI
 import Ubuntu.Content 1.1 as ContentHub
 
-import "../Common"
+import Ubuntu.AddressBook.Base 0.1
 
 ContactsUI.PageWithBottomEdge {
     id: mainPage
@@ -52,39 +52,20 @@ ContactsUI.PageWithBottomEdge {
         application.callbackApplication = ""
     }
 
-    function createEmptyContact(phoneNumber)
-    {
-        var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
-                        {detail: "EmailAddress", field: "emailAddress", value: ""},
-                        {detail: "Name", field: "firstName", value: ""}
-                      ]
-
-        var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", mainPage)
-        var detailSourceTemplate = "import QtContacts 5.0; %1{ %2: \"%3\" }"
-        for (var i=0; i < details.length; i++) {
-            var detailMetaData = details[i]
-            var newDetail = Qt.createQmlObject(detailSourceTemplate.arg(detailMetaData.detail)
-                                            .arg(detailMetaData.field)
-                                            .arg(detailMetaData.value), mainPage)
-            newContact.addDetail(newDetail)
-        }
-        return newContact
-    }
-
     function createContactWithPhoneNumber(phoneNumber)
     {
-        var newContact = mainPage.createEmptyContact(phoneNumber)
+        var newContact = ContactsJS.createEmptyContact(phoneNumber)
         //WORKAROUND: SKD changes the page header as soon as the page get created
         // setting active false will avoid that
         if (bottomEdgeEnabled) {
-            mainPage.showBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+            mainPage.showBottomEdgePage(Qt.resolvedUrl("ABContactEditorPage.qml"),
                                         {model: contactList.listModel,
                                          contact: newContact,
                                          active: false,
                                          enabled: false,
                                          initialFocusSection: "name"})
         } else {
-            pageStack.push(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+            pageStack.push(Qt.resolvedUrl("ABContactEditorPage.qml"),
                            {model: contactList.listModel,
                             contact: newContact,
                             initialFocusSection: "name"})
@@ -93,13 +74,13 @@ ContactsUI.PageWithBottomEdge {
 
     function showContact(contactId)
     {
-        pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
+        pageStack.push(Qt.resolvedUrl("ABContactViewPage.qml"),
                        {model: contactList.listModel, contactId: contactId})
     }
 
     function addPhoneToContact(contactId, phoneNumber)
     {
-        pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
+        pageStack.push(Qt.resolvedUrl("ABContactViewPage.qml"),
                        {model: contactList.listModel,
                         contactId: contactId,
                         addPhoneToContact: phoneNumber})
@@ -173,7 +154,7 @@ ContactsUI.PageWithBottomEdge {
 
         onInfoRequested: {
             mainPage.state = "default"
-            pageStack.push(Qt.resolvedUrl("../ContactView/ContactView.qml"),
+            pageStack.push(Qt.resolvedUrl("ABContactViewPage.qml"),
                            {model: contactList.listModel,
                             contact: contact})
         }
@@ -427,7 +408,7 @@ ContactsUI.PageWithBottomEdge {
         //WORKAROUND: SKD changes the page header as soon as the page get created
         // setting active false will avoid that
         var newContact = mainPage.createEmptyContact("")
-        mainPage.setBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+        mainPage.setBottomEdgePage(Qt.resolvedUrl("ABContactEditor.qml"),
                                    {model: contactList.listModel,
                                     contact: newContact,
                                     active: false,
@@ -540,7 +521,7 @@ ContactsUI.PageWithBottomEdge {
             contactList.listModel.importContacts("file://" + TEST_DATA)
         }
 
-        mainPage.setBottomEdgePage(Qt.resolvedUrl("../ContactEdit/ContactEditor.qml"),
+        mainPage.setBottomEdgePage(Qt.resolvedUrl("ABContactEditor.qml"),
                                    {model: contactList.listModel,
                                     contact: mainPage.createEmptyContact(""),
                                     active: false,

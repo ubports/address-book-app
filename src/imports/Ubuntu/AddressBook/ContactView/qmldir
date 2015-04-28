@@ -1,0 +1,19 @@
+module Ubuntu.AddressBook.ContactView
+
+ContactViewPage 0.1 ContactViewPage.qml
+ContactDetailSyncTargetView 0.1 ContactDetailSyncTargetView.qml
+
+internal ActionButton ActionButton.qml
+internal BasicFieldView BasicFieldView.qml
+internal ContactDetailAddressesView ContactDetailAddressesView.qml
+internal ContactDetailAvatarView ContactDetailAvatarView.qml
+internal ContactDetailEmailsView ContactDetailEmailsView.qml
+internal ContactDetailGroupWithTypeView ContactDetailGroupWithTypeView.qml
+#internal ContactDetailNameView ContactDetailNameView.qml
+internal ContactDetailOnlineAccountsView ContactDetailOnlineAccountsView.qml
+internal ContactDetailOrganizationsView ContactDetailOrganizationsView.qml
+internal ContactDetailPhoneNumbersView ContactDetailPhoneNumbersView.qml
+internal ContactDetailPhoneNumberView ContactDetailPhoneNumberView.qml
+internal ContactDetailWithTypeView ContactDetailWithTypeView.qml
+internal ContactFetchError ContactFetchError.qml
+#internal ContactHeaderView ContactHeaderView.qml

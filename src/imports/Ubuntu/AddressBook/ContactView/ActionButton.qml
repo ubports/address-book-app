@@ -15,15 +15,20 @@
  */
 
 import QtQuick 2.2
-import QtContacts 5.0 as QtContacts
 import Ubuntu.Components 1.1
 
-ContactDetailGroupWithTypeView {
-    detailType: QtContacts.ContactDetail.OnlineAccount
-    fields: [ QtContacts.OnlineAccount.AccountUri ]
-    title: i18n.tr("Social")
-    typeModel: ContactDetailOnlineAccountTypeModel { }
-    defaultAction: Action {
-        text: i18n.tr("Touch")
+AbstractButton {
+    id: root
+
+    property QtObject actions
+    property alias iconName: icon.name
+    property real iconSize: units.gu(2.5)
+
+    Icon {
+        id: icon
+
+        anchors.centerIn: parent
+        height: root.iconSize
+        width: root.iconSize
     }
 }

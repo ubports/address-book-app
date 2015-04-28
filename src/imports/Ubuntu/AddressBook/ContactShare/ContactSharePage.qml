@@ -16,16 +16,20 @@
 
 import QtQuick 2.2
 import QtContacts 5.0
+
 import Ubuntu.Components 1.1
 import Ubuntu.Content 1.1 as ContentHub
-import "../Common"
+
+import Ubuntu.AddressBook.Base 0.1
 
 Page {
-    id: picker
+    id: root
 
     property alias contactModel: exporter.contactModel
     property var contacts
-    property var curTransfer
+
+    signal canceled()
+    signal completed()
 
     ContentHub.ContentPeerPicker {
         visible: true
@@ -36,7 +40,7 @@ Page {
         onPeerSelected: {
             exporter.activeTransfer = peer.request();
             if (exporter.activeTransfer.state === ContentHub.ContentTransfer.InProgress) {
-                exporter.start(picker.contacts)
+                exporter.start(root.contacts)
             }
         }
 

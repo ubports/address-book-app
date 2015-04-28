@@ -21,6 +21,8 @@ import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 1.0
 import Ubuntu.Contacts 0.1
 
+import Ubuntu.AddressBook.Base 0.1
+
 ContactDetailGroupWithTypeBase {
     id: root
 

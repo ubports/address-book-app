@@ -18,7 +18,6 @@ import QtQuick 2.2
 import Ubuntu.Components 1.0
 import Ubuntu.Components.Popups 1.0 as Popups
 
-
 MainView {
     id: mainWindow
     objectName: "addressBookAppMainWindow"
@@ -140,7 +139,7 @@ MainView {
         application.elapsed()
         i18n.domain = "address-book-app"
         i18n.bindtextdomain("address-book-app", i18nDirectory)
-        mainStack.push(Qt.resolvedUrl("./ContactList/ContactListPage.qml"))
+        mainStack.push(Qt.resolvedUrl("ABContactListPage.qml"))
         mainWindow.applicationReady()
     }
 

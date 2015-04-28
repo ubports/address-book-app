@@ -121,3 +121,22 @@ function getFavoritePhoneLabel(contact, defaultValue)
     }
     return phoneLabel
 }
+
+function createEmptyContact(phoneNumber)
+{
+    var details = [ {detail: "PhoneNumber", field: "number", value: phoneNumber},
+                    {detail: "EmailAddress", field: "emailAddress", value: ""},
+                    {detail: "Name", field: "firstName", value: ""}
+                  ]
+
+    var newContact =  Qt.createQmlObject("import QtContacts 5.0; Contact{ }", mainPage)
+    var detailSourceTemplate = "import QtContacts 5.0; %1{ %2: \"%3\" }"
+    for (var i=0; i < details.length; i++) {
+        var detailMetaData = details[i]
+        var newDetail = Qt.createQmlObject(detailSourceTemplate.arg(detailMetaData.detail)
+                                        .arg(detailMetaData.field)
+                                        .arg(detailMetaData.value), mainPage)
+        newContact.addDetail(newDetail)
+    }
+    return newContact
+}
