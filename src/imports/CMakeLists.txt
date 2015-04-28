@@ -17,6 +17,5 @@ install(FILES ${ADDRESS_BOOK_APP_QMLS}
 # make the files visible on qtcreator
 add_custom_target(address_book_QMlFiles ALL SOURCES ${ADDRESS_BOOK_APP_QMLS})
 
-add_subdirectory(ContactList)
 add_subdirectory(Settings)
 add_subdirectory(Ubuntu)
