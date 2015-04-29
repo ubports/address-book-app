@@ -22,11 +22,11 @@ Component {
     Dialog {
         id: dialogue
 
-        title: i18n.tr("Error")
-        text: i18n.tr("Contact not found")
+        title: i18n.dtr("address-book-app", "Error")
+        text: i18n.dtr("address-book-app", "Contact not found")
 
         Button {
-            text: i18n.tr("Cancel")
+            text: i18n.dtr("address-book-app", "Cancel")
             gradient: UbuntuColors.greyGradient
             onClicked: {
                 PopupUtils.close(dialogue)

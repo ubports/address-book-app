@@ -46,9 +46,4 @@ ContactEditorPage {
             onTriggered: root.save()
         }
     ]
-
-    KeyboardRectangle {
-        id: keyboardRect
-    }
-    anchors.bottomMargin: keyboardRect.height
 }

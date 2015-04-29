@@ -20,11 +20,11 @@ import QtContacts 5.0
 import Ubuntu.Contacts 0.1
 
 ContactDetailGroupWithTypeEditor {
-    title: i18n.tr("Phone")
+    title: i18n.dtr("address-book-app", "Phone")
     detailType: ContactDetail.PhoneNumber
     detailQmlTypeName: "PhoneNumber"
     fields: [ PhoneNumber.Number ]
-    placeholderTexts: [ i18n.tr("Enter a number") ]
+    placeholderTexts: [ i18n.dtr("address-book-app", "Enter a number") ]
     typeModel: ContactDetailPhoneNumberTypeModel { }
     inputMethodHints: Qt.ImhDialableCharactersOnly
     usePhoneFormat: true

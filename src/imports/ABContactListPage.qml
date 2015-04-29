@@ -407,8 +407,8 @@ ContactsUI.PageWithBottomEdge {
     onBottomEdgeDismissed: {
         //WORKAROUND: SKD changes the page header as soon as the page get created
         // setting active false will avoid that
-        var newContact = mainPage.createEmptyContact("")
-        mainPage.setBottomEdgePage(Qt.resolvedUrl("ABContactEditor.qml"),
+        var newContact = ContactsUI.ContactsJS.createEmptyContact("")
+        mainPage.setBottomEdgePage(Qt.resolvedUrl("ABContactEditorPage.qml"),
                                    {model: contactList.listModel,
                                     contact: newContact,
                                     active: false,
@@ -521,9 +521,9 @@ ContactsUI.PageWithBottomEdge {
             contactList.listModel.importContacts("file://" + TEST_DATA)
         }
 
-        mainPage.setBottomEdgePage(Qt.resolvedUrl("ABContactEditor.qml"),
+        mainPage.setBottomEdgePage(Qt.resolvedUrl("ABContactEditorPage.qml"),
                                    {model: contactList.listModel,
-                                    contact: mainPage.createEmptyContact(""),
+                                    contact: ContactsUI.ContactsJS.createEmptyContact(""),
                                     active: false,
                                     enabled: false,
                                     initialFocusSection: "name"})

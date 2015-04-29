@@ -81,7 +81,8 @@ ContactDetailItem {
         x: units.gu(2)
         detail: root.detail
         height: units.gu(4)
-        placeholderText: field == Name.FirstName ? i18n.tr("First name") : i18n.tr("Last name")
+        placeholderText: field == Name.FirstName ? i18n.dtr("address-book-app", "First name") :
+                                                   i18n.dtr("address-book-app", "Last name")
         inputMethodHints: Qt.ImhNoPredictiveText
         onTextChanged: checkIsEmpty()
         onFieldChanged: checkIsEmpty()

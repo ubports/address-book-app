@@ -21,10 +21,10 @@ import Ubuntu.Contacts 0.1
 
 
 ContactDetailGroupWithTypeEditor {
-    title: i18n.tr("Email")
+    title: i18n.dtr("address-book-app", "Email")
     detailQmlTypeName: "EmailAddress"
     detailType: ContactDetail.Email
     fields: [ 0 ]
-    placeholderTexts: [ i18n.tr("Enter an email address") ]
+    placeholderTexts: [ i18n.dtr("address-book-app", "Enter an email address") ]
     inputMethodHints: Qt.ImhEmailCharactersOnly
 }

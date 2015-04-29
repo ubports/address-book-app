@@ -46,7 +46,7 @@ ContactDetailGroupWithTypeView {
         return result
     }
 
-    title: i18n.tr("Addressbook")
+    title: i18n.dtr("address-book-app", "Addressbook")
     defaultIcon: "image://theme/contact-group"
     detailType: ContactDetail.SyncTarget
     typeModel: null

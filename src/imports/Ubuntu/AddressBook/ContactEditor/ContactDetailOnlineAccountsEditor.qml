@@ -20,11 +20,11 @@ import QtContacts 5.0
 import Ubuntu.Contacts 0.1
 
 ContactDetailGroupWithTypeEditor {
-    title: i18n.tr("IM")
+    title: i18n.dtr("address-book-app", "IM")
     detailType: ContactDetail.OnlineAccount
     detailQmlTypeName: "OnlineAccount"
     fields: [ OnlineAccount.AccountUri ]
-    placeholderTexts: [ i18n.tr("Enter a social alias") ]
+    placeholderTexts: [ i18n.dtr("address-book-app", "Enter a social alias") ]
     typeModel: ContactDetailOnlineAccountTypeModel { }
     inputMethodHints: Qt.ImhEmailCharactersOnly
 }

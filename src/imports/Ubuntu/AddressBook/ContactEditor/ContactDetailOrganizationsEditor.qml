@@ -18,16 +18,16 @@ import QtQuick 2.2
 import QtContacts 5.0
 
 ContactDetailGroupWithTypeEditor {
-    title: i18n.tr("Professional Details")
+    title: i18n.dtr("address-book-app", "Professional Details")
     typeModel: null
     detailQmlTypeName: "Organization"
     detailType: ContactDetail.Organization
     fields: [ Organization.Name,
               Organization.Role,
               Organization.Title ]
-    placeholderTexts: [ i18n.tr("Organization"),
-                        i18n.tr("Role"),
-                        i18n.tr("Title")
+    placeholderTexts: [ i18n.dtr("address-book-app", "Organization"),
+                        i18n.dtr("address-book-app", "Role"),
+                        i18n.dtr("address-book-app", "Title")
                       ]
     inputMethodHints: Qt.ImhNoPredictiveText
 }

@@ -154,7 +154,7 @@ Item {
         id: busyDialogComponent
 
         Dialog {
-            title: i18n.tr("Exporting contacts...")
+            title: i18n.dtr("address-book-app", "Exporting contacts...")
 
             ActivityIndicator {
                 id: activity

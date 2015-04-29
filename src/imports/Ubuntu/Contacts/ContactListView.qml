@@ -421,7 +421,7 @@ Item {
 
                 iconSource: "image://theme/add"
                 // TRANSLATORS: this refers to a new contact
-                labelText: i18n.tr("+ Create New")
+                labelText: i18n.dtr("address-book-app", "+ Create New")
                 onClicked: root.addNewContactClicked()
                 visible: root.showAddNewButton
             }
@@ -465,7 +465,7 @@ Item {
                     visible: (onlineAccountHelper.status === Loader.Ready)
                     expandIcon: true
                     iconSource: "image://theme/google"
-                    labelText: i18n.tr("Import contacts from Google")
+                    labelText: i18n.dtr("address-book-app", "Import contacts from Google")
                     onClicked: onlineAccountHelper.item.setupExec()
                 }
 
@@ -476,7 +476,7 @@ Item {
 
                     expandIcon: true
                     iconSource: "image://theme/save-to"
-                    labelText: i18n.tr("Import contacts from SIM card")
+                    labelText: i18n.dtr("address-book-app", "Import contacts from SIM card")
                     // Does not show the button if the list is not in a pageStack
                     visible: (typeof(pageStack) !== "undefined") &&
                              ((simList.sims.length > 0) && (simList.present.length > 0))
@@ -544,7 +544,7 @@ Item {
         }
         Label {
             anchors.horizontalCenter: activity.horizontalCenter
-            text: root.syncing ? i18n.tr("Syncing...") : i18n.tr("Loading...")
+            text: root.syncing ? i18n.dtr("address-book-app", "Syncing...") : i18n.dtr("address-book-app", "Loading...")
         }
     }
 

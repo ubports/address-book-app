@@ -6,8 +6,6 @@ set(ADDRESS_BOOK_APP_QMLS
     ABContactViewPage.qml
     ContentHubProxy.qml
     MainWindow.qml
-    KeyboardRectangle.qml
-    StandardAnimation.qml
 )
 
 install(FILES ${ADDRESS_BOOK_APP_QMLS}

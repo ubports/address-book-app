@@ -44,15 +44,15 @@ ComboButton {
         switch (value)
         {
         case ContactDetail.PhoneNumber:
-            return i18n.tr("Phone")
+            return i18n.dtr("address-book-app", "Phone")
         case ContactDetail.Email:
-            return i18n.tr("Email")
+            return i18n.dtr("address-book-app", "Email")
         case ContactDetail.Address:
-            return i18n.tr("Address")
+            return i18n.dtr("address-book-app", "Address")
         case ContactDetail.OnlineAccount:
-            return i18n.tr("Social")
+            return i18n.dtr("address-book-app", "Social")
         case ContactDetail.Organization:
-            return i18n.tr("Professional Details")
+            return i18n.dtr("address-book-app", "Professional Details")
         default:
             console.error("Invalid contact detail enum value:" + value)
             return ""

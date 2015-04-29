@@ -73,7 +73,7 @@ FocusScope {
         // Ubuntu.Keyboard
         // TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
         // this word must be less than 5 characters
-        InputMethod.extensions: { "enterKeyText": i18n.tr("Next") }
+        InputMethod.extensions: { "enterKeyText": i18n.dtr("address-book-app", "Next") }
         readOnly: root.detail ? root.detail.readOnly : true
         style: TextFieldStyle {
             overlaySpacing: 0

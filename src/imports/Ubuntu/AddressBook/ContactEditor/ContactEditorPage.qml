@@ -143,7 +143,7 @@ Page {
         lastPhoneField.forceActiveFocus()
     }
 
-    title: isNewContact ? i18n.tr("New contact") : i18n.tr("Edit")
+    title: isNewContact ? i18n.dtr("address-book-app", "New contact") : i18n.dtr("address-book-app", "Edit")
 
     Timer {
         id: focusTimer
@@ -162,7 +162,12 @@ Page {
         // this is necessary to avoid the page to appear bellow the header
         clip: true
         flickableDirection: Flickable.VerticalFlick
-        anchors.fill: parent
+        anchors{
+            left: parent.left
+            top: parent.top
+            right: parent.right
+            bottom: keyboardRectangle.top
+        }
         contentHeight: contents.height + units.gu(2)
         contentWidth: parent.width
 
@@ -305,7 +310,7 @@ Page {
                 objectName: "addNewFieldButton"
 
                 contact: contactEditor.contact
-                text: i18n.tr("Add Field")
+                text: i18n.dtr("address-book-app", "Add Field")
                 anchors {
                     left: parent.left
                     right: parent.right
@@ -353,7 +358,7 @@ Page {
             Button {
                 id: deleteButton
 
-                text: i18n.tr("Delete")
+                text: i18n.dtr("address-book-app", "Delete")
                 visible: !contactEditor.isNewContact
                 color: UbuntuColors.red
                 anchors {
@@ -374,6 +379,16 @@ Page {
                     right: parent.right
                 }
                 height: units.gu(2)
+            }
+        }
+    }
+
+    KeyboardRectangle {
+        id: keyboardRectangle
+
+        onHeightChanged: {
+            if (activeItem) {
+                makeMeVisible(activeItem)
             }
         }
     }

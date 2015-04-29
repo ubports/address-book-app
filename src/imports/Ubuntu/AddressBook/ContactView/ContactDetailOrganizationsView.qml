@@ -21,7 +21,7 @@ import QtContacts 5.0 as QtContacts
 ContactDetailGroupWithTypeView {
     id: root
 
-    title: i18n.tr("Professional Details")
+    title: i18n.dtr("address-book-app", "Professional Details")
     defaultIcon: "image://theme/location"
     detailType: QtContacts.ContactDetail.Organization
     typeModel: null

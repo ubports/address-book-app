@@ -20,7 +20,7 @@ import QtContacts 5.0
 import Ubuntu.Contacts 0.1
 
 ContactDetailGroupWithTypeEditor {
-    title: i18n.tr("Address")
+    title: i18n.dtr("address-book-app", "Address")
     detailQmlTypeName: "Address"
     detailType: ContactDetail.Address
     fields: [ Address.Street,
@@ -28,10 +28,10 @@ ContactDetailGroupWithTypeEditor {
         Address.Region,
         Address.Postcode,
         Address.Country ]
-    placeholderTexts: [ i18n.tr("Street"),
-                        i18n.tr("Locality"),
-                        i18n.tr("Region"),
-                        i18n.tr("Post code"),
-                        i18n.tr("Country") ]
+    placeholderTexts: [ i18n.dtr("address-book-app", "Street"),
+                        i18n.dtr("address-book-app", "Locality"),
+                        i18n.dtr("address-book-app", "Region"),
+                        i18n.dtr("address-book-app", "Post code"),
+                        i18n.dtr("address-book-app", "Country") ]
     inputMethodHints: Qt.ImhNoPredictiveText
 }

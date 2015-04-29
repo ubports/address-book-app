@@ -75,7 +75,7 @@ ContactDetailBase {
     Label {
         id: label
 
-        text: i18n.tr("Addressbook")
+        text: i18n.dtr("address-book-app", "Addressbook")
         anchors {
             left: parent.left
             top: parent.top

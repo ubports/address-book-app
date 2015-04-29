@@ -37,18 +37,18 @@ Dialog {
 
     title: {
         if (contacts.length == 0) {
-            return i18n.tr("No contact selected.")
+            return i18n.dtr("address-book-app", "No contact selected.")
         } else if (contacts.length == 1)  {
             return contacts[0].displayLabel.label
         } else {
-            return i18n.tr("Multiple contacts")
+            return i18n.dtr("address-book-app", "Multiple contacts")
         }
     }
     text: {
         if (contacts.length == 1)  {
-            return i18n.tr("Are you sure that you want to remove this contact?")
+            return i18n.dtr("address-book-app", "Are you sure that you want to remove this contact?")
         } else {
-            return i18n.tr("Are you sure that you want to remove all selected contacts?")
+            return i18n.dtr("address-book-app", "Are you sure that you want to remove all selected contacts?")
         }
     }
 
@@ -59,7 +59,7 @@ Dialog {
             right: parent.right
             margins: units.gu(1)
         }
-        text: i18n.tr("Yes")
+        text: i18n.dtr("address-book-app", "Yes")
         color: UbuntuColors.green
         onClicked: accepted()
     }
@@ -71,7 +71,7 @@ Dialog {
             right: parent.right
             margins: units.gu(1)
         }
-        text: i18n.tr("No")
+        text: i18n.dtr("address-book-app", "No")
         color: UbuntuColors.red
         onClicked: canceled()
     }

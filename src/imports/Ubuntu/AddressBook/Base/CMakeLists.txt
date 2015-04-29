@@ -4,6 +4,7 @@ set(AB_CONTACT_COMMON_QMLS
     ContactDetailGroupBase.qml
     ContactDetailGroupWithTypeBase.qml
     ContactExporter.qml
+    KeyboardRectangle.qml
     RemoveContactsDialog.qml
     qmldir
 )
