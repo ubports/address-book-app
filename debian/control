@@ -75,6 +75,17 @@ Description: Qt Ubuntu Contacts Components - QML plugin
  .
  This package contains the Ubuntu Contacts Components QML plugin.
 
+Package: qtdeclarative5-ubuntu-addressbook0.1
+Architecture: any
+Depends: qtdeclarative5-ubuntu-contacts0.1 (= ${binary:Version}), 
+         ${misc:Depends},
+         ${shlibs:Depends},
+Description: Qt Ubuntu Address Book  Components - QML plugin
+ Qt Ubuntu Address Book Components offers a set of reusable user interface
+ related with address book for Qt Quick 2 / QML.
+ .
+ This package contains the Ubuntu Address Book Components QML plugin.
+
 Package: address-book-app-dbg
 Architecture: amd64 armhf i386
 Section: debug
