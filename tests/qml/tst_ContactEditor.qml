@@ -21,7 +21,7 @@ import Ubuntu.Test 0.1
 import Ubuntu.Contacts 0.1
 
 import "ContactUtil.js" as ContactUtilJS
-import '../../src/imports/ContactEdit'
+import '../../src/imports/'
 
 Item {
 
@@ -42,7 +42,7 @@ Item {
             signal contactsFetched
         }
 
-        ContactEditor {
+        ABContactEditorPage {
             id: contactEditor
             anchors.fill: parent
             model: dummyDataModel

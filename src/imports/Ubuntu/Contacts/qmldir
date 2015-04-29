@@ -8,7 +8,6 @@ ContactDetailPhoneNumberTypeModel 0.1 ContactDetailPhoneNumberTypeModel.qml
 ContactFetch 0.1 ContactFetch.qml
 ContactListModel 0.1 ContactListModel.qml
 ContactListView 0.1 ContactListView.qml
-ContactPreviewPage 0.1 ContactPreviewPage.qml
 ListItemWithActions 0.1 ListItemWithActions.qml
 MultipleSelectionListView 0.1 MultipleSelectionListView.qml
 PageWithBottomEdge 0.1 PageWithBottomEdge.qml
