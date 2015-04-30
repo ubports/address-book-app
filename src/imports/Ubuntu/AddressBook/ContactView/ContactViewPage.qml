@@ -79,7 +79,10 @@ Page {
 
         onContactRemoved: root.contactRemoved()
         onContactNotFound: Popups.PopupUtils.open(fetchErrorDialog, pageStack)
-        onContactFetched: root.contact = contact
+        onContactFetched: {
+            root.contact = contact
+            root.contactFetched(root.contact)
+        }
     }
 
     Flickable {

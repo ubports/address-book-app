@@ -38,6 +38,8 @@ Page {
     readonly property bool isNewContact: contact && (contact.contactId === "qtcontacts:::")
     readonly property bool isContactValid: !avatarEditor.busy && (!nameEditor.isEmpty() || !phonesEditor.isEmpty())
 
+    signal contactSaved(var contact);
+
     // priv
     property bool _edgeReady: false
 
@@ -87,8 +89,8 @@ Page {
             // backend error will be handled by the root page (contact list)
             var newContact = (contact.model == null)
             contactEditor.model.saveContact(contact)
-            if (newContact && pageStack.contactListPage) {
-                pageStack.contactListPage.moveListToContact(contact)
+            if (newContact) {
+                contactEditor.contactSaved(contact)
             }
         }
         pageStack.pop()

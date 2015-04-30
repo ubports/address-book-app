@@ -46,4 +46,11 @@ ContactEditorPage {
             onTriggered: root.save()
         }
     ]
+
+    onContactSaved: {
+        if (pageStack.contactListPage) {
+            pageStack.contactListPage.moveListToContact(contact)
+        }
+    }
+
 }

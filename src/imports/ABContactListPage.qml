@@ -54,7 +54,7 @@ ContactsUI.PageWithBottomEdge {
 
     function createContactWithPhoneNumber(phoneNumber)
     {
-        var newContact = ContactsJS.createEmptyContact(phoneNumber)
+        var newContact = ContactsJS.createEmptyContact(phoneNumber, mainPage)
         //WORKAROUND: SKD changes the page header as soon as the page get created
         // setting active false will avoid that
         if (bottomEdgeEnabled) {
@@ -407,7 +407,7 @@ ContactsUI.PageWithBottomEdge {
     onBottomEdgeDismissed: {
         //WORKAROUND: SKD changes the page header as soon as the page get created
         // setting active false will avoid that
-        var newContact = ContactsUI.ContactsJS.createEmptyContact("")
+        var newContact = ContactsUI.ContactsJS.createEmptyContact("", mainPage)
         mainPage.setBottomEdgePage(Qt.resolvedUrl("ABContactEditorPage.qml"),
                                    {model: contactList.listModel,
                                     contact: newContact,
@@ -523,7 +523,7 @@ ContactsUI.PageWithBottomEdge {
 
         mainPage.setBottomEdgePage(Qt.resolvedUrl("ABContactEditorPage.qml"),
                                    {model: contactList.listModel,
-                                    contact: ContactsUI.ContactsJS.createEmptyContact(""),
+                                    contact: ContactsUI.ContactsJS.createEmptyContact("", mainPage),
                                     active: false,
                                     enabled: false,
                                     initialFocusSection: "name"})
