@@ -78,6 +78,8 @@ ContactViewPage {
         }
     }
 
+    onActionTrigerred: Qt.openUrlExternally(("%1:///%2").arg(action).arg(detail.value(0)))
+
     Component {
         id: contactShareComponent
         ContactSharePage {}

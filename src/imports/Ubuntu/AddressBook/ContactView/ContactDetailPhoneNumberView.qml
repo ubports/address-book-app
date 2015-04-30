@@ -70,7 +70,7 @@ ContactDetailBase {
         width: units.gu(4)
         height: units.gu(4)
         iconName: "message"
-        onClicked: Qt.openUrlExternally("message:///" + encodeURIComponent(view.values[0]))
+        onClicked: root.actionTrigerred("message")
     }
 
 
@@ -86,7 +86,7 @@ ContactDetailBase {
         width: units.gu(4)
         height: units.gu(4)
         iconName: "call-start"
-        onClicked: Qt.openUrlExternally("tel:///" + encodeURIComponent(view.values[0]))
+        onClicked: root.actionTrigerred("tel")
     }
 
 }

@@ -25,6 +25,8 @@ ListItem.Empty {
     property QtObject contact: null
     property QtObject detail: null
     property variant fields: null
+    signal actionTrigerred(string action)
+
     // help to test used to retrieve the correct element
     property int index: -1
 

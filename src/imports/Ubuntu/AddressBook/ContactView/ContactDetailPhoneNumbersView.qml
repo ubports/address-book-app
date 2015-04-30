@@ -36,5 +36,6 @@ ContactDetailGroupWithTypeView {
 
         height: implicitHeight
         width: root.width
+        onActionTrigerred: root.actionTrigerred(action, detail)
     }
 }

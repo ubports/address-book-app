@@ -28,8 +28,9 @@ Page {
     property alias extensions: extensionsContents.children
     property alias model: contactFetch.model
 
-    signal contactFetched(var contact)
+    signal contactFetched(QtObject contact)
     signal contactRemoved()
+    signal actionTrigerred(string action, QtObject contact, QtObject detail)
 
     function fetchContact(contactId)
     {
@@ -121,6 +122,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                onActionTrigerred: root.actionTrigerred(action, root.contact, detail)
             }
 
             ContactDetailEmailsView {
