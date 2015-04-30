@@ -44,7 +44,6 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     void activateWindow();
-    QUrl copyImage(QObject *contact, const QUrl &imageUrl);
     void parseUrl(const QString &arg);
     void onViewStatusChanged(QQuickView::Status status);
     void returnVcard(const QUrl &url);

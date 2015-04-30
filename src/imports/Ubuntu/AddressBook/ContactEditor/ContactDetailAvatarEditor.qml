@@ -85,6 +85,10 @@ ContactDetailBase {
             height: units.gu(3)
             width: units.gu(3)
             visible: source == defaultAvatar
+            sourceSize {
+                width: units.gu(3)
+                height: units.gu(3)
+            }
 
             // When updating the avatar using the content picker the temporary file returned
             // can contain the same name as the previous one and if the cache is enabled this
@@ -110,7 +114,7 @@ ContactDetailBase {
             // be updated
             avatarImage.source = ""
             // Update with the new value
-            avatarImage.source = application.copyImage(root.contact, avatarUrl);
+            avatarImage.source = Contacts.copyImage(root.contact, avatarUrl);
         }
     }
 

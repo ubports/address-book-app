@@ -37,6 +37,8 @@ set(CONTACT_COMPONENTS_QMLS
 set(CONTACT_COMPONENTS_SRC
     contacts.h
     contacts.cpp
+    imagescalethread.h
+    imagescalethread.cpp
     mostcalledproxymodel.h
     mostcalledproxymodel.cpp
     plugin.h
