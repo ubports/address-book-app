@@ -80,9 +80,6 @@ class TestImportFromSimContact(AddressBookAppTestCase):
     def test_import_item_disabled_without_sim_card(self):
         list_page = self.app.main_window.get_contact_list_page()
 
-        # contact list is empty
-        self.assertThat(len(list_page.get_contacts()), Equals(0))
-
         # remove all sim cards
         helpers.remove_phonesim()
 
@@ -93,4 +90,3 @@ class TestImportFromSimContact(AddressBookAppTestCase):
         self.assertThat(
             import_from_sim_button.visible,
             Eventually(Equals(False), timeout=30))
-
