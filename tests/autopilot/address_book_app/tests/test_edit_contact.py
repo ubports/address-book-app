@@ -61,7 +61,8 @@ class TestEditContact(AddressBookAppTestCase):
         phone_label_1 = view_page.select_single(
             "Label",
             objectName="label_phoneNumber_1.0")
-        self.assertThat(phone_label_1.text, Eventually(Equals(self.PHONE_NUMBERS[1])))
+        self.assertThat(phone_label_1.text,
+                        Eventually(Equals(self.PHONE_NUMBERS[1])))
 
     def test_remove_phone(self):
         contact_editor = self.app.main_window.go_to_add_contact()
@@ -97,7 +98,8 @@ class TestEditContact(AddressBookAppTestCase):
         phone_label_1 = view_page.select_single(
             "Label",
             objectName="label_phoneNumber_0.0")
-        self.assertThat(phone_label_1.text, Eventually(Equals(self.PHONE_NUMBERS[1])))
+        self.assertThat(phone_label_1.text,
+                        Eventually(Equals(self.PHONE_NUMBERS[1])))
 
     def test_add_email(self):
         self.add_contact("Fulano", "")
