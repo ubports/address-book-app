@@ -144,11 +144,6 @@ ContactsUI.PageWithBottomEdge {
         multiSelectionEnabled: true
         multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
 
-        leftSideAction: Action {
-            iconName: "delete"
-            text: i18n.tr("Delete")
-            onTriggered: value.remove()
-        }
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
         onAddNewContactClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
 
