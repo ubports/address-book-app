@@ -1,0 +1,414 @@
+# Interlingua translation for address-book-app
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
+# This file is distributed under the same license as the address-book-app package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: address-book-app\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2015-03-16 17:52-0300\n"
+"PO-Revision-Date: 2015-05-02 16:38+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Interlingua <ia@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2015-05-03 06:07+0000\n"
+"X-Generator: Launchpad (build 17474)\n"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:77
+#, qt-format
+msgid "%1 is locked"
+msgstr ""
+
+#: ../src/imports/ContactList/VCardImportDialog.qml:72
+#, qt-format
+msgid "%1 vCards imported"
+msgstr ""
+
+#. TRANSLATORS: this refers to a new contact
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:424
+msgid "+ Create New"
+msgstr "+ Crea nove"
+
+#: ../src/imports/ContactEdit/ContactEditor.qml:307
+msgid "Add Field"
+msgstr "Adder campo"
+
+#: ../src/imports/Settings/SettingsPage.qml:67
+msgid "Add Google account"
+msgstr ""
+
+#: ../src/imports/ContactList/ContactListPage.qml:396
+msgid "Add contact"
+msgstr "Adder contacto"
+
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
+msgid "Add number..."
+msgstr "Adder numero..."
+
+#: ../src/imports/ContactEdit/ComboButtonAddField.qml:51
+#: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
+#: ../src/imports/Ubuntu/Contacts/ContactDetailAddressesView.qml:24
+msgid "Address"
+msgstr "Adresse"
+
+#: ../src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:76
+#: ../src/imports/ContactView/ContactDetailSyncTargetView.qml:49
+msgid "Addressbook"
+msgstr "Repertoire"
+
+#. TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
+msgid "Aim"
+msgstr "Proposito"
+
+#. TRANSLATORS: this refers to all contacts
+#: ../src/imports/ContactList/ContactListPage.qml:283
+msgid "All"
+msgstr "Tote"
+
+#: ../src/imports/Common/RemoveContactsDialog.qml:51
+msgid "Are you sure that you want to remove all selected contacts?"
+msgstr "Desira tu vermente remover omne le contactos seligite?"
+
+#: ../src/imports/Common/RemoveContactsDialog.qml:49
+msgid "Are you sure that you want to remove this contact?"
+msgstr "Desira tu vermente remover iste contacto?"
+
+#: ../src/imports/ContactEdit/ContactEditor.qml:398
+#: ../src/imports/ContactList/ContactListPage.qml:296
+#: ../src/imports/ContactView/ContactFetchError.qml:29
+#: ../src/imports/MainWindow.qml:157
+msgid "Cancel"
+msgstr "Cancellar"
+
+#: ../src/imports/ContactList/ContactListPage.qml:320
+msgid "Cancel selection"
+msgstr "Cancellar le selection"
+
+#: ../src/imports/ContactList/VCardImportDialog.qml:80
+msgid "Close"
+msgstr "Clauder"
+
+#: ../src/imports/ContactView/ContactFetchError.qml:26
+msgid "Contact not found"
+msgstr "Contacto non trovate"
+
+#: ../src/imports/ContactList/ContactListPage.qml:145
+#: ../data/address-book-app.desktop.in.in.h:1
+msgid "Contacts"
+msgstr "Contactos"
+
+#: ../data/address-book-app.desktop.in.in.h:2
+msgid "Contacts Address Book"
+msgstr "Repertoire del contactos"
+
+#: ../data/address-book-app.desktop.in.in.h:3
+msgid "Contacts;People;Numbers"
+msgstr "Contactos;personas;numeros"
+
+#: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
+msgid "Country"
+msgstr "Pais"
+
+#: ../src/imports/ContactList/ContactListPage.qml:481
+msgid "Create a new contact by swiping up from the bottom of the screen."
+msgstr "Crea un nove contacto per striar ab le fundo del schermo."
+
+#: ../src/imports/ContactEdit/ContactEditor.qml:355
+#: ../src/imports/ContactList/ContactListPage.qml:168
+#: ../src/imports/ContactList/ContactListPage.qml:356
+msgid "Delete"
+msgstr "Deler"
+
+#: ../src/imports/ContactEdit/ContactEditor.qml:142
+#: ../src/imports/ContactView/ContactView.qml:107
+msgid "Edit"
+msgstr "Modificar"
+
+#: ../src/imports/ContactEdit/ComboButtonAddField.qml:49
+#: ../src/imports/ContactEdit/ContactDetailEmailsEditor.qml:24
+#: ../src/imports/Ubuntu/Contacts/ContactDetailEmailsView.qml:23
+#: ../src/imports/Ubuntu/Contacts/ContactDetailEmailsView.qml:26
+msgid "Email"
+msgstr "E-Posta"
+
+#: ../src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:27
+msgid "Enter a number"
+msgstr "Inserer un numero"
+
+#: ../src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:27
+msgid "Enter a social alias"
+msgstr "Inserer un alias social"
+
+#: ../src/imports/ContactEdit/ContactDetailEmailsEditor.qml:28
+msgid "Enter an email address"
+msgstr "Inserer un adresse de E-posta"
+
+#: ../src/imports/ContactView/ContactFetchError.qml:25
+#: ../src/imports/MainWindow.qml:153
+msgid "Error"
+msgstr "Error"
+
+#: ../src/imports/Common/ContactExporter.qml:157
+msgid "Exporting contacts..."
+msgstr "Exportante le contactos..."
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:243
+msgid "Fail to read SIM card"
+msgstr ""
+
+#: ../src/imports/ContactList/ContactListPage.qml:283
+msgid "Favorites"
+msgstr "Favoritos"
+
+#: ../src/imports/ContactEdit/ContactDetailNameEditor.qml:84
+msgid "First name"
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
+msgid "Frequently called"
+msgstr ""
+
+#. TRANSLATORS: This refers to home landline phone label
+#: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:115
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
+msgid "Home"
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:63
+msgid "ICQ"
+msgstr ""
+
+#: ../src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:23
+msgid "IM"
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:190
+msgid "Import"
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:468
+msgid "Import contacts from Google"
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:479
+msgid "Import contacts from SIM card"
+msgstr ""
+
+#: ../src/imports/Settings/SettingsPage.qml:72
+msgid "Import from SIM"
+msgstr ""
+
+#: ../src/imports/ContactList/VCardImportDialog.qml:71
+msgid "Import vCards"
+msgstr ""
+
+#: ../src/imports/ContactList/VCardImportDialog.qml:72
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:235
+msgid "Importing..."
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
+msgid "Jabber"
+msgstr ""
+
+#: ../src/imports/ContactEdit/ContactDetailNameEditor.qml:84
+msgid "Last name"
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:547
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:218
+msgid "Loading..."
+msgstr ""
+
+#: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:32
+msgid "Locality"
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:66
+msgid "MSN"
+msgstr ""
+
+#. TRANSLATORS: This refers to mobile/cellphone phone label
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
+msgid "Mobile"
+msgstr ""
+
+#: ../src/imports/Common/RemoveContactsDialog.qml:44
+msgid "Multiple contacts"
+msgstr ""
+
+#: ../src/imports/Settings/SettingsPage.qml:61
+#, qt-format
+msgid "My phone number: %1"
+msgstr ""
+
+#: ../src/imports/ContactEdit/ContactEditor.qml:142
+msgid "New contact"
+msgstr ""
+
+#. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
+#. this word must be less than 5 characters
+#: ../src/imports/ContactEdit/TextInputDetail.qml:76
+msgid "Next"
+msgstr ""
+
+#: ../src/imports/Common/RemoveContactsDialog.qml:74
+msgid "No"
+msgstr ""
+
+#: ../src/imports/Common/RemoveContactsDialog.qml:40
+msgid "No contact selected."
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:110
+msgid "No contacts found"
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:113
+#: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
+#: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:36
+msgid "No name"
+msgstr ""
+
+#: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:28
+msgid "Organization"
+msgstr ""
+
+#. TRANSLATORS: This refers to any other phone label
+#: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:117
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:121
+msgid "Other"
+msgstr ""
+
+#: ../src/imports/ContactEdit/ComboButtonAddField.qml:47
+#: ../src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:23
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumbersView.qml:26
+msgid "Phone"
+msgstr ""
+
+#: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:34
+msgid "Post code"
+msgstr ""
+
+#: ../src/imports/ContactEdit/ComboButtonAddField.qml:55
+#: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:21
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOrganizationsView.qml:24
+msgid "Professional Details"
+msgstr ""
+
+#: ../src/imports/ContactList/ContactListPage.qml:247
+msgid "Quit"
+msgstr ""
+
+#: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:33
+msgid "Region"
+msgstr ""
+
+#: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:29
+msgid "Role"
+msgstr ""
+
+#: ../src/imports/Settings/SettingsPage.qml:62
+#, qt-format
+msgid "SIM %1"
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:34
+msgid "SIM contacts"
+msgstr ""
+
+#: ../src/imports/ContactEdit/ContactEditor.qml:411
+msgid "Save"
+msgstr ""
+
+#: ../src/imports/ContactList/ContactListPage.qml:255
+msgid "Search"
+msgstr ""
+
+#: ../src/imports/ContactList/ContactListPage.qml:219
+msgid "Search..."
+msgstr ""
+
+#: ../src/imports/ContactList/ContactListPage.qml:326
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:178
+msgid "Select All"
+msgstr ""
+
+#: ../src/imports/ContactList/ContactListPage.qml:272
+#: ../src/imports/Settings/SettingsPage.qml:30
+msgid "Settings"
+msgstr ""
+
+#: ../src/imports/ContactList/ContactListPage.qml:339
+#: ../src/imports/ContactView/ContactView.qml:98
+msgid "Share"
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
+msgid "Skype"
+msgstr ""
+
+#: ../src/imports/ContactEdit/ComboButtonAddField.qml:53
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:24
+msgid "Social"
+msgstr ""
+
+#: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:31
+msgid "Street"
+msgstr ""
+
+#: ../src/imports/ContactList/ContactListPage.qml:266
+msgid "Sync"
+msgstr ""
+
+#: ../src/imports/ContactList/ContactListPage.qml:266
+msgid "Syncing"
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:547
+msgid "Syncing..."
+msgstr ""
+
+#: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
+msgid "Title"
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:27
+msgid "Touch"
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
+msgid "Unlock"
+msgstr ""
+
+#: ../src/imports/ContactList/ContactListPage.qml:326
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:177
+msgid "Unselect All"
+msgstr ""
+
+#. TRANSLATORS: This refers to landline work phone label
+#: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:116
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
+msgid "Work"
+msgstr ""
+
+#. TRANSLATORS: This refers to mobile/cellphone work phone label
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:117
+msgid "Work Mobile"
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
+msgid "Yahoo"
+msgstr ""
+
+#: ../src/imports/Common/RemoveContactsDialog.qml:62
+msgid "Yes"
+msgstr ""
+
+#: ../src/imports/ContactList/ContactListPage.qml:480
+msgid "You have no contacts."
+msgstr ""
