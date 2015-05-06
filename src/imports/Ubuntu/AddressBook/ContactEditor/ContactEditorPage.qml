@@ -25,7 +25,6 @@ import Ubuntu.AddressBook.Base 0.1
 
 Page {
     id: contactEditor
-    objectName: "contactEditorPage"
 
     property QtObject contact: null
     property QtObject model: null

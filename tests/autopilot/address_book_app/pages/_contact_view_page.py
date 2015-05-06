@@ -14,15 +14,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from address_book_app.pages import _common, _contact_editor
+from address_book_app.pages import _common, _contact_editor_page
 
 
-class ContactView(_common.PageWithHeader):
+class ABContactViewPage(_common.PageWithHeader):
     """Autopilot helper for the ContactView page."""
 
     def go_to_edit_contact(self):
         self.get_header().click_action_button('edit')
         return self.get_root_instance().select_single(
-            _contact_editor.ContactEditor,
+            _contact_editor_page.ContactEditorPage,
             objectName='contactEditorPage',
             active=True)

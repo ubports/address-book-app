@@ -48,7 +48,7 @@ def _get_text_field(parent, field, index=None):
     return parent.select_single(TextInputDetail, objectName=object_name)
 
 
-class ContactEditor(_common.PageWithHeader):
+class ContactEditorPage(_common.PageWithHeader):
     """Custom proxy object for the Contact Editor."""
 
     _DETAIL_ALIAS = {

@@ -22,7 +22,7 @@ import time
 import autopilot.logging
 import ubuntuuitoolkit
 
-from address_book_app.pages import _common, _contact_view
+from address_book_app.pages import _common, _contact_view_page
 
 
 logger = logging.getLogger(__name__)
@@ -30,7 +30,7 @@ log_action_info = autopilot.logging.log_action(logging.info)
 log_action_debug = autopilot.logging.log_action(logging.debug)
 
 
-class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
+class ABContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
 
     """Autopilot helper for the Contact List page."""
 
@@ -49,7 +49,7 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
             objectName='infoIcon')
         self.pointing_device.click_object(details_button)
         return self.get_root_instance().select_single(
-            _contact_view.ContactView, objectName='contactViewPage')
+            _contact_view_page.ABContactViewPage, objectName='contactViewPage')
 
     def _get_contact_delegate(self, index):
         contact_delegates = self._get_sorted_contact_delegates()

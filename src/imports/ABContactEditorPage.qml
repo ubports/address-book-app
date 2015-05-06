@@ -23,6 +23,7 @@ import Ubuntu.AddressBook.ContactEditor 0.1
 
 ContactEditorPage {
     id: root
+    objectName: "contactEditorPage"
 
     head.backAction: Action {
         objectName: "cancel"
@@ -52,5 +53,4 @@ ContactEditorPage {
             pageStack.contactListPage.moveListToContact(contact)
         }
     }
-
 }

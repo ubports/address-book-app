@@ -15,13 +15,13 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 __all__ = [
-    'ContactEditor',
-    'ContactListPage',
-    'ContactView',
+    'ABContactEditorPage',
+    'ABContactListPage',
+    'ABContactViewPage',
     'SIMCardImportPage',
 ]
 
-from address_book_app.pages._contact_editor import ContactEditor
-from address_book_app.pages._contact_list_page import ContactListPage
-from address_book_app.pages._contact_view import ContactView
+from address_book_app.pages._contact_editor_page import ContactEditorPage as ABContactEditorPage
+from address_book_app.pages._contact_list_page import ABContactListPage
+from address_book_app.pages._contact_view_page import ABContactViewPage
 from address_book_app.pages._sim_card_import_page import SIMCardImportPage
