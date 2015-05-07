@@ -140,31 +140,18 @@ ContactsUI.PageWithBottomEdge {
             right: parent.right
         }
         filterTerm: searchField.text
-        detailToPick: ContactDetail.PhoneNumber
         multiSelectionEnabled: true
         multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
 
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
         onAddNewContactClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
 
-        onInfoRequested: {
+        onContactClicked: {
             mainPage.state = "default"
             pageStack.push(Qt.resolvedUrl("ABContactViewPage.qml"),
                            {model: contactList.listModel,
                             contact: contact})
         }
-
-        onDetailClicked: {
-            if (action == "call")
-                Qt.openUrlExternally("tel:///" + encodeURIComponent(detail.number))
-            else if (action == "message")
-                Qt.openUrlExternally("message:///" + encodeURIComponent(detail.number))
-            else if ((mainPage.state === "newphone") || (mainPage.state === "newphoneSearching")) {
-                mainPage.addPhoneToContact(contact.contactId, mainPage.newPhoneToAdd)
-            }
-        }
-
-        onAddDetailClicked: mainPage.addPhoneToContact(contact.contactId, " ")
         onIsInSelectionModeChanged: mainPage.state = isInSelectionMode ? "selection"  : "default"
         onSelectionCanceled: {
             if (pickMode) {

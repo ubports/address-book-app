@@ -115,12 +115,6 @@ MultipleSelectionListView {
     */
     readonly property bool loading: busyIndicator.busy
     /*!
-      \qmlproperty int detailToPick
-
-      This property holds the detail type to be picked
-    */
-    property int detailToPick: -1
-    /*!
       \qmlproperty bool showSections
 
       This property holds if the listview will show or not the section headers
@@ -158,17 +152,9 @@ MultipleSelectionListView {
     */
     signal error(string message)
     /*!
-      This handler is called when any contact detail in the list receives a click
+      This handler is called when any contact in the list receives a click
     */
-    signal detailClicked(QtObject contact, QtObject detail, string action)
-    /*!
-      This handler is called when add contact detail in the list receives a click
-    */
-    signal addDetailClicked(QtObject contact, int detailType)
-    /*!
-      This handler is called when details button on contact delegate is clicked
-    */
-    signal infoRequested(QtObject contact)
+    signal contactClicked(QtObject contact)
     /*!
       This handler is called when the contact delegate disapear (height === 0) caused by the function call makeDisappear
     */
@@ -283,24 +269,6 @@ MultipleSelectionListView {
         leftSideAction: contactListView.leftSideAction
         rightSideActions: contactListView.rightSideActions
 
-        onDetailClicked: contactListView.detailClicked(contact, detail, action)
-        onAddDetailClicked: contactListView.addDetailClicked(contact, detailType)
-        onInfoRequested: contactListView._fetchContact(index, contact)
-
-        // collapse the item before remove it, to avoid crash
-        ListView.onRemove: ScriptAction {
-            script: {
-                if (contactListView._currentSwipedItem === contactDelegate) {
-                    contactListView._currentSwipedItem = null
-                }
-
-                if (contactDelegate.state !== "") {
-                    contactListView.currentIndex = -1
-                }
-            }
-        }
-
-
         // used by swipe to delete
         removalAnimation: SequentialAnimation {
             alwaysRunToEnd: true
@@ -330,21 +298,9 @@ MultipleSelectionListView {
                 if (!contactListView.selectItem(contactDelegate)) {
                     contactListView.deselectItem(contactDelegate)
                 }
-                return
-            }
-            if (ListView.isCurrentItem) {
-                contactListView.currentIndex = -1
-                return
-            // check if we should expand and display the details picker
-            } else if (detailToPick !== -1) {
+            } else {
                 contactListView.currentIndex = index
-                if (index == 0) {
-                    // WORKAROUND: Due the header the ListView does the wrong scolling for the first item
-                    contactListView.positionViewAtIndex(0, ListView.Beginning)
-                }
-                return
-            } else if (detailToPick == -1) {
-                contactListView.detailClicked(contact, null, "")
+                contactListView.contactClicked(contact)
             }
         }
 

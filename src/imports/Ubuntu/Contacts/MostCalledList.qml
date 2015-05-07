@@ -70,10 +70,7 @@ Column {
         model: MostCalledModel {
             id: calledModel
 
-            onInfoRequested: parentView.infoRequested(contact)
-            onDetailClicked: parentView.detailClicked(contact, detail, action)
-            onAddDetailClicked: parentView.addDetailClicked(contact, detailType)
-            onAddContactClicked: parentView.addContactClicked(label)
+            onContactClicked: parentView.contactClicked(contact)
             onCurrentIndexChanged: {
                 if (currentIndex !== -1) {
                     parentView.currentIndex = -1
