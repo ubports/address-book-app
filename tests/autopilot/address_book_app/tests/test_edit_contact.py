@@ -10,7 +10,7 @@
 from testtools.matchers import Equals
 from autopilot.matchers import Eventually
 
-from address_book_app import data
+from address_book_app.address_book import data
 from address_book_app.tests import AddressBookAppTestCase
 
 

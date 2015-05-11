@@ -12,7 +12,7 @@ from autopilot.matchers import Eventually
 from autopilot.introspection import dbus
 
 import address_book_app
-from address_book_app import data
+from address_book_app.address_book import data
 from address_book_app.tests import AddressBookAppTestCase
 
 

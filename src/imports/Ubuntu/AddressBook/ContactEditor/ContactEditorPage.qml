@@ -123,6 +123,7 @@ Page {
 
     function ready()
     {
+        console.debug("READYYYYY: " + contactEditor.initialFocusSection)
         enabled = true
         _edgeReady = true
 
@@ -141,6 +142,8 @@ Page {
     function focusToLastPhoneField()
     {
         var lastPhoneField = phonesEditor.detailDelegates[phonesEditor.detailDelegates.length - 2].item
+        console.debug("Focus last phone field:" + lastPhoneField)
+        console.debug("PHONES SIZE>" + phonesEditor.detailDelegates.length)
         lastPhoneField.forceActiveFocus()
     }
 
@@ -395,10 +398,12 @@ Page {
     }
 
     Component.onCompleted: {
+        console.debug("Editor completed: " + enabled)
         if (!enabled) {
             return
         }
 
+        console.debug("initialFocusSection: " + contactEditor.initialFocusSection)
         if (contactEditor.initialFocusSection != "") {
             focusTimer.restart()
         } else {

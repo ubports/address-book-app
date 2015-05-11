@@ -18,7 +18,7 @@ import logging
 
 import autopilot.logging
 
-from address_book_app.pages import _common
+from address_book_app.address_book import _common
 
 logger = logging.getLogger(__name__)
 log_action_info = autopilot.logging.log_action(logging.info)

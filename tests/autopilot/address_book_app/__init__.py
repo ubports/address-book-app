@@ -30,6 +30,7 @@ from autopilot import (
 )
 
 from address_book_app import pages
+from address_book_app import address_book
 
 
 logger = logging.getLogger(__name__)
@@ -108,7 +109,7 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
                 objectName='contactListView.importFromSimCardButton')
             self.pointing_device.click_object(import_buttom)
 
-        return self.wait_select_single(pages.SIMCardImportPage,
+        return self.wait_select_single(address_book.SIMCardImportPage,
                                        objectName="simCardImportPage")
 
     def get_contact_list_view(self):

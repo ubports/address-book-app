@@ -20,7 +20,7 @@ import testtools
 import testscenarios
 from testtools.matchers import HasLength
 
-from address_book_app import data
+from address_book_app.address_book import data
 
 
 class PhoneTypesTestCase(testscenarios.TestWithScenarios, testtools.TestCase):
