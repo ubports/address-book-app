@@ -25,10 +25,10 @@ logger = logging.getLogger(__name__)
 
 class PageWithHeader(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
 
-    def get_header(self):
+    def get_header(self, main_window_name='MainWindow'):
         """Return the Header custom proxy object of the Page."""
         return self.get_root_instance().select_single(
-            'MainWindow').get_header()
+            main_window_name).get_header()
 
 
 class PageWithBottomEdge(ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):

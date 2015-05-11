@@ -149,6 +149,11 @@ class ContactEditorPage(_common.PageWithHeader):
             'QQuickFlickable', objectName='scrollArea')
         flickable.flicking.wait_for(False)
 
+    def wait_get_focus(self, section_name):
+        editor = self.select_single(
+            ContactDetailGroupWithTypeEditor, objectName=section_name)
+        editor.activeFocus.wait_for(True)
+
 
 class TextInputDetail(ubuntuuitoolkit.TextField):
     """Custom proxy object for the Text Input Detail field."""
