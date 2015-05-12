@@ -32,6 +32,7 @@ Item {
     property bool selected: false
     property bool selectionMode: false
     property alias internalAnchors: mainContents.anchors
+    property alias animated: behaviorOnX.enabled
     default property alias contents: mainContents.children
 
     readonly property double actionWidth: units.gu(4)
@@ -298,6 +299,8 @@ Item {
         }
 
         Behavior on x {
+            id: behaviorOnX
+
             UbuntuNumberAnimation {
                 id: mainItemMoving
 

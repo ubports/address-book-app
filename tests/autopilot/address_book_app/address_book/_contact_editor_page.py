@@ -20,8 +20,7 @@ import time
 
 import autopilot.logging
 import ubuntuuitoolkit
-from address_book_app import data, _errors
-from address_book_app.pages import _common
+from address_book_app.address_book import data, _errors, _common
 
 
 logger = logging.getLogger(__name__)
@@ -75,9 +74,11 @@ class ContactEditorPage(_common.PageWithHeader):
         add_field_button.height.wait_for(add_field_button.expandedHeight)
         self.wait_to_stop_moving()
 
-        options_list = add_field_button.select_single("QQuickListView",
+        options_list = add_field_button.select_single(
+            "QQuickListView",
             objectName="listViewOptions")
-        new_field_item = options_list.select_single("Standard",
+        new_field_item = options_list.select_single(
+            "Standard",
             objectName=self._DETAIL_ALIAS[detail_name])
         new_field_item.swipe_into_view()
 
@@ -149,6 +150,11 @@ class ContactEditorPage(_common.PageWithHeader):
         flickable = self.select_single(
             'QQuickFlickable', objectName='scrollArea')
         flickable.flicking.wait_for(False)
+
+    def wait_get_focus(self, section_name):
+        editor = self.select_single(
+            ContactDetailGroupWithTypeEditor, objectName=section_name)
+        editor.activeFocus.wait_for(True)
 
 
 class TextInputDetail(ubuntuuitoolkit.TextField):

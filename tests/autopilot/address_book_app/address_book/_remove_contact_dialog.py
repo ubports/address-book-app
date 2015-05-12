@@ -14,13 +14,23 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-__all__ = [
-    'ABContactEditorPage',
-    'ABContactListPage',
-    'ABContactViewPage'
-]
+import logging
 
-from address_book_app.address_book \
-    import ContactEditorPage as ABContactEditorPage
-from address_book_app.pages._ab_contact_view_page import ABContactViewPage
-from address_book_app.pages._ab_contact_list_page import ABContactListPage
+import autopilot.logging
+import ubuntuuitoolkit
+
+
+logger = logging.getLogger(__name__)
+
+
+class RemoveContactsDialog(
+        ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
+
+    """Autopilot helper for the Remove Contacts dialog."""
+
+    @autopilot.logging.log_action(logger.debug)
+    def confirm_removal(self):
+        button = self.select_single(
+            'Button', objectName='removeContactsDialog.Yes')
+        self.pointing_device.click_object(button)
+        self.wait_until_destroyed()

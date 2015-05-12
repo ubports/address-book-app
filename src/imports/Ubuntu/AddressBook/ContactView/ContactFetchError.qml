@@ -28,10 +28,7 @@ Component {
         Button {
             text: i18n.dtr("address-book-app", "Cancel")
             gradient: UbuntuColors.greyGradient
-            onClicked: {
-                PopupUtils.close(dialogue)
-                pageStack.pop()
-            }
+            onClicked: PopupUtils.close(dialogue)
         }
     }
 }

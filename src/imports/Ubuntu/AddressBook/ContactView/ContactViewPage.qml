@@ -18,6 +18,7 @@ import QtQuick 2.2
 import QtContacts 5.0
 
 import Ubuntu.Components 1.1
+import Ubuntu.Components.Popups 1.0
 import Ubuntu.Contacts 0.1
 
 Page {
@@ -79,7 +80,7 @@ Page {
         id: contactFetch
 
         onContactRemoved: root.contactRemoved()
-        onContactNotFound: Popups.PopupUtils.open(fetchErrorDialog, pageStack)
+        onContactNotFound: PopupUtils.open(fetchErrorDialog, root)
         onContactFetched: {
             root.contact = contact
             root.contactFetched(root.contact)
@@ -185,6 +186,11 @@ Page {
         }
     }
     onContactIdChanged: {
+        if (contact == null) {
+            fetchContact(root.contactId)
+        }
+    }
+    onModelChanged: {
         if (contact == null) {
             fetchContact(root.contactId)
         }

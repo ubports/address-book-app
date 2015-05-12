@@ -18,7 +18,7 @@ import logging
 
 import autopilot.logging
 
-from address_book_app.pages import _common
+from address_book_app.address_book import _common
 
 logger = logging.getLogger(__name__)
 log_action_info = autopilot.logging.log_action(logging.info)
@@ -95,6 +95,7 @@ class SIMCardImportPage(_common.PageWithHeader):
             for index in indices:
                 contact = self._get_contact_delegate(index)
                 self.pointing_device.click_object(contact)
-                contacts.append(contact.select_single('Label', objectName='nameLabel').text)
+                contacts.append(contact.select_single(
+                    'Label', objectName='nameLabel').text)
 
         return contacts

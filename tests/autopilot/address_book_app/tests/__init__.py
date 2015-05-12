@@ -25,7 +25,7 @@ from autopilot.matchers import Eventually
 from autopilot.platform import model
 from testtools.matchers import Equals
 
-import address_book_app
+import ubuntuuitoolkit
 from ubuntuuitoolkit import emulators as toolkit_emulators
 
 
@@ -98,7 +98,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
             self.app_bin,
             *AddressBookAppTestCase.ARGS,
             app_type='qt',
-            emulator_base=address_book_app.AddressBookApp)
+            emulator_base=ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase)
 
     def launch_test_installed(self):
         df = "/usr/share/applications/address-book-app.desktop"
@@ -107,12 +107,12 @@ class AddressBookAppTestCase(AutopilotTestCase):
             "address-book-app",
             *AddressBookAppTestCase.ARGS,
             app_type='qt',
-            emulator_base=address_book_app.AddressBookApp)
+            emulator_base=ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase)
 
     def launch_click_installed(self):
         return self.launch_click_package(
             'com.ubuntu.address-book',
-            emulator_base=address_book_app.AddressBookApp)
+            emulator_base=ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase)
 
     @property
     def main_window(self):

@@ -22,7 +22,9 @@ import time
 import autopilot.logging
 import ubuntuuitoolkit
 
-from address_book_app.pages import _common, _contact_view_page
+import address_book_app.address_book as address_book
+
+from address_book_app.pages import ABContactViewPage
 
 
 logger = logging.getLogger(__name__)
@@ -30,7 +32,7 @@ log_action_info = autopilot.logging.log_action(logging.info)
 log_action_debug = autopilot.logging.log_action(logging.debug)
 
 
-class ABContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
+class ABContactListPage(address_book.PageWithHeader, address_book.PageWithBottomEdge):
 
     """Autopilot helper for the Contact List page."""
 
@@ -49,7 +51,7 @@ class ABContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
             objectName='infoIcon')
         self.pointing_device.click_object(details_button)
         return self.get_root_instance().select_single(
-            _contact_view_page.ABContactViewPage, objectName='contactViewPage')
+            ABContactViewPage, objectName='contactViewPage')
 
     def _get_contact_delegate(self, index):
         contact_delegates = self._get_sorted_contact_delegates()
@@ -114,7 +116,7 @@ class ABContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
         self.get_header().click_action_button('delete')
         self.isCollapsed.wait_for(True)
         dialog = self.get_root_instance().wait_select_single(
-            RemoveContactsDialog, objectName='removeContactsDialog')
+            address_book.RemoveContactsDialog, objectName='removeContactsDialog')
         dialog.confirm_removal()
 
     def get_contacts(self):
@@ -132,15 +134,3 @@ class ABContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
         except ubuntuuitoolkit.ToolkitException:
             return None
 
-
-class RemoveContactsDialog(
-        ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
-
-    """Autopilot helper for the Remove Contacts dialog."""
-
-    @autopilot.logging.log_action(logger.debug)
-    def confirm_removal(self):
-        button = self.select_single(
-            'Button', objectName='removeContactsDialog.Yes')
-        self.pointing_device.click_object(button)
-        self.wait_until_destroyed()

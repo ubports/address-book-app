@@ -16,7 +16,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from address_book_app import data, tests
+from address_book_app.address_book import data
+from address_book_app import tests
+
 
 class ContactEditorTestCase(tests.AddressBookAppTestCase):
 
