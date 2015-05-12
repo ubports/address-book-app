@@ -61,6 +61,7 @@ ContactDetailBase {
 
     ActionButton {
         id: messageActions
+        objectName: "message-contact"
 
         anchors {
             right: callActions.left
@@ -76,6 +77,7 @@ ContactDetailBase {
 
     ActionButton {
         id: callActions
+        objectName: "tel-contact"
 
         anchors {
             right: parent.right

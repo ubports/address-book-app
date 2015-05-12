@@ -190,4 +190,9 @@ Page {
             fetchContact(root.contactId)
         }
     }
+    onModelChanged: {
+        if (contact == null) {
+            fetchContact(root.contactId)
+        }
+    }
 }
