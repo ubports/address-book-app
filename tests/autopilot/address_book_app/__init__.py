@@ -99,12 +99,12 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
         return None
 
     def start_import_contacts(self):
-        header = self.open_header()
+        self.open_header()
         view = self.get_contact_list_view()
         if view.count > 0:
             self.click_action_button("importFromSimHeaderButton")
         else:
-            import_buttom  = self.select_single(
+            import_buttom = self.select_single(
                 'ContactListButtonDelegate',
                 objectName='contactListView.importFromSimCardButton')
             self.pointing_device.click_object(import_buttom)
@@ -162,7 +162,7 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
         """
         Press the 'confirm' button
         """
-        header = self.open_header()
+        self.open_header()
         self.click_action_button("confirmImport")
 
     def get_toolbar(self):

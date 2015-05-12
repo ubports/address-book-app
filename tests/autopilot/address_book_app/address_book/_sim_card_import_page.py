@@ -95,6 +95,7 @@ class SIMCardImportPage(_common.PageWithHeader):
             for index in indices:
                 contact = self._get_contact_delegate(index)
                 self.pointing_device.click_object(contact)
-                contacts.append(contact.select_single('Label', objectName='nameLabel').text)
+                contacts.append(contact.select_single(
+                    'Label', objectName='nameLabel').text)
 
         return contacts

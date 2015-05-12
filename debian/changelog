@@ -1,3 +1,20 @@
+address-book-app (0.2+15.04.20150501-0ubuntu1) vivid; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Federico Gimenez ]
+  * Flake8 fixes (LP: #1444170)
+
+  [ Leonardo Arias Fonseca ]
+  * Fix the base class used when launching the app in autopilot tests.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Create a new property 'animated'; This property is used into the
+    list item demo page. (LP: #1417359)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Fri, 01 May 2015 19:11:51 +0000
+
 address-book-app (0.2+15.04.20150402-0ubuntu1) vivid; urgency=medium
 
   [ CI Train Bot ]

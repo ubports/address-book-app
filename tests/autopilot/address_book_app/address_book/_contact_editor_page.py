@@ -20,8 +20,8 @@ import time
 
 import autopilot.logging
 import ubuntuuitoolkit
+from address_book_app.address_book import data, _errors, _common
 
-from address_book_app.address_book import _common, _errors, data
 
 logger = logging.getLogger(__name__)
 
@@ -75,9 +75,11 @@ class ContactEditorPage(_common.PageWithHeader):
         self.wait_to_stop_moving()
 
         options_list = add_field_button.select_single(
-            "QQuickListView", objectName="listViewOptions")
+            "QQuickListView",
+            objectName="listViewOptions")
         new_field_item = options_list.select_single(
-            "Standard", objectName=self._DETAIL_ALIAS[detail_name])
+            "Standard",
+            objectName=self._DETAIL_ALIAS[detail_name])
         new_field_item.swipe_into_view()
 
         self.pointing_device.click_object(new_field_item)

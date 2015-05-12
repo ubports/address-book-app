@@ -19,6 +19,7 @@
 from address_book_app.address_book import data
 from address_book_app import tests
 
+
 class ContactEditorTestCase(tests.AddressBookAppTestCase):
 
     def test_fill_form(self):

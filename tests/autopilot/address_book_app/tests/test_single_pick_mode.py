@@ -30,7 +30,8 @@ class TestSinglePickerMode(AddressBookAppTestCase):
         item_to_contacts = {}
         for contact in contacts:
             if (contact.visible):
-                item = contact.select_single("QQuickRectangle", objectName="mainItem")
+                item = contact.select_single("QQuickRectangle",
+                                             objectName="mainItem")
                 self.assertThat(item.color, Eventually(Equals(contact.color)))
                 selected_items.append(item)
                 item_to_contacts[item] = contact
@@ -41,11 +42,15 @@ class TestSinglePickerMode(AddressBookAppTestCase):
 
         for item in selected_items:
             if item == selected_item:
-                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(True)))
-                self.assertThat(item.color, Eventually(Equals(contact.selectedColor)))
+                self.assertThat(item_to_contacts[item].selected,
+                                Eventually(Equals(True)))
+                self.assertThat(item.color,
+                                Eventually(Equals(contact.selectedColor)))
             else:
-                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(False)))
-                self.assertThat(item.color, Eventually(Equals(contact.color)))
+                self.assertThat(item_to_contacts[item].selected,
+                                Eventually(Equals(False)))
+                self.assertThat(item.color,
+                                Eventually(Equals(contact.color)))
 
         # click on item 2
         selected_item = selected_items[2]
@@ -53,11 +58,15 @@ class TestSinglePickerMode(AddressBookAppTestCase):
 
         for item in selected_items:
             if item == selected_item:
-                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(True)))
-                self.assertThat(item.color, Eventually(Equals(contact.selectedColor)))
+                self.assertThat(item_to_contacts[item].selected,
+                                Eventually(Equals(True)))
+                self.assertThat(item.color,
+                                Eventually(Equals(contact.selectedColor)))
             else:
-                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(False)))
-                self.assertThat(item.color, Eventually(Equals(contact.color)))
+                self.assertThat(item_to_contacts[item].selected,
+                                Eventually(Equals(False)))
+                self.assertThat(item.color,
+                                Eventually(Equals(contact.color)))
 
         # click on item 0
         selected_item = selected_items[0]
@@ -65,14 +74,19 @@ class TestSinglePickerMode(AddressBookAppTestCase):
 
         for item in selected_items:
             if item == selected_item:
-                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(True)))
-                self.assertThat(item.color, Eventually(Equals(contact.selectedColor)))
+                self.assertThat(item_to_contacts[item].selected,
+                                Eventually(Equals(True)))
+                self.assertThat(item.color,
+                                Eventually(Equals(contact.selectedColor)))
             else:
-                self.assertThat(item_to_contacts[item].selected, Eventually(Equals(False)))
-                self.assertThat(item.color, Eventually(Equals(contact.color)))
+                self.assertThat(item_to_contacts[item].selected,
+                                Eventually(Equals(False)))
+                self.assertThat(item.color,
+                                Eventually(Equals(contact.color)))
 
-        buttons = pick_page.select_many("Button", objectName="DialogButtons.acceptButton")
+        buttons = pick_page.select_many(
+            "Button",
+            objectName="DialogButtons.acceptButton")
         for b in buttons:
             if b.visible:
                 self.pointing_device.click_object(b)
-
