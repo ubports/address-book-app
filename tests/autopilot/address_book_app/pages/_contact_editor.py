@@ -75,9 +75,11 @@ class ContactEditor(_common.PageWithHeader):
         add_field_button.height.wait_for(add_field_button.expandedHeight)
         self.wait_to_stop_moving()
 
-        options_list = add_field_button.select_single("QQuickListView",
+        options_list = add_field_button.select_single(
+            "QQuickListView",
             objectName="listViewOptions")
-        new_field_item = options_list.select_single("Standard",
+        new_field_item = options_list.select_single(
+            "Standard",
             objectName=self._DETAIL_ALIAS[detail_name])
         new_field_item.swipe_into_view()
 
