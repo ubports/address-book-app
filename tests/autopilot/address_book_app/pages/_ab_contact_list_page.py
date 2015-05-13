@@ -130,3 +130,9 @@ class ABContactListPage(address_book.PageWithHeader, address_book.PageWithBottom
         except ubuntuuitoolkit.ToolkitException:
             return None
 
+    def is_import_from_sim_button_visible(self):
+        import_from_sim_button = self.select_single(
+            'ContactListButtonDelegate',
+            objectName='contactListView.importFromSimCardButton')
+        return import_from_sim_button.visible
+

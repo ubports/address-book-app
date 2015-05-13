@@ -30,3 +30,5 @@ from address_book_app.address_book._sim_card_import_page \
     import SIMCardImportPage
 from address_book_app.address_book._common import PageWithHeader
 from address_book_app.address_book._common import PageWithBottomEdge
+from address_book_app.address_book._remove_contact_dialog \
+    import RemoveContactsDialog
