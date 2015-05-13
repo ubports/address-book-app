@@ -42,6 +42,11 @@ Item {
     }
 
     function _fetchContact(contactId) {
+        if (running) {
+            console.warn("Fetch already running!")
+            return
+        }
+
         if (contact && !contactIsDirty && contact.contacId == contactId) {
             contactFetched(contact)
         } else {
