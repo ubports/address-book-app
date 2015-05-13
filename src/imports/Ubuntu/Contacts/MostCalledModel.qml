@@ -25,7 +25,7 @@ VisualDataModel {
 
     property var contactModel: null
     property int currentIndex: -1
-    property int callAverage: 0 //mostCalledModel.callAverage
+    property alias callAverage: mostCalledModel.callAverage
 
     signal clicked(int index, QtObject contact)
     signal detailClicked(QtObject contact, QtObject detail, string action)
@@ -49,19 +49,19 @@ VisualDataModel {
         }
         onCanFetchMoreChanged: {
             if (count === 0) {
-                //mostCalledModel.update()
+                mostCalledModel.update()
             }
         }
     }
 
-//    model: MostCalledContactsModel {
-//        id: mostCalledModel
+    model: MostCalledContactsModel {
+        id: mostCalledModel
 
-//        startInterval: new Date((new Date().getTime() - 2592000000)) // one month ago
-//        maxCount: 5
-//        onLoaded: root.loaded()
-//        sourceModel: historyEventModel
-//    }
+        startInterval: new Date((new Date().getTime() - 2592000000)) // one month ago
+        maxCount: 5
+        onLoaded: root.loaded()
+        sourceModel: historyEventModel
+    }
 
     delegate: ContactDelegate {
         id: contactDelegate
