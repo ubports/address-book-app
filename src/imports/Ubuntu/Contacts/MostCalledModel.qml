@@ -19,6 +19,7 @@ import QtQuick 2.2
 import QtContacts 5.0
 
 import Ubuntu.History 0.1
+import Ubuntu.Contacts 0.1 as ContactUI
 
 VisualDataModel {
     id: root
@@ -28,6 +29,7 @@ VisualDataModel {
     property alias callAverage: mostCalledModel.callAverage
 
     signal contactClicked(int index, QtObject contact)
+    signal addContactClicked(string label)
     signal loaded()
 
     property var baseModel: HistoryEventModel {
@@ -50,7 +52,7 @@ VisualDataModel {
         }
     }
 
-    model: MostCalledContactsModel {
+    model: ContactUI.MostCalledContactsModel {
         id: mostCalledModel
 
         startInterval: new Date((new Date().getTime() - 2592000000)) // one month ago
@@ -81,7 +83,13 @@ VisualDataModel {
             }
         }
 
-        onClicked: root.contactClicked(index, contact)
+        onClicked: {
+            if (contact) {
+                root.contactClicked(index, contact)
+            } else {
+                root.addContactClicked(name.text)
+            }
+        }
 
         // delegate does not support more than one child
         contents: ContactFetch {

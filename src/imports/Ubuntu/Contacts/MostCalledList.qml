@@ -71,6 +71,7 @@ Column {
             id: calledModel
 
             onContactClicked: parentView.contactClicked(contact)
+            onAddContactClicked: parentView.addContactClicked(label)
             onCurrentIndexChanged: {
                 if (currentIndex !== -1) {
                     parentView.currentIndex = -1
