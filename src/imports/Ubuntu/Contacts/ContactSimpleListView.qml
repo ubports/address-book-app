@@ -85,8 +85,8 @@ MultipleSelectionListView {
     property var fetchHint : FetchHint {
         detailTypesHint: {
             var hints = [ ContactDetail.Tag,          // sections
-                          ContactDetail.PhoneNumber,  // expansion
-                          ContactDetail.DisplayLabel ]
+                          ContactDetail.DisplayLabel // label
+                        ]
 
             if (contactListView.showAvatar) {
                 hints.push(ContactDetail.Avatar)
@@ -300,7 +300,7 @@ MultipleSelectionListView {
                 }
             } else {
                 contactListView.currentIndex = index
-                contactListView.contactClicked(contact)
+                contactListView._fetchContact(index, contact)
             }
         }
 
@@ -320,7 +320,7 @@ MultipleSelectionListView {
         id: contactFetch
 
         model: root.listModel
-        onContactFetched: contactListView.infoRequested(contact)
+        onContactFetched: contactListView.contactClicked(contact)
     }
     // This is a workaround to make sure the spinner will disappear if the model is empty
     // FIXME: implement a model property to say if the model still busy or not
