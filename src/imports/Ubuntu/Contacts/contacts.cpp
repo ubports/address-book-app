@@ -79,7 +79,6 @@ QUrl UbuntuContacts::copyImage(QObject *contact, const QUrl &imageUrl)
     }
 
     imgThread->start();
-    imgThread->wait();
 
     // FIXME: implement this as async function
     while(imgThread->isRunning()) {
