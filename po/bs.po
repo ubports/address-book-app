@@ -14,401 +14,401 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-03-21 05:42+0000\n"
-"X-Generator: Launchpad (build 17405)\n"
+"X-Launchpad-Export-Date: 2015-05-13 05:30+0000\n"
+"X-Generator: Launchpad (build 17493)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:77
 #, qt-format
 msgid "%1 is locked"
-msgstr ""
+msgstr "%1 je zaključano"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #, qt-format
 msgid "%1 vCards imported"
-msgstr ""
+msgstr "%1 vCards importovane"
 
 #. TRANSLATORS: this refers to a new contact
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:424
 msgid "+ Create New"
-msgstr ""
+msgstr "+ Kreiraj Novi"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:307
 msgid "Add Field"
-msgstr ""
+msgstr "Dodaj Polje"
 
 #: ../src/imports/Settings/SettingsPage.qml:67
 msgid "Add Google account"
-msgstr ""
+msgstr "Dodaj Google račun"
 
 #: ../src/imports/ContactList/ContactListPage.qml:396
 msgid "Add contact"
-msgstr ""
+msgstr "Dodaj kontakt"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
-msgstr ""
+msgstr "Dodaj broj..."
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:51
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:23
 #: ../src/imports/Ubuntu/Contacts/ContactDetailAddressesView.qml:24
 msgid "Address"
-msgstr ""
+msgstr "Adresa"
 
 #: ../src/imports/ContactEdit/ContactDetailSyncTargetEditor.qml:76
 #: ../src/imports/ContactView/ContactDetailSyncTargetView.qml:49
 msgid "Addressbook"
-msgstr ""
+msgstr "Adresar"
 
 #. TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "Aim"
-msgstr ""
+msgstr "Cilj"
 
 #. TRANSLATORS: this refers to all contacts
 #: ../src/imports/ContactList/ContactListPage.qml:283
 msgid "All"
-msgstr ""
+msgstr "Sve"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
-msgstr ""
+msgstr "Da li ste sigurni da želite izbrisati sve odabrane kontakte?"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
-msgstr ""
+msgstr "Da li ste sigurni da želite ukloniti ovaj konakt?"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:398
 #: ../src/imports/ContactList/ContactListPage.qml:296
 #: ../src/imports/ContactView/ContactFetchError.qml:29
 #: ../src/imports/MainWindow.qml:157
 msgid "Cancel"
-msgstr ""
+msgstr "Otkaži"
 
 #: ../src/imports/ContactList/ContactListPage.qml:320
 msgid "Cancel selection"
-msgstr ""
+msgstr "Poništi izbor"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:80
 msgid "Close"
-msgstr ""
+msgstr "Zatvori"
 
 #: ../src/imports/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
-msgstr ""
+msgstr "Kontakt nije pronađen"
 
 #: ../src/imports/ContactList/ContactListPage.qml:145
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
-msgstr ""
+msgstr "Kontakti"
 
 #: ../data/address-book-app.desktop.in.in.h:2
 msgid "Contacts Address Book"
-msgstr ""
+msgstr "Adresar kontakta"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
-msgstr ""
+msgstr "Konakti;Ljudi;Brojevi"
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:35
 msgid "Country"
-msgstr ""
+msgstr "Zemlja"
 
 #: ../src/imports/ContactList/ContactListPage.qml:481
 msgid "Create a new contact by swiping up from the bottom of the screen."
-msgstr ""
+msgstr "Kreiraj novi kontakt prelaskom od dna ekrana ka gore."
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:355
 #: ../src/imports/ContactList/ContactListPage.qml:168
 #: ../src/imports/ContactList/ContactListPage.qml:356
 msgid "Delete"
-msgstr ""
+msgstr "Izbriši"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
 #: ../src/imports/ContactView/ContactView.qml:107
 msgid "Edit"
-msgstr ""
+msgstr "Izmijeni"
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:49
 #: ../src/imports/ContactEdit/ContactDetailEmailsEditor.qml:24
 #: ../src/imports/Ubuntu/Contacts/ContactDetailEmailsView.qml:23
 #: ../src/imports/Ubuntu/Contacts/ContactDetailEmailsView.qml:26
 msgid "Email"
-msgstr ""
+msgstr "E‑pošta"
 
 #: ../src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
-msgstr ""
+msgstr "Unesite broj"
 
 #: ../src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:27
 msgid "Enter a social alias"
-msgstr ""
+msgstr "Unesite društevni pseudonim"
 
 #: ../src/imports/ContactEdit/ContactDetailEmailsEditor.qml:28
 msgid "Enter an email address"
-msgstr ""
+msgstr "Unesite adresu elektronske pošte"
 
 #: ../src/imports/ContactView/ContactFetchError.qml:25
 #: ../src/imports/MainWindow.qml:153
 msgid "Error"
-msgstr ""
+msgstr "Greška"
 
 #: ../src/imports/Common/ContactExporter.qml:157
 msgid "Exporting contacts..."
-msgstr ""
+msgstr "Eksportujem kontakte..."
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:243
 msgid "Fail to read SIM card"
-msgstr ""
+msgstr "Greška u čitanju SIM kartice"
 
 #: ../src/imports/ContactList/ContactListPage.qml:283
 msgid "Favorites"
-msgstr ""
+msgstr "Omiljeno"
 
 #: ../src/imports/ContactEdit/ContactDetailNameEditor.qml:84
 msgid "First name"
-msgstr ""
+msgstr "Ime"
 
 #: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
 msgid "Frequently called"
-msgstr ""
+msgstr "Često pozivani"
 
 #. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:115
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
 msgid "Home"
-msgstr ""
+msgstr "Početna"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:63
 msgid "ICQ"
-msgstr ""
+msgstr "ICQ"
 
 #: ../src/imports/ContactEdit/ContactDetailOnlineAccountsEditor.qml:23
 msgid "IM"
-msgstr ""
+msgstr "IM"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:190
 msgid "Import"
-msgstr ""
+msgstr "Importuj"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:468
 msgid "Import contacts from Google"
-msgstr ""
+msgstr "Importuj kontakte sa Googlea"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:479
 msgid "Import contacts from SIM card"
-msgstr ""
+msgstr "Importuj kontakte sa SIM kartice"
 
 #: ../src/imports/Settings/SettingsPage.qml:72
 msgid "Import from SIM"
-msgstr ""
+msgstr "Importuj sa SIMa"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:71
 msgid "Import vCards"
-msgstr ""
+msgstr "Importuj vCards"
 
 #: ../src/imports/ContactList/VCardImportDialog.qml:72
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:235
 msgid "Importing..."
-msgstr ""
+msgstr "Importujem..."
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
 msgid "Jabber"
-msgstr ""
+msgstr "Jabber"
 
 #: ../src/imports/ContactEdit/ContactDetailNameEditor.qml:84
 msgid "Last name"
-msgstr ""
+msgstr "Prezime"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:547
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:218
 msgid "Loading..."
-msgstr ""
+msgstr "Učitavanje..."
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:32
 msgid "Locality"
-msgstr ""
+msgstr "Lokacija"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:66
 msgid "MSN"
-msgstr ""
+msgstr "MSN"
 
 #. TRANSLATORS: This refers to mobile/cellphone phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
 msgid "Mobile"
-msgstr ""
+msgstr "Mobilni uređaj"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:44
 msgid "Multiple contacts"
-msgstr ""
+msgstr "Višestruki kontakti"
 
 #: ../src/imports/Settings/SettingsPage.qml:61
 #, qt-format
 msgid "My phone number: %1"
-msgstr ""
+msgstr "Moj telefonski broj: %1"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:142
 msgid "New contact"
-msgstr ""
+msgstr "Novi kontakt"
 
 #. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
 #. this word must be less than 5 characters
 #: ../src/imports/ContactEdit/TextInputDetail.qml:76
 msgid "Next"
-msgstr ""
+msgstr "Sljedeći"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:74
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:40
 msgid "No contact selected."
-msgstr ""
+msgstr "Kontakt nije odabran."
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:110
 msgid "No contacts found"
-msgstr ""
+msgstr "Kontakti nisu nađeni"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:113
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:31
 #: ../src/imports/Ubuntu/Contacts/ContactPreviewPage.qml:36
 msgid "No name"
-msgstr ""
+msgstr "Bez imena"
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
-msgstr ""
+msgstr "Organizacija"
 
 #. TRANSLATORS: This refers to any other phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:117
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:121
 msgid "Other"
-msgstr ""
+msgstr "Drugi"
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:47
 #: ../src/imports/ContactEdit/ContactDetailPhoneNumbersEditor.qml:23
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumbersView.qml:26
 msgid "Phone"
-msgstr ""
+msgstr "Telefon"
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
-msgstr ""
+msgstr "Poštanski broj"
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:55
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:21
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOrganizationsView.qml:24
 msgid "Professional Details"
-msgstr ""
+msgstr "Informacije o profesiji"
 
 #: ../src/imports/ContactList/ContactListPage.qml:247
 msgid "Quit"
-msgstr ""
+msgstr "Izlaz"
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:33
 msgid "Region"
-msgstr ""
+msgstr "Regija"
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
-msgstr ""
+msgstr "Funkcija"
 
 #: ../src/imports/Settings/SettingsPage.qml:62
 #, qt-format
 msgid "SIM %1"
-msgstr ""
+msgstr "SIM %1"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:34
 msgid "SIM contacts"
-msgstr ""
+msgstr "SIM kontakti"
 
 #: ../src/imports/ContactEdit/ContactEditor.qml:411
 msgid "Save"
-msgstr ""
+msgstr "Sačuvaj"
 
 #: ../src/imports/ContactList/ContactListPage.qml:255
 msgid "Search"
-msgstr ""
+msgstr "Traži"
 
 #: ../src/imports/ContactList/ContactListPage.qml:219
 msgid "Search..."
-msgstr ""
+msgstr "Traži..."
 
 #: ../src/imports/ContactList/ContactListPage.qml:326
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:178
 msgid "Select All"
-msgstr ""
+msgstr "Odaberi sve"
 
 #: ../src/imports/ContactList/ContactListPage.qml:272
 #: ../src/imports/Settings/SettingsPage.qml:30
 msgid "Settings"
-msgstr ""
+msgstr "Postavke"
 
 #: ../src/imports/ContactList/ContactListPage.qml:339
 #: ../src/imports/ContactView/ContactView.qml:98
 msgid "Share"
-msgstr ""
+msgstr "Podijeli"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Skype"
-msgstr ""
+msgstr "Skype"
 
 #: ../src/imports/ContactEdit/ComboButtonAddField.qml:53
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:24
 msgid "Social"
-msgstr ""
+msgstr "Društveno"
 
 #: ../src/imports/ContactEdit/ContactDetailAddressesEditor.qml:31
 msgid "Street"
-msgstr ""
+msgstr "Ulica"
 
 #: ../src/imports/ContactList/ContactListPage.qml:266
 msgid "Sync"
-msgstr ""
+msgstr "Sinhronizacija"
 
 #: ../src/imports/ContactList/ContactListPage.qml:266
 msgid "Syncing"
-msgstr ""
+msgstr "Sinhronizujem"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:547
 msgid "Syncing..."
-msgstr ""
+msgstr "Sinhronizujem..."
 
 #: ../src/imports/ContactEdit/ContactDetailOrganizationsEditor.qml:30
 msgid "Title"
-msgstr ""
+msgstr "Naslov"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountsView.qml:27
 msgid "Touch"
-msgstr ""
+msgstr "Dodir"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
 msgid "Unlock"
-msgstr ""
+msgstr "Otključaj"
 
 #: ../src/imports/ContactList/ContactListPage.qml:326
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:177
 msgid "Unselect All"
-msgstr ""
+msgstr "Poništi oznake svih"
 
 #. TRANSLATORS: This refers to landline work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailGroupWithTypeBase.qml:116
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
 msgid "Work"
-msgstr ""
+msgstr "Posao"
 
 #. TRANSLATORS: This refers to mobile/cellphone work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:117
 msgid "Work Mobile"
-msgstr ""
+msgstr "Broj poslovnog mobilnog uređaja"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
 msgid "Yahoo"
-msgstr ""
+msgstr "Yahoo"
 
 #: ../src/imports/Common/RemoveContactsDialog.qml:62
 msgid "Yes"
-msgstr ""
+msgstr "Da"
 
 #: ../src/imports/ContactList/ContactListPage.qml:480
 msgid "You have no contacts."
-msgstr ""
+msgstr "Ne posjedujete kontakte."
