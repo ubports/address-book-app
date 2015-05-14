@@ -19,6 +19,7 @@ import QtQuick 2.2
 import QtContacts 5.0
 
 import Ubuntu.History 0.1
+import Ubuntu.Contacts 0.1 as ContactUI
 
 VisualDataModel {
     id: root
@@ -54,7 +55,7 @@ VisualDataModel {
         }
     }
 
-    model: MostCalledContactsModel {
+    model: ContactUI.MostCalledContactsModel {
         id: mostCalledModel
 
         startInterval: new Date((new Date().getTime() - 2592000000)) // one month ago
