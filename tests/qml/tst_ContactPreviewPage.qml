@@ -43,6 +43,13 @@ Item {
         return ContactUtilJS.createContact(details, root)
     }
 
+    function createSignalSpy(target, signalName) {
+        var spy = Qt.createQmlObject('import QtTest 1.0;  SignalSpy {}', root, "")
+        spy.target = target
+        spy.signalName = signalName
+        return spy
+    }
+
     VCardParser {
         id: vcardParser
 
@@ -113,7 +120,6 @@ Item {
         {
             compare(vcardParser.contacts.length, 1)
             var contact =  vcardParser.contacts[0]
-            console.debug("Contact: " + contact.phoneNumber.number)
             contactPreviewPage.contact = contact
             tryCompare(contactPreviewPage, "title", "Forrest Gump")
             // PhoneNumbers
@@ -204,6 +210,30 @@ Item {
             compare(org_name.text, "Bubba Gump Shrimp Co.")
             compare(org_role.text, "")
             compare(org_title.text, "Shrimp Man")
+        }
+
+        function test_click_on_email()
+        {
+            // load contact from vcard
+            compare(vcardParser.contacts.length, 1)
+            var contact =  vcardParser.contacts[0]
+            contactPreviewPage.contact = contact
+            // wait contact be loaded
+            waitForRendering(contactPreviewPage);
+
+            // find object
+            var emailGroup = findChild(root, "emails")
+            var email = findChild(emailGroup, "label_emailAddress_0.0")
+            tryCompare(email, "text", "forrestgump@example.com")
+            tryCompare(email, "visible", true)
+
+            // click on e-mail field
+            var spy = root.createSignalSpy(contactPreviewPage, "actionTrigerred");
+            mouseClick(email, email.width / 2, email.height / 2)
+
+            tryCompare(spy, "count", 1)
+            compare(spy.signalArguments[0][0], "mailto")
+            compare(spy.signalArguments[0][2].value(0), "forrestgump@example.com")
         }
     }
 }
