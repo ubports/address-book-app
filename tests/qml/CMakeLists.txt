@@ -4,22 +4,23 @@ find_program(QMLTESTRUNNER_BIN
     NO_DEFAULT_PATH
 )
 
+find_program(XVFB_RUN_BIN
+    NAMES xvfb-run
+)
+
 macro(DECLARE_QML_TEST TST_NAME TST_QML_FILE)
-    if(RUN_TESTS_OFFSCREEN)
-        set(COMMAND_SUFFIX -platform offscreen)
+    if(USE_XVFB)
+        set(COMMAND_PREFIX ${XVFB_RUN_BIN} -a -s "-screen 0 1024x768x24")
     else()
-        set(COMMAND_SUFFIX "")
+        set(COMMAND_PREFIX "")
     endif()
     add_test(NAME ${TST_NAME}
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        COMMAND ${QMLTESTRUNNER_BIN} ${COMMAND_SUFFIX} -import ${imports_BINARY_DIR} -input ${CMAKE_CURRENT_SOURCE_DIR}/${TST_QML_FILE}
+        COMMAND ${COMMAND_PREFIX} ${QMLTESTRUNNER_BIN} -import ${imports_BINARY_DIR} -input ${CMAKE_CURRENT_SOURCE_DIR}/${TST_QML_FILE}
     )
-    set(TEST_ENVIRONMENT "QT_QPA_PLATFORM=minimal\;QT_QPA_FONTDIR=.")
-    set_tests_properties(${TST_NAME} PROPERTIES
-                          ENVIRONMENT ${TEST_ENVIRONMENT})
 endmacro()
 
-if(QMLTESTRUNNER_BIN)
+if(QMLTESTRUNNER_BIN AND XVFB_RUN_BIN)
     declare_qml_test("contact_list" tst_ContactList.qml)
     declare_qml_test("Contact_list_model" tst_ContactListModel.qml)
     declare_qml_test("Contact_list_view" tst_ContactListView.qml)
@@ -29,7 +30,11 @@ if(QMLTESTRUNNER_BIN)
     declare_qml_test("contact_preview_page" tst_ContactPreviewPage.qml)
     declare_qml_test("vcard_parser" tst_VCardParser.qml)
 else()
-    message(WARNING "Qml tests disabled: qmltestrunner not found")
+    if (NOT QMLTESTRUNNER_BIN)
+        message(WARNING "Qml tests disabled: qmltestrunner not found")
+    else()
+        message(WARNING "Qml tests disabled: xvfb-run not found")
+    endif()
 endif()
 
 set(QML_TST_FILES
