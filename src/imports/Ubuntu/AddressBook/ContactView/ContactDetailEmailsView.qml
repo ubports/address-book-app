@@ -19,11 +19,14 @@ import QtContacts 5.0 as QtContacts
 import Ubuntu.Components 1.1
 
 ContactDetailGroupWithTypeView {
+    id: root
+
     detailType: QtContacts.ContactDetail.Email
     title: i18n.dtr("address-book-app", "Email")
     fields: [ 0 ]
     defaultAction: Action {
         text: i18n.dtr("address-book-app", "Email")
+        name: "mailto"
         iconName: "email"
     }
 }

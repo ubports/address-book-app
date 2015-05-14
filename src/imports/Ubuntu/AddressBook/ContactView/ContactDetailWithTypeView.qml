@@ -17,6 +17,7 @@
 import QtQuick 2.2
 import QtContacts 5.0
 
+import Ubuntu.Components 1.1
 import Ubuntu.AddressBook.Base 0.1
 
 ContactDetailBase {
@@ -39,6 +40,7 @@ ContactDetailBase {
 
     implicitHeight: view.implicitHeight
     onIsReadyChanged: populateValues()
+
     Connections {
         target: root.detail
         onDetailChanged: populateValues()
@@ -52,11 +54,24 @@ ContactDetailBase {
         parentIndex: root.index
 
         anchors {
-            right: parent.right
-            rightMargin: units.gu(2)
-            top: parent.top
             left: parent.left
             leftMargin: units.gu(2)
+            right: icon.left
+            rightMargin: units.gu(2)
+            top: parent.top
         }
+    }
+
+    Icon {
+        id: icon
+
+        anchors {
+            right: parent.right
+            rightMargin: units.gu(2)
+            verticalCenter: parent.verticalCenter
+        }
+        width: root.action && (root.action.iconName !== "") ? units.gu(2.5) : 0
+        height: width
+        name: root.action ? root.action.iconName : ""
     }
 }

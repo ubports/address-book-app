@@ -25,8 +25,8 @@ import Ubuntu.AddressBook.Base 0.1
 ContactDetailGroupWithTypeBase {
     id: root
 
-    property Action defaultAction
-    signal actionTrigerred(string action, QtObject detail)
+    property QtObject defaultAction: null
+    signal actionTrigerred(string actionName, QtObject detail)
 
     showEmpty: false
     headerDelegate: ListItem.Empty {
@@ -61,6 +61,10 @@ ContactDetailGroupWithTypeBase {
 
         height: implicitHeight
         width: root.width
-        onClicked: root.actionTrigerred(action, detail)
+
+        Connections {
+            target: root.defaultAction
+            onTriggered: root.actionTrigerred(root.defaultAction.name, detail)
+        }
     }
 }
