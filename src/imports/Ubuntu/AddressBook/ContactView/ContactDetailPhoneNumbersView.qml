@@ -44,9 +44,6 @@ ContactDetailGroupWithTypeView {
         width: root.width
 
         onActionTrigerred: root.actionTrigerred(actionName, detail)
-        Connections {
-            target: root.defaultAction
-            onTriggered: root.actionTrigerred(root.defaultAction.name, detail)
-        }
+        onClicked: root.actionTrigerred(root.defaultAction.name, detail)
     }
 }

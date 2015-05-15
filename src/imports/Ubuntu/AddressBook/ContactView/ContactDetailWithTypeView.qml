@@ -67,7 +67,7 @@ ContactDetailBase {
 
         anchors {
             right: parent.right
-            rightMargin: units.gu(2)
+            rightMargin: units.gu(3)
             verticalCenter: parent.verticalCenter
         }
         width: root.action && (root.action.iconName !== "") ? units.gu(2.5) : 0

@@ -62,9 +62,6 @@ ContactDetailGroupWithTypeBase {
         height: implicitHeight
         width: root.width
 
-        Connections {
-            target: root.defaultAction
-            onTriggered: root.actionTrigerred(root.defaultAction.name, detail)
-        }
+        onClicked: root.actionTrigerred(root.defaultAction.name, detail)
     }
 }
