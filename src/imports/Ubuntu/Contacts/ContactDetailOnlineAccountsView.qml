@@ -21,9 +21,9 @@ import Ubuntu.Components 1.1
 ContactDetailGroupWithTypeView {
     detailType: QtContacts.ContactDetail.OnlineAccount
     fields: [ QtContacts.OnlineAccount.AccountUri ]
-    title: i18n.tr("Social")
+    title: i18n.dtr("address-book-app", "Social")
     typeModel: ContactDetailOnlineAccountTypeModel { }
     defaultAction: Action {
-        text: i18n.tr("Touch")
+        text: i18n.dtr("address-book-app", "Touch")
     }
 }

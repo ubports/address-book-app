@@ -31,7 +31,7 @@ Page {
     property var targetModel: null
     property var sims: []
 
-    title: i18n.tr("SIM contacts")
+    title: i18n.dtr("address-book-app", "SIM contacts")
 
     function lockedSIMCount()
     {
@@ -74,9 +74,9 @@ Page {
                     else
                         simUnlocking.start()
                 }
-                text: i18n.tr("%1 is locked").arg(sims[index].title)
+                text: i18n.dtr("address-book-app", "%1 is locked").arg(sims[index].title)
                 control: Button {
-                    text: i18n.tr("Unlock")
+                    text: i18n.dtr("address-book-app", "Unlock")
                     onClicked: simCardContacts.unlockModem(sims[index].path)
                 }
             }
@@ -107,7 +107,7 @@ Page {
         id: statusMessage
 
         anchors.centerIn: parent
-        text: i18n.tr("No contacts found")
+        text: i18n.dtr("address-book-app", "No contacts found")
         visible: ((contactList.count === 0) &&
                   (root.state === "") &&
                   !contactList.busy &&
@@ -174,8 +174,8 @@ Page {
     head.actions: [
         Action {
             text: (contactList.selectedItems.count === contactList.count) ?
-                      i18n.tr("Unselect All") :
-                      i18n.tr("Select All")
+                      i18n.dtr("address-book-app", "Unselect All") :
+                      i18n.dtr("address-book-app", "Select All")
             iconName: "select"
             onTriggered: {
                 if (contactList.selectedItems.count === contactList.count) {
@@ -187,7 +187,7 @@ Page {
             visible: (contactList.count > 0)
         },
         Action {
-            text: i18n.tr("Import")
+            text: i18n.dtr("address-book-app", "Import")
             objectName: "confirmImport"
 
             iconName: "tick"
@@ -215,7 +215,7 @@ Page {
                    (sims.length > root.lockedSIMCount())
             PropertyChanges {
                 target: indicator
-                title: i18n.tr("Loading...")
+                title: i18n.dtr("address-book-app", "Loading...")
                 visible: true
             }
         },
@@ -224,7 +224,7 @@ Page {
             when: !simCardContacts.busy && (contactList.count == 0) && (simUnlocking.running)
             PropertyChanges {
                 target: indicator
-                title: i18n.tr("Unlocking...")
+                title: i18n.dtr("address-book-app", "Unlocking...")
                 visible: true
             }
         },
@@ -232,7 +232,7 @@ Page {
             name: "importing"
             PropertyChanges {
                 target: indicator
-                title: i18n.tr("Importing...")
+                title: i18n.dtr("address-book-app", "Importing...")
                 visible: true
             }
         },
@@ -240,7 +240,7 @@ Page {
             name: "error"
             PropertyChanges {
                 target: statusMessage
-                text: i18n.tr("Fail to read SIM card")
+                text: i18n.dtr("address-book-app", "Fail to read SIM card")
                 visible: true
             }
         }

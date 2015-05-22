@@ -23,7 +23,7 @@ ContactDetailGroupWithTypeView {
     detailType: QtContacts.ContactDetail.PhoneNumber
     fields: [ QtContacts.PhoneNumber.Number ]
 
-    title: i18n.tr("Phone")
+    title: i18n.dtr("address-book-app", "Phone")
     typeModel: ContactDetailPhoneNumberTypeModel { }
     detailDelegate: ContactDetailPhoneNumberView {
         property variant detailType: detail && root.contact && root.typeModelReady ? root.getType(detail) : null
