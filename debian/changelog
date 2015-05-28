@@ -1,3 +1,16 @@
+address-book-app (0.2+15.10.20150528-0ubuntu1) wily; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk. added: po/ia.po
+
+  [ Sebastien Bacher ]
+  * Specify the gettext domain to use, the contact widgets are imported
+    by other components (like the dialer) and trying to load the
+    translations from the current domain is not working then. (LP:
+    #1447516)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Thu, 28 May 2015 13:18:13 +0000
+
 address-book-app (0.2+15.04.20150501-0ubuntu1) vivid; urgency=medium
 
   [ CI Train Bot ]
