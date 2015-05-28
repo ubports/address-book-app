@@ -20,10 +20,10 @@ import Ubuntu.Components 1.1
 
 ContactDetailGroupWithTypeView {
     detailType: QtContacts.ContactDetail.Email
-    title: i18n.tr("Email")
+    title: i18n.dtr("address-book-app", "Email")
     fields: [ 0 ]
     defaultAction: Action {
-        text: i18n.tr("Email")
+        text: i18n.dtr("address-book-app", "Email")
         iconName: "email"
     }
 }
