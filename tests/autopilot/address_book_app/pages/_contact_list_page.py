@@ -132,6 +132,12 @@ class ContactListPage(_common.PageWithHeader, _common.PageWithBottomEdge):
         except ubuntuuitoolkit.ToolkitException:
             return None
 
+    def is_import_from_sim_button_visible(self):
+        import_from_sim_button = self.select_single(
+            'ContactListButtonDelegate',
+            objectName='contactListView.importFromSimCardButton')
+        return import_from_sim_button.visible
+
 
 class RemoveContactsDialog(
         ubuntuuitoolkit.UbuntuUIToolkitCustomProxyObjectBase):
