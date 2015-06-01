@@ -18,6 +18,7 @@ import QtQuick 2.2
 import QtContacts 5.0 as QtContacts
 
 import Ubuntu.Contacts 0.1
+import Ubuntu.Components 1.1
 
 ContactDetailGroupWithTypeView {
     id: root
@@ -27,15 +28,22 @@ ContactDetailGroupWithTypeView {
 
     title: i18n.dtr("address-book-app", "Phone")
     typeModel: ContactDetailPhoneNumberTypeModel { }
+    defaultAction: Action {
+        text: i18n.dtr("address-book-app", "Phone")
+        name: "default"
+    }
     detailDelegate: ContactDetailPhoneNumberView {
         property variant detailType: detail && root.contact && root.typeModelReady ? root.getType(detail) : null
 
+        action: root.defaultAction
         contact: root.contact
         fields: root.fields
         typeLabel: detailType ? detailType.label : ""
 
         height: implicitHeight
         width: root.width
-        onActionTrigerred: root.actionTrigerred(action, detail)
+
+        onActionTrigerred: root.actionTrigerred(actionName, detail)
+        onClicked: root.actionTrigerred(root.defaultAction.name, detail)
     }
 }

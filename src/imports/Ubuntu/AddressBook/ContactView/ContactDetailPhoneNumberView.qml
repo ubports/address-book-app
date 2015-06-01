@@ -25,6 +25,8 @@ ContactDetailBase {
     property alias lineHeight: view.lineHeight
     readonly property bool isReady: (fields != null) && (detail != null)
 
+    signal actionTrigerred(string actionName, QtObject detail)
+
     function populateValues()
     {
         if (isReady) {
@@ -38,6 +40,7 @@ ContactDetailBase {
 
     implicitHeight: view.implicitHeight
     onIsReadyChanged: populateValues()
+
     Connections {
         target: root.detail
         onDetailChanged: populateValues()
@@ -71,7 +74,7 @@ ContactDetailBase {
         width: units.gu(4)
         height: units.gu(4)
         iconName: "message"
-        onClicked: root.actionTrigerred("message")
+        onClicked: root.actionTrigerred("message", root.detail)
     }
 
 
@@ -88,7 +91,6 @@ ContactDetailBase {
         width: units.gu(4)
         height: units.gu(4)
         iconName: "call-start"
-        onClicked: root.actionTrigerred("tel")
+        onClicked: root.actionTrigerred("tel", root.detail)
     }
-
 }

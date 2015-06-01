@@ -123,7 +123,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
-                onActionTrigerred: root.actionTrigerred(action, root.contact, detail)
+                onActionTrigerred: root.actionTrigerred(actionName, root.contact, detail)
             }
 
             ContactDetailEmailsView {
@@ -135,6 +135,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                onActionTrigerred: root.actionTrigerred(actionName, root.contact, detail)
             }
 
             ContactDetailOnlineAccountsView {
@@ -144,6 +145,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                onActionTrigerred: root.actionTrigerred(actionName, root.contact, detail)
             }
 
             ContactDetailAddressesView {
@@ -155,6 +157,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                onActionTrigerred: root.actionTrigerred(actionName, root.contact, detail)
             }
 
             ContactDetailOrganizationsView {
@@ -166,6 +169,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                onActionTrigerred: root.actionTrigerred(actionName, root.contact, detail)
             }
 
             Item {

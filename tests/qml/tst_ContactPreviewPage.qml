@@ -43,6 +43,13 @@ Item {
         return ContactUtilJS.createContact(details, root)
     }
 
+    function createSignalSpy(target, signalName) {
+        var spy = Qt.createQmlObject('import QtTest 1.0;  SignalSpy {}', root, "")
+        spy.target = target
+        spy.signalName = signalName
+        return spy
+    }
+
     VCardParser {
         id: vcardParser
 
@@ -113,7 +120,6 @@ Item {
         {
             compare(vcardParser.contacts.length, 1)
             var contact =  vcardParser.contacts[0]
-            console.debug("Contact: " + contact.phoneNumber.number)
             contactPreviewPage.contact = contact
             tryCompare(contactPreviewPage, "title", "Forrest Gump")
             // PhoneNumbers
@@ -143,13 +149,20 @@ Item {
             // number of e-mails
             var emailGroup = findChild(root, "emails")
             var emails = findChildOfType(emailGroup, "BasicFieldView")
-            compare(emails.length, 1)
+            compare(emails.length, 2)
 
             // e-mail address
             var email = findChild(emailGroup, "label_emailAddress_0.0")
             var emailType =  findChild(emailGroup, "type_email_0")
             compare(email.text, "forrestgump@example.com")
             compare(emailType.text, "Home")
+
+            // e-mail address
+            var email1 = findChild(emailGroup, "label_emailAddress_1.0")
+            var emailType1 =  findChild(emailGroup, "type_email_1")
+            compare(email1.text, "bubbagump@example.com")
+            compare(emailType1.text, "Home")
+
 
             // Address
             // ADR;TYPE=WORK:;;100 Waters Edge;Baytown;LA;30314;United States of America
@@ -204,6 +217,45 @@ Item {
             compare(org_name.text, "Bubba Gump Shrimp Co.")
             compare(org_role.text, "")
             compare(org_title.text, "Shrimp Man")
+        }
+
+        function test_click_on_email()
+        {
+            // load contact from vcard
+            compare(vcardParser.contacts.length, 1)
+            var contact =  vcardParser.contacts[0]
+            contactPreviewPage.contact = contact
+            // wait contact be loaded
+            waitForRendering(contactPreviewPage);
+
+            // find object 0
+            var emailGroup = findChild(root, "emails")
+            var email = findChild(emailGroup, "label_emailAddress_0.0")
+            tryCompare(email, "text", "forrestgump@example.com")
+            tryCompare(email, "visible", true)
+
+            // click on e-mail field
+            var spy = root.createSignalSpy(contactPreviewPage, "actionTrigerred");
+            mouseClick(email, email.width / 2, email.height / 2)
+
+            tryCompare(spy, "count", 1)
+            compare(spy.signalArguments[0][0], "mailto")
+            compare(spy.signalArguments[0][2].value(0), "forrestgump@example.com")
+
+            spy.clear()
+
+            // find object 1
+            var email1 = findChild(emailGroup, "label_emailAddress_1.0")
+            tryCompare(email1, "text", "bubbagump@example.com")
+            tryCompare(email1, "visible", true)
+
+            // click on e-mail field
+            mouseClick(email1, email1.width / 2, email1.height / 2)
+
+            // check new values
+            tryCompare(spy, "count", 1)
+            compare(spy.signalArguments[0][0], "mailto")
+            compare(spy.signalArguments[0][2].value(0), "bubbagump@example.com")
         }
     }
 }
