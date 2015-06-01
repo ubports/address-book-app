@@ -234,7 +234,7 @@ ContactsUI.PageWithBottomEdge {
                 Action {
                     text: i18n.tr("Settings")
                     iconName: "settings"
-                    onTriggered: pageStack.push(Qt.resolvedUrl("../Settings/SettingsPage.qml"),
+                    onTriggered: pageStack.push(Qt.resolvedUrl("./Settings/SettingsPage.qml"),
                                                 {"contactListModel": contactList.listModel})
                 }
             ]

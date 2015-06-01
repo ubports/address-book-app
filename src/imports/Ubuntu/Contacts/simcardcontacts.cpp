@@ -229,8 +229,6 @@ void SimCardContacts::startImport()
 
 void SimCardContacts::importDone()
 {
-    Q_ASSERT(m_pendingModems.isEmpty());
-
     writeData();
     m_importing.unlock();
     Q_EMIT contactsChanged();
