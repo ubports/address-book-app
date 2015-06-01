@@ -46,10 +46,6 @@ class ABContactListPage(address_book.PageWithHeader, address_book.PageWithBottom
         """
         contact_delegate = self._get_contact_delegate(index)
         self.pointing_device.click_object(contact_delegate)
-        contact_delegate.state.wait_for('expanded')
-        details_button = contact_delegate.wait_select_single(
-            objectName='infoIcon')
-        self.pointing_device.click_object(details_button)
         return self.get_root_instance().select_single(
             ABContactViewPage, objectName='contactViewPage')
 

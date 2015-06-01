@@ -106,12 +106,6 @@ Item {
     */
     readonly property alias loading: view.loading
     /*!
-      \qmlproperty int detailToPick
-
-      This property holds the detail type to be picked
-    */
-    property alias detailToPick: view.detailToPick
-    /*!
       \qmlproperty int currentIndex
 
       This property holds the current active item index
@@ -243,18 +237,6 @@ Item {
     */
     signal error(string message)
     /*!
-      This handler is called when details button on contact delegate is clicked
-    */
-    signal infoRequested(QtObject contact)
-    /*!
-      This handler is called when any contact detail in the list receives a click
-    */
-    signal detailClicked(QtObject contact, QtObject detail, string action)
-    /*!
-      This handler is called when add contact detail in the list receives a click
-    */
-    signal addDetailClicked(QtObject contact, int detailType)
-    /*!
       This handler is called when a unknown contact is clicked, the label contains the phone number
     */
     signal addContactClicked(string label)
@@ -266,6 +248,10 @@ Item {
       This handler is called when the button add new contact is clicked
     */
     signal addNewContactClicked()
+    /*!
+      This handler is called when any contact in the list receives a click
+    */
+    signal contactClicked(QtObject contact)
 
     function startSelection()
     {
@@ -355,16 +341,6 @@ Item {
     function sync()
     {
        syncMonitor.sync(["contacts"])
-    }
-
-    // colapse contacts if the keyboard appears
-    Connections {
-        target: Qt.inputMethod
-        onVisibleChanged: {
-            if (Qt.inputMethod.visible) {
-                view.currentIndex = -1
-            }
-        }
     }
 
     ContactSimpleListView {
@@ -502,9 +478,7 @@ Item {
             }
         }
         onError: root.error(message)
-        onInfoRequested: root.infoRequested(contact)
-        onDetailClicked: root.detailClicked(contact, detail, action)
-        onAddDetailClicked: root.addDetailClicked(contact, detailType)
+        onContactClicked: root.contactClicked(contact)
         onSelectionDone: root.selectionDone(items)
         onSelectionCanceled: root.selectionCanceled()
         onContactDisappeared: root.contactDisappeared(contact)
