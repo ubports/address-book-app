@@ -30,7 +30,7 @@
 
             PageWithBottomEdge {
                 id: mainPage
-                title: i18n.tr("Main Page")
+                title: i18n.dtr("address-book-app", "Main Page")
 
                 Rectangle {
                     anchors.fill: parent
@@ -50,7 +50,7 @@
                         }
                     }
                 }
-                bottomEdgeTitle: i18n.tr("Bottom edge action")
+                bottomEdgeTitle: i18n.dtr("address-book-app", "Bottom edge action")
             }
         }
 
