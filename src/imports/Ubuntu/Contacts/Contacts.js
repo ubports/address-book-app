@@ -5,7 +5,7 @@ var phoneTypeModel = null
 function formatToDisplayWithDetails(contact, contactDetail, detailFields, defaultTitle)
 {
     if (!contact) {
-        return ""
+        return defaultTitle
     }
 
     var detail = contact.detail(contactDetail)
