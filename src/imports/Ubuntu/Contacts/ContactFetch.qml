@@ -44,7 +44,7 @@ Item {
     function _fetchContact(contactId) {
         if (contact && !contactIsDirty && contact.contacId == contactId) {
             contactFetched(contact)
-        } else {
+        } else if (model) {
             contactIsDirty = true
             running = true
             if (model.manager === "memory") {
