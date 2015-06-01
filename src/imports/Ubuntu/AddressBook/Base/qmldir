@@ -1,0 +1,9 @@
+module Ubuntu.AddressBook.Base
+
+ContactDetailBase 0.1 ContactDetailBase.qml
+ContactDetailItem 0.1 ContactDetailItem.qml
+ContactDetailGroupBase 0.1 ContactDetailGroupBase.qml
+ContactDetailGroupWithTypeBase 0.1 ContactDetailGroupWithTypeBase.qml
+ContactExporter 0.1 ContactExporter.qml
+RemoveContactsDialog 0.1 RemoveContactsDialog.qml
+KeyboardRectangle 0.1 KeyboardRectangle.qml

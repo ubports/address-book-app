@@ -75,6 +75,7 @@ endif(CLICK_MODE)
 
 set(DESKTOP_EXEC "${ADDRESS_BOOK_APP_BINDIR}/address-book-app")
 set(QMLPLUGIN_INSTALL_PREFIX "${QT_IMPORTS_DIR}/Ubuntu/Contacts.${API_VERSION}/")
+set(ADDRESS_BOOK_QMLPLUGIN_INSTALL_PREFIX "${QT_IMPORTS_DIR}/Ubuntu/AddressBook/")
 set(ADDRESS_BOOK_APP_DESKTOP_FILE address-book-app.desktop)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
 

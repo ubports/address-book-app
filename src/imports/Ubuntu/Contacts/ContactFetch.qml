@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2013 Canonical, Ltd.
+ * Copyright (C) 2012-2015 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@ Item {
     function _fetchContact(contactId) {
         if (contact && !contactIsDirty && contact.contacId == contactId) {
             contactFetched(contact)
-        } else {
+        } else if (model) {
             contactIsDirty = true
             running = true
             if (model.manager === "memory") {

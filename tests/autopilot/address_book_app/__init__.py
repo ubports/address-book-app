@@ -30,6 +30,7 @@ from autopilot import (
 )
 
 from address_book_app import pages
+from address_book_app import address_book
 
 
 logger = logging.getLogger(__name__)
@@ -65,7 +66,7 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
         # Ex.: During the pick mode we alway push a new contactListPage, to
         # preserve the current application status.
         contact_list_pages = self.select_many(
-            pages.ContactListPage, objectName='contactListPage')
+            pages.ABContactListPage, objectName='contactListPage')
 
         # alway return the page without pickMode
         for p in contact_list_pages:
@@ -79,19 +80,19 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
         list_page = self.get_contact_list_page()
         list_page.bottomEdgePageLoaded.wait_for(True)
         contact_editor_pages = self.select_many(
-            pages.ContactEditor, objectName="contactEditorPage")
+            pages.ABContactEditorPage, objectName="contactEditorPage")
         for p in contact_editor_pages:
             if p.active:
                 return p
         raise exceptions.StateNotFoundError('contactEditorPage not found')
 
     def get_contact_view_page(self):
-        return self.wait_select_single("ContactView",
+        return self.wait_select_single(pages.ABContactViewPage,
                                        objectName="contactViewPage")
 
     def get_contact_list_pick_page(self):
         contact_list_pages = self.select_many(
-            pages.ContactListPage, objectName='contactListPage')
+            pages.ABContactListPage, objectName='contactListPage')
         for p in contact_list_pages:
             if p.pickMode:
                 return p
@@ -108,7 +109,7 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
                 objectName='contactListView.importFromSimCardButton')
             self.pointing_device.click_object(import_buttom)
 
-        return self.wait_select_single(pages.SIMCardImportPage,
+        return self.wait_select_single(address_book.SIMCardImportPage,
                                        objectName="simCardImportPage")
 
     def get_contact_list_view(self):

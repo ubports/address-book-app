@@ -15,7 +15,9 @@
  */
 
 #include "contacts.h"
+#include "imagescalethread.h"
 
+#include <QtCore/QCoreApplication>
 #include <QtCore/QStringList>
 #include <QtCore/QDebug>
 #include <QtCore/QDir>
@@ -61,6 +63,29 @@ QString UbuntuContacts::normalized(const QString &value)
         }
     }
     return out;
+}
+
+QUrl UbuntuContacts::copyImage(QObject *contact, const QUrl &imageUrl)
+{
+    // keep track of threads to avoid memory leeak
+    ImageScaleThread *imgThread;
+    QVariant oldThread = contact->property("IMAGE_SCALE_THREAD");
+    if (!oldThread.isNull()) {
+        imgThread = oldThread.value<ImageScaleThread *>();
+        imgThread->updateImageUrl(imageUrl);
+    } else {
+        imgThread = new ImageScaleThread(imageUrl, contact);
+        contact->setProperty("IMAGE_SCALE_THREAD", QVariant::fromValue<ImageScaleThread*>(imgThread));
+    }
+
+    imgThread->start();
+
+    // FIXME: implement this as async function
+    while(imgThread->isRunning()) {
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 3000);
+    }
+
+    return imgThread->outputFile();
 }
 
 bool UbuntuContacts::removeFile(const QUrl &file)

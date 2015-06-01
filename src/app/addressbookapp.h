@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2013 Canonical, Ltd.
+ * Copyright (C) 2012-2015 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,7 +44,6 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     void activateWindow();
-    QUrl copyImage(QObject *contact, const QUrl &imageUrl);
     void parseUrl(const QString &arg);
     void onViewStatusChanged(QQuickView::Status status);
     void returnVcard(const QUrl &url);

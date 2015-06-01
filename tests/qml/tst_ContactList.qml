@@ -21,7 +21,7 @@ import Ubuntu.Test 0.1
 import Ubuntu.Contacts 0.1
 
 import "ContactUtil.js" as ContactUtilJS
-import '../../src/imports/ContactList'
+import '../../src/imports/'
 
 Item {
     id: root
@@ -50,7 +50,7 @@ Item {
     Component {
         id: contactListCmp
 
-        ContactListPage {
+        ABContactListPage {
             id: contactListPage
             anchors.fill: parent
         }

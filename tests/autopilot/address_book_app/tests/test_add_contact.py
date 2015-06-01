@@ -12,7 +12,7 @@ from autopilot.matchers import Eventually
 from autopilot.introspection import dbus
 
 import address_book_app
-from address_book_app import data
+from address_book_app.address_book import data
 from address_book_app.tests import AddressBookAppTestCase
 
 
@@ -27,7 +27,7 @@ class TestAddContact(AddressBookAppTestCase):
         contact_editor = self.app.main_window.go_to_add_contact()
         self.assertTrue(contact_editor.visible)
         self.assertIsInstance(
-            contact_editor, address_book_app.pages.ContactEditor)
+            contact_editor, address_book_app.pages.ABContactEditorPage)
 
     def test_add_and_cancel_contact(self):
         list_page = self.app.main_window.get_contact_list_page()
