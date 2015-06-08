@@ -261,15 +261,6 @@ void AddressBookApp::unsetFirstRun() const
     settings.sync();
 }
 
-void AddressBookApp::sendTabEvent() const
-{
-    QKeyEvent keyPressEvent(QEvent::KeyPress, Qt::Key_Tab, Qt::NoModifier);
-    sendEvent(m_view, &keyPressEvent);
-
-    QKeyEvent keyReleaseEvent(QEvent::KeyRelease, Qt::Key_Tab, Qt::NoModifier);
-    sendEvent(m_view, &keyReleaseEvent);
-}
-
 void AddressBookApp::goBackToSourceApp()
 {
     if (!m_callbackApplication.isEmpty()) {

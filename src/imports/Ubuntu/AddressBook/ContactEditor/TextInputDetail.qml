@@ -92,6 +92,11 @@ FocusScope {
             family: "Ubuntu"
             pixelSize: activeFocus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
         }
-        Keys.onReturnPressed: application.sendTabEvent();
+        Keys.onReturnPressed: {
+            var next = field.nextItemInFocusChain(true)
+            if (next) {
+                next.forceActiveFocus()
+            }
+        }
     }
 }
