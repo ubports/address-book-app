@@ -129,5 +129,22 @@ Item {
             var saveButton = findChild(root, 'save_header_button');
             tryCompare(saveButton, 'enabled', false);
         }
+
+        function test_enterKeyMoveFocusedItem() {
+            // firstName start with focus
+            var textField = findChild(root, 'firstName');
+            textField.forceActiveFocus()
+            tryCompare(textField, 'activeFocus', true)
+
+            // send a keyreturn click
+            keyClick(Qt.Key_Return)
+
+            // firstName must lost focus
+            tryCompare(textField, 'activeFocus', false)
+
+            // lastName must gain focus
+            textField = findChild(root, 'lastName');
+            tryCompare(textField, 'activeFocus', true)
+        }
     }
 }
