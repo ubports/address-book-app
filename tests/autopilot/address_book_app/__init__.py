@@ -98,6 +98,10 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
                 return p
         return None
 
+    def get_share_page(self):
+        return self.wait_select_single("ContactSharePage",
+                                       objectName="contactSharePage")
+
     def start_import_contacts(self):
         self.open_header()
         view = self.get_contact_list_view()

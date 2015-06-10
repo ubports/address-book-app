@@ -50,3 +50,15 @@ def is_phonesim_running():
         return False
 
     return (manager)
+
+def is_contenthub_running():
+    """Determine whether we are running with contenthub."""
+    bus = dbus.SessionBus()
+    try:
+        manager = dbus.Interface(bus.get_object('com.ubuntu.content.dbus.Service', '/'),
+                                 'com.ubuntu.content.dbus.Service')
+    except dbus.exceptions.DBusException:
+        return False
+
+    return (manager)
+    
