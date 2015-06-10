@@ -9,10 +9,8 @@
 
 from autopilot.matchers import Eventually
 from testtools.matchers import Equals
-from testtools import skipUnless
 
 from address_book_app.tests import AddressBookAppTestCase
-from address_book_app import helpers
 
 
 class TestExportContact(AddressBookAppTestCase):
@@ -22,7 +20,6 @@ class TestExportContact(AddressBookAppTestCase):
 
     def test_export_contacts(self):
         contact_list = self.app.main_window.get_contact_list_page()
-        contacts = contact_list.select_many('ContactDelegate')
 
         # select one contact
         contact_list.select_contacts([1])
@@ -33,4 +30,3 @@ class TestExportContact(AddressBookAppTestCase):
         # expect that the share page appears
         share_page = self.app.main_window.get_share_page()
         self.assertThat(share_page.active, Eventually(Equals(True)))
-
