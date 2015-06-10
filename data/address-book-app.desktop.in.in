@@ -14,4 +14,5 @@ X-Ubuntu-Touch=true
 X-Ubuntu-StageHint=SideStage
 X-Ubuntu-Single-Instance=true
 X-Ubuntu-Splash-Show-Header=true
+X-Ubuntu-Supported-Orientations=portrait
 @XSCREENSHOT@
