@@ -1,3 +1,13 @@
+address-book-app (0.2+15.10.20150615-0ubuntu1) wily; urgency=medium
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Fixed contact export from multi selection. (LP: #1463979)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Mon, 15 Jun 2015 15:36:06 +0000
+
 address-book-app (0.2+15.10.20150611-0ubuntu1) wily; urgency=medium
 
   [ Renato Araujo Oliveira Filho ]
