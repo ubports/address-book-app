@@ -6,6 +6,7 @@ set(ADDRESS_BOOK_APP_QMLS
     ABContactViewPage.qml
     ContentHubProxy.qml
     MainWindow.qml
+    VCardImportDialog.qml
 )
 
 install(FILES ${ADDRESS_BOOK_APP_QMLS}

@@ -55,7 +55,14 @@ Item {
             console.debug("The contact list is empty")
             done("")
         } else {
-            priv.currentQueryId = contactModel.fetchContacts(ids)
+            if (root.contactModel.manager === "memory") {
+                // memory backend emit contact fetched before return from "fetchContacts" we will use operation = "-2"
+                // to say that we are wainting for a operation from memory manager
+                priv.currentQueryId = -2
+                contactModel.fetchContacts(ids)
+            } else {
+                priv.currentQueryId = contactModel.fetchContacts(ids)
+            }
         }
     }
 

@@ -24,6 +24,7 @@ import Ubuntu.Contacts 0.1 as ContactsUI
 import Ubuntu.Content 1.1 as ContentHub
 
 import Ubuntu.AddressBook.Base 0.1
+import Ubuntu.AddressBook.ContactShare 0.1
 
 ContactsUI.PageWithBottomEdge {
     id: mainPage
@@ -474,8 +475,9 @@ ContactsUI.PageWithBottomEdge {
             // Share contacts to an application chosen by the user
             if (!mainPage.pickMode) {
                 contactExporter.dismissBusyDialog()
-                pageStack.push(Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
-                               { contactModel: contactExporter.contactModel, contacts: contacts })
+                pageStack.push(contactShareComponent,
+                               { contactModel: contactExporter.contactModel,
+                                 contacts: contacts })
             }
         }
     }
@@ -494,6 +496,14 @@ ContactsUI.PageWithBottomEdge {
                 removeContacts(contactList.listModel)
                 PopupUtils.close(removeContactsDialogMessage)
             }
+        }
+    }
+
+    Component {
+        id: contactShareComponent
+
+        ContactSharePage {
+            objectName: "contactSharePage"
         }
     }
 
