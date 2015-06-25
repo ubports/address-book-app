@@ -33,7 +33,7 @@ Item {
     }
     Setup {
         id: setup
-        applicationId: "contacts-sync"
+        applicationId: "address-book-app"
         providerId: "google"
         onFinished: {
             root.running = false
