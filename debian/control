@@ -62,7 +62,7 @@ Architecture: any
 Depends: qtdeclarative5-accounts-plugin,
          qtdeclarative5-online-accounts-client0.1,
          qtdeclarative5-qtquick2-plugin,
-         qtdeclarative5-buteo-yncfw0.1,
+         qtdeclarative5-buteo-syncfw0.1,
          qtdeclarative5-ubuntu-ui-toolkit-plugin (>= 0.1.46+14.10.20140527) | qtdeclarative5-ubuntu-ui-toolkit-plugin-gles,
          qtdeclarative5-qtcontacts-plugin,
          suru-icon-theme,
