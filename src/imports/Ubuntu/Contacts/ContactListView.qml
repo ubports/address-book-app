@@ -210,7 +210,12 @@ Item {
 
       This property holds if there is online account to sync or not
     */
-    readonly property bool syncEnabled: buteoSync.syncProfilesByCategory("contacts").length > 0
+    // we are using 'buteoSync.visibleSyncProfiles because' it is a property
+    // and will re-check if the property changes.
+    // Using only '(buteoSync.syncProfilesByCategory("contacts").length > 0)'
+    // the value will be checked only on app startup
+    readonly property bool syncEnabled: buteoSync.visibleSyncProfiles &&
+                                        (buteoSync.syncProfilesByCategory("contacts").length > 0)
     /*!
       \qmlproperty bool busy
 
