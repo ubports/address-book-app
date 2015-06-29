@@ -63,6 +63,16 @@ QString UbuntuContacts::normalized(const QString &value)
     return out;
 }
 
+bool UbuntuContacts::containsLetters(const QString &value)
+{
+    foreach (const QChar &c, value) {
+        if (c.isLetter()) {
+            return true;
+        }
+    }
+    return false;
+}
+
 bool UbuntuContacts::removeFile(const QUrl &file)
 {
     return QFile::remove(file.toLocalFile());
