@@ -76,6 +76,7 @@ ContactModel {
 
             filters: [
                 DetailFilter {
+                    id: nameFilter
                     detail: (root.manager === "galera" ? ContactDetail.ExtendedDetail : ContactDetail.DisplayLabel)
                     field: (root.manager === "galera" ? ExtendedDetail.Data : DisplayLabel.Label)
                     value: (root.manager === "galera" ? Contacts.normalized(contactTermFilter.value) : contactTermFilter.value)
@@ -84,12 +85,11 @@ ContactModel {
             ]
 
             onValueChanged: {
-                var containsLetter = /^[a-zA-Z]/.test(value)
-
+                var containsLetter = Contacts.containsLetters(value)
                 if (containsLetter && (filters.length > 1)) {
-                    filters = [filters[0]]
+                    filters = [nameFilter]
                 } else if (!containsLetter) {
-                    filters = [filters[0], phoneNumberFilter]
+                    filters = [nameFilter, phoneNumberFilter]
                 }
             }
         },

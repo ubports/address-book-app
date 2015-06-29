@@ -34,6 +34,7 @@ public:
     Q_INVOKABLE QString contactInitialsFromString(const QString &value);
     Q_INVOKABLE QString normalized(const QString &value);
     Q_INVOKABLE QUrl copyImage(QObject *contact, const QUrl &imageUrl);
+    Q_INVOKABLE bool containsLetters(const QString &value);
     Q_INVOKABLE bool removeFile(const QUrl &file);
 };
 
