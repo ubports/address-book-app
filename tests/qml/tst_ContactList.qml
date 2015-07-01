@@ -99,5 +99,35 @@ Item {
         {
             tryCompare(root.contactListPageObj, "contactManager", "memory")
         }
+
+        function test_pickMode()
+        {
+            var listView = findChild(root.contactListPageObj, "contactListView")
+            // check initial state
+            compare(root.contactListPageObj.pickMode, false)
+            compare(root.contactListPageObj.pickMultipleContacts, false)
+
+            // by default the list accepts multi-selection but the selection mode is disabled
+            compare(listView.multipleSelection, true)
+            compare(listView.isInSelectionMode, false)
+
+            // start multi-selection pick mode
+            root.contactListPageObj.startPickMode(false /*isSingle*/, null)
+
+            // check multi-selection mode
+            compare(root.contactListPageObj.pickMode, true)
+            compare(root.contactListPageObj.pickMultipleContacts, true)
+            compare(listView.multipleSelection, true)
+            compare(listView.isInSelectionMode, true)
+
+            // start single-selection pick mode
+            root.contactListPageObj.startPickMode(true /*isSingle*/, null)
+
+            // check single-selection mode
+            compare(root.contactListPageObj.pickMode, true)
+            compare(root.contactListPageObj.pickMultipleContacts, false)
+            compare(listView.multipleSelection, false)
+            compare(listView.isInSelectionMode, true)
+        }
     }
 }
