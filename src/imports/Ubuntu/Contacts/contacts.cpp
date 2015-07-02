@@ -88,6 +88,16 @@ QUrl UbuntuContacts::copyImage(QObject *contact, const QUrl &imageUrl)
     return imgThread->outputFile();
 }
 
+bool UbuntuContacts::containsLetters(const QString &value)
+{
+    foreach (const QChar &c, value) {
+        if (c.isLetter()) {
+            return true;
+        }
+    }
+    return false;
+}
+
 bool UbuntuContacts::removeFile(const QUrl &file)
 {
     return QFile::remove(file.toLocalFile());

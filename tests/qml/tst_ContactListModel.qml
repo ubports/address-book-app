@@ -61,7 +61,7 @@ Item {
 
         function test_contactImport()
         {
-            tryCompare(root.contactListModelObj, "contactCount", 3)
+            tryCompare(root.contactListModelObj, "contactCount", 7)
         }
 
         function test_searchByPhoneNumber()
@@ -74,6 +74,9 @@ Item {
 
             root.contactListModelObj.filterTerm = "6"
             tryCompare(root.contactListModelObj, "contactCount", 3)
+
+            root.contactListModelObj.filterTerm = "+55(81)8704-0000"
+            tryCompare(root.contactListModelObj, "contactCount", 1)
         }
 
         function test_searchByContactName()
@@ -101,6 +104,21 @@ Item {
 
             root.contactListModelObj.filterTerm = "1"
             tryCompare(root.contactListModelObj, "contactCount", 3)
+
+            root.contactListModelObj.filterTerm = "Renato555"
+            tryCompare(root.contactListModelObj, "contactCount", 0)
+        }
+
+        function test_searchByNonLatinNames()
+        {
+            root.contactListModelObj.filterTerm = "Роман Щекин"
+            tryCompare(root.contactListModelObj, "contactCount", 1)
+
+            root.contactListModelObj.filterTerm = "亚"
+            tryCompare(root.contactListModelObj, "contactCount", 2)
+
+            root.contactListModelObj.filterTerm = "阿娜丝塔西"
+            tryCompare(root.contactListModelObj, "contactCount", 1)
         }
     }
 }

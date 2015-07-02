@@ -29,6 +29,7 @@ if(QMLTESTRUNNER_BIN AND XVFB_RUN_BIN)
     declare_qml_test("list_with_actions" tst_ListWithActions.qml)
     declare_qml_test("contact_preview_page" tst_ContactPreviewPage.qml)
     declare_qml_test("vcard_parser" tst_VCardParser.qml)
+    declare_qml_test("ubuntu_contact" tst_UbuntuContacts.qml)
 else()
     if (NOT QMLTESTRUNNER_BIN)
         message(WARNING "Qml tests disabled: qmltestrunner not found")
@@ -47,5 +48,6 @@ set(QML_TST_FILES
     tst_ListWithActions.qml
     tst_ContactPreviewPage.qml
     tst_VCardParser.qml
+    tst_UbuntuContacts.qml
 )
 add_custom_target(tst_QmlFiles ALL SOURCES ${QML_TST_FILES})
