@@ -108,6 +108,20 @@ ContactDetailBase {
 
         delegate: OptionSelectorDelegate {
             text: contact.displayLabel.label
+            constrainImage: true
+            icon: {
+                var details = contact.details(ContactDetail.ExtendedDetail)
+                for(var i in details) {
+                    if (details[i].name === "PROVIDER") {
+                        if (details[i].data === "") {
+                            return "image://theme/address-book-app-symbolic"
+                        } else {
+                            return "image://theme/online-accounts-%1".arg(details[i].data)
+                        }
+                    }
+                }
+                return "image://theme/address-book-app-symbolic"
+            }
             height: units.gu(4)
         }
 
