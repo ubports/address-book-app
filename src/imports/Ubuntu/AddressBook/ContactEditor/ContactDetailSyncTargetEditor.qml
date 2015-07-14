@@ -109,7 +109,7 @@ ContactDetailBase {
         delegate: OptionSelectorDelegate {
             text: contact.displayLabel.label
             constrainImage: true
-            icon: {
+            iconSource: {
                 var details = contact.details(ContactDetail.ExtendedDetail)
                 for(var i in details) {
                     if (details[i].name === "PROVIDER") {
