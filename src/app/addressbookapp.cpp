@@ -100,6 +100,7 @@ static void installIconPath()
 AddressBookApp::AddressBookApp(int &argc, char **argv)
     : QGuiApplication(argc, argv),
       m_view(0),
+      m_netManager(new QNetworkConfigurationManager),
       m_pickingMode(false),
       m_testMode(false),
       m_withArgs(false)
@@ -107,6 +108,10 @@ AddressBookApp::AddressBookApp(int &argc, char **argv)
     s_elapsed.start();
     setOrganizationName("com.ubuntu.address-book");
     setApplicationName("AddressBookApp");
+    connect(m_netManager.data(),
+            SIGNAL(onlineStateChanged(bool)),
+            SIGNAL(isOnlineChanged()),
+            Qt::QueuedConnection);
 }
 
 bool AddressBookApp::setup()
@@ -413,4 +418,9 @@ void AddressBookApp::setCallbackApplication(const QString &application)
         m_callbackApplication = application;
         Q_EMIT callbackApplicationChanged();
     }
+}
+
+bool AddressBookApp::isOnline() const
+{
+    return m_netManager->isOnline();
 }
