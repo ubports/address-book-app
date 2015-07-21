@@ -19,7 +19,6 @@
 #include <QDebug>
 #include <QDBusConnection>
 #include <qofonophonebook.h>
-#include <qofono-qt5/dbus/ofonophonebook.h>
 
 SimCardContacts::SimCardContacts(QObject *parent)
     : QObject(parent),
