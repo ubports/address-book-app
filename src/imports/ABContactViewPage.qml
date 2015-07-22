@@ -82,9 +82,11 @@ ContactViewPage {
         // "default" action is used inside of the apps (dialer, messaging) to trigger
         // actions based on context.
         // For example default action in the dialer app is call the contact number
-        if (action != "default") {
-            Qt.openUrlExternally(("%1:%2").arg(action).arg(detail.value(0)))
+        if (action == "default") {
+            action = "tel";
         }
+
+        Qt.openUrlExternally(("%1:%2").arg(action).arg(detail.value(0)))
     }
 
     Component {
