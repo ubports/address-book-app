@@ -29,6 +29,7 @@ Build-Depends: cmake,
                libaccounts-qt5-dev,
                libqofono-qt5-0,
                libqofono-dev,
+               python3-dbus,
                thumbnailer-service,
                xvfb [i386 amd64 armhf],
 Standards-Version: 3.9.5
