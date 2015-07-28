@@ -4,6 +4,7 @@ Priority: optional
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 Build-Depends: cmake,
                dbus,
+               dbus-test-runner,
                debhelper (>= 9),
                dh-translations,
                libgl1-mesa-dev | libgl-dev,
