@@ -115,14 +115,16 @@ class AddressBook(dbus.service.Object):
 
     #helper functions
     @dbus.service.method(dbus_interface=MAIN_IFACE,
-                         in_signature='ssssibb', out_signature='')
+                         in_signature='ssssibb', out_signature='b')
     def createSource(self, sourceId, sourceName, provider, applicationId, accountId, readOnly, primary):
         self._sources[sourceId] = (sourceId, sourceName, provider, applicationId, accountId, readOnly, primary)
+        return True
 
     @dbus.service.method(dbus_interface=MAIN_IFACE,
-                         in_signature='', out_signature='')
+                         in_signature='', out_signature='b')
     def reset(self):
         self._sources = {}
+        return True
 
     def _run(self):
         self._mainloop.run()

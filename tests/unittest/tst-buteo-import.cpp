@@ -4,6 +4,7 @@
 #include <QTemporaryFile>
 #include <QDebug>
 #include <QTest>
+#include <QDBusReply>
 
 #include <QContactManager>
 #include <QContactDetailFilter>
@@ -45,7 +46,8 @@ private:
              << readOnly
              << primary;
         createSource.setArguments(args);
-        QDBusConnection::sessionBus().call(createSource);
+        QDBusReply<bool> reply = QDBusConnection::sessionBus().call(createSource);
+        QVERIFY(reply.value());
     }
 
     void resetAddressBook()
@@ -54,7 +56,8 @@ private:
                                                             ADDRESS_BOOK_OBJ,
                                                             ADDRESS_BOOK_IFACE,
                                                            "reset");
-        QDBusConnection::sessionBus().call(reset);
+        QDBusReply<bool> reply = QDBusConnection::sessionBus().call(reset);
+        QVERIFY(reply.value());
     }
 
 private Q_SLOTS:
