@@ -116,6 +116,13 @@ private Q_SLOTS:
         // mark this source as already imported
         createSource("source@1", "source-1", "google", "", 141, false, false);
 
+        // Wai for all sources to be created
+        QContactManager manager("galera");
+        QContactDetailFilter sourceFilter;
+        sourceFilter.setDetailType(QContactDetail::TypeType, QContactType::FieldType);
+        sourceFilter.setValue( QContactType::TypeGroup);
+        QCOMPARE(manager.contacts(sourceFilter).size(), 4);
+
         ButeoImport bImport;
 
         QSignalSpy updatedSignal(&bImport, SIGNAL(updated()));
@@ -128,10 +135,6 @@ private Q_SLOTS:
         QVERIFY(!bImport.busy());
 
         // Check if old sources was deleted
-        QContactManager manager("galera");
-        QContactDetailFilter sourceFilter;
-        sourceFilter.setDetailType(QContactDetail::TypeType, QContactType::FieldType);
-        sourceFilter.setValue( QContactType::TypeGroup);
         QCOMPARE(manager.contacts(sourceFilter).size(), 1);
     }
 };
