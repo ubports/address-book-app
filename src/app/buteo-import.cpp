@@ -193,6 +193,7 @@ bool ButeoImport::removeSources(const QStringList &sources)
 bool ButeoImport::commit()
 {
     Q_ASSERT(m_accountToProfiles.isEmpty());
+    qDebug() << "Will remove old sources" << m_removeOldSources << m_sourceToAccount.size();
 
     // remove old sources
     if (m_removeOldSources) {

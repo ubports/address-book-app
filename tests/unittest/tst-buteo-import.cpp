@@ -5,7 +5,12 @@
 #include <QDebug>
 #include <QTest>
 
+#include <QContactManager>
+#include <QContactDetailFilter>
+
 #include "buteo-import.h"
+
+using namespace QtContacts;
 
 class TstButeoImport : public QObject
 {
@@ -48,7 +53,12 @@ private Q_SLOTS:
         QTRY_COMPARE(busyChangedSignal.count(), 2);
         QVERIFY(!bImport.busy());
 
-        QVERIFY(!bImport.isOutDated());
+        // Check if old sources was deleted
+        QContactManager manager("galera");
+        QContactDetailFilter sourceFilter;
+        sourceFilter.setDetailType(QContactDetail::TypeType, QContactType::FieldType);
+        sourceFilter.setValue( QContactType::TypeGroup);
+        QCOMPARE(manager.contacts(sourceFilter).size(), 0);
     }
 };
 

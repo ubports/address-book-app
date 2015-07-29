@@ -35,25 +35,35 @@ class AddressBook(dbus.service.Object):
     def __init__(self, object_path):
         dbus.service.Object.__init__(self, dbus.SessionBus(), object_path)
         self._mainloop = GObject.MainLoop()
-        self._sources = [('source-1', 'source-1', 'google', '', 1, False, True),
-                         ('source-2', 'source-2', 'google', '', 2, False, False),
-                         ('source-3', 'source-3', 'yahoo', '', 3, False, False),
-                         ('source-4', 'source-4', 'ubuntu', '', 4, False, False)]
-        self._sourceIds = ['source-1', 'source-2', 'source-3', 'source-4']
+        self._sources = {'source@1': ('source@1', 'source-1', 'google', '', 0, False, True),
+                         'source@2': ('source@2', 'source-2', 'google', '', 0, False, False),
+                         'source@3': ('source@3', 'source-3', 'yahoo', '', 0, False, False),
+                         'source@4': ('source@4', 'source-4', 'ubuntu', '', 0, False, False)}
 
     @dbus.service.method(dbus_interface=MAIN_IFACE,
                          in_signature='', out_signature='a(ssssubb)')
     def availableSources(self):
-        return self._sources
+        return self._sources.values()
 
     @dbus.service.method(dbus_interface=MAIN_IFACE,
-                         in_signature='', out_signature='a(ssssubb)')
+                         in_signature='s', out_signature='b')
     def removeSource(self, sourceId):
-        if sourceId in self._sourceIds:
-            self._sourceIds.remove(sourceId)
+        if sourceId in self._sources:
+            del self._sources[sourceId]
+            print("Available sources", self._sources)
             return True
         else:
             return False
+
+    @dbus.service.method(dbus_interface=MAIN_IFACE,
+                         in_signature='as', out_signature='i')
+    def removeContacts(self, contactIds):
+        count = 0
+        for id in contactIds:
+            if sourceId in self._sources:
+                del self._sources[sourceId]
+                count += 1
+        return count
 
     @dbus.service.method(dbus.PROPERTIES_IFACE,
                          in_signature='ss', out_signature='v')
