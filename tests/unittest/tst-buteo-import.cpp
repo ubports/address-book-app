@@ -47,6 +47,11 @@ private:
              << primary;
         createSource.setArguments(args);
         QDBusReply<bool> reply = QDBusConnection::sessionBus().call(createSource);
+        if (reply.error().isValid()) {
+            qWarning() << "Fail to create source" << reply.error();
+        } else {
+            qDebug() << "Source created" << reply.value();
+        }
         QVERIFY(reply.value());
     }
 
@@ -63,6 +68,9 @@ private:
 private Q_SLOTS:
     void init()
     {
+        // we need `galera` manager to run this test
+        QVERIFY(QContactManager::availableManagers().contains("galera"));
+
         m_settingsFile = new QTemporaryFile;
         QVERIFY(m_settingsFile->open());
         qDebug() << "Using as temporary file:" << m_settingsFile->fileName();
@@ -106,7 +114,7 @@ private Q_SLOTS:
         QContactManager manager("galera");
         QContactDetailFilter sourceFilter;
         sourceFilter.setDetailType(QContactDetail::TypeType, QContactType::FieldType);
-        sourceFilter.setValue( QContactType::TypeGroup);
+        sourceFilter.setValue(QContactType::TypeGroup);
         QCOMPARE(manager.contacts(sourceFilter).size(), 0);
     }
 
@@ -120,11 +128,12 @@ private Q_SLOTS:
         createSource("source@1", "source-1", "google", "", 141, false, false);
 
         // Wai for all sources to be created
+        qDebug() << "WILL QUERY FOR SOURCES";
         QContactManager manager("galera");
         QContactDetailFilter sourceFilter;
         sourceFilter.setDetailType(QContactDetail::TypeType, QContactType::FieldType);
-        sourceFilter.setValue( QContactType::TypeGroup);
-        QCOMPARE(manager.contacts(sourceFilter).size(), 4);
+        sourceFilter.setValue(QContactType::TypeGroup);
+        QTRY_COMPARE(manager.contacts(sourceFilter).size(), 4);
 
         ButeoImport bImport;
 

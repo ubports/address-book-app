@@ -64,7 +64,6 @@ class AddressBook(dbus.service.Object):
     def removeSource(self, sourceId):
         if sourceId in self._sources:
             del self._sources[sourceId]
-            print("Available sources", self._sources)
             return True
         else:
             return False
