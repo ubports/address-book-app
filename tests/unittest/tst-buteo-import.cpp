@@ -113,8 +113,8 @@ private Q_SLOTS:
         createSource("source@2", "source-2", "google", "", 0, false, false);
         createSource("source@3", "source-3", "google", "", 0, false, false);
         createSource("source@4", "source-4", "google", "", 0, false, false);
-        // this source was already imported
-        createSource("source@1", "source-1", "google", "", 141, false, true);
+        // mark this source as already imported
+        createSource("source@1", "source-1", "google", "", 141, false, false);
 
         ButeoImport bImport;
 
