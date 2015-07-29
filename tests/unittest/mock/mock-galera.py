@@ -35,10 +35,7 @@ class AddressBook(dbus.service.Object):
     def __init__(self, object_path):
         dbus.service.Object.__init__(self, dbus.SessionBus(), object_path)
         self._mainloop = GObject.MainLoop()
-        self._sources = {'source@1': ('source@1', 'source-1', 'google', '', 0, False, True),
-                         'source@2': ('source@2', 'source-2', 'google', '', 0, False, False),
-                         'source@3': ('source@3', 'source-3', 'yahoo', '', 0, False, False),
-                         'source@4': ('source@4', 'source-4', 'ubuntu', '', 0, False, False)}
+        self._sources = {}
 
     @dbus.service.method(dbus_interface=MAIN_IFACE,
                          in_signature='', out_signature='a(ssssubb)')
@@ -92,6 +89,18 @@ class AddressBook(dbus.service.Object):
                          signature='as')
     def contactsUpdated(self, contacts):
         print("contactsUpdated called")
+
+
+    #helper functions
+    @dbus.service.method(dbus_interface=MAIN_IFACE,
+                         in_signature='ssssibb', out_signature='')
+    def createSource(self, sourceId, sourceName, provider, applicationId, accountId, readOnly, primary):
+        self._sources[sourceId] = (sourceId, sourceName, provider, applicationId, accountId, readOnly, primary)
+
+    @dbus.service.method(dbus_interface=MAIN_IFACE,
+                         in_signature='', out_signature='')
+    def reset(self):
+        self._sources = {}
 
     def _run(self):
         self._mainloop.run()

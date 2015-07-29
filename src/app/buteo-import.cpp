@@ -47,7 +47,44 @@ ButeoImport::~ButeoImport()
 {
 }
 
-bool ButeoImport::isOutDated() const
+bool ButeoImport::loadAccounts(QList<quint32> &accountsToUpdate)
+{
+    if (!prepareButeo()) {
+        qWarning() << "Fail to connect with buteo service";
+        return false;
+    }
+
+    // check whitch account already has a source
+    Accounts::Manager mgr;
+    accountsToUpdate = mgr.accountList("contacts");
+
+    qDebug() << "Accounts" << accountsToUpdate;
+
+    // check which account does not have a source
+    QMap<QString, quint32> srcs = sources();
+    for(QMap<QString, uint>::const_iterator i = srcs.begin();
+        i != srcs.end();
+        i++) {
+        // remove ids that already has a source from the idList
+        if (i.value() > 0) {
+            accountsToUpdate.removeOne(i.value());
+        }
+    }
+
+    // check which account does not have a sync profile
+    Q_FOREACH(const quint32 &accountId, QList<quint32>(accountsToUpdate)) {
+        QDBusReply<QStringList> reply = m_buteoInterface->call("syncProfilesByKey",
+                                                               "accountid",
+                                                               QString::number(accountId));
+        if (!reply.value().isEmpty()) {
+            accountsToUpdate.removeOne(accountId);
+        }
+    }
+
+    return true;
+}
+
+bool ButeoImport::isOutDated()
 {
     // check settings
     QSettings settings;
@@ -56,23 +93,13 @@ bool ButeoImport::isOutDated() const
         return false;
     }
 
-    // check whitch account already has a source
-    Accounts::Manager mgr;
-    Accounts::AccountIdList accountIds = mgr.accountList("contacts");
-    qDebug() << "Accounts" << accountIds;
-
-    QMap<QString, quint32> srcs = sources();
-    for(QMap<QString, uint>::const_iterator i = srcs.begin();
-        i != srcs.end();
-        i++) {
-        // remove ids that already has a source from the idList
-        if (i.value() > 0) {
-            accountIds.removeOne(i.value());
-        }
+    QList<quint32> accountsToUpdate;
+    if (loadAccounts(accountsToUpdate)) {
+        qDebug() << accountsToUpdate.size() << "accounts, to update";
+        return (!accountsToUpdate.isEmpty());
     }
-
-    qDebug() << accountIds.size() << "accounts, without sources";
-    return (!accountIds.isEmpty());
+    // alwasys retur true if loadAccounts fail
+    return true;
 }
 
 bool ButeoImport::busy()
@@ -193,20 +220,21 @@ bool ButeoImport::removeSources(const QStringList &sources)
 bool ButeoImport::commit()
 {
     Q_ASSERT(m_accountToProfiles.isEmpty());
-    qDebug() << "Will remove old sources" << m_removeOldSources << m_sourceToAccount.size();
 
     // remove old sources
     if (m_removeOldSources) {
-        QStringList sources;
-        for(QMap<QString, uint>::const_iterator i = m_sourceToAccount.begin();
-            i != m_sourceToAccount.end();
+        QStringList oldSources;
+        QMap<QString, quint32> srcs = sources();
+
+        for(QMap<QString, uint>::const_iterator i = srcs.begin();
+            i != srcs.end();
             i++) {
             if (i.value() == 0) {
                 qDebug() << "Remove source" << i.key();
-                sources << i.key();
+                oldSources << i.key();
             }
         }
-        removeSources(sources);
+        removeSources(oldSources);
     }
 
     // update settings key
@@ -250,45 +278,29 @@ bool ButeoImport::update(bool removeOldSources)
 
     m_removeOldSources = removeOldSources;
     m_accountToProfiles.clear();
-    m_sourceToAccount.clear();
 
-    // check whitch account already has a source
-    Accounts::Manager mgr;
-    Accounts::AccountIdList accountIds = mgr.accountList("contacts");
-
-    m_sourceToAccount = sources();
-    for(QMap<QString, uint>::const_iterator i = m_sourceToAccount.begin();
-        i != m_sourceToAccount.end();
-        i++) {
-        // remove ids that already has a source from the idList
-        if (i.value() > 0) {
-            accountIds.removeOne(i.value());
-        }
+    QList<quint32> accountsToUpdate;
+    if (!loadAccounts(accountsToUpdate)) {
+        // fail to load accounts information
+        m_importLock.unlock();
+        emit busyChanged();
+        error("Fail to load accounts information");
+        return false;
     }
 
-    qDebug() << "Will create buteo profile for" << accountIds << "accounts";
-    // now accountIds only contains ids for accounts that does not contain sources
-    // lets create buteo-config for these accounts
-    if (accountIds.isEmpty()) {
+    qDebug() << "Will create buteo profile for" << accountsToUpdate << "accounts";
+    if (accountsToUpdate.isEmpty()) {
         // if there is not account to update just commit the update
         bool result = commit();
         return result;
     }
 
-    if (prepareButeo()) {
-        m_accountToProfiles = createProfileForAccounts(accountIds);
-        if (m_accountToProfiles.isEmpty()) {
-            // fail to create profiles
-            m_importLock.unlock();
-            emit busyChanged();
-            error("Fail to create profiles");
-            return false;
-        }
-    } else {
-        // fail to connect with buteo
+    m_accountToProfiles = createProfileForAccounts(accountsToUpdate);
+    if (m_accountToProfiles.isEmpty()) {
+        // fail to create profiles
         m_importLock.unlock();
         emit busyChanged();
-        error("Fail to connect with sync service");
+        error("Fail to create profiles");
         return false;
     }
 

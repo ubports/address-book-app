@@ -33,7 +33,7 @@ public:
 
     Q_INVOKABLE bool update(bool removeOldSources = true);
     QString lastError() const;
-    bool isOutDated() const;
+    bool isOutDated();
     bool busy();
 
     void wait();
@@ -51,7 +51,6 @@ private Q_SLOTS:
 private:
     QScopedPointer<QDBusInterface> m_buteoInterface;
     QMap<quint32, QString> m_accountToProfiles;
-    QMap<QString, quint32> m_sourceToAccount;
     QMutex m_importLock;
     bool m_removeOldSources;
     QString m_lastError;
@@ -65,4 +64,5 @@ private:
     bool removeSources(const QStringList &sources);
     bool commit();
     void error(const QString &message);
+    bool loadAccounts(QList<quint32> &accountsToUpdate);
 };

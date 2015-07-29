@@ -35,8 +35,7 @@ class ButeoSyncFw(dbus.service.Object):
     def __init__(self, object_path):
         dbus.service.Object.__init__(self, dbus.SessionBus(), object_path)
         self._mainloop = GObject.MainLoop()
-        self._profiles = {140 : 'profile-140',
-                          141 : 'profile-141'}
+        self._profiles = {}
 
     def _mock_profile_create(self, profileName):
         self.signalProfileChanged(profileName, 0, '')
@@ -53,14 +52,20 @@ class ButeoSyncFw(dbus.service.Object):
     @dbus.service.method(dbus_interface=MAIN_IFACE,
                          in_signature='i', out_signature='s')
     def createSyncProfileForAccount(self, accountId):
-        if accountId in self._profiles:
-            profileName = self._profiles[accountId]
-            GObject.timeout_add(1000, self._mock_profile_create, profileName)
-            GObject.timeout_add(2000, self._mock_sync_start, profileName)
-            GObject.timeout_add(3000, self._mock_sync_finished, profileName)
-            return self._profiles[accountId]
+        profileName = "profile-" + str(accountId)
+        self._profiles[accountId] = profileName
+        GObject.timeout_add(1000, self._mock_profile_create, profileName)
+        GObject.timeout_add(2000, self._mock_sync_start, profileName)
+        GObject.timeout_add(3000, self._mock_sync_finished, profileName)
+        return profileName
+
+    @dbus.service.method(dbus_interface=MAIN_IFACE,
+                         in_signature='ss', out_signature='as')
+    def syncProfilesByKey(self, key, value):
+        if key == "accountid" and (value in self._profiles):
+            return [self._profiles[value]]
         else:
-            return ''
+            return []
 
     @dbus.service.method(dbus_interface=MAIN_IFACE,
                          in_signature='s', out_signature='b')
