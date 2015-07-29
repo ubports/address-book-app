@@ -65,6 +65,7 @@ bool ButeoImport::loadAccounts(QList<quint32> &accountsToUpdate)
     for(QMap<QString, uint>::const_iterator i = srcs.begin();
         i != srcs.end();
         i++) {
+        qDebug() << "Source" << i.key() << "Account" << i.value();
         // remove ids that already has a source from the idList
         if (i.value() > 0) {
             accountsToUpdate.removeOne(i.value());
@@ -77,6 +78,7 @@ bool ButeoImport::loadAccounts(QList<quint32> &accountsToUpdate)
                                                                "accountid",
                                                                QString::number(accountId));
         if (!reply.value().isEmpty()) {
+            qDebug() << "Account has sync profile" << accountId;
             accountsToUpdate.removeOne(accountId);
         }
     }

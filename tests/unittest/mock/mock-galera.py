@@ -27,7 +27,23 @@ import dbus.mainloop.glib
 BUS_NAME = 'com.canonical.pim'
 MAIN_OBJ = '/com/canonical/pim/AddressBook'
 MAIN_IFACE = 'com.canonical.pim.AddressBook'
+
+VIEW_OBJ = '/com/canonical/pim/AddressBookView'
+VIEW_IFACE = 'com.canonical.pim.AddressBookView'
 SYSTEM_BUS = False
+
+class AddressBookView(dbus.service.Object):
+    DBUS_NAME = None
+
+    def __init__(self, object_path):
+        dbus.service.Object.__init__(self, dbus.SessionBus(), object_path)
+        self._mainloop = GObject.MainLoop()
+        self._sources = {}
+
+    @dbus.service.method(dbus_interface=VIEW_IFACE,
+                         in_signature='asii', out_signature='as')
+    def contactsDetails(self, fiels, startIndex, pageSize):
+        return []
 
 class AddressBook(dbus.service.Object):
     DBUS_NAME = None
@@ -35,6 +51,7 @@ class AddressBook(dbus.service.Object):
     def __init__(self, object_path):
         dbus.service.Object.__init__(self, dbus.SessionBus(), object_path)
         self._mainloop = GObject.MainLoop()
+        self._view = AddressBookView(VIEW_OBJ)
         self._sources = {}
 
     @dbus.service.method(dbus_interface=MAIN_IFACE,
@@ -61,6 +78,11 @@ class AddressBook(dbus.service.Object):
                 del self._sources[sourceId]
                 count += 1
         return count
+
+    @dbus.service.method(dbus_interface=MAIN_IFACE,
+                         in_signature='ssas', out_signature='o')
+    def query(self, clause, sort, sources):
+        return VIEW_OBJ
 
     @dbus.service.method(dbus.PROPERTIES_IFACE,
                          in_signature='ss', out_signature='v')
@@ -109,5 +131,6 @@ if __name__ == '__main__':
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
 
     AddressBook.DBUS_NAME = dbus.service.BusName(BUS_NAME)
-    buteo = AddressBook(MAIN_OBJ)
-    buteo._run()
+    galera = AddressBook(MAIN_OBJ)
+
+    galera._run()
