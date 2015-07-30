@@ -92,12 +92,17 @@ bool ButeoImport::enableContactsService(quint32 accountId)
 {
     Accounts::Manager mgr;
     Accounts::Account *account = mgr.account(accountId);
-    Accounts::Service service = mgr.service("contacts");
+
     if (account) {
-        account->selectService(service);
-        account->setEnabled(true);
-        account->sync();
-        account->deleteLater();
+        Q_FOREACH(Accounts::Service service, account->services()) {
+            qDebug() << "Enabling service" << service.displayName();
+            if (service.serviceType() == "contacts") {
+                account->selectService(service);
+                account->setEnabled(true);
+                account->syncAndBlock();
+            }
+        }
+        delete account;
         return true;
     } else {
         return false;

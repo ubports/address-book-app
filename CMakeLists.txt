@@ -19,6 +19,7 @@ find_package(Qt5Gui REQUIRED)
 find_package(Qt5Qml REQUIRED)
 find_package(Qt5Quick REQUIRED)
 find_package(Qt5DBus REQUIRED)
+find_package(Qt5Xml REQUIRED)
 find_package(Qt5Test REQUIRED)
 find_package(Qt5Contacts REQUIRED)
 

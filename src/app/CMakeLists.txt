@@ -26,6 +26,7 @@ target_link_libraries(${ADDRESS_BOOK_APP_BIN}
     Qt5::Quick
     Qt5::DBus
     Qt5::Contacts
+    Qt5::Xml
     ${AccountsQt5_LIBRARIES}
 )
 
