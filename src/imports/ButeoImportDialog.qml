@@ -52,14 +52,26 @@ Item {
             Button {
                 id: importNowButton
 
-                text: i18n.tr("Import now!")
+                text: i18n.tr("Import!")
                 color: UbuntuColors.green
+                enabled: application.isOnline
                 onClicked: {
                     var result = buteoImportControl.update(true);
                     if (!result) {
                         console.warn("Fail to import contact database to buteo!")
                     }
                 }
+            }
+            Label {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                text: i18n.tr("* An Internet connection is required to continue.")
+                fontSize:"small"
+                color: UbuntuColors.red
+                visible: !application.isOnline
+                wrapMode: Text.WordWrap
             }
 
             states: [
@@ -141,10 +153,6 @@ Item {
 
         onUpdateError: {
             console.warn("Fail to import contact database:" + message)
-            if (root.dialog) {
-                PopupUtils.close(root.dialog)
-                root.dialog = 0
-            }
         }
 
         onUpdated: {

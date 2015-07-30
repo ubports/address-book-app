@@ -17,6 +17,8 @@
 #include "buteo-import.h"
 
 #include <Accounts/Manager>
+#include <Accounts/Account>
+#include <Accounts/AccountService>
 
 #include <QtCore/QDebug>
 
@@ -84,6 +86,22 @@ bool ButeoImport::loadAccounts(QList<quint32> &accountsToUpdate)
     }
 
     return true;
+}
+
+bool ButeoImport::enableContactsService(quint32 accountId)
+{
+    Accounts::Manager mgr;
+    Accounts::Account *account = mgr.account(accountId);
+    Accounts::Service service = mgr.service("contacts");
+    if (account) {
+        account->selectService(service);
+        account->setEnabled(true);
+        account->sync();
+        account->deleteLater();
+        return true;
+    } else {
+        return false;
+    }
 }
 
 bool ButeoImport::isOutDated()
@@ -172,6 +190,11 @@ QMap<quint32, QString> ButeoImport::createProfileForAccounts(QList<quint32> ids)
     }
 
     Q_FOREACH(quint32 id, ids) {
+        if (!enableContactsService(id)) {
+            qWarning() << "Fail to enable contacts service for acccount:" << id;
+            continue;
+        }
+
         QDBusReply<QString> result = m_buteoInterface->call("createSyncProfileForAccount", id);
         if (result.error().isValid()) {
             qWarning() << "Fail to create profile for account" << id << result.error();

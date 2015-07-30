@@ -65,4 +65,5 @@ private:
     bool commit();
     void error(const QString &message);
     bool loadAccounts(QList<quint32> &accountsToUpdate);
+    bool enableContactsService(quint32 accountId);
 };
