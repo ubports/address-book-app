@@ -56,9 +56,13 @@ Item {
                 color: UbuntuColors.green
                 enabled: application.isOnline
                 onClicked: {
-                    var result = buteoImportControl.update(true);
-                    if (!result) {
-                        console.warn("Fail to import contact database to buteo!")
+                    if (buteoDialog.state === "") {
+                        var result = buteoImportControl.update(true);
+                        if (!result) {
+                            console.warn("Fail to import contact database to buteo!")
+                        }
+                    } else {
+                        PopupUtils.close(buteoDialog)
                     }
                 }
             }
@@ -99,17 +103,17 @@ Item {
                 State {
                     name: "error"
 
-                    when: (buteoImportControl.lastError !== "")
                     PropertyChanges {
                         target: buteoDialog
-                        text: i18n.tr("Fail to import database")
-                    }
-                    PropertyChanges {
-                        target: notNowButton
-                        text: i18n.tr("Close")
+                        text: i18n.tr("Fail to import accounts.")
                     }
                     PropertyChanges {
                         target: importNowButton
+                        text: i18n.tr("Close")
+                        color: UbuntuColors.red
+                    }
+                    PropertyChanges {
+                        target: notNowButton
                         visible: false
                     }
                 },
@@ -122,11 +126,11 @@ Item {
                         text: i18n.tr("Database imported")
                     }
                     PropertyChanges {
-                        target: notNowButton
+                        target: importNowButton
                         text: i18n.tr("Close")
                     }
                     PropertyChanges {
-                        target: importNowButton
+                        target: notNowButton
                         visible: false
                     }
                 }
@@ -153,6 +157,7 @@ Item {
 
         onUpdateError: {
             console.warn("Fail to import contact database:" + message)
+            root.dialog.state = "error"
         }
 
         onUpdated: {
