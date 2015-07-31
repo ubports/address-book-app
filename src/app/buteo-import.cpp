@@ -220,10 +220,36 @@ bool ButeoImport::removeProfile(const QString &profileId)
         return false;
     }
 
+    // check for account
+    quint32 accountId = m_accountToProfiles.key(profileId, 0);
+    if (accountId == 0) {
+        qWarning() << "Fail to find account related with profile" << profileId;
+        return false;
+    }
+
+    // check for source
+    QMap<QString, quint32> listOfSources = sources();
+    QString sourceName = listOfSources.key(accountId, "");
+
+    // remove source
+    if (!sourceName.isEmpty()) {
+        QScopedPointer<QContactManager> manager(new QContactManager("galera"));
+        QContactId sourceId = QContactId::fromString(QString("qtcontacts:galera::%1").arg(sourceName));
+        if (!manager->removeContact(sourceId)) {
+            qWarning() << "Fail to remove contact source:" << sourceName;
+            return false;
+        }
+    } else {
+        qDebug() << "No source was created for account" << accountId;
+    }
+
+    // remove profile
     QDBusReply<bool> result = m_buteoInterface->call("removeProfile", profileId);
     if (result.error().isValid()) {
         qWarning() << "Fail to remove profile" << profileId << result.error();
         return false;
+    } else {
+        qDebug() << "Recent created profile removed" << profileId;
     }
 
     return true;
