@@ -1,3 +1,14 @@
+address-book-app (0.2+15.10.20150701-0ubuntu1) wily; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Make sure that the contact list enter in single selection mode when
+    requested by content hub. (LP: #1470196)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 01 Jul 2015 21:53:20 +0000
+
 address-book-app (0.2+15.10.20150629-0ubuntu1) wily; urgency=medium
 
   [ CI Train Bot ]

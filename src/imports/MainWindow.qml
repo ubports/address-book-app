@@ -61,14 +61,14 @@ MainView {
     function pick(single)
     {
         console.debug("Pick mode:" + single)
-        pickWithTransfer(single, null)
+        pickWithTransfer(single === "true", null)
     }
 
     function pickWithTransfer(single, activeTransfer)
     {
         mainStack.resetStack()
         if (mainStack.contactListPage) {
-            mainStack.contactListPage.startPickMode(single === "true", activeTransfer)
+            mainStack.contactListPage.startPickMode(single, activeTransfer)
         } else {
             console.error("Pick mode requested but ContactListPage not loaded")
         }
