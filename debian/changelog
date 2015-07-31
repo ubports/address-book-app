@@ -1,3 +1,9 @@
+address-book-app (0.2+15.10.20150731-0ubuntu2~ppa1) wily; urgency=medium
+
+  * Fix ftbfs on wily with gcc5.
+
+ -- Thomas Voß <thomas.voss@canonical.com>  Fri, 31 Jul 2015 14:06:12 +0200
+
 address-book-app (0.2+15.10.20150701-0ubuntu1) wily; urgency=medium
 
   [ CI Train Bot ]
