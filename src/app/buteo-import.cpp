@@ -145,6 +145,10 @@ QMap<QString, quint32> ButeoImport::sources() const
     sourceFilter.setValue( QContactType::TypeGroup);
     Q_FOREACH(const QContact &c, manager->contacts(sourceFilter)) {
         uint accountId = 0;
+        if (c.id().toString().endsWith("source@system-address-book")) {
+            continue;
+        }
+
         Q_FOREACH(const QContactExtendedDetail &xDet, c.details<QContactExtendedDetail>()) {
             if (xDet.name() == "ACCOUNT-ID") {
                 if (xDet.data().isValid()) {
