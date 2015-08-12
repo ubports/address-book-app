@@ -45,7 +45,10 @@ ContactDetailBase {
     }
 
     function getSelectedSource() {
-        var selectedContact = sources.model.contacts[sources.selectedIndex]
+        console.debug("MODEL SIZE:" + writableSources.count)
+        console.debug("SELECTED INDEX:" + sources.selectedIndex)
+        console.debug("SELECTED CONTACT: "+ writableSources.get(sources.selectedIndex))
+        var selectedContact = writableSources.get(sources.selectedIndex).contact
         if (selectedContact) {
             return selectedContact.guid.guid
         } else {
@@ -57,19 +60,49 @@ ContactDetailBase {
     property real myHeight: sources.currentlyExpanded ? sources.containerHeight + units.gu(6) + label.height : sources.itemHeight + units.gu(6) + label.height
 
     detail: root.contact ? contact.detail(ContactDetail.SyncTarget) : null
-    implicitHeight: root.isNewContact &&  sources.model && (sources.model.contacts.length > 1) ? myHeight : 0
+    implicitHeight: root.isNewContact &&  sources.model && (sources.model.count > 1) ? myHeight : 0
 
     ContactModel {
         id: sourceModel
 
         manager: (typeof(QTCONTACTS_MANAGER_OVERRIDE) !== "undefined") && (QTCONTACTS_MANAGER_OVERRIDE != "") ? QTCONTACTS_MANAGER_OVERRIDE : "galera"
-        filter:  DetailFilter {
+        filter: DetailFilter {
             detail: ContactDetail.Type
             field: Type.TypeField
             value: Type.Group
             matchFlags: DetailFilter.MatchExactly
         }
         autoUpdate: false
+        onContactsChanged: writableSources.reload()
+    }
+
+    ListModel {
+        id: writableSources
+
+        function reload() {
+            clear()
+
+            // filter out read-only sources
+            var contacts = sourceModel.contacts
+            if (contacts.length === 0) {
+                console.debug("Return empty contacts")
+                return
+            }
+
+            for(var i in contacts) {
+                var details = contacts[i].details(ContactDetail.ExtendedDetail)
+                var writable = true
+                for(var d in details) {
+                    if ((details[d].name === "READ-ONLY") && (details[d].data === true)) {
+                        writable = false
+                        break
+                    }
+                }
+                if (writable) {
+                    append({'contact': contacts[i]})
+                }
+            }
+        }
     }
 
     Label {
@@ -94,7 +127,7 @@ ContactDetailBase {
     OptionSelector {
         id: sources
 
-        model: sourceModel
+        model: writableSources
         anchors {
             left: parent.left
             leftMargin: units.gu(2)
@@ -125,7 +158,7 @@ ContactDetailBase {
             height: units.gu(4)
         }
 
-        containerHeight: sources.model && sources.model.contacts.length > 4 ? itemHeight * 4 : sources.model ? itemHeight * sources.model.contacts.length : 0
+        containerHeight: sources.model && sources.model.count > 4 ? itemHeight * 4 : sources.model ? itemHeight * sources.model.count : 0
     }
 
     onActiveChanged: {
