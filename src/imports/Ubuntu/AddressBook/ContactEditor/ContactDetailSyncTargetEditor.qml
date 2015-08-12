@@ -27,6 +27,7 @@ ContactDetailBase {
     id: root
 
     property alias active: sourceModel.autoUpdate
+    signal changed()
 
     function save() {
         // only changes the target sync for new contacts
@@ -45,15 +46,38 @@ ContactDetailBase {
     }
 
     function getSelectedSource() {
-        console.debug("MODEL SIZE:" + writableSources.count)
-        console.debug("SELECTED INDEX:" + sources.selectedIndex)
-        console.debug("SELECTED CONTACT: "+ writableSources.get(sources.selectedIndex))
         var selectedContact = writableSources.get(sources.selectedIndex).contact
         if (selectedContact) {
             return selectedContact.guid.guid
         } else {
             return -1
         }
+    }
+
+    function contactIsReadyOnly(contact) {
+        var sources = sourceModel.contacts
+        var contactSyncTarget = contact.syncTarget.value(SyncTarget.SyncTarget + 1)
+
+        for (var i = 0; i < writableSources.count; i++) {
+            if (writableSources.get(i).contact.guid.guid === contactSyncTarget) {
+                return false
+            }
+        }
+        return true
+    }
+
+    function targetIsReadOnly(target) {
+        if (!target)
+            return true
+
+        var details = target.details(ContactDetail.ExtendedDetail)
+        for(var d in details) {
+            if ((details[d].name === "READ-ONLY") && (details[d].data === true)) {
+                return true
+            }
+        }
+
+        return false
     }
 
     property bool isNewContact: contact && contact.contactId === "qtcontacts:::"
@@ -73,7 +97,10 @@ ContactDetailBase {
             matchFlags: DetailFilter.MatchExactly
         }
         autoUpdate: false
-        onContactsChanged: writableSources.reload()
+        onContactsChanged: {
+            writableSources.reload()
+            root.changed()
+        }
     }
 
     ListModel {
@@ -85,20 +112,11 @@ ContactDetailBase {
             // filter out read-only sources
             var contacts = sourceModel.contacts
             if (contacts.length === 0) {
-                console.debug("Return empty contacts")
                 return
             }
 
             for(var i in contacts) {
-                var details = contacts[i].details(ContactDetail.ExtendedDetail)
-                var writable = true
-                for(var d in details) {
-                    if ((details[d].name === "READ-ONLY") && (details[d].data === true)) {
-                        writable = false
-                        break
-                    }
-                }
-                if (writable) {
+                if (!targetIsReadOnly(contacts[i])) {
                     append({'contact': contacts[i]})
                 }
             }

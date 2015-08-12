@@ -297,6 +297,11 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                onChanged: {
+                    if (contactIsReadyOnly(root.contact)) {
+                        PopupUtils.open(alertMessage)
+                    }
+                }
             }
 
             ThinDivider {}
@@ -398,16 +403,37 @@ Page {
     }
 
     Component.onCompleted: {
-        console.debug("Editor completed: " + enabled)
         if (!enabled) {
             return
         }
 
-        console.debug("initialFocusSection: " + contactEditor.initialFocusSection)
         if (contactEditor.initialFocusSection != "") {
             focusTimer.restart()
         } else {
             contactEditor.ready()
+        }
+    }
+
+    Component {
+        id: alertMessage
+
+        Dialog {
+            id: aletMessageDialog
+
+            title: i18n.dtr("address-book-app", "Contact Editor")
+            text: i18n.dtr("address-book-app",
+                           "Your <b>%1</b> contact sync needs to be upgraded, but no network connection could be found.\n\
+Please connect to network and retry by pressing sync button.\n\
+Only local contacts will be editable until upgrade is complete."
+                           .arg(root.contact.syncTarget.syncTarget))
+
+            Button {
+                text: i18n.dtr("address-book-app", "Close")
+                onClicked: PopupUtils.close(aletMessageDialog)
+            }
+
+            Component.onCompleted: Qt.inputMethod.hide()
+            Component.onDestruction: contactEditor.pageStack.pop()
         }
     }
 
