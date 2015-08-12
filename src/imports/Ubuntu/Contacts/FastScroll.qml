@@ -83,7 +83,7 @@ Item {
     Rectangle {
         id: magnified
 
-        color: Theme.palette.normal.overlay
+        color: ThemeSettings.normal.overlay
         radius: height * 0.3
         height: pinSize * 2
         width: height
@@ -120,7 +120,7 @@ Item {
         radius: pinSize * 0.3
         height: pinSize
         width: height
-        color: Theme.palette.normal.foreground
+        color: ThemeSettings.normal.foreground
         opacity: rail.opacity
         x: rail.x
         y: {
@@ -181,7 +181,7 @@ Item {
                 horizontalAlignment: Text.AlignHCenter
                 text: modelData
                 fontSize: "x-small"
-                color: cursor.y === y ? "white" : Theme.palette.selected.backgroundText
+                color: cursor.y === y ? "white" : ThemeSettings.selected.backgroundText
                 opacity: !internal.modelDirty && Sections.contains(text) ? 1.0 : 0.5
             }
         }

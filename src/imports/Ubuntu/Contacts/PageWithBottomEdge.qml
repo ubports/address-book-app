@@ -170,7 +170,7 @@ Page {
         z: 1
         width: tipLabel.paintedWidth + units.gu(6)
         height: bottomEdge.tipHeight + units.gu(1)
-        color: Theme.palette.normal.overlay
+        color: ThemeSettings.normal.overlay
         Label {
             id: tipLabel
 
@@ -269,7 +269,7 @@ Page {
         readonly property int pageStartY: 0
 
         z: 1
-        color: Theme.palette.normal.background
+        color: ThemeSettings.normal.background
         clip: true
         anchors {
             left: parent.left

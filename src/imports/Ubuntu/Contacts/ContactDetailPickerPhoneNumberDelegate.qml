@@ -65,7 +65,7 @@ Item {
                     leftMargin: units.gu(-2)
                     rightMargin: units.gu(-2)
                 }
-                color: Theme.palette.selected.background
+                color: ThemeSettings.selected.background
                 opacity: noNumberMessageArea.pressed ?  1.0 : 0.0
                 Behavior on opacity {
                     UbuntuNumberAnimation {}

@@ -21,7 +21,7 @@ import Ubuntu.Components.ListItems 1.0
 Rectangle {
     property alias text: title.text
 
-    color: Theme.palette.normal.background
+    color: ThemeSettings.normal.background
     height: units.gu(4)
     Label {
         id: title

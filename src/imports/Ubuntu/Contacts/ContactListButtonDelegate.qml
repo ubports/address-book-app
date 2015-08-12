@@ -34,7 +34,7 @@ Item {
 
    Rectangle {
        anchors.fill: parent
-       color: Theme.palette.selected.background
+       color: ThemeSettings.selected.background
        opacity: addNewContactButtonArea.pressed ?  1.0 : 0.0
    }
 
@@ -49,7 +49,7 @@ Item {
        }
        width: height
        radius: "medium"
-       color: Theme.palette.normal.overlay
+       color: ThemeSettings.normal.overlay
        image: Image {
            source: root.expandIcon ? root.iconSource : ""
        }

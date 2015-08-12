@@ -41,7 +41,7 @@ UbuntuShape {
     }
 
     radius: "medium"
-    color: Theme.palette.normal.overlay
+    color: ThemeSettings.normal.overlay
 
     Label {
         id: initialsLabel
