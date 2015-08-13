@@ -25,14 +25,23 @@ class ButeoImport : public QObject
     Q_OBJECT
     Q_PROPERTY(bool outDated READ isOutDated NOTIFY outDatedChanged)
     Q_PROPERTY(bool busy READ busy NOTIFY busyChanged)
-    Q_PROPERTY(QString lastError READ lastError NOTIFY updateError)
+    Q_PROPERTY(ButeoImport::ImportError lastError READ lastError NOTIFY updateError)
+    Q_ENUMS(ImportError)
 
 public:
+    enum ImportError {
+        ApplicationAreadyUpdated = 0,
+        FailToConnectWithButeo,
+        FailToCreateButeoProfiles,
+        InernalError,
+        OnlineAccountNotFound,
+        SyncError
+    };
     ButeoImport(QObject *parent = 0);
     ~ButeoImport();
 
     Q_INVOKABLE bool update(bool removeOldSources = true);
-    QString lastError() const;
+    ImportError lastError() const;
     bool isOutDated();
     bool busy();
 
@@ -40,7 +49,7 @@ public:
 
 Q_SIGNALS:
     void updated();
-    void updateError(const QString &message);
+    void updateError(ButeoImport::ImportError errorCode);
     void busyChanged();
     void outDatedChanged();
 
@@ -53,7 +62,7 @@ private:
     QMap<quint32, QString> m_accountToProfiles;
     QMutex m_importLock;
     bool m_removeOldSources;
-    QString m_lastError;
+    ImportError m_lastError;
     QEventLoop *m_importLoop;
 
     QMap<QString, quint32> sources() const;
@@ -63,7 +72,7 @@ private:
     bool removeProfile(const QString &profileId);
     bool removeSources(const QStringList &sources);
     bool commit();
-    void error(const QString &message);
+    void error(ImportError errorCode);
     bool loadAccounts(QList<quint32> &accountsToUpdate);
     bool enableContactsService(quint32 accountId);
 };

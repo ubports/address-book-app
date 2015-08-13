@@ -30,6 +30,8 @@
 #include <QtContacts/QContactExtendedDetail>
 #include <QtContacts/QContactDetailFilter>
 
+#include <QGSettings/QGSettings>
+
 #define BUTEO_DBUS_SERVICE_NAME   "com.meego.msyncd"
 #define BUTEO_DBUS_OBJECT_PATH    "/synchronizer"
 #define BUTEO_DBUS_INTERFACE      "com.meego.msyncd"
@@ -120,8 +122,15 @@ bool ButeoImport::isOutDated()
 
     QList<quint32> accountsToUpdate;
     if (loadAccounts(accountsToUpdate)) {
+        if (accountsToUpdate.isEmpty()) {
+            qDebug() << "No account to update";
+            settings.setValue(SETTINGS_BUTEO_KEY, true);
+            settings.sync();
+            return false;
+        }
         qDebug() << accountsToUpdate.size() << "accounts, to update";
-        return (!accountsToUpdate.isEmpty());
+    } else {
+        qWarning() << "Fail to load online accounts";
     }
     // alwasys retur true if loadAccounts fail
     return true;
@@ -297,26 +306,38 @@ bool ButeoImport::commit()
         removeSources(oldSources);
     }
 
-    // update settings key
-    QSettings settings;
-    settings.setValue(SETTINGS_BUTEO_KEY, true);
-    settings.sync();
-
     // all acconts synced
     m_importLock.unlock();
     if (m_importLoop) {
         m_importLoop->quit();
     }
 
+    // update settings key
+    QSettings settings;
+    settings.setValue(SETTINGS_BUTEO_KEY, true);
+    settings.sync();
+
+    // disable address-book-service safe-mode
+    QDBusMessage setSafeMode = QDBusMessage::createMethodCall("com.canonical.pim",
+                                                              "/com/canonical/pim/AddressBook",
+                                                              "org.freedesktop.DBus.Properties",
+                                                              "Set");
+    QList<QVariant> args;
+    args << "com.canonical.pim.AddressBook"
+         << "safeMode"
+         << false;
+    setSafeMode.setArguments(args);
+    QDBusConnection::sessionBus().call(setSafeMode);
+
     emit updated();
     emit busyChanged();
     return true;
 }
 
-void ButeoImport::error(const QString &message)
+void ButeoImport::error(ButeoImport::ImportError errorCode)
 {
-    m_lastError = message;
-    emit updateError(message);
+    m_lastError = errorCode;
+    emit updateError(errorCode);
 }
 
 bool ButeoImport::update(bool removeOldSources)
@@ -326,11 +347,19 @@ bool ButeoImport::update(bool removeOldSources)
     if (settings.value(SETTINGS_BUTEO_KEY).toBool()) {
         // already imported
         qDebug() << "Application has already been migrated.";
+        error(ButeoImport::ApplicationAreadyUpdated);
         return false;
     }
 
     if (!m_importLock.tryLock()) {
         qWarning() << "Fail to lock import mutex";
+        error(ButeoImport::InernalError);
+        return false;
+    }
+
+    if (m_buteoInterface.isNull()) {
+        qWarning() << "Fail to connect with contact sync service.";
+        error(ButeoImport::FailToConnectWithButeo);
         return false;
     }
 
@@ -344,7 +373,9 @@ bool ButeoImport::update(bool removeOldSources)
         // fail to load accounts information
         m_importLock.unlock();
         emit busyChanged();
-        error("Fail to load accounts information");
+
+        qWarning() << "Fail to load accounts information";
+        error(ButeoImport::OnlineAccountNotFound);
         return false;
     }
 
@@ -360,14 +391,15 @@ bool ButeoImport::update(bool removeOldSources)
         // fail to create profiles
         m_importLock.unlock();
         emit busyChanged();
-        error("Fail to create profiles");
+        qWarning() << "Fail to create profiles";
+        error(ButeoImport::FailToCreateButeoProfiles);
         return false;
     }
 
     return true;
 }
 
-QString ButeoImport::lastError() const
+ButeoImport::ImportError ButeoImport::lastError() const
 {
     return m_lastError;
 }
@@ -449,7 +481,7 @@ void ButeoImport::onSyncStatusChanged(const QString &profileName,
         qWarning() << "Sync aborted for profile" << profileName;
     case 3:
         qWarning() << "Fail to sync profile" << profileName;
-        error(QString("Fail to sync profile %1").arg(profileName));
+        error(ButeoImport::SyncError);
         removeProfile(profileName);
         break;
     case 4:

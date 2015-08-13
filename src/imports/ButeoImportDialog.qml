@@ -32,106 +32,61 @@ Item {
         Popups.Dialog {
             id: buteoDialog
 
-            property bool importCompleted: false
-
             title: i18n.tr("A new sync service is available.")
-            text: i18n.tr("Do you want to import your database to the new service?")
+            text: i18n.tr("Contact sync upgrade in progress...")
             ActivityIndicator {
                 id: importingIndicator
 
+                visible: running
+                running: true
+            }
+
+            Button {
+                id: closeButton
+
+                text: i18n.tr("Close")
                 visible: false
-                running: visible
-            }
-
-            Button {
-                id: notNowButton
-
-                text: i18n.tr("Not now")
                 onClicked: PopupUtils.close(buteoDialog)
-            }
-            Button {
-                id: importNowButton
-
-                text: i18n.tr("Import!")
-                color: UbuntuColors.green
-                enabled: application.isOnline
-                onClicked: {
-                    if (buteoDialog.state === "") {
-                        var result = buteoImportControl.update(true);
-                        if (!result) {
-                            console.warn("Fail to import contact database to buteo!")
-                        }
-                    } else {
-                        PopupUtils.close(buteoDialog)
-                    }
-                }
-            }
-            Label {
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                }
-                text: i18n.tr("* An Internet connection is required to continue.")
-                fontSize:"small"
-                color: UbuntuColors.red
-                visible: !application.isOnline
-                wrapMode: Text.WordWrap
             }
 
             states: [
-                State {
-                    name: "busy"
-
-                    when: buteoImportControl.busy
-                    PropertyChanges {
-                        target: buteoDialog
-                        text: i18n.tr("Importing..")
-                    }
-                    PropertyChanges {
-                        target: importingIndicator
-                        visible: true
-                    }
-                    PropertyChanges {
-                        target: notNowButton
-                        visible: false
-                    }
-                    PropertyChanges {
-                        target: importNowButton
-                        visible: false
-                    }
-                },
                 State {
                     name: "error"
 
                     PropertyChanges {
                         target: buteoDialog
-                        text: i18n.tr("Fail to import accounts.")
+                        title: i18n.tr("Fail to upgrade")
+                        text: i18n.tr("Could not complete contact sync upgrade. Only local contacts will be editable until upgrade is complete. Please try again by pressing sync button")
                     }
+
                     PropertyChanges {
-                        target: importNowButton
-                        text: i18n.tr("Close")
+                        target: closeButton
+                        visible: true
                         color: UbuntuColors.red
                     }
+
                     PropertyChanges {
-                        target: notNowButton
-                        visible: false
+                        target: importingIndicator
+                        running: false
                     }
                 },
                 State {
-                    name: "completed"
+                    name: "noInternet"
+                    when: !application.isOnline
 
-                    when: buteoDialog.importCompleted
                     PropertyChanges {
                         target: buteoDialog
-                        text: i18n.tr("Database imported")
+                        text: i18n.tr("Your contact sync needs to be upgraded, but no network connection could be found. Please connect to network and retry by pressing sync button.\nOnly local contacts will be editable until upgrade is complete.")
                     }
+
                     PropertyChanges {
-                        target: importNowButton
-                        text: i18n.tr("Close")
+                        target: closeButton
+                        visible: true
                     }
+
                     PropertyChanges {
-                        target: notNowButton
-                        visible: false
+                        target: importingIndicator
+                        running: false
                     }
                 }
             ]
@@ -148,7 +103,8 @@ Item {
 
         Component.onCompleted: {
             if (outDated) {
-                dialog = Popups.PopupUtils.open(importDialogComponent, root)
+                root.dialog = Popups.PopupUtils.open(importDialogComponent, root)
+                buteoImportControl.update(true)
             } else {
                 console.debug("Application is ready for buteo.")
                 root.dismiss = true
@@ -156,15 +112,13 @@ Item {
         }
 
         onUpdateError: {
-            console.warn("Fail to import contact database:" + message)
+            console.warn("Fail:" + errorCode)
             root.dialog.state = "error"
         }
 
         onUpdated: {
             console.debug("Import Completed")
-            if (root.dialog) {
-                root.dialog.importCompleted = true
-            }
+            PopupUtils.close(root.dialog)
         }
     }
 }
