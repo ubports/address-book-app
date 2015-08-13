@@ -42,7 +42,7 @@ ButeoImport::ButeoImport(QObject *parent)
       m_importLoop(0)
 {
     connect(this, SIGNAL(updated()), SIGNAL(outDatedChanged()));
-    connect(this, SIGNAL(updateError(QString)), SIGNAL(outDatedChanged()));
+    connect(this, SIGNAL(updateError(ButeoImport::ImportError)), SIGNAL(outDatedChanged()));
 }
 
 ButeoImport::~ButeoImport()
@@ -355,7 +355,7 @@ bool ButeoImport::update(bool removeOldSources)
         return false;
     }
 
-    if (m_buteoInterface.isNull()) {
+    if (!prepareButeo()) {
         qWarning() << "Fail to connect with contact sync service.";
         error(ButeoImport::FailToConnectWithButeo);
         return false;
