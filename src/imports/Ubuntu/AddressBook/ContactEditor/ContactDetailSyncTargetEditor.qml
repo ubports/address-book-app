@@ -98,8 +98,10 @@ ContactDetailBase {
         }
         autoUpdate: false
         onContactsChanged: {
-            writableSources.reload()
-            root.changed()
+            if (contacts.length > 0) {
+                writableSources.reload()
+                root.changed()
+            }
         }
     }
 

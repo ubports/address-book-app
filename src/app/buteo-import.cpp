@@ -122,8 +122,7 @@ bool ButeoImport::isOutDated()
     if (loadAccounts(accountsToUpdate)) {
         if (accountsToUpdate.isEmpty()) {
             qDebug() << "No account to update";
-            settings.setValue(SETTINGS_BUTEO_KEY, true);
-            settings.sync();
+            commit();
             return false;
         }
         qDebug() << accountsToUpdate.size() << "accounts, to update";
@@ -323,9 +322,14 @@ bool ButeoImport::commit()
     QList<QVariant> args;
     args << "com.canonical.pim.AddressBook"
          << "safeMode"
-         << false;
+         << QVariant::fromValue(QDBusVariant(false));
     setSafeMode.setArguments(args);
-    QDBusConnection::sessionBus().call(setSafeMode);
+    QDBusReply<void> reply = QDBusConnection::sessionBus().call(setSafeMode);
+    if (reply.error().isValid()) {
+        qWarning() << "Fail to disable safe-mode" << reply.error().message();
+    } else {
+        qDebug() << "Server safe mode disabled";
+    }
 
     emit updated();
     emit busyChanged();

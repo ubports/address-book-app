@@ -36,7 +36,6 @@ Page {
 
     readonly property bool isNewContact: contact && (contact.contactId === "qtcontacts:::")
     readonly property bool isContactValid: !avatarEditor.busy && (!nameEditor.isEmpty() || !phonesEditor.isEmpty())
-    readonly property bool readOnlyContact: !isNewContact && syncTargetEditor.contactIsReadyOnly(contact)
 
     signal contactSaved(var contact);
 
@@ -126,11 +125,6 @@ Page {
     {
         enabled = true
         _edgeReady = true
-
-        if (root.readOnlyContact) {
-            PopupUtils.open(alertMessage)
-            return
-        }
 
         switch (contactEditor.initialFocusSection)
         {
@@ -302,6 +296,14 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+
+                onChanged: {
+                    if (contactEditor.enabled &&
+                        !contactEditor.isNewContact &&
+                        syncTargetEditor.contactIsReadyOnly(contactEditor.contact)) {
+                        PopupUtils.open(alertMessage)
+                    }
+                }
             }
 
             ThinDivider {}
@@ -426,9 +428,9 @@ Page {
                       i18n.dtr("address-book-app",
                                "Your <b>%1</b> contact sync needs to be upgraded, but no network connection could be found.\n\
 Please connect to network and retry by pressing sync button.\n\
-Only local contacts will be editable until upgrade is complete.").arg(root.contact.syncTarget.syncTarget) :
+Only local contacts will be editable until upgrade is complete.").arg(contactEditor.contact.syncTarget.syncTarget) :
                       i18n.dtr("address-book-app", "Your <b>%1</b> contact sync needs to be upgraded by running Contacts app.\n
-Only local contacts will be editable until upgrade is complete").arg(root.contact.syncTarget.syncTarget);
+Only local contacts will be editable until upgrade is complete").arg(contactEditor.contact.syncTarget.syncTarget);
 
             Button {
                 text: i18n.dtr("address-book-app", "Close")
