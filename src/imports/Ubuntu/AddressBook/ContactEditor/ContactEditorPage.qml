@@ -17,7 +17,7 @@
 import QtQuick 2.2
 import QtContacts 5.0
 
-import Ubuntu.Components 1.3
+import Ubuntu.Components 1.2
 import Ubuntu.Components.ListItems 1.0
 import Ubuntu.Components.Popups 1.0
 
@@ -412,6 +412,7 @@ Page {
         } else {
             contactEditor.ready()
         }
+        console.debug(" Qt.application.name:" +  Qt.application.name)
     }
 
     Component {
@@ -421,7 +422,7 @@ Page {
             id: aletMessageDialog
 
             title: i18n.dtr("address-book-app", "Contact Editor")
-            text: Qt.application.name === "Address Book App" ?
+            text: Qt.application.name === "AddressBookApp" ?
                       i18n.dtr("address-book-app",
                                "Your <b>%1</b> contact sync needs to be upgraded, but no network connection could be found.\n\
 Please connect to network and retry by pressing sync button.\n\

@@ -17,7 +17,7 @@
 import QtQuick 2.2
 import QtContacts 5.0 as QtContacts
 
-import Ubuntu.Components 1.3
+import Ubuntu.Components 1.2
 import Ubuntu.Components.ListItems 1.0 as ListItem
 
 import Ubuntu.AddressBook.Base 0.1

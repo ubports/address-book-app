@@ -15,7 +15,7 @@
  */
 
 import QtQuick 2.2
-import Ubuntu.Components 1.3
+import Ubuntu.Components 1.2
 
 Item {
     id: root
@@ -27,7 +27,7 @@ Item {
     property Action activeAction: null
     property var activeItem: null
     property bool triggerActionOnMouseRelease: false
-    property color color: ThemeSettings.normal.background
+    property color color: Theme.palette.normal.background
     property color selectedColor: "#E6E6E6"
     property bool selected: false
     property bool selectionMode: false
@@ -202,7 +202,7 @@ Item {
                 horizontalCenterOffset: actionThreshold / 2
             }
             name: leftSideAction && _showActions ? leftSideAction.iconName : ""
-            color: ThemeSettings.selected.field
+            color: Theme.palette.selected.field
             height: units.gu(3)
             width: units.gu(3)
         }

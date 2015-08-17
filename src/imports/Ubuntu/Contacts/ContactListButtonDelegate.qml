@@ -15,7 +15,7 @@
  */
 
 import QtQuick 2.0
-import Ubuntu.Components 1.3
+import Ubuntu.Components 1.2
 
 Item {
    id: root
@@ -34,7 +34,7 @@ Item {
 
    Rectangle {
        anchors.fill: parent
-       color: ThemeSettings.selected.background
+       color: Theme.palette.selected.background
        opacity: addNewContactButtonArea.pressed ?  1.0 : 0.0
    }
 
@@ -49,7 +49,7 @@ Item {
        }
        width: height
        radius: "medium"
-       color: ThemeSettings.normal.overlay
+       color: Theme.palette.normal.overlay
        image: Image {
            source: root.expandIcon ? root.iconSource : ""
        }

@@ -16,7 +16,7 @@
 
 import QtQuick 2.2
 
-import Ubuntu.Components 1.3
+import Ubuntu.Components 1.2
 import Ubuntu.Contacts 0.1
 
 ContactDetailBase {

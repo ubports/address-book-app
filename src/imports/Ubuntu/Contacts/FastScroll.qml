@@ -41,7 +41,7 @@
 
 // FastScroll.qml
 import QtQuick 2.2
-import Ubuntu.Components 1.3
+import Ubuntu.Components 1.2
 import "FastScroll.js" as Sections
 
 Item {
@@ -83,7 +83,7 @@ Item {
     Rectangle {
         id: magnified
 
-        color: ThemeSettings.normal.overlay
+        color: Theme.palette.normal.overlay
         radius: height * 0.3
         height: pinSize * 2
         width: height
@@ -120,7 +120,7 @@ Item {
         radius: pinSize * 0.3
         height: pinSize
         width: height
-        color: ThemeSettings.normal.foreground
+        color: Theme.palette.normal.foreground
         opacity: rail.opacity
         x: rail.x
         y: {
@@ -181,7 +181,7 @@ Item {
                 horizontalAlignment: Text.AlignHCenter
                 text: modelData
                 fontSize: "x-small"
-                color: cursor.y === y ? "white" : ThemeSettings.selected.backgroundText
+                color: cursor.y === y ? "white" : Theme.palette.selected.backgroundText
                 opacity: !internal.modelDirty && Sections.contains(text) ? 1.0 : 0.5
             }
         }

@@ -17,7 +17,7 @@
 import QtQuick 2.2
 import QtContacts 5.0
 import AddressBookApp 0.1
-import Ubuntu.Components 1.3
+import Ubuntu.Components 1.2
 import Ubuntu.Components.Popups 1.0 as Popups
 
 Item {
@@ -104,7 +104,9 @@ Item {
         Component.onCompleted: {
             if (outDated) {
                 root.dialog = Popups.PopupUtils.open(importDialogComponent, root)
-                buteoImportControl.update(true)
+                if (application.isOnline) {
+                    buteoImportControl.update(true)
+                }
             } else {
                 console.debug("Application is ready for buteo.")
                 root.dismiss = true

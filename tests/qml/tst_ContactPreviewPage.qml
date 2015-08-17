@@ -19,7 +19,7 @@ import QtTest 1.0
 import Ubuntu.Test 0.1
 import QtContacts 5.0
 
-import Ubuntu.Components 1.3
+import Ubuntu.Components 1.2
 import Ubuntu.Contacts 0.1
 import Ubuntu.AddressBook.ContactView 0.1
 

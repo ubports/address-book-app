@@ -15,7 +15,7 @@
  */
 
 import QtQuick 2.2
-import Ubuntu.Components 1.3
+import Ubuntu.Components 1.2
 import QtContacts 5.0 as QtContacts
 
 Item {
@@ -65,7 +65,7 @@ Item {
                     leftMargin: units.gu(-2)
                     rightMargin: units.gu(-2)
                 }
-                color: ThemeSettings.selected.background
+                color: Theme.palette.selected.background
                 opacity: noNumberMessageArea.pressed ?  1.0 : 0.0
                 Behavior on opacity {
                     UbuntuNumberAnimation {}
