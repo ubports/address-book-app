@@ -380,8 +380,7 @@ bool ButeoImport::update(bool removeOldSources)
     qDebug() << "Will create buteo profile for" << accountsToUpdate << "accounts";
     if (accountsToUpdate.isEmpty()) {
         // if there is not account to update just commit the update
-        bool result = commit();
-        return result;
+        return commit();
     }
 
     m_accountToProfiles = createProfileForAccounts(accountsToUpdate);
