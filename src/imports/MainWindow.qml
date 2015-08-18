@@ -181,15 +181,6 @@ MainView {
         }
     }
 
-    Loader {
-        id: buteoImporter
-
-        asynchronous: true
-        source: Qt.resolvedUrl("ButeoImportDialog.qml")
-        active: item && item.dismiss ? false : true
-        onStatusChanged: console.debug("New status:" + status)
-    }
-
     // If application was called from uri handler and lost the focus reset the app to normal state
     onAppActiveChanged: {
         if (!appActive && mainStack.contactListPage) {

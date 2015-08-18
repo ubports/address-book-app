@@ -26,6 +26,19 @@ Item {
     property var dialog: null
     property bool dismiss: false
 
+    function start()
+    {
+        if (root.dialog) {
+            console.debug("Dialog already open")
+            return
+        }
+
+        root.dialog = Popups.PopupUtils.open(importDialogComponent, root)
+        if (application.isOnline) {
+            buteoImportControl.update(true)
+        }
+    }
+
     Component {
         id: importDialogComponent
 
@@ -92,8 +105,11 @@ Item {
             ]
 
             Component.onDestruction: {
-                root.dialog = 0
-                root.dismiss = true
+                root.dialog = null
+                // only dismiss if the import was completed
+                if (root.dialog.state === "") {
+                    root.dismiss = true
+                }
             }
         }
     }
@@ -103,10 +119,7 @@ Item {
 
         Component.onCompleted: {
             if (outDated) {
-                root.dialog = Popups.PopupUtils.open(importDialogComponent, root)
-                if (application.isOnline) {
-                    buteoImportControl.update(true)
-                }
+                root.start()
             } else {
                 console.debug("Application is ready for buteo.")
                 root.dismiss = true

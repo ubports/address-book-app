@@ -226,11 +226,17 @@ ContactsUI.PageWithBottomEdge {
                     }
                 },
                 Action {
-                    visible: (application.isOnline && contactList.syncEnabled)
+                    visible: buteoImporter.active || (application.isOnline && contactList.syncEnabled)
                     text: contactList.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
                     iconName: "reload"
                     enabled: !contactList.syncing
-                    onTriggered: contactList.sync()
+                    onTriggered: {
+                        if (buteoImporter.active) {
+                            buteoImporter.item.start()
+                        } else {
+                            contactList.sync()
+                        }
+                    }
                 },
                 Action {
                     text: i18n.tr("Settings")
@@ -505,6 +511,14 @@ ContactsUI.PageWithBottomEdge {
         ContactSharePage {
             objectName: "contactSharePage"
         }
+    }
+
+    Loader {
+        id: buteoImporter
+
+        asynchronous: true
+        source: Qt.resolvedUrl("ButeoImportDialog.qml")
+        active: item && item.dismiss ? false : true
     }
 
     Component.onCompleted: {
