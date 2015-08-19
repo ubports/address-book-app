@@ -1,3 +1,14 @@
+address-book-app (0.2+15.10.20150819-0ubuntu1) wily; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Fix focus path to focus only in TextFields while using OSK. (LP:
+    #1486258)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 19 Aug 2015 15:13:31 +0000
+
 address-book-app (0.2+15.10.20150731-0ubuntu2~ppa1) wily; urgency=medium
 
   * Fix ftbfs on wily with gcc5.
