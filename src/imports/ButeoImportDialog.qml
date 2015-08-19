@@ -45,6 +45,37 @@ Item {
         Popups.Dialog {
             id: buteoDialog
 
+            property string errorMessage: ""
+
+            function showError(errorCode)
+            {
+                var errorString = ""
+                switch(errorCode)
+                {
+                case ButeoImport.OnlineAccountNotFound:
+                    errorString = i18n.tr("Fail to connect with contact sync service.")
+                    break;
+                case ButeoImport.FailToConnectWithButeo:
+                    errorString = i18n.tr("Fail to connect with contact sync service.")
+                    break;
+                case ButeoImport.FailToCreateButeoProfiles:
+                    errorString = i18n.tr("Fail to create contact sync profile.")
+                    break;
+                case ButeoImport.SyncAlreadyRunning:
+                    errorString = i18n.tr("Contact sync already in progress.")
+                    break;
+                case buteoImport.SyncError:
+                    errorString = i18n.tr("Fail to sync account.")
+                    break;
+                case ButeoImport.InernalError:
+                default:
+                    break;
+                }
+                buteoDialog.title = i18n.tr("Could not complete contact sync upgrade.")
+                buteoDialog.errorMessage = i18n.tr("%1.\nOnly local contacts will be editable until upgrade is complete. Please try again by pressing sync button").arg(errorString)
+                state = "error"
+            }
+
             title: i18n.tr("A new sync service is available.")
             text: i18n.tr("Contact sync upgrade in progress...")
             ActivityIndicator {
@@ -69,7 +100,7 @@ Item {
                     PropertyChanges {
                         target: buteoDialog
                         title: i18n.tr("Fail to upgrade")
-                        text: i18n.tr("Could not complete contact sync upgrade. Only local contacts will be editable until upgrade is complete. Please try again by pressing sync button")
+                        text: buteoDialog.errorMessage
                     }
 
                     PropertyChanges {
@@ -128,7 +159,7 @@ Item {
 
         onUpdateError: {
             console.warn("Fail:" + errorCode)
-            root.dialog.state = "error"
+            root.dialog.showError(errorCode)
         }
 
         onUpdated: {
