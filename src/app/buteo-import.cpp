@@ -109,6 +109,21 @@ bool ButeoImport::enableContactsService(quint32 accountId)
     }
 }
 
+QStringList ButeoImport::runningSyncs() const
+{
+    if (m_buteoInterface.isNull()) {
+        return QStringList();
+    }
+
+    QDBusReply<QStringList> result = m_buteoInterface->call("runningSyncs");
+    if (result.error().isValid()) {
+        qWarning() << "Fail to retrieve running syncs" << result.error();
+        return QStringList();
+    }
+
+    return result.value();
+}
+
 bool ButeoImport::isOutDated()
 {
     // check settings
@@ -362,6 +377,13 @@ bool ButeoImport::update(bool removeOldSources)
     if (!prepareButeo()) {
         qWarning() << "Fail to connect with contact sync service.";
         error(ButeoImport::FailToConnectWithButeo);
+        return false;
+    }
+
+    QStringList syncs = runningSyncs();
+    if (!syncs.isEmpty()) {
+        qWarning() << "Sync running" << syncs;
+        error(ButeoImport::SyncAlreadyRunning);
         return false;
     }
 

@@ -35,6 +35,7 @@ public:
         FailToCreateButeoProfiles,
         InernalError,
         OnlineAccountNotFound,
+        SyncAlreadyRunning,
         SyncError
     };
     ButeoImport(QObject *parent = 0);
@@ -75,4 +76,5 @@ private:
     void error(ImportError errorCode);
     bool loadAccounts(QList<quint32> &accountsToUpdate);
     bool enableContactsService(quint32 accountId);
+    QStringList runningSyncs() const;
 };
