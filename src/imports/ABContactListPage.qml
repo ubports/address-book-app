@@ -518,7 +518,7 @@ ContactsUI.PageWithBottomEdge {
 
         asynchronous: true
         source: Qt.resolvedUrl("ButeoImportDialog.qml")
-        active: item && item.dismiss ? false : true
+        active: !mainPage.pickMode && item && item.dismiss ? false : true
     }
 
     Component.onCompleted: {
