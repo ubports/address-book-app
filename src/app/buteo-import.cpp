@@ -30,10 +30,11 @@
 #include <QtContacts/QContactExtendedDetail>
 #include <QtContacts/QContactDetailFilter>
 
+#include "config.h"
+
 #define BUTEO_DBUS_SERVICE_NAME   "com.meego.msyncd"
 #define BUTEO_DBUS_OBJECT_PATH    "/synchronizer"
 #define BUTEO_DBUS_INTERFACE      "com.meego.msyncd"
-#define SETTINGS_BUTEO_KEY        "Buteo/migration_complete"
 
 using namespace QtContacts;
 

@@ -228,10 +228,10 @@ ContactsUI.PageWithBottomEdge {
                 Action {
                     visible: buteoImporter.item || (application.isOnline && contactList.syncEnabled)
                     text: contactList.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
-                    iconName: "reload"
+                    iconName:  buteoImporter.active ? "reset" : "reload"
                     enabled: !contactList.syncing
                     onTriggered: {
-                        if (buteoImporter.item) {
+                        if (buteoImporter.active) {
                             buteoImporter.item.start()
                         } else {
                             contactList.sync()
@@ -517,7 +517,26 @@ ContactsUI.PageWithBottomEdge {
         id: buteoImporter
 
         asynchronous: true
-        source: ContentHub.ContentHub.hasPending || (item && item.dismiss) ? "" : Qt.resolvedUrl("ButeoImportDialog.qml")
+        active: false
+        Component.onCompleted: {
+            // avoid load emlement in contructor
+            if (ContentHub.ContentHub.hasPending) {
+                active = false
+            } else {
+                // only loads import dialog if app still needs a upgrade
+                active = application.needsUpdate
+            }
+
+            source = Qt.resolvedUrl("ButeoImportDialog.qml")
+        }
+
+        // Unload element when finished
+        Binding {
+            target: buteoImporter
+            property: "active"
+            when: buteoImporter.status == Loader.Ready
+            value: !buteoImporter.item.dismiss
+        }
     }
 
     Component.onCompleted: {

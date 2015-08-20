@@ -429,3 +429,9 @@ bool AddressBookApp::isOnline() const
 {
     return m_netManager->isOnline();
 }
+
+bool AddressBookApp::needsUpdate() const
+{
+    QSettings s;
+    return !s.value(SETTINGS_BUTEO_KEY, false).toBool();
+}
