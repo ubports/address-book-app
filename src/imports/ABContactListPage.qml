@@ -226,12 +226,12 @@ ContactsUI.PageWithBottomEdge {
                     }
                 },
                 Action {
-                    visible: buteoImporter.active || (application.isOnline && contactList.syncEnabled)
+                    visible: buteoImporter.item || (application.isOnline && contactList.syncEnabled)
                     text: contactList.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
                     iconName: "reload"
                     enabled: !contactList.syncing
                     onTriggered: {
-                        if (buteoImporter.active) {
+                        if (buteoImporter.item) {
                             buteoImporter.item.start()
                         } else {
                             contactList.sync()
@@ -517,8 +517,7 @@ ContactsUI.PageWithBottomEdge {
         id: buteoImporter
 
         asynchronous: true
-        source: Qt.resolvedUrl("ButeoImportDialog.qml")
-        active: !mainPage.pickMode && item && item.dismiss ? false : true
+        source: ContentHub.ContentHub.hasPending || (item && item.dismiss) ? "" : Qt.resolvedUrl("ButeoImportDialog.qml")
     }
 
     Component.onCompleted: {
