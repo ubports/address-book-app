@@ -137,10 +137,6 @@ Item {
 
             Component.onDestruction: {
                 root.dialog = null
-                // only dismiss if the import was completed
-                if (root.dialog.state === "") {
-                    root.dismiss = true
-                }
             }
         }
     }
@@ -165,6 +161,7 @@ Item {
         onUpdated: {
             console.debug("Import Completed")
             PopupUtils.close(root.dialog)
+            root.dismiss = true
         }
     }
 }

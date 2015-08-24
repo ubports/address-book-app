@@ -534,7 +534,7 @@ ContactsUI.PageWithBottomEdge {
         Binding {
             target: buteoImporter
             property: "active"
-            when: buteoImporter.status == Loader.Ready
+            when: buteoImporter.status === Loader.Ready
             value: !buteoImporter.item.dismiss
         }
     }
