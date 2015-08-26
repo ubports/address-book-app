@@ -50,7 +50,7 @@ public:
 
 Q_SIGNALS:
     void updated();
-    void updateError(ButeoImport::ImportError errorCode);
+    void updateError(const QString &accountName, ButeoImport::ImportError errorCode);
     void busyChanged();
     void outDatedChanged();
 
@@ -73,8 +73,9 @@ private:
     bool removeProfile(const QString &profileId);
     bool removeSources(const QStringList &sources);
     bool commit();
-    void error(ImportError errorCode);
+    void error(const QString &accountName, ImportError errorCode);
     bool loadAccounts(QList<quint32> &accountsToUpdate);
     bool enableContactsService(quint32 accountId);
+    QString accountName(quint32 accountId);
     QStringList runningSyncs() const;
 };

@@ -47,13 +47,13 @@ Item {
 
             property string errorMessage: ""
 
-            function showError(errorCode)
+            function showError(accountName, errorCode)
             {
                 var errorString = ""
                 switch(errorCode)
                 {
                 case ButeoImport.OnlineAccountNotFound:
-                    errorString = i18n.tr("Fail to connect with contact sync service.")
+                    errorString = i18n.tr("Fail to connect with online accounts service.")
                     break;
                 case ButeoImport.FailToConnectWithButeo:
                     errorString = i18n.tr("Fail to connect with contact sync service.")
@@ -71,13 +71,15 @@ Item {
                 default:
                     break;
                 }
-                buteoDialog.title = i18n.tr("Could not complete contact sync upgrade.")
+                //FIXME: Use a generic message instead of explicitly say "Google"
+                buteoDialog.title = i18n.tr("Could not complete %1 sync upgrade.").arg(accountName !== "" ? accountName : "Google contacts")
                 buteoDialog.errorMessage = i18n.tr("%1.\nOnly local contacts will be editable until upgrade is complete. Please try again by pressing sync button").arg(errorString)
                 state = "error"
             }
 
-            title: i18n.tr("A new sync service is available.")
-            text: i18n.tr("Contact sync upgrade in progress...")
+            //FIXME: Use a generic message instead of explicitly say "Google"
+            title: i18n.tr("Google contact sync upgrade in progress...")
+            text: ""
             ActivityIndicator {
                 id: importingIndicator
 
@@ -120,12 +122,15 @@ Item {
 
                     PropertyChanges {
                         target: buteoDialog
-                        text: i18n.tr("Your contact sync needs to be upgraded, but no network connection could be found. Please connect to network and retry by pressing sync button.\nOnly local contacts will be editable until upgrade is complete.")
+                        title: i18n.tr("Device offline")
+                        //FIXME: Use a generic message instead of explicitly say "Google"
+                        text: i18n.tr("Your Google contact sync needs to be upgraded, but no network connection could be found. Please connect to network and retry by pressing sync button.\nOnly local contacts will be editable until upgrade is complete.")
                     }
 
                     PropertyChanges {
                         target: closeButton
                         visible: true
+                        color: UbuntuColors.red
                     }
 
                     PropertyChanges {
@@ -155,7 +160,7 @@ Item {
 
         onUpdateError: {
             console.warn("Fail:" + errorCode)
-            root.dialog.showError(errorCode)
+            root.dialog.showError(accountName, errorCode)
         }
 
         onUpdated: {

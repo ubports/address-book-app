@@ -21,6 +21,7 @@
 #include <Accounts/AccountService>
 
 #include <QtCore/QDebug>
+#include <QtCore/QScopedPointer>
 
 #include <QtDBus/QDBusReply>
 
@@ -43,7 +44,7 @@ ButeoImport::ButeoImport(QObject *parent)
       m_importLoop(0)
 {
     connect(this, SIGNAL(updated()), SIGNAL(outDatedChanged()));
-    connect(this, SIGNAL(updateError(ButeoImport::ImportError)), SIGNAL(outDatedChanged()));
+    connect(this, SIGNAL(updateError(QString, ButeoImport::ImportError)), SIGNAL(outDatedChanged()));
 }
 
 ButeoImport::~ButeoImport()
@@ -92,7 +93,7 @@ bool ButeoImport::loadAccounts(QList<quint32> &accountsToUpdate)
 bool ButeoImport::enableContactsService(quint32 accountId)
 {
     Accounts::Manager mgr;
-    Accounts::Account *account = mgr.account(accountId);
+    QScopedPointer<Accounts::Account> account(mgr.account(accountId));
 
     if (account) {
         Q_FOREACH(Accounts::Service service, account->services()) {
@@ -103,11 +104,17 @@ bool ButeoImport::enableContactsService(quint32 accountId)
                 account->syncAndBlock();
             }
         }
-        delete account;
         return true;
     } else {
         return false;
     }
+}
+
+QString ButeoImport::accountName(quint32 accountId)
+{
+    Accounts::Manager mgr;
+    QScopedPointer<Accounts::Account> account(mgr.account(accountId));
+    return account ? account->displayName() : QString();
 }
 
 QStringList ButeoImport::runningSyncs() const
@@ -352,10 +359,10 @@ bool ButeoImport::commit()
     return true;
 }
 
-void ButeoImport::error(ButeoImport::ImportError errorCode)
+void ButeoImport::error(const QString &accountName, ButeoImport::ImportError errorCode)
 {
     m_lastError = errorCode;
-    emit updateError(errorCode);
+    emit updateError(accountName, errorCode);
 }
 
 bool ButeoImport::update(bool removeOldSources)
@@ -365,26 +372,26 @@ bool ButeoImport::update(bool removeOldSources)
     if (settings.value(SETTINGS_BUTEO_KEY).toBool()) {
         // already imported
         qDebug() << "Application has already been migrated.";
-        error(ButeoImport::ApplicationAreadyUpdated);
+        error("", ButeoImport::ApplicationAreadyUpdated);
         return false;
     }
 
     if (!m_importLock.tryLock()) {
         qWarning() << "Fail to lock import mutex";
-        error(ButeoImport::InernalError);
+        error("", ButeoImport::InernalError);
         return false;
     }
 
     if (!prepareButeo()) {
         qWarning() << "Fail to connect with contact sync service.";
-        error(ButeoImport::FailToConnectWithButeo);
+        error("", ButeoImport::FailToConnectWithButeo);
         return false;
     }
 
     QStringList syncs = runningSyncs();
     if (!syncs.isEmpty()) {
         qWarning() << "Sync running" << syncs;
-        error(ButeoImport::SyncAlreadyRunning);
+        error("", ButeoImport::SyncAlreadyRunning);
         return false;
     }
 
@@ -400,7 +407,7 @@ bool ButeoImport::update(bool removeOldSources)
         emit busyChanged();
 
         qWarning() << "Fail to load accounts information";
-        error(ButeoImport::OnlineAccountNotFound);
+        error("", ButeoImport::OnlineAccountNotFound);
         return false;
     }
 
@@ -416,7 +423,7 @@ bool ButeoImport::update(bool removeOldSources)
         m_importLock.unlock();
         emit busyChanged();
         qWarning() << "Fail to create profiles";
-        error(ButeoImport::FailToCreateButeoProfiles);
+        error("", ButeoImport::FailToCreateButeoProfiles);
         return false;
     }
 
@@ -489,6 +496,7 @@ void ButeoImport::onSyncStatusChanged(const QString &profileName,
         qDebug() << "Profile not found" << profileName;
         return;
     }
+    quint32 accountId = m_accountToProfiles.key(profileName, 0);
 
     /*
     *      0 (QUEUED): Sync request has been queued or was already in the
@@ -505,20 +513,17 @@ void ButeoImport::onSyncStatusChanged(const QString &profileName,
         qWarning() << "Sync aborted for profile" << profileName;
     case 3:
         qWarning() << "Fail to sync profile" << profileName;
-        error(ButeoImport::SyncError);
+        error(accountName(accountId), ButeoImport::SyncError);
         removeProfile(profileName);
         break;
     case 4:
-        {
-            quint32 accountId = m_accountToProfiles.key(profileName, 0);
-            if (accountId > 0) {
-                qDebug() << "Sync finished for profile:" << accountId << profileName;
-                m_accountToProfiles.remove(accountId);
-                if (m_accountToProfiles.isEmpty()) {
-                    commit();
-                }
+        if (accountId > 0) {
+            qDebug() << "Sync finished for profile:" << accountId << profileName;
+            m_accountToProfiles.remove(accountId);
+            if (m_accountToProfiles.isEmpty()) {
+                commit();
             }
-            break;
         }
+        break;
     }
 }
