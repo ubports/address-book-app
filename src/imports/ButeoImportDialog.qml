@@ -16,6 +16,7 @@
 
 import QtQuick 2.2
 import QtContacts 5.0
+import QtSystemInfo 5.0
 import AddressBookApp 0.1
 import Ubuntu.Components 1.2
 import Ubuntu.Components.Popups 1.0 as Popups
@@ -36,6 +37,8 @@ Item {
         root.dialog = Popups.PopupUtils.open(importDialogComponent, root)
         if (application.isOnline) {
             buteoImportControl.update(true)
+        } else {
+            root.dialog.state = "noInternet"
         }
     }
 
@@ -64,7 +67,7 @@ Item {
                 case ButeoImport.SyncAlreadyRunning:
                     errorString = i18n.tr("Contact sync already in progress.")
                     break;
-                case buteoImport.SyncError:
+                case ButeoImport.SyncError:
                     errorString = i18n.tr("Fail to sync account.")
                     break;
                 case ButeoImport.InernalError:
@@ -95,6 +98,13 @@ Item {
                 onClicked: PopupUtils.close(buteoDialog)
             }
 
+            ScreenSaver {
+                id: screenSaver
+
+                // prevent the screen to goes off while syncing
+                screenSaverEnabled: false
+            }
+
             states: [
                 State {
                     name: "error"
@@ -115,16 +125,20 @@ Item {
                         target: importingIndicator
                         running: false
                     }
+
+                    PropertyChanges {
+                        target: screenSaver
+                        screenSaverEnabled: true
+                    }
                 },
                 State {
                     name: "noInternet"
-                    when: !application.isOnline
 
                     PropertyChanges {
                         target: buteoDialog
                         title: i18n.tr("Device offline")
                         //FIXME: Use a generic message instead of explicitly say "Google"
-                        text: i18n.tr("Your Google contact sync needs to be upgraded, but no network connection could be found. Please connect to network and retry by pressing sync button.\nOnly local contacts will be editable until upgrade is complete.")
+                        text: i18n.tr("Your Google contact sync needs to be upgraded, but no network connection could be found.\nPlease connect to network and retry by pressing sync button.\nOnly local contacts will be editable until upgrade is complete.")
                     }
 
                     PropertyChanges {
@@ -136,6 +150,11 @@ Item {
                     PropertyChanges {
                         target: importingIndicator
                         running: false
+                    }
+
+                    PropertyChanges {
+                        target: screenSaver
+                        screenSaverEnabled: true
                     }
                 }
             ]
