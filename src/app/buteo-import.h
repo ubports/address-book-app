@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2015 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -73,9 +73,11 @@ private:
     bool removeProfile(const QString &profileId);
     bool removeSources(const QStringList &sources);
     bool commit();
+    bool restoreSession(const QStringList &activeSyncs);
     void error(const QString &accountName, ImportError errorCode);
     bool loadAccounts(QList<quint32> &accountsToUpdate);
     bool enableContactsService(quint32 accountId);
     QString accountName(quint32 accountId);
     QStringList runningSyncs() const;
+    QString profileName(const QString &xml) const;
 };

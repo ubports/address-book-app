@@ -25,6 +25,8 @@
 
 #include <QtDBus/QDBusReply>
 
+#include <QtXml/QDomDocument>
+
 #include <QtContacts/QContactManager>
 #include <QtContacts/QContact>
 #include <QtContacts/QContactGuid>
@@ -132,6 +134,28 @@ QStringList ButeoImport::runningSyncs() const
     return result.value();
 }
 
+QString ButeoImport::profileName(const QString &xml) const
+{
+    QDomDocument doc;
+    QString errorMsg;
+    int errorLine;
+    int errorColumn;
+
+    if (doc.setContent(xml, &errorMsg, &errorLine, &errorColumn)) {
+       QDomNodeList profileElements = doc.elementsByTagName("profile");
+       if (!profileElements.isEmpty()) {
+             QDomElement e = profileElements.item(0).toElement();
+             return e.attribute("name");
+       } else {
+           qWarning() << "Invalid profile" << xml;
+       }
+    } else {
+        qWarning() << "Fail to parse profile:" << xml;
+        qWarning() << "Error:" << errorMsg << errorLine << errorColumn;
+    }
+    return QString();
+}
+
 bool ButeoImport::isOutDated()
 {
     // check settings
@@ -139,6 +163,17 @@ bool ButeoImport::isOutDated()
     if (settings.value(SETTINGS_BUTEO_KEY, false).toBool()) {
         qDebug() << "Application has already been migrated.";
         return false;
+    }
+
+    if (!prepareButeo()) {
+        qWarning() << "Fail to connect with contact sync service.";
+        return true;
+    }
+
+    QStringList syncs = runningSyncs();
+    if (!syncs.isEmpty()) {
+        qWarning() << "Sync running" << syncs;
+        return true;
     }
 
     QList<quint32> accountsToUpdate;
@@ -360,6 +395,33 @@ bool ButeoImport::commit()
     return true;
 }
 
+bool ButeoImport::restoreSession(const QStringList &activeSyncs)
+{
+    if (!prepareButeo()) {
+        qWarning() << "Fail to connect with buteo service";
+        return false;
+    }
+    Accounts::Manager mgr;
+    QList<quint32> accounts = mgr.accountList("contacts");
+
+    // check which account still syncing
+    Q_FOREACH(const quint32 &accountId, QList<quint32>(accounts)) {
+        QDBusReply<QStringList> reply = m_buteoInterface->call("syncProfilesByKey",
+                                                               "accountid",
+                                                               QString::number(accountId));
+        if (!reply.value().isEmpty()) {
+            QString profileName = this->profileName(reply.value().first());
+            qDebug() << "Profile name" << profileName;
+            if (activeSyncs.contains(profileName)) {
+                qDebug() << "Restore state for: Account" << accountId << "Profile:" << profileName;
+                m_accountToProfiles.insert(accountId, profileName);
+            }
+        }
+    }
+
+    return !m_accountToProfiles.isEmpty();
+}
+
 void ButeoImport::error(const QString &accountName, ButeoImport::ImportError errorCode)
 {
     m_lastError = errorCode;
@@ -389,17 +451,27 @@ bool ButeoImport::update(bool removeOldSources)
         return false;
     }
 
-    QStringList syncs = runningSyncs();
-    if (!syncs.isEmpty()) {
-        qWarning() << "Sync running" << syncs;
-        error("", ButeoImport::SyncAlreadyRunning);
-        return false;
-    }
-
     emit busyChanged();
 
     m_removeOldSources = removeOldSources;
     m_accountToProfiles.clear();
+
+    QStringList syncs = runningSyncs();
+    if (!syncs.isEmpty()) {
+        // syn running probably a old update
+        qDebug() << "Sync running" << syncs << "try to restore session";
+        if (restoreSession(syncs)) {
+            qDebug() << "Session restored";
+            return true;
+        } else {
+            qWarning() << "Fail to restore old session.";
+            m_importLock.unlock();
+            emit busyChanged();
+
+            error("", ButeoImport::SyncAlreadyRunning);
+            return false;
+        }
+    }
 
     QList<quint32> accountsToUpdate;
     if (!loadAccounts(accountsToUpdate)) {
