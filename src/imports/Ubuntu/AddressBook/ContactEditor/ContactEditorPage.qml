@@ -426,11 +426,14 @@ Page {
             title: i18n.dtr("address-book-app", "Contact Editor")
             text: Qt.application.name === "AddressBookApp" ?
                       i18n.dtr("address-book-app",
-                               "Your <b>%1</b> contact sync needs to be upgraded, but no network connection could be found.\n\
-Please connect to network and retry by pressing sync button.\n\
-Only local contacts will be editable until upgrade is complete.").arg(contactEditor.contact.syncTarget.syncTarget) :
-                      i18n.dtr("address-book-app", "Your <b>%1</b> contact sync needs to be upgraded by running Contacts app.\n
-Only local contacts will be editable until upgrade is complete").arg(contactEditor.contact.syncTarget.syncTarget);
+                               "Your <b>%1</b> xx contact sync needs to be upgraded, but no network connection could be found.
+                                Please connect to network and retry by pressing sync button.
+                                Only local contacts will be editable until upgrade is complete.")
+                        .arg(contactEditor.contact.syncTarget.syncTarget) :
+                      i18n.dtr("address-book-app",
+                               "Your <b>%1</b> bb contact sync needs to be upgraded by running Contacts app.
+                                Only local contacts will be editable until upgrade is complete")
+                        .arg(contactEditor.contact.syncTarget.syncTarget);
 
             Button {
                 text: i18n.dtr("address-book-app", "Close")
