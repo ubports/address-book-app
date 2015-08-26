@@ -160,7 +160,9 @@ Item {
             ]
 
             Component.onDestruction: {
+                screenSaver.screenSaverEnabled = true
                 root.dialog = null
+                console.debug("Dialog destroyed")
             }
         }
     }
