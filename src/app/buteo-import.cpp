@@ -262,15 +262,16 @@ bool ButeoImport::removeProfile(const QString &profileId)
 
     // check for source
     QMap<QString, quint32> listOfSources = sources();
-    QString sourceName = listOfSources.key(accountId, "");
+    QString sourceId = listOfSources.key(accountId, "");
 
     // remove source
-    if (!sourceName.isEmpty()) {
+    if (!sourceId.isEmpty()) {
         QScopedPointer<QContactManager> manager(new QContactManager("galera"));
-        QContactId sourceId = QContactId::fromString(QString("qtcontacts:galera::%1").arg(sourceName));
-        if (!manager->removeContact(sourceId)) {
-            qWarning() << "Fail to remove contact source:" << sourceName;
+        if (!manager->removeContact(QContactId::fromString(sourceId))) {
+            qWarning() << "Fail to remove contact source:" << sourceId;
             return false;
+        } else {
+            qDebug() << "Source removed" << sourceId;
         }
     } else {
         qDebug() << "No source was created for account" << accountId;
