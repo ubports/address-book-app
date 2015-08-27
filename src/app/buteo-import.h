@@ -75,9 +75,11 @@ private:
     bool commit();
     bool restoreSession(const QStringList &activeSyncs);
     void error(const QString &accountName, ImportError errorCode);
-    bool loadAccounts(QList<quint32> &accountsToUpdate);
+    bool loadAccounts(QList<quint32> &accountsToUpdate, QList<quint32> &newAccounts);
     bool enableContactsService(quint32 accountId);
     QString accountName(quint32 accountId);
     QStringList runningSyncs() const;
     QString profileName(const QString &xml) const;
+    QString profileName(quint32 accountId) const;
+    bool startSync(const QString &profile) const;
 };
