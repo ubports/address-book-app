@@ -185,7 +185,7 @@ bool ButeoImport::startSync(const QString &profile) const
         return false;
     }
 
-    QDBusReply<bool> result = m_buteoInterface->call("StartSync", profile);
+    QDBusReply<bool> result = m_buteoInterface->call("startSync", profile);
     if (result.error().isValid()) {
         qWarning() << "Fail to start sync for profile" << profile << result.error().message();
         return false;
