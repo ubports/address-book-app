@@ -20,7 +20,7 @@ import QtContacts 5.0
 import Ubuntu.Components 1.2
 import Ubuntu.Components.ListItems 1.0 as ListItem
 import Ubuntu.Components.Popups 1.0
-import Ubuntu.Contacts 0.1
+import Ubuntu.Contacts 0.1 as Contacts
 import Buteo 0.1
 
 /*!
@@ -499,7 +499,7 @@ Item {
         listModel: ContactListModel {
             id: contactsModel
 
-            manager: (Qt.application.name !== "AddressBookApp") && Contacts.appIsBusy ? "invalid" : root.manager
+            manager: (Qt.application.name !== "AddressBookApp") && Contacts.Contacts.appIsBusy ? "invalid" : root.manager
             sortOrders: root.sortOrders
             fetchHint: root.fetchHint
         }
@@ -588,7 +588,7 @@ Item {
         }
     }
     Component.onCompleted: {
-        if ((Qt.application.name !== "AddressBookApp") && Contacts.appIsBusy) {
+        if ((Qt.application.name !== "AddressBookApp") && Contacts.Contacts.appIsBusy) {
             PopupUtils.open(busyDialogComponent)
         }
     }
