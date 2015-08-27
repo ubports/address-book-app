@@ -32,6 +32,11 @@
 #include <QtContacts/QContactGuid>
 #include <QtContacts/QContactExtendedDetail>
 #include <QtContacts/QContactDetailFilter>
+#include <QtContacts/QContactIntersectionFilter>
+#include <QtContacts/QContactFavorite>
+#include <QtContacts/QContactName>
+#include <QtContacts/QContactPhoneNumber>
+#include <QtContacts/QContactEmailAddress>
 
 #include "config.h"
 
@@ -192,6 +197,87 @@ bool ButeoImport::startSync(const QString &profile) const
     }
 
     return result.value();
+}
+
+bool ButeoImport::matchFavorites()
+{
+    QScopedPointer<QContactManager> manager(new QContactManager("galera"));
+
+    // load old favorites
+    QContactDetailFilter folksFavorite;
+    folksFavorite.setDetailType(QContactDetail::TypeFavorite, QContactFavorite::FieldFavorite);
+    folksFavorite.setValue(true);
+
+    QContactFetchHint hint;
+    hint.setDetailTypesHint(QList<QContactDetail::DetailType>()
+                            << QContactDetail::TypeName
+                            << QContactDetail::TypeEmailAddress
+                            << QContactDetail::TypePhoneNumber);
+    QList<QContact> favorites = manager->contacts(folksFavorite, QList<QContactSortOrder>(), hint);
+    qDebug() << "number of folks favorites" << favorites.size();
+
+    // try to match with new contacts
+    QList<QContact> toUpdate;
+
+    Q_FOREACH(const QContact &f, favorites) {
+        QContactIntersectionFilter iFilter;
+
+        qDebug() << "Try to match contact" << f;
+
+        // No favorite
+        QContactDetailFilter noFavorite;
+        noFavorite.setDetailType(QContactDetail::TypeFavorite, QContactFavorite::FieldFavorite);
+        noFavorite.setValue(false);
+        iFilter.append(noFavorite);
+
+        // By name
+        QContactDetailFilter firstNameFilter;
+        firstNameFilter.setDetailType(QContactDetail::TypeName, QContactName::FieldFirstName);
+        firstNameFilter.setValue(f.detail<QContactName>().firstName());
+        iFilter.append(firstNameFilter);
+
+        QContactDetailFilter lastNameFilter;
+        lastNameFilter.setDetailType(QContactDetail::TypeName, QContactName::FieldLastName);
+        lastNameFilter.setValue(f.detail<QContactName>().lastName());
+        iFilter.append(lastNameFilter);
+
+        // By Email
+        Q_FOREACH(const QContactEmailAddress &e, f.details<QContactEmailAddress>()) {
+            QContactDetailFilter emailFilter;
+            emailFilter.setDetailType(QContactDetail::TypeEmailAddress, QContactEmailAddress::FieldEmailAddress);
+            emailFilter.setValue(e.emailAddress());
+            iFilter.append(emailFilter);
+        }
+
+        // By Phone
+        Q_FOREACH(const QContactPhoneNumber &p, f.details<QContactPhoneNumber>()) {
+            QContactDetailFilter phoneFilter;
+            phoneFilter.setDetailType(QContactDetail::TypePhoneNumber, QContactPhoneNumber::FieldNumber);
+            phoneFilter.setValue(p.number());
+            iFilter.append(phoneFilter);
+        }
+
+        QList<QContact> contacts = manager->contacts(iFilter);
+        qDebug() << "Number of contacts that match with old favorite" << contacts.size();
+
+        Q_FOREACH(QContact c, contacts) {
+            qDebug() << "Mark new contact as favorite" << c;
+            QContactFavorite fav = c.detail<QContactFavorite>();
+            fav.setFavorite(true);
+            c.saveDetail(&fav);
+            toUpdate << c;
+        }
+    }
+
+
+    if (!toUpdate.isEmpty()) {
+        if (!manager->saveContacts(&toUpdate)) {
+            qWarning() << "Fail to save favorite contacts";
+            return false;
+        }
+    }
+    return true;
+
 }
 
 bool ButeoImport::isOutDated()
@@ -388,6 +474,9 @@ bool ButeoImport::removeSources(const QStringList &sources)
 bool ButeoImport::commit()
 {
     Q_ASSERT(m_accountToProfiles.isEmpty());
+
+    // update new favorites
+    matchFavorites();
 
     // remove old sources
     if (m_removeOldSources) {

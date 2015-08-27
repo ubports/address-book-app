@@ -83,4 +83,5 @@ private:
     QString profileName(const QString &xml) const;
     QString profileName(quint32 accountId) const;
     bool startSync(const QString &profile) const;
+    bool matchFavorites();
 };
