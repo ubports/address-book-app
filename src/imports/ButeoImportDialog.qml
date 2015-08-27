@@ -187,6 +187,7 @@ Item {
         onUpdated: {
             console.debug("Import Completed")
             PopupUtils.close(root.dialog)
+            root.dialog = null
             root.dismiss = true
         }
     }
