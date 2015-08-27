@@ -48,6 +48,7 @@ set(CONTACT_COMPONENTS_SRC
 )
 
 include_directories(
+    ${CMAKE_BINARY_DIR}
     ${QOfono_INCLUDE_DIRS}
 )
 

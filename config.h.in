@@ -10,6 +10,10 @@
 #define QT_EXTRA_IMPORTS_DIR                "@QT_EXTRA_IMPORTS_DIR@"
 #define ADDRESS_BOOK_APP_CLICK_PACKAGE      "@CLICK_MODE@"
 #define I18N_DIRECTORY                      "@CMAKE_INSTALL_PREFIX@/share/locale"
+
+#define SETTINGS_ORGANIZATION_NAME          "com.ubuntu.address-book"
+#define SETTINGS_APP_NAME                   "AddressBookApp"
 #define SETTINGS_BUTEO_KEY                  "Buteo/migration_complete"
+#define SETTINGS_APP_BUSY_KEY               "app_busy"
 
 #endif

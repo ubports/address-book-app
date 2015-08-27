@@ -22,10 +22,15 @@
 #include <QtCore/QDebug>
 #include <QtCore/QDir>
 #include <QtCore/QUrl>
+#include <QtCore/QSettings>
+
+#include "config.h"
 
 UbuntuContacts::UbuntuContacts(QObject *parent)
     : QObject(parent)
 {
+    // keep pooling settings value until the app is not busy anymore
+    startTimer(1000);
 }
 
 QString UbuntuContacts::tempPath() const
@@ -101,4 +106,18 @@ bool UbuntuContacts::containsLetters(const QString &value)
 bool UbuntuContacts::removeFile(const QUrl &file)
 {
     return QFile::remove(file.toLocalFile());
+}
+
+bool UbuntuContacts::appIsBusy()
+{
+    QSettings appSettings(SETTINGS_ORGANIZATION_NAME, SETTINGS_APP_NAME);
+    return appSettings.value(SETTINGS_APP_BUSY_KEY, false).toBool();
+}
+
+void UbuntuContacts::timerEvent(QTimerEvent *event)
+{
+    if (!appIsBusy()) {
+        Q_EMIT appIsBusyChanged();
+        killTimer(event->timerId());
+    }
 }

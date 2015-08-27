@@ -107,8 +107,8 @@ AddressBookApp::AddressBookApp(int &argc, char **argv)
       m_withArgs(false)
 {
     s_elapsed.start();
-    setOrganizationName("com.ubuntu.address-book");
-    setApplicationName("AddressBookApp");
+    setOrganizationName(SETTINGS_ORGANIZATION_NAME);
+    setApplicationName(SETTINGS_APP_NAME);
     setOrganizationDomain("canonical.com");
     connect(m_netManager.data(),
             SIGNAL(onlineStateChanged(bool)),

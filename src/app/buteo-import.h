@@ -55,6 +55,7 @@ Q_SIGNALS:
     void outDatedChanged();
 
 private Q_SLOTS:
+    void onBusyChanged();
     void onProfileChanged(const QString &profileName, int changeType, const QString &profileAsXml);
     void onSyncStatusChanged(const QString &aProfileName, int aStatus, const QString &aMessage, int aMoreDetails);
 

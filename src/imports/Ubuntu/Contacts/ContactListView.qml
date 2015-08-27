@@ -19,6 +19,8 @@ import QtContacts 5.0
 
 import Ubuntu.Components 1.2
 import Ubuntu.Components.ListItems 1.0 as ListItem
+import Ubuntu.Components.Popups 1.0
+import Ubuntu.Contacts 0.1
 import Buteo 0.1
 
 /*!
@@ -497,7 +499,7 @@ Item {
         listModel: ContactListModel {
             id: contactsModel
 
-            manager: root.manager
+            manager: (Qt.application.name !== "AddressBookApp") && Contacts.appIsBusy ? "invalid" : root.manager
             sortOrders: root.sortOrders
             fetchHint: root.fetchHint
         }
@@ -567,5 +569,27 @@ Item {
                 (root.count === 0) &&
                 !view.favouritesIsSelected &&
                 !isSearching ? sourceFile : ""
+    }
+
+    // Show application busy dialog if address-book-app is running a upgrade
+    Component {
+        id: busyDialogComponent
+
+        Dialog {
+            id: busyDialogue
+
+            title: i18n.dtr("address-book-app", "Upgrade in progress")
+            text: i18n.dtr("address-book-app", "Contact app is running an upgrade you need to wait for it to finish.")
+
+            Button {
+                text: i18n.dtr("address-book-app", "Close")
+                onClicked: PopupUtils.close(busyDialogue)
+            }
+        }
+    }
+    Component.onCompleted: {
+        if ((Qt.application.name !== "AddressBookApp") && Contacts.appIsBusy) {
+            PopupUtils.open(busyDialogComponent)
+        }
     }
 }

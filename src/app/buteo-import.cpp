@@ -45,6 +45,7 @@ ButeoImport::ButeoImport(QObject *parent)
     : QObject(parent),
       m_importLoop(0)
 {
+    connect(this, SIGNAL(busyChanged()), SLOT(onBusyChanged()));
     connect(this, SIGNAL(updated()), SIGNAL(outDatedChanged()));
     connect(this, SIGNAL(updateError(QString, ButeoImport::ImportError)), SIGNAL(outDatedChanged()));
 }
@@ -574,6 +575,17 @@ void ButeoImport::wait()
     qDebug() << "Import finished";
     delete m_importLoop;
     m_importLock.unlock();
+}
+
+void ButeoImport::onBusyChanged()
+{
+    QSettings settings;
+    bool settingsBusy = settings.value(SETTINGS_APP_BUSY_KEY, false).toBool();
+    bool appIsBusy = busy();
+    if (appIsBusy != settingsBusy) {
+        settings.setValue(SETTINGS_APP_BUSY_KEY, appIsBusy);
+        settings.sync();
+    }
 }
 
 void ButeoImport::onProfileChanged(const QString &profileName, int changeType, const QString &profileAsXml)
