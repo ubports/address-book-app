@@ -406,7 +406,7 @@ Item {
                 // TRANSLATORS: this refers to a new contact
                 labelText: i18n.dtr("address-book-app", "+ Create New")
                 onClicked: root.addNewContactClicked()
-                visible: root.showAddNewButton
+                visible: root.showAddNewButton && !Contacts.Contacts.appIsBusy
             }
 
             Column {
