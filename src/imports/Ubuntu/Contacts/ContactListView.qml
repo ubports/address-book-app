@@ -579,7 +579,7 @@ Item {
             id: busyDialogue
 
             title: i18n.dtr("address-book-app", "Upgrade in progress")
-            text: i18n.dtr("address-book-app", "Contact app is running an upgrade you need to wait for it to finish.")
+            text: i18n.dtr("address-book-app", "A contact sync upgrade is in progress. Please open Contacts app to finish the upgrade")
 
             Button {
                 text: i18n.dtr("address-book-app", "Close")
