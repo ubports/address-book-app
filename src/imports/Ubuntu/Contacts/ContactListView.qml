@@ -585,6 +585,12 @@ Item {
                 text: i18n.dtr("address-book-app", "Close")
                 onClicked: PopupUtils.close(busyDialogue)
             }
+
+            Component.onDestruction: {
+                if (pageStack.depth > 1) {
+                    pageStack.pop()
+                }
+            }
         }
     }
     Component.onCompleted: {
