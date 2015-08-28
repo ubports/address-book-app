@@ -435,3 +435,9 @@ bool AddressBookApp::needsUpdate() const
     QSettings s;
     return !s.value(SETTINGS_BUTEO_KEY, false).toBool();
 }
+
+bool AddressBookApp::updating() const
+{
+    QSettings s;
+    return s.value(SETTINGS_APP_BUSY_KEY, false).toBool();
+}

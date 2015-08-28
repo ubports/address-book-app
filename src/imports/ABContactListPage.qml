@@ -519,8 +519,8 @@ ContactsUI.PageWithBottomEdge {
         asynchronous: true
         active: false
         Component.onCompleted: {
-            // avoid load emlement in contructor
-            if (ContentHub.ContentHub.hasPending) {
+            // avoid start import if the app was launched from content-hub
+            if (ContentHub.ContentHub.hasPending && !application.updating) {
                 active = false
             } else {
                 // only loads import dialog if app still needs a upgrade
