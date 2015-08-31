@@ -231,6 +231,8 @@ Item {
     */
     property bool showBusyIndicator: true
 
+    property var _busyDialog: null
+
     /*!
       This handler is called when the selection mode is finished without be canceled
     */
@@ -348,6 +350,17 @@ Item {
     function sync()
     {
        buteoSync.startSyncByCategory("contacts")
+    }
+
+    function _checkAppIsBusy()
+    {
+        if (_busyDialog != null) {
+            return;
+        }
+
+        if ((Qt.application.name !== "AddressBookApp") && Contacts.Contacts.appIsBusy) {
+            _busyDialog = PopupUtils.open(busyDialogComponent)
+        }
     }
 
     ContactSimpleListView {
@@ -583,7 +596,10 @@ Item {
 
             Button {
                 text: i18n.dtr("address-book-app", "Close")
-                onClicked: PopupUtils.close(busyDialogue)
+                onClicked: {
+                    root._busyDialog = null
+                    PopupUtils.close(busyDialogue)
+                }
             }
 
             Component.onDestruction: {
@@ -593,9 +609,15 @@ Item {
             }
         }
     }
-    Component.onCompleted: {
-        if ((Qt.application.name !== "AddressBookApp") && Contacts.Contacts.appIsBusy) {
-            PopupUtils.open(busyDialogComponent)
+    Component.onCompleted: _checkAppIsBusy()
+
+    // check if the busy dialog is necessary after restore app state
+    Connections {
+        target: Qt.application
+        onStateChanged:  {
+            if (Qt.application.state === Qt.ApplicationActive) {
+                _checkAppIsBusy()
+            }
         }
     }
 }
