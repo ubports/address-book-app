@@ -138,7 +138,7 @@ Item {
                         target: buteoDialog
                         title: i18n.tr("Device offline")
                         //FIXME: Use a generic message instead of explicitly say "Google"
-                        text: i18n.tr("Your Google contact sync needs to be upgraded, but no network connection could be found.\nPlease connect to network and retry by pressing sync button.\nOnly local contacts will be editable until upgrade is complete.")
+                        text: i18n.tr("Your Google contact sync account needs to be upgraded, but no network connection could be found.\nPlease connect to network and retry by pressing sync button.\nOnly local contacts will be editable until upgrade is complete.")
                     }
 
                     PropertyChanges {
