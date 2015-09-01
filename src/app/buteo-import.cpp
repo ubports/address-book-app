@@ -644,7 +644,6 @@ bool ButeoImport::update(bool removeOldSources)
         }
     }
 
-
     return true;
 }
 

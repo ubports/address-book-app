@@ -216,7 +216,7 @@ Item {
     // and will re-check if the property changes.
     // Using only '(buteoSync.syncProfilesByCategory("contacts").length > 0)'
     // the value will be checked only on app startup
-    readonly property bool syncEnabled: buteoSync.visibleSyncProfiles &&
+    readonly property bool syncEnabled: (buteoSync.profilesCount > 0) &&
                                         (buteoSync.syncProfilesByCategory("contacts").length > 0)
     /*!
       \qmlproperty bool busy
@@ -512,7 +512,8 @@ Item {
         listModel: ContactListModel {
             id: contactsModel
 
-            manager: (Qt.application.name !== "AddressBookApp") && Contacts.Contacts.appIsBusy ? "invalid" : root.manager
+            // does not query for contacts while app is updating
+            manager: Contacts.Contacts.appIsBusy ? "invalid" : root.manager
             sortOrders: root.sortOrders
             fetchHint: root.fetchHint
         }

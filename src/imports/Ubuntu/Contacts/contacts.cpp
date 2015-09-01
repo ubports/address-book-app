@@ -27,10 +27,16 @@
 #include "config.h"
 
 UbuntuContacts::UbuntuContacts(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      m_settings(SETTINGS_ORGANIZATION_NAME, SETTINGS_APP_NAME),
+      m_watcher(new QFileSystemWatcher)
 {
-    // keep pooling settings value until the app is not busy anymore
-    startTimer(1000);
+    QFileInfo iFile(m_settings.fileName());
+    m_watcher->addPath(iFile.absolutePath());
+
+    connect(m_watcher.data(),
+            SIGNAL(fileChanged(QString)),
+            SLOT(onConfigFileChanged(QString)));
 }
 
 QString UbuntuContacts::tempPath() const
@@ -110,14 +116,12 @@ bool UbuntuContacts::removeFile(const QUrl &file)
 
 bool UbuntuContacts::appIsBusy()
 {
-    QSettings appSettings(SETTINGS_ORGANIZATION_NAME, SETTINGS_APP_NAME);
-    return appSettings.value(SETTINGS_APP_BUSY_KEY, false).toBool();
+    return m_settings.value(SETTINGS_APP_BUSY_KEY, false).toBool();
 }
 
-void UbuntuContacts::timerEvent(QTimerEvent *event)
+void UbuntuContacts::onConfigFileChanged(const QString &path)
 {
-    if (!appIsBusy()) {
+    if (path == m_settings.fileName()) {
         Q_EMIT appIsBusyChanged();
-        killTimer(event->timerId());
     }
 }

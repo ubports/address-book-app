@@ -20,6 +20,9 @@
 #include <QtCore/QObject>
 #include <QtCore/QString>
 #include <QtCore/QUrl>
+#include <QtCore/QSettings>
+#include <QtCore/QFileSystemWatcher>
+#include <QtCore/QScopedPointer>
 
 class UbuntuContacts : public QObject
 {
@@ -45,8 +48,12 @@ public:
 Q_SIGNALS:
     void appIsBusyChanged();
 
-protected:
-    void timerEvent(QTimerEvent *event);
+private Q_SLOTS:
+    void onConfigFileChanged(const QString &path);
+
+private:
+    QSettings m_settings;
+    QScopedPointer<QFileSystemWatcher> m_watcher;
 };
 
 #endif //_UBUNTU_CONTACTS_H_
