@@ -31,8 +31,8 @@ UbuntuContacts::UbuntuContacts(QObject *parent)
       m_settings(SETTINGS_ORGANIZATION_NAME, SETTINGS_APP_NAME),
       m_watcher(new QFileSystemWatcher)
 {
-    QFileInfo iFile(m_settings.fileName());
-    m_watcher->addPath(iFile.absolutePath());
+    // monitor changes on settings
+    m_watcher->addPath(m_settings.fileName());
 
     connect(m_watcher.data(),
             SIGNAL(fileChanged(QString)),
