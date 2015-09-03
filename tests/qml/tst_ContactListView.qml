@@ -48,7 +48,6 @@ Item {
     MainView {
         id: mainView
         anchors.fill: parent
-        useDeprecatedToolbar: false
     }
 
     function createContact(firstName, phoneNumber, email) {

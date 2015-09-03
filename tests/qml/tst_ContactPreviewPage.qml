@@ -63,7 +63,6 @@ Item {
     MainView {
         id: mainView
         anchors.fill: parent
-        useDeprecatedToolbar: false
 
         ContactViewPage {
             id: contactPreviewPage

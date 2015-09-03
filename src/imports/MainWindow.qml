@@ -102,7 +102,6 @@ MainView {
     width: units.gu(40)
     height: units.gu(71)
     anchorToKeyboard: false
-    useDeprecatedToolbar: false
 
     PageStack {
         id: mainStack
