@@ -58,9 +58,12 @@ add_library(${CONTACT_COMPONENTS_PLUGIN} MODULE
 
 target_link_libraries(${CONTACT_COMPONENTS_PLUGIN}
     ${QOfono_LIBRARIES}
+    Qt5::Core
+    Qt5::Contacts
+    Qt5::Qml
+    Qt5::Quick
+    Qt5::DBus
 )
-
-qt5_use_modules(${CONTACT_COMPONENTS_PLUGIN} Core Contacts Qml Quick DBus)
 
 # make the files visible on qtcreator
 add_custom_target(contact_components_QmlFiles ALL SOURCES ${CONTACT_COMPONENTS_QMLS})

@@ -226,17 +226,11 @@ ContactsUI.PageWithBottomEdge {
                     }
                 },
                 Action {
-                    visible: buteoImporter.item || (application.isOnline && contactList.syncEnabled)
+                    visible: (application.isOnline && contactList.syncEnabled)
                     text: contactList.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
-                    iconName:  buteoImporter.active ? "reset" : "reload"
+                    iconName: "reload"
                     enabled: !contactList.syncing
-                    onTriggered: {
-                        if (buteoImporter.active) {
-                            buteoImporter.item.start()
-                        } else {
-                            contactList.sync()
-                        }
-                    }
+                    onTriggered: contactList.sync()
                 },
                 Action {
                     text: i18n.tr("Settings")
@@ -510,32 +504,6 @@ ContactsUI.PageWithBottomEdge {
 
         ContactSharePage {
             objectName: "contactSharePage"
-        }
-    }
-
-    Loader {
-        id: buteoImporter
-
-        asynchronous: true
-        active: false
-        Component.onCompleted: {
-            // avoid start import if the app was launched from content-hub
-            if (ContentHub.ContentHub.hasPending && !application.updating) {
-                active = false
-            } else {
-                // only loads import dialog if app still needs a upgrade
-                active = application.needsUpdate
-            }
-
-            source = Qt.resolvedUrl("ButeoImportDialog.qml")
-        }
-
-        // Unload element when finished
-        Binding {
-            target: buteoImporter
-            property: "active"
-            when: buteoImporter.status === Loader.Ready
-            value: !buteoImporter.item.dismiss
         }
     }
 

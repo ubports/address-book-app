@@ -22,21 +22,12 @@
 #include <QtCore/QDebug>
 #include <QtCore/QDir>
 #include <QtCore/QUrl>
-#include <QtCore/QSettings>
 
 #include "config.h"
 
 UbuntuContacts::UbuntuContacts(QObject *parent)
-    : QObject(parent),
-      m_settings(SETTINGS_ORGANIZATION_NAME, SETTINGS_APP_NAME),
-      m_watcher(new QFileSystemWatcher)
+    : QObject(parent)
 {
-    // monitor changes on settings
-    m_watcher->addPath(m_settings.fileName());
-
-    connect(m_watcher.data(),
-            SIGNAL(fileChanged(QString)),
-            SLOT(onConfigFileChanged(QString)));
 }
 
 QString UbuntuContacts::tempPath() const
@@ -112,16 +103,4 @@ bool UbuntuContacts::containsLetters(const QString &value)
 bool UbuntuContacts::removeFile(const QUrl &file)
 {
     return QFile::remove(file.toLocalFile());
-}
-
-bool UbuntuContacts::appIsBusy()
-{
-    return m_settings.value(SETTINGS_APP_BUSY_KEY, false).toBool();
-}
-
-void UbuntuContacts::onConfigFileChanged(const QString &path)
-{
-    if (path == m_settings.fileName()) {
-        Q_EMIT appIsBusyChanged();
-    }
 }

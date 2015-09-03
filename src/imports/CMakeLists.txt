@@ -4,7 +4,6 @@ set(ADDRESS_BOOK_APP_QMLS
     ABContactListPage.qml
     ABContactEditorPage.qml
     ABContactViewPage.qml
-    ButeoImportDialog.qml
     ContentHubProxy.qml
     MainWindow.qml
     VCardImportDialog.qml

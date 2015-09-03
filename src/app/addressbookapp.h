@@ -29,8 +29,6 @@ class AddressBookApp : public QGuiApplication
     Q_PROPERTY(bool firstRun READ isFirstRun CONSTANT)
     Q_PROPERTY(QString callbackApplication READ callbackApplication WRITE setCallbackApplication NOTIFY callbackApplicationChanged)
     Q_PROPERTY(bool isOnline READ isOnline NOTIFY isOnlineChanged)
-    Q_PROPERTY(bool needsUpdate READ needsUpdate CONSTANT)
-    Q_PROPERTY(bool updating READ updating CONSTANT)
 
 public:
     AddressBookApp(int &argc, char **argv);
@@ -42,8 +40,6 @@ public:
     void setCallbackApplication(const QString &application);
 
     bool isOnline() const;
-    bool needsUpdate() const;
-    bool updating() const;
 
 Q_SIGNALS:
     void callbackApplicationChanged();

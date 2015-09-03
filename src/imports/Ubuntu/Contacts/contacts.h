@@ -20,15 +20,11 @@
 #include <QtCore/QObject>
 #include <QtCore/QString>
 #include <QtCore/QUrl>
-#include <QtCore/QSettings>
-#include <QtCore/QFileSystemWatcher>
-#include <QtCore/QScopedPointer>
 
 class UbuntuContacts : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString tempPath READ tempPath)
-    Q_PROPERTY(bool appIsBusy READ appIsBusy NOTIFY appIsBusyChanged)
 
 public:
     UbuntuContacts(QObject *parent = 0);
@@ -40,20 +36,6 @@ public:
     Q_INVOKABLE QUrl copyImage(QObject *contact, const QUrl &imageUrl);
     Q_INVOKABLE bool containsLetters(const QString &value);
     Q_INVOKABLE bool removeFile(const QUrl &file);
-
-    // check if the address-book-app is in a busy state and the components should
-    // wait until the application goes back to normal state
-    Q_INVOKABLE bool appIsBusy();
-
-Q_SIGNALS:
-    void appIsBusyChanged();
-
-private Q_SLOTS:
-    void onConfigFileChanged(const QString &path);
-
-private:
-    QSettings m_settings;
-    QScopedPointer<QFileSystemWatcher> m_watcher;
 };
 
 #endif //_UBUNTU_CONTACTS_H_

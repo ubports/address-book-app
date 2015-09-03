@@ -10,8 +10,6 @@ include_directories(
 set(ADDRESS_BOOK_APP_SRCS
     addressbookapp.h
     addressbookapp.cpp
-    buteo-import.h
-    buteo-import.cpp
     main.cpp
 )
 
@@ -25,9 +23,6 @@ target_link_libraries(${ADDRESS_BOOK_APP_BIN}
     Qt5::Qml
     Qt5::Quick
     Qt5::DBus
-    Qt5::Contacts
-    Qt5::Xml
-    ${AccountsQt5_LIBRARIES}
 )
 
 install(TARGETS ${ADDRESS_BOOK_APP_BIN}

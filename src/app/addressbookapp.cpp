@@ -16,7 +16,6 @@
 
 #include "config.h"
 #include "addressbookapp.h"
-#include "buteo-import.h"
 
 #include <QDir>
 #include <QUrl>
@@ -180,9 +179,6 @@ bool AddressBookApp::setup()
     }
 
     m_withArgs = arguments.size() > 1;
-
-    // Register types
-    qmlRegisterType<ButeoImport>("AddressBookApp", 0, 1, "ButeoImport");
 
     /* Configure "artwork:" prefix so that any access to a file whose name starts
        with that prefix resolves properly. */
@@ -428,16 +424,4 @@ void AddressBookApp::setCallbackApplication(const QString &application)
 bool AddressBookApp::isOnline() const
 {
     return m_netManager->isOnline();
-}
-
-bool AddressBookApp::needsUpdate() const
-{
-    QSettings s;
-    return !s.value(SETTINGS_BUTEO_KEY, false).toBool();
-}
-
-bool AddressBookApp::updating() const
-{
-    QSettings s;
-    return s.value(SETTINGS_APP_BUSY_KEY, false).toBool();
 }

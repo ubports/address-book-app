@@ -352,17 +352,6 @@ Item {
        buteoSync.startSyncByCategory("contacts")
     }
 
-    function _checkAppIsBusy()
-    {
-        if (_busyDialog != null) {
-            return;
-        }
-
-        if ((Qt.application.name !== "AddressBookApp") && Contacts.Contacts.appIsBusy) {
-            _busyDialog = PopupUtils.open(busyDialogComponent)
-        }
-    }
-
     ContactSimpleListView {
         id: view
 
@@ -419,7 +408,7 @@ Item {
                 // TRANSLATORS: this refers to a new contact
                 labelText: i18n.dtr("address-book-app", "+ Create New")
                 onClicked: root.addNewContactClicked()
-                visible: root.showAddNewButton && !Contacts.Contacts.appIsBusy
+                visible: root.showAddNewButton
             }
 
             Column {
@@ -512,8 +501,7 @@ Item {
         listModel: ContactListModel {
             id: contactsModel
 
-            // does not query for contacts while app is updating
-            manager: Contacts.Contacts.appIsBusy ? "invalid" : root.manager
+            manager: root.manager
             sortOrders: root.sortOrders
             fetchHint: root.fetchHint
         }
@@ -607,17 +595,6 @@ Item {
                 if (pageStack.depth > 1) {
                     pageStack.pop()
                 }
-            }
-        }
-    }
-    Component.onCompleted: _checkAppIsBusy()
-
-    // check if the busy dialog is necessary after restore app state
-    Connections {
-        target: Qt.application
-        onStateChanged:  {
-            if (Qt.application.state === Qt.ApplicationActive) {
-                _checkAppIsBusy()
             }
         }
     }
