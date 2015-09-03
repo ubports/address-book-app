@@ -29,6 +29,7 @@ class AddressBookApp : public QGuiApplication
     Q_PROPERTY(bool firstRun READ isFirstRun CONSTANT)
     Q_PROPERTY(QString callbackApplication READ callbackApplication WRITE setCallbackApplication NOTIFY callbackApplicationChanged)
     Q_PROPERTY(bool isOnline READ isOnline NOTIFY isOnlineChanged)
+    Q_PROPERTY(bool serverSafeMode READ serverSafeMode NOTIFY serverSafeModeChanged)
 
 public:
     AddressBookApp(int &argc, char **argv);
@@ -40,10 +41,12 @@ public:
     void setCallbackApplication(const QString &application);
 
     bool isOnline() const;
+    bool serverSafeMode() const;
 
 Q_SIGNALS:
     void callbackApplicationChanged();
     void isOnlineChanged();
+    void serverSafeModeChanged();
 
 public Q_SLOTS:
     void activateWindow();
@@ -53,16 +56,19 @@ public Q_SLOTS:
     bool isFirstRun() const;
     void unsetFirstRun() const;
     void goBackToSourceApp();
+    void startUdate() const;
 
     // debug
     void elapsed() const;
 
 private:
     void callQMLMethod(const QString name, QStringList args);
+    void connectWithServer();
 
 private:
     QQuickView *m_view;
     QScopedPointer<QNetworkConfigurationManager> m_netManager;
+    QScopedPointer<QDBusInterface> m_server;
     QString m_initialArg;
     QString m_callbackApplication;
     bool m_viewReady;

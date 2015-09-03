@@ -32,6 +32,7 @@
 #include <QSettings>
 #include <QTimer>
 #include <QElapsedTimer>
+#include <QDBusReply>
 
 #include <QQmlEngine>
 
@@ -118,6 +119,8 @@ AddressBookApp::AddressBookApp(int &argc, char **argv)
 bool AddressBookApp::setup()
 {
     installIconPath();
+    connectWithServer();
+
     bool fullScreen = false;
 
     QString contactKey;
@@ -276,6 +279,15 @@ void AddressBookApp::goBackToSourceApp()
     }
 }
 
+void AddressBookApp::startUdate() const
+{
+    QDBusMessage startUpdateCall = QDBusMessage::createMethodCall("com.canonical.pim.updater",
+                                                               "/com/canonical/pim/Updater",
+                                                               "com.canonical.pim.Updater",
+                                                               "startUpdate");
+    QDBusConnection::sessionBus().call(startUpdateCall);
+}
+
 void AddressBookApp::parseUrl(const QString &arg)
 {
     QUrl url = QUrl::fromPercentEncoding(arg.toUtf8());
@@ -395,6 +407,18 @@ void AddressBookApp::callQMLMethod(const QString name, QStringList args)
     m_pickingMode = (name == "pick");
 }
 
+void AddressBookApp::connectWithServer()
+{
+    m_server.reset(new QDBusInterface("com.canonical.pim",
+                                      "/com/canonical/pim/AddressBook",
+                                      "com.canonical.pim.AddressBook"));
+    if (!m_server->isValid()) {
+        qWarning() << "Fail to connect with pim service.";
+    }
+    connect(m_server.data(), SIGNAL(safeModeChanged()), SIGNAL(serverSafeModeChanged()));
+    Q_EMIT serverSafeModeChanged();
+}
+
 void AddressBookApp::activateWindow()
 {
     if (m_view) {
@@ -424,4 +448,10 @@ void AddressBookApp::setCallbackApplication(const QString &application)
 bool AddressBookApp::isOnline() const
 {
     return m_netManager->isOnline();
+}
+
+bool AddressBookApp::serverSafeMode() const
+{
+    QDBusReply<bool> reply = m_server->call("safeMode");
+    return reply.value();
 }
