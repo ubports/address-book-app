@@ -100,7 +100,7 @@ Page {
         showBusyIndicator: false
 
         manager: "memory"
-        onSelectionCanceled: pageStack.pop()
+        onSelectionCanceled: pageStack.removePages(root)
     }
 
     Label {
@@ -167,7 +167,7 @@ Page {
             if ((error === ContactModel.ExportNoError) && targetModel) {
                 targetModel.importContacts(url)
              }
-            pageStack.pop()
+            pageStack.removePages(root)
         }
     }
 

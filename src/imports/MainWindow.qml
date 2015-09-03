@@ -35,7 +35,6 @@ MainView {
         } else {
             console.error("Contact preview requested but ContactListPage not loaded")
         }
-        mainStack.quitOnDepth = 1
     }
 
     function create(phoneNumber)
@@ -99,28 +98,19 @@ MainView {
         }
     }
 
-    width: units.gu(40)
+    width: units.gu(90)
     height: units.gu(71)
     anchorToKeyboard: false
 
-    PageStack {
+    AdaptivePageLayout {
         id: mainStack
 
+        primaryPage: contactPage
         property var contactListPage: null
-        property int quitOnDepth: -1
 
         function resetStack()
         {
-            while(depth > 1) {
-                pop()
-            }
-        }
-
-        onDepthChanged: {
-            if (depth === quitOnDepth) {
-                quitOnDepth = -1
-                application.goBackToSourceApp()
-            }
+            mainStack.removePages(primaryPage);
         }
 
         onContactListPageChanged: {
@@ -134,11 +124,14 @@ MainView {
         anchors.fill: parent
     }
 
+    ABContactListPage {
+        id: contactPage
+    }
+
     Component.onCompleted: {
         application.elapsed()
         i18n.domain = "address-book-app"
         i18n.bindtextdomain("address-book-app", i18nDirectory)
-        mainStack.push(Qt.resolvedUrl("ABContactListPage.qml"))
         mainWindow.applicationReady()
     }
 
@@ -184,7 +177,6 @@ MainView {
     // If application was called from uri handler and lost the focus reset the app to normal state
     onAppActiveChanged: {
         if (!appActive && mainStack.contactListPage) {
-            mainStack.quitOnDepth = -1
             mainStack.contactListPage.returnToNormalState()
         }
     }

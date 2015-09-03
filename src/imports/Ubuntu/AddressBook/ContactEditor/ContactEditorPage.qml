@@ -54,7 +54,7 @@ Page {
                 field.cancel()
             }
         }
-        pageStack.pop()
+        pageStack.removePages(contactEditor)
     }
 
     function save() {
@@ -92,7 +92,7 @@ Page {
                 contactEditor.contactSaved(contact)
             }
         }
-        pageStack.pop()
+        pageStack.removePages(contactEditor)
     }
 
     function makeMeVisible(item) {
@@ -435,8 +435,7 @@ Page {
             // WORKAROUND: SDK element crash if pop the page where the dialog was created
             Component.onDestruction: {
                 if (popPages) {
-                    contactEditor.pageStack.pop() // editor page
-                    contactEditor.pageStack.pop() // view page
+                    contactEditor.pageStack.removePages(contactEditor)
                 }
             }
         }

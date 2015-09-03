@@ -71,7 +71,7 @@ Page {
             ListItem.Standard {
                 text: i18n.tr("Import from SIM")
                 progression: true
-                onClicked: pageStack.push(simCardImportPageComponent)
+                onClicked: pageStack.addPageToCurrentColumn(root, simCardImportPageComponent)
                 enabled: (simList.sims.length > 0) && (simList.present.length > 0)
             }
         }

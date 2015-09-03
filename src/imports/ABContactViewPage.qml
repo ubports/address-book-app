@@ -35,7 +35,10 @@ ContactViewPage {
             text: i18n.tr("Share")
             iconName: "share"
             onTriggered: {
-                pageStack.push(contactShareComponent, {contactModel: root.model, contacts: [root.contact]})
+                pageStack.addPageToCurrentColumn(root,
+                                                 contactShareComponent,
+                                                 {contactModel: root.model,
+                                                  contacts: [root.contact]})
             }
         },
         Action {
@@ -43,13 +46,15 @@ ContactViewPage {
             text: i18n.tr("Edit")
             iconName: "edit"
             onTriggered: {
-                pageStack.push(Qt.resolvedUrl("ABContactEditorPage.qml"),
-                               { model: root.model, contact: root.contact})
+                pageStack.addPageToCurrentColumn(root,
+                                                 Qt.resolvedUrl("ABContactEditorPage.qml"),
+                                                 {model: root.model,
+                                                  contact: root.contact})
             }
         }
     ]
 
-    onContactRemoved: pageStack.pop()
+    onContactRemoved: pageStack.removePages(root)
 
     extensions: ContactDetailSyncTargetView {
         contact: root.contact
@@ -68,11 +73,11 @@ ContactViewPage {
             var newDetail = Qt.createQmlObject(detailSourceTemplate, contact)
             if (newDetail) {
                 contact.addDetail(newDetail)
-                pageStack.push(Qt.resolvedUrl("ABContactEditorPage.qml"),
-                               { model: root.model,
-                                 contact: contact,
-                                 initialFocusSection: "phones",
-                                 newDetails: [newDetail]})
+                pageStack.addPageToCurrentColumn(root, Qt.resolvedUrl("ABContactEditorPage.qml"),
+                                                 { model: root.model,
+                                                   contact: contact,
+                                                   initialFocusSection: "phones",
+                                                   newDetails: [newDetail]})
                 root.addPhoneToContact = ""
             }
         }

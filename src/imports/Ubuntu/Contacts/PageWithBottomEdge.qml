@@ -103,7 +103,7 @@ Page {
     {
         if (edgeLoader.status === Loader.Ready) {
             edgeLoader.item.active = true
-            page.pageStack.push(edgeLoader.item)
+            page.pageStack.addPageToCurrentColumn(page, edgeLoader.item)
             if (edgeLoader.item.flickable) {
                 edgeLoader.item.flickable.contentY = -page.header.height
                 edgeLoader.item.flickable.returnToBounds()

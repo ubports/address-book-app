@@ -66,25 +66,29 @@ ContactsUI.PageWithBottomEdge {
                                          enabled: false,
                                          initialFocusSection: "name"})
         } else {
-            pageStack.push(Qt.resolvedUrl("ABContactEditorPage.qml"),
-                           {model: contactList.listModel,
-                            contact: newContact,
-                            initialFocusSection: "name"})
+            pageStack.addPageToNextColumn(mainPage,
+                                          Qt.resolvedUrl("ABContactEditorPage.qml"),
+                                          {model: contactList.listModel,
+                                           contact: newContact,
+                                           initialFocusSection: "name"})
         }
     }
 
     function showContact(contactId)
     {
-        pageStack.push(Qt.resolvedUrl("ABContactViewPage.qml"),
-                       {model: contactList.listModel, contactId: contactId})
+        pageStack.addPageToNextColumn(mainPage,
+                                      Qt.resolvedUrl("ABContactViewPage.qml"),
+                                      {model: contactList.listModel,
+                                       contactId: contactId})
     }
 
     function addPhoneToContact(contactId, phoneNumber)
     {
-        pageStack.push(Qt.resolvedUrl("ABContactViewPage.qml"),
-                       {model: contactList.listModel,
-                        contactId: contactId,
-                        addPhoneToContact: phoneNumber})
+        pageStack.addPageToNextColumn(mainPage,
+                                      Qt.resolvedUrl("ABContactViewPage.qml"),
+                                      {model: contactList.listModel,
+                                       contactId: contactId,
+                                       addPhoneToContact: phoneNumber})
     }
 
     function importContact(urls)
@@ -149,9 +153,10 @@ ContactsUI.PageWithBottomEdge {
 
         onContactClicked: {
             mainPage.state = "default"
-            pageStack.push(Qt.resolvedUrl("ABContactViewPage.qml"),
-                           {model: contactList.listModel,
-                            contact: contact})
+            pageStack.addPageToNextColumn(mainPage,
+                                          Qt.resolvedUrl("ABContactViewPage.qml"),
+                                          {model: contactList.listModel,
+                                           contact: contact})
         }
         onIsInSelectionModeChanged: mainPage.state = isInSelectionMode ? "selection"  : "default"
         onSelectionCanceled: {
@@ -235,8 +240,9 @@ ContactsUI.PageWithBottomEdge {
                 Action {
                     text: i18n.tr("Settings")
                     iconName: "settings"
-                    onTriggered: pageStack.push(Qt.resolvedUrl("./Settings/SettingsPage.qml"),
-                                                {"contactListModel": contactList.listModel})
+                    onTriggered: pageStack.addPageToNextColumn(mainPage,
+                                                               Qt.resolvedUrl("./Settings/SettingsPage.qml"),
+                                                               {"contactListModel": contactList.listModel})
                 }
             ]
             PropertyChanges {
@@ -475,9 +481,10 @@ ContactsUI.PageWithBottomEdge {
             // Share contacts to an application chosen by the user
             if (!mainPage.pickMode) {
                 contactExporter.dismissBusyDialog()
-                pageStack.push(contactShareComponent,
-                               { contactModel: contactExporter.contactModel,
-                                 contacts: contacts })
+                pageStack.addPageToNextColumn(mainPage,
+                                              contactShareComponent,
+                                              {contactModel: contactExporter.contactModel,
+                                               contacts: contacts })
             }
         }
     }

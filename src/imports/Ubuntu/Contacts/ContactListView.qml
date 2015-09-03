@@ -457,10 +457,10 @@ Item {
                     visible: (typeof(pageStack) !== "undefined") &&
                              ((simList.sims.length > 0) && (simList.present.length > 0))
                     onClicked: {
-                        pageStack.push(Qt.resolvedUrl("SIMCardImportPage.qml"),
-                                       {"objectName": "simCardImportPage",
-                                        "targetModel": view.listModel,
-                                        "sims": simList.sims})
+                        pageStack.addPageToNextColumn(pageStack.primaryPage, Qt.resolvedUrl("SIMCardImportPage.qml"),
+                                                      {"objectName": "simCardImportPage",
+                                                       "targetModel": view.listModel,
+                                                       "sims": simList.sims})
                     }
                 }
             }
