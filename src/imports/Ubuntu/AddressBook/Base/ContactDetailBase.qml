@@ -16,7 +16,7 @@
 
 import QtQuick 2.2
 import QtContacts 5.0 as QtContacts
-import Ubuntu.Components.ListItems 1.0 as ListItem
+import Ubuntu.Components.ListItems 1.3 as ListItem
 
 ListItem.Empty {
     id: root
