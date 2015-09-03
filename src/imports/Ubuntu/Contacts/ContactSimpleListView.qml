@@ -260,7 +260,8 @@ MultipleSelectionListView {
 
         flicking: contactListView.flicking
         width: parent.width
-        selected: contactListView.multiSelectionEnabled && contactListView.isSelected(contactDelegate)
+        selected: (contactListView.multiSelectionEnabled && contactListView.isSelected(contactDelegate))
+               || index === contactListView.currentIndex
         selectionMode: contactListView.isInSelectionMode
         defaultAvatarUrl: contactListView.defaultAvatarImageUrl
         isCurrentItem: ListView.isCurrentItem

@@ -164,7 +164,7 @@ Item {
     states: [
         State {
             name: "select"
-            when: selectionMode || selected
+            when: selectionMode
             PropertyChanges {
                 target: selectionIcon
                 source: Qt.resolvedUrl("ListItemWithActionsCheckBox.qml")
