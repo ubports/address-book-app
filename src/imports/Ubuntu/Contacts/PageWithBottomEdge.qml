@@ -170,7 +170,7 @@ Page {
         z: 1
         width: tipLabel.paintedWidth + units.gu(6)
         height: bottomEdge.tipHeight + units.gu(1)
-        color: Theme.palette.normal.overlay
+        backgroundColor: Theme.palette.normal.overlay
         Label {
             id: tipLabel
 

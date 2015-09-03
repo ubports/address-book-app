@@ -41,7 +41,7 @@ UbuntuShape {
     }
 
     radius: "medium"
-    color: Theme.palette.normal.overlay
+    backgroundColor: Theme.palette.normal.overlay
 
     Label {
         id: initialsLabel
@@ -56,7 +56,7 @@ UbuntuShape {
         visible: (img.status != Image.Ready)
     }
 
-    image: !img.visible ? img : null
+    source: !img.visible ? img : null
 
     Image {
         id: img

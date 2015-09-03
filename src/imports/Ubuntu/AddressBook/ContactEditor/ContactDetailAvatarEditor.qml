@@ -72,7 +72,7 @@ ContactDetailBase {
 
         radius: "medium"
         anchors.fill: parent
-        image: avatarImage.source != defaultAvatar ? avatarImage : null
+        source: avatarImage.source != defaultAvatar ? avatarImage : null
 
         Image {
             id: avatarImage

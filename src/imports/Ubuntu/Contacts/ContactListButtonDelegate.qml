@@ -49,8 +49,8 @@ Item {
        }
        width: height
        radius: "medium"
-       color: Theme.palette.normal.overlay
-       image: Image {
+       backgroundColor: Theme.palette.normal.overlay
+       source: Image {
            source: root.expandIcon ? root.iconSource : ""
        }
        Image {
