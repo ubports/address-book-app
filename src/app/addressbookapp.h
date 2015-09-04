@@ -56,7 +56,7 @@ public Q_SLOTS:
     bool isFirstRun() const;
     void unsetFirstRun() const;
     void goBackToSourceApp();
-    void startUdate() const;
+    void startUpdate() const;
 
     // debug
     void elapsed() const;

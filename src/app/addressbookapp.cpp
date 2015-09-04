@@ -279,13 +279,13 @@ void AddressBookApp::goBackToSourceApp()
     }
 }
 
-void AddressBookApp::startUdate() const
+void AddressBookApp::startUpdate() const
 {
     QDBusMessage startUpdateCall = QDBusMessage::createMethodCall("com.canonical.pim.updater",
-                                                               "/com/canonical/pim/Updater",
-                                                               "com.canonical.pim.Updater",
-                                                               "startUpdate");
-    QDBusConnection::sessionBus().call(startUpdateCall);
+                                                                  "/com/canonical/pim/Updater",
+                                                                  "com.canonical.pim.Updater",
+                                                                  "startUpdate");
+    QDBusConnection::sessionBus().asyncCall(startUpdateCall);
 }
 
 void AddressBookApp::parseUrl(const QString &arg)

@@ -226,7 +226,7 @@ ContactsUI.PageWithBottomEdge {
                     }
                 },
                 Action {
-                    visible: (application.isOnline && contactList.syncEnabled)
+                    visible: (application.isOnline && (contactList.syncEnabled || application.serverSafeMode))
                     text: contactList.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
                     iconName: application.serverSafeMode ? "reset" : "reload"
                     enabled: !contactList.syncing
