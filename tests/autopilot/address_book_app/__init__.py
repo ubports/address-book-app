@@ -124,7 +124,9 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
                                        objectName="contactListView")
 
     def get_button(self, buttonName):
-        return self.get_header()._get_action_button(buttonName)
+        actionbar = self.select_single('ActionBar', objectName='headerActionBar')
+        return actionbar._get_action_button(buttonName)
+
 
     def open_header(self):
         header = self.get_header()
