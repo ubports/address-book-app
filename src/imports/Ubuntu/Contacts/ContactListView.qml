@@ -436,6 +436,9 @@ Item {
             ContactDelegate {
                 property var contact: Contact {
                     name.firstName: i18n.tr("New contact")
+                    Avatar {
+                        imageUrl: "image://theme/contact"
+                    }
                 }
                 visible: root.prepareNewContact
                 height: root.prepareNewContact ? defaultHeight : 0
