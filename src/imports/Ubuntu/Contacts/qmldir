@@ -20,7 +20,7 @@ OnlineAccountsHelper 0.1 OnlineAccountsHelper.qml
 SIMList 0.1 SIMList.qml
 
 internal ContactAvatar ContactAvatar.qml
-internal ContactDelegate ContactDelegate.qml
+ContactDelegate 0.1 ContactDelegate.qml
 internal ContactDetailPickerPhoneNumberDelegate ContactDetailPickerPhoneNumberDelegate.qml
 internal ContactImportButton ContactImportButton.qml
 internal ContactList ContactList.js

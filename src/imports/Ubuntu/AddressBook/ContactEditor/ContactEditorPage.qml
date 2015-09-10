@@ -136,7 +136,6 @@ Page {
             nameEditor.fieldDelegates[0].forceActiveFocus()
             break;
         }
-        contactEditor.initialFocusSection = ""
     }
 
     function focusToLastPhoneField()

@@ -31,7 +31,7 @@ MainView {
     {
         mainStack.resetStack()
         if (mainStack.contactListPage) {
-            mainStack.contactListPage.showContact(contactId)
+            mainStack.contactListPage.showContactWithId(contactId)
         } else {
             console.error("Contact preview requested but ContactListPage not loaded")
         }
