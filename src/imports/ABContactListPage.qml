@@ -528,7 +528,9 @@ Page {
         id: emptyContact
         ContactsUI.ContactDelegate {
             property Contact contact: Contact {
-                name.firstName: i18n.tr("New contact")
+                Name {
+                    firstName: i18n.tr("New contact")
+                }
                 Avatar {
                     imageUrl: "image://theme/contact"
                 }
