@@ -507,6 +507,7 @@ Page {
 
 
     function showContactEditorPage(editorPage) {
+        contactList.currentIndex = -1;
         bottomEdge.editorPage = editorPage;
         pageStack.addPageToNextColumn(mainPage, editorPage);
         editorPage.ready();

@@ -440,6 +440,7 @@ Item {
                         imageUrl: "image://theme/contact"
                     }
                 }
+                selected: true
                 visible: root.prepareNewContact
                 height: root.prepareNewContact ? defaultHeight : 0
                 Behavior on height {UbuntuNumberAnimation {}}
