@@ -139,6 +139,7 @@ MainView {
 
     ABContactListPage {
         id: contactPage
+        pageStack: mainStack
     }
 
     Component.onCompleted: {
