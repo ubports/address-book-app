@@ -133,7 +133,8 @@ Page {
         id: contactList
         objectName: "contactListView"
         showImportOptions:  !mainPage.pickMode &&
-                            mainPage.newPhoneToAdd === ""
+                            mainPage.newPhoneToAdd === "" &&
+                            (!bottomEdge.editorPage || !bottomEdge.editorPage.active)
         anchors {
             top: parent.top
             left: parent.left
