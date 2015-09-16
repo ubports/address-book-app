@@ -279,13 +279,27 @@ void AddressBookApp::goBackToSourceApp()
     }
 }
 
-void AddressBookApp::startUpdate() const
+void AddressBookApp::startUpdate()
 {
+    if (m_updateWatcher) {
+        return;
+    }
+
     QDBusMessage startUpdateCall = QDBusMessage::createMethodCall("com.canonical.pim.updater",
                                                                   "/com/canonical/pim/Updater",
                                                                   "com.canonical.pim.Updater",
                                                                   "startUpdate");
-    QDBusConnection::sessionBus().asyncCall(startUpdateCall);
+    QDBusPendingCall pcall = QDBusConnection::sessionBus().asyncCall(startUpdateCall);
+    m_updateWatcher.reset(new QDBusPendingCallWatcher(pcall, this));
+    QObject::connect(m_updateWatcher.data(), SIGNAL(finished(QDBusPendingCallWatcher*)),
+                     this, SLOT(onUpdateCallFinished(QDBusPendingCallWatcher*)));
+    Q_EMIT updatingChanged();
+}
+
+void AddressBookApp::onUpdateCallFinished(QDBusPendingCallWatcher *watcher)
+{
+    m_updateWatcher.reset(0);
+    Q_EMIT updatingChanged();
 }
 
 void AddressBookApp::parseUrl(const QString &arg)
@@ -454,4 +468,9 @@ bool AddressBookApp::serverSafeMode() const
 {
     QDBusReply<bool> reply = m_server->call("safeMode");
     return reply.value();
+}
+
+bool AddressBookApp::updating() const
+{
+    return !m_updateWatcher.isNull();
 }
