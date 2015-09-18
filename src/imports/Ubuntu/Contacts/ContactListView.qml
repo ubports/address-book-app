@@ -236,7 +236,7 @@ Item {
     */
     property bool showBusyIndicator: true
     /*!
-      \qmlproperty bool verticalVelocity
+      \qmlproperty real verticalVelocity
 
       This property holds the vertical velocity of the list
     */
