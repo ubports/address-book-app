@@ -144,6 +144,13 @@ MultipleSelectionListView {
     */
     property list<Action> rightSideActions
 
+    /*!
+      \qmlproperty Contact highlightedContact
+
+      This property holds a reference to the Contact that should be highlighted
+    */
+    property Contact highlightedContact: null
+
     /* internal */
     property var _currentSwipedItem: null
 
@@ -227,6 +234,7 @@ MultipleSelectionListView {
         }
     }
 
+    highlightFollowsCurrentItem: true
     currentIndex: -1
     section {
         property: showSections ? "contact.tag.tag" : ""
@@ -261,7 +269,7 @@ MultipleSelectionListView {
         flicking: contactListView.flicking
         width: parent.width
         selected: (contactListView.multiSelectionEnabled && contactListView.isSelected(contactDelegate))
-               || (index === contactListView.currentIndex && pageStack.columns > 1)
+                  || (contactListView.highlightedContact && contactListView.highlightedContact.contactId == contact.contactId)
         selectionMode: contactListView.isInSelectionMode
         defaultAvatarUrl: contactListView.defaultAvatarImageUrl
         isCurrentItem: ListView.isCurrentItem

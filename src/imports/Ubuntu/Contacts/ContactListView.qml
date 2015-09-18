@@ -242,6 +242,12 @@ Item {
     */
     readonly property real verticalVelocity: view.verticalVelocity
     /*!
+      \qmlproperty Contact highlightedContact
+
+      This property holds a reference to the Contact that should be highlighted
+    */
+    property Contact highlightedContact: null
+    /*!
       This handler is called when the selection mode is finished without be canceled
     */
     signal selectionDone(var items)
@@ -366,6 +372,7 @@ Item {
         property bool showFavourites: true
         property alias favouritesIsSelected: contactsModel.onlyFavorites
         property bool contactsLoaded: false
+        highlightedContact: root.highlightedContact
 
         function getSectionText(index) {
             var tag = listModel.contacts[index].tag.tag

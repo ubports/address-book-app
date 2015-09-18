@@ -36,6 +36,8 @@ Page {
     property QtObject contactIndex: null
     property string newPhoneToAdd: ""
     property alias contactManager: contactList.manager
+    property Page contactViewPage: null
+    property Page contactEditorPage: null
 
     readonly property bool isEmpty: (contactList.count === 0)
     readonly property bool allowToQuit: (application.callbackApplication.length > 0)
@@ -66,27 +68,42 @@ Page {
     function showContact(contact)
     {
         mainPage.state = "default";
-        pageStack.addPageToNextColumn(mainPage,
+        var incubator = pageStack.addPageToNextColumn(mainPage,
                                       Qt.resolvedUrl("ABContactViewPage.qml"),
                                       {model: contactList.listModel,
                                        contact: contact});
+        incubator.onStatusChanged = function(status) {
+            if (status == Component.Ready) {
+                contactViewPage = incubator.object;
+            }
+        }
     }
 
     function showContactWithId(contactId)
     {
-        pageStack.addPageToNextColumn(mainPage,
+        var incubator = pageStack.addPageToNextColumn(mainPage,
                                       Qt.resolvedUrl("ABContactViewPage.qml"),
                                       {model: contactList.listModel,
                                        contactId: contactId})
+        incubator.onStatusChanged = function(status) {
+            if (status == Component.Ready) {
+                contactViewPage = incubator.object;
+            }
+        }
     }
 
     function addPhoneToContact(contactId, phoneNumber)
     {
-        pageStack.addPageToNextColumn(mainPage,
+        var incubator = pageStack.addPageToNextColumn(mainPage,
                                       Qt.resolvedUrl("ABContactViewPage.qml"),
                                       {model: contactList.listModel,
                                        contactId: contactId,
                                        addPhoneToContact: phoneNumber})
+        incubator.onStatusChanged = function(status) {
+            if (status == Component.Ready) {
+                contactViewPage = incubator.object;
+            }
+        }
     }
 
     function importContact(urls)
@@ -134,7 +151,7 @@ Page {
         objectName: "contactListView"
         showImportOptions:  !mainPage.pickMode &&
                             mainPage.newPhoneToAdd === "" &&
-                            (!bottomEdge.editorPage || !bottomEdge.editorPage.active)
+                            (!mainPage.contactEditorPage || !mainPage.contactEditorPage.active)
         anchors {
             top: parent.top
             left: parent.left
@@ -144,6 +161,8 @@ Page {
         filterTerm: searchField.text
         multiSelectionEnabled: true
         multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
+        highlightedContact: contactViewPage ? contactViewPage.contact :
+                            contactEditorPage ? contactEditorPage.contact : null
 
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
         onAddNewContactClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
@@ -509,7 +528,7 @@ Page {
 
     function showContactEditorPage(editorPage) {
         contactList.currentIndex = -1;
-        bottomEdge.editorPage = editorPage;
+        mainPage.contactEditorPage = editorPage;
         pageStack.addPageToNextColumn(mainPage, editorPage);
         editorPage.ready();
         editorPage.contactSaved.connect(showContact);
@@ -547,8 +566,6 @@ Page {
         flickable: contactList
         iconName: "contact-new"
         enabled: !contactList.isInSelectionMode
-
-        property Page editorPage
 
         // FIXME: this is a workaround for the lack of fully asynchronous loading
         // of Pages in AdaptativePageLayout
@@ -611,14 +628,13 @@ Page {
     }
 
     Connections {
-        target: bottomEdge.editorPage
+        target: mainPage.contactEditorPage
         onActiveChanged: {
-            if (!bottomEdge.editorPage.active) {
+            if (!mainPage.contactEditorPage.active) {
                 if (pageStack.columns > 1) {
                     contactList.prepareNewContact = false;
                     contactList.showNewContact = false;
                 }
-                bottomEdge.editorPage = null;
                 bottomEdge.visible = true;
                 bottomEdge.close();
             }
