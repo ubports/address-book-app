@@ -20,6 +20,7 @@ import QtContacts 5.0
 import Ubuntu.Components 1.2
 import Ubuntu.Components.ListItems 1.0
 import Ubuntu.Components.Popups 1.0
+import Ubuntu.Contacts 0.1 as ContactsUI
 
 import Ubuntu.AddressBook.Base 0.1
 
@@ -141,8 +142,6 @@ Page {
     function focusToLastPhoneField()
     {
         var lastPhoneField = phonesEditor.detailDelegates[phonesEditor.detailDelegates.length - 2].item
-        console.debug("Focus last phone field:" + lastPhoneField)
-        console.debug("PHONES SIZE>" + phonesEditor.detailDelegates.length)
         lastPhoneField.forceActiveFocus()
     }
 
@@ -414,7 +413,6 @@ Page {
         } else {
             contactEditor.ready()
         }
-        console.debug(" Qt.application.name:" +  Qt.application.name)
     }
 
     Component {
@@ -424,16 +422,26 @@ Page {
             id: aletMessageDialog
 
             title: i18n.dtr("address-book-app", "Contact Editor")
-            text: Qt.application.name === "AddressBookApp" ?
+            text: {
+                if (ContactsUI.Contacts.updateIsRunning()) {
+                    return i18n.dtr("address-book-app",
+                                    "Your <b>%1</b> contact sync account needs to be upgraded.
+                                      Wait until the upgrade is complete to edit contacts.")
+                                    .arg(contactEditor.contact.syncTarget.syncTarget)
+                }
+                if (Qt.application.name === "AddressBookApp") {
                       i18n.dtr("address-book-app",
-                               "Your <b>%1</b> contact sync account needs to be upgraded, but no network connection could be found.
-                                Please connect to network and retry by pressing sync button.
+                               "Your <b>%1</b> contact sync account needs to be upgraded.
+                                Use the sync button to upgraded the Contacts app.
                                 Only local contacts will be editable until upgrade is complete.")
-                        .arg(contactEditor.contact.syncTarget.syncTarget) :
+                        .arg(contactEditor.contact.syncTarget.syncTarget)
+                } else {
                       i18n.dtr("address-book-app",
                                "Your <b>%1</b> contact sync account needs to be upgraded by running Contacts app.
                                 Only local contacts will be editable until upgrade is complete")
                         .arg(contactEditor.contact.syncTarget.syncTarget);
+                }
+            }
 
             Button {
                 text: i18n.dtr("address-book-app", "Close")

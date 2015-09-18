@@ -572,30 +572,4 @@ Item {
                 !view.favouritesIsSelected &&
                 !isSearching ? sourceFile : ""
     }
-
-    // Show application busy dialog if address-book-app is running a upgrade
-    Component {
-        id: busyDialogComponent
-
-        Dialog {
-            id: busyDialogue
-
-            title: i18n.dtr("address-book-app", "Upgrade in progress")
-            text: i18n.dtr("address-book-app", "A contact sync upgrade is in progress. Please open Contacts app to finish the upgrade")
-
-            Button {
-                text: i18n.dtr("address-book-app", "Close")
-                onClicked: {
-                    root._busyDialog = null
-                    PopupUtils.close(busyDialogue)
-                }
-            }
-
-            Component.onDestruction: {
-                if (pageStack.depth > 1) {
-                    pageStack.pop()
-                }
-            }
-        }
-    }
 }

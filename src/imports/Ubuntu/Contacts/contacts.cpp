@@ -22,6 +22,7 @@
 #include <QtCore/QDebug>
 #include <QtCore/QDir>
 #include <QtCore/QUrl>
+#include <QtCore/QLockFile>
 
 #include "config.h"
 
@@ -103,4 +104,9 @@ bool UbuntuContacts::containsLetters(const QString &value)
 bool UbuntuContacts::removeFile(const QUrl &file)
 {
     return QFile::remove(file.toLocalFile());
+}
+
+bool UbuntuContacts::updateIsRunning() const
+{
+    return QFile::exists(QDir::tempPath() + "/address-book-updater.lock");
 }
