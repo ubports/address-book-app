@@ -425,14 +425,14 @@ Page {
             text: {
                 if (ContactsUI.Contacts.updateIsRunning()) {
                     return i18n.dtr("address-book-app",
-                                    "Your <b>%1</b> contact sync account needs to be upgraded.
+                                    "Your <b>%1</b> contact sync account needs to be upgraded.\n
                                       Wait until the upgrade is complete to edit contacts.")
                                     .arg(contactEditor.contact.syncTarget.syncTarget)
                 }
                 if (Qt.application.name === "AddressBookApp") {
                       i18n.dtr("address-book-app",
                                "Your <b>%1</b> contact sync account needs to be upgraded.
-                                Use the sync button to upgraded the Contacts app.
+                                Use the sync button to upgraded the Contacts app.\n
                                 Only local contacts will be editable until upgrade is complete.")
                         .arg(contactEditor.contact.syncTarget.syncTarget)
                 } else {
