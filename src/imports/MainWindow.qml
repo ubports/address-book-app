@@ -124,12 +124,18 @@ MainView {
         anchors.fill: parent
         layouts: [
             PageColumnsLayout {
-                when: true
+                when: mainStack.width >= units.gu(80)
                 PageColumn {
                     maximumWidth: units.gu(50)
                     minimumWidth: units.gu(40)
                     preferredWidth: units.gu(40)
                 }
+                PageColumn {
+                    fillWidth: true
+                }
+            },
+            PageColumnsLayout {
+                when: true
                 PageColumn {
                     fillWidth: true
                 }
