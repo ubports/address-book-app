@@ -148,6 +148,10 @@ Item {
         State {
             name: "floating"
             when: bottomEdgeDragArea.drag.active
+            PropertyChanges {
+                target: bottomEdgeContent
+                visible: true
+            }
         }
     ]
 
