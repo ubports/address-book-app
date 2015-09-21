@@ -542,6 +542,7 @@ Page {
             model: contactList.listModel
             contact: ContactsJS.createEmptyContact("", mainPage)
             initialFocusSection: "name"
+            enabled: false
         }
     }
 
