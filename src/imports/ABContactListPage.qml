@@ -525,13 +525,18 @@ Page {
         }
     }
 
+    function onNewContactSaved(contact) {
+        if (pageStack.columns > 1) {
+            showContact(contact);
+        }
+    }
 
     function showContactEditorPage(editorPage) {
         contactList.currentIndex = -1;
         mainPage.contactEditorPage = editorPage;
         pageStack.addPageToNextColumn(mainPage, editorPage);
         editorPage.ready();
-        editorPage.contactSaved.connect(showContact);
+        editorPage.contactSaved.connect(onNewContactSaved);
     }
 
     Component {
