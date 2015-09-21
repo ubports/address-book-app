@@ -548,6 +548,7 @@ Page {
     Component {
         id: emptyContact
         ContactsUI.ContactDelegate {
+            width: mainPage.width
             property Contact contact: Contact {
                 Name {
                     firstName: i18n.tr("New contact")
