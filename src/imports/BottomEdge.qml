@@ -47,10 +47,6 @@ Item {
 
         Loader {
             id: bottomEdgeContent
-            anchors {
-                left: parent.left
-                right: parent.right
-            }
             sourceComponent: bottomEdge.contentComponent
             asynchronous: true
 

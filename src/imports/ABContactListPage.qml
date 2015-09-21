@@ -537,7 +537,8 @@ Page {
     Component {
         id: editorPageBottomEdge
         ABContactEditorPage {
-            height: mainPage.height
+            implicitWidth: mainPage.width
+            implicitHeight: mainPage.height
             model: contactList.listModel
             contact: ContactsJS.createEmptyContact("", mainPage)
             initialFocusSection: "name"
