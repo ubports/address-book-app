@@ -632,10 +632,8 @@ Page {
         target: mainPage.contactEditorPage
         onActiveChanged: {
             if (!mainPage.contactEditorPage.active) {
-                if (pageStack.columns > 1) {
-                    contactList.prepareNewContact = false;
-                    contactList.showNewContact = false;
-                }
+                contactList.prepareNewContact = false;
+                contactList.showNewContact = false;
                 bottomEdge.visible = true;
                 bottomEdge.close();
             }
