@@ -615,17 +615,16 @@ Page {
         }
 
         onOpenBegin: {
+            contactList.prepareNewContact = true;
+            contactList.positionViewAtBeginning();
             if (pageStack.columns > 1) {
-                contactList.prepareNewContact = true;
-                contactList.positionViewAtBeginning();
                 loadEditorPage();
             }
         }
         onOpenEnd: {
             bottomEdge.visible = false;
-            if (pageStack.columns > 1) {
-                contactList.showNewContact = true;
-            } else {
+            contactList.showNewContact = true;
+            if (pageStack.columns <= 1) {
                 showContactEditorPage(bottomEdge.content);
             }
         }
