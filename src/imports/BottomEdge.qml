@@ -122,7 +122,7 @@ Item {
                 y: bottomEdgeDragArea.drag.maximumY
             }
             PropertyChanges {
-                target: bottomEdgeShadows
+                target: bottomEdgeContent
                 visible: false
             }
         },
