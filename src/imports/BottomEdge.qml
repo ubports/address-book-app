@@ -21,7 +21,7 @@ Item {
     id: bottomEdge
 
     property Component contentComponent
-    property Item content: bottomEdgeContent.item
+    property Item content: bottomEdgeLoader.item
     property string iconName
     property Item flickable
     signal openBegin
@@ -45,10 +45,13 @@ Item {
         }
         height: bottomEdgeContent.height
 
-        Loader {
+        Item {
             id: bottomEdgeContent
-            sourceComponent: bottomEdge.contentComponent
-            asynchronous: true
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+            height: bottomEdgeLoader.height
 
             Item {
                 id: bottomEdgeShadows
@@ -68,7 +71,14 @@ Item {
                 anchors.fill: parent
                 color: Theme.palette.normal.background
             }
+
+            Loader {
+                id: bottomEdgeLoader
+                sourceComponent: bottomEdge.contentComponent
+                asynchronous: true
+            }
         }
+
 
         BottomEdgeHint {
             id: bottomEdgeHint
@@ -154,8 +164,8 @@ Item {
                 }
                 ScriptAction {
                     script: {
-                        bottomEdgeContent.active = false;
-                        bottomEdgeContent.active = true;
+                        bottomEdgeLoader.active = false;
+                        bottomEdgeLoader.active = true;
                     }
                 }
             }
