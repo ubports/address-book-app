@@ -3,6 +3,7 @@ module Ubuntu.AddressBook.ContactView
 ContactEditorPage 0.1 ContactEditorPage.qml
 
 internal AvatarImport AvatarImport.qml
+internal CancelEditDialog CancelEditDialog.qml
 internal ComboButtonAddField ComboButtonAddField.qml
 internal ContactDetailAddressesEditor ContactDetailAddressesEditor.qml
 internal ContactDetailAvatarEditor ContactDetailAvatarEditor.qml

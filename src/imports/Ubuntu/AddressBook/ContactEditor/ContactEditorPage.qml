@@ -38,11 +38,16 @@ Page {
     readonly property bool isContactValid: !avatarEditor.busy && (!nameEditor.isEmpty() || !phonesEditor.isEmpty())
 
     signal contactSaved(var contact);
+    signal cancelled();
 
     // priv
     property bool _edgeReady: false
 
     function cancel() {
+        PopupUtils.open(cancelEditDialogComponent);
+    }
+
+    function doCancel() {
         for (var i = 0; i < contactEditor.newDetails.length; ++i) {
             contactEditor.contact.removeDetail(contactEditor.newDetails[i])
         }
@@ -54,6 +59,7 @@ Page {
                 field.cancel()
             }
         }
+        contactEditor.cancelled()
         pageStack.removePages(contactEditor)
     }
 
@@ -155,6 +161,27 @@ Page {
         running: false
         repeat: false
         onTriggered: contactEditor.ready()
+    }
+
+
+    Component {
+        id: cancelEditDialogComponent
+
+        CancelEditDialog {
+            id: cancelEditDialog
+
+            onDiscardClicked: {
+                cancelConfirmed = true;
+                PopupUtils.close(cancelEditDialog);
+            }
+
+            onKeepEditingClicked: {
+                PopupUtils.close(cancelEditDialog);
+            }
+
+            property bool cancelConfirmed: false
+            Component.onDestruction: if (cancelConfirmed) contactEditor.doCancel()
+        }
     }
 
     flickable: null
