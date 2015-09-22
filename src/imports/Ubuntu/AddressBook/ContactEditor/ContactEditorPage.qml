@@ -43,8 +43,10 @@ Page {
     // priv
     property bool _edgeReady: false
 
-    function cancel() {
-        PopupUtils.open(cancelEditDialogComponent);
+    function cancel(cancelledCallback, cancelledCallbackParameters) {
+        PopupUtils.open(cancelEditDialogComponent, null,
+                        {"cancelledCallback": cancelledCallback,
+                         "cancelledCallbackParameters": cancelledCallbackParameters});
     }
 
     function doCancel() {
@@ -179,8 +181,15 @@ Page {
                 PopupUtils.close(cancelEditDialog);
             }
 
+            property var cancelledCallback
+            property var cancelledCallbackParameters
             property bool cancelConfirmed: false
-            Component.onDestruction: if (cancelConfirmed) contactEditor.doCancel()
+            Component.onDestruction: if (cancelConfirmed) {
+                                         contactEditor.doCancel();
+                                         if (cancelledCallback) {
+                                            cancelledCallback(cancelledCallbackParameters);
+                                         }
+                                     }
         }
     }
 
