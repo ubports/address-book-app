@@ -443,3 +443,15 @@ msgid ""
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:46
+msgid "Discard changes"
+msgstr ""
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:24
+msgid "Discard contact changes"
+msgstr ""
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:35
+msgid "Keep editing"
+msgstr ""
