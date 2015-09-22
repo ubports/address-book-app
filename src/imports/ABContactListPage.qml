@@ -57,53 +57,52 @@ Page {
 
     function createContactWithPhoneNumber(phoneNumber)
     {
-        var newContact = ContactsJS.createEmptyContact(phoneNumber, mainPage)
-        pageStack.addPageToNextColumn(mainPage,
-                                      Qt.resolvedUrl("ABContactEditorPage.qml"),
-                                      {model: contactList.listModel,
-                                       contact: newContact,
-                                       initialFocusSection: "name"})
+        var newContact = ContactsJS.createEmptyContact(phoneNumber, mainPage);
+        openEditPage({model: contactList.listModel,
+                      contact: newContact,
+                      initialFocusSection: "name"});
+    }
+
+    function openEditPage(editPageProperties) {
+        var incubator = pageStack.addPageToNextColumn(mainPage,
+                                          Qt.resolvedUrl("ABContactEditorPage.qml"),
+                                          editPageProperties);
+        incubator.onStatusChanged = function(status) {
+            if (status == Component.Ready) {
+                mainPage.contactEditorPage = incubator.object;
+            }
+        }
+    }
+
+    function openViewPage(viewPageProperties) {
+        var incubator = pageStack.addPageToNextColumn(mainPage,
+                                      Qt.resolvedUrl("ABContactViewPage.qml"),
+                                      viewPageProperties);
+        incubator.onStatusChanged = function(status) {
+            if (status == Component.Ready) {
+                contactViewPage = incubator.object;
+            }
+        }
     }
 
     function showContact(contact)
     {
         mainPage.state = "default";
-        var incubator = pageStack.addPageToNextColumn(mainPage,
-                                      Qt.resolvedUrl("ABContactViewPage.qml"),
-                                      {model: contactList.listModel,
-                                       contact: contact});
-        incubator.onStatusChanged = function(status) {
-            if (status == Component.Ready) {
-                contactViewPage = incubator.object;
-            }
-        }
+        openViewPage({model: contactList.listModel,
+                      contact: contact});
     }
 
     function showContactWithId(contactId)
     {
-        var incubator = pageStack.addPageToNextColumn(mainPage,
-                                      Qt.resolvedUrl("ABContactViewPage.qml"),
-                                      {model: contactList.listModel,
-                                       contactId: contactId})
-        incubator.onStatusChanged = function(status) {
-            if (status == Component.Ready) {
-                contactViewPage = incubator.object;
-            }
-        }
+        openViewPage({model: contactList.listModel,
+                      contactId: contactId});
     }
 
     function addPhoneToContact(contactId, phoneNumber)
     {
-        var incubator = pageStack.addPageToNextColumn(mainPage,
-                                      Qt.resolvedUrl("ABContactViewPage.qml"),
-                                      {model: contactList.listModel,
-                                       contactId: contactId,
-                                       addPhoneToContact: phoneNumber})
-        incubator.onStatusChanged = function(status) {
-            if (status == Component.Ready) {
-                contactViewPage = incubator.object;
-            }
-        }
+        openViewPage({model: contactList.listModel,
+                      contactId: contactId,
+                      addPhoneToContact: phoneNumber});
     }
 
     function importContact(urls)
@@ -631,6 +630,13 @@ Page {
 
         onClicked: {
             bottomEdge.open();
+        }
+    }
+
+    Connections {
+        target: mainPage.contactViewPage
+        onEditContact: {
+            openEditPage(editPageProperties);
         }
     }
 

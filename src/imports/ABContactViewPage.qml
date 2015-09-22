@@ -28,6 +28,7 @@ ContactViewPage {
     objectName: "contactViewPage"
 
     property string addPhoneToContact: ""
+    signal editContact(var editPageProperties)
 
     head.actions: [
         Action {
@@ -46,10 +47,8 @@ ContactViewPage {
             text: i18n.tr("Edit")
             iconName: "edit"
             onTriggered: {
-                pageStack.addPageToCurrentColumn(root,
-                                                 Qt.resolvedUrl("ABContactEditorPage.qml"),
-                                                 {model: root.model,
-                                                  contact: root.contact})
+                editContact({model: root.model,
+                             contact: root.contact});
             }
         }
     ]
@@ -73,11 +72,10 @@ ContactViewPage {
             var newDetail = Qt.createQmlObject(detailSourceTemplate, contact)
             if (newDetail) {
                 contact.addDetail(newDetail)
-                pageStack.addPageToCurrentColumn(root, Qt.resolvedUrl("ABContactEditorPage.qml"),
-                                                 { model: root.model,
-                                                   contact: contact,
-                                                   initialFocusSection: "phones",
-                                                   newDetails: [newDetail]})
+                editContact({ model: root.model,
+                              contact: contact,
+                              initialFocusSection: "phones",
+                              newDetails: [newDetail] })
                 root.addPhoneToContact = ""
             }
         }
