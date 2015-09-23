@@ -60,7 +60,11 @@ Page {
                 field.cancel()
             }
         }
-        pageStack.removePages(contactEditor)
+        if (pageStack.removePages) {
+            pageStack.removePages(contactEditor)
+        } else {
+            pageStack.pop()
+        }
     }
 
     function save() {
@@ -98,7 +102,11 @@ Page {
                 contactEditor.contactSaved(contact)
             }
         }
-        pageStack.removePages(contactEditor)
+        if (pageStack.removePages) {
+            pageStack.removePages(contactEditor)
+        } else {
+            pageStack.pop()
+        }
     }
 
     function makeMeVisible(item) {
@@ -468,7 +476,12 @@ Page {
             // WORKAROUND: SDK element crash if pop the page where the dialog was created
             Component.onDestruction: {
                 if (popPages) {
-                    contactEditor.pageStack.removePages(contactEditor)
+                    if (contactEditor.pageStack.removePages) {
+                        contactEditor.pageStack.removePages(contactEditor)
+                    } else {
+                        contactEditor.pageStack.pop() // editor page
+                        contactEditor.pageStack.pop() // view page
+                    }
                 }
             }
         }
