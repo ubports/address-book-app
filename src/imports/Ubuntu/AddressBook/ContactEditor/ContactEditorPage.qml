@@ -38,7 +38,6 @@ Page {
     readonly property bool isContactValid: !avatarEditor.busy && (!nameEditor.isEmpty() || !phonesEditor.isEmpty())
 
     signal contactSaved(var contact);
-    signal cancelled();
 
     // priv
     property bool _edgeReady: false
@@ -61,7 +60,6 @@ Page {
                 field.cancel()
             }
         }
-        contactEditor.cancelled()
         pageStack.removePages(contactEditor)
     }
 
