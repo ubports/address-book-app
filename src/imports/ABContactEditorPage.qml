@@ -32,7 +32,6 @@ ContactEditorPage {
         iconName: "back"
         onTriggered: {
             root.cancel()
-            root.active = false
         }
     }
 
