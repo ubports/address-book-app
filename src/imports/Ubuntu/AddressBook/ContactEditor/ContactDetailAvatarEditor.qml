@@ -73,12 +73,12 @@ ContactDetailBase {
         radius: "medium"
         anchors.fill: parent
         source: avatarImage.source != defaultAvatar ? avatarImage : null
+        sourceFillMode: UbuntuShape.PreserveAspectCrop
 
         Image {
             id: avatarImage
             objectName: "avatarImage"
 
-            fillMode: Image.PreserveAspectCrop
             asynchronous: true
             source: root.getAvatar(root.detail)
             anchors.centerIn: visible ? avatar : undefined

@@ -57,6 +57,7 @@ UbuntuShape {
     }
 
     source: !img.visible ? img : null
+    sourceFillMode: UbuntuShape.PreserveAspectCrop
 
     Image {
         id: img
@@ -65,7 +66,6 @@ UbuntuShape {
         property string avatarUrl: ContactsJS.getAvatar(contactElement, fallbackAvatarUrl)
 
         anchors.centerIn: visible ? avatar : undefined
-        fillMode: Image.PreserveAspectCrop
         asynchronous: true
         source: avatar.showAvatarPicture ? avatar.avatarUrl : ""
         height: visible ? units.gu(3) : avatar.height
