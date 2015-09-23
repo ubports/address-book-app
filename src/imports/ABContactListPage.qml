@@ -60,11 +60,12 @@ Page {
         var newContact = ContactsJS.createEmptyContact(phoneNumber, mainPage);
         openEditPage({model: contactList.listModel,
                       contact: newContact,
-                      initialFocusSection: "name"});
+                      initialFocusSection: "name"},
+                     mainPage);
     }
 
-    function openEditPage(editPageProperties) {
-        var incubator = pageStack.addPageToNextColumn(mainPage,
+    function openEditPage(editPageProperties, sourcePage) {
+        var incubator = pageStack.addPageToNextColumn(sourcePage,
                                           Qt.resolvedUrl("ABContactEditorPage.qml"),
                                           editPageProperties);
         incubator.onStatusChanged = function(status) {
@@ -644,7 +645,7 @@ Page {
     Connections {
         target: mainPage.contactViewPage
         onEditContact: {
-            openEditPage(editPageProperties);
+            openEditPage(editPageProperties, mainPage.contactViewPage);
         }
     }
 
