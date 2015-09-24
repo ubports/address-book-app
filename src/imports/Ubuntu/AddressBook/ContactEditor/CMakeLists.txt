@@ -1,6 +1,5 @@
 set(AB_CONTACT_EDITOR_QMLS
     AvatarImport.qml
-    CancelEditDialog.qml
     ComboButtonAddField.qml
     ContactDetailAddressesEditor.qml
     ContactDetailAvatarEditor.qml

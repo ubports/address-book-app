@@ -76,14 +76,6 @@ Page {
     }
 
     function openViewPage(viewPageProperties) {
-        if (mainPage.contactEditorPage) {
-            mainPage.contactEditorPage.cancel(doOpenViewPage, viewPageProperties);
-        } else {
-            doOpenViewPage(viewPageProperties);
-        }
-    }
-
-    function doOpenViewPage(viewPageProperties) {
         var incubator = pageStack.addPageToNextColumn(mainPage,
                                       Qt.resolvedUrl("ABContactViewPage.qml"),
                                       viewPageProperties);

@@ -42,13 +42,7 @@ Page {
     // priv
     property bool _edgeReady: false
 
-    function cancel(cancelledCallback, cancelledCallbackParameters) {
-        PopupUtils.open(cancelEditDialogComponent, null,
-                        {"cancelledCallback": cancelledCallback,
-                         "cancelledCallbackParameters": cancelledCallbackParameters});
-    }
-
-    function doCancel() {
+    function cancel() {
         for (var i = 0; i < contactEditor.newDetails.length; ++i) {
             contactEditor.contact.removeDetail(contactEditor.newDetails[i])
         }
@@ -169,34 +163,6 @@ Page {
         running: false
         repeat: false
         onTriggered: contactEditor.ready()
-    }
-
-
-    Component {
-        id: cancelEditDialogComponent
-
-        CancelEditDialog {
-            id: cancelEditDialog
-
-            onDiscardClicked: {
-                cancelConfirmed = true;
-                PopupUtils.close(cancelEditDialog);
-            }
-
-            onKeepEditingClicked: {
-                PopupUtils.close(cancelEditDialog);
-            }
-
-            property var cancelledCallback
-            property var cancelledCallbackParameters
-            property bool cancelConfirmed: false
-            Component.onDestruction: if (cancelConfirmed) {
-                                         contactEditor.doCancel();
-                                         if (cancelledCallback) {
-                                            cancelledCallback(cancelledCallbackParameters);
-                                         }
-                                     }
-        }
     }
 
     flickable: null
