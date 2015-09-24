@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-09-21 10:30-0300\n"
-"PO-Revision-Date: 2015-03-21 12:33+0000\n"
+"PO-Revision-Date: 2015-09-23 13:43+0000\n"
 "Last-Translator: Claudio Arseni <claudio.arseni@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-09-23 06:31+0000\n"
+"X-Launchpad-Export-Date: 2015-09-24 05:56+0000\n"
 "X-Generator: Launchpad (build 17749)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:77
@@ -93,7 +93,7 @@ msgstr "Chiudi"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:424
 msgid "Contact Editor"
-msgstr ""
+msgstr "Editor dei contatti"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
@@ -428,6 +428,10 @@ msgid ""
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Il servizio di sincronizzazione  <b>%1</b> deve essere aggiornato lanciando "
+"l'applicazione «Contatti».\n"
+"Solo i contatti locali saranno modificabili fino al completamento "
+"dell'aggiornamento."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:428
 #, qt-format
@@ -435,6 +439,8 @@ msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
+"Il servizio di sincronizzazione  <b>%1</b> deve essere aggiornato.\n"
+"Attendere il completamento dell'aggiornamento prima di modificare i contatti."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:433
 #, qt-format
@@ -443,18 +449,22 @@ msgid ""
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Il servizio di sincronizzazione  <b>%1</b> deve essere aggiornato. Usare il "
+"pulsante di sincronizzazione per aggiornare l'app «Contatti».\n"
+"Solo i contatti locali saranno modificabili fino al completamento "
+"dell'aggiornamento"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:46
 msgid "Discard changes"
-msgstr ""
+msgstr "Scarta modifiche"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:24
 msgid "Discard contact changes"
-msgstr ""
+msgstr "Scarta le modifiche del contatto"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:35
 msgid "Keep editing"
-msgstr ""
+msgstr "Continua modifica"
 
 #~ msgid ""
 #~ "Would you like to sync contacts\n"
