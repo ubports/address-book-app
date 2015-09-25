@@ -18,7 +18,7 @@ import QtQuick 2.2
 
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
-import Ubuntu.Content 1.3
+import Ubuntu.Content 0.1
 
 Item {
     id: root
