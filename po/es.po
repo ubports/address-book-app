@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-09-21 10:30-0300\n"
-"PO-Revision-Date: 2015-03-27 19:16+0000\n"
-"Last-Translator: Jose Luis Tirado <Unknown>\n"
+"PO-Revision-Date: 2015-09-25 14:59+0000\n"
+"Last-Translator: Luciano Barea <lubareac@hotmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-09-23 06:31+0000\n"
-"X-Generator: Launchpad (build 17749)\n"
+"X-Launchpad-Export-Date: 2015-09-26 06:34+0000\n"
+"X-Generator: Launchpad (build 17754)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:77
 #, qt-format
@@ -392,7 +392,7 @@ msgstr "Desbloquear"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:227
 msgid "Unlocking..."
-msgstr ""
+msgstr "Desbloqueando..."
 
 #: ../src/imports/ABContactListPage.qml:290
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:177
