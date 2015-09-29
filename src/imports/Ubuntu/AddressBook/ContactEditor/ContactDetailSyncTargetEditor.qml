@@ -54,7 +54,7 @@ ContactDetailBase {
         }
     }
 
-    function contactIsReadyOnly(contact) {
+    function contactIsReadOnly(contact) {
         var sources = sourceModel.contacts
         var contactSyncTarget = contact.syncTarget.value(SyncTarget.SyncTarget + 1)
 
