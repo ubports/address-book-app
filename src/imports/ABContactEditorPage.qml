@@ -27,6 +27,7 @@ ContactEditorPage {
 
     head.backAction: Action {
         objectName: "cancel"
+        name: "cancel"
 
         text: i18n.tr("Cancel")
         iconName: "back"
@@ -38,6 +39,7 @@ ContactEditorPage {
     head.actions: [
         Action {
             objectName: "save"
+            name: "save"
 
             text: i18n.tr("Save")
             iconName: "ok"

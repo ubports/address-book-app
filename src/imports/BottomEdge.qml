@@ -82,6 +82,7 @@ Item {
 
         BottomEdgeHint {
             id: bottomEdgeHint
+
             anchors.bottom: bottomEdgeBody.top
             iconName: bottomEdge.iconName
             onClicked: bottomEdge.clicked()
@@ -208,6 +209,7 @@ Item {
 
     MouseArea {
         id: bottomEdgeDragArea
+        objectName: "bottomEdgeDragArea"
 
         property real previousY: -1
         property string dragDirection: "None"

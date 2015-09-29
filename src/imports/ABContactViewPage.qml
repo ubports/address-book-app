@@ -33,6 +33,8 @@ ContactViewPage {
     head.actions: [
         Action {
             objectName: "share"
+            name: "share"
+
             text: i18n.tr("Share")
             iconName: "share"
             onTriggered: {
@@ -44,6 +46,8 @@ ContactViewPage {
         },
         Action {
             objectName: "edit"
+            name: "edit"
+
             text: i18n.tr("Edit")
             iconName: "edit"
             onTriggered: {

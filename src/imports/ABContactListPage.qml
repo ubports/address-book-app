@@ -39,6 +39,7 @@ Page {
     property Page contactViewPage: null
     property Page contactEditorPage: null
 
+    readonly property bool bottomEdgePageLoaded: !bottomEdge.visible
     readonly property bool isEmpty: (contactList.count === 0)
     readonly property bool allowToQuit: (application.callbackApplication.length > 0)
     readonly property var contactModel: contactList.listModel ? contactList.listModel : null
@@ -568,6 +569,7 @@ Page {
 
     BottomEdge {
         id: bottomEdge
+        objectName: "bottomEdge"
 
         anchors.fill: parent
         contentComponent: pageStack.columns == 1 ? editorPageBottomEdge : emptyContact

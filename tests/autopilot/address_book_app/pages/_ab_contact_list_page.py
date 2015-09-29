@@ -21,9 +21,9 @@ import time
 
 import autopilot.logging
 import ubuntuuitoolkit
-
 import address_book_app.address_book as address_book
 
+from autopilot.introspection import dbus
 from address_book_app.pages import ABContactViewPage
 
 
@@ -32,7 +32,7 @@ log_action_info = autopilot.logging.log_action(logging.info)
 log_action_debug = autopilot.logging.log_action(logging.debug)
 
 
-class ABContactListPage(address_book.PageWithHeader, address_book.PageWithBottomEdge):
+class ABContactListPage(address_book.PageWithHeader):
 
     """Autopilot helper for the Contact List page."""
 
@@ -136,3 +136,18 @@ class ABContactListPage(address_book.PageWithHeader, address_book.PageWithBottom
             objectName='contactListView.importFromSimCardButton')
         return import_from_sim_button.visible
 
+    def reveal_bottom_edge_page(self):
+        """Bring the bottom edge page to the screen"""
+        try:
+            action_item = self.wait_select_single(objectName='bottomEdgeDragArea')
+            action_item.enabled.wait_for(True)
+            start_x = (action_item.globalRect.x +
+                       (action_item.globalRect.width * 0.5))
+            start_y = action_item.globalRect.y + (action_item.height * 0.2)
+            stop_y = start_y - (self.height * 0.7)
+            self.pointing_device.drag(
+                start_x, start_y, start_x, stop_y, rate=2)
+            self.bottomEdgePageLoaded.wait_for(True)
+        except dbus.StateNotFoundError:
+            logger.error('ButtomEdge element not found.')
+            raise
