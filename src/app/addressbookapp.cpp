@@ -109,7 +109,7 @@ AddressBookApp::AddressBookApp(int &argc, char **argv)
     s_elapsed.start();
     setOrganizationName(SETTINGS_ORGANIZATION_NAME);
     setApplicationName(SETTINGS_APP_NAME);
-    setOrganizationDomain("canonical.com");
+    setOrganizationDomain(SETTINGS_ORGANIZATION_DOMAIN);
     connect(m_netManager.data(),
             SIGNAL(onlineStateChanged(bool)),
             SIGNAL(isOnlineChanged()),

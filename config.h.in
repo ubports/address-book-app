@@ -12,6 +12,7 @@
 #define I18N_DIRECTORY                      "@CMAKE_INSTALL_PREFIX@/share/locale"
 
 #define SETTINGS_ORGANIZATION_NAME          "com.ubuntu.address-book"
+#define SETTINGS_ORGANIZATION_DOMAIN         "canonical.com"
 #define SETTINGS_APP_NAME                   "AddressBookApp"
 
 #endif

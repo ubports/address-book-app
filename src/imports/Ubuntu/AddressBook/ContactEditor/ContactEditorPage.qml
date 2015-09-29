@@ -299,7 +299,7 @@ Page {
                 onChanged: {
                     if (contactEditor.enabled &&
                         !contactEditor.isNewContact &&
-                        syncTargetEditor.contactIsReadyOnly(contactEditor.contact)) {
+                        syncTargetEditor.contactIsReadOnly(contactEditor.contact)) {
                         PopupUtils.open(alertMessage)
                     }
                 }
