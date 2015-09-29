@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-09-21 10:30-0300\n"
-"PO-Revision-Date: 2015-09-06 14:38+0000\n"
+"PO-Revision-Date: 2015-09-24 21:00+0000\n"
 "Last-Translator: Bojan Bogdanović <Unknown>\n"
 "Language-Team: Serbian <sr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-09-23 06:31+0000\n"
-"X-Generator: Launchpad (build 17749)\n"
+"X-Launchpad-Export-Date: 2015-09-25 05:50+0000\n"
+"X-Generator: Launchpad (build 17754)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:77
 #, qt-format
@@ -93,7 +93,7 @@ msgstr "Затвори"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:424
 msgid "Contact Editor"
-msgstr ""
+msgstr "Уређивач Именика"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
@@ -390,7 +390,7 @@ msgstr "Откључај"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:227
 msgid "Unlocking..."
-msgstr ""
+msgstr "Откључавам..."
 
 #: ../src/imports/ABContactListPage.qml:290
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:177
@@ -427,6 +427,9 @@ msgid ""
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Ваш <b>%1</b> налог за синхронизовање контаката мора бити надограђен "
+"покретањем апликације Именик.\n"
+"Само ће локални контакти бити измељиви док се надоградња не заврши."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:428
 #, qt-format
@@ -434,6 +437,8 @@ msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
+"Ваш <b>%1</b> налог за синхронизовање контаката мора бити надограђен.\n"
+"Сачекајте док се надоградња не заврши да би сте могли изменити контакте."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:433
 #, qt-format
@@ -442,18 +447,21 @@ msgid ""
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Ваш <b>%1</b> налог за синхронизовање контаката мора бити надограђен. "
+"Користите дугме за синхронизацију да надоградите апликацију Именик.\n"
+"Само ће локални контакти бити измељиви док се надоградња не заврши."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:46
 msgid "Discard changes"
-msgstr ""
+msgstr "Одбаци измене"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:24
 msgid "Discard contact changes"
-msgstr ""
+msgstr "Одбаци измене контаката"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:35
 msgid "Keep editing"
-msgstr ""
+msgstr "Настави мењање"
 
 #~ msgid ""
 #~ "Would you like to sync contacts\n"

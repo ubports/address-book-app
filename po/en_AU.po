@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-09-21 10:30-0300\n"
-"PO-Revision-Date: 2015-04-11 02:19+0000\n"
+"PO-Revision-Date: 2015-09-27 11:41+0000\n"
 "Last-Translator: Jared Norris <jarednorris@ubuntu.com>\n"
 "Language-Team: English (Australia) <en_AU@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-09-23 06:31+0000\n"
-"X-Generator: Launchpad (build 17749)\n"
+"X-Launchpad-Export-Date: 2015-09-28 06:22+0000\n"
+"X-Generator: Launchpad (build 17754)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:77
 #, qt-format
@@ -93,7 +93,7 @@ msgstr "Close"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:424
 msgid "Contact Editor"
-msgstr ""
+msgstr "Contact Editor"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
@@ -427,6 +427,9 @@ msgid ""
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Your <b>%1</b> contact sync account needs to be upgraded by running Contacts "
+"app.\n"
+"Only local contacts will be editable until upgrade is complete."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:428
 #, qt-format
@@ -434,6 +437,8 @@ msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
+"Your <b>%1</b> contact sync account needs to be upgraded.\n"
+"Wait until the upgrade is complete to edit contacts."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:433
 #, qt-format
@@ -442,18 +447,21 @@ msgid ""
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Your <b>%1</b> contact sync account needs to be upgraded. Use the sync "
+"button to upgrade the Contacts app.\n"
+"Only local contacts will be editable until upgrade is complete."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:46
 msgid "Discard changes"
-msgstr ""
+msgstr "Discard changes"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:24
 msgid "Discard contact changes"
-msgstr ""
+msgstr "Discard contact changes"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:35
 msgid "Keep editing"
-msgstr ""
+msgstr "Keep editing"
 
 #~ msgid ""
 #~ "Would you like to sync contacts\n"
