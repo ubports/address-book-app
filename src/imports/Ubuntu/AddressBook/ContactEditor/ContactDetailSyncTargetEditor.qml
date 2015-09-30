@@ -46,6 +46,9 @@ ContactDetailBase {
     }
 
     function getSelectedSource() {
+        if (sources.model.count <= 0)
+            return -1
+
         var selectedContact = sources.model.get(sources.selectedIndex).contact
         if (selectedContact) {
             return selectedContact.guid.guid
