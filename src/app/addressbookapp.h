@@ -21,12 +21,14 @@
 #include <QtDBus/QDBusInterface>
 #include <QtGui/QGuiApplication>
 #include <QtQuick/QQuickView>
+#include <QtNetwork/QNetworkConfigurationManager>
 
 class AddressBookApp : public QGuiApplication
 {
     Q_OBJECT
     Q_PROPERTY(bool firstRun READ isFirstRun CONSTANT)
     Q_PROPERTY(QString callbackApplication READ callbackApplication WRITE setCallbackApplication NOTIFY callbackApplicationChanged)
+    Q_PROPERTY(bool isOnline READ isOnline NOTIFY isOnlineChanged)
 
 public:
     AddressBookApp(int &argc, char **argv);
@@ -37,10 +39,11 @@ public:
     QString callbackApplication() const;
     void setCallbackApplication(const QString &application);
 
+    bool isOnline() const;
+
 Q_SIGNALS:
-    void syncingChanged();
-    void syncEnabledChanged();
     void callbackApplicationChanged();
+    void isOnlineChanged();
 
 public Q_SLOTS:
     void activateWindow();
@@ -59,6 +62,7 @@ private:
 
 private:
     QQuickView *m_view;
+    QScopedPointer<QNetworkConfigurationManager> m_netManager;
     QString m_initialArg;
     QString m_callbackApplication;
     bool m_viewReady;
