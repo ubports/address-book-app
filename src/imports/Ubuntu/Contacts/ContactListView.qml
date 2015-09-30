@@ -17,8 +17,10 @@
 import QtQuick 2.2
 import QtContacts 5.0
 
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.2
 import Ubuntu.Components.ListItems 1.0 as ListItem
+import Ubuntu.Components.Popups 1.0
+import Ubuntu.Contacts 0.1 as Contacts
 import Buteo 0.1
 
 /*!
@@ -214,7 +216,7 @@ Item {
     // and will re-check if the property changes.
     // Using only '(buteoSync.syncProfilesByCategory("contacts").length > 0)'
     // the value will be checked only on app startup
-    readonly property bool syncEnabled: buteoSync.visibleSyncProfiles &&
+    readonly property bool syncEnabled: (buteoSync.profilesCount > 0) &&
                                         (buteoSync.syncProfilesByCategory("contacts").length > 0)
     /*!
       \qmlproperty bool busy
@@ -228,6 +230,8 @@ Item {
       This property holds if the busy indicator should became visible
     */
     property bool showBusyIndicator: true
+
+    property var _busyDialog: null
 
     /*!
       This handler is called when the selection mode is finished without be canceled
