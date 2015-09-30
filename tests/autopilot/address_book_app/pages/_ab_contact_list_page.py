@@ -147,7 +147,6 @@ class ABContactListPage(address_book.PageWithHeader):
             stop_y = start_y - (self.height * 0.7)
             self.pointing_device.drag(
                 start_x, start_y, start_x, stop_y, rate=2)
-            self.bottomEdgePageLoaded.wait_for(True)
         except dbus.StateNotFoundError:
             logger.error('ButtomEdge element not found.')
             raise

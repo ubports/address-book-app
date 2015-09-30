@@ -89,13 +89,13 @@ class TestEditContact(AddressBookAppTestCase):
 
         # check if we have onlye one phone
         view_page = list_page.open_contact(0)
-        phone_group = view_page.select_single(
+        phone_group = view_page.wait_select_single(
             "ContactDetailGroupWithTypeView",
             objectName="phones")
         self.assertThat(phone_group.detailsCount, Eventually(Equals(1)))
 
         # check if the new value is correct
-        phone_label_1 = view_page.select_single(
+        phone_label_1 = view_page.wait_select_single(
             "Label",
             objectName="label_phoneNumber_0.0")
         self.assertThat(phone_label_1.text,

@@ -77,11 +77,7 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
         # We can have two contact editor page because of bottom edge page
         # but we will return only the active one
         list_page = self.get_contact_list_page()
-        contact_editor_pages = self.select_many(objectName="contactEditorPage")
-        for p in contact_editor_pages:
-            if p.active:
-                return p
-        raise exceptions.StateNotFoundError('contactEditorPage not found')
+        return self.wait_select_single(objectName="contactEditorPage", active=True)
 
     def get_contact_view_page(self):
         return self.wait_select_single(pages.ABContactViewPage,
