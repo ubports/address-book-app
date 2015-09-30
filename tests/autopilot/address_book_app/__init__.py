@@ -175,6 +175,12 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
         """
         self.click_action_button("edit")
 
+    def delete(self):
+        """
+        Press the 'Delete' button
+        """
+        self.click_action_button("delete")
+
     def confirm_import(self):
         """
         Press the 'confirm' button

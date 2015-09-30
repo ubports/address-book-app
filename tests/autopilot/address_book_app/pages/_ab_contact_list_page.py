@@ -108,9 +108,9 @@ class ABContactListPage(address_book.PageWithHeader):
             'ContactListView', objectName='contactListView')
 
     @log_action_info
-    def delete_selected_contacts(self):
-        self.get_header().click_action_button('delete')
-        self.isCollapsed.wait_for(True)
+    def delete_selected_contacts(self, main_window):
+        main_window.delete()
+        self.bottomEdgePageLoaded.wait_for(False)
         dialog = self.get_root_instance().wait_select_single(
             address_book.RemoveContactsDialog, objectName='removeContactsDialog')
         dialog.confirm_removal()
