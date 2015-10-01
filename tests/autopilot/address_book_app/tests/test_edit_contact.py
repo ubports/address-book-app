@@ -89,13 +89,13 @@ class TestEditContact(AddressBookAppTestCase):
 
         # check if we have onlye one phone
         view_page = list_page.open_contact(0)
-        phone_group = view_page.wait_select_single(
+        phone_group = self.main_window.wait_select_single(
             "ContactDetailGroupWithTypeView",
             objectName="phones")
         self.assertThat(phone_group.detailsCount, Eventually(Equals(1)))
 
         # check if the new value is correct
-        phone_label_1 = view_page.wait_select_single(
+        phone_label_1 = phone_group.wait_select_single(
             "Label",
             objectName="label_phoneNumber_0.0")
         self.assertThat(phone_label_1.text,
@@ -119,13 +119,13 @@ class TestEditContact(AddressBookAppTestCase):
         self.assertThat(view_page.visible, Eventually(Equals(True)))
 
         # check if we have a new email
-        email_group = view_page.select_single(
+        email_group = self.main_window.select_single(
             "ContactDetailGroupWithTypeView",
             objectName="emails")
         self.assertThat(email_group.detailsCount, Eventually(Equals(1)))
 
         # check if the new value is correct
-        email_label_1 = view_page.select_single(
+        email_label_1 = email_group.select_single(
             "Label",
             objectName="label_emailAddress_0.0")
         self.assertThat(email_label_1.text,
@@ -146,7 +146,7 @@ class TestEditContact(AddressBookAppTestCase):
 
         # check if the email list is empty
         view_page = self.app.main_window.get_contact_view_page()
-        emails_group = view_page.select_single(
+        emails_group = self.main_window.select_single(
             "ContactDetailGroupWithTypeView",
             objectName="emails")
         self.assertThat(emails_group.detailsCount, Eventually(Equals(0)))
