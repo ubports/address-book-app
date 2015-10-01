@@ -46,8 +46,10 @@ class ABContactListPage(address_book.PageWithHeader):
         """
         contact_delegate = self._get_contact_delegate(index)
         self.pointing_device.click_object(contact_delegate)
+        # WORKAROUND: give some time to the view became available
+        time.sleep(2.0)
         return self.get_root_instance().select_single(
-            ABContactViewPage, objectName='contactViewPage')
+            ABContactViewPage, objectName='contactViewPage', active=True)
 
     def _get_contact_delegate(self, index):
         contact_delegates = self._get_sorted_contact_delegates()
@@ -148,7 +150,8 @@ class ABContactListPage(address_book.PageWithHeader):
             stop_y = start_y - (self.height * 0.7)
             self.pointing_device.drag(
                 start_x, start_y, start_x, stop_y, rate=2)
-            self.bottomEdgePageOpened.wait_for(True)
+            #self pointer became invalid at this point
+            #self.bottomEdgePageOpened.wait_for(True)
         except dbus.StateNotFoundError:
             logger.error('ButtomEdge element not found.')
             raise

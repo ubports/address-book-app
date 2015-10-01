@@ -64,19 +64,12 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
         # ContactListPage is the only page that can appears multiple times
         # Ex.: During the pick mode we alway push a new contactListPage, to
         # preserve the current application status.
-        contact_list_pages = self.select_many(
-            pages.ABContactListPage, objectName='contactListPage')
-
-        # alway return the page without pickMode
-        for p in contact_list_pages:
-            if not p.pickMode:
-                return p
-        return None
+        return self.wait_select_single(pages.ABContactListPage,
+                                       objectName='contactListPage', pickMode=False)
 
     def get_contact_edit_page(self):
         # We can have two contact editor page because of bottom edge page
         # but we will return only the active one
-        list_page = self.get_contact_list_page()
         return self.wait_select_single(objectName="contactEditorPage", active=True)
 
     def get_contact_view_page(self):
@@ -97,7 +90,6 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
                                        objectName="contactSharePage")
 
     def start_import_contacts(self):
-        self.open_header()
         view = self.get_contact_list_view()
         if view.count > 0:
             self.click_action_button("importFromSimHeaderButton")
@@ -199,4 +191,5 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
         """
         bottom_swipe_page = self.get_contact_list_page()
         bottom_swipe_page.reveal_bottom_edge_page()
+
         return self.get_contact_edit_page()
