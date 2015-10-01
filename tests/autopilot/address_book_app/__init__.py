@@ -81,7 +81,8 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
 
     def get_contact_view_page(self):
         return self.wait_select_single(pages.ABContactViewPage,
-                                       objectName="contactViewPage")
+                                       objectName="contactViewPage",
+                                       active=True)
 
     def get_contact_list_pick_page(self):
         contact_list_pages = self.select_many(
