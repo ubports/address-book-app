@@ -20,10 +20,13 @@ import Ubuntu.Components 1.3
 Item {
     id: bottomEdge
 
+    readonly property bool fullLoaded: bottomEdgeLoader.status == Loader.Ready
+    property bool opened: false
     property Component contentComponent
     property Item content: bottomEdgeLoader.item
     property string iconName
     property Item flickable
+
     signal openBegin
     signal openEnd
     signal clicked
@@ -171,6 +174,7 @@ Item {
                     script: {
                         bottomEdgeLoader.active = false;
                         bottomEdgeLoader.active = true;
+                        bottomEdge.opened = false
                     }
                 }
             }
@@ -201,7 +205,11 @@ Item {
                     duration: UbuntuAnimation.FastDuration
                 }
                 ScriptAction {
-                    script: bottomEdge.openEnd()
+                    script: {
+                        bottomEdge.opened = true
+                        bottomEdge.openEnd()
+                    }
+
                 }
             }
         }

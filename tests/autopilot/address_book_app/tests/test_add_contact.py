@@ -36,7 +36,7 @@ class TestAddContact(AddressBookAppTestCase):
         contact_editor = self.app.main_window.go_to_add_contact()
 
         # Check if the contact list disapear and contact editor appears
-        self.assertThat(list_page.bottomEdgePageLoaded, Eventually(Equals(True)))
+        self.assertThat(list_page.bottomEdgePageOpened, Eventually(Equals(True)))
         self.assertThat(contact_editor.visible, Eventually(Equals(True)))
 
         # cancel new contact without save
@@ -44,7 +44,7 @@ class TestAddContact(AddressBookAppTestCase):
 
         # Check if the contact list is visible again
         self.assertThat(list_page.visible, Eventually(Equals(True)))
-        self.assertThat(list_page.bottomEdgePageLoaded, Eventually(Equals(False)))
+        self.assertThat(list_page.bottomEdgePageOpened, Eventually(Equals(False)))
 
         # Check if the contact list still empty
         list_view = self.app.main_window.get_contact_list_view()

@@ -110,7 +110,7 @@ class ABContactListPage(address_book.PageWithHeader):
     @log_action_info
     def delete_selected_contacts(self, main_window):
         main_window.delete()
-        self.bottomEdgePageLoaded.wait_for(False)
+        self.bottomEdgePageOpened.wait_for(False)
         dialog = self.get_root_instance().wait_select_single(
             address_book.RemoveContactsDialog, objectName='removeContactsDialog')
         dialog.confirm_removal()
@@ -138,6 +138,7 @@ class ABContactListPage(address_book.PageWithHeader):
 
     def reveal_bottom_edge_page(self):
         """Bring the bottom edge page to the screen"""
+        self.bottomEdgePageOpened.wait_for(False)
         try:
             action_item = self.wait_select_single(objectName='bottomEdgeDragArea')
             action_item.enabled.wait_for(True)
@@ -147,6 +148,7 @@ class ABContactListPage(address_book.PageWithHeader):
             stop_y = start_y - (self.height * 0.7)
             self.pointing_device.drag(
                 start_x, start_y, start_x, stop_y, rate=2)
+            self.bottomEdgePageOpened.wait_for(True)
         except dbus.StateNotFoundError:
             logger.error('ButtomEdge element not found.')
             raise
