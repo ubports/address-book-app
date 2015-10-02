@@ -87,7 +87,8 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
 
     def get_share_page(self):
         return self.wait_select_single("ContactSharePage",
-                                       objectName="contactSharePage")
+                                       objectName="contactSharePage",
+                                       active=True)
 
     def start_import_contacts(self):
         view = self.get_contact_list_view()
@@ -100,7 +101,8 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
             self.pointing_device.click_object(import_buttom)
 
         return self.wait_select_single(address_book.SIMCardImportPage,
-                                       objectName="simCardImportPage")
+                                       objectName="simCardImportPage",
+                                       active=True)
 
     def get_contact_list_view(self):
         """
