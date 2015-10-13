@@ -27,8 +27,12 @@
 #include "config.h"
 
 UbuntuContacts::UbuntuContacts(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+      m_fileWatcher(new QFileSystemWatcher)
 {
+    m_fileWatcher->addPath(updaterLockFile());
+    connect(m_fileWatcher.data(), SIGNAL(fileChanged(QString)),
+            SIGNAL(updateIsRunningChanged()));
 }
 
 QString UbuntuContacts::tempPath() const
@@ -108,5 +112,10 @@ bool UbuntuContacts::removeFile(const QUrl &file)
 
 bool UbuntuContacts::updateIsRunning() const
 {
-    return QFile::exists(QDir::tempPath() + "/address-book-updater.lock");
+    return QFile::exists(updaterLockFile());
+}
+
+QString UbuntuContacts::updaterLockFile()
+{
+    return QString("%1/%2").arg(QDir::tempPath()).arg("/address-book-updater.lock");
 }

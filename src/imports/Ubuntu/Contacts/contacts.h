@@ -20,11 +20,14 @@
 #include <QtCore/QObject>
 #include <QtCore/QString>
 #include <QtCore/QUrl>
+#include <QtCore/QScopedPointer>
+#include <QtCore/QFileSystemWatcher>
 
 class UbuntuContacts : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString tempPath READ tempPath)
+    Q_PROPERTY(bool updateIsRunning READ updateIsRunning NOTIFY updateIsRunningChanged)
 
 public:
     UbuntuContacts(QObject *parent = 0);
@@ -37,6 +40,15 @@ public:
     Q_INVOKABLE bool containsLetters(const QString &value);
     Q_INVOKABLE bool removeFile(const QUrl &file);
     Q_INVOKABLE bool updateIsRunning() const;
+
+Q_SIGNALS:
+    void updateIsRunningChanged();
+
+private:
+    QScopedPointer<QFileSystemWatcher> m_fileWatcher;
+
+    static QString updaterLockFile();
+
 };
 
 #endif //_UBUNTU_CONTACTS_H_
