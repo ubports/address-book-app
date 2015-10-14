@@ -30,8 +30,13 @@ UbuntuContacts::UbuntuContacts(QObject *parent)
     : QObject(parent),
       m_fileWatcher(new QFileSystemWatcher)
 {
-    m_fileWatcher->addPath(updaterLockFile());
-    connect(m_fileWatcher.data(), SIGNAL(fileChanged(QString)),
+    // We need to monitor the tmp dir since the file could not exists at this point
+    m_fileWatcher->addPath(QDir::tempPath());
+    connect(m_fileWatcher.data(),
+            SIGNAL(directoryChanged(QString)),
+            SIGNAL(updateIsRunningChanged()));
+    connect(m_fileWatcher.data(),
+            SIGNAL(fileChanged(QString)),
             SIGNAL(updateIsRunningChanged()));
 }
 
