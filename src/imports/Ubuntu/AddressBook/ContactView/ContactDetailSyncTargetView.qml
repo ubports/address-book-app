@@ -46,6 +46,17 @@ ContactDetailGroupWithTypeView {
         return result
     }
 
+    function overrideValue(detail, field)
+    {
+        if (detail.value(ContactDetall.SyncTarget + 1) == "system-address-book") {
+            return detail.value(field)
+        } else if (detail.value(ContactDetail.SyncTarget + 2) == "0") {
+            return i18n.dtr("address-book-app", "Personal %1").arg(detail.value(field))
+        } else {
+            return detail.value(field)
+        }
+    }
+
     title: i18n.dtr("address-book-app", "Addressbook")
     defaultIcon: "image://theme/contact-group"
     detailType: ContactDetail.SyncTarget
