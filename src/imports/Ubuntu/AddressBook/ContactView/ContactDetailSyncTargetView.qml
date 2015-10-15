@@ -84,7 +84,7 @@ ContactDetailGroupWithTypeView {
             if (detail.value(field + 1) == "system-address-book") {
                 return detail.value(field)
             } else if (detail.value(field + 2) == "0") {
-                return i18n.dtr("address-book-app", "Personal %1").arg(detail.value(field))
+                return i18n.dtr("address-book-app", "Personal - %1").arg(detail.value(field))
             } else {
                 return detail.value(field)
             }
