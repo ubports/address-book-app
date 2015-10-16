@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-03-16 17:52-0300\n"
-"PO-Revision-Date: 2015-07-21 14:06+0000\n"
+"POT-Creation-Date: 2015-09-21 10:30-0300\n"
+"PO-Revision-Date: 2015-09-25 11:45+0000\n"
 "Last-Translator: Marcos Lans <Unknown>\n"
 "Language-Team: Galician <gl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-08-27 05:46+0000\n"
-"X-Generator: Launchpad (build 17690)\n"
+"X-Launchpad-Export-Date: 2015-09-26 06:34+0000\n"
+"X-Generator: Launchpad (build 17754)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:77
 #, qt-format
@@ -90,6 +90,10 @@ msgstr "Cancelar selección"
 #: ../src/imports/VCardImportDialog.qml:80
 msgid "Close"
 msgstr "Pechar"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:424
+msgid "Contact Editor"
+msgstr "Editor de contactos"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
@@ -384,6 +388,10 @@ msgstr "Tocar"
 msgid "Unlock"
 msgstr "Desbloquear"
 
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:227
+msgid "Unlocking..."
+msgstr "Desbloqueando..."
+
 #: ../src/imports/ABContactListPage.qml:290
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:177
 msgid "Unselect All"
@@ -411,6 +419,49 @@ msgstr "Si"
 #: ../src/imports/ABContactListPage.qml:444
 msgid "You have no contacts."
 msgstr "Non ten contactos."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:437
+#, qt-format
+msgid ""
+"Your <b>%1</b> contact sync account needs to be upgraded by running Contacts "
+"app.\n"
+"Only local contacts will be editable until upgrade is complete."
+msgstr ""
+"A conta de sincronización de contactos <b>%1</b> debe anovarse executando o "
+"aplicativo Contactos.\n"
+"Mentres a anovación non se complete só poderá editar os contactos locais."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:428
+#, qt-format
+msgid ""
+"Your <b>%1</b> contact sync account needs to be upgraded.\n"
+"Wait until the upgrade is complete to edit contacts."
+msgstr ""
+"A conta de sincronización de contactos <b>%1</b> debe anovarse.\n"
+"Agarde a que a anovación se complete para editar os contactos."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:433
+#, qt-format
+msgid ""
+"Your <b>%1</b> contact sync account needs to be upgraded. Use the sync "
+"button to upgrade the Contacts app.\n"
+"Only local contacts will be editable until upgrade is complete."
+msgstr ""
+"A conta de sincronización de contactos <b>%1</b> debe anovarse. Use o botón "
+"de sincronización para anovar o aplicactivo Contactos.\n"
+"Mentres a anovación non se complete só poderá editar os contactos locais."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:46
+msgid "Discard changes"
+msgstr "Desbotar os cambios"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:24
+msgid "Discard contact changes"
+msgstr "Desbotar cambios no contacto"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:35
+msgid "Keep editing"
+msgstr "Continuar a edición"
 
 #~ msgid ""
 #~ "Would you like to sync contacts\n"
