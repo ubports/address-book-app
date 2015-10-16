@@ -243,11 +243,17 @@ Page {
                     }
                 },
                 Action {
-                    visible: contactList.syncEnabled
+                    visible: (application.isOnline && (contactList.syncEnabled || application.serverSafeMode))
                     text: contactList.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
-                    iconName: "reload"
-                    enabled: !contactList.syncing
-                    onTriggered: contactList.sync()
+                    iconName: application.serverSafeMode ? "reset" : "reload"
+                    enabled: !contactList.syncing && !application.updating
+                    onTriggered: {
+                        if (application.serverSafeMode) {
+                            application.startUpdate()
+                        } else {
+                            contactList.sync()
+                        }
+                    }
                 },
                 Action {
                     text: i18n.tr("Settings")

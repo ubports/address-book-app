@@ -32,6 +32,7 @@
 #include <QSettings>
 #include <QTimer>
 #include <QElapsedTimer>
+#include <QDBusReply>
 
 #include <QQmlEngine>
 
@@ -100,18 +101,26 @@ static void installIconPath()
 AddressBookApp::AddressBookApp(int &argc, char **argv)
     : QGuiApplication(argc, argv),
       m_view(0),
+      m_netManager(new QNetworkConfigurationManager),
       m_pickingMode(false),
       m_testMode(false),
       m_withArgs(false)
 {
     s_elapsed.start();
-    setOrganizationName("com.ubuntu.address-book");
-    setApplicationName("AddressBookApp");
+    setOrganizationName(SETTINGS_ORGANIZATION_NAME);
+    setApplicationName(SETTINGS_APP_NAME);
+    setOrganizationDomain(SETTINGS_ORGANIZATION_DOMAIN);
+    connect(m_netManager.data(),
+            SIGNAL(onlineStateChanged(bool)),
+            SIGNAL(isOnlineChanged()),
+            Qt::QueuedConnection);
 }
 
 bool AddressBookApp::setup()
 {
     installIconPath();
+    connectWithServer();
+
     bool fullScreen = false;
 
     QString contactKey;
@@ -270,6 +279,29 @@ void AddressBookApp::goBackToSourceApp()
     }
 }
 
+void AddressBookApp::startUpdate()
+{
+    if (m_updateWatcher) {
+        return;
+    }
+
+    QDBusMessage startUpdateCall = QDBusMessage::createMethodCall("com.canonical.pim.updater",
+                                                                  "/com/canonical/pim/Updater",
+                                                                  "com.canonical.pim.Updater",
+                                                                  "startUpdate");
+    QDBusPendingCall pcall = QDBusConnection::sessionBus().asyncCall(startUpdateCall);
+    m_updateWatcher.reset(new QDBusPendingCallWatcher(pcall, this));
+    QObject::connect(m_updateWatcher.data(), SIGNAL(finished(QDBusPendingCallWatcher*)),
+                     this, SLOT(onUpdateCallFinished(QDBusPendingCallWatcher*)));
+    Q_EMIT updatingChanged();
+}
+
+void AddressBookApp::onUpdateCallFinished(QDBusPendingCallWatcher *watcher)
+{
+    m_updateWatcher.reset(0);
+    Q_EMIT updatingChanged();
+}
+
 void AddressBookApp::parseUrl(const QString &arg)
 {
     QUrl url = QUrl::fromPercentEncoding(arg.toUtf8());
@@ -389,6 +421,18 @@ void AddressBookApp::callQMLMethod(const QString name, QStringList args)
     m_pickingMode = (name == "pick");
 }
 
+void AddressBookApp::connectWithServer()
+{
+    m_server.reset(new QDBusInterface("com.canonical.pim",
+                                      "/com/canonical/pim/AddressBook",
+                                      "com.canonical.pim.AddressBook"));
+    if (!m_server->isValid()) {
+        qWarning() << "Fail to connect with pim service.";
+    }
+    connect(m_server.data(), SIGNAL(safeModeChanged()), SIGNAL(serverSafeModeChanged()));
+    Q_EMIT serverSafeModeChanged();
+}
+
 void AddressBookApp::activateWindow()
 {
     if (m_view) {
@@ -413,4 +457,20 @@ void AddressBookApp::setCallbackApplication(const QString &application)
         m_callbackApplication = application;
         Q_EMIT callbackApplicationChanged();
     }
+}
+
+bool AddressBookApp::isOnline() const
+{
+    return m_netManager->isOnline();
+}
+
+bool AddressBookApp::serverSafeMode() const
+{
+    QDBusReply<bool> reply = m_server->call("safeMode");
+    return reply.value();
+}
+
+bool AddressBookApp::updating() const
+{
+    return !m_updateWatcher.isNull();
 }
