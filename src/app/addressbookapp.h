@@ -19,14 +19,19 @@
 
 #include <QtCore/QObject>
 #include <QtDBus/QDBusInterface>
+#include <QtDBus/QDBusPendingCallWatcher>
 #include <QtGui/QGuiApplication>
 #include <QtQuick/QQuickView>
+#include <QtNetwork/QNetworkConfigurationManager>
 
 class AddressBookApp : public QGuiApplication
 {
     Q_OBJECT
     Q_PROPERTY(bool firstRun READ isFirstRun CONSTANT)
     Q_PROPERTY(QString callbackApplication READ callbackApplication WRITE setCallbackApplication NOTIFY callbackApplicationChanged)
+    Q_PROPERTY(bool isOnline READ isOnline NOTIFY isOnlineChanged)
+    Q_PROPERTY(bool serverSafeMode READ serverSafeMode NOTIFY serverSafeModeChanged)
+    Q_PROPERTY(bool updating READ updating NOTIFY updatingChanged)
 
 public:
     AddressBookApp(int &argc, char **argv);
@@ -37,10 +42,15 @@ public:
     QString callbackApplication() const;
     void setCallbackApplication(const QString &application);
 
+    bool isOnline() const;
+    bool serverSafeMode() const;
+    bool updating() const;
+
 Q_SIGNALS:
-    void syncingChanged();
-    void syncEnabledChanged();
     void callbackApplicationChanged();
+    void isOnlineChanged();
+    void serverSafeModeChanged();
+    void updatingChanged();
 
 public Q_SLOTS:
     void activateWindow();
@@ -50,15 +60,23 @@ public Q_SLOTS:
     bool isFirstRun() const;
     void unsetFirstRun() const;
     void goBackToSourceApp();
+    void startUpdate();
 
     // debug
     void elapsed() const;
 
+private Q_SLOTS:
+    void onUpdateCallFinished(QDBusPendingCallWatcher *watcher);
+
 private:
     void callQMLMethod(const QString name, QStringList args);
+    void connectWithServer();
 
 private:
     QQuickView *m_view;
+    QScopedPointer<QNetworkConfigurationManager> m_netManager;
+    QScopedPointer<QDBusInterface> m_server;
+    QScopedPointer<QDBusPendingCallWatcher> m_updateWatcher;
     QString m_initialArg;
     QString m_callbackApplication;
     bool m_viewReady;

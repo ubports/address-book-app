@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-03-16 17:52-0300\n"
-"PO-Revision-Date: 2015-03-25 07:30+0000\n"
+"POT-Creation-Date: 2015-09-21 10:30-0300\n"
+"PO-Revision-Date: 2015-10-05 06:44+0000\n"
 "Last-Translator: Fohanno Thierry <thierry.fohanno@ofis-bzh.org>\n"
 "Language-Team: Breton <br@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-08-27 05:46+0000\n"
-"X-Generator: Launchpad (build 17690)\n"
+"X-Launchpad-Export-Date: 2015-10-06 05:47+0000\n"
+"X-Generator: Launchpad (build 17796)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:77
 #, qt-format
@@ -28,11 +28,11 @@ msgid "%1 vCards imported"
 msgstr "%1 vKartenn enporzhiet"
 
 #. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:400
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:409
 msgid "+ Create New"
 msgstr "+ Krouiñ unan nevez"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:317
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:323
 msgid "Add Field"
 msgstr "Ouzhpennañ ur vaezienn"
 
@@ -40,7 +40,7 @@ msgstr "Ouzhpennañ ur vaezienn"
 msgid "Add Google account"
 msgstr "Ouzhpennañ ur gont Google"
 
-#: ../src/imports/ABContactListPage.qml:360
+#: ../src/imports/ABContactListPage.qml:366
 msgid "Add contact"
 msgstr "Ouzhpennañ un darempred"
 
@@ -54,7 +54,7 @@ msgstr "Ouzhpennañ un niverenn"
 msgid "Address"
 msgstr "Chomlec'h"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:78
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:134
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:49
 msgid "Addressbook"
 msgstr "Karned chomlec'hioù"
@@ -65,7 +65,7 @@ msgid "Aim"
 msgstr "Palioù"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:247
+#: ../src/imports/ABContactListPage.qml:253
 msgid "All"
 msgstr "An holl anezho"
 
@@ -78,18 +78,23 @@ msgid "Are you sure that you want to remove this contact?"
 msgstr "Ha sur oc'h e fell deoc'h lemel an darempred-mañ ?"
 
 #: ../src/imports/ABContactEditorPage.qml:31
-#: ../src/imports/ABContactListPage.qml:260 ../src/imports/MainWindow.qml:156
+#: ../src/imports/ABContactListPage.qml:266 ../src/imports/MainWindow.qml:155
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "Nullañ"
 
-#: ../src/imports/ABContactListPage.qml:284
+#: ../src/imports/ABContactListPage.qml:290
 msgid "Cancel selection"
 msgstr "Nullañ an diuzadur"
 
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:443
 #: ../src/imports/VCardImportDialog.qml:80
 msgid "Close"
 msgstr "Serriñ"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:424
+msgid "Contact Editor"
+msgstr "Aozer darempredoù"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
@@ -112,17 +117,17 @@ msgstr "Darempredoù;Tud;Niverennoù"
 msgid "Country"
 msgstr "Bro"
 
-#: ../src/imports/ABContactListPage.qml:445
+#: ../src/imports/ABContactListPage.qml:451
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "Krouiñ un darempred nevez dre riklañ adalek traoñ ar skramm."
 
-#: ../src/imports/ABContactListPage.qml:320
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:365
+#: ../src/imports/ABContactListPage.qml:326
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:371
 msgid "Delete"
 msgstr "Diverkañ"
 
 #: ../src/imports/ABContactViewPage.qml:43
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:150
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:148
 msgid "Edit"
 msgstr "Aozañ"
 
@@ -145,7 +150,7 @@ msgstr "Lakait ul lesanv"
 msgid "Enter an email address"
 msgstr "Lakait ur chomlec'h postel"
 
-#: ../src/imports/MainWindow.qml:152
+#: ../src/imports/MainWindow.qml:151
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
 msgstr "Fazi"
@@ -158,7 +163,7 @@ msgstr "Oc'h ezporzhiañ darempredoù..."
 msgid "Fail to read SIM card"
 msgstr "N'eus ket bet gallet lenn ar gartenn SIM"
 
-#: ../src/imports/ABContactListPage.qml:247
+#: ../src/imports/ABContactListPage.qml:253
 msgid "Favorites"
 msgstr "Gwellañ deuet"
 
@@ -188,11 +193,11 @@ msgstr "Tamm flap"
 msgid "Import"
 msgstr "Enporzhiañ"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:444
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:453
 msgid "Import contacts from Google"
 msgstr "Enporzhiañ darempredoù eus Google"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:455
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:464
 msgid "Import contacts from SIM card"
 msgstr "Enporzhiañ darempredoù diwar ar gartenn SIM"
 
@@ -217,7 +222,7 @@ msgstr "Flapañ"
 msgid "Last name"
 msgstr "Anv"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:521
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:530
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:218
 msgid "Loading..."
 msgstr "O kargañ..."
@@ -244,7 +249,7 @@ msgstr "Darempredoù liezek"
 msgid "My phone number: %1"
 msgstr "Ma niverenn bellgomz : %1"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:150
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:148
 msgid "New contact"
 msgstr "Darempred nevez"
 
@@ -332,17 +337,17 @@ msgstr "Klask"
 msgid "Search..."
 msgstr "Klask..."
 
-#: ../src/imports/ABContactListPage.qml:290
+#: ../src/imports/ABContactListPage.qml:296
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:178
 msgid "Select All"
 msgstr "Diuzañ pep tra"
 
-#: ../src/imports/ABContactListPage.qml:236
+#: ../src/imports/ABContactListPage.qml:242
 #: ../src/imports/Settings/SettingsPage.qml:30
 msgid "Settings"
 msgstr "Arventennoù"
 
-#: ../src/imports/ABContactListPage.qml:303
+#: ../src/imports/ABContactListPage.qml:309
 #: ../src/imports/ABContactViewPage.qml:35
 msgid "Share"
 msgstr "Rannañ"
@@ -368,7 +373,7 @@ msgstr "Sink"
 msgid "Syncing"
 msgstr "O sinkronelaat"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:521
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:530
 msgid "Syncing..."
 msgstr "O sinkronelaat..."
 
@@ -384,7 +389,11 @@ msgstr "Touch"
 msgid "Unlock"
 msgstr "Dibrennañ"
 
-#: ../src/imports/ABContactListPage.qml:290
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:227
+msgid "Unlocking..."
+msgstr "O tibrennañ..."
+
+#: ../src/imports/ABContactListPage.qml:296
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:177
 msgid "Unselect All"
 msgstr "Diziuzañ pep tra"
@@ -408,9 +417,56 @@ msgstr "Yahoo"
 msgid "Yes"
 msgstr "Ya"
 
-#: ../src/imports/ABContactListPage.qml:444
+#: ../src/imports/ABContactListPage.qml:450
 msgid "You have no contacts."
 msgstr "N'ho peus darempred ebet."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:437
+#, qt-format
+msgid ""
+"Your <b>%1</b> contact sync account needs to be upgraded by running Contacts "
+"app.\n"
+"Only local contacts will be editable until upgrade is complete."
+msgstr ""
+"Ezhomm he deus ho kont sinkronelaat an darempredoù <b>%1</b> da vezañ lakaet "
+"a-live dre lañsañ an arload Darempredoù.\n"
+"N'eus nemet an darempredoù lec'hel a gement a c'hallo bezañ aozet betek ma "
+"vo echu al lakaat a-live."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:428
+#, qt-format
+msgid ""
+"Your <b>%1</b> contact sync account needs to be upgraded.\n"
+"Wait until the upgrade is complete to edit contacts."
+msgstr ""
+"Ezhomm he deus ho kont sinkronelaat an darempredoù <b>%1</b> da vezañ lakaet "
+"a-live.\n"
+"Gortozit ma vo echu al lakaat a-live evit aozañ an darempredoù."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:433
+#, qt-format
+msgid ""
+"Your <b>%1</b> contact sync account needs to be upgraded. Use the sync "
+"button to upgrade the Contacts app.\n"
+"Only local contacts will be editable until upgrade is complete."
+msgstr ""
+"Ezhomm he deus ho kont sinkonelaat an darempredoù <b>%1</b> da vezañ lakaet "
+"a-live. Implijit ar bouton sinkronelaat evit lakaat an arload Darempredoù a-"
+"live.\n"
+"N'eus nemet an darempredoù lec'hel a gement a c'hallo bezañ aozet betek ma "
+"vo echu al lakaat a-live."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:46
+msgid "Discard changes"
+msgstr "Disteurel ar c'hemmoù"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:24
+msgid "Discard contact changes"
+msgstr "Disteurel ar c'hemmoù en darempred"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:35
+msgid "Keep editing"
+msgstr "Kenderc'hel da aozañ"
 
 #~ msgid ""
 #~ "Would you like to sync contacts\n"
