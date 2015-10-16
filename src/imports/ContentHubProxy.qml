@@ -15,7 +15,7 @@
  */
 
 import QtQuick 2.2
-import Ubuntu.Content 1.3 as ContentHub
+import Ubuntu.Content 0.1 as ContentHub
 
 QtObject {
     property QtObject pageStack: null
