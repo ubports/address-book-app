@@ -33,10 +33,13 @@ public:
 
     Q_INVOKABLE QString contactInitialsFromString(const QString &value);
     Q_INVOKABLE QString normalized(const QString &value);
-    Q_INVOKABLE QUrl copyImage(QObject *contact, const QUrl &imageUrl);
+    Q_INVOKABLE QString copyImage(const QUrl &imageUrl);
     Q_INVOKABLE bool containsLetters(const QString &value);
     Q_INVOKABLE bool removeFile(const QUrl &file);
     Q_INVOKABLE bool updateIsRunning() const;
+
+Q_SIGNALS:
+    void imageCopyDone(const QString &id, const QString &fileName);
 };
 
 #endif //_UBUNTU_CONTACTS_H_
