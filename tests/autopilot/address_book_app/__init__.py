@@ -111,19 +111,15 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
         return self.wait_select_single("ContactListView",
                                        objectName="contactListView")
 
-    def get_button(self, buttonName):
+    def click_action_button(self, action_name):
         actionbars = self.select_many('ActionBar', objectName='headerActionBar')
         for actionbar in actionbars:
             try:
-                button = actionbar._get_action_button(buttonName)
-                return button
+                actionbar.click_action_button(action_name)
+                return
             except ubuntuuitoolkit.ToolkitException:
                 continue
-        return None
-
-    def click_action_button(self, action_name):
-        save_button = self.get_button(action_name)
-        self.pointing_device.click_object(save_button)
+        raise exceptions.StateNotFoundError('Action %s not found.' % action_name)
 
     def open_header(self):
         header = self.get_header()
