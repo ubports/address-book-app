@@ -55,10 +55,10 @@ class TestCreateNewContactFromURI(AddressBookAppTestCase):
             objectName="phones")
         self.assertThat(phone_group.detailsCount, Eventually(Equals(1)))
         phone_type = view_page.select_single(
-            "Label",
+            "UCLabel",
             objectName="type_phoneNumber_0")
         phone_label = view_page.select_single(
-            "Label",
+            "UCLabel",
             objectName="label_phoneNumber_0.0")
         self.assertThat(phone_label.text, Eventually(Equals("1234567890")))
         self.assertThat(phone_type.text, Eventually(Equals("Mobile")))

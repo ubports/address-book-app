@@ -111,6 +111,18 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
         return self.wait_select_single("ContactListView",
                                        objectName="contactListView")
 
+    def get_action(self, action_name):
+        actionbars = self.select_many('ActionBar', objectName='headerActionBar')
+        for actionbar in actionbars:
+            object_name = action_name + "_action_button"
+            try:
+                button = actionbar.select_single(objectName=object_name)
+                if button:
+                    return button
+            except introspection.dbus.StateNotFoundError:
+                continue
+        return None
+
     def click_action_button(self, action_name):
         actionbars = self.select_many('ActionBar', objectName='headerActionBar')
         for actionbar in actionbars:

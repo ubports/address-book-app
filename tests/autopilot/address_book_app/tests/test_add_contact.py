@@ -118,11 +118,11 @@ class TestAddContact(AddressBookAppTestCase):
         # Check if they have the correct label
         for idx in range(3):
             email_type = view_page.select_single(
-                "Label",
+                "UCLabel",
                 objectName="type_email_" + str(idx))
 
             email_label = view_page.select_single(
-                "Label",
+                "UCLabel",
                 objectName="label_emailAddress_" + str(idx) + ".0")
 
             self.assertThat(emails[email_label.text], Equals(email_type.text))
@@ -169,11 +169,11 @@ class TestAddContact(AddressBookAppTestCase):
         # Check if they have the correct label
         for idx in range(5):
             phone_type = view_page.select_single(
-                "Label",
+                "UCLabel",
                 objectName="type_phoneNumber_" + str(idx))
 
             phone_label = view_page.select_single(
-                "Label",
+                "UCLabel",
                 objectName="label_phoneNumber_" + str(idx) + ".0")
 
             self.assertThat(phones[phone_label.text], Equals(phone_type.text))

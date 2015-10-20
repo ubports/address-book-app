@@ -59,7 +59,7 @@ class TestEditContact(AddressBookAppTestCase):
 
         # check if the new value is correct
         phone_label_1 = view_page.select_single(
-            "Label",
+            "UCLabel",
             objectName="label_phoneNumber_1.0")
         self.assertThat(phone_label_1.text,
                         Eventually(Equals(self.PHONE_NUMBERS[1])))
@@ -96,7 +96,7 @@ class TestEditContact(AddressBookAppTestCase):
 
         # check if the new value is correct
         phone_label_1 = phone_group.wait_select_single(
-            "Label",
+            "UCLabel",
             objectName="label_phoneNumber_0.0")
         self.assertThat(phone_label_1.text,
                         Eventually(Equals(self.PHONE_NUMBERS[1])))
@@ -126,7 +126,7 @@ class TestEditContact(AddressBookAppTestCase):
 
         # check if the new value is correct
         email_label_1 = email_group.select_single(
-            "Label",
+            "UCLabel",
             objectName="label_emailAddress_0.0")
         self.assertThat(email_label_1.text,
                         Eventually(Equals("fulano@internet.com.br")))
@@ -168,7 +168,7 @@ class TestEditContact(AddressBookAppTestCase):
 
         # check if is possible to save a contact without name
         self.app.main_window.save()
-        accept_button = self.app.main_window.get_button("save")
+        accept_button = self.app.main_window.get_action("save")
         self.assertThat(accept_button.enabled, Eventually(Equals(False)))
 
         # Cancel edit
@@ -213,6 +213,6 @@ class TestEditContact(AddressBookAppTestCase):
 
         # check if the type was saved correct
         im_type = view_page.select_single(
-            "Label",
+            "UCLabel",
             objectName="type_onlineAccount_0")
         self.assertThat(im_type.text, Eventually(Equals("Aim")))

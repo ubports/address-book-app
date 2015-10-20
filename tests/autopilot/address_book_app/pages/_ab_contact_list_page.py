@@ -47,7 +47,7 @@ class ABContactListPage(address_book.PageWithHeader):
         contact_delegate = self._get_contact_delegate(index)
         self.pointing_device.click_object(contact_delegate)
         # WORKAROUND: give some time to the view became available
-        time.sleep(2.0)
+        time.sleep(5.0)
         return self.get_root_instance().select_single(
             ABContactViewPage, objectName='contactViewPage', active=True)
 
@@ -121,7 +121,7 @@ class ABContactListPage(address_book.PageWithHeader):
         """Return a list with the names of the contacts."""
         contact_delegates = self._get_sorted_contact_delegates()
         name_labels = [
-            delegate.select_single('Label', objectName='nameLabel') for
+            delegate.select_single('UCLabel', objectName='nameLabel') for
             delegate in contact_delegates
         ]
         return [label.text for label in name_labels]
