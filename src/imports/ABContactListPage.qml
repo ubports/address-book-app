@@ -426,7 +426,8 @@ Page {
                   !contactList.favouritesIsSelected &&
                   mainPage.isEmpty &&
                   (mainPage.newPhoneToAdd === "") &&
-                  !(contactList.filterTerm && contactList.filterTerm !== ""))
+                  !(contactList.filterTerm && contactList.filterTerm !== "")) &&
+                  bottomEdge.visible
 
         Behavior on visible {
             SequentialAnimation {
