@@ -31,6 +31,8 @@ Page {
     signal canceled()
     signal completed()
 
+    // invisible header
+    header: Item { height: 0 }
     ContentHub.ContentPeerPicker {
         visible: true
         anchors.fill: parent
