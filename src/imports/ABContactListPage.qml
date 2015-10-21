@@ -580,6 +580,7 @@ Page {
         flickable: contactList
         iconName: "contact-new"
         enabled: !contactList.isInSelectionMode
+        backGroundEffectEnabled: pageStack.columns === 1
 
         // FIXME: this is a workaround for the lack of fully asynchronous loading
         // of Pages in AdaptativePageLayout

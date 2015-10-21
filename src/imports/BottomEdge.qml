@@ -20,10 +20,13 @@ import Ubuntu.Components 1.3
 Item {
     id: bottomEdge
 
+    readonly property alias content: bottomEdgeLoader.item
+
     property Component contentComponent
-    property Item content: bottomEdgeLoader.item
     property string iconName
     property Item flickable
+    property alias backGroundEffectEnabled: darkBg.visible
+
     signal openBegin
     signal openEnd
     signal clicked
@@ -35,6 +38,17 @@ Item {
 
     function close() {
         bottomEdge.state = "collapsed";
+    }
+
+    Rectangle {
+        id: darkBg
+
+        anchors.fill: parent
+        color: "black"
+        opacity: bottomEdgeBody.y > 0 ? 0.8 - (bottomEdgeBody.y / bottomEdgeDragArea.drag.maximumY) : 0.8
+        Behavior on opacity {
+            NumberAnimation { duration: UbuntuAnimation.FastDuration }
+        }
     }
 
     Item {
