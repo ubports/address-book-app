@@ -117,13 +117,19 @@ Item {
     states: [
         State {
             name: "collapsed"
+            ParentChange {
+                target: bottomEdgeContent
+                parent: bottomEdgeBody
+                x: 0
+                y: 0
+            }
             PropertyChanges {
                 target: bottomEdgeBody
                 y: bottomEdgeDragArea.drag.maximumY
             }
             PropertyChanges {
                 target: bottomEdgeContent
-                visible: false
+                opacity: 0.0
             }
         },
         State {
@@ -135,9 +141,12 @@ Item {
                 y: 0
             }
             PropertyChanges {
+                target: bottomEdgeContent
+                opacity: 1.0
+            }
+            PropertyChanges {
                 target: bottomEdgeBody
-                y: bottomEdgeDragArea.drag.maximumY
-                opacity: 0.0
+                y: 0
             }
             PropertyChanges {
                 target: bottomEdgeShadows
@@ -150,7 +159,7 @@ Item {
             when: bottomEdgeDragArea.drag.active
             PropertyChanges {
                 target: bottomEdgeContent
-                visible: true
+                opacity: 1.0
             }
         }
     ]
@@ -160,16 +169,28 @@ Item {
             to: "collapsed"
             SequentialAnimation {
                 alwaysRunToEnd: true
-
-                SmoothedAnimation {
-                    target: bottomEdgeBody
-                    property: "y"
-                    duration: UbuntuAnimation.SlowDuration
+                ParallelAnimation {
+                    ParentAnimation {
+                        UbuntuNumberAnimation {
+                            properties: "x,y"
+                            duration: UbuntuAnimation.SlowDuration
+                            target: bottomEdgeContent
+                        }
+                    }
+                    UbuntuNumberAnimation {
+                        target: bottomEdgeBody
+                        property: "y"
+                        duration: UbuntuAnimation.SlowDuration
+                    }
+                }
+                PropertyAction {
+                    target: bottomEdgeContent
+                    property: "opacity"
                 }
                 ScriptAction {
                     script: {
-                        bottomEdgeLoader.active = false;
-                        bottomEdgeLoader.active = true;
+                        bottomEdgeLoader.active = false
+                        bottomEdgeLoader.active = true
                     }
                 }
             }
@@ -177,6 +198,7 @@ Item {
         Transition {
             to: "expanded"
             SequentialAnimation {
+                alwaysRunToEnd: true
                 ParallelAnimation {
                     ScriptAction {
                         script: bottomEdge.openBegin()
