@@ -21,7 +21,9 @@ Item {
     id: bottomEdge
 
     readonly property alias content: bottomEdgeLoader.item
+    readonly property bool fullLoaded: bottomEdgeLoader.status == Loader.Ready
 
+    property bool opened: false
     property Component contentComponent
     property string iconName
     property Item flickable
@@ -96,6 +98,7 @@ Item {
 
         BottomEdgeHint {
             id: bottomEdgeHint
+
             anchors.bottom: bottomEdgeBody.top
             iconName: bottomEdge.iconName
             onClicked: bottomEdge.clicked()
@@ -205,6 +208,7 @@ Item {
                     script: {
                         bottomEdgeLoader.active = false
                         bottomEdgeLoader.active = true
+                        bottomEdge.opened = false
                     }
                 }
             }
@@ -236,7 +240,11 @@ Item {
                     duration: UbuntuAnimation.FastDuration
                 }
                 ScriptAction {
-                    script: bottomEdge.openEnd()
+                    script: {
+                        bottomEdge.opened = true
+                        bottomEdge.openEnd()
+                    }
+
                 }
             }
         }
@@ -244,6 +252,7 @@ Item {
 
     MouseArea {
         id: bottomEdgeDragArea
+        objectName: "bottomEdgeDragArea"
 
         property real previousY: -1
         property string dragDirection: "None"

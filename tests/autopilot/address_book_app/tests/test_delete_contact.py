@@ -69,6 +69,6 @@ class TestDeleteSelectContact(tests.AddressBookAppTestCase):
         if self.action == "cancel":
             self.app.main_window.cancel()
         elif self.action == "delete":
-            list_page.delete_selected_contacts()
+            list_page.delete_selected_contacts(self.app.main_window)
 
         self.assertEqual(list_page.get_contacts(), self.expected_result)
