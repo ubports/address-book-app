@@ -28,7 +28,6 @@ Rectangle {
 
         anchors.fill: parent
         verticalAlignment: Text.AlignVCenter
-        font.pointSize: 76
         height: units.gu(3)
     }
     ThinDivider {
