@@ -152,6 +152,12 @@ Page {
         editorPage.contactSaved.connect(onNewContactSaved);
     }
 
+    function onNewContactSaved(contact) {
+        if (pageStack.columns > 1) {
+            showContact(contact);
+        }
+    }
+
     title: i18n.tr("Contacts")
 
     flickable: null
@@ -541,12 +547,6 @@ Page {
         }
     }
 
-    function onNewContactSaved(contact) {
-        if (pageStack.columns > 1) {
-            showContact(contact);
-        }
-    }
-
     Component {
         id: editorPageBottomEdge
         ABContactEditorPage {
@@ -578,12 +578,7 @@ Page {
         id: bottomEdge
         objectName: "bottomEdge"
 
-        anchors.fill: parent
-        contentComponent: pageStack.columns == 1 ? editorPageBottomEdge : emptyContact
-        flickable: contactList
-        iconName: "contact-new"
-        enabled: !contactList.isInSelectionMode
-        backGroundEffectEnabled: pageStack.columns === 1
+        property var incubator
 
         // FIXME: this is a workaround for the lack of fully asynchronous loading
         // of Pages in AdaptativePageLayout
@@ -600,7 +595,6 @@ Page {
             }
         }
 
-        property var incubator
         function incubateObject(component, properties, callback) {
             if (component.status == Component.Ready) {
                 incubator = component.incubateObject(null,
@@ -623,6 +617,13 @@ Page {
                                         initialFocusSection: "name"},
                                        showContactEditorPage);
         }
+
+        anchors.fill: parent
+        contentComponent: pageStack.columns == 1 ? editorPageBottomEdge : emptyContact
+        flickable: contactList
+        iconName: "contact-new"
+        enabled: !contactList.isInSelectionMode
+        backGroundEffectEnabled: pageStack.columns === 1
 
         onOpenBegin: {
             contactList.prepareNewContact = true;
