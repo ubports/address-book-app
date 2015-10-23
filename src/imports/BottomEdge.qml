@@ -47,10 +47,7 @@ Item {
 
         anchors.fill: parent
         color: "black"
-        opacity: bottomEdgeBody.y > 0 ? 0.8 - (bottomEdgeBody.y / bottomEdgeDragArea.drag.maximumY) : 0.8
-        Behavior on opacity {
-            NumberAnimation { duration: UbuntuAnimation.FastDuration }
-        }
+        opacity: 0.0
     }
 
     Item {
@@ -148,6 +145,10 @@ Item {
                 target: bottomEdgeContent
                 opacity: 0.0
             }
+            PropertyChanges {
+                target: darkBg
+                opacity: 0.0
+            }
         },
         State {
             name: "expanded"
@@ -170,6 +171,10 @@ Item {
                 opacity: 0.0
                 visible: true
             }
+            PropertyChanges {
+                target: darkBg
+                opacity: 0.8
+            }
         },
         State {
             name: "floating"
@@ -177,6 +182,10 @@ Item {
             PropertyChanges {
                 target: bottomEdgeContent
                 opacity: 1.0
+            }
+            PropertyChanges {
+                target: darkBg
+                opacity: bottomEdgeBody.y > 0 ? 0.8 - (bottomEdgeBody.y / bottomEdgeDragArea.drag.maximumY) : 0.8
             }
         }
     ]
@@ -197,6 +206,11 @@ Item {
                     UbuntuNumberAnimation {
                         target: bottomEdgeBody
                         property: "y"
+                        duration: UbuntuAnimation.SlowDuration
+                    }
+                    UbuntuNumberAnimation {
+                        target: darkBg
+                        property: "opacity"
                         duration: UbuntuAnimation.SlowDuration
                     }
                 }
@@ -230,6 +244,11 @@ Item {
                     }
                     UbuntuNumberAnimation {
                         target: bottomEdgeShadows
+                        property: "opacity"
+                        duration: UbuntuAnimation.SlowDuration
+                    }
+                    UbuntuNumberAnimation {
+                        target: darkBg
                         property: "opacity"
                         duration: UbuntuAnimation.SlowDuration
                     }

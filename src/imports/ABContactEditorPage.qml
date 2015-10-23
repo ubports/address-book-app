@@ -25,7 +25,11 @@ ContactEditorPage {
     id: root
     objectName: "contactEditorPage"
 
+    property alias backIconName: backAction.iconName
+
     head.backAction: Action {
+        id: backAction
+
         objectName: "cancel"
         name: "cancel"
 
