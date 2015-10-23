@@ -39,6 +39,7 @@ Page {
     property Page contactViewPage: null
     property Page contactEditorPage: null
 
+    readonly property bool bottomEdgePageOpened: bottomEdge.opened && bottomEdge.fullLoaded
     readonly property bool isEmpty: (contactList.count === 0)
     readonly property bool allowToQuit: (application.callbackApplication.length > 0)
     readonly property var contactModel: contactList.listModel ? contactList.listModel : null
@@ -426,7 +427,8 @@ Page {
                   !contactList.favouritesIsSelected &&
                   mainPage.isEmpty &&
                   (mainPage.newPhoneToAdd === "") &&
-                  !(contactList.filterTerm && contactList.filterTerm !== ""))
+                  !(contactList.filterTerm && contactList.filterTerm !== "")) &&
+                  bottomEdge.visible
 
         Behavior on visible {
             SequentialAnimation {
@@ -574,12 +576,14 @@ Page {
 
     BottomEdge {
         id: bottomEdge
+        objectName: "bottomEdge"
 
         anchors.fill: parent
         contentComponent: pageStack.columns == 1 ? editorPageBottomEdge : emptyContact
         flickable: contactList
         iconName: "contact-new"
         enabled: !contactList.isInSelectionMode
+        backGroundEffectEnabled: pageStack.columns === 1
 
         // FIXME: this is a workaround for the lack of fully asynchronous loading
         // of Pages in AdaptativePageLayout

@@ -51,9 +51,9 @@ UbuntuShape {
 
         anchors.centerIn: parent
         text: Contacts.contactInitialsFromString(contactDisplayName)
-        font.pointSize: 88
         color: UbuntuColors.lightAubergine
         visible: (img.status != Image.Ready)
+        fontSize: "large"
     }
 
     source: !img.visible ? img : null

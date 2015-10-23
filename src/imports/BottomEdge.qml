@@ -20,10 +20,15 @@ import Ubuntu.Components 1.3
 Item {
     id: bottomEdge
 
+    readonly property alias content: bottomEdgeLoader.item
+    readonly property bool fullLoaded: bottomEdgeLoader.status == Loader.Ready
+
+    property bool opened: false
     property Component contentComponent
-    property Item content: bottomEdgeLoader.item
     property string iconName
     property Item flickable
+    property alias backGroundEffectEnabled: darkBg.visible
+
     signal openBegin
     signal openEnd
     signal clicked
@@ -35,6 +40,17 @@ Item {
 
     function close() {
         bottomEdge.state = "collapsed";
+    }
+
+    Rectangle {
+        id: darkBg
+
+        anchors.fill: parent
+        color: "black"
+        opacity: bottomEdgeBody.y > 0 ? 0.8 - (bottomEdgeBody.y / bottomEdgeDragArea.drag.maximumY) : 0.8
+        Behavior on opacity {
+            NumberAnimation { duration: UbuntuAnimation.FastDuration }
+        }
     }
 
     Item {
@@ -82,6 +98,7 @@ Item {
 
         BottomEdgeHint {
             id: bottomEdgeHint
+
             anchors.bottom: bottomEdgeBody.top
             iconName: bottomEdge.iconName
             onClicked: bottomEdge.clicked()
@@ -117,13 +134,19 @@ Item {
     states: [
         State {
             name: "collapsed"
+            ParentChange {
+                target: bottomEdgeContent
+                parent: bottomEdgeBody
+                x: 0
+                y: 0
+            }
             PropertyChanges {
                 target: bottomEdgeBody
                 y: bottomEdgeDragArea.drag.maximumY
             }
             PropertyChanges {
                 target: bottomEdgeContent
-                visible: false
+                opacity: 0.0
             }
         },
         State {
@@ -135,9 +158,12 @@ Item {
                 y: 0
             }
             PropertyChanges {
+                target: bottomEdgeContent
+                opacity: 1.0
+            }
+            PropertyChanges {
                 target: bottomEdgeBody
-                y: bottomEdgeDragArea.drag.maximumY
-                opacity: 0.0
+                y: 0
             }
             PropertyChanges {
                 target: bottomEdgeShadows
@@ -150,7 +176,7 @@ Item {
             when: bottomEdgeDragArea.drag.active
             PropertyChanges {
                 target: bottomEdgeContent
-                visible: true
+                opacity: 1.0
             }
         }
     ]
@@ -160,16 +186,29 @@ Item {
             to: "collapsed"
             SequentialAnimation {
                 alwaysRunToEnd: true
-
-                SmoothedAnimation {
-                    target: bottomEdgeBody
-                    property: "y"
-                    duration: UbuntuAnimation.SlowDuration
+                ParallelAnimation {
+                    ParentAnimation {
+                        UbuntuNumberAnimation {
+                            properties: "x,y"
+                            duration: UbuntuAnimation.SlowDuration
+                            target: bottomEdgeContent
+                        }
+                    }
+                    UbuntuNumberAnimation {
+                        target: bottomEdgeBody
+                        property: "y"
+                        duration: UbuntuAnimation.SlowDuration
+                    }
+                }
+                PropertyAction {
+                    target: bottomEdgeContent
+                    property: "opacity"
                 }
                 ScriptAction {
                     script: {
-                        bottomEdgeLoader.active = false;
-                        bottomEdgeLoader.active = true;
+                        bottomEdgeLoader.active = false
+                        bottomEdgeLoader.active = true
+                        bottomEdge.opened = false
                     }
                 }
             }
@@ -177,6 +216,7 @@ Item {
         Transition {
             to: "expanded"
             SequentialAnimation {
+                alwaysRunToEnd: true
                 ParallelAnimation {
                     ScriptAction {
                         script: bottomEdge.openBegin()
@@ -200,7 +240,11 @@ Item {
                     duration: UbuntuAnimation.FastDuration
                 }
                 ScriptAction {
-                    script: bottomEdge.openEnd()
+                    script: {
+                        bottomEdge.opened = true
+                        bottomEdge.openEnd()
+                    }
+
                 }
             }
         }
@@ -208,6 +252,7 @@ Item {
 
     MouseArea {
         id: bottomEdgeDragArea
+        objectName: "bottomEdgeDragArea"
 
         property real previousY: -1
         property string dragDirection: "None"

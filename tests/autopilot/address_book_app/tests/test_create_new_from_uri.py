@@ -23,16 +23,17 @@ class TestCreateNewContactFromURI(AddressBookAppTestCase):
 
     def test_save_new_contact(self):
         list_page = self.app.main_window.get_contact_list_page()
-        list_page.isReady.wait_for(True)
+        #FIXME: contacts list object became invalid after push a new page
+        #list_page.bottomEdgePageOpened.wait_for(True)
 
         edit_page = self.app.main_window.get_contact_edit_page()
         self.assertThat(edit_page.visible, Eventually(Equals(True)))
 
         # add name to the contact
-        firstNameField = self.app.main_window.wait_select_single(
+        firstNameField = edit_page.wait_select_single(
             "TextInputDetail",
             objectName="firstName")
-        lastNameField = self.app.main_window.wait_select_single(
+        lastNameField = edit_page.wait_select_single(
             "TextInputDetail",
             objectName="lastName")
 
@@ -43,6 +44,7 @@ class TestCreateNewContactFromURI(AddressBookAppTestCase):
         self.app.main_window.save()
 
         # open contact view
+        list_page = self.app.main_window.get_contact_list_page()
         list_page.open_contact(0)
         view_page = self.app.main_window.get_contact_view_page()
         self.assertThat(view_page.visible, Eventually(Equals(True)))
@@ -53,10 +55,10 @@ class TestCreateNewContactFromURI(AddressBookAppTestCase):
             objectName="phones")
         self.assertThat(phone_group.detailsCount, Eventually(Equals(1)))
         phone_type = view_page.select_single(
-            "Label",
+            "UCLabel",
             objectName="type_phoneNumber_0")
         phone_label = view_page.select_single(
-            "Label",
+            "UCLabel",
             objectName="label_phoneNumber_0.0")
         self.assertThat(phone_label.text, Eventually(Equals("1234567890")))
         self.assertThat(phone_type.text, Eventually(Equals("Mobile")))
