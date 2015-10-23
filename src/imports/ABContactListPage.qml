@@ -550,6 +550,7 @@ Page {
     Component {
         id: editorPageBottomEdge
         ABContactEditorPage {
+            backIconName: "down"
             implicitWidth: mainPage.width
             implicitHeight: mainPage.height
             model: contactList.listModel
