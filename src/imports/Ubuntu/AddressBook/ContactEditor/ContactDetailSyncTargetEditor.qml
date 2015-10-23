@@ -163,7 +163,14 @@ ContactDetailBase {
         }
 
         delegate: OptionSelectorDelegate {
-            text: contact.displayLabel.label
+            text: {
+                if ((contact.guid.guid != "system-address-book") &&
+                    (iconSource == "image://theme/address-book-app-symbolic")) {
+                    return i18n.dtr("address-book-app", "Personal - %1").arg(contact.displayLabel.label)
+                } else {
+                    return contact.displayLabel.label
+                }
+            }
             constrainImage: true
             iconSource: {
                 var details = contact.details(ContactDetail.ExtendedDetail)

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-09-21 10:30-0300\n"
-"PO-Revision-Date: 2015-09-29 16:31+0000\n"
-"Last-Translator: António Miranda <Unknown>\n"
+"PO-Revision-Date: 2015-10-22 09:46+0000\n"
+"Last-Translator: Ivo Xavier <ivofernandes12@gmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-10-03 05:39+0000\n"
-"X-Generator: Launchpad (build 17783)\n"
+"X-Launchpad-Export-Date: 2015-10-23 05:46+0000\n"
+"X-Generator: Launchpad (build 17812)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:77
 #, qt-format
@@ -269,7 +269,7 @@ msgstr "Nenhum contacto selecionado."
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:110
 msgid "No contacts found"
-msgstr "Nenhum contacto encontrado"
+msgstr "Sem contactos encontrados"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:43
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:48
@@ -429,8 +429,8 @@ msgid ""
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
 "A sua <b>%1</b> conta  de sincronização de contactos precisa de ser "
-"atualizada executando a app Contactos.\n"
-"Apenas as contas locais serão editáveis até a atualização estar concluída."
+"atualizada executando a app de Contactos.\n"
+"Apenas as contas locais serão editáveis até a atualização estar completa."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:428
 #, qt-format
@@ -440,7 +440,7 @@ msgid ""
 msgstr ""
 "A sua <b>%1</b> conta de sincronização de contactos precisa de ser "
 "atualizada.\n"
-"Aguarde até que a atualização esteja concluída para editar os contactos."
+"Aguarde até que a atualização esteja completa para editar os contactos."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:433
 #, qt-format
@@ -450,8 +450,8 @@ msgid ""
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
 "A sua <b>%1</b> conta de sincronização de contactos precisa de ser "
-"atualizada. Use o botão de sincronização para atualizar a app Contactos.\n"
-"Apenas as contas locais serão editáveis até a atualização estar concluída."
+"atualizada. Use o botão de sincronização para atualizar a app de Contactos.\n"
+"Apenas as contas locais serão editáveis até a atualização estar completa."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:46
 msgid "Discard changes"

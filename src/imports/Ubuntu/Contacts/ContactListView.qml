@@ -218,7 +218,7 @@ Item {
 
       This property holds if the list is running a sync with online accounts or not
     */
-    readonly property alias syncing: buteoSync.syncing
+    readonly property bool syncing: buteoSync.syncing || Contacts.Contacts.updateIsRunning
     /*!
       \qmlproperty bool syncEnabled
 
