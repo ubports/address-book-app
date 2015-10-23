@@ -3,6 +3,7 @@ module Ubuntu.Contacts
 plugin ubuntu-contacts-qml
 
 ContactAvatar 0.1 ContactAvatar.qml
+ContactDelegate 0.1 ContactDelegate.qml
 ContactDetailOnlineAccountTypeModel 0.1 ContactDetailOnlineAccountTypeModel.qml
 ContactDetailPhoneNumberTypeModel 0.1 ContactDetailPhoneNumberTypeModel.qml
 ContactFetch 0.1 ContactFetch.qml
@@ -20,7 +21,6 @@ OnlineAccountsHelper 0.1 OnlineAccountsHelper.qml
 SIMList 0.1 SIMList.qml
 
 internal ContactAvatar ContactAvatar.qml
-ContactDelegate 0.1 ContactDelegate.qml
 internal ContactDetailPickerPhoneNumberDelegate ContactDetailPickerPhoneNumberDelegate.qml
 internal ContactImportButton ContactImportButton.qml
 internal ContactList ContactList.js
