@@ -144,6 +144,14 @@ Page {
         contactList.reset()
     }
 
+    function showContactEditorPage(editorPage) {
+        contactList.currentIndex = -1;
+        mainPage.contactEditorPage = editorPage;
+        pageStack.addPageToNextColumn(mainPage, editorPage);
+        editorPage.ready();
+        editorPage.contactSaved.connect(onNewContactSaved);
+    }
+
     title: i18n.tr("Contacts")
 
     flickable: null
@@ -539,14 +547,6 @@ Page {
         }
     }
 
-    function showContactEditorPage(editorPage) {
-        contactList.currentIndex = -1;
-        mainPage.contactEditorPage = editorPage;
-        pageStack.addPageToNextColumn(mainPage, editorPage);
-        editorPage.ready();
-        editorPage.contactSaved.connect(onNewContactSaved);
-    }
-
     Component {
         id: editorPageBottomEdge
         ABContactEditorPage {
@@ -562,7 +562,6 @@ Page {
     Component {
         id: emptyContact
         ContactsUI.ContactDelegate {
-            width: mainPage.width
             property Contact contact: Contact {
                 Name {
                     firstName: i18n.tr("New contact")
@@ -571,6 +570,7 @@ Page {
                     imageUrl: "image://theme/contact"
                 }
             }
+            width: mainPage.width
         }
     }
 
