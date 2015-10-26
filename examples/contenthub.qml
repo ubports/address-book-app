@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.4
 import Ubuntu.Components 0.1
 import Ubuntu.Content 0.1
 import QtContacts 5.0

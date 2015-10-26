@@ -15,7 +15,7 @@
  */
 
 
-import QtQuick 2.2
+import QtQuick 2.4
 import QtContacts 5.0
 
 import Ubuntu.History 0.1
