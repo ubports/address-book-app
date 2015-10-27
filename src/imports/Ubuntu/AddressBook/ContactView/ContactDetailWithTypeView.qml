@@ -32,10 +32,15 @@ ContactDetailBase {
         if (isReady) {
             var values = []
             for(var i=0; i < fields.length; i++) {
-                values.push(detail.value(fields[i]))
+                values.push(overrideValue(detail, fields[i]))
             }
             view.values = values
         }
+    }
+
+    function overrideValue(detail, field)
+    {
+        return detail.value(field)
     }
 
     implicitHeight: view.implicitHeight

@@ -66,5 +66,30 @@ ContactDetailGroupWithTypeView {
         autoUpdate: false
     }
 
+    detailDelegate: ContactDetailWithTypeView {
+        property variant detailType: detail && root.contact && root.typeModelReady ? root.getType(detail) : ""
+
+        action: root.defaultAction
+        contact: root.contact
+        fields: root.fields
+        typeLabel: detailType ? detailType.label : ""
+
+        height: implicitHeight
+        width: root.width
+
+        onClicked: root.actionTrigerred(root.defaultAction.name, detail)
+
+        function overrideValue(detail, field)
+        {
+            if (detail.value(field + 1) == "system-address-book") {
+                return detail.value(field)
+            } else if (detail.value(field + 2) == "0") {
+                return i18n.dtr("address-book-app", "Personal - %1").arg(detail.value(field))
+            } else {
+                return detail.value(field)
+            }
+        }
+    }
+
     Component.onCompleted: sourceModel.update()
 }

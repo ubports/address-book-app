@@ -423,7 +423,7 @@ Page {
 
             title: i18n.dtr("address-book-app", "Contact Editor")
             text: {
-                if (ContactsUI.Contacts.updateIsRunning()) {
+                if (ContactsUI.Contacts.updateIsRunning) {
                     return i18n.dtr("address-book-app",
                                     "Your <b>%1</b> contact sync account needs to be upgraded.\nWait until the upgrade is complete to edit contacts.")
                                     .arg(contactEditor.contact.syncTarget.syncTarget)
