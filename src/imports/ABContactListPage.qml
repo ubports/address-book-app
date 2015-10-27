@@ -17,7 +17,7 @@
 import QtQuick 2.2
 import QtContacts 5.0
 
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.2
 import Ubuntu.Components.ListItems 1.0 as ListItem
 import Ubuntu.Components.Popups 1.0 as Popups
 import Ubuntu.Contacts 0.1 as ContactsUI
@@ -226,11 +226,17 @@ ContactsUI.PageWithBottomEdge {
                     }
                 },
                 Action {
-                    visible: contactList.syncEnabled
+                    visible: (application.isOnline && (contactList.syncEnabled || application.serverSafeMode))
                     text: contactList.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
-                    iconName: "reload"
-                    enabled: !contactList.syncing
-                    onTriggered: contactList.sync()
+                    iconName: application.serverSafeMode ? "reset" : "reload"
+                    enabled: !contactList.syncing && !application.updating
+                    onTriggered: {
+                        if (application.serverSafeMode) {
+                            application.startUpdate()
+                        } else {
+                            contactList.sync()
+                        }
+                    }
                 },
                 Action {
                     text: i18n.tr("Settings")

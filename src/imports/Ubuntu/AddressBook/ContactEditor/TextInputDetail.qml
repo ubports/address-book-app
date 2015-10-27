@@ -15,7 +15,7 @@
  */
 
 import QtQuick 2.2
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.2
 import Ubuntu.Keyboard 0.1
 import Ubuntu.Telephony.PhoneNumber 0.1
 
@@ -25,6 +25,7 @@ import Ubuntu.Components.Themes.Ambiance 0.1
 FocusScope {
     id: root
 
+    readonly property bool isTextField: true
     property QtObject detail
     property int field: -1
     property variant originalValue: root.detail && (root.field >= 0) ? root.detail.value(root.field) : null
@@ -94,6 +95,10 @@ FocusScope {
         }
         Keys.onReturnPressed: {
             var next = field.nextItemInFocusChain(true)
+            // only focus on TextInputDetails
+            while (!next || !next.hasOwnProperty("isTextField")) {
+                next = next.nextItemInFocusChain(true)
+            }
             if (next) {
                 next.forceActiveFocus()
             }

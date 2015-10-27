@@ -15,7 +15,7 @@
  */
 
 import QtQuick 2.2
-import Ubuntu.Components 1.0
+import Ubuntu.Components 1.2
 import Ubuntu.Components.Popups 1.0 as Popups
 
 MainView {
@@ -102,7 +102,6 @@ MainView {
     width: units.gu(40)
     height: units.gu(71)
     anchorToKeyboard: false
-    useDeprecatedToolbar: false
 
     PageStack {
         id: mainStack

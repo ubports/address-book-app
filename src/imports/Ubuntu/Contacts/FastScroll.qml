@@ -41,7 +41,7 @@
 
 // FastScroll.qml
 import QtQuick 2.2
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.2
 import "FastScroll.js" as Sections
 
 Item {

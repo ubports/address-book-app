@@ -17,9 +17,11 @@
 import QtQuick 2.2
 import QtContacts 5.0
 
-import Ubuntu.Components 1.1
+import Ubuntu.Components 1.2
 import Ubuntu.Components.ListItems 1.0 as ListItem
-import Ubuntu.SyncMonitor 0.1
+import Ubuntu.Components.Popups 1.0
+import Ubuntu.Contacts 0.1 as Contacts
+import Buteo 0.1
 
 /*!
     \qmltype ContactListView
@@ -204,13 +206,18 @@ Item {
 
       This property holds if the list is running a sync with online accounts or not
     */
-    readonly property bool syncing: (syncMonitor.state === "syncing")
+    readonly property bool syncing: buteoSync.syncing || Contacts.Contacts.updateIsRunning
     /*!
       \qmlproperty bool syncEnabled
 
       This property holds if there is online account to sync or not
     */
-    readonly property bool syncEnabled: syncMonitor.enabledServices ? syncMonitor.serviceIsEnabled("contacts") : false
+    // we are using 'buteoSync.visibleSyncProfiles because' it is a property
+    // and will re-check if the property changes.
+    // Using only '(buteoSync.syncProfilesByCategory("contacts").length > 0)'
+    // the value will be checked only on app startup
+    readonly property bool syncEnabled: (buteoSync.profilesCount > 0) &&
+                                        (buteoSync.syncProfilesByCategory("contacts").length > 0)
     /*!
       \qmlproperty bool busy
 
@@ -223,6 +230,8 @@ Item {
       This property holds if the busy indicator should became visible
     */
     property bool showBusyIndicator: true
+
+    property var _busyDialog: null
 
     /*!
       This handler is called when the selection mode is finished without be canceled
@@ -340,7 +349,7 @@ Item {
     */
     function sync()
     {
-       syncMonitor.sync(["contacts"])
+       buteoSync.startSyncByCategory("contacts")
     }
 
     ContactSimpleListView {
@@ -538,8 +547,8 @@ Item {
         }
     }
 
-    SyncMonitor {
-        id: syncMonitor
+    ButeoSync {
+        id: buteoSync
     }
 
     SIMList {

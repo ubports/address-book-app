@@ -1,3 +1,49 @@
+address-book-app (0.2+15.10.20151015.2-0ubuntu1) wily; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Disable sync button while the update is running.
+
+ -- Bill Filler <ci-train-bot@canonical.com>  Thu, 15 Oct 2015 20:44:36 +0000
+
+address-book-app (0.2+15.10.20150930-0ubuntu1) wily; urgency=medium
+
+  [ Renato Araujo Oliveira Filho ]
+  * Implemented the migration code from syncevolution to buteo.
+  * Replace sync-monitor with buteo qml component.
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 30 Sep 2015 05:04:09 +0000
+
+address-book-app (0.2+15.10.20150922.2-0ubuntu1) wily; urgency=medium
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Update pot file we new strings necessary in the buteo account
+    upgrade branch.
+
+ -- Bill Filler <ci-train-bot@canonical.com>  Tue, 22 Sep 2015 20:10:55 +0000
+
+address-book-app (0.2+15.10.20150819-0ubuntu1) wily; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Fix focus path to focus only in TextFields while using OSK. (LP:
+    #1486258)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 19 Aug 2015 15:13:31 +0000
+
+address-book-app (0.2+15.10.20150731-0ubuntu2~ppa1) wily; urgency=medium
+
+  * Fix ftbfs on wily with gcc5.
+
+ -- Thomas Voß <thomas.voss@canonical.com>  Fri, 31 Jul 2015 14:06:12 +0200
+
 address-book-app (0.2+15.10.20150701-0ubuntu1) wily; urgency=medium
 
   [ CI Train Bot ]
