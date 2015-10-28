@@ -1,3 +1,25 @@
+address-book-app (0.2+16.04.20151026-0ubuntu1) xenial; urgency=medium
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+  * Resync trunk.
+
+  [ Florian Boucault ]
+  * Make bottom edge usable with a mouse. Make it smarter when more than
+    one column is available. (LP: #1432696)
+
+ -- Bill Filler <ci-train-bot@canonical.com>  Mon, 26 Oct 2015 15:05:49 +0000
+
+address-book-app (0.2+15.10.20151015.2-0ubuntu1) wily; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Disable sync button while the update is running.
+
+ -- Bill Filler <ci-train-bot@canonical.com>  Thu, 15 Oct 2015 20:44:36 +0000
+
 address-book-app (0.2+15.10.20150930-0ubuntu1) wily; urgency=medium
 
   [ Renato Araujo Oliveira Filho ]

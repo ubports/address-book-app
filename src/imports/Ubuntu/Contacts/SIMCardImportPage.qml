@@ -14,12 +14,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.2
+import QtQuick 2.4
 import QtContacts 5.0
 
-import Ubuntu.Components 1.2
+import Ubuntu.Components 1.3
 import Ubuntu.Contacts 0.1
-import Ubuntu.Components.ListItems 1.0 as ListItem
+import Ubuntu.Components.ListItems 1.3 as ListItem
 
 import MeeGo.QOfono 0.2
 
@@ -100,7 +100,7 @@ Page {
         showBusyIndicator: false
 
         manager: "memory"
-        onSelectionCanceled: pageStack.pop()
+        onSelectionCanceled: pageStack.removePages(root)
     }
 
     Label {
@@ -167,7 +167,7 @@ Page {
             if ((error === ContactModel.ExportNoError) && targetModel) {
                 targetModel.importContacts(url)
              }
-            pageStack.pop()
+            pageStack.removePages(root)
         }
     }
 

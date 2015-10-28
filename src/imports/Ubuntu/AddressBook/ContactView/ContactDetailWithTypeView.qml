@@ -14,10 +14,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.2
+import QtQuick 2.4
 import QtContacts 5.0
 
-import Ubuntu.Components 1.2
+import Ubuntu.Components 1.3
 import Ubuntu.AddressBook.Base 0.1
 
 ContactDetailBase {
@@ -32,10 +32,15 @@ ContactDetailBase {
         if (isReady) {
             var values = []
             for(var i=0; i < fields.length; i++) {
-                values.push(detail.value(fields[i]))
+                values.push(overrideValue(detail, fields[i]))
             }
             view.values = values
         }
+    }
+
+    function overrideValue(detail, field)
+    {
+        return detail.value(field)
     }
 
     implicitHeight: view.implicitHeight

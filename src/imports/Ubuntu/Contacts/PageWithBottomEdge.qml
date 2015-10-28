@@ -62,8 +62,8 @@
 
 */
 
-import QtQuick 2.2
-import Ubuntu.Components 1.2
+import QtQuick 2.4
+import Ubuntu.Components 1.3
 
 Page {
     id: page
@@ -170,7 +170,7 @@ Page {
         z: 1
         width: tipLabel.paintedWidth + units.gu(6)
         height: bottomEdge.tipHeight + units.gu(1)
-        color: Theme.palette.normal.overlay
+        backgroundColor: Theme.palette.normal.overlay
         Label {
             id: tipLabel
 

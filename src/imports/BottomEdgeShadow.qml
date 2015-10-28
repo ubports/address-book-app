@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2015 Canonical, Ltd.
+ * Copyright (C) 2015 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,18 +15,17 @@
  */
 
 import QtQuick 2.4
-import QtContacts 5.0 as QtContacts
 import Ubuntu.Components 1.3
 
-ContactDetailGroupWithTypeView {
-    id: root
-
-    detailType: QtContacts.ContactDetail.Email
-    title: i18n.dtr("address-book-app", "Email")
-    fields: [ 0 ]
-    defaultAction: Action {
-        text: i18n.dtr("address-book-app", "Email")
-        name: "mailto"
-        iconName: "email"
+Rectangle {
+    id: bottomEdgeShadow
+    anchors {
+        left: parent.left
+        right: parent.right
+    }
+    height: units.gu(1)
+    gradient: Gradient {
+        GradientStop { position: 0.0; color: Qt.rgba(0.0, 0.0, 0.0, 0.0) }
+        GradientStop { position: 1.0; color: Qt.rgba(0.0, 0.0, 0.0, 0.3) }
     }
 }

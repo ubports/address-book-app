@@ -14,9 +14,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.2
+import QtQuick 2.4
 import QtTest 1.0
-import Ubuntu.Components 1.2
+import Ubuntu.Components 1.3
 import Ubuntu.Test 0.1
 import Ubuntu.Contacts 0.1
 
@@ -69,7 +69,7 @@ Item {
 
         function init() {
             waitForRendering(contactEditor);
-            var saveButton = findChild(root, 'save_header_button');
+            var saveButton = findChild(root, 'save_action_button');
             compare(saveButton.enabled, false);
         }
 
@@ -113,7 +113,7 @@ Item {
         function test_fillRequiredFieldsMustEnableSaveButton(data) {
             var textField = findChild(root, data.objectName);
             textField.text = 'test'
-            var saveButton = findChild(root, 'save_header_button');
+            var saveButton = findChild(root, 'save_action_button');
             tryCompare(saveButton, 'enabled', true);
         }
 
@@ -125,7 +125,7 @@ Item {
         function test_fillOptionalFieldsMustNotEnableSaveButton(data) {
             var textField = findChild(root, data.objectName);
             textField.text = 'test'
-            var saveButton = findChild(root, 'save_header_button');
+            var saveButton = findChild(root, 'save_action_button');
             tryCompare(saveButton, 'enabled', false);
         }
 
