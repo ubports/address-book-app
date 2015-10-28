@@ -20,39 +20,46 @@
 #include <QImageReader>
 #include <QFile>
 #include <QDir>
+#include <QUuid>
 #include <QDebug>
 
-ImageScaleThread::ImageScaleThread(const QUrl &imageUrl, QObject *parent)
-    : QThread(parent),
-      m_imageUrl(imageUrl),
-      m_tmpFile(0)
+ImageScaleThread::ImageScaleThread(const QUrl &imageUrl, QObject *listener)
+     : m_imageUrl(imageUrl),
+       m_id(QUuid::createUuid().toString()),
+       m_listener(listener),
+       m_tmpFile(0)
 {
 }
 
 ImageScaleThread::~ImageScaleThread()
 {
     if (m_tmpFile) {
-        delete m_tmpFile;
+        m_tmpFile->setAutoRemove(false);
+        m_tmpFile->deleteLater();
+        m_tmpFile = 0;
     }
 }
 
-void ImageScaleThread::updateImageUrl(const QUrl &imageUrl)
+QString ImageScaleThread::id()
 {
-    if (isRunning()) {
-        wait();
-    }
-    m_imageUrl = imageUrl;
+    return m_id;
 }
 
 QString ImageScaleThread::outputFile() const
 {
-    return m_tmpFile->fileName();
+    if (m_tmpFile) {
+        return m_tmpFile->fileName();
+    } else {
+        return QString();
+    }
 }
 
 void ImageScaleThread::run()
 {
     // make sure that the old image get deleted
     if (m_tmpFile) {
+        qDebug() << "Delete previous avatar" << m_tmpFile->fileName();
+        m_tmpFile->setAutoRemove(true);
         m_tmpFile->close();
         delete m_tmpFile;
     }
@@ -60,6 +67,7 @@ void ImageScaleThread::run()
     // Create the temporary file
     m_tmpFile = new QTemporaryFile(QString("%1/avatar_XXXXXX.png").arg(QDir::tempPath()));
     if (!m_tmpFile->open()) {
+        qWarning() << "Fail to create avatar temporary file";
         return;
     }
 
@@ -91,5 +99,11 @@ void ImageScaleThread::run()
     if (!scaledAvatar.isNull()) {
         scaledAvatar.save(m_tmpFile, "png");
     }
+
     m_tmpFile->close();
+
+    if (m_listener) {
+        QMetaObject::invokeMethod(m_listener, "imageCopyDone",
+                                  Q_ARG(QString, m_id), Q_ARG(QString, m_tmpFile->fileName()));
+    }
 }
