@@ -21,9 +21,9 @@ import time
 
 import autopilot.logging
 import ubuntuuitoolkit
-
 import address_book_app.address_book as address_book
 
+from autopilot.introspection import dbus
 from address_book_app.pages import ABContactViewPage
 
 
@@ -32,7 +32,7 @@ log_action_info = autopilot.logging.log_action(logging.info)
 log_action_debug = autopilot.logging.log_action(logging.debug)
 
 
-class ABContactListPage(address_book.PageWithHeader, address_book.PageWithBottomEdge):
+class ABContactListPage(address_book.PageWithHeader):
 
     """Autopilot helper for the Contact List page."""
 
@@ -46,8 +46,10 @@ class ABContactListPage(address_book.PageWithHeader, address_book.PageWithBottom
         """
         contact_delegate = self._get_contact_delegate(index)
         self.pointing_device.click_object(contact_delegate)
+        # WORKAROUND: give some time to the view became available
+        time.sleep(5.0)
         return self.get_root_instance().select_single(
-            ABContactViewPage, objectName='contactViewPage')
+            ABContactViewPage, objectName='contactViewPage', active=True)
 
     def _get_contact_delegate(self, index):
         contact_delegates = self._get_sorted_contact_delegates()
@@ -108,9 +110,9 @@ class ABContactListPage(address_book.PageWithHeader, address_book.PageWithBottom
             'ContactListView', objectName='contactListView')
 
     @log_action_info
-    def delete_selected_contacts(self):
-        self.get_header().click_action_button('delete')
-        self.isCollapsed.wait_for(True)
+    def delete_selected_contacts(self, main_window):
+        main_window.delete()
+        self.bottomEdgePageOpened.wait_for(False)
         dialog = self.get_root_instance().wait_select_single(
             address_book.RemoveContactsDialog, objectName='removeContactsDialog')
         dialog.confirm_removal()
@@ -119,7 +121,7 @@ class ABContactListPage(address_book.PageWithHeader, address_book.PageWithBottom
         """Return a list with the names of the contacts."""
         contact_delegates = self._get_sorted_contact_delegates()
         name_labels = [
-            delegate.select_single('Label', objectName='nameLabel') for
+            delegate.select_single('UCLabel', objectName='nameLabel') for
             delegate in contact_delegates
         ]
         return [label.text for label in name_labels]
@@ -136,3 +138,20 @@ class ABContactListPage(address_book.PageWithHeader, address_book.PageWithBottom
             objectName='contactListView.importFromSimCardButton')
         return import_from_sim_button.visible
 
+    def reveal_bottom_edge_page(self):
+        """Bring the bottom edge page to the screen"""
+        self.bottomEdgePageOpened.wait_for(False)
+        try:
+            action_item = self.wait_select_single(objectName='bottomEdgeDragArea')
+            action_item.enabled.wait_for(True)
+            start_x = (action_item.globalRect.x +
+                       (action_item.globalRect.width * 0.5))
+            start_y = action_item.globalRect.y + (action_item.height * 0.2)
+            stop_y = start_y - (self.height * 0.7)
+            self.pointing_device.drag(
+                start_x, start_y, start_x, stop_y, rate=2)
+            #self pointer became invalid at this point
+            #self.bottomEdgePageOpened.wait_for(True)
+        except dbus.StateNotFoundError:
+            logger.error('ButtomEdge element not found.')
+            raise
