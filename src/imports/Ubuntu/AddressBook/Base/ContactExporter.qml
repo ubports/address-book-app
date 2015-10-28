@@ -79,7 +79,7 @@ Item {
 
         property var busyDialog: null
         property int currentQueryId: -1
-        readonly property var detailsBlackList: [ ContactDetail.Favorite, ContactDetail.Tag ]
+        readonly property var detailsBlackList: [ ContactDetail.Favorite, ContactDetail.Tag, ContactDetail.ExtendedDetail ]
 
         function filterContactDetails(contact)
         {
