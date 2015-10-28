@@ -72,7 +72,7 @@ class SIMCardImportPage(_common.PageWithHeader):
         """Return a list with the names of the contacts."""
         contact_delegates = self._get_sorted_contact_delegates()
         name_labels = [
-            delegate.select_single('Label', objectName='nameLabel') for
+            delegate.select_single('UCLabel', objectName='nameLabel') for
             delegate in contact_delegates
         ]
         return [label.text for label in name_labels]
@@ -96,6 +96,6 @@ class SIMCardImportPage(_common.PageWithHeader):
                 contact = self._get_contact_delegate(index)
                 self.pointing_device.click_object(contact)
                 contacts.append(contact.select_single(
-                    'Label', objectName='nameLabel').text)
+                    'UCLabel', objectName='nameLabel').text)
 
         return contacts

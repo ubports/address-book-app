@@ -169,12 +169,12 @@ class AddressBookAppTestCase(AutopilotTestCase):
         list_page = self.main_window.get_contact_list_page()
         list_page.open_contact(index)
 
-        self.assertThat(list_page.visible, Eventually(Equals(False)))
         view_page = self.main_window.get_contact_view_page()
         self.assertThat(view_page.visible, Eventually(Equals(True)))
 
         # Edit contact
-        edit_page = view_page.go_to_edit_contact()
+        self.main_window.edit()
+        edit_page = self.main_window.get_contact_edit_page()
         self.assertThat(edit_page.visible, Eventually(Equals(True)))
 
         return edit_page

@@ -32,7 +32,6 @@ from autopilot import (
 from address_book_app import pages
 from address_book_app import address_book
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -65,30 +64,18 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
         # ContactListPage is the only page that can appears multiple times
         # Ex.: During the pick mode we alway push a new contactListPage, to
         # preserve the current application status.
-        contact_list_pages = self.select_many(
-            pages.ABContactListPage, objectName='contactListPage')
-
-        # alway return the page without pickMode
-        for p in contact_list_pages:
-            if not p.pickMode:
-                return p
-        return None
+        return self.wait_select_single(pages.ABContactListPage,
+                                       objectName='contactListPage', pickMode=False)
 
     def get_contact_edit_page(self):
         # We can have two contact editor page because of bottom edge page
         # but we will return only the active one
-        list_page = self.get_contact_list_page()
-        list_page.bottomEdgePageLoaded.wait_for(True)
-        contact_editor_pages = self.select_many(
-            pages.ABContactEditorPage, objectName="contactEditorPage")
-        for p in contact_editor_pages:
-            if p.active:
-                return p
-        raise exceptions.StateNotFoundError('contactEditorPage not found')
+        return self.wait_select_single(objectName="contactEditorPage", active=True)
 
     def get_contact_view_page(self):
         return self.wait_select_single(pages.ABContactViewPage,
-                                       objectName="contactViewPage")
+                                       objectName="contactViewPage",
+                                       active=True)
 
     def get_contact_list_pick_page(self):
         contact_list_pages = self.select_many(
@@ -100,10 +87,10 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
 
     def get_share_page(self):
         return self.wait_select_single("ContactSharePage",
-                                       objectName="contactSharePage")
+                                       objectName="contactSharePage",
+                                       active=True)
 
     def start_import_contacts(self):
-        self.open_header()
         view = self.get_contact_list_view()
         if view.count > 0:
             self.click_action_button("importFromSimHeaderButton")
@@ -114,17 +101,37 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
             self.pointing_device.click_object(import_buttom)
 
         return self.wait_select_single(address_book.SIMCardImportPage,
-                                       objectName="simCardImportPage")
+                                       objectName="simCardImportPage",
+                                       active=True)
 
     def get_contact_list_view(self):
         """
-        Returns a ContactListView iobject for the current window
+        Returns a ContactListView object for the current window
         """
         return self.wait_select_single("ContactListView",
                                        objectName="contactListView")
 
-    def get_button(self, buttonName):
-        return self.get_header()._get_action_button(buttonName)
+    def get_action(self, action_name):
+        actionbars = self.select_many('ActionBar', objectName='headerActionBar')
+        for actionbar in actionbars:
+            object_name = action_name + "_action_button"
+            try:
+                button = actionbar.select_single(objectName=object_name)
+                if button:
+                    return button
+            except introspection.dbus.StateNotFoundError:
+                continue
+        return None
+
+    def click_action_button(self, action_name):
+        actionbars = self.select_many('ActionBar', objectName='headerActionBar')
+        for actionbar in actionbars:
+            try:
+                actionbar.click_action_button(action_name)
+                return
+            except ubuntuuitoolkit.ToolkitException:
+                continue
+        raise exceptions.StateNotFoundError('Action %s not found.' % action_name)
 
     def open_header(self):
         header = self.get_header()
@@ -151,22 +158,36 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
         """
         Press the 'Cancel' button
         """
-        header = self.open_header()
-        header.click_custom_back_button()
+        buttons = self.select_many(objectName='customBackButton')
+        for button in buttons:
+            if button.enabled and button.visible:
+                self.pointing_device.click_object(button)
+                return
+
+        #self.click_action_button("customBackButton")
 
     def save(self):
         """
         Press the 'Save' button
         """
-        bottom_swipe_page = self.get_contact_list_page()
         self.click_action_button("save")
-        bottom_swipe_page.isCollapsed.wait_for(True)
+
+    def edit(self):
+        """
+        Press the 'Save' button
+        """
+        self.click_action_button("edit")
+
+    def delete(self):
+        """
+        Press the 'Delete' button
+        """
+        self.click_action_button("delete")
 
     def confirm_import(self):
         """
         Press the 'confirm' button
         """
-        self.open_header()
         self.click_action_button("confirmImport")
 
     def get_toolbar(self):
@@ -180,4 +201,5 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
         """
         bottom_swipe_page = self.get_contact_list_page()
         bottom_swipe_page.reveal_bottom_edge_page()
+
         return self.get_contact_edit_page()

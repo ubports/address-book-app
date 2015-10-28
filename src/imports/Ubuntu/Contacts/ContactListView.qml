@@ -14,12 +14,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.2
+import QtQuick 2.4
 import QtContacts 5.0
 
-import Ubuntu.Components 1.2
-import Ubuntu.Components.ListItems 1.0 as ListItem
-import Ubuntu.Components.Popups 1.0
+import Ubuntu.Components 1.3
+import Ubuntu.Components.ListItems 1.3 as ListItem
+import Ubuntu.Components.Popups 1.3
 import Ubuntu.Contacts 0.1 as Contacts
 import Buteo 0.1
 
@@ -202,6 +202,18 @@ Item {
     */
     property bool showAddNewButton: false
     /*!
+      \qmlproperty bool prepareNewContact
+
+      This property holds if space for a draft new contact should be made available or not
+    */
+    property bool prepareNewContact: false
+    /*!
+      \qmlproperty bool showNewContact
+
+      This property holds if a draft new contact should be visible or not
+    */
+    property bool showNewContact: false
+    /*!
       \qmlproperty bool syncing
 
       This property holds if the list is running a sync with online accounts or not
@@ -230,6 +242,18 @@ Item {
       This property holds if the busy indicator should became visible
     */
     property bool showBusyIndicator: true
+    /*!
+      \qmlproperty real verticalVelocity
+
+      This property holds the vertical velocity of the list
+    */
+    readonly property real verticalVelocity: view.verticalVelocity
+    /*!
+      \qmlproperty Contact highlightedContact
+
+      This property holds a reference to the Contact that should be highlighted
+    */
+    property Contact highlightedContact: null
 
     property var _busyDialog: null
 
@@ -358,6 +382,7 @@ Item {
         property bool showFavourites: true
         property alias favouritesIsSelected: contactsModel.onlyFavorites
         property bool contactsLoaded: false
+        highlightedContact: root.highlightedContact
 
         function getSectionText(index) {
             var tag = listModel.contacts[index].tag.tag
@@ -396,12 +421,26 @@ Item {
             anchors {
                 left: parent.left
                 right: parent.right
-                margins: units.gu(1)
             }
-            height: childrenRect.height
+
+            Connections {
+                target: root
+                onPrepareNewContactChanged: {
+                    if (root.prepareNewContact) {
+                        view.contentY = Qt.binding(function() {return -view.headerItem.height});
+                    } else {
+                        view.contentY = view.contentY;
+                    }
+                }
+            }
 
             // AddNewButton
             ContactListButtonDelegate {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: units.gu(1)
+                }
                 objectName: "addNewButton"
 
                 iconSource: "image://theme/add"
@@ -409,6 +448,22 @@ Item {
                 labelText: i18n.dtr("address-book-app", "+ Create New")
                 onClicked: root.addNewContactClicked()
                 visible: root.showAddNewButton
+            }
+
+            ContactDelegate {
+                property var contact: Contact {
+                    Name {
+                        firstName: i18n.tr("New contact")
+                    }
+                    Avatar {
+                        imageUrl: "image://theme/contact"
+                    }
+                }
+                selected: true
+                visible: root.prepareNewContact
+                height: root.prepareNewContact ? defaultHeight : 0
+                Behavior on height {UbuntuNumberAnimation {}}
+                opacity: root.showNewContact ? 1.0 : 0.0
             }
 
             Column {
@@ -420,6 +475,7 @@ Item {
                 anchors {
                     left: parent.left
                     right: parent.right
+                    margins: units.gu(1)
                 }
                 height: visible ? childrenRect.height : 0
 
@@ -466,10 +522,10 @@ Item {
                     visible: (typeof(pageStack) !== "undefined") &&
                              ((simList.sims.length > 0) && (simList.present.length > 0))
                     onClicked: {
-                        pageStack.push(Qt.resolvedUrl("SIMCardImportPage.qml"),
-                                       {"objectName": "simCardImportPage",
-                                        "targetModel": view.listModel,
-                                        "sims": simList.sims})
+                        pageStack.addPageToNextColumn(pageStack.primaryPage, Qt.resolvedUrl("SIMCardImportPage.qml"),
+                                                      {"objectName": "simCardImportPage",
+                                                       "targetModel": view.listModel,
+                                                       "sims": simList.sims})
                     }
                 }
             }
@@ -480,6 +536,7 @@ Item {
                 anchors {
                     left: parent.left
                     right: parent.right
+                    margins: units.gu(1)
                 }
                 parentView: view
                 visible: view.favouritesIsSelected

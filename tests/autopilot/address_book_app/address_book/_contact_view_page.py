@@ -19,10 +19,4 @@ from address_book_app.address_book import _common, _contact_editor_page
 
 class ContactViewPage(_common.PageWithHeader):
     """Autopilot helper for the ContactView page."""
-
-    def go_to_edit_contact(self):
-        self.get_header().click_action_button('edit')
-        return self.get_root_instance().select_single(
-            _contact_editor_page.ContactEditorPage,
-            objectName='contactEditorPage',
-            active=True)
+    pass

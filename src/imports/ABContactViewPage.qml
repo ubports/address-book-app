@@ -14,9 +14,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.2
-import Ubuntu.Components 1.2
-import Ubuntu.Components.Popups 1.0 as Popups
+import QtQuick 2.4
+import Ubuntu.Components 1.3
+import Ubuntu.Components.Popups 1.3 as Popups
 import Ubuntu.Contacts 0.1
 
 import Ubuntu.AddressBook.Base 0.1
@@ -28,28 +28,36 @@ ContactViewPage {
     objectName: "contactViewPage"
 
     property string addPhoneToContact: ""
+    signal editContact(var editPageProperties)
 
     head.actions: [
         Action {
             objectName: "share"
+            name: "share"
+
             text: i18n.tr("Share")
             iconName: "share"
             onTriggered: {
-                pageStack.push(contactShareComponent, {contactModel: root.model, contacts: [root.contact]})
+                pageStack.addPageToCurrentColumn(root,
+                                                 contactShareComponent,
+                                                 {contactModel: root.model,
+                                                  contacts: [root.contact]})
             }
         },
         Action {
             objectName: "edit"
+            name: "edit"
+
             text: i18n.tr("Edit")
             iconName: "edit"
             onTriggered: {
-                pageStack.push(Qt.resolvedUrl("ABContactEditorPage.qml"),
-                               { model: root.model, contact: root.contact})
+                editContact({model: root.model,
+                             contact: root.contact});
             }
         }
     ]
 
-    onContactRemoved: pageStack.pop()
+    onContactRemoved: pageStack.removePages(root)
 
     extensions: ContactDetailSyncTargetView {
         contact: root.contact
@@ -68,11 +76,10 @@ ContactViewPage {
             var newDetail = Qt.createQmlObject(detailSourceTemplate, contact)
             if (newDetail) {
                 contact.addDetail(newDetail)
-                pageStack.push(Qt.resolvedUrl("ABContactEditorPage.qml"),
-                               { model: root.model,
-                                 contact: contact,
-                                 initialFocusSection: "phones",
-                                 newDetails: [newDetail]})
+                editContact({ model: root.model,
+                              contact: contact,
+                              initialFocusSection: "phones",
+                              newDetails: [newDetail] })
                 root.addPhoneToContact = ""
             }
         }
