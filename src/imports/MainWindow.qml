@@ -14,9 +14,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.2
-import Ubuntu.Components 1.2
-import Ubuntu.Components.Popups 1.0 as Popups
+import QtQuick 2.4
+import Ubuntu.Components 1.3
+import Ubuntu.Components.Popups 1.3 as Popups
 
 MainView {
     id: mainWindow
@@ -31,11 +31,10 @@ MainView {
     {
         mainStack.resetStack()
         if (mainStack.contactListPage) {
-            mainStack.contactListPage.showContact(contactId)
+            mainStack.contactListPage.showContactWithId(contactId)
         } else {
             console.error("Contact preview requested but ContactListPage not loaded")
         }
-        mainStack.quitOnDepth = 1
     }
 
     function create(phoneNumber)
@@ -99,28 +98,19 @@ MainView {
         }
     }
 
-    width: units.gu(40)
+    width: units.gu(90)
     height: units.gu(71)
     anchorToKeyboard: false
 
-    PageStack {
+    AdaptivePageLayout {
         id: mainStack
 
+        primaryPage: contactPage
         property var contactListPage: null
-        property int quitOnDepth: -1
 
         function resetStack()
         {
-            while(depth > 1) {
-                pop()
-            }
-        }
-
-        onDepthChanged: {
-            if (depth === quitOnDepth) {
-                quitOnDepth = -1
-                application.goBackToSourceApp()
-            }
+            mainStack.removePages(primaryPage);
         }
 
         onContactListPageChanged: {
@@ -132,13 +122,36 @@ MainView {
         }
 
         anchors.fill: parent
+        layouts: [
+            PageColumnsLayout {
+                when: mainStack.width >= units.gu(80)
+                PageColumn {
+                    maximumWidth: units.gu(50)
+                    minimumWidth: units.gu(40)
+                    preferredWidth: units.gu(40)
+                }
+                PageColumn {
+                    fillWidth: true
+                }
+            },
+            PageColumnsLayout {
+                when: true
+                PageColumn {
+                    fillWidth: true
+                }
+            }
+        ]
+    }
+
+    ABContactListPage {
+        id: contactPage
+        pageStack: mainStack
     }
 
     Component.onCompleted: {
         application.elapsed()
         i18n.domain = "address-book-app"
         i18n.bindtextdomain("address-book-app", i18nDirectory)
-        mainStack.push(Qt.resolvedUrl("ABContactListPage.qml"))
         mainWindow.applicationReady()
     }
 
@@ -184,7 +197,6 @@ MainView {
     // If application was called from uri handler and lost the focus reset the app to normal state
     onAppActiveChanged: {
         if (!appActive && mainStack.contactListPage) {
-            mainStack.quitOnDepth = -1
             mainStack.contactListPage.returnToNormalState()
         }
     }

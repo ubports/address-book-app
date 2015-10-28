@@ -36,14 +36,17 @@ class TestAddContact(AddressBookAppTestCase):
         contact_editor = self.app.main_window.go_to_add_contact()
 
         # Check if the contact list disapear and contact editor appears
-        self.assertThat(list_page.visible, Eventually(Equals(False)))
+        #FIXME: list_page became an invalid pointer after push a new page
+        #self.assertThat(list_page.bottomEdgePageOpened, Eventually(Equals(True)))
         self.assertThat(contact_editor.visible, Eventually(Equals(True)))
+        self.assertThat(contact_editor.active, Eventually(Equals(True)))
 
         # cancel new contact without save
         self.app.main_window.cancel()
 
         # Check if the contact list is visible again
         self.assertThat(list_page.visible, Eventually(Equals(True)))
+        self.assertThat(list_page.bottomEdgePageOpened, Eventually(Equals(False)))
 
         # Check if the contact list still empty
         list_view = self.app.main_window.get_contact_list_view()
@@ -115,11 +118,11 @@ class TestAddContact(AddressBookAppTestCase):
         # Check if they have the correct label
         for idx in range(3):
             email_type = view_page.select_single(
-                "Label",
+                "UCLabel",
                 objectName="type_email_" + str(idx))
 
             email_label = view_page.select_single(
-                "Label",
+                "UCLabel",
                 objectName="label_emailAddress_" + str(idx) + ".0")
 
             self.assertThat(emails[email_label.text], Equals(email_type.text))
@@ -166,11 +169,11 @@ class TestAddContact(AddressBookAppTestCase):
         # Check if they have the correct label
         for idx in range(5):
             phone_type = view_page.select_single(
-                "Label",
+                "UCLabel",
                 objectName="type_phoneNumber_" + str(idx))
 
             phone_label = view_page.select_single(
-                "Label",
+                "UCLabel",
                 objectName="label_phoneNumber_" + str(idx) + ".0")
 
             self.assertThat(phones[phone_label.text], Equals(phone_type.text))

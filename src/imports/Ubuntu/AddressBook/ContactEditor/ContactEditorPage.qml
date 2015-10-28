@@ -14,12 +14,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.2
+import QtQuick 2.4
 import QtContacts 5.0
 
-import Ubuntu.Components 1.2
-import Ubuntu.Components.ListItems 1.0
-import Ubuntu.Components.Popups 1.0
+import Ubuntu.Components 1.3
+import Ubuntu.Components.ListItems 1.3
+import Ubuntu.Components.Popups 1.3
 import Ubuntu.Contacts 0.1 as ContactsUI
 
 import Ubuntu.AddressBook.Base 0.1
@@ -55,7 +55,11 @@ Page {
                 field.cancel()
             }
         }
-        pageStack.pop()
+        if (pageStack.removePages) {
+            pageStack.removePages(contactEditor)
+        } else {
+            pageStack.pop()
+        }
     }
 
     function save() {
@@ -93,7 +97,11 @@ Page {
                 contactEditor.contactSaved(contact)
             }
         }
-        pageStack.pop()
+        if (pageStack.removePages) {
+            pageStack.removePages(contactEditor)
+        } else {
+            pageStack.pop()
+        }
     }
 
     function makeMeVisible(item) {
@@ -136,7 +144,6 @@ Page {
             nameEditor.fieldDelegates[0].forceActiveFocus()
             break;
         }
-        contactEditor.initialFocusSection = ""
     }
 
     function focusToLastPhoneField()
@@ -473,8 +480,12 @@ Page {
             // WORKAROUND: SDK element crash if pop the page where the dialog was created
             Component.onDestruction: {
                 if (popPages) {
-                    contactEditor.pageStack.pop() // editor page
-                    contactEditor.pageStack.pop() // view page
+                    if (contactEditor.pageStack.removePages) {
+                        contactEditor.pageStack.removePages(contactEditor)
+                    } else {
+                        contactEditor.pageStack.pop() // editor page
+                        contactEditor.pageStack.pop() // view page
+                    }
                 }
             }
         }

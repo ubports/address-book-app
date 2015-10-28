@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2012-2015 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -14,19 +14,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.2
+import QtQuick 2.4
 import QtContacts 5.0
 
-import Ubuntu.Components 1.2
-import Ubuntu.Components.ListItems 1.0 as ListItem
-import Ubuntu.Components.Popups 1.0 as Popups
+import Ubuntu.Components 1.3
+import Ubuntu.Components.ListItems 1.3 as ListItem
+import Ubuntu.Components.Popups 1.3 as Popups
 import Ubuntu.Contacts 0.1 as ContactsUI
 import Ubuntu.Content 1.1 as ContentHub
 
 import Ubuntu.AddressBook.Base 0.1
 import Ubuntu.AddressBook.ContactShare 0.1
 
-ContactsUI.PageWithBottomEdge {
+Page {
     id: mainPage
     objectName: "contactListPage"
 
@@ -36,7 +36,10 @@ ContactsUI.PageWithBottomEdge {
     property QtObject contactIndex: null
     property string newPhoneToAdd: ""
     property alias contactManager: contactList.manager
+    property Page contactViewPage: null
+    property Page contactEditorPage: null
 
+    readonly property bool bottomEdgePageOpened: bottomEdge.opened && bottomEdge.fullLoaded
     readonly property bool isEmpty: (contactList.count === 0)
     readonly property bool allowToQuit: (application.callbackApplication.length > 0)
     readonly property var contactModel: contactList.listModel ? contactList.listModel : null
@@ -55,36 +58,53 @@ ContactsUI.PageWithBottomEdge {
 
     function createContactWithPhoneNumber(phoneNumber)
     {
-        var newContact = ContactsJS.createEmptyContact(phoneNumber, mainPage)
-        //WORKAROUND: SKD changes the page header as soon as the page get created
-        // setting active false will avoid that
-        if (bottomEdgeEnabled) {
-            mainPage.showBottomEdgePage(Qt.resolvedUrl("ABContactEditorPage.qml"),
-                                        {model: contactList.listModel,
-                                         contact: newContact,
-                                         active: false,
-                                         enabled: false,
-                                         initialFocusSection: "name"})
-        } else {
-            pageStack.push(Qt.resolvedUrl("ABContactEditorPage.qml"),
-                           {model: contactList.listModel,
-                            contact: newContact,
-                            initialFocusSection: "name"})
+        var newContact = ContactsJS.createEmptyContact(phoneNumber, mainPage);
+        openEditPage({model: contactList.listModel,
+                      contact: newContact,
+                      initialFocusSection: "name"},
+                     mainPage);
+    }
+
+    function openEditPage(editPageProperties, sourcePage) {
+        var incubator = pageStack.addPageToNextColumn(sourcePage,
+                                          Qt.resolvedUrl("ABContactEditorPage.qml"),
+                                          editPageProperties);
+        incubator.onStatusChanged = function(status) {
+            if (status == Component.Ready) {
+                mainPage.contactEditorPage = incubator.object;
+            }
         }
     }
 
-    function showContact(contactId)
+    function openViewPage(viewPageProperties) {
+        var incubator = pageStack.addPageToNextColumn(mainPage,
+                                      Qt.resolvedUrl("ABContactViewPage.qml"),
+                                      viewPageProperties);
+        incubator.onStatusChanged = function(status) {
+            if (status == Component.Ready) {
+                contactViewPage = incubator.object;
+            }
+        }
+    }
+
+    function showContact(contact)
     {
-        pageStack.push(Qt.resolvedUrl("ABContactViewPage.qml"),
-                       {model: contactList.listModel, contactId: contactId})
+        mainPage.state = "default";
+        openViewPage({model: contactList.listModel,
+                      contact: contact});
+    }
+
+    function showContactWithId(contactId)
+    {
+        openViewPage({model: contactList.listModel,
+                      contactId: contactId});
     }
 
     function addPhoneToContact(contactId, phoneNumber)
     {
-        pageStack.push(Qt.resolvedUrl("ABContactViewPage.qml"),
-                       {model: contactList.listModel,
-                        contactId: contactId,
-                        addPhoneToContact: phoneNumber})
+        openViewPage({model: contactList.listModel,
+                      contactId: contactId,
+                      addPhoneToContact: phoneNumber});
     }
 
     function importContact(urls)
@@ -124,16 +144,29 @@ ContactsUI.PageWithBottomEdge {
         contactList.reset()
     }
 
+    function showContactEditorPage(editorPage) {
+        contactList.currentIndex = -1;
+        mainPage.contactEditorPage = editorPage;
+        pageStack.addPageToNextColumn(mainPage, editorPage);
+        editorPage.ready();
+        editorPage.contactSaved.connect(onNewContactSaved);
+    }
+
+    function onNewContactSaved(contact) {
+        if (pageStack.columns > 1) {
+            showContact(contact);
+        }
+    }
+
     title: i18n.tr("Contacts")
-    bottomEdgeTitle: "+"
-    bottomEdgeEnabled: !contactList.isInSelectionMode
 
     flickable: null
     ContactsUI.ContactListView {
         id: contactList
         objectName: "contactListView"
         showImportOptions:  !mainPage.pickMode &&
-                            mainPage.newPhoneToAdd === ""
+                            mainPage.newPhoneToAdd === "" &&
+                            (!mainPage.contactEditorPage || !mainPage.contactEditorPage.active)
         anchors {
             top: parent.top
             left: parent.left
@@ -143,15 +176,14 @@ ContactsUI.PageWithBottomEdge {
         filterTerm: searchField.text
         multiSelectionEnabled: true
         multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
+        highlightedContact: contactViewPage ? contactViewPage.contact :
+                            contactEditorPage ? contactEditorPage.contact : null
 
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
         onAddNewContactClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
 
         onContactClicked: {
-            mainPage.state = "default"
-            pageStack.push(Qt.resolvedUrl("ABContactViewPage.qml"),
-                           {model: contactList.listModel,
-                            contact: contact})
+            showContact(contact);
         }
         onIsInSelectionModeChanged: mainPage.state = isInSelectionMode ? "selection"  : "default"
         onSelectionCanceled: {
@@ -241,8 +273,9 @@ ContactsUI.PageWithBottomEdge {
                 Action {
                     text: i18n.tr("Settings")
                     iconName: "settings"
-                    onTriggered: pageStack.push(Qt.resolvedUrl("./Settings/SettingsPage.qml"),
-                                                {"contactListModel": contactList.listModel})
+                    onTriggered: pageStack.addPageToNextColumn(mainPage,
+                                                               Qt.resolvedUrl("./Settings/SettingsPage.qml"),
+                                                               {"contactListModel": contactList.listModel})
                 }
             ]
             PropertyChanges {
@@ -347,9 +380,8 @@ ContactsUI.PageWithBottomEdge {
                 actions: selectionState.actions
             }
             PropertyChanges {
-                target: mainPage
-                bottomEdgeEnabled: false
-                title: " "
+                target: bottomEdge
+                enabled: false
             }
         },
         PageHeadState {
@@ -362,8 +394,11 @@ ContactsUI.PageWithBottomEdge {
             }
             PropertyChanges {
                 target: mainPage
-                bottomEdgeEnabled: false
                 title: i18n.tr("Add contact")
+            }
+            PropertyChanges {
+                target: bottomEdge
+                enabled: false
             }
             PropertyChanges {
                 target: contactList
@@ -380,8 +415,8 @@ ContactsUI.PageWithBottomEdge {
                 showAddNewButton: true
             }
             PropertyChanges {
-                target: mainPage
-                bottomEdgeEnabled: false
+                target: bottomEdge
+                enabled: false
             }
         }
     ]
@@ -389,20 +424,6 @@ ContactsUI.PageWithBottomEdge {
         if (active && contactList.showAddNewButton) {
             contactList.positionViewAtBeginning()
         }
-    }
-
-    // We need to reset the page proprerties in case of the page was created pre-populated,
-    // with phonenumber or contact.
-    onBottomEdgeDismissed: {
-        //WORKAROUND: SKD changes the page header as soon as the page get created
-        // setting active false will avoid that
-        var newContact = ContactsUI.ContactsJS.createEmptyContact("", mainPage)
-        mainPage.setBottomEdgePage(Qt.resolvedUrl("ABContactEditorPage.qml"),
-                                   {model: contactList.listModel,
-                                    contact: newContact,
-                                    active: false,
-                                    enabled: false,
-                                    initialFocusSection: "name"})
     }
 
     KeyboardRectangle {
@@ -420,7 +441,8 @@ ContactsUI.PageWithBottomEdge {
                   !contactList.favouritesIsSelected &&
                   mainPage.isEmpty &&
                   (mainPage.newPhoneToAdd === "") &&
-                  !(contactList.filterTerm && contactList.filterTerm !== ""))
+                  !(contactList.filterTerm && contactList.filterTerm !== "")) &&
+                  bottomEdge.visible
 
         Behavior on visible {
             SequentialAnimation {
@@ -481,9 +503,10 @@ ContactsUI.PageWithBottomEdge {
             // Share contacts to an application chosen by the user
             if (!mainPage.pickMode) {
                 contactExporter.dismissBusyDialog()
-                pageStack.push(contactShareComponent,
-                               { contactModel: contactExporter.contactModel,
-                                 contacts: contacts })
+                pageStack.addPageToNextColumn(mainPage,
+                                              contactShareComponent,
+                                              {contactModel: contactExporter.contactModel,
+                                               contacts: contacts })
             }
         }
     }
@@ -519,15 +542,126 @@ ContactsUI.PageWithBottomEdge {
             contactList.listModel.importContacts("file://" + TEST_DATA)
         }
 
-        mainPage.setBottomEdgePage(Qt.resolvedUrl("ABContactEditorPage.qml"),
-                                   {model: contactList.listModel,
-                                    contact: ContactsUI.ContactsJS.createEmptyContact("", mainPage),
-                                    active: false,
-                                    enabled: false,
-                                    initialFocusSection: "name"})
-
         if (pageStack) {
             pageStack.contactListPage = mainPage
+        }
+    }
+
+    Component {
+        id: editorPageBottomEdge
+        ABContactEditorPage {
+            backIconName: "down"
+            implicitWidth: mainPage.width
+            implicitHeight: mainPage.height
+            model: contactList.listModel
+            contact: ContactsJS.createEmptyContact("", mainPage)
+            initialFocusSection: "name"
+            enabled: false
+        }
+    }
+
+    Component {
+        id: emptyContact
+        ContactsUI.ContactDelegate {
+            property Contact contact: Contact {
+                Name {
+                    firstName: i18n.tr("New contact")
+                }
+                Avatar {
+                    imageUrl: "image://theme/contact"
+                }
+            }
+            width: mainPage.width
+        }
+    }
+
+    BottomEdge {
+        id: bottomEdge
+        objectName: "bottomEdge"
+
+        property var incubator
+
+        // FIXME: this is a workaround for the lack of fully asynchronous loading
+        // of Pages in AdaptativePageLayout
+        function createObjectAsynchronously(url, properties, callback) {
+            var component = Qt.createComponent(url, Component.Asynchronous);
+            if (component.status == Component.Ready) {
+                incubateObject(component, properties, callback);
+            } else {
+                component.onStatusChanged.connect(function(status) {
+                    if (status == Component.Ready) {
+                        incubateObject(component, properties, callback);
+                    }
+                });
+            }
+        }
+
+        function incubateObject(component, properties, callback) {
+            if (component.status == Component.Ready) {
+                incubator = component.incubateObject(null,
+                                                     properties,
+                                                     Qt.Asynchronous);
+                incubator.onStatusChanged = function(status) {
+                    if (status == Component.Ready) {
+                        callback(incubator.object);
+                        incubator = null;
+                    }
+                }
+            }
+        }
+
+        function loadEditorPage() {
+            var newContact = ContactsJS.createEmptyContact("", mainPage);
+            createObjectAsynchronously(Qt.resolvedUrl("ABContactEditorPage.qml"),
+                                       {model: contactList.listModel,
+                                        contact: newContact,
+                                        initialFocusSection: "name"},
+                                       showContactEditorPage);
+        }
+
+        anchors.fill: parent
+        contentComponent: pageStack.columns == 1 ? editorPageBottomEdge : emptyContact
+        flickable: contactList
+        iconName: "contact-new"
+        enabled: !contactList.isInSelectionMode
+        backGroundEffectEnabled: pageStack.columns === 1
+
+        onOpenBegin: {
+            contactList.prepareNewContact = true;
+            contactList.positionViewAtBeginning();
+            if (pageStack.columns > 1) {
+                loadEditorPage();
+            }
+        }
+        onOpenEnd: {
+            bottomEdge.visible = false;
+            contactList.showNewContact = true;
+            if (pageStack.columns <= 1) {
+                showContactEditorPage(bottomEdge.content);
+            }
+        }
+
+        onClicked: {
+            bottomEdge.open();
+        }
+    }
+
+    Connections {
+        target: mainPage.contactViewPage
+        onEditContact: {
+            openEditPage(editPageProperties, mainPage.contactViewPage);
+        }
+    }
+
+    Connections {
+        target: mainPage.contactEditorPage
+        onActiveChanged: {
+            if (!mainPage.contactEditorPage.active) {
+                contactList.prepareNewContact = false;
+                contactList.showNewContact = false;
+                bottomEdge.visible = true;
+                bottomEdge.close();
+            }
         }
     }
 }

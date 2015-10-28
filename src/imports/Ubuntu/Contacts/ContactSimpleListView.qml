@@ -14,10 +14,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.2
+import QtQuick 2.4
 import QtContacts 5.0
-import Ubuntu.Components 1.2
-import Ubuntu.Components.ListItems 1.0 as ListItem
+import Ubuntu.Components 1.3
+import Ubuntu.Components.ListItems 1.3 as ListItem
 
 import "ContactList.js" as Sections
 
@@ -144,6 +144,13 @@ MultipleSelectionListView {
     */
     property list<Action> rightSideActions
 
+    /*!
+      \qmlproperty Contact highlightedContact
+
+      This property holds a reference to the Contact that should be highlighted
+    */
+    property Contact highlightedContact: null
+
     /* internal */
     property var _currentSwipedItem: null
 
@@ -227,6 +234,7 @@ MultipleSelectionListView {
         }
     }
 
+    highlightFollowsCurrentItem: true
     currentIndex: -1
     section {
         property: showSections ? "contact.tag.tag" : ""
@@ -260,7 +268,8 @@ MultipleSelectionListView {
 
         flicking: contactListView.flicking
         width: parent.width
-        selected: contactListView.multiSelectionEnabled && contactListView.isSelected(contactDelegate)
+        selected: (contactListView.multiSelectionEnabled && contactListView.isSelected(contactDelegate))
+                  || (contactListView.highlightedContact && contactListView.highlightedContact.contactId == contact.contactId)
         selectionMode: contactListView.isInSelectionMode
         defaultAvatarUrl: contactListView.defaultAvatarImageUrl
         isCurrentItem: ListView.isCurrentItem
