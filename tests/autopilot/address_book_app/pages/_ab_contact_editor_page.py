@@ -14,12 +14,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-__all__ = [
-    'ABContactEditorPage',
-    'ABContactListPage',
-    'ABContactViewPage'
-]
+""" ContactEditorPage emulator for Addressbook App tests """
 
-from address_book_app.pages._ab_contact_editor_page import ABContactEditorPage
-from address_book_app.pages._ab_contact_view_page import ABContactViewPage
-from address_book_app.pages._ab_contact_list_page import ABContactListPage
+import logging
+import time
+
+import autopilot.logging
+import ubuntuuitoolkit
+
+from address_book_app import address_book
+
+class ABContactEditorPage(address_book.ContactEditorPage):
+    """Autopilot helper for the Contact Editor page."""
