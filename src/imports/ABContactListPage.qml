@@ -183,7 +183,8 @@ Page {
         onAddNewContactClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
 
         onContactClicked: {
-            showContact(contact);
+            openViewPage({model: contactList.listModel,
+                          contact: contact});
         }
         onIsInSelectionModeChanged: mainPage.state = isInSelectionMode ? "selection"  : "default"
         onSelectionCanceled: {
@@ -423,6 +424,9 @@ Page {
     onActiveChanged: {
         if (active && contactList.showAddNewButton) {
             contactList.positionViewAtBeginning()
+        }
+        if (active && (state === "searching")) {
+            searchField.forceActiveFocus()
         }
     }
 
