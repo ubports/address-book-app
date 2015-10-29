@@ -27,6 +27,8 @@ ContactDetailBase {
 
     readonly property alias busy: activityIndicator.running
     readonly property string defaultAvatar: "image://theme/add"
+    property string temporaryAvatar: ""
+    property string temporaryAvatarId: ""
 
     function isEmpty() {
         return false;
@@ -101,7 +103,7 @@ ContactDetailBase {
         id: activityIndicator
 
         anchors.centerIn: avatar
-        running: (avatarImport.importDialog != null)
+        running: (avatarImport.importDialog != null) || (root.temporaryAvatarId != "")
         visible: running
     }
 
@@ -109,12 +111,25 @@ ContactDetailBase {
         id: avatarImport
 
         onAvatarReceived: {
+            Contacts.removeFile(root.temporaryAvatar)
+
             // remove the previous image, this is nessary to make sure that the new image
             // get updated otherwise if the new image has the same name the image will not
             // be updated
             avatarImage.source = ""
-            // Update with the new value
-            avatarImage.source = Contacts.copyImage(root.contact, avatarUrl);
+            // copy and resize image
+            root.temporaryAvatarId = Contacts.copyImage(avatarUrl, null);
+        }
+    }
+
+    Connections {
+        target: Contacts
+        onImageCopyDone: {
+            if (root.temporaryAvatarId === id) {
+                root.temporaryAvatar = fileName
+                avatarImage.source = fileName
+                root.temporaryAvatarId = ""
+            }
         }
     }
 
@@ -125,6 +140,12 @@ ContactDetailBase {
             root.forceActiveFocus()
             avatarImport.requestNewAvatar()
         }
+    }
+
+    Component.onDestruction: {
+        console.debug("Delete temporary avatar image:" + root.temporaryAvatar)
+        Contacts.removeFile("file:///" + root.temporaryAvatar)
+        root.temporaryAvatar = ""
     }
 }
 
