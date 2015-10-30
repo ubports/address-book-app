@@ -89,7 +89,10 @@ Page {
 
     function showContact(contact)
     {
-        mainPage.state = "default";
+        // go back to normal state if not searching
+        if (state !== "searching") {
+            mainPage.state = "default";
+        }
         openViewPage({model: contactList.listModel,
                       contact: contact});
     }
@@ -129,6 +132,11 @@ Page {
 
     function moveListToContact(contact)
     {
+        // skipt it if searching
+        if (state === "searching") {
+            return
+        }
+
         contactIndex = contact
         mainPage.state = "default"
         // this means a new contact was created
@@ -182,10 +190,7 @@ Page {
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
         onAddNewContactClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
 
-        onContactClicked: {
-            openViewPage({model: contactList.listModel,
-                          contact: contact});
-        }
+        onContactClicked: mainPage.showContact(contact)
         onIsInSelectionModeChanged: mainPage.state = isInSelectionMode ? "selection"  : "default"
         onSelectionCanceled: {
             if (pickMode) {
