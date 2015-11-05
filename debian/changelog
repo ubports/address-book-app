@@ -1,3 +1,14 @@
+address-book-app (0.2+16.04.20151028.2-0ubuntu1) xenial; urgency=medium
+
+  * Does not export contact extend detail into vcard. (LP: #1510259)
+  * Ignore default actions on contact view. (LP: #1466759)
+  * Updated autopilot tests, with the new ABContactEditorPage.
+  * Use Runnable implementation instead of thread to avoid overload cpu
+    usage. Implement async copyImage support. (LP: #1469005)
+  * Used import icon in the "import from sim" button (LP: #1424819)
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Wed, 28 Oct 2015 20:36:53 +0000
+
 address-book-app (0.2+16.04.20151026-0ubuntu1) xenial; urgency=medium
 
   [ CI Train Bot ]

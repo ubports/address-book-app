@@ -70,7 +70,8 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
     def get_contact_edit_page(self):
         # We can have two contact editor page because of bottom edge page
         # but we will return only the active one
-        return self.wait_select_single(objectName="contactEditorPage", active=True)
+        return self.wait_select_single(pages.ABContactEditorPage,
+                                       objectName="contactEditorPage", active=True)
 
     def get_contact_view_page(self):
         return self.wait_select_single(pages.ABContactViewPage,

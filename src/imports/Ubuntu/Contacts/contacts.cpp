@@ -23,6 +23,7 @@
 #include <QtCore/QDir>
 #include <QtCore/QUrl>
 #include <QtCore/QLockFile>
+#include <QtCore/QThreadPool>
 
 #include "config.h"
 
@@ -77,27 +78,11 @@ QString UbuntuContacts::normalized(const QString &value)
     return out;
 }
 
-QUrl UbuntuContacts::copyImage(QObject *contact, const QUrl &imageUrl)
+QString UbuntuContacts::copyImage(const QUrl &imageUrl)
 {
-    // keep track of threads to avoid memory leeak
-    ImageScaleThread *imgThread;
-    QVariant oldThread = contact->property("IMAGE_SCALE_THREAD");
-    if (!oldThread.isNull()) {
-        imgThread = oldThread.value<ImageScaleThread *>();
-        imgThread->updateImageUrl(imageUrl);
-    } else {
-        imgThread = new ImageScaleThread(imageUrl, contact);
-        contact->setProperty("IMAGE_SCALE_THREAD", QVariant::fromValue<ImageScaleThread*>(imgThread));
-    }
-
-    imgThread->start();
-
-    // FIXME: implement this as async function
-    while(imgThread->isRunning()) {
-        QCoreApplication::processEvents(QEventLoop::AllEvents, 3000);
-    }
-
-    return imgThread->outputFile();
+    ImageScaleThread *imgThread = new ImageScaleThread(imageUrl, this);
+    QThreadPool::globalInstance()->start(imgThread);
+    return imgThread->id();
 }
 
 bool UbuntuContacts::containsLetters(const QString &value)
@@ -112,7 +97,11 @@ bool UbuntuContacts::containsLetters(const QString &value)
 
 bool UbuntuContacts::removeFile(const QUrl &file)
 {
-    return QFile::remove(file.toLocalFile());
+    QString localFile = file.toLocalFile();
+    if (!localFile.isEmpty() && QFile::exists(localFile)) {
+        return QFile::remove(localFile);
+    }
+    return false;
 }
 
 bool UbuntuContacts::updateIsRunning() const
