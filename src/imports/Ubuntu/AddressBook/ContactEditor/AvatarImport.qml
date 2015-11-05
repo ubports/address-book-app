@@ -59,7 +59,6 @@ Item {
                     id: peerPicker
 
                     anchors.fill: parent
-                    visible: dialogue.done
                     contentType: ContentType.Pictures
                     handler: ContentHandler.Source
 
@@ -77,13 +76,11 @@ Item {
             Connections {
                 id: signalConnections
 
-                target: dialogue.activeTransfer
                 onStateChanged: {
                     var done = ((dialogue.activeTransfer.state === ContentTransfer.Charged) ||
                                 (dialogue.activeTransfer.state === ContentTransfer.Aborted))
 
                     if (dialogue.activeTransfer.state === ContentTransfer.Charged) {
-                        dialogue.hide()
                         if (dialogue.activeTransfer.items.length > 0) {
                             root.avatarReceived(dialogue.activeTransfer.items[0].url)
                         }
@@ -108,7 +105,7 @@ Item {
                 repeat: true
                 running: false
                 onTriggered: {
-                   if(Qt.application.active) {
+                    if(Qt.application.state === Qt.ApplicationActive) {
                        PopupUtils.close(root.importDialog)
                    }
                 }

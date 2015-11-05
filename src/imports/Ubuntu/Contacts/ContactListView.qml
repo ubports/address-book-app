@@ -516,7 +516,7 @@ Item {
                     objectName: "%1.importFromSimCardButton".arg(root.objectName)
 
                     expandIcon: true
-                    iconSource: "image://theme/save-to"
+                    iconSource: "image://theme/import"
                     labelText: i18n.dtr("address-book-app", "Import contacts from SIM card")
                     // Does not show the button if the list is not in a pageStack
                     visible: (typeof(pageStack) !== "undefined") &&
