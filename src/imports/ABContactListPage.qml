@@ -251,6 +251,7 @@ Page {
                     text: i18n.tr("Search")
                     iconName: "search"
                     visible: !mainPage.isEmpty
+                    shortcut: mainPage.state === "default" ? "Ctrl+F" : ""
                     onTriggered: {
                         mainPage.state = (mainPage.state === "newphone" ? "newphoneSearching" : "searching")
                         contactList.showAllContacts()
@@ -297,6 +298,7 @@ Page {
             backAction: Action {
                 iconName: "back"
                 text: i18n.tr("Cancel")
+                shortcut: mainPage.state === "searching" ? "Esc" : ""
                 onTriggered: {
                     contactList.forceActiveFocus()
                     mainPage.head.sections.selectedIndex = 0
@@ -323,6 +325,7 @@ Page {
                 text: i18n.tr("Cancel selection")
                 iconName: "back"
                 onTriggered: contactList.cancelSelection()
+                shortcut: mainPage.state === "selection" ? "Esc" : ""
             }
             actions: [
                 Action {
@@ -625,6 +628,7 @@ Page {
         iconName: "contact-new"
         enabled: !contactList.isInSelectionMode
         backGroundEffectEnabled: pageStack.columns === 1
+        visible: mainPage.state === "default"
 
         onOpenBegin: {
             contactList.prepareNewContact = true;

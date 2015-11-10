@@ -35,6 +35,7 @@ ContactEditorPage {
 
         text: i18n.tr("Cancel")
         iconName: "back"
+        shortcut: root.active ? "Esc" : ""
         onTriggered: {
             root.cancel()
         }
@@ -46,6 +47,7 @@ ContactEditorPage {
             name: "save"
 
             text: i18n.tr("Save")
+            shortcut: root.active ? "Ctrl+s": ""
             iconName: "ok"
             // disable save button while avatar scale still running
             enabled: root.isContactValid

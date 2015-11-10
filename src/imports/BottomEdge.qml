@@ -42,6 +42,12 @@ Item {
         bottomEdge.state = "collapsed";
     }
 
+    Action {
+        text: i18n.tr("New contact")
+        shortcut: bottomEdge.visible ? "Ctrl+N" : ""
+        onTriggered: bottomEdge.clicked()
+    }
+
     Rectangle {
         id: darkBg
 
