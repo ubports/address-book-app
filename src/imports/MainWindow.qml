@@ -106,8 +106,6 @@ MainView {
     AdaptivePageLayout {
         id: mainStack
 
-        primaryPage: contactPage
-        focus: false
         property var contactListPage: null
 
         function resetStack()
@@ -115,6 +113,7 @@ MainView {
             mainStack.removePages(primaryPage);
         }
 
+        primaryPage: contactPage
         onContactListPageChanged: {
             if (contentHubLoader.status === Loader.Ready) {
                 contentHubLoader.item.pageStack = mainStack
@@ -207,14 +206,4 @@ MainView {
             mainStack.contactListPage.returnToNormalState()
         }
     }
-
-    Keys.onPressed: {
-        var prev = mainWindow.nextItemInFocusChain(false)
-        var next = mainWindow.nextItemInFocusChain(true)
-        console.debug("Next:" + next)
-        console.debug("Prev:" + prev)
-
-        console.debug("Key pressed Main: " + event)
-    }
-
 }

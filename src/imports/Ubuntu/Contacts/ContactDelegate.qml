@@ -44,8 +44,6 @@ ListItemWithActions {
         }
     }
 
-    Keys.onPressed: console.debug("Key pressed ListItemWithActions: " + event)
-
     Item {
         id: delegate
 
@@ -54,7 +52,6 @@ ListItemWithActions {
             right: parent.right
         }
         height: units.gu(6)
-        Keys.onPressed: console.debug("Key pressed2: " + event)
 
         ContactAvatar {
             id: avatar

@@ -42,7 +42,7 @@ import Buteo 0.1
         }
     \endqml
 */
-Item {
+FocusScope {
     id: root
 
     readonly property alias view: view
@@ -376,7 +376,7 @@ Item {
        buteoSync.startSyncByCategory("contacts")
     }
 
-    Keys.onPressed: console.debug("Key pressed22: " + event)
+    focus: true
 
     ContactSimpleListView {
         id: view
@@ -393,8 +393,6 @@ Item {
             else
                 return tag
         }
-
-        Keys.onPressed: console.debug("Key pressed: ContactListView.ContactSimpleListView: " + event)
 
         // if the favorite header became invisible we should move back to all contacts.
         onShowFavouritesChanged: {
@@ -632,5 +630,20 @@ Item {
                 (root.count === 0) &&
                 !view.favouritesIsSelected &&
                 !isSearching ? sourceFile : ""
+    }
+
+    Keys.onUpPressed: {
+        if (view.currentIndex == 0) {
+            view.currentIndex = view.count - 1
+        } else {
+            view.currentIndex -= 1
+        }
+    }
+    Keys.onDownPressed: {
+        if (view.currentIndex == (view.count - 1)) {
+            view.currentIndex = 0
+        } else {
+            view.currentIndex += 1
+        }
     }
 }

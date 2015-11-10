@@ -213,7 +213,9 @@ MultipleSelectionListView {
     */
     function _fetchContact(index, contact)
     {
-        contactFetch.fetchContact(contact.contactId)
+        if (contact) {
+            contactFetch.fetchContact(contact.contactId)
+        }
     }
 
     function _updateSwipeState(item)
@@ -381,24 +383,6 @@ MultipleSelectionListView {
             if (!Qt.application.active) {
                 currentIndex = -1
             }
-        }
-    }
-
-    Keys.onPressed: console.debug("Key pressed ContactSimpleListView: " + event)
-    Keys.onUpPressed: {
-        console.debug("Up Pressed::::::::::::::::::::")
-        if (contactListView.currentIndex == 0) {
-            contactListView.currentIndex = contactListView.count - 1
-        } else {
-            contactListView.currentIndex -= 1
-        }
-    }
-    Keys.onDownPressed: {
-        console.debug("Down Pressed::::::::::::::::::::")
-        if (contactListView.currentIndex == (contactListView.count - 1)) {
-            contactListView.currentIndex = 0
-        } else {
-            contactListView.currentIndex += 1
         }
     }
 }

@@ -159,7 +159,7 @@ Page {
     }
 
     title: i18n.tr("Contacts")
-    focus: false
+    focus: true
 
     flickable: null
     ContactsUI.ContactListView {
@@ -202,8 +202,19 @@ Page {
         }
 
         onError: pageStack.contactModelError(error)
-        Keys.onPressed: console.debug("Key pressed BottomList: " + event)
-
+        onActiveFocusChanged: {
+            //WORKAROUND: avoid lose focus to ContactView actions
+            if (mainPage.active && !activeFocus) {
+                contactList.forceActiveFocus()
+            }
+        }
+        onCountChanged: {
+            if (mainPage.active &&
+                (pageStack.columns > 1) &&
+                (contactList.currentIndex === -1)) {
+                contactList.currentIndex = 0
+            }
+        }
     }
 
     TextField {
@@ -432,7 +443,11 @@ Page {
         if (active && contactList.showAddNewButton) {
             contactList.positionViewAtBeginning()
         }
+        if (active) {
+            contactList.forceActiveFocus()
+        }
     }
+
 
     KeyboardRectangle {
         id: keyboard
@@ -653,8 +668,6 @@ Page {
         onClicked: {
             bottomEdge.open();
         }
-
-        Keys.onPressed: console.debug("Key pressed Bottom: " + event)
     }
 
     Connections {
@@ -675,6 +688,4 @@ Page {
             }
         }
     }
-
-    Keys.onPressed: console.debug("Key pressed AB: " + event)
 }
