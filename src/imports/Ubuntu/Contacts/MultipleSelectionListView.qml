@@ -196,4 +196,6 @@ ListView {
         maximumFlickVelocity = maximumFlickVelocity * scaleFactor;
         flickDeceleration = flickDeceleration * scaleFactor;
     }
+
+    Keys.onPressed: console.debug("Key pressed multi:  " + event)
 }

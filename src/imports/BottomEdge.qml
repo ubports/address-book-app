@@ -48,6 +48,8 @@ Item {
         onTriggered: bottomEdge.clicked()
     }
 
+    Keys.onPressed: console.debug("Bottom")
+
     Rectangle {
         id: darkBg
 

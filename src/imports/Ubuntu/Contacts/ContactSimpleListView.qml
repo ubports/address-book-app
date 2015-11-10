@@ -255,6 +255,10 @@ MultipleSelectionListView {
         dirtyModel.restart()
     }
 
+    onCurrentIndexChanged: {
+        contactListView._fetchContact(currentIndex, listModel.contacts[currentIndex])
+    }
+
     onFlickStarted: view.currentIndex = -1
     listDelegate: ContactDelegate {
         id: contactDelegate
@@ -269,7 +273,7 @@ MultipleSelectionListView {
         flicking: contactListView.flicking
         width: parent.width
         selected: (contactListView.multiSelectionEnabled && contactListView.isSelected(contactDelegate))
-                  || (contactListView.highlightedContact && contactListView.highlightedContact.contactId == contact.contactId)
+                  || (contactListView.currentIndex == index)
         selectionMode: contactListView.isInSelectionMode
         defaultAvatarUrl: contactListView.defaultAvatarImageUrl
         isCurrentItem: ListView.isCurrentItem
@@ -309,7 +313,6 @@ MultipleSelectionListView {
                 }
             } else {
                 contactListView.currentIndex = index
-                contactListView._fetchContact(index, contact)
             }
         }
 
@@ -378,6 +381,24 @@ MultipleSelectionListView {
             if (!Qt.application.active) {
                 currentIndex = -1
             }
+        }
+    }
+
+    Keys.onPressed: console.debug("Key pressed ContactSimpleListView: " + event)
+    Keys.onUpPressed: {
+        console.debug("Up Pressed::::::::::::::::::::")
+        if (contactListView.currentIndex == 0) {
+            contactListView.currentIndex = contactListView.count - 1
+        } else {
+            contactListView.currentIndex -= 1
+        }
+    }
+    Keys.onDownPressed: {
+        console.debug("Down Pressed::::::::::::::::::::")
+        if (contactListView.currentIndex == (contactListView.count - 1)) {
+            contactListView.currentIndex = 0
+        } else {
+            contactListView.currentIndex += 1
         }
     }
 }

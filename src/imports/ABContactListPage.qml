@@ -159,11 +159,14 @@ Page {
     }
 
     title: i18n.tr("Contacts")
+    focus: false
 
     flickable: null
     ContactsUI.ContactListView {
         id: contactList
         objectName: "contactListView"
+
+        focus: true
         showImportOptions:  !mainPage.pickMode &&
                             mainPage.newPhoneToAdd === "" &&
                             (!mainPage.contactEditorPage || !mainPage.contactEditorPage.active)
@@ -199,6 +202,8 @@ Page {
         }
 
         onError: pageStack.contactModelError(error)
+        Keys.onPressed: console.debug("Key pressed BottomList: " + event)
+
     }
 
     TextField {
@@ -648,6 +653,8 @@ Page {
         onClicked: {
             bottomEdge.open();
         }
+
+        Keys.onPressed: console.debug("Key pressed Bottom: " + event)
     }
 
     Connections {
@@ -668,4 +675,6 @@ Page {
             }
         }
     }
+
+    Keys.onPressed: console.debug("Key pressed AB: " + event)
 }

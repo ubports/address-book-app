@@ -101,11 +101,13 @@ MainView {
     width: units.gu(90)
     height: units.gu(71)
     anchorToKeyboard: false
+    focus: false
 
     AdaptivePageLayout {
         id: mainStack
 
         primaryPage: contactPage
+        focus: false
         property var contactListPage: null
 
         function resetStack()
@@ -141,6 +143,7 @@ MainView {
                 }
             }
         ]
+
     }
 
     ABContactListPage {
@@ -196,8 +199,22 @@ MainView {
 
     // If application was called from uri handler and lost the focus reset the app to normal state
     onAppActiveChanged: {
+        if (appActive) {
+            mainStack.forceActiveFocus()
+        }
+
         if (!appActive && mainStack.contactListPage) {
             mainStack.contactListPage.returnToNormalState()
         }
     }
+
+    Keys.onPressed: {
+        var prev = mainWindow.nextItemInFocusChain(false)
+        var next = mainWindow.nextItemInFocusChain(true)
+        console.debug("Next:" + next)
+        console.debug("Prev:" + prev)
+
+        console.debug("Key pressed Main: " + event)
+    }
+
 }

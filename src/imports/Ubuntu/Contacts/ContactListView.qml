@@ -376,6 +376,8 @@ Item {
        buteoSync.startSyncByCategory("contacts")
     }
 
+    Keys.onPressed: console.debug("Key pressed22: " + event)
+
     ContactSimpleListView {
         id: view
 
@@ -391,6 +393,8 @@ Item {
             else
                 return tag
         }
+
+        Keys.onPressed: console.debug("Key pressed: ContactListView.ContactSimpleListView: " + event)
 
         // if the favorite header became invisible we should move back to all contacts.
         onShowFavouritesChanged: {

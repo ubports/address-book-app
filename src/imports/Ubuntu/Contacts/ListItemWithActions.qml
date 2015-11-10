@@ -439,6 +439,7 @@ Item {
                 }
             }
             root.resetSwipe()
+            root.forceActiveFocus()
         }
 
         onPositionChanged: {

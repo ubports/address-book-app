@@ -32,6 +32,7 @@ ListItemWithActions {
     signal clicked(int index, QtObject contact)
     signal pressAndHold(int index, QtObject contact)
 
+    focus: false
     implicitHeight: defaultHeight
     width: parent ? parent.width : 0
 
@@ -43,6 +44,8 @@ ListItemWithActions {
         }
     }
 
+    Keys.onPressed: console.debug("Key pressed ListItemWithActions: " + event)
+
     Item {
         id: delegate
 
@@ -51,6 +54,7 @@ ListItemWithActions {
             right: parent.right
         }
         height: units.gu(6)
+        Keys.onPressed: console.debug("Key pressed2: " + event)
 
         ContactAvatar {
             id: avatar

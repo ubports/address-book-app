@@ -40,6 +40,7 @@ Page {
         }
     }
 
+    focus: false
     title: contact ? ContactsJS.formatToDisplay(contact, i18n.dtr("address-book-app", "No name")) : ""
 
     Connections {
