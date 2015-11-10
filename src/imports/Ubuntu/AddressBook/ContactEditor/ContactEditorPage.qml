@@ -301,8 +301,6 @@ Page {
                     left: parent.left
                     right: parent.right
                 }
-                height: implicitHeight
-
                 onChanged: {
                     if (contactEditor.enabled &&
                         !contactEditor.isNewContact &&

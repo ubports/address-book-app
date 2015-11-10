@@ -18,10 +18,11 @@ import QtQuick 2.4
 import QtContacts 5.0 as QtContacts
 import Ubuntu.Components.ListItems 1.3 as ListItem
 
-ListItem.Empty {
+MouseArea {
     id: root
     objectName: detail ? "base_" + detailToString(detail.type, -1) + "_" + index : ""
 
+    property variant action: null
     property QtObject contact: null
     property QtObject detail: null
     property variant fields: null
@@ -98,13 +99,16 @@ ListItem.Empty {
         }
     }
 
-    highlightWhenPressed: false
-    showDivider: false
-
     Rectangle {
         anchors.fill: parent
         opacity: 0.1
-        visible: root.selected
+        visible: root.activeFocus
         z: 100
+    }
+
+    onClicked: {
+        if (action) {
+            action.triggered(action)
+        }
     }
 }

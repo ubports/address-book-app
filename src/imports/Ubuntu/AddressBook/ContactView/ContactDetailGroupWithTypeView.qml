@@ -18,8 +18,7 @@ import QtQuick 2.4
 import QtContacts 5.0 as QtContacts
 
 import Ubuntu.Components 1.3
-import Ubuntu.Components.ListItems 1.3 as ListItem
-
+import Ubuntu.Components.ListItems 1.3
 import Ubuntu.AddressBook.Base 0.1
 
 ContactDetailGroupWithTypeBase {
@@ -29,13 +28,10 @@ ContactDetailGroupWithTypeBase {
     signal actionTrigerred(string actionName, QtObject detail)
 
     showEmpty: false
-    headerDelegate: ListItem.Empty {
-        highlightWhenPressed: false
-
-        divider.anchors.leftMargin: units.gu(2)
-        divider.anchors.rightMargin: units.gu(2)
+    headerDelegate: Item {
         width: root.width
         height: units.gu(5)
+
         Label {
             anchors {
                 verticalCenter: parent.verticalCenter
@@ -48,6 +44,15 @@ ContactDetailGroupWithTypeBase {
 
             // style
             fontSize: "medium"
+        }
+
+        ThinDivider {
+            anchors {
+                leftMargin: units.gu(2)
+                rightMargin: units.gu(2)
+                bottom: parent.bottom
+                bottomMargin: units.gu(1)
+            }
         }
     }
 

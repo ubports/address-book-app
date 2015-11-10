@@ -98,16 +98,11 @@ ContactDetailGroupWithTypeBase {
         return changed
     }
 
-    headerDelegate: Empty {
+    headerDelegate: Item {
         id: header
-        highlightWhenPressed: false
 
         width: root.width
         height: units.gu(5)
-        // disable listview mouse area
-        __mouseArea.visible: false
-        divider.anchors.leftMargin: units.gu(2)
-        divider.anchors.rightMargin: units.gu(2)
 
         Label {
             anchors {
@@ -121,6 +116,14 @@ ContactDetailGroupWithTypeBase {
 
             // style
             fontSize: "medium"
+        }
+        ThinDivider {
+            anchors {
+                leftMargin: units.gu(2)
+                rightMargin: units.gu(2)
+                bottom: parent.bottom
+                bottomMargin: units.gu(1)
+            }
         }
     }
 
@@ -157,7 +160,6 @@ ContactDetailGroupWithTypeBase {
         fields: root.fields
         height: implicitHeight
         width: root.width
-        selected: activeFocus
 
         inputMethodHints: root.inputMethodHints
         onDetailChanged: updateCombo(false)
