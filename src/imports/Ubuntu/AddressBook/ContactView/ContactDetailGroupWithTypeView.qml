@@ -28,31 +28,18 @@ ContactDetailGroupWithTypeBase {
     signal actionTrigerred(string actionName, QtObject detail)
 
     showEmpty: false
-    headerDelegate: Item {
-        width: root.width
-        height: units.gu(5)
+    headerDelegate: Label {
+        id: header
 
-        Label {
-            anchors {
-                verticalCenter: parent.verticalCenter
-                left: parent.left
-                right: parent.right
-                margins: units.gu(2)
-            }
-
-            text: root.title
-
-            // style
-            fontSize: "medium"
-        }
-
+        width: root.width - units.gu(4)
+        x: units.gu(2)
+        height: units.gu(4)
+        text: root.title
+        // style
+        fontSize: "medium"
+        verticalAlignment: Text.AlignVCenter
         ThinDivider {
-            anchors {
-                leftMargin: units.gu(2)
-                rightMargin: units.gu(2)
-                bottom: parent.bottom
-                bottomMargin: units.gu(1)
-            }
+            anchors.bottom: parent.bottom
         }
     }
 

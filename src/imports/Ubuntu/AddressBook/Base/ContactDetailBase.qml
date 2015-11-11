@@ -18,7 +18,7 @@ import QtQuick 2.4
 import QtContacts 5.0 as QtContacts
 import Ubuntu.Components.ListItems 1.3 as ListItem
 
-MouseArea {
+FocusScope {
     id: root
     objectName: detail ? "base_" + detailToString(detail.type, -1) + "_" + index : ""
 
@@ -28,6 +28,9 @@ MouseArea {
     property variant fields: null
     // help to test used to retrieve the correct element
     property int index: -1
+    property alias highlightOnFocus: highlight.visible
+
+    signal clicked()
 
     function detailToString(detail, field)
     {
@@ -100,15 +103,25 @@ MouseArea {
     }
 
     Rectangle {
+        id: highlight
+
         anchors.fill: parent
         opacity: 0.1
         visible: root.activeFocus
+        color: "black"
         z: 100
     }
 
-    onClicked: {
-        if (action) {
-            action.triggered(action)
+    MouseArea {
+        anchors.fill: parent
+
+        onClicked: {
+            if (action) {
+                action.triggered(action)
+            }
+            root.clicked()
         }
+
     }
+
 }

@@ -68,6 +68,7 @@ ContactDetailBase {
     detail: contact ? contact.detail(ContactDetail.Avatar) : null
     implicitHeight: units.gu(8)
     implicitWidth: units.gu(8)
+    highlightOnFocus: false
 
     UbuntuShape {
         id: avatar

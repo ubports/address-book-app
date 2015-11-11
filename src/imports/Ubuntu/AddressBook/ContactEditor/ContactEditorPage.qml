@@ -177,7 +177,15 @@ Page {
         contentWidth: parent.width
 
         //after add a new field we need to wait for the contentHeight to change to scroll to the correct position
-        onContentHeightChanged: contactEditor.makeMeVisible(contactEditor.activeItem)
+        onContentHeightChanged: {
+            contactEditor.makeMeVisible(contactEditor.activeItem)
+        }
+
+        Rectangle {
+            color: "green"
+            anchors.fill: editEditor
+            opacity: 0.5
+        }
 
         Column {
             id: contents
@@ -191,6 +199,7 @@ Page {
             height: childrenRect.height
 
             Row {
+                id: editEditor
                 function save()
                 {
                     var avatarSave = avatarEditor.save()
@@ -209,7 +218,7 @@ Page {
                     leftMargin: units.gu(2)
                     right: parent.right
                 }
-                height: Math.max(avatarEditor.height, nameEditor.height) - units.gu(4)
+                height: Math.max(avatarEditor.height, nameEditor.height) - units.gu(2)
 
                 ContactDetailAvatarEditor {
                     id: avatarEditor
@@ -217,6 +226,7 @@ Page {
                     contact: contactEditor.contact
                     height: implicitHeight
                     width: implicitWidth
+                    anchors.verticalCenter: editEditor.verticalCenter
                 }
 
                 ContactDetailNameEditor {
@@ -227,6 +237,7 @@ Page {
                     contact: contactEditor.contact
                 }
             }
+
 
             ContactDetailPhoneNumbersEditor {
                 id: phonesEditor

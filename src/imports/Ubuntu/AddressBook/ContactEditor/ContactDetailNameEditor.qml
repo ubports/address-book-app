@@ -55,6 +55,7 @@ ContactDetailItem {
     spacing: units.gu(1)
     detail: root.contact ? root.contact.name : null
     fields: [ Name.FirstName, Name.LastName ]
+    highlightOnFocus: false
 
     fieldDelegate: TextInputDetail {
         id: textInputDetail
