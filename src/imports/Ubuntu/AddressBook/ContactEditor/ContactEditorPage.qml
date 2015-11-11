@@ -40,9 +40,6 @@ Page {
 
     signal contactSaved(var contact);
 
-    // priv
-    property bool _edgeReady: false
-
     function cancel() {
         for (var i = 0; i < contactEditor.newDetails.length; ++i) {
             contactEditor.contact.removeDetail(contactEditor.newDetails[i])
@@ -105,7 +102,7 @@ Page {
     }
 
     function makeMeVisible(item) {
-        if (!_edgeReady || !item) {
+        if (!enabled || !item) {
             return
         }
 
@@ -133,8 +130,6 @@ Page {
     function ready()
     {
         enabled = true
-        _edgeReady = true
-
         switch (contactEditor.initialFocusSection)
         {
         case "phones":
@@ -153,6 +148,7 @@ Page {
     }
 
     title: isNewContact ? i18n.dtr("address-book-app", "New contact") : i18n.dtr("address-book-app", "Edit")
+    enabled: false
 
     Timer {
         id: focusTimer
@@ -408,8 +404,8 @@ Page {
         }
     }
 
-    Component.onCompleted: {
-        if (!enabled) {
+    onActiveChanged: {
+        if (!active) {
             return
         }
 

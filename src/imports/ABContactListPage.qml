@@ -148,7 +148,6 @@ Page {
         contactList.currentIndex = -1;
         mainPage.contactEditorPage = editorPage;
         pageStack.addPageToNextColumn(mainPage, editorPage);
-        editorPage.ready();
         editorPage.contactSaved.connect(onNewContactSaved);
     }
 
@@ -204,7 +203,7 @@ Page {
         onError: pageStack.contactModelError(error)
         onActiveFocusChanged: {
             //WORKAROUND: avoid lose focus to ContactView actions
-            if (mainPage.active && !activeFocus) {
+            if (mainPage.active && !activeFocus && !mainPage.contactEditorPage) {
                 contactList.forceActiveFocus()
             }
         }
@@ -579,7 +578,6 @@ Page {
             model: contactList.listModel
             contact: ContactsJS.createEmptyContact("", mainPage)
             initialFocusSection: "name"
-            enabled: false
         }
     }
 
@@ -639,7 +637,7 @@ Page {
                                        {model: contactList.listModel,
                                         contact: newContact,
                                         initialFocusSection: "name"},
-                                       showContactEditorPage);
+                                        showContactEditorPage);
         }
 
         anchors.fill: parent
@@ -685,6 +683,7 @@ Page {
                 contactList.showNewContact = false;
                 bottomEdge.visible = true;
                 bottomEdge.close();
+                mainPage.contactEditorPage = null
             }
         }
     }

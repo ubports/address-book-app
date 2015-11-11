@@ -22,10 +22,10 @@ import Ubuntu.Telephony.PhoneNumber 0.1
 //style
 import Ubuntu.Components.Themes.Ambiance 0.1
 
-Item {
+FocusScope {
     id: root
 
-
+    readonly property bool isTextField: true
     property QtObject detail
     property int field: -1
     property variant originalValue: root.detail && (root.field >= 0) ? root.detail.value(root.field) : null
@@ -42,7 +42,7 @@ Item {
     signal removeClicked()
 
     //FIXME: Move this property to TextField as soon as the SDK get ported to QtQuick 2.2
-
+    activeFocusOnTab: true
 
     // WORKAROUND: For some reason TextField.focus property get reset to false
     // we need do a deep investigation on that
@@ -67,7 +67,6 @@ Item {
     PhoneNumberField {
         id: field
 
-        readonly property bool isTextField: true
         //WORKAROUND: Due the SDK bug #1514822, #1514850 we can not disable focus for some items
         //because of that we keep the focus only for textFields. This will block the user
         //to use keyboard on "add-field" combo box and some other functionalities
@@ -86,7 +85,6 @@ Item {
         anchors.fill: parent
         defaultRegion: PhoneUtils.defaultRegion
         autoFormat: false
-
 
         // Ubuntu.Keyboard
         // TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
@@ -110,7 +108,8 @@ Item {
             family: "Ubuntu"
             pixelSize: activeFocus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
         }
+
         Keys.onReturnPressed: forceActiveFocusForNextField()
         Keys.onTabPressed: forceActiveFocusForNextField()
-        }
+    }
 }
