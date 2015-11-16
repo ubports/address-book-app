@@ -248,12 +248,8 @@ Item {
       This property holds the vertical velocity of the list
     */
     readonly property real verticalVelocity: view.verticalVelocity
-    /*!
-      \qmlproperty Contact highlightedContact
 
-      This property holds a reference to the Contact that should be highlighted
-    */
-    property Contact highlightedContact: null
+    property alias highlightSelected: view.highlightSelected
 
     property var _busyDialog: null
 
@@ -382,7 +378,6 @@ Item {
         property bool showFavourites: true
         property alias favouritesIsSelected: contactsModel.onlyFavorites
         property bool contactsLoaded: false
-        highlightedContact: root.highlightedContact
 
         function getSectionText(index) {
             var tag = listModel.contacts[index].tag.tag

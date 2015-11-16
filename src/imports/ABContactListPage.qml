@@ -184,9 +184,7 @@ Page {
         filterTerm: searchField.text
         multiSelectionEnabled: true
         multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
-        highlightedContact: contactViewPage ? contactViewPage.contact :
-                            contactEditorPage ? contactEditorPage.contact : null
-
+        highlightSelected: pageStack.columns > 1
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
         onAddNewContactClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
 
