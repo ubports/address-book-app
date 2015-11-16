@@ -76,6 +76,7 @@ ContactDetailBase {
 
         iconName: root.contact && root.contact.favorite.favorite ? "starred" : "non-starred"
         height: units.gu(4)
+        visible: root.editable || (root.contact && root.contact.favorite.favorite)
         iconSize: units.gu(3)
         width: height
         anchors {
