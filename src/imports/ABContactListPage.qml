@@ -109,13 +109,10 @@ Page {
 
     function importContact(urls)
     {
-        if (urls.length > 0) {
-            var importDialog = Qt.createQmlObject("VCardImportDialog{}",
-                               mainPage,
-                               "VCardImportDialog")
-            if (importDialog) {
-                importDialog.importVCards(contactList.listModel, urls)
-            }
+        for(var i=0, iMax=urls.length; i < iMax; i++) {
+            var url = urls[i]
+            if (url && url != "")
+                contactList.listModel.importContacts(url)
         }
     }
 
@@ -289,6 +286,10 @@ Page {
                 target: searchField
                 text: ""
             }
+            PropertyChanges {
+                target: contactList
+                filter: null
+            }
         },
         PageHeadState {
             id: searchingState
@@ -418,12 +419,46 @@ Page {
                 target: bottomEdge
                 enabled: false
             }
+        },
+        PageHeadState {
+            id: varctImportedState
+
+            name: "vcardImported"
+            backAction: Action {
+                iconName: "back"
+                text: i18n.tr("Back")
+                onTriggered: {
+                    contactList.forceActiveFocus()
+                    mainPage.state = "default"
+                    importedIdsFilter.ids = []
+                }
+            }
+            PropertyChanges {
+                target: mainPage.head
+                backAction: varctImportedState.backAction
+            }
+            PropertyChanges {
+                target: bottomEdge
+                enabled: false
+            }
+            PropertyChanges {
+                target: contactList
+                filter: importedIdsFilter
+            }
+            PropertyChanges {
+                target: mainPage
+                title: i18n.tr("Imported contacts")
+            }
         }
     ]
     onActiveChanged: {
         if (active && contactList.showAddNewButton) {
             contactList.positionViewAtBeginning()
         }
+    }
+
+    IdFilter {
+        id: importedIdsFilter
     }
 
     KeyboardRectangle {
@@ -478,16 +513,6 @@ Page {
         }
     }
 
-    Connections {
-        target: mainPage.contactModel
-        onContactsChanged: {
-            if (contactIndex) {
-                contactList.positionViewAtContact(mainPage.contactIndex)
-                mainPage.contactIndex = null
-            }
-        }
-    }
-
     ContactExporter {
         id: contactExporter
 
@@ -538,7 +563,7 @@ Page {
 
     Component.onCompleted: {
         application.elapsed()
-        if ((typeof(TEST_DATA) !== "undefined") && (TEST_DATA !== "")) {
+        if ((typeof(TEST_DATA) !== "undefined") && (TEST_DATA != "")) {
             contactList.listModel.importContacts("file://" + TEST_DATA)
         }
 
@@ -643,6 +668,27 @@ Page {
 
         onClicked: {
             bottomEdge.open();
+        }
+    }
+
+    Connections {
+        target: mainPage.contactModel
+        onContactsChanged: {
+            if (contactIndex) {
+                contactList.positionViewAtContact(mainPage.contactIndex)
+                mainPage.contactIndex = null
+            }
+        }
+        onImportCompleted: {
+            if (error !== ContactModel.ImportNoError) {
+                console.error("Fail to import vcard:" + error)
+            } else {
+                var importedIds = ids
+                importedIds.concat(importedIdsFilter.ids)
+                importedIdsFilter.ids = importedIds
+                console.debug("Imported ids:" + importedIds)
+                mainPage.state = "vcardImported"
+            }
         }
     }
 
