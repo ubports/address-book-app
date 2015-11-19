@@ -145,11 +145,11 @@ MultipleSelectionListView {
     property list<Action> rightSideActions
 
     /*!
-      \qmlproperty Contact highlightedContact
+      \qmlproperty highlightSelected
 
-      This property holds a reference to the Contact that should be highlighted
+      This property holds if the current contact should be highlighted or not
     */
-    property Contact highlightedContact: null
+    property bool highlightSelected: false
 
     /* internal */
     property var _currentSwipedItem: null
@@ -275,7 +275,7 @@ MultipleSelectionListView {
         flicking: contactListView.flicking
         width: parent.width
         selected: (contactListView.multiSelectionEnabled && contactListView.isSelected(contactDelegate))
-                  || (contactListView.currentIndex == index)
+                  || (contactListView.highlightSelected && (contactListView.currentIndex == index))
         selectionMode: contactListView.isInSelectionMode
         defaultAvatarUrl: contactListView.defaultAvatarImageUrl
         isCurrentItem: ListView.isCurrentItem
