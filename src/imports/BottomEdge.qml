@@ -89,9 +89,9 @@ Item {
                 id: bottomEdgeLoader
                 sourceComponent: bottomEdge.contentComponent
                 asynchronous: true
+                active: bottomEdge.enabled
             }
         }
-
 
         BottomEdgeHint {
             id: bottomEdgeHint
