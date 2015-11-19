@@ -121,7 +121,5 @@ FocusScope {
             }
             root.clicked()
         }
-
     }
-
 }

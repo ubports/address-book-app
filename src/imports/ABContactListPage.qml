@@ -207,7 +207,10 @@ Page {
         onError: pageStack.contactModelError(error)
         onActiveFocusChanged: {
             //WORKAROUND: avoid lose focus to ContactView actions
-            if (mainPage.active && !activeFocus && !mainPage.contactEditorPage) {
+            if (mainPage.active &&
+               !activeFocus &&
+               !mainPage.contactEditorPage &&
+               (mainPage.state === "default")) {
                 contactList.forceActiveFocus()
             }
         }
@@ -234,8 +237,9 @@ Page {
         inputMethodHints: Qt.ImhNoPredictiveText
         placeholderText: i18n.tr("Search...")
         onFocusChanged: {
-            if (visible && focus)
+            if (visible && focus) {
                 searchField.forceActiveFocus()
+            }
         }
     }
 
@@ -704,6 +708,7 @@ Page {
                 bottomEdge.visible = true;
                 bottomEdge.close();
                 mainPage.contactEditorPage = null
+                contactList.forceActiveFocus()
             }
         }
     }

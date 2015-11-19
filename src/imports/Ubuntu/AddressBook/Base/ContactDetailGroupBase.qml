@@ -33,6 +33,7 @@ FocusScope {
     property int minimumHeight: 0
     property bool loaded: false
     property bool showEmpty: true
+    property bool forceFocusOnFieldCreation: false
 
     signal newFieldAdded(var index)
 
@@ -146,7 +147,7 @@ FocusScope {
                         newFields.push(detailItem.item)
                         root.newFieldAdded(detailItem.item)
                         root.inputFields = newFields
-                        if (root.loaded) {
+                        if (root.loaded && root.forceFocusOnFieldCreation) {
                             item.forceActiveFocus()
                         }
                     }

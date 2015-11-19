@@ -43,6 +43,8 @@ ContactDetailBase {
         return detail.value(field)
     }
 
+    activeFocusOnTab: icon.visible
+    focus: false
     implicitHeight: view.implicitHeight
     onIsReadyChanged: populateValues()
 
@@ -78,5 +80,7 @@ ContactDetailBase {
         width: root.action && (root.action.iconName !== "") ? units.gu(2.5) : 0
         height: width
         name: root.action ? root.action.iconName : ""
+        color: root.activeFocus ? UbuntuColors.orange : "gray"
+        visible: width > 0
     }
 }

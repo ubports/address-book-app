@@ -98,6 +98,7 @@ ContactDetailGroupWithTypeBase {
         return changed
     }
 
+    forceFocusOnFieldCreation: true
     headerDelegate: Label {
         id: header
 
