@@ -318,6 +318,11 @@ Page {
                 target: searchField
                 text: ""
             }
+
+            PropertyChanges {
+                target: bottomEdge
+                enabled: false
+            }
         },
         PageHeadState {
             id: selectionState
@@ -417,10 +422,6 @@ Page {
                 target: contactList
                 detailToPick: -1
                 showAddNewButton: true
-            }
-            PropertyChanges {
-                target: bottomEdge
-                enabled: false
             }
         }
     ]
