@@ -213,10 +213,15 @@ Page {
             right: parent.right
             rightMargin: units.gu(2)
         }
-        visible: mainPage.searching
+        focus: false
+        visible: false
         onTextChanged: contactList.currentIndex = -1
         inputMethodHints: Qt.ImhNoPredictiveText
         placeholderText: i18n.tr("Search...")
+        onFocusChanged: {
+            if (visible && focus)
+                searchField.forceActiveFocus()
+        }
     }
 
     Connections {
@@ -309,6 +314,11 @@ Page {
             }
 
             PropertyChanges {
+                target: bottomEdge
+                enabled: false
+            }
+
+            PropertyChanges {
                 target: mainPage.head
                 backAction: searchingState.backAction
                 contents: searchField
@@ -320,8 +330,9 @@ Page {
             }
 
             PropertyChanges {
-                target: bottomEdge
-                enabled: false
+                target: searchField
+                visible: true
+                focus: true
             }
         },
         PageHeadState {
@@ -425,6 +436,7 @@ Page {
             }
         }
     ]
+
     onActiveChanged: {
         if (active && contactList.showAddNewButton) {
             contactList.positionViewAtBeginning()
