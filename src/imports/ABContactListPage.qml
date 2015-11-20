@@ -89,6 +89,12 @@ Page {
 
     function showContact(contact)
     {
+        var currentContact = contactList.listModel.contacts[contactList.currentIndex]
+        if (contactViewPage && (contactViewPage.contact.contactId === currentContact.contactId)) {
+            console.debug("Skip show contact")
+            return
+        }
+
         // go back to normal state if not searching
         if (state !== "searching") {
             mainPage.state = "default";
@@ -222,6 +228,15 @@ Page {
                 (pageStack.columns > 1) &&
                 (contactList.currentIndex === -1)) {
                 contactList.currentIndex = 0
+            }
+        }
+        onCurrentIndexChanged: {
+            if ((currentIndex >= 0) && (pageStack.columns > 1)) {
+                var currentContact = contactList.listModel.contacts[currentIndex]
+                if (contactViewPage && (contactViewPage.contact.contactId === currentContact.contactId))
+                    return
+
+                contactList.view._fetchContact(currentIndex, currentContact)
             }
         }
     }

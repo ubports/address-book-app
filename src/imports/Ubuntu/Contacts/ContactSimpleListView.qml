@@ -257,10 +257,6 @@ MultipleSelectionListView {
         dirtyModel.restart()
     }
 
-    onCurrentIndexChanged: {
-        contactListView._fetchContact(currentIndex, listModel.contacts[currentIndex])
-    }
-
     onFlickStarted: view.currentIndex = -1
     listDelegate: ContactDelegate {
         id: contactDelegate
@@ -315,6 +311,7 @@ MultipleSelectionListView {
                 }
             } else {
                 contactListView.currentIndex = index
+                contactListView._fetchContact(index, contact)
             }
         }
 
