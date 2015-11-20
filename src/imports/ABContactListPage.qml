@@ -269,6 +269,7 @@ Page {
         }
 
         Keys.onTabPressed: contactList.forceActiveFocus()
+        Keys.onDownPressed: contactList.forceActiveFocus()
     }
 
     Connections {
