@@ -189,6 +189,7 @@ Page {
             bottom: keyboard.top
             right: parent.right
         }
+        currentIndex: 0
         filterTerm: searchField.text
         multiSelectionEnabled: true
         multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
@@ -228,6 +229,10 @@ Page {
                 (pageStack.columns > 1) &&
                 (contactList.currentIndex === -1)) {
                 contactList.currentIndex = 0
+            }
+            if ((pageStack.columns > 1) && !contactViewPage && (contactList.count > 0)) {
+                var currentContact = contactList.listModel.contacts[currentIndex]
+                contactList.view._fetchContact(currentIndex, currentContact)
             }
         }
         onCurrentIndexChanged: {
