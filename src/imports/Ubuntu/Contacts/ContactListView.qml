@@ -253,6 +253,10 @@ FocusScope {
 
     property var _busyDialog: null
 
+    //WORKAROUND: SDK does not allow us to disable focus for items due bug: #1514822
+    //because of that we need this
+    property bool _allowFocus: true
+
     /*!
       This handler is called when the selection mode is finished without be canceled
     */
@@ -628,17 +632,22 @@ FocusScope {
     }
 
     Keys.onUpPressed: {
+        //WORKAROUND: SDK does not allow us to disable focus for items due bug: #1514822
+        //because of that we need this
         if (view.currentIndex == 0) {
-            view.currentIndex = view.count - 1
+            pageStack._nextItemInFocusChain(view, false)
         } else {
             view.currentIndex -= 1
         }
     }
     Keys.onDownPressed: {
+        //WORKAROUND: SDK does not allow us to disable focus for items due bug: #1514822
+        //because of that we need this
         if (view.currentIndex == (view.count - 1)) {
-            view.currentIndex = 0
+            pageStack._nextItemInFocusChain(view, true)
         } else {
             view.currentIndex += 1
         }
     }
+    Keys.onRightPressed: pageStack._nextItemInFocusChain(view, true)
 }

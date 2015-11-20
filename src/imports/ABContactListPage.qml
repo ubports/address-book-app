@@ -172,7 +172,6 @@ Page {
     }
 
     title: i18n.tr("Contacts")
-    focus: true
 
     flickable: null
     ContactsUI.ContactListView {
@@ -248,6 +247,10 @@ Page {
 
     TextField {
         id: searchField
+
+        //WORKAROUND: SDK does not allow us to disable focus for items due bug: #1514822
+        //because of that we need this
+        readonly property bool _allowFocus: true
 
         anchors {
             left: parent.left

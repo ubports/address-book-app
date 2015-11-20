@@ -25,7 +25,11 @@ import Ubuntu.Components.Themes.Ambiance 0.1
 FocusScope {
     id: root
 
+    //WORKAROUND: SDK does not allow us to disable focus for items due bug: #1514822
+    //because of that we need this
+    readonly property bool _allowFocus: true
     readonly property bool isTextField: true
+
     property QtObject detail
     property int field: -1
     property variant originalValue: root.detail && (root.field >= 0) ? root.detail.value(root.field) : null
@@ -111,6 +115,6 @@ FocusScope {
         }
 
         Keys.onReturnPressed: forceActiveFocusForNextField(event)
-        Keys.onTabPressed: forceActiveFocusForNextField(event)
+        Keys.onTabPressed: pageStack._nextItemInFocusChain(field, !(event.modifiers & Qt.ShiftModifier))
     }
 }
