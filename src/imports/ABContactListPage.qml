@@ -213,6 +213,9 @@ Page {
                (mainPage.state === "default")) {
                 contactList.forceActiveFocus()
             }
+            if (activeFocus && (contactList.currentIndex === -1)) {
+                contactList.currentIndex = 0
+            }
         }
         onCountChanged: {
             if (mainPage.active &&
@@ -231,16 +234,21 @@ Page {
             right: parent.right
             rightMargin: units.gu(2)
         }
-        focus: false
         visible: false
         onTextChanged: contactList.currentIndex = -1
         inputMethodHints: Qt.ImhNoPredictiveText
         placeholderText: i18n.tr("Search...")
-        onFocusChanged: {
-            if (visible && focus) {
-                searchField.forceActiveFocus()
+        onVisibleChanged: {
+            if (visible) {
+                if (activeFocus) {
+                    Qt.imputMethod.show()
+                } else {
+                    searchField.forceActiveFocus()
+                }
             }
         }
+
+        Keys.onTabPressed: contactList.forceActiveFocus()
     }
 
     Connections {
