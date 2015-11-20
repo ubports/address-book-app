@@ -70,12 +70,13 @@ FocusScope {
         //WORKAROUND: Due the SDK bug #1514822, #1514850 we can not disable focus for some items
         //because of that we keep the focus only for textFields. This will block the user
         //to use keyboard on "add-field" combo box and some other functionalities
-        function forceActiveFocusForNextField()
+        function forceActiveFocusForNextField(keyEvent)
         {
-            var next = field.nextItemInFocusChain(true)
+            var backward = (keyEvent.modifiers & Qt.ShiftModifier)
+            var next = field.nextItemInFocusChain(!backward)
             // only focus on TextInputDetails
             while (!next || !next.hasOwnProperty("isTextField")) {
-                next = next.nextItemInFocusChain(true)
+                next = next.nextItemInFocusChain(!backward)
             }
             if (next) {
                 next.forceActiveFocus()
@@ -109,7 +110,7 @@ FocusScope {
             pixelSize: activeFocus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
         }
 
-        Keys.onReturnPressed: forceActiveFocusForNextField()
-        Keys.onTabPressed: forceActiveFocusForNextField()
+        Keys.onReturnPressed: forceActiveFocusForNextField(event)
+        Keys.onTabPressed: forceActiveFocusForNextField(event)
     }
 }
