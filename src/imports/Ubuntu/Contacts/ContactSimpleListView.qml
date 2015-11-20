@@ -204,7 +204,7 @@ MultipleSelectionListView {
     */
     function positionViewAtContact(contact)
     {
-        positionViewAtIndex(getIndex(contact), ListView.Center)
+        currentIndex = getIndex(contact)
     }
 
     /*!
@@ -237,7 +237,6 @@ MultipleSelectionListView {
     }
 
     highlightFollowsCurrentItem: true
-    currentIndex: -1
     section {
         property: showSections ? "contact.tag.tag" : ""
         criteria: ViewSection.FirstCharacter
@@ -257,7 +256,6 @@ MultipleSelectionListView {
         dirtyModel.restart()
     }
 
-    onFlickStarted: view.currentIndex = -1
     listDelegate: ContactDelegate {
         id: contactDelegate
 
@@ -372,14 +370,5 @@ MultipleSelectionListView {
         property int currentOperation: -1
         property int pendingTargetIndex: 0
         property variant pendingTargetMode: null
-    }
-
-    Connections {
-        target: Qt.application
-        onActiveChanged: {
-            if (!Qt.application.active) {
-                currentIndex = -1
-            }
-        }
     }
 }
