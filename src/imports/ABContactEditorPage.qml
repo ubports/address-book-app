@@ -35,10 +35,8 @@ ContactEditorPage {
 
         text: i18n.tr("Cancel")
         iconName: "back"
-        shortcut: root.active ? "Esc" : ""
-        onTriggered: {
-            root.cancel()
-        }
+        shortcut: root.active && root.enabled ? "Esc" : ""
+        onTriggered: root.cancel()
     }
 
     head.actions: [

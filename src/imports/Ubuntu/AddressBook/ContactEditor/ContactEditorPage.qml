@@ -31,7 +31,6 @@ Page {
     property QtObject model: null
     property QtObject activeItem: null
 
-
     property string initialFocusSection: ""
     property var newDetails: []
 
@@ -388,9 +387,12 @@ Page {
                     right: parent.right
                     margins: units.gu(2)
                 }
-                onClicked: {
-                    var dialog = PopupUtils.open(removeContactDialog, null)
-                    dialog.contacts = [contactEditor.contact]
+                action: Action {
+                    shortcut: contactEditor.active && deleteButton.visible ? "Ctrl+Delete" : ""
+                    onTriggered: {
+                        var dialog = PopupUtils.open(removeContactDialog, null)
+                        dialog.contacts = [contactEditor.contact]
+                    }
                 }
             }
 
@@ -480,10 +482,14 @@ Page {
             }
 
             // hide virtual keyboard if necessary
-            Component.onCompleted: Qt.inputMethod.hide()
+            Component.onCompleted: {
+                contactEditor.enabled = false
+                Qt.inputMethod.hide()
+            }
 
             // WORKAROUND: SDK element crash if pop the page where the dialog was created
             Component.onDestruction: {
+                contactEditor.enabled = true
                 if (popPages) {
                     if (contactEditor.pageStack.removePages) {
                         contactEditor.pageStack.removePages(contactEditor)
