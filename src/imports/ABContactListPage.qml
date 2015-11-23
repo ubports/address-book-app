@@ -130,8 +130,9 @@ Page {
 
     function moveListToContact(contact)
     {
-        // skipt it if searching
-        if (state === "searching") {
+        // skipt it if searching or importing contacts
+        if ((state === "searching") ||
+            (state === "vcardImported")) {
             return
         }
 
