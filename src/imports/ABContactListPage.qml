@@ -307,10 +307,6 @@ Page {
                 target: searchField
                 text: ""
             }
-            PropertyChanges {
-                target: contactList
-                filter: null
-            }
         },
         PageHeadState {
             id: searchingState
@@ -474,12 +470,25 @@ Page {
                 enabled: false
             }
             PropertyChanges {
-                target: contactList
-                filter: importedIdsFilter
-            }
-            PropertyChanges {
                 target: mainPage
                 title: i18n.tr("Imported contacts")
+            }
+        }
+    ]
+
+    //WORKAROUND: we need to call 'changeFilter' manually to make sure that the model will be cleared
+    // before update it with the new model. This is faster than do a match of contacts
+    transitions: [
+         Transition {
+            from: "vcardImported"
+            ScriptAction {
+                script: contactList.listModel.changeFilter(null)
+            }
+        },
+        Transition {
+            to: "vcardImported"
+            ScriptAction {
+                script: contactList.listModel.changeFilter(importedIdsFilter)
             }
         }
     ]
