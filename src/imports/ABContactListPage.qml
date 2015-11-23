@@ -38,6 +38,7 @@ Page {
     property alias contactManager: contactList.manager
     property Page contactViewPage: null
     property Page contactEditorPage: null
+    property var _busyDialog: null
 
     readonly property bool bottomEdgePageOpened: bottomEdge.opened && bottomEdge.fullLoaded
     readonly property bool isEmpty: (contactList.count === 0)
@@ -113,10 +114,19 @@ Page {
 
     function importContact(urls)
     {
+        mainPage._busyDialog = PopupUtils.open(busyDialogComponent, mainPage)
+
+        var importing = false
         for(var i=0, iMax=urls.length; i < iMax; i++) {
             var url = urls[i]
             if (url && url != "")
+                importing = true
                 contactList.listModel.importContacts(url)
+        }
+
+        if (!importing) {
+            PopupUtils.close(mainPage._busyDialog)
+            mainPage._busyDialog = null
         }
     }
 
@@ -580,6 +590,21 @@ Page {
     }
 
     Component {
+        id: busyDialogComponent
+
+         Popups.Dialog {
+            id: busyDialog
+
+            title: i18n.tr("Importing...")
+
+            ActivityIndicator {
+                id: busyIndicator
+                running: true
+            }
+        }
+    }
+
+    Component {
         id: contactShareComponent
 
         ContactSharePage {
@@ -714,6 +739,11 @@ Page {
                 importedIdsFilter.ids = importedIds
                 console.debug("Imported ids:" + importedIds)
                 mainPage.state = "vcardImported"
+            }
+
+            if (mainPage._busyDialog) {
+                PopupUtils.close(mainPage._busyDialog)
+                mainPage._busyDialog = null
             }
         }
     }
