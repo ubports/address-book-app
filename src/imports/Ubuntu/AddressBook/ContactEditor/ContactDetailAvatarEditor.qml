@@ -88,8 +88,8 @@ ContactDetailBase {
             width: units.gu(3)
             visible: source == defaultAvatar
             sourceSize {
-                width: units.gu(3)
-                height: units.gu(3)
+                width: avatarImage.visible ? units.gu(3) : avatar.width
+                height: avatarImage.visible ? units.gu(3) : avatar.height
             }
 
             // When updating the avatar using the content picker the temporary file returned
