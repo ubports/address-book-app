@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-09-23 06:31+0000\n"
-"X-Generator: Launchpad (build 17749)\n"
+"X-Launchpad-Export-Date: 2015-11-06 05:38+0000\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:77
 #, qt-format
@@ -28,11 +28,11 @@ msgid "%1 vCards imported"
 msgstr "%1件のvCardをインポートしました"
 
 #. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:400
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:448
 msgid "+ Create New"
 msgstr "+ 新規作成"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:317
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:330
 msgid "Add Field"
 msgstr "フィールドを追加"
 
@@ -40,7 +40,7 @@ msgstr "フィールドを追加"
 msgid "Add Google account"
 msgstr ""
 
-#: ../src/imports/ABContactListPage.qml:360
+#: ../src/imports/ABContactListPage.qml:397
 msgid "Add contact"
 msgstr "連絡先を追加"
 
@@ -54,7 +54,7 @@ msgstr "番号を追加する..."
 msgid "Address"
 msgstr "住所"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:78
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:134
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:49
 msgid "Addressbook"
 msgstr "アドレス帳"
@@ -65,7 +65,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:247
+#: ../src/imports/ABContactListPage.qml:286
 msgid "All"
 msgstr "すべて"
 
@@ -77,21 +77,22 @@ msgstr "選択した連絡先をすべて削除しますか？"
 msgid "Are you sure that you want to remove this contact?"
 msgstr "この連絡先を削除しますか？"
 
-#: ../src/imports/ABContactEditorPage.qml:31
-#: ../src/imports/ABContactListPage.qml:260 ../src/imports/MainWindow.qml:156
+#: ../src/imports/ABContactEditorPage.qml:36
+#: ../src/imports/ABContactListPage.qml:299 ../src/imports/MainWindow.qml:168
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: ../src/imports/ABContactListPage.qml:284
+#: ../src/imports/ABContactListPage.qml:323
 msgid "Cancel selection"
 msgstr "選択を解除"
 
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:450
 #: ../src/imports/VCardImportDialog.qml:80
 msgid "Close"
 msgstr "閉じる"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:424
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:431
 msgid "Contact Editor"
 msgstr ""
 
@@ -99,7 +100,7 @@ msgstr ""
 msgid "Contact not found"
 msgstr "連絡先が見つかりません"
 
-#: ../src/imports/ABContactListPage.qml:127
+#: ../src/imports/ABContactListPage.qml:161
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "連絡先"
@@ -116,17 +117,17 @@ msgstr "連絡先;人;番号"
 msgid "Country"
 msgstr "国"
 
-#: ../src/imports/ABContactListPage.qml:445
+#: ../src/imports/ABContactListPage.qml:473
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "画面の下からスワイプアップすると新規連絡先を作成します。"
 
-#: ../src/imports/ABContactListPage.qml:320
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:365
+#: ../src/imports/ABContactListPage.qml:359
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:378
 msgid "Delete"
 msgstr "削除"
 
-#: ../src/imports/ABContactViewPage.qml:43
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:150
+#: ../src/imports/ABContactViewPage.qml:51
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:155
 msgid "Edit"
 msgstr "編集"
 
@@ -149,7 +150,7 @@ msgstr "ソーシャルネームを入力"
 msgid "Enter an email address"
 msgstr "メールアドレスを入力"
 
-#: ../src/imports/MainWindow.qml:152
+#: ../src/imports/MainWindow.qml:164
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
 msgstr "エラー"
@@ -162,7 +163,7 @@ msgstr ""
 msgid "Fail to read SIM card"
 msgstr ""
 
-#: ../src/imports/ABContactListPage.qml:247
+#: ../src/imports/ABContactListPage.qml:286
 msgid "Favorites"
 msgstr "お気に入り"
 
@@ -192,11 +193,11 @@ msgstr "IM"
 msgid "Import"
 msgstr ""
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:444
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:509
 msgid "Import contacts from Google"
 msgstr ""
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:455
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:520
 msgid "Import contacts from SIM card"
 msgstr ""
 
@@ -221,7 +222,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "姓"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:521
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:587
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:218
 msgid "Loading..."
 msgstr "読み込み中..."
@@ -248,7 +249,9 @@ msgstr "複数の連絡先"
 msgid "My phone number: %1"
 msgstr ""
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:150
+#: ../src/imports/ABContactListPage.qml:568
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:155
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:456
 msgid "New contact"
 msgstr ""
 
@@ -303,7 +306,7 @@ msgstr "郵便番号"
 msgid "Professional Details"
 msgstr "所属"
 
-#: ../src/imports/ABContactListPage.qml:211
+#: ../src/imports/ABContactListPage.qml:243
 msgid "Quit"
 msgstr "終了"
 
@@ -324,30 +327,30 @@ msgstr ""
 msgid "SIM contacts"
 msgstr ""
 
-#: ../src/imports/ABContactEditorPage.qml:43
+#: ../src/imports/ABContactEditorPage.qml:48
 msgid "Save"
 msgstr "保存"
 
-#: ../src/imports/ABContactListPage.qml:219
+#: ../src/imports/ABContactListPage.qml:251
 msgid "Search"
 msgstr "検索"
 
-#: ../src/imports/ABContactListPage.qml:183
+#: ../src/imports/ABContactListPage.qml:215
 msgid "Search..."
 msgstr "検索…"
 
-#: ../src/imports/ABContactListPage.qml:290
+#: ../src/imports/ABContactListPage.qml:329
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:178
 msgid "Select All"
 msgstr "すべて選択"
 
-#: ../src/imports/ABContactListPage.qml:236
+#: ../src/imports/ABContactListPage.qml:274
 #: ../src/imports/Settings/SettingsPage.qml:30
 msgid "Settings"
 msgstr ""
 
-#: ../src/imports/ABContactListPage.qml:303
-#: ../src/imports/ABContactViewPage.qml:35
+#: ../src/imports/ABContactListPage.qml:342
+#: ../src/imports/ABContactViewPage.qml:38
 msgid "Share"
 msgstr "共有"
 
@@ -364,15 +367,15 @@ msgstr "SNS"
 msgid "Street"
 msgstr "番地等"
 
-#: ../src/imports/ABContactListPage.qml:230
+#: ../src/imports/ABContactListPage.qml:262
 msgid "Sync"
 msgstr "同期"
 
-#: ../src/imports/ABContactListPage.qml:230
+#: ../src/imports/ABContactListPage.qml:262
 msgid "Syncing"
 msgstr "同期中"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:521
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:587
 msgid "Syncing..."
 msgstr "同期しています..."
 
@@ -392,7 +395,7 @@ msgstr ""
 msgid "Unlocking..."
 msgstr ""
 
-#: ../src/imports/ABContactListPage.qml:290
+#: ../src/imports/ABContactListPage.qml:329
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:177
 msgid "Unselect All"
 msgstr ""
@@ -416,11 +419,11 @@ msgstr "Yahoo"
 msgid "Yes"
 msgstr "はい"
 
-#: ../src/imports/ABContactListPage.qml:444
+#: ../src/imports/ABContactListPage.qml:472
 msgid "You have no contacts."
 msgstr "連絡先がありません。"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:437
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:444
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded by running Contacts "
@@ -428,14 +431,14 @@ msgid ""
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:428
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:435
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:433
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:440
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded. Use the sync "
