@@ -83,7 +83,10 @@ Page {
 
     function showContact(contact)
     {
-        mainPage.state = "default";
+        // go back to normal state if not searching
+        if (state !== "searching") {
+            mainPage.state = "default";
+        }
         openViewPage({model: contactList.listModel,
                       contact: contact});
     }
@@ -123,6 +126,11 @@ Page {
 
     function moveListToContact(contact)
     {
+        // skipt it if searching
+        if (state === "searching") {
+            return
+        }
+
         contactIndex = contact
         mainPage.state = "default"
         // this means a new contact was created
@@ -170,15 +178,11 @@ Page {
         filterTerm: searchField.text
         multiSelectionEnabled: true
         multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
-        highlightedContact: contactViewPage ? contactViewPage.contact :
-                            contactEditorPage ? contactEditorPage.contact : null
-
+        highlightSelected: pageStack.columns > 1
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
         onAddNewContactClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
 
-        onContactClicked: {
-            showContact(contact);
-        }
+        onContactClicked: mainPage.showContact(contact)
         onIsInSelectionModeChanged: mainPage.state = isInSelectionMode ? "selection"  : "default"
         onSelectionCanceled: {
             if (pickMode) {
@@ -203,10 +207,15 @@ Page {
             right: parent.right
             rightMargin: units.gu(2)
         }
-        visible: mainPage.searching
+        focus: false
+        visible: false
         onTextChanged: contactList.currentIndex = -1
         inputMethodHints: Qt.ImhNoPredictiveText
         placeholderText: i18n.tr("Search...")
+        onFocusChanged: {
+            if (visible && focus)
+                searchField.forceActiveFocus()
+        }
     }
 
     Connections {
@@ -299,6 +308,11 @@ Page {
             }
 
             PropertyChanges {
+                target: bottomEdge
+                enabled: false
+            }
+
+            PropertyChanges {
                 target: mainPage.head
                 backAction: searchingState.backAction
                 contents: searchField
@@ -307,6 +321,12 @@ Page {
             PropertyChanges {
                 target: searchField
                 text: ""
+            }
+
+            PropertyChanges {
+                target: searchField
+                visible: true
+                focus: true
             }
         },
         PageHeadState {
@@ -408,15 +428,15 @@ Page {
                 detailToPick: -1
                 showAddNewButton: true
             }
-            PropertyChanges {
-                target: bottomEdge
-                enabled: false
-            }
         }
     ]
+
     onActiveChanged: {
         if (active && contactList.showAddNewButton) {
             contactList.positionViewAtBeginning()
+        }
+        if (active && (state === "searching")) {
+            searchField.forceActiveFocus()
         }
     }
 
