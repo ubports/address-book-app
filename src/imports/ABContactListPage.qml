@@ -67,24 +67,18 @@ Page {
     }
 
     function openEditPage(editPageProperties, sourcePage) {
-        var incubator = pageStack.addPageToNextColumn(sourcePage,
-                                          Qt.resolvedUrl("ABContactEditorPage.qml"),
-                                          editPageProperties);
-        incubator.onStatusChanged = function(status) {
-            if (status == Component.Ready) {
-                mainPage.contactEditorPage = incubator.object;
-            }
+        var component = Qt.createComponent(Qt.resolvedUrl("ABContactEditorPage.qml"))
+        if (component.status === Component.Ready) {
+            mainPage.contactEditorPage = component.createObject(mainPage, editPageProperties)
+            pageStack.addPageToNextColumn(sourcePage, mainPage.contactEditorPage)
         }
     }
 
     function openViewPage(viewPageProperties) {
-        var incubator = pageStack.addPageToNextColumn(mainPage,
-                                      Qt.resolvedUrl("ABContactViewPage.qml"),
-                                      viewPageProperties);
-        incubator.onStatusChanged = function(status) {
-            if (status == Component.Ready) {
-                contactViewPage = incubator.object;
-            }
+        var component = Qt.createComponent(Qt.resolvedUrl("ABContactViewPage.qml"))
+        if (component.status === Component.Ready) {
+            mainPage.contactViewPage = component.createObject(mainPage, viewPageProperties)
+            pageStack.addPageToNextColumn(mainPage, mainPage.contactViewPage)
         }
     }
 
