@@ -595,14 +595,28 @@ Page {
     Component {
         id: busyDialogComponent
 
-         Popups.Dialog {
+        Popups.Dialog {
             id: busyDialog
+
+            property alias allowToClose: closeButton.visible
+            property alias showActivity: busyIndicator.visible
 
             title: i18n.tr("Importing...")
 
             ActivityIndicator {
                 id: busyIndicator
-                running: true
+                running: visible
+                visible: true
+            }
+            Button {
+                id: closeButton
+                text: i18n.tr("Close")
+                visible: false
+                color: UbuntuColors.red
+                onClicked: {
+                    PopupUtils.close(mainPage._busyDialog)
+                    mainPage._busyDialog = null
+                }
             }
         }
     }
@@ -736,17 +750,20 @@ Page {
         onImportCompleted: {
             if (error !== ContactModel.ImportNoError) {
                 console.error("Fail to import vcard:" + error)
+                mainPage._busyDialog.title = i18n.tr("Fail to import contacts!")
+                mainPage._busyDialog.allowToClose = true
+                mainPage._busyDialog.showActivity = false
             } else {
                 var importedIds = ids
                 importedIds.concat(importedIdsFilter.ids)
                 importedIdsFilter.ids = importedIds
                 console.debug("Imported ids:" + importedIds)
                 mainPage.state = "vcardImported"
-            }
 
-            if (mainPage._busyDialog) {
-                PopupUtils.close(mainPage._busyDialog)
-                mainPage._busyDialog = null
+                if (mainPage._busyDialog) {
+                    PopupUtils.close(mainPage._busyDialog)
+                    mainPage._busyDialog = null
+                }
             }
         }
     }
