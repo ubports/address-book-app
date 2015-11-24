@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2015 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -64,15 +64,25 @@ Page {
                 onCountChanged: numberFlickable.contentY = 0
             }
             ListItem.Standard {
+                id: addGoogleAccountItem
                 text: i18n.tr("Add Google account")
                 progression: true
                 onClicked: onlineAccountsHelper.setupExec()
+                __foregroundColor: activeFocus ? UbuntuColors.orange : Theme.palette.normal.foreground
+                Keys.onDownPressed: {
+                    if (importFromSimItem.enabled) {
+                        importFromSimItem.forceActiveFocus()
+                    }
+                }
             }
             ListItem.Standard {
+                id: importFromSimItem
                 text: i18n.tr("Import from SIM")
                 progression: true
+                __foregroundColor: activeFocus ? UbuntuColors.orange : Theme.palette.normal.foreground
                 onClicked: pageStack.addPageToCurrentColumn(root, simCardImportPageComponent)
                 enabled: (simList.sims.length > 0) && (simList.present.length > 0)
+                Keys.onUpPressed: addGoogleAccountItem.forceActiveFocus()
             }
         }
     }
@@ -88,5 +98,10 @@ Page {
             targetModel: root.contactListModel
             sims: simList.sims
         }
+    }
+
+    onActiveChanged: {
+        if (active)
+            addGoogleAccountItem.forceActiveFocus()
     }
 }
