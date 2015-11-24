@@ -32,7 +32,6 @@ Item {
     signal openBegin
     signal openEnd
     signal clicked
-    visible: enabled
 
     function open() {
         bottomEdge.state = "expanded";
@@ -323,5 +322,11 @@ Item {
             previousY = mouseY;
             dragDirection = yOffset > 0 ? "BottomToTop" : "TopToBottom";
         }
+    }
+
+    Binding {
+        target: bottomEdge
+        property: 'visible'
+        value: bottomEdge.enabled && !bottomEdge.opened
     }
 }

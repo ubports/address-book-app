@@ -84,7 +84,7 @@ Page {
     function showContact(contact)
     {
         var currentContact = contactList.listModel.contacts[contactList.currentIndex]
-        if (contactViewPage && (contactViewPage.contact.contactId === currentContact.contactId)) {
+        if (contactViewPage && contactViewPage.contact && (contactViewPage.contact.contactId === currentContact.contactId)) {
             console.debug("Skip show contact")
             return
         }
@@ -231,9 +231,10 @@ Page {
         onCurrentIndexChanged: {
             if ((currentIndex >= 0) && (pageStack.columns > 1)) {
                 var currentContact = contactList.listModel.contacts[currentIndex]
-                if (contactViewPage && (contactViewPage.contact.contactId === currentContact.contactId))
+                if (contactViewPage && contactViewPage.contact && (contactViewPage.contact.contactId === currentContact.contactId))
                     return
 
+                console.debug("Fetch new contact index:" + currentIndex + currentContact)
                 contactList.view._fetchContact(currentIndex, currentContact)
             }
         }
@@ -344,6 +345,10 @@ Page {
             PropertyChanges {
                 target: searchField
                 text: ""
+            }
+            PropertyChanges {
+                target: bottomEdge
+                enabled: true
             }
         },
         PageHeadState {
@@ -694,9 +699,7 @@ Page {
         contentComponent: pageStack.columns == 1 ? editorPageBottomEdge : emptyContact
         flickable: contactList
         iconName: "contact-new"
-        enabled: !contactList.isInSelectionMode
         backGroundEffectEnabled: pageStack.columns === 1
-        visible: mainPage.state === "default"
 
         onOpenBegin: {
             contactList.prepareNewContact = true;
@@ -706,7 +709,6 @@ Page {
             }
         }
         onOpenEnd: {
-            bottomEdge.visible = false;
             contactList.showNewContact = true;
             if (pageStack.columns <= 1) {
                 showContactEditorPage(bottomEdge.content);
@@ -723,6 +725,11 @@ Page {
         onEditContact: {
             openEditPage(editPageProperties, mainPage.contactViewPage);
         }
+        onActiveChanged: {
+            if (!mainPage.contactViewPage.active) {
+                mainPage.contactViewPage = null
+            }
+        }
     }
 
     Connections {
@@ -731,10 +738,12 @@ Page {
             if (!mainPage.contactEditorPage.active) {
                 contactList.prepareNewContact = false;
                 contactList.showNewContact = false;
-                bottomEdge.visible = true;
                 bottomEdge.close();
                 mainPage.contactEditorPage = null
                 contactList.forceActiveFocus()
+                bottomEdge.enabled = true
+            } else {
+                bottomEdge.enabled = false
             }
         }
     }
