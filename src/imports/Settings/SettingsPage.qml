@@ -100,8 +100,10 @@ Page {
         }
     }
 
+    Keys.onDownPressed: addGoogleAccountItem.forceActiveFocus()
     onActiveChanged: {
-        if (active)
-            addGoogleAccountItem.forceActiveFocus()
+        if (active) {
+            root.forceActiveFocus()
+        }
     }
 }
