@@ -1,3 +1,24 @@
+address-book-app (0.2+16.04.20151124-0ubuntu1) xenial; urgency=medium
+
+  * Avoid blurry avatar images while creating a new contact. (LP:
+    #1511478)
+  * Does not leave "searching" state while previewing contact. (LP:
+    #1511477)
+  * Load pages sync to avoid delays.
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Tue, 24 Nov 2015 00:30:30 +0000
+
+address-book-app (0.2+16.04.20151123.1-0ubuntu1) xenial; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Created 'editable' property for contact view page.
+  * Does not export contact id.
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Mon, 23 Nov 2015 17:44:05 +0000
+
 address-book-app (0.2+16.04.20151028.2-0ubuntu1) xenial; urgency=medium
 
   * Does not export contact extend detail into vcard. (LP: #1510259)

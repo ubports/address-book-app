@@ -25,6 +25,8 @@ import Ubuntu.AddressBook.Base 0.1
 ContactDetailBase {
     id: root
 
+    property alias editable: favImage.enabled
+
     implicitHeight: units.gu(12)
     implicitWidth: parent.width
     activeFocusOnTab: false
@@ -72,9 +74,11 @@ ContactDetailBase {
 
     ActionButton {
         id: favImage
+        objectName: "contactFavoriteDetail"
 
         iconName: root.contact && root.contact.favorite.favorite ? "starred" : "non-starred"
         height: units.gu(4)
+        visible: root.editable || (root.contact && root.contact.favorite.favorite)
         iconSize: units.gu(3)
         width: height
         anchors {

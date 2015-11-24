@@ -28,6 +28,7 @@ Page {
     property string contactId
     property alias extensions: extensionsContents.children
     property alias model: contactFetch.model
+    property alias editable: contactDetailAvatar.editable
 
     signal contactFetched(QtObject contact)
     signal contactRemoved()
@@ -109,6 +110,9 @@ Page {
             }
 
             ContactDetailAvatarView {
+                id: contactDetailAvatar
+                objectName: "avatar"
+
                 contact: root.contact
                 anchors.left: parent.left
                 height: implicitHeight
