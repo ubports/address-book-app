@@ -206,13 +206,6 @@ Page {
 
         onError: pageStack.contactModelError(error)
         onActiveFocusChanged: {
-            //WORKAROUND: avoid lose focus to ContactView actions
-            if (mainPage.active &&
-               !activeFocus &&
-               !mainPage.contactEditorPage &&
-               (mainPage.state === "default")) {
-                contactList.forceActiveFocus()
-            }
             if (activeFocus && (contactList.currentIndex === -1)) {
                 contactList.currentIndex = 0
             }
@@ -358,7 +351,7 @@ Page {
             backAction: Action {
                 iconName: "back"
                 text: i18n.tr("Cancel")
-                shortcut: mainPage.state === "searching" ? "Esc" : ""
+                shortcut: mainPage.state === "searching" && !mainPage.contactEditorPage ? "Esc" : ""
                 onTriggered: {
                     contactList.forceActiveFocus()
                     mainPage.head.sections.selectedIndex = 0
