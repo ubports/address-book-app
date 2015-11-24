@@ -256,6 +256,40 @@ Item {
             compare(spy.signalArguments[0][0], "mailto")
             compare(spy.signalArguments[0][2].value(0), "bubbagump@example.com")
         }
+
+        function test_editable_property()
+        {
+            // load any contact
+            compare(vcardParser.contacts.length, 1)
+            var contact =  vcardParser.contacts[0]
+            contactPreviewPage.contact = contact
+            tryCompare(contactPreviewPage, "title", "Forrest Gump")
+
+
+            // page is enabled by default
+            var avatar = findChild(contactPreviewPage, "avatar")
+            var favorite = findChild(contactPreviewPage, "contactFavoriteDetail")
+
+            tryCompare(contactPreviewPage, "editable", true)
+            tryCompare(avatar, "editable", true)
+            tryCompare(favorite, "enabled", true)
+
+            contactPreviewPage.editable = false
+
+            tryCompare(contactPreviewPage, "editable", false)
+            tryCompare(avatar, "editable", false)
+            tryCompare(favorite, "enabled", false)
+
+            // click on favorite field
+            var spy = root.createSignalSpy(favorite, "clicked");
+            mouseClick(favorite, favorite.width / 2, favorite.height / 2)
+
+            // wait the click be processed
+            wait(1000)
+
+            // item is disabled, click not accepted
+            tryCompare(spy, "count", 0)
+        }
     }
 }
 
