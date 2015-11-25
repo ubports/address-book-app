@@ -70,6 +70,9 @@ class TestImportFromSimContact(AddressBookAppTestCase):
         self.assertThat(len(contacts), Equals(2))
         self.app.main_window.confirm_import()
 
+        # dismiss imported contact list
+        self.app.main_window.cancel()
+
         # verify if the contact was imported
         new_contacts = list_page.get_contacts()
         self.assertThat(len(new_contacts), Equals(2))

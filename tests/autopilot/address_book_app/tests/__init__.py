@@ -19,6 +19,7 @@
 import os
 import time
 import subprocess
+import re
 
 from autopilot.testcase import AutopilotTestCase
 from autopilot.matchers import Eventually
@@ -47,7 +48,10 @@ class AddressBookAppTestCase(AutopilotTestCase):
 
         # stop vkb
         if model() != "Desktop":
-            subprocess.check_call(["/sbin/initctl", "stop", "maliit-server"])
+            maliit_info = subprocess.Popen(['/sbin/initctl', 'status', 'maliit-server'], stdout=subprocess.PIPE)
+            result = maliit_info.stdout.read()
+            if b'start/running,' in result.split():
+                subprocess.check_call(['/sbin/initctl', 'stop', 'maliit-server'])
 
         if 'AUTOPILOT_APP' in os.environ:
             self.app_bin = os.environ['AUTOPILOT_APP']
