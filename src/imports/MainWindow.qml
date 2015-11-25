@@ -131,6 +131,7 @@ MainView {
             if (next) {
                 next.forceActiveFocus()
             }
+            return next
         }
 
         primaryPage: contactPage

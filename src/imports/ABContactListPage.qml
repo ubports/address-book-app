@@ -219,6 +219,15 @@ Page {
             fetchNewContactTimer.restart()
         }
         onCurrentIndexChanged: fetchNewContactTimer.restart()
+
+        //WORKAROUND: SDK does not allow us to disable focus for items due bug: #1514822
+        //because of that we need this
+        Keys.onRightPressed: {
+            var next = pageStack._nextItemInFocusChain(view, true)
+            if (next === searchField) {
+                pageStack._nextItemInFocusChain(next, true)
+            }
+        }
     }
 
     Timer {
