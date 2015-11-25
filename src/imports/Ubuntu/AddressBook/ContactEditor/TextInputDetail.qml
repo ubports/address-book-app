@@ -115,6 +115,7 @@ FocusScope {
         }
 
         Keys.onReturnPressed: forceActiveFocusForNextField(event)
-        Keys.onTabPressed: pageStack._nextItemInFocusChain(field, !(event.modifiers & Qt.ShiftModifier))
+        Keys.onTabPressed: forceActiveFocusForNextField(event)
+        Keys.onBacktabPressed: forceActiveFocusForNextField(event)
     }
 }
