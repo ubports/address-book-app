@@ -216,19 +216,23 @@ Page {
                 (contactList.currentIndex === -1)) {
                 contactList.currentIndex = 0
             }
-            if ((pageStack.columns > 1) && !contactViewPage && (contactList.count > 0)) {
-                var currentContact = contactList.listModel.contacts[currentIndex]
-                contactList.view._fetchContact(currentIndex, currentContact)
-            }
+            fetchNewContactTimer.restart()
         }
-        onCurrentIndexChanged: {
-            if ((currentIndex >= 0) && (pageStack.columns > 1)) {
-                var currentContact = contactList.listModel.contacts[currentIndex]
+        onCurrentIndexChanged: fetchNewContactTimer.restart()
+    }
+
+    Timer {
+        id: fetchNewContactTimer
+
+        interval: 0
+        repeat: false
+        onTriggered: {
+            if ((contactList.currentIndex >= 0) && (pageStack.columns > 1)) {
+                var currentContact = contactList.listModel.contacts[contactList.currentIndex]
                 if (contactViewPage && contactViewPage.contact && (contactViewPage.contact.contactId === currentContact.contactId))
                     return
 
-                console.debug("Fetch new contact index:" + currentIndex + currentContact)
-                contactList.view._fetchContact(currentIndex, currentContact)
+                contactList.view._fetchContact(contactList.currentIndex, currentContact)
             }
         }
     }
@@ -247,7 +251,6 @@ Page {
         }
 
         visible: false
-        onTextChanged: contactList.currentIndex = -1
         inputMethodHints: Qt.ImhNoPredictiveText
         placeholderText: i18n.tr("Search...")
         onVisibleChanged: {
@@ -262,6 +265,7 @@ Page {
 
         Keys.onTabPressed: contactList.forceActiveFocus()
         Keys.onDownPressed: contactList.forceActiveFocus()
+        Keys.onRightPressed: pageStack._nextItemInFocusChain(searchField, true)
     }
 
     Connections {
