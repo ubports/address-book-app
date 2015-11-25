@@ -132,13 +132,11 @@ Page {
 
     function moveListToContact(contact)
     {
-        // skipt it if searching
-        if (state === "searching") {
-            return
-        }
+        if (state !== "searching")
+            mainPage.state = "default"
+
 
         contactIndex = contact
-        mainPage.state = "default"
         // this means a new contact was created
         if (mainPage.allowToQuit) {
             application.goBackToSourceApp()
