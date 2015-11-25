@@ -313,7 +313,8 @@ Page {
                     text: i18n.tr("Search")
                     iconName: "search"
                     visible: !mainPage.isEmpty
-                    shortcut: mainPage.state === "default" ? "Ctrl+F" : ""
+                    enabled: mainPage.state === "default"
+                    shortcut: "Ctrl+F"
                     onTriggered: {
                         mainPage.state = (mainPage.state === "newphone" ? "newphoneSearching" : "searching")
                         contactList.showAllContacts()
@@ -364,7 +365,8 @@ Page {
             backAction: Action {
                 iconName: "back"
                 text: i18n.tr("Cancel")
-                shortcut: mainPage.state === "searching" && !mainPage.contactEditorPage ? "Esc" : ""
+                enabled: mainPage.state === "searching" && !mainPage.contactEditorPage
+                shortcut:"Esc"
                 onTriggered: {
                     contactList.forceActiveFocus()
                     mainPage.head.sections.selectedIndex = 0
@@ -401,8 +403,9 @@ Page {
             backAction: Action {
                 text: i18n.tr("Cancel selection")
                 iconName: "back"
+                enabled: mainPage.state === "selection"
                 onTriggered: contactList.cancelSelection()
-                shortcut: mainPage.state === "selection" ? "Esc" : ""
+                shortcut: "Esc"
             }
             actions: [
                 Action {

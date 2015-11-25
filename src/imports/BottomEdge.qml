@@ -43,7 +43,8 @@ Item {
 
     Action {
         text: i18n.tr("New contact")
-        shortcut: bottomEdge.visible ? "Ctrl+N" : ""
+        enabled: bottomEdge.visible
+        shortcut: "Ctrl+N"
         onTriggered: bottomEdge.clicked()
     }
 

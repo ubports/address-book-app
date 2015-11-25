@@ -388,7 +388,8 @@ Page {
                     margins: units.gu(2)
                 }
                 action: Action {
-                    shortcut: contactEditor.active && deleteButton.visible ? "Ctrl+Delete" : ""
+                    enabled: contactEditor.active && deleteButton.visible
+                    shortcut: "Ctrl+Delete"
                     onTriggered: {
                         var dialog = PopupUtils.open(removeContactDialog, null)
                         dialog.contacts = [contactEditor.contact]

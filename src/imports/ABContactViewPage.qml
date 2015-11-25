@@ -50,7 +50,8 @@ ContactViewPage {
 
             text: i18n.tr("Edit")
             iconName: "edit"
-            shortcut:root.active ? "Ctrl+e" : ""
+            enabled: root.active
+            shortcut: "Ctrl+e"
             onTriggered: {
                 editContact({model: root.model,
                              contact: root.contact});
