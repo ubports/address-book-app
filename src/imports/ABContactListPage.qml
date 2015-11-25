@@ -36,8 +36,8 @@ Page {
     property QtObject contactIndex: null
     property string newPhoneToAdd: ""
     property alias contactManager: contactList.manager
-    property Page contactViewPage: null
-    property Page contactEditorPage: null
+    property alias contactViewPage: contactViewPageConnections.target
+    property alias contactEditorPage: contactEditorPageConnections.target
 
     readonly property bool bottomEdgePageOpened: bottomEdge.opened && bottomEdge.fullLoaded
     readonly property bool isEmpty: (contactList.count === 0)
@@ -730,28 +730,30 @@ Page {
     }
 
     Connections {
-        target: mainPage.contactViewPage
+        id: contactViewPageConnections
+
         onEditContact: {
             openEditPage(editPageProperties, mainPage.contactViewPage);
         }
         onActiveChanged: {
-            if (!mainPage.contactViewPage.active) {
+            if (mainPage.contactViewPage && !mainPage.contactViewPage.active) {
                 mainPage.contactViewPage = null
             }
         }
     }
 
     Connections {
-        target: mainPage.contactEditorPage
+        id: contactEditorPageConnections
+
         onActiveChanged: {
-            if (!mainPage.contactEditorPage.active) {
+            if (mainPage.contactEditorPage && !mainPage.contactEditorPage.active) {
                 contactList.prepareNewContact = false;
                 contactList.showNewContact = false;
                 bottomEdge.close();
                 mainPage.contactEditorPage = null
                 contactList.forceActiveFocus()
                 bottomEdge.enabled = true
-            } else {
+            } else if (mainPage.contactEditorPage && !mainPage.contactEditorPage.active) {
                 bottomEdge.enabled = false
             }
         }
