@@ -113,9 +113,10 @@ Page {
         var importing = false
         for(var i=0, iMax=urls.length; i < iMax; i++) {
             var url = urls[i]
-            if (url && url != "")
+            if (url && url != "") {
                 importing = true
                 contactList.listModel.importContacts(url)
+            }
         }
 
         if (!importing) {
@@ -443,7 +444,7 @@ Page {
             }
         },
         PageHeadState {
-            id: varctImportedState
+            id: vcardImportedState
 
             name: "vcardImported"
             backAction: Action {
@@ -457,7 +458,7 @@ Page {
             }
             PropertyChanges {
                 target: mainPage.head
-                backAction: varctImportedState.backAction
+                backAction: vcardImportedState.backAction
             }
             PropertyChanges {
                 target: bottomEdge
