@@ -39,6 +39,7 @@ Page {
     property Page contactViewPage: null
     property Page contactEditorPage: null
     property var _busyDialog: null
+    property bool _importingTestData: false
 
     readonly property bool bottomEdgePageOpened: bottomEdge.opened && bottomEdge.fullLoaded
     readonly property bool isEmpty: (contactList.count === 0)
@@ -633,6 +634,7 @@ Page {
     Component.onCompleted: {
         application.elapsed()
         if ((typeof(TEST_DATA) !== "undefined") && (TEST_DATA != "")) {
+            mainPage._importingTestData = true
             contactList.listModel.importContacts("file://" + TEST_DATA)
         }
 
@@ -749,6 +751,11 @@ Page {
             }
         }
         onImportCompleted: {
+            if (mainPage._importingTestData) {
+                mainPage._importingTestData = false
+                return
+            }
+
             if (error !== ContactModel.ImportNoError) {
                 console.error("Fail to import vcard:" + error)
                 mainPage._busyDialog.title = i18n.tr("Fail to import contacts!")
