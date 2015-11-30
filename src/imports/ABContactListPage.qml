@@ -851,7 +851,9 @@ Page {
             openEditPage(editPageProperties, mainPage.contactViewPage);
         }
         onActiveChanged: {
-            if (mainPage.contactViewPage && !mainPage.contactViewPage.active) {
+            if (mainPage.contactViewPage &&
+                !mainPage.contactViewPage.active &&
+                (mainPage.contactEditorPage == null)) { // not editing
                 mainPage.contactViewPage = null
             }
         }
