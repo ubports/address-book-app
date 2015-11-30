@@ -6,7 +6,6 @@ set(ADDRESS_BOOK_APP_QMLS
     ABContactViewPage.qml
     ContentHubProxy.qml
     MainWindow.qml
-    VCardImportDialog.qml
     BottomEdgeShadow.qml
     BottomEdge.qml
 )
