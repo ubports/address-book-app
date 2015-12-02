@@ -299,7 +299,6 @@ Page {
 
         Keys.onTabPressed: contactList.forceActiveFocus()
         Keys.onDownPressed: contactList.forceActiveFocus()
-        Keys.onRightPressed: pageStack._nextItemInFocusChain(searchField, true)
     }
 
     Connections {
