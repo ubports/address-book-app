@@ -256,9 +256,12 @@ Page {
         //WORKAROUND: SDK does not allow us to disable focus for items due bug: #1514822
         //because of that we need this
         Keys.onRightPressed: {
-            var next = pageStack._nextItemInFocusChain(view, true)
-            if (next === searchField) {
-                pageStack._nextItemInFocusChain(next, true)
+            // only move focus away when in edit mode
+            if (mainPage.contactEditorPage) {
+                var next = pageStack._nextItemInFocusChain(view, true)
+                if (next === searchField) {
+                    pageStack._nextItemInFocusChain(next, true)
+                }
             }
         }
         Keys.onTabPressed: {

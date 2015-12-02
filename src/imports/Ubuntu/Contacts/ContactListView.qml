@@ -649,5 +649,4 @@ FocusScope {
             view.currentIndex += 1
         }
     }
-    Keys.onRightPressed: pageStack._nextItemInFocusChain(view, true)
 }
