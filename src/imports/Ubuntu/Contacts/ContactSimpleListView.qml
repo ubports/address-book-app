@@ -205,7 +205,7 @@ MultipleSelectionListView {
     function positionViewAtContact(contact)
     {
         currentIndex = getIndex(contact)
-        positionViewAtIndex(currentIndex, ListView.Visible)
+        positionViewAtIndex(currentIndex, ListView.Center)
     }
 
     /*!
