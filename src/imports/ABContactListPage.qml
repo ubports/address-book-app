@@ -40,6 +40,7 @@ Page {
     property alias contactEditorPage: contactEditorPageConnections.target
     property var _busyDialog: null
     property bool _importingTestData: false
+    property bool _creatingContact: false
 
     readonly property bool bottomEdgePageOpened: bottomEdge.opened && bottomEdge.fullLoaded
     readonly property bool isEmpty: (contactList.count === 0)
@@ -86,7 +87,7 @@ Page {
     function showContact(contact)
     {
         var currentContact = contactList.listModel.contacts[contactList.currentIndex]
-        if (contactViewPage && contactViewPage.contact && (contactViewPage.contact.contactId === currentContact.contactId)) {
+        if (currentContact && contactViewPage && contactViewPage.contact && (contactViewPage.contact.contactId === currentContact.contactId)) {
             console.debug("Skip show contact")
             return
         }
@@ -170,6 +171,8 @@ Page {
     }
 
     function onNewContactSaved(contact) {
+        _creatingContact = true
+        moveListToContact(contact)
         if (pageStack.columns > 1) {
             showContact(contact);
         }
@@ -213,7 +216,7 @@ Page {
         filterTerm: searchField.text
         multiSelectionEnabled: true
         multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
-        highlightSelected: pageStack.columns > 1
+        highlightSelected: pageStack.columns > 1 && !mainPage._creatingContact
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
         onAddNewContactClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
 
@@ -245,7 +248,10 @@ Page {
             }
             fetchNewContactTimer.restart()
         }
-        onCurrentIndexChanged: fetchNewContactTimer.restart()
+        onCurrentIndexChanged: {
+            if (!mainPage.contactIndex)
+                fetchNewContactTimer.restart()
+        }
 
         //WORKAROUND: SDK does not allow us to disable focus for items due bug: #1514822
         //because of that we need this
@@ -828,6 +834,8 @@ Page {
             if (contactIndex) {
                 contactList.positionViewAtContact(mainPage.contactIndex)
                 mainPage.contactIndex = null
+                // at this point the operation has finished already
+                mainPage._creatingContact = false
             }
         }
         onImportCompleted: {
