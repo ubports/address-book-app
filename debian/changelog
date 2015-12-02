@@ -1,3 +1,10 @@
+address-book-app (0.2+16.04.20151202.5-0ubuntu1) xenial; urgency=medium
+
+  * Check for sim card contacts on "GSettings.schemaChanged" signal.
+    (LP: #1522010)
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Wed, 02 Dec 2015 21:52:02 +0000
+
 address-book-app (0.2+16.04.20151125.2-0ubuntu1) xenial; urgency=medium
 
   * Show a list of imported contacts when importing vcards.
