@@ -31,6 +31,8 @@ Page {
     property var targetModel: null
     property var sims: []
 
+    signal importCompleted()
+
     title: i18n.dtr("address-book-app", "SIM contacts")
 
     function lockedSIMCount()
@@ -145,6 +147,7 @@ Page {
             if (vcardFile != "" && !contactImported) {
                 contactImported = true
                 contactList.listModel.importContacts(vcardFile)
+
             }
         }
         onVcardFileChanged: {
@@ -167,7 +170,7 @@ Page {
             if ((error === ContactModel.ExportNoError) && targetModel) {
                 targetModel.importContacts(url)
              }
-            pageStack.removePages(root)
+            root.importCompleted()
         }
     }
 
