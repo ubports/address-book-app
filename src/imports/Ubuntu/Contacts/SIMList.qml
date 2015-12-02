@@ -23,6 +23,7 @@ import GSettings 1.0
 Item {
     id: root
 
+    property bool completed: false
     property var sims: []
     property var present: []
 
@@ -76,6 +77,15 @@ Item {
 
     OfonoManager {
         id: ofonoManager
-        onModemsChanged: root.createQML(modems.slice(0).sort())
+        onModemsChanged: {
+            if (root.completed) {
+                root.createQML(modems.slice(0).sort())
+            }
+        }
+    }
+
+    Component.onCompleted: {
+        root.createQML(ofonoManager.modems.slice(0).sort())
+        root.completed = true
     }
 }
