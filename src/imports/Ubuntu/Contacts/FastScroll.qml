@@ -71,19 +71,12 @@ Item {
         }
     }
 
-    Connections {
-        target: listView
-        onCurrentIndexChanged: {
-            if (currentIndex != -1) {
-                rail.opacity = 0.0
-            }
-        }
-    }
 
     Rectangle {
         id: magnified
 
         color: Theme.palette.normal.overlay
+        border.color: UbuntuColors.darkGrey
         radius: height * 0.3
         height: pinSize * 2
         width: height
@@ -141,8 +134,7 @@ Item {
         id: rail
 
         property bool isVisible: root.enabled &&
-                                 (listView.flicking || dragArea.pressed) &&
-                                 (listView.currentIndex == -1)
+                                 (listView.flicking || dragArea.pressed)
         anchors {
             right: parent.right
             rightMargin: units.gu(2)
