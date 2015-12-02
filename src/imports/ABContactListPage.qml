@@ -177,6 +177,23 @@ Page {
     title: i18n.tr("Contacts")
 
     flickable: null
+
+    Timer {
+        id: fetchNewContactTimer
+
+        interval: 0
+        repeat: false
+        onTriggered: {
+            if ((contactList.currentIndex >= 0) && (pageStack.columns > 1)) {
+                var currentContact = contactList.listModel.contacts[contactList.currentIndex]
+                if (contactViewPage && contactViewPage.contact && (contactViewPage.contact.contactId === currentContact.contactId))
+                    return
+
+                contactList.view._fetchContact(contactList.currentIndex, currentContact)
+            }
+        }
+    }
+
     ContactsUI.ContactListView {
         id: contactList
         objectName: "contactListView"
@@ -237,23 +254,15 @@ Page {
                 pageStack._nextItemInFocusChain(next, true)
             }
         }
-    }
-
-    Timer {
-        id: fetchNewContactTimer
-
-        interval: 0
-        repeat: false
-        onTriggered: {
-            if ((contactList.currentIndex >= 0) && (pageStack.columns > 1)) {
-                var currentContact = contactList.listModel.contacts[contactList.currentIndex]
-                if (contactViewPage && contactViewPage.contact && (contactViewPage.contact.contactId === currentContact.contactId))
-                    return
-
-                contactList.view._fetchContact(contactList.currentIndex, currentContact)
+        Keys.onTabPressed: {
+            var next = pageStack._nextItemInFocusChain(view, true)
+            if (next === searchField) {
+                pageStack._nextItemInFocusChain(next, true)
             }
         }
     }
+
+
 
     TextField {
         id: searchField
@@ -847,9 +856,8 @@ Page {
     Connections {
         id: contactViewPageConnections
 
-        onEditContact: {
-            openEditPage(editPageProperties, mainPage.contactViewPage);
-        }
+        ignoreUnknownSignals: true
+        onEditContact: openEditPage(editPageProperties, mainPage.contactViewPage);
         onActiveChanged: {
             if (mainPage.contactViewPage &&
                 !mainPage.contactViewPage.active &&
@@ -862,6 +870,7 @@ Page {
     Connections {
         id: contactEditorPageConnections
 
+        ignoreUnknownSignals: true
         onActiveChanged: {
             if (mainPage.contactEditorPage && !mainPage.contactEditorPage.active) {
                 contactList.prepareNewContact = false;
