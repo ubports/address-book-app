@@ -76,7 +76,6 @@ Item {
         id: magnified
 
         color: Theme.palette.normal.overlay
-        border.color: UbuntuColors.darkGrey
         radius: height * 0.3
         height: pinSize * 2
         width: height
