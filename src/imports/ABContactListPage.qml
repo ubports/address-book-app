@@ -166,6 +166,7 @@ Page {
         mainPage.contactEditorPage = editorPage;
         pageStack.addPageToNextColumn(mainPage, editorPage);
         editorPage.contactSaved.connect(onNewContactSaved);
+        editorPage.enabled = true
     }
 
     function onNewContactSaved(contact) {
@@ -731,6 +732,7 @@ Page {
             model: contactList.listModel
             contact: ContactsJS.createEmptyContact("", mainPage)
             initialFocusSection: "name"
+            enabled: false
         }
     }
 
@@ -788,6 +790,7 @@ Page {
             var newContact = ContactsJS.createEmptyContact("", mainPage);
             createObjectAsynchronously(Qt.resolvedUrl("ABContactEditorPage.qml"),
                                        {model: contactList.listModel,
+                                        enabled: false,
                                         contact: newContact,
                                         initialFocusSection: "name"},
                                         showContactEditorPage);
