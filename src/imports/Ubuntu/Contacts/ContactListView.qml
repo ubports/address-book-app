@@ -644,7 +644,7 @@ FocusScope {
         //WORKAROUND: SDK does not allow us to disable focus for items due bug: #1514822
         //because of that we need this
         if (view.currentIndex == (view.count - 1)) {
-            pageStack._nextItemInFocusChain(view, true)
+            //DO nothing
         } else {
             view.currentIndex += 1
         }
