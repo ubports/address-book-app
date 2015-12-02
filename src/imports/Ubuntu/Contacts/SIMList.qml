@@ -23,7 +23,6 @@ import GSettings 1.0
 Item {
     id: root
 
-    property bool completed: false
     property var sims: []
     property var present: []
 
