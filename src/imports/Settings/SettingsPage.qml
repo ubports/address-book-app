@@ -68,7 +68,7 @@ Page {
                 text: i18n.tr("Add Google account")
                 progression: true
                 onClicked: onlineAccountsHelper.setupExec()
-                __foregroundColor: activeFocus ? UbuntuColors.orange : Theme.palette.normal.foreground
+                __foregroundColor: (activeFocus && (pageStack.columns > 1)) ? UbuntuColors.orange : Theme.palette.normal.foreground
                 Keys.onDownPressed: {
                     if (importFromSimItem.enabled) {
                         importFromSimItem.forceActiveFocus()
@@ -79,7 +79,7 @@ Page {
                 id: importFromSimItem
                 text: i18n.tr("Import from SIM")
                 progression: true
-                __foregroundColor: activeFocus ? UbuntuColors.orange : Theme.palette.normal.foreground
+                __foregroundColor: (activeFocus && (pageStack.columns > 1)) ? UbuntuColors.orange : Theme.palette.normal.foreground
                 onClicked: pageStack.addPageToCurrentColumn(root, simCardImportPageComponent)
                 enabled: (simList.sims.length > 0) && (simList.present.length > 0)
                 Keys.onUpPressed: addGoogleAccountItem.forceActiveFocus()
