@@ -73,13 +73,22 @@ Page {
 
                 text: i18n.tr("Add Google account")
                 progression: true
-                __foregroundColor: (activeFocus && (pageStack.columns > 1)) ? UbuntuColors.orange : Theme.palette.normal.foreground
+
                 onClicked: addGoogleAccountItem.activate()
                 Keys.onRightPressed: addGoogleAccountItem.activate()
                 Keys.onDownPressed: {
                     if (importFromSimItem.enabled) {
                         importFromSimItem.forceActiveFocus()
                     }
+                }
+
+                // selection visual feedback
+                __foregroundColor: (activeFocus && (pageStack.columns > 1)) ? "white" : Theme.palette.normal.foreground
+                Rectangle {
+                    color: UbuntuColors.orange
+                    anchors.fill: parent
+                    visible:addGoogleAccountItem.activeFocus
+                    z: -1
                 }
             }
             ListItem.Standard {
@@ -92,11 +101,19 @@ Page {
 
                 text: i18n.tr("Import from SIM")
                 progression: true
-                __foregroundColor: (activeFocus && (pageStack.columns > 1)) ? UbuntuColors.orange : Theme.palette.normal.foreground
                 enabled: (simList.sims.length > 0) && (simList.present.length > 0)
                 onClicked: importFromSimItem.activate()
                 Keys.onRightPressed: importFromSimItem.activate()
                 Keys.onUpPressed: addGoogleAccountItem.forceActiveFocus()
+
+                // selection visual feedback
+                __foregroundColor: (activeFocus && (pageStack.columns > 1)) ? "white" : Theme.palette.normal.foreground
+                Rectangle {
+                    color: UbuntuColors.orange
+                    anchors.fill: parent
+                    visible: importFromSimItem.activeFocus
+                    z: -1
+                }
             }
         }
     }
