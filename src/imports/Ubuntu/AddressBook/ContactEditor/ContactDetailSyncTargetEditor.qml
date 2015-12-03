@@ -28,7 +28,8 @@ ContactDetailBase {
 
     property alias active: sourceModel.autoUpdate
     property bool isNewContact: contact && contact.contactId === "qtcontacts:::"
-    property real myHeight: sources.currentlyExpanded ? sources.containerHeight + units.gu(6) + label.height : sources.itemHeight + units.gu(6) + label.height
+    property real myHeight: label.height + units.gu(6) + (sources.currentlyExpanded ? sources.containerHeight :
+                                                                                      sources.itemHeight)
 
     signal changed()
 
@@ -209,6 +210,7 @@ ContactDetailBase {
             text: {
                 if ((sourceId != "system-address-book") &&
                     (iconSource == "image://theme/address-book-app-symbolic")) {
+                    //TRANSLATORS: %1 is the display name of the source (address-book)
                     return i18n.dtr("address-book-app", "Personal - %1").arg(sourceName)
                 } else {
                     return sourceName
