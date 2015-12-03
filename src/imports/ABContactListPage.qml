@@ -178,6 +178,12 @@ Page {
         }
     }
 
+    function reloadContact()
+    {
+        fetchNewContactTimer.restart()
+        contactList.forceActiveFocus()
+    }
+
     title: i18n.tr("Contacts")
 
     flickable: null
@@ -364,9 +370,21 @@ Page {
                 Action {
                     text: i18n.tr("Settings")
                     iconName: "settings"
-                    onTriggered: pageStack.addPageToNextColumn(mainPage,
-                                                               Qt.resolvedUrl("./Settings/SettingsPage.qml"),
-                                                               {"contactListModel": contactList.listModel})
+                    onTriggered:{
+                        var incubator = pageStack.addPageToNextColumn(mainPage,
+                                                                      Qt.resolvedUrl("./Settings/SettingsPage.qml"),
+                                                                     {"contactListModel": contactList.listModel})
+                        incubator.onStatusChanged = function(status) {
+                            if (status === Component.Ready) {
+                                incubator.object.onActiveChanged.connect(function(active) {
+                                    console.debug("Active:" + incubator.object.active)
+                                    if (!incubator.object.active) {
+                                        mainPage.reloadContact()
+                                    }
+                                })
+                            }
+                        }
+                    }
                 }
             ]
             PropertyChanges {

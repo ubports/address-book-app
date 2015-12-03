@@ -101,6 +101,9 @@ Page {
     }
 
     Keys.onDownPressed: addGoogleAccountItem.forceActiveFocus()
+    Keys.onRightPressed: addGoogleAccountItem.forceActiveFocus()
+    Keys.onLeftPressed: pageStack.removePages(root)
+    Keys.onEscapePressed: pageStack.removePages(root)
     onActiveChanged: {
         if (active) {
             root.forceActiveFocus()
