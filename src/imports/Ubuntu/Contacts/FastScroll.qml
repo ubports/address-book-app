@@ -75,7 +75,7 @@ Item {
     Rectangle {
         id: magnified
 
-        color: Theme.palette.normal.overlay
+        color: Theme.palette.normal.foreground
         radius: height * 0.3
         height: pinSize * 2
         width: height
@@ -91,6 +91,7 @@ Item {
         }
 
         Label {
+            color: "white"
             anchors.fill: parent
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
