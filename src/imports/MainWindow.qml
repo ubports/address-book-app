@@ -107,6 +107,7 @@ MainView {
         id: mainStack
 
         property var contactListPage: null
+        property var bottomEdge: null
 
         function resetStack()
         {

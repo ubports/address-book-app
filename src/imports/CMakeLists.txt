@@ -4,10 +4,9 @@ set(ADDRESS_BOOK_APP_QMLS
     ABContactListPage.qml
     ABContactEditorPage.qml
     ABContactViewPage.qml
+    ABNewContactBottomEdge.qml
     ContentHubProxy.qml
     MainWindow.qml
-    BottomEdgeShadow.qml
-    BottomEdge.qml
 )
 
 install(FILES ${ADDRESS_BOOK_APP_QMLS}

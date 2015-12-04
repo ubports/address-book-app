@@ -38,6 +38,7 @@ Page {
     readonly property bool isContactValid: !avatarEditor.busy && (!nameEditor.isEmpty() || !phonesEditor.isEmpty())
 
     signal contactSaved(var contact);
+    signal canceled()
 
     function cancel() {
         for (var i = 0; i < contactEditor.newDetails.length; ++i) {
@@ -56,6 +57,7 @@ Page {
         } else {
             pageStack.pop()
         }
+        contactEditor.canceled()
     }
 
     function save() {
@@ -178,12 +180,6 @@ Page {
         //after add a new field we need to wait for the contentHeight to change to scroll to the correct position
         onContentHeightChanged: {
             contactEditor.makeMeVisible(contactEditor.activeItem)
-        }
-
-        Rectangle {
-            color: "green"
-            anchors.fill: editEditor
-            opacity: 0.5
         }
 
         Column {

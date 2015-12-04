@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2012-2015 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -28,6 +28,7 @@ ContactViewPage {
     objectName: "contactViewPage"
 
     property string addPhoneToContact: ""
+    property var editorPage: null
     signal editContact(var editPageProperties)
 
     head.actions: [
@@ -53,8 +54,11 @@ ContactViewPage {
             enabled: root.active
             shortcut: "Ctrl+e"
             onTriggered: {
-                editContact({model: root.model,
-                             contact: root.contact});
+                pageStack.addPageToCurrentColumn(root,
+                                                 Qt.resolvedUrl("ABContactEditorPage.qml"),
+                                                 { model: root.model,
+                                                   contact: root.contact,
+                                                   backIconName: 'back'})
             }
         }
     ]
@@ -102,4 +106,26 @@ ContactViewPage {
         id: contactShareComponent
         ContactSharePage {}
     }
+
+    Loader {
+        id: bottomEdgeLoader
+
+        active: root.pageStack &&  root.pageStack.columns > 1
+        sourceComponent: ABNewContactBottomEdge {
+            id: bottomEdge
+
+            parent: root
+            pageStack: root.pageStack
+            hint.flickable: root.flickable
+        }
+
+        Binding {
+            target: pageStack
+            property: 'bottomEdge'
+            value: bottomEdgeLoader.item
+            when: bottomEdgeLoader.status == Loader.Ready
+        }
+    }
+
+    Component.onDestruction:  console.debug("VIEW DESTROYED")
 }

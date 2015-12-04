@@ -34,7 +34,7 @@ ContactEditorPage {
         name: "cancel"
 
         text: i18n.tr("Cancel")
-        iconName: "back"
+        iconName: "down"
         enabled: root.active && root.enabled
         shortcut: "Esc"
         onTriggered: root.cancel()
@@ -59,4 +59,6 @@ ContactEditorPage {
             pageStack.contactListPage.moveListToContact(contact)
         }
     }
+
+    Component.onDestruction: console.debug("Destroy editor")
 }
