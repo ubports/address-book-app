@@ -27,9 +27,14 @@ ContactViewPage {
     id: root
     objectName: "contactViewPage"
 
-    property string addPhoneToContact: ""
-    property var editorPage: null
-    signal editContact(var editPageProperties)
+    function editContact(contact)
+    {
+        pageStack.addPageToCurrentColumn(root,
+                                         Qt.resolvedUrl("ABContactEditorPage.qml"),
+                                         { model: root.model,
+                                           contact: contact,
+                                           backIconName: 'back'})
+    }
 
     head.actions: [
         Action {
@@ -53,13 +58,7 @@ ContactViewPage {
             iconName: "edit"
             enabled: root.active
             shortcut: "Ctrl+e"
-            onTriggered: {
-                pageStack.addPageToCurrentColumn(root,
-                                                 Qt.resolvedUrl("ABContactEditorPage.qml"),
-                                                 { model: root.model,
-                                                   contact: root.contact,
-                                                   backIconName: 'back'})
-            }
+            onTriggered: root.editContact(root.contact)
         }
     ]
 
@@ -72,23 +71,6 @@ ContactViewPage {
             right: parent.right
         }
         height: implicitHeight
-    }
-
-    // This will load the contact information when the app was launched with
-    // the URI: addressbook:///contact?id=<id>
-    onContactFetched: {
-        if (root.addPhoneToContact != "") {
-            var detailSourceTemplate = "import QtContacts 5.0; PhoneNumber{ number: \"" + root.addPhoneToContact.trim() + "\" }"
-            var newDetail = Qt.createQmlObject(detailSourceTemplate, contact)
-            if (newDetail) {
-                contact.addDetail(newDetail)
-                editContact({ model: root.model,
-                              contact: contact,
-                              initialFocusSection: "phones",
-                              newDetails: [newDetail] })
-                root.addPhoneToContact = ""
-            }
-        }
     }
 
     onActionTrigerred: {

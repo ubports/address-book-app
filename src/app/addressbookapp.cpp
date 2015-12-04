@@ -44,8 +44,6 @@ static void printUsage(const QStringList& arguments)
 {
     qDebug() << "usage:"
              << arguments.at(0).toUtf8().constData()
-             << "[addressbook:///addphone?id=<contact-id>&phone=<phone-number>]"
-             << "[addressbook:///addnewphone?phone=<phone-number>]"
              << "[addressbook:///contact?id=<contact-id>]"
              << "[addressbook:///create?phone=<phone-number>]"
              << "[addressbook:///pick?single=<true/false>]"
@@ -317,17 +315,12 @@ void AddressBookApp::parseUrl(const QString &arg)
 
     if (methodsMetaData.isEmpty()) {
         QStringList args;
-        //edit
-        args << "id" << "phone";
-        methodsMetaData.insert("addphone", args);
-        args.clear();
-
         //view
         args << "id";
         methodsMetaData.insert("contact", args);
         args.clear();
 
-        //add
+        //create
         args << "phone";
         methodsMetaData.insert("create", args);
         args.clear();
@@ -340,11 +333,6 @@ void AddressBookApp::parseUrl(const QString &arg)
         //vcard
         args << "url";
         methodsMetaData.insert("importvcard", args);
-        args.clear();
-
-        //addnewphone
-        args << "phone";
-        methodsMetaData.insert("addnewphone", args);
         args.clear();
     }
 

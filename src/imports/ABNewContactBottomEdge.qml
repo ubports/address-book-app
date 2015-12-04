@@ -60,7 +60,7 @@ BottomEdge {
             model: bottomEdge.modelToEdit
             initialFocusSection: "name"
             enabled: false
-            visible: bottomEdge.satus != BottomEdge.Hidden
+            visible: bottomEdge.satus !== BottomEdge.Hidden
             onCanceled: bottomEdge.collapse()
             onContactSaved: bottomEdge.collapse()
         }

@@ -35,7 +35,6 @@ Page {
     property alias contentHubTransfer: contactExporter.activeTransfer
     property bool pickMultipleContacts: false
     property QtObject contactIndex: null
-    property string newPhoneToAdd: ""
     property alias contactManager: contactList.manager
     property var _busyDialog: null
     property bool _importingTestData: false
@@ -45,23 +44,30 @@ Page {
     readonly property bool isEmpty: (contactList.count === 0)
     readonly property bool allowToQuit: (application.callbackApplication.length > 0)
     readonly property var contactModel: contactList.listModel ? contactList.listModel : null
-    readonly property bool searching: (state === "searching" || state === "newphoneSearching")
+    readonly property bool searching: state === "searching"
 
     // this function is used to reset the contact list page to the default state if it was called
     // from the uri. For example when called to add a new contact
     function returnToNormalState()
     {
-        // these two states are the only state that need to be reset
-        if (state == "newphoneSearching" || state == "newphone") {
-            state = "default"
-        }
         application.callbackApplication = ""
     }
 
     function createContactWithPhoneNumber(phoneNumber)
     {
         var newContact = ContactsJS.createEmptyContact(phoneNumber, mainPage);
-        pageStack.bottomEdge.editContact(newContact, mainPage.contactModel)
+        if (bottomEdgeLoader.status == Loader.Ready) {
+            bottomEdgeLoader.editContact(newContact)
+        } else {
+            contactList.currentIndex = -1
+            var incubator = pageStack.addPageToNextColumn(mainPage,
+                                                         Qt.resolvedUrl("ABContactEditorPage.qml"),
+                                                        { model: mainPage.contactModel,
+                                                          contact: newContact,
+                                                          backIconName: 'back',
+                                                          enabled: false
+                                                          })
+        }
     }
 
     function openViewPage(viewPageProperties) {
@@ -99,13 +105,6 @@ Page {
     {
         openViewPage({model: contactList.listModel,
                       contactId: contactId});
-    }
-
-    function addPhoneToContact(contactId, phoneNumber)
-    {
-        openViewPage({model: contactList.listModel,
-                      contactId: contactId,
-                      addPhoneToContact: phoneNumber});
     }
 
     function importContact(urls)
@@ -149,12 +148,6 @@ Page {
         }
     }
 
-    function addNewPhone(phoneNumber)
-    {
-        newPhoneToAdd = phoneNumber
-        state = "newphone"
-        contactList.reset()
-    }
 
     function onNewContactSaved(contact) {
         _creatingContact = true
@@ -171,18 +164,17 @@ Page {
     }
 
     title: i18n.tr("Contacts")
-
     flickable: null
 
     Timer {
         id: fetchNewContactTimer
 
-        interval: 0
+        interval: 30
         repeat: false
         onTriggered: {
-            if ((contactList.currentIndex >= 0) && (pageStack.columns > 1)) {
+            if (mainPage.active && (contactList.currentIndex >= 0) && (pageStack.columns > 1)) {
                 var currentContact = contactList.listModel.contacts[contactList.currentIndex]
-                if (mainPage.currentViewContactId === currentContact.contactId)
+                if (currentContact && (mainPage.currentViewContactId === currentContact.contactId))
                     return
 
                 contactList.view._fetchContact(contactList.currentIndex, currentContact)
@@ -196,7 +188,6 @@ Page {
 
         focus: true
         showImportOptions:  !mainPage.pickMode &&
-                            mainPage.newPhoneToAdd === "" &&
                             pageStack.bottomEdge && (pageStack.bottomEdge.satus === BottomEdge.Hidden)
         anchors {
             top: parent.top
@@ -211,7 +202,6 @@ Page {
         highlightSelected: pageStack.columns > 1 && !mainPage._creatingContact
         showNewContact: (pageStack.columns > 1) && pageStack.bottomEdge && (pageStack.bottomEdge.status === BottomEdge.Committed    )
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
-        onAddNewContactClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
         onContactClicked: mainPage.showContact(contact)
         onIsInSelectionModeChanged: mainPage.state = isInSelectionMode ? "selection"  : "default"
         onSelectionCanceled: {
@@ -231,14 +221,6 @@ Page {
             if (activeFocus && (contactList.currentIndex === -1)) {
                 contactList.currentIndex = 0
             }
-        }
-        onCountChanged: {
-            if (mainPage.active &&
-                (pageStack.columns > 1) &&
-                (contactList.currentIndex === -1)) {
-                contactList.currentIndex = 0
-            }
-            fetchNewContactTimer.restart()
         }
         onCurrentIndexChanged: {
             if (!mainPage.contactIndex)
@@ -333,7 +315,7 @@ Page {
                     enabled: mainPage.state === "default"
                     shortcut: "Ctrl+F"
                     onTriggered: {
-                        mainPage.state = (mainPage.state === "newphone" ? "newphoneSearching" : "searching")
+                        mainPage.state = "searching"
                         contactList.showAllContacts()
                         searchField.forceActiveFocus()
                     }
@@ -399,7 +381,7 @@ Page {
                 onTriggered: {
                     contactList.forceActiveFocus()
                     mainPage.head.sections.selectedIndex = 0
-                    mainPage.state = (mainPage.state === "newphoneSearching" ? "newphone" : "default")
+                    mainPage.state = "default"
                 }
             }
 
@@ -497,41 +479,6 @@ Page {
             }
         },
         PageHeadState {
-            name: "newphone"
-            extend: "default"
-            head: mainPage.head
-            PropertyChanges {
-                target: contactList
-                showAddNewButton: true
-            }
-            PropertyChanges {
-                target: mainPage
-                title: i18n.tr("Add contact")
-            }
-            PropertyChanges {
-                target: bottomEdge
-                enabled: false
-            }
-            PropertyChanges {
-                target: contactList
-                detailToPick: -1
-            }
-        },
-        PageHeadState {
-            name: "newphoneSearching"
-            extend: "searching"
-            head: mainPage.head
-            PropertyChanges {
-                target: contactList
-                detailToPick: -1
-                showAddNewButton: true
-            }
-            PropertyChanges {
-                target: bottomEdgeLoader
-                enabled: false
-            }
-        },
-        PageHeadState {
             id: vcardImportedState
 
             name: "vcardImported"
@@ -606,7 +553,6 @@ Page {
         visible: (!contactList.busy &&
                   !contactList.favouritesIsSelected &&
                   mainPage.isEmpty &&
-                  (mainPage.newPhoneToAdd === "") &&
                   !(contactList.filterTerm && contactList.filterTerm !== ""))
                  //&&  bottomEdge.visible
 
@@ -762,6 +708,7 @@ Page {
                 mainPage.contactIndex = null
                 // at this point the operation has finished already
                 mainPage._creatingContact = false
+                fetchNewContactTimer.restart()
             }
         }
         onImportCompleted: {

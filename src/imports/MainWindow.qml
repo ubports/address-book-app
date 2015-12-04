@@ -47,16 +47,6 @@ MainView {
         }
     }
 
-    function addphone(contactId, phoneNumber)
-    {
-        mainStack.resetStack()
-        if (mainStack.contactListPage) {
-            mainStack.contactListPage.addPhoneToContact(contactId, phoneNumber)
-        } else {
-            console.error("Add phone to contact requested but ContactListPage not loaded")
-        }
-    }
-
     function pick(single)
     {
         console.debug("Pick mode:" + single)
@@ -85,16 +75,6 @@ MainView {
             mainStack.contactListPage.importContact(_urls)
         } else {
             console.error("Import vcard requested but ContactListPage not loaded")
-        }
-    }
-
-    function addnewphone(phoneNumer)
-    {
-        mainStack.resetStack()
-        if (mainStack.contactListPage) {
-            mainStack.contactListPage.addNewPhone(phoneNumer)
-        } else {
-            console.error("Add new phone requested but ContactListPage not loaded")
         }
     }
 
