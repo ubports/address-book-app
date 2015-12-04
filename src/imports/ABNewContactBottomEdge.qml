@@ -23,13 +23,12 @@ BottomEdge {
     objectName: "bottomEdge"
 
     property var pageStack: null
+    property var modelToEdit: null
     property var _contactToEdit: null
-    property var _modelToEdit: null
 
-    function editContact(contact, model)
+    function editContact(contact)
     {
         _contactToEdit = contact
-        _modelToEdit = model
         commit()
     }
 
@@ -45,10 +44,9 @@ BottomEdge {
     onCommitCompleted: {
         var editorPage = bottomEdge.contentItem
         bottomEdge.pageStack.addPageToCurrentColumn(bottomEdge.parent, bottomEdge.contentItem)
-        editorPage.contact = bottomEdge._contactToEdit
-        editorPage.model = bottomEdge._modelToEdit
+        if (bottomEdge._contactToEdit)
+            editorPage.contact = bottomEdge._contactToEdit
         bottomEdge._contactToEdit = null
-        bottomEdge._modelToEdit = null
     }
 
     Component {
@@ -57,11 +55,14 @@ BottomEdge {
         ABContactEditorPage {
             implicitWidth: mainPage.width
             implicitHeight: bottomEdge.height
+            title: i18n.tr("New Contact")
             contact: ContactsUI.ContactsJS.createEmptyContact("", bottomEdge)
+            model: bottomEdge.modelToEdit
             initialFocusSection: "name"
             enabled: false
             visible: bottomEdge.satus != BottomEdge.Hidden
             onCanceled: bottomEdge.collapse()
+            onContactSaved: bottomEdge.collapse()
         }
     }
 }

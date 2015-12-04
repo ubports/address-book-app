@@ -42,7 +42,6 @@ Page {
     property bool _creatingContact: false
 
     readonly property string currentViewContactId: viewPage && viewPage.contact ? viewPage.contact.contactId : ""
-    readonly property bool bottomEdgePageOpened: false //bottomEdge.opened && bottomEdge.fullLoaded
     readonly property bool isEmpty: (contactList.count === 0)
     readonly property bool allowToQuit: (application.callbackApplication.length > 0)
     readonly property var contactModel: contactList.listModel ? contactList.listModel : null
@@ -210,7 +209,7 @@ Page {
         multiSelectionEnabled: true
         multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
         highlightSelected: pageStack.columns > 1 && !mainPage._creatingContact
-        showNewContact: (pageStack.columns > 1) && pageStack.bottomEdge && (pageStack.bottomEdge.status === BottomEdge.Committed)
+        showNewContact: (pageStack.columns > 1) && pageStack.bottomEdge && (pageStack.bottomEdge.status === BottomEdge.Committed    )
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
         onAddNewContactClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
         onContactClicked: mainPage.showContact(contact)
@@ -742,6 +741,7 @@ Page {
         sourceComponent: ABNewContactBottomEdge {
             pageStack: mainPage.pageStack
             parent: mainPage
+            modelToEdit: mainPage.contactModel
             hint.flickable: contactList.view
         }
     }

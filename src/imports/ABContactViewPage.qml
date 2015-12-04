@@ -116,6 +116,7 @@ ContactViewPage {
 
             parent: root
             pageStack: root.pageStack
+            modelToEdit: root.model
             hint.flickable: root.flickable
         }
 
