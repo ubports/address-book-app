@@ -26,6 +26,8 @@ import Ubuntu.Content 1.1 as ContentHub
 import Ubuntu.AddressBook.Base 0.1
 import Ubuntu.AddressBook.ContactShare 0.1
 
+import "." as AB
+
 Page {
     id: mainPage
     objectName: "contactListPage"
@@ -671,7 +673,7 @@ Page {
         }
     }
 
-    BottomEdge {
+    AB.BottomEdge {
         id: bottomEdge
         objectName: "bottomEdge"
 
