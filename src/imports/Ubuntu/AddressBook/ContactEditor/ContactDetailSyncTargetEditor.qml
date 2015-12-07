@@ -231,5 +231,13 @@ ContactDetailBase {
             sourceModel.update()
         }
     }
+    Connections {
+        target: Qt.application
+        onStateChanged: {
+            if (Qt.application.state === Qt.ApplicationActive) {
+                root.update()
+            }
+        }
+    }
 }
 

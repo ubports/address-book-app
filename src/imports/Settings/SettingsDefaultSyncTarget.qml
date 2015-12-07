@@ -86,9 +86,6 @@ Empty {
                root.changed()
            }
        }
-       onContactsFetched: {
-
-       }
    }
 
    ListModel {
@@ -218,7 +215,15 @@ Empty {
                root.changed()
            }
        }
+   }
 
+   Connections {
+       target: Qt.application
+       onStateChanged: {
+           if (Qt.application.state === Qt.ApplicationActive) {
+               root.update()
+           }
+       }
    }
 }
 
