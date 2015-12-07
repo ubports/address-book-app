@@ -52,7 +52,6 @@ Empty {
            }
        }
        if (changed) {
-           console.debug("Update default source")
            sourceModel.saveContact(selectedSource)
        }
    }
@@ -113,8 +112,9 @@ Empty {
        }
 
        function reload() {
-           clear()
+           sources._notify = false
 
+           clear()
            // filter out read-only sources
            var contacts = sourceModel.contacts
            if (contacts.length === 0) {
@@ -153,6 +153,7 @@ Empty {
                }
            })
 
+            sources.selectedIndex = 0
            var primaryIndex = 0
            for (var i in data) {
                if (data[i].isPrimary) {
@@ -163,6 +164,7 @@ Empty {
 
            // select primary account
            sources.selectedIndex = primaryIndex
+           sources._notify = true
        }
    }
 
@@ -181,6 +183,7 @@ Empty {
 
    OptionSelector {
        id: sources
+       property bool _notify: true
 
        model: writableSources
        anchors {
@@ -211,7 +214,7 @@ Empty {
 
        containerHeight: sources.model && sources.model.count > 4 ? itemHeight * 4 : sources.model ? itemHeight * sources.model.count : 0
        onSelectedIndexChanged: {
-           if (selectedIndex >= 0) {
+           if (_notify && selectedIndex >= 0) {
                root.changed()
            }
        }
