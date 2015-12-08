@@ -72,9 +72,9 @@ Page {
     }
 
     function openViewPage(viewPageProperties) {
-        if (mainPage.viewPage) {
-            pageStack.removePages(mainPage.viewPage)
-            mainPage.viewPage.destroy()
+        var oldPage = mainPage.viewPage
+        if (oldPage) {
+            pageStack.removePages(oldPage)
             mainPage.viewPage = null
         }
 
@@ -82,6 +82,10 @@ Page {
         if (component.status === Component.Ready) {
             mainPage.viewPage = component.createObject(mainPage, viewPageProperties)
             pageStack.addPageToNextColumn(mainPage, mainPage.viewPage)
+        }
+
+        if (oldPage) {
+            oldPage.destroy()
         }
     }
 
@@ -226,7 +230,7 @@ Page {
             bottom: keyboard.top
             right: parent.right
         }
-        currentIndex: 0
+        currentIndex: -1
         filterTerm: searchField.text
         multiSelectionEnabled: true
         multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
@@ -274,6 +278,11 @@ Page {
             if (next === searchField) {
                 pageStack._nextItemInFocusChain(next, true)
             }
+        }
+
+        onCountChanged: {
+            if (! mainPage.viewPage)
+                fetchNewContactTimer.restart()
         }
     }
 
@@ -583,7 +592,6 @@ Page {
                   !contactList.favouritesIsSelected &&
                   mainPage.isEmpty &&
                   !(contactList.filterTerm && contactList.filterTerm !== ""))
-                 //&&  bottomEdge.visible
 
         Behavior on visible {
             SequentialAnimation {
