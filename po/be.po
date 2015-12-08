@@ -14,10 +14,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-12-06 06:05+0000\n"
+"X-Launchpad-Export-Date: 2015-12-08 05:48+0000\n"
 "X-Generator: Launchpad (build 17862)\n"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:77
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
 #, qt-format
 msgid "%1 is locked"
 msgstr "%1 заблакавана"
@@ -161,7 +161,7 @@ msgstr "Памылка"
 msgid "Exporting contacts..."
 msgstr "Экспарт кантактаў..."
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:243
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:246
 msgid "Fail to read SIM card"
 msgstr "Памылка пад час  чытаньня SIM-карткі"
 
@@ -189,9 +189,9 @@ msgstr "ICQ"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOnlineAccountsEditor.qml:23
 msgid "IM"
-msgstr ""
+msgstr "IM"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:190
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:193
 msgid "Import"
 msgstr "Імпартаваць"
 
@@ -212,7 +212,7 @@ msgid "Import vCards"
 msgstr "Імпартаваць візітоўкі"
 
 #: ../src/imports/ABContactListPage.qml:606
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:235
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:238
 msgid "Importing..."
 msgstr "Імпартаваньне..."
 
@@ -225,7 +225,7 @@ msgid "Last name"
 msgstr "Прозьвішча"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:582
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:218
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:221
 msgid "Loading..."
 msgstr "Загрузка..."
 
@@ -271,7 +271,7 @@ msgstr "Не"
 msgid "No contact selected."
 msgstr "Кантакты не абраныя."
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:110
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:112
 msgid "No contacts found"
 msgstr "Кантактаў не знойдзена"
 
@@ -323,9 +323,9 @@ msgstr "Пасада"
 #: ../src/imports/Settings/SettingsPage.qml:62
 #, qt-format
 msgid "SIM %1"
-msgstr ""
+msgstr "SIM %1"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:34
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:36
 msgid "SIM contacts"
 msgstr "Кантакты SIM"
 
@@ -342,7 +342,7 @@ msgid "Search..."
 msgstr "Пошук..."
 
 #: ../src/imports/ABContactListPage.qml:354
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:178
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:181
 msgid "Select All"
 msgstr "Абраць усё"
 
@@ -358,7 +358,7 @@ msgstr "Падзяліцца"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Skype"
-msgstr ""
+msgstr "Skype"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:53
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailOnlineAccountsView.qml:26
@@ -389,16 +389,16 @@ msgstr "Назва"
 msgid "Touch"
 msgstr "Крананьне"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:81
 msgid "Unlock"
 msgstr "Разблакаваць"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:227
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:230
 msgid "Unlocking..."
 msgstr "Разблакаваньне..."
 
 #: ../src/imports/ABContactListPage.qml:354
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:177
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:180
 msgid "Unselect All"
 msgstr "Скасаваць вылучэньні"
 
@@ -415,7 +415,7 @@ msgstr "Працоўны мабільнік"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
 msgid "Yahoo"
-msgstr ""
+msgstr "Yahoo"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:62
 msgid "Yes"
