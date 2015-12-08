@@ -33,9 +33,12 @@ Page {
 
     property string initialFocusSection: ""
     property var newDetails: []
+    property alias headerActions: trailingBar.actions
+    property alias navigationActions: pageHeader.navigationActions
 
     readonly property bool isNewContact: contact && (contact.contactId === "qtcontacts:::")
     readonly property bool isContactValid: !avatarEditor.busy && (!nameEditor.isEmpty() || !phonesEditor.isEmpty())
+    readonly property alias editorFlickable: scrollArea
 
     signal contactSaved(var contact);
     signal canceled()
@@ -148,7 +151,16 @@ Page {
         lastPhoneField.forceActiveFocus()
     }
 
-    title: isNewContact ? i18n.dtr("address-book-app", "New contact") : i18n.dtr("address-book-app", "Edit")
+
+    header: PageHeader {
+        id: pageHeader
+
+        title: isNewContact ? i18n.dtr("address-book-app", "New contact") : i18n.dtr("address-book-app", "Edit")
+        trailingActionBar {
+            id: trailingBar
+        }
+    }
+
     enabled: false
 
     Timer {
@@ -171,6 +183,7 @@ Page {
         anchors{
             left: parent.left
             top: parent.top
+            topMargin: pageHeader.height
             right: parent.right
             bottom: keyboardRectangle.top
         }

@@ -27,20 +27,22 @@ ContactEditorPage {
 
     property alias backIconName: backAction.iconName
 
-    head.backAction: Action {
-        id: backAction
+    navigationActions: [
+        Action {
+            id: backAction
 
-        objectName: "cancel"
-        name: "cancel"
+            objectName: "cancel"
+            name: "cancel"
 
-        text: i18n.tr("Cancel")
-        iconName: "down"
-        enabled: root.active && root.enabled
-        shortcut: "Esc"
-        onTriggered: root.cancel()
-    }
+            text: i18n.tr("Cancel")
+            iconName: "down"
+            enabled: root.active && root.enabled
+            shortcut: "Esc"
+            onTriggered: root.cancel()
+        }
+    ]
 
-    head.actions: [
+    headerActions: [
         Action {
             objectName: "save"
             name: "save"

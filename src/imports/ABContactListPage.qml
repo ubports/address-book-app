@@ -36,6 +36,7 @@ Page {
     property bool pickMultipleContacts: false
     property QtObject contactIndex: null
     property alias contactManager: contactList.manager
+
     property var _busyDialog: null
     property bool _importingTestData: false
     property bool _creatingContact: false
@@ -163,8 +164,38 @@ Page {
         contactList.forceActiveFocus()
     }
 
-    title: i18n.tr("Contacts")
-    flickable: null
+    header: PageHeader {
+        id: pageHeader
+
+        property alias trailingActions: trailingBar.actions
+        property alias sectionsModel: sections.model
+
+        title: i18n.tr("Contacts")
+        flickable: contactList.view
+        trailingActionBar {
+            id: trailingBar
+        }
+        extension: Sections {
+            id: sections
+            anchors {
+                left: parent.left
+                leftMargin: units.gu(2)
+                bottom: parent.bottom
+            }
+            onSelectedIndexChanged: {
+                switch (selectedIndex) {
+                case 0:
+                    contactList.showAllContacts()
+                    break;
+                case 1:
+                    contactList.showFavoritesContacts()
+                    break;
+                default:
+                    break;
+                }
+            }
+        }
+    }
 
     Timer {
         id: fetchNewContactTimer
@@ -254,9 +285,10 @@ Page {
         readonly property bool _allowFocus: true
 
         anchors {
+            top: parent ? parent.top : undefined
             left: parent ? parent.left : undefined
             right: parent ? parent.right : undefined
-            rightMargin: units.gu(2)
+            margins: units.gu(1)
         }
 
         visible: false
@@ -276,38 +308,25 @@ Page {
         Keys.onDownPressed: contactList.forceActiveFocus()
     }
 
-    Connections {
-        target: mainPage.head.sections
-        onSelectedIndexChanged: {
-            switch (mainPage.head.sections.selectedIndex) {
-            case 0:
-                contactList.showAllContacts()
-                break;
-            case 1:
-                contactList.showFavoritesContacts()
-                break;
-            default:
-                break;
-            }
-        }
-    }
-
     state: "default"
     states: [
-        PageHeadState {
+        State {
             id: defaultState
-
             name: "default"
-            backAction: Action {
-                visible: mainPage.allowToQuit
-                iconName: "back"
-                text: i18n.tr("Quit")
-                onTriggered: {
-                    application.goBackToSourceApp()
-                    mainPage.returnToNormalState()
+
+            property list<QtObject> navigationActions: [
+                Action {
+                    visible: mainPage.allowToQuit
+                    iconName: "back"
+                    text: i18n.tr("Quit")
+                    onTriggered: {
+                        application.goBackToSourceApp()
+                        mainPage.returnToNormalState()
+                    }
                 }
-            }
-            actions: [
+            ]
+
+            property list<QtObject> trailingActions:  [
                 Action {
                     text: i18n.tr("Search")
                     iconName: "search"
@@ -353,12 +372,14 @@ Page {
                     }
                 }
             ]
+
             PropertyChanges {
-                target: mainPage.head
-                backAction: defaultState.backAction
-                actions: defaultState.actions
+                target: pageHeader
+
                 // TRANSLATORS: this refers to all contacts
-                sections.model: [i18n.tr("All"), i18n.tr("Favorites")]
+                sectionsModel:  [i18n.tr("All"), i18n.tr("Favorites")]
+                navigationActions: defaultState.navigationActions
+                trailingActions: defaultState.trailingActions
             }
             PropertyChanges {
                 target: searchField
@@ -369,20 +390,30 @@ Page {
                 enabled: true
             }
         },
-        PageHeadState {
+        State {
             id: searchingState
-
             name: "searching"
-            backAction: Action {
-                iconName: "back"
-                text: i18n.tr("Cancel")
-                enabled: mainPage.state === "searching" && !mainPage.bottomEdgeOpenOnNextCollumn
-                shortcut:"Esc"
-                onTriggered: {
-                    contactList.forceActiveFocus()
-                    mainPage.head.sections.selectedIndex = 0
-                    mainPage.state = "default"
+
+            property list<QtObject> navigationActions: [
+                Action {
+                    iconName: "back"
+                    text: i18n.tr("Cancel")
+                    enabled: mainPage.state === "searching" && !mainPage.bottomEdgeOpenOnNextCollumn
+                    shortcut:"Esc"
+                    onTriggered: {
+                        contactList.forceActiveFocus()
+                        mainPage.head.sections.selectedIndex = 0
+                        mainPage.state = "default"
+                    }
                 }
+            ]
+
+            PropertyChanges {
+                target: pageHeader
+
+                contents: searchField
+                navigationActions: searchingState.navigationActions
+
             }
 
             PropertyChanges {
@@ -391,34 +422,27 @@ Page {
             }
 
             PropertyChanges {
-                target: mainPage.head
-                backAction: searchingState.backAction
-                contents: searchField
-            }
-
-            PropertyChanges {
-                target: searchField
-                text: ""
-            }
-
-            PropertyChanges {
                 target: searchField
                 visible: true
                 focus: true
+                text: ""
             }
         },
-        PageHeadState {
+        State {
             id: selectionState
-
             name: "selection"
-            backAction: Action {
-                text: i18n.tr("Cancel selection")
-                iconName: "back"
-                enabled: mainPage.state === "selection"
-                onTriggered: contactList.cancelSelection()
-                shortcut: "Esc"
-            }
-            actions: [
+
+            property list<QtObject> navigationActions: [
+                Action {
+                    text: i18n.tr("Cancel selection")
+                    iconName: "back"
+                    enabled: mainPage.state === "selection"
+                    onTriggered: contactList.cancelSelection()
+                    shortcut: "Esc"
+                }
+            ]
+
+            property list<QtObject> trailingActions: [
                 Action {
                     text: (contactList.selectedItems.count === contactList.count) ? i18n.tr("Unselect All") : i18n.tr("Select All")
                     iconName: "select"
@@ -468,40 +492,45 @@ Page {
                     }
                 }
             ]
+
             PropertyChanges {
-                target: mainPage.head
-                backAction: selectionState.backAction
-                actions: selectionState.actions
+                target: pageHeader
+
+                navigationActions: selectionState.navigationActions
+                trailingActions: selectionState.trailingActions
             }
+
             PropertyChanges {
                 target: bottomEdgeLoader
                 enabled: false
             }
         },
-        PageHeadState {
+        State {
             id: vcardImportedState
-
             name: "vcardImported"
-            backAction: Action {
-                iconName: "back"
-                text: i18n.tr("Back")
-                onTriggered: {
-                    contactList.forceActiveFocus()
-                    mainPage.state = "default"
-                    importedIdsFilter.ids = []
+
+            property list<QtObject> navigationActions: [
+                Action {
+                    iconName: "back"
+                    text: i18n.tr("Back")
+                    onTriggered: {
+                        contactList.forceActiveFocus()
+                        mainPage.state = "default"
+                        importedIdsFilter.ids = []
+                    }
                 }
-            }
+            ]
+
             PropertyChanges {
-                target: mainPage.head
-                backAction: vcardImportedState.backAction
+                target: pageHeader
+
+                navigationActions: vcardImportedState.navigationActions
+                title: i18n.tr("Imported contacts")
             }
+
             PropertyChanges {
                 target: bottomEdgeLoader
                 enabled: false
-            }
-            PropertyChanges {
-                target: mainPage
-                title: i18n.tr("Imported contacts")
             }
         }
     ]

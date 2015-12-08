@@ -42,11 +42,10 @@ BottomEdge {
     }
     contentComponent: editorPageBottomEdge
     onCommitCompleted: {
-        var editorPage = bottomEdge.contentItem
-        bottomEdge.pageStack.addPageToCurrentColumn(bottomEdge.parent, bottomEdge.contentItem)
         if (bottomEdge._contactToEdit)
             editorPage.contact = bottomEdge._contactToEdit
         bottomEdge._contactToEdit = null
+        contentItem.enabled = true
     }
 
     Component {
@@ -59,7 +58,7 @@ BottomEdge {
             contact: ContactsUI.ContactsJS.createEmptyContact("", bottomEdge)
             model: bottomEdge.modelToEdit
             initialFocusSection: "name"
-            enabled: false
+            enabled: bottomEdge.satus === BottomEdge.Committed
             visible: bottomEdge.satus !== BottomEdge.Hidden
             onCanceled: bottomEdge.collapse()
             onContactSaved: bottomEdge.collapse()
