@@ -89,25 +89,25 @@ ContactViewPage {
         ContactSharePage {}
     }
 
-    ABNewContactBottomEdge {
-        id: bottomEdge
+    Loader {
+        id: bottomEdgeLoader
 
-        parent: root
-        height: parent.height
-        onParentChanged: {
-            console.debug("parent changed" + parent)
+        active: (pageStack.columns > 1)
+        sourceComponent: ABNewContactBottomEdge {
+            id: bottomEdge
+
+            parent: root
+            height: root.height
+            modelToEdit: root.model
+            hint.flickable: root.flickable
         }
-
-        pageStack: root.pageStack
-        modelToEdit: root.model
-        hint.flickable: root.flickable
     }
 
     Binding {
         target: pageStack
         property: 'bottomEdge'
-        value: bottomEdge
-        when: root.pageStack &&  root.pageStack.columns > 1
+        value: bottomEdgeLoader.item
+        when: bottomEdgeLoader.status === Loader.Ready
     }
 
     Component.onDestruction:  console.debug("VIEW DESTROYED")

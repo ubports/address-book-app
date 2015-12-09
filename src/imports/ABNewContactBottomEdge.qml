@@ -22,7 +22,6 @@ BottomEdge {
     id: bottomEdge
     objectName: "bottomEdge"
 
-    property var pageStack: null
     property var modelToEdit: null
     property var _contactToEdit: null
 
