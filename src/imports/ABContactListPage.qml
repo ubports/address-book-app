@@ -72,20 +72,17 @@ Page {
     }
 
     function openViewPage(viewPageProperties) {
-        var oldPage = mainPage.viewPage
-        if (oldPage) {
-            pageStack.removePages(oldPage)
-            mainPage.viewPage = null
-        }
-
         var component = Qt.createComponent(Qt.resolvedUrl("ABContactViewPage.qml"))
-        if (component.status === Component.Ready) {
-            mainPage.viewPage = component.createObject(mainPage, viewPageProperties)
-            pageStack.addPageToNextColumn(mainPage, mainPage.viewPage)
-        }
-
-        if (oldPage) {
-            oldPage.destroy()
+        var incubator = pageStack.addPageToNextColumn(mainPage, component, viewPageProperties)
+        if (incubator && (incubator.status === Component.Loading)) {
+            incubator.onStatusChanged = function(status) {
+                if (status === Component.Ready)
+                    mainPage.viewPage =  incubator.object
+            }
+        } else if (incubator && incubator.status ===- Component.Ready) {
+            mainPage.viewPage =  incubator.object
+        } else {
+            mainPage.viewPage =  null
         }
     }
 
@@ -93,7 +90,7 @@ Page {
     {
         var currentContact = contactList.listModel.contacts[contactList.currentIndex]
         if (currentContact && (mainPage.currentViewContactId === currentContact.contactId)) {
-            console.debug("Skip show contact")
+            // contact view already opened with this contact
             return
         }
 
@@ -175,7 +172,7 @@ Page {
         property alias sectionsModel: sections.model
 
         title: i18n.tr("Contacts")
-        flickable: contactList.view
+        //flickable: contactList.view
         trailingActionBar {
             id: trailingBar
         }
@@ -226,6 +223,7 @@ Page {
                             pageStack.bottomEdge && (pageStack.bottomEdge.satus === BottomEdge.Hidden)
         anchors {
             top: parent.top
+            topMargin: pageHeader.height
             left: parent.left
             bottom: keyboard.top
             right: parent.right
@@ -722,7 +720,6 @@ Page {
         enabled: false
         active: (pageStack.columns === 1) && bottomEdgeLoader.enabled
         sourceComponent: ABNewContactBottomEdge {
-            pageStack: mainPage.pageStack
             parent: mainPage
             modelToEdit: mainPage.contactModel
             hint.flickable: contactList.view
