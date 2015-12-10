@@ -1,3 +1,13 @@
+address-book-app (0.2+16.04.20151210-0ubuntu1) xenial; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk. added: po/be.po
+
+  [ Zsombor Egri ]
+  * BottomEdge name collides with Ubuntu.Components 1.3 component name.
+
+ -- Zoltan Balogh <zoltan.balogh@canonical.com>  Thu, 10 Dec 2015 12:28:28 +0000
+
 address-book-app (0.2+16.04.20151202.5-0ubuntu1) xenial; urgency=medium
 
   * Check for sim card contacts on "GSettings.schemaChanged" signal.
