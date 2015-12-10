@@ -88,6 +88,8 @@ Dialog {
         }
     }
 
+    // FIXME: This is necessary due a bug on SDK. (bug #1514856)
+    // remove this when the bug get fixed:
     Component.onDestruction:  {
         cancelButton.action.shortcut = ""
         acceptButton.action.shortcut = ""

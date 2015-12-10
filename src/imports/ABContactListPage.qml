@@ -178,31 +178,35 @@ Page {
         }
     }
 
-    function reloadContact()
+    // Delay contact fetch for some msecs (check 'fetchNewContactTimer')
+    function delayFetchContact()
     {
         fetchNewContactTimer.restart()
-        contactList.forceActiveFocus()
     }
 
-    title: i18n.tr("Contacts")
+    function fetchContact()
+    {
+        if ((contactList.currentIndex >= 0) && (pageStack.columns > 1)) {
+            var currentContact = contactList.listModel.contacts[contactList.currentIndex]
+            if (contactViewPage && contactViewPage.contact && (contactViewPage.contact.contactId === currentContact.contactId))
+                return
 
-    flickable: null
+            contactList.view._fetchContact(contactList.currentIndex, currentContact)
+        }
+    }
 
+    // This timer is to avoid fetch unecessary contact if the user select the contacts too fast
+    // while navigating on contact list with keyboard
     Timer {
         id: fetchNewContactTimer
 
-        interval: 0
+        interval: 300
         repeat: false
-        onTriggered: {
-            if ((contactList.currentIndex >= 0) && (pageStack.columns > 1)) {
-                var currentContact = contactList.listModel.contacts[contactList.currentIndex]
-                if (contactViewPage && contactViewPage.contact && (contactViewPage.contact.contactId === currentContact.contactId))
-                    return
-
-                contactList.view._fetchContact(contactList.currentIndex, currentContact)
-            }
-        }
+        onTriggered: mainPage.fetchContact()
     }
+
+    title: i18n.tr("Contacts")
+    flickable: null
 
     ContactsUI.ContactListView {
         id: contactList
@@ -252,11 +256,11 @@ Page {
                 (contactList.currentIndex === -1)) {
                 contactList.currentIndex = 0
             }
-            fetchNewContactTimer.restart()
+            mainPage.delayFetchContact()
         }
         onCurrentIndexChanged: {
             if (!mainPage.contactIndex)
-                fetchNewContactTimer.restart()
+                mainPage.delayFetchContact()
         }
 
         //WORKAROUND: SDK does not allow us to disable focus for items due bug: #1514822
@@ -377,9 +381,9 @@ Page {
                         incubator.onStatusChanged = function(status) {
                             if (status === Component.Ready) {
                                 incubator.object.onActiveChanged.connect(function(active) {
-                                    console.debug("Active:" + incubator.object.active)
                                     if (!incubator.object.active) {
-                                        mainPage.reloadContact()
+                                        mainPage.delayFetchContact()
+                                        contactList.forceActiveFocus()
                                     }
                                 })
                             }

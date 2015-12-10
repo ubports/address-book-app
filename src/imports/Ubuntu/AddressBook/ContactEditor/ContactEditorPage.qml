@@ -180,12 +180,6 @@ Page {
             contactEditor.makeMeVisible(contactEditor.activeItem)
         }
 
-        Rectangle {
-            color: "green"
-            anchors.fill: editEditor
-            opacity: 0.5
-        }
-
         Column {
             id: contents
 
