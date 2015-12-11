@@ -231,13 +231,11 @@ ContactDetailBase {
             sourceModel.update()
         }
     }
+
+    // In case of sources changed we need to update the model
     Connections {
-        target: Qt.application
-        onStateChanged: {
-            if (Qt.application.state === Qt.ApplicationActive) {
-                root.update()
-            }
-        }
+        target: application
+        onSourcesChanged: sourceModel.update()
     }
 }
 
