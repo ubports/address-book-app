@@ -69,8 +69,7 @@ Item {
 
         function init() {
             waitForRendering(contactEditor);
-            var saveButton = findChild(root, 'save_button');
-            compare(saveButton.enabled, false);
+            tryCompare(contactEditor, 'saveActionEnabled', false);
         }
 
         function cleanup() {
@@ -113,8 +112,7 @@ Item {
         function test_fillRequiredFieldsMustEnableSaveButton(data) {
             var textField = findChild(root, data.objectName);
             textField.text = 'test'
-            var saveButton = findChild(root, 'save_button');
-            tryCompare(saveButton, 'enabled', true);
+            tryCompare(contactEditor, 'saveActionEnabled', true);
         }
 
         function test_fillOptionalFieldsMustNotEnableSaveButton_data() {
@@ -125,8 +123,7 @@ Item {
         function test_fillOptionalFieldsMustNotEnableSaveButton(data) {
             var textField = findChild(root, data.objectName);
             textField.text = 'test'
-            var saveButton = findChild(root, 'save_button');
-            tryCompare(saveButton, 'enabled', false);
+            tryCompare(contactEditor, 'saveActionEnabled', false);
         }
 
         function test_enterKeyMoveFocusedItem() {

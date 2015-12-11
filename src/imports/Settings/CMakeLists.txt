@@ -1,5 +1,6 @@
 set(CONTACT_SETTINGS_QMLS
     MyselfPhoneNumbersModel.qml
+    SettingsDefaultSyncTarget.qml
     SettingsPage.qml
 )
 

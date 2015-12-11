@@ -51,6 +51,7 @@ Q_SIGNALS:
     void isOnlineChanged();
     void serverSafeModeChanged();
     void updatingChanged();
+    void sourcesChanged();
 
 public Q_SLOTS:
     void activateWindow();

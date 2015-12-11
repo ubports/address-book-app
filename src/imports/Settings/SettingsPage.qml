@@ -74,6 +74,10 @@ Page {
                 onClicked: pageStack.addPageToCurrentColumn(root, simCardImportPageComponent)
                 enabled: (simList.sims.length > 0) && (simList.present.length > 0)
             }
+            SettingsDefaultSyncTarget {
+                id: defaultSyncTarget
+                onChanged: save()
+            }
         }
     }
     ContactsUI.OnlineAccountsHelper {
@@ -90,6 +94,12 @@ Page {
             targetModel: root.contactListModel
             sims: simList.sims
             onImportCompleted: pageStack.removePages(root)
+        }
+    }
+
+    onActiveChanged: {
+        if (active) {
+            defaultSyncTarget.update()
         }
     }
 }
