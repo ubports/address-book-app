@@ -27,6 +27,9 @@ ContactEditorPage {
 
     property alias backIconName: backAction.iconName
 
+    // Property used on unit tests
+    readonly property alias saveActionEnabled: saveAction.enabled
+
     head.backAction: Action {
         id: backAction
 
@@ -42,6 +45,7 @@ ContactEditorPage {
 
     head.actions: [
         Action {
+            id: saveAction
             objectName: "save"
             name: "save"
 
