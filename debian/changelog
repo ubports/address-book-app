@@ -1,3 +1,10 @@
+address-book-app (0.2+16.04.20151211.2-0ubuntu1) xenial; urgency=medium
+
+  * Implemented the ability to choose the default address-book from
+    settings page. (LP: #1511471)
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Fri, 11 Dec 2015 16:50:27 +0000
+
 address-book-app (0.2+16.04.20151210-0ubuntu1) xenial; urgency=medium
 
   [ CI Train Bot ]
