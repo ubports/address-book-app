@@ -26,6 +26,8 @@ import Ubuntu.Content 1.1 as ContentHub
 import Ubuntu.AddressBook.Base 0.1
 import Ubuntu.AddressBook.ContactShare 0.1
 
+import "." as AB
+
 Page {
     id: mainPage
     objectName: "contactListPage"
@@ -38,6 +40,8 @@ Page {
     property alias contactManager: contactList.manager
     property Page contactViewPage: null
     property Page contactEditorPage: null
+    property var _busyDialog: null
+    property bool _importingTestData: false
 
     readonly property bool bottomEdgePageOpened: bottomEdge.opened && bottomEdge.fullLoaded
     readonly property bool isEmpty: (contactList.count === 0)
@@ -66,30 +70,28 @@ Page {
     }
 
     function openEditPage(editPageProperties, sourcePage) {
-        var incubator = pageStack.addPageToNextColumn(sourcePage,
-                                          Qt.resolvedUrl("ABContactEditorPage.qml"),
-                                          editPageProperties);
-        incubator.onStatusChanged = function(status) {
-            if (status == Component.Ready) {
-                mainPage.contactEditorPage = incubator.object;
-            }
+        var component = Qt.createComponent(Qt.resolvedUrl("ABContactEditorPage.qml"))
+        if (component.status === Component.Ready) {
+            mainPage.contactEditorPage = component.createObject(mainPage, editPageProperties)
+            pageStack.addPageToNextColumn(sourcePage, mainPage.contactEditorPage)
         }
     }
 
     function openViewPage(viewPageProperties) {
-        var incubator = pageStack.addPageToNextColumn(mainPage,
-                                      Qt.resolvedUrl("ABContactViewPage.qml"),
-                                      viewPageProperties);
-        incubator.onStatusChanged = function(status) {
-            if (status == Component.Ready) {
-                contactViewPage = incubator.object;
-            }
+        var component = Qt.createComponent(Qt.resolvedUrl("ABContactViewPage.qml"))
+        if (component.status === Component.Ready) {
+            mainPage.contactViewPage = component.createObject(mainPage, viewPageProperties)
+            pageStack.addPageToNextColumn(mainPage, mainPage.contactViewPage)
         }
     }
 
     function showContact(contact)
     {
-        mainPage.state = "default";
+        // go back to normal state if not searching
+        if ((state !== "searching") &&
+            (state !== "vcardImported")) {
+            mainPage.state = "default";
+        }
         openViewPage({model: contactList.listModel,
                       contact: contact});
     }
@@ -109,13 +111,20 @@ Page {
 
     function importContact(urls)
     {
-        if (urls.length > 0) {
-            var importDialog = Qt.createQmlObject("VCardImportDialog{}",
-                               mainPage,
-                               "VCardImportDialog")
-            if (importDialog) {
-                importDialog.importVCards(contactList.listModel, urls)
+        mainPage._busyDialog = PopupUtils.open(busyDialogComponent, mainPage)
+
+        var importing = false
+        for(var i=0, iMax=urls.length; i < iMax; i++) {
+            var url = urls[i]
+            if (url && url != "") {
+                importing = true
+                contactList.listModel.importContacts(url)
             }
+        }
+
+        if (!importing) {
+            PopupUtils.close(mainPage._busyDialog)
+            mainPage._busyDialog = null
         }
     }
 
@@ -129,6 +138,12 @@ Page {
 
     function moveListToContact(contact)
     {
+        // skipt it if searching or importing contacts
+        if ((state === "searching") ||
+            (state === "vcardImported")) {
+            return
+        }
+
         contactIndex = contact
         mainPage.state = "default"
         // this means a new contact was created
@@ -176,15 +191,11 @@ Page {
         filterTerm: searchField.text
         multiSelectionEnabled: true
         multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
-        highlightedContact: contactViewPage ? contactViewPage.contact :
-                            contactEditorPage ? contactEditorPage.contact : null
-
+        highlightSelected: pageStack.columns > 1
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
         onAddNewContactClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
 
-        onContactClicked: {
-            showContact(contact);
-        }
+        onContactClicked: mainPage.showContact(contact)
         onIsInSelectionModeChanged: mainPage.state = isInSelectionMode ? "selection"  : "default"
         onSelectionCanceled: {
             if (pickMode) {
@@ -209,10 +220,15 @@ Page {
             right: parent.right
             rightMargin: units.gu(2)
         }
-        visible: mainPage.searching
+        focus: false
+        visible: false
         onTextChanged: contactList.currentIndex = -1
         inputMethodHints: Qt.ImhNoPredictiveText
         placeholderText: i18n.tr("Search...")
+        onFocusChanged: {
+            if (visible && focus)
+                searchField.forceActiveFocus()
+        }
     }
 
     Connections {
@@ -305,6 +321,11 @@ Page {
             }
 
             PropertyChanges {
+                target: bottomEdge
+                enabled: false
+            }
+
+            PropertyChanges {
                 target: mainPage.head
                 backAction: searchingState.backAction
                 contents: searchField
@@ -313,6 +334,12 @@ Page {
             PropertyChanges {
                 target: searchField
                 text: ""
+            }
+
+            PropertyChanges {
+                target: searchField
+                visible: true
+                focus: true
             }
         },
         PageHeadState {
@@ -418,12 +445,63 @@ Page {
                 target: bottomEdge
                 enabled: false
             }
+        },
+        PageHeadState {
+            id: vcardImportedState
+
+            name: "vcardImported"
+            backAction: Action {
+                iconName: "back"
+                text: i18n.tr("Back")
+                onTriggered: {
+                    contactList.forceActiveFocus()
+                    mainPage.state = "default"
+                    importedIdsFilter.ids = []
+                }
+            }
+            PropertyChanges {
+                target: mainPage.head
+                backAction: vcardImportedState.backAction
+            }
+            PropertyChanges {
+                target: bottomEdge
+                enabled: false
+            }
+            PropertyChanges {
+                target: mainPage
+                title: i18n.tr("Imported contacts")
+            }
         }
     ]
+
+    //WORKAROUND: we need to call 'changeFilter' manually to make sure that the model will be cleared
+    // before update it with the new model. This is faster than do a match of contacts
+    transitions: [
+         Transition {
+            from: "vcardImported"
+            ScriptAction {
+                script: contactList.listModel.changeFilter(null)
+            }
+        },
+        Transition {
+            to: "vcardImported"
+            ScriptAction {
+                script: contactList.listModel.changeFilter(importedIdsFilter)
+            }
+        }
+    ]
+
     onActiveChanged: {
         if (active && contactList.showAddNewButton) {
             contactList.positionViewAtBeginning()
         }
+        if (active && (state === "searching")) {
+            searchField.forceActiveFocus()
+        }
+    }
+
+    IdFilter {
+        id: importedIdsFilter
     }
 
     KeyboardRectangle {
@@ -478,16 +556,6 @@ Page {
         }
     }
 
-    Connections {
-        target: mainPage.contactModel
-        onContactsChanged: {
-            if (contactIndex) {
-                contactList.positionViewAtContact(mainPage.contactIndex)
-                mainPage.contactIndex = null
-            }
-        }
-    }
-
     ContactExporter {
         id: contactExporter
 
@@ -529,6 +597,35 @@ Page {
     }
 
     Component {
+        id: busyDialogComponent
+
+        Popups.Dialog {
+            id: busyDialog
+
+            property alias allowToClose: closeButton.visible
+            property alias showActivity: busyIndicator.visible
+
+            title: i18n.tr("Importing...")
+
+            ActivityIndicator {
+                id: busyIndicator
+                running: visible
+                visible: true
+            }
+            Button {
+                id: closeButton
+                text: i18n.tr("Close")
+                visible: false
+                color: UbuntuColors.red
+                onClicked: {
+                    PopupUtils.close(mainPage._busyDialog)
+                    mainPage._busyDialog = null
+                }
+            }
+        }
+    }
+
+    Component {
         id: contactShareComponent
 
         ContactSharePage {
@@ -538,7 +635,8 @@ Page {
 
     Component.onCompleted: {
         application.elapsed()
-        if ((typeof(TEST_DATA) !== "undefined") && (TEST_DATA !== "")) {
+        if ((typeof(TEST_DATA) !== "undefined") && (TEST_DATA != "")) {
+            mainPage._importingTestData = true
             contactList.listModel.importContacts("file://" + TEST_DATA)
         }
 
@@ -575,7 +673,7 @@ Page {
         }
     }
 
-    BottomEdge {
+    AB.BottomEdge {
         id: bottomEdge
         objectName: "bottomEdge"
 
@@ -643,6 +741,40 @@ Page {
 
         onClicked: {
             bottomEdge.open();
+        }
+    }
+
+    Connections {
+        target: mainPage.contactModel
+        onContactsChanged: {
+            if (contactIndex) {
+                contactList.positionViewAtContact(mainPage.contactIndex)
+                mainPage.contactIndex = null
+            }
+        }
+        onImportCompleted: {
+            if (mainPage._importingTestData) {
+                mainPage._importingTestData = false
+                return
+            }
+
+            if (error !== ContactModel.ImportNoError) {
+                console.error("Fail to import vcard:" + error)
+                mainPage._busyDialog.title = i18n.tr("Fail to import contacts!")
+                mainPage._busyDialog.allowToClose = true
+                mainPage._busyDialog.showActivity = false
+            } else {
+                var importedIds = ids
+                importedIds.concat(importedIdsFilter.ids)
+                importedIdsFilter.ids = importedIds
+                console.debug("Imported ids:" + importedIds)
+                mainPage.state = "vcardImported"
+
+                if (mainPage._busyDialog) {
+                    PopupUtils.close(mainPage._busyDialog)
+                    mainPage._busyDialog = null
+                }
+            }
         }
     }
 

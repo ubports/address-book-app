@@ -18,18 +18,18 @@
 #define IMAGESCALETHREAD_H
 
 #include <QObject>
-#include <QThread>
+#include <QRunnable>
 #include <QUrl>
+#include <QPointer>
 #include <QTemporaryFile>
 
-class ImageScaleThread : public QThread
+class ImageScaleThread : public QRunnable
 {
-    Q_OBJECT
 public:
-    ImageScaleThread(const QUrl &imageUrl, QObject *parent=0);
+    ImageScaleThread(const QUrl &imageUrl, QObject *listener);
     ~ImageScaleThread();
 
-    void updateImageUrl(const QUrl &imageUrl);
+    QString id();
     QString outputFile() const;
 
 protected:
@@ -37,6 +37,8 @@ protected:
 
 private:
     QUrl m_imageUrl;
+    QString m_id;
+    QPointer<QObject> m_listener;
     QTemporaryFile *m_tmpFile;
 };
 

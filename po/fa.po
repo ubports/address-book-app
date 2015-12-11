@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-09-28 06:22+0000\n"
-"X-Generator: Launchpad (build 17754)\n"
+"X-Launchpad-Export-Date: 2015-11-06 05:38+0000\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:77
 #, qt-format
@@ -28,11 +28,11 @@ msgid "%1 vCards imported"
 msgstr "%1 کارت مجازی وارد شد"
 
 #. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:400
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:448
 msgid "+ Create New"
 msgstr "+ افزودن جدید"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:317
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:330
 msgid "Add Field"
 msgstr "افزودن زمینه"
 
@@ -40,7 +40,7 @@ msgstr "افزودن زمینه"
 msgid "Add Google account"
 msgstr "افزودن حساب گوگل"
 
-#: ../src/imports/ABContactListPage.qml:360
+#: ../src/imports/ABContactListPage.qml:397
 msgid "Add contact"
 msgstr "افزودن مخاطب"
 
@@ -54,7 +54,7 @@ msgstr "افزودن شماره…"
 msgid "Address"
 msgstr "نشانی"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:78
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:134
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:49
 msgid "Addressbook"
 msgstr "دفترچه نشانی"
@@ -65,7 +65,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:247
+#: ../src/imports/ABContactListPage.qml:286
 msgid "All"
 msgstr "همه"
 
@@ -77,21 +77,22 @@ msgstr "مطمئنید که می‌خواهید همه‌ی مخاطبین ان�
 msgid "Are you sure that you want to remove this contact?"
 msgstr "مطمئنید که می‌خواهید این مخاطب را بردارید؟"
 
-#: ../src/imports/ABContactEditorPage.qml:31
-#: ../src/imports/ABContactListPage.qml:260 ../src/imports/MainWindow.qml:156
+#: ../src/imports/ABContactEditorPage.qml:36
+#: ../src/imports/ABContactListPage.qml:299 ../src/imports/MainWindow.qml:168
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "لغو"
 
-#: ../src/imports/ABContactListPage.qml:284
+#: ../src/imports/ABContactListPage.qml:323
 msgid "Cancel selection"
 msgstr "لغو انتخاب"
 
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:450
 #: ../src/imports/VCardImportDialog.qml:80
 msgid "Close"
 msgstr "بستن"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:424
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:431
 msgid "Contact Editor"
 msgstr "ویرایشگر مخاطب"
 
@@ -99,7 +100,7 @@ msgstr "ویرایشگر مخاطب"
 msgid "Contact not found"
 msgstr "مخاطب یافت نشد"
 
-#: ../src/imports/ABContactListPage.qml:127
+#: ../src/imports/ABContactListPage.qml:161
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "مخاطبین"
@@ -116,17 +117,17 @@ msgstr "مخاطبین;مردم;شماره‌ها"
 msgid "Country"
 msgstr "کشور"
 
-#: ../src/imports/ABContactListPage.qml:445
+#: ../src/imports/ABContactListPage.qml:473
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "با لغزش به بالا از پایین صفحه، یک مخاطب جدید ایجاد کتید."
 
-#: ../src/imports/ABContactListPage.qml:320
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:365
+#: ../src/imports/ABContactListPage.qml:359
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:378
 msgid "Delete"
 msgstr "حذف"
 
-#: ../src/imports/ABContactViewPage.qml:43
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:150
+#: ../src/imports/ABContactViewPage.qml:51
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:155
 msgid "Edit"
 msgstr "ویرایش"
 
@@ -149,7 +150,7 @@ msgstr "یک نام مستعار وارد کنید"
 msgid "Enter an email address"
 msgstr "یک نشانی ای‌میل وارد کنید"
 
-#: ../src/imports/MainWindow.qml:152
+#: ../src/imports/MainWindow.qml:164
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
 msgstr "خطا"
@@ -162,7 +163,7 @@ msgstr "در حال صادر کردن مخاطبین…"
 msgid "Fail to read SIM card"
 msgstr "شکست در خواندن از سیم‌کارت"
 
-#: ../src/imports/ABContactListPage.qml:247
+#: ../src/imports/ABContactListPage.qml:286
 msgid "Favorites"
 msgstr "برگزیده‌ها"
 
@@ -192,11 +193,11 @@ msgstr "پیام فوری"
 msgid "Import"
 msgstr "وارد کردن"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:444
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:509
 msgid "Import contacts from Google"
 msgstr "وارد کردن مخاطب‌ها از گوگل"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:455
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:520
 msgid "Import contacts from SIM card"
 msgstr "وارد کردن آشناها از سیم‌کارت"
 
@@ -221,7 +222,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "نام خانوادگی"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:521
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:587
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:218
 msgid "Loading..."
 msgstr "در حال بار کردن…"
@@ -248,7 +249,9 @@ msgstr "چند مخاطب"
 msgid "My phone number: %1"
 msgstr "شماره تلفن من: %1"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:150
+#: ../src/imports/ABContactListPage.qml:568
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:155
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:456
 msgid "New contact"
 msgstr "مخاطب جدید"
 
@@ -303,7 +306,7 @@ msgstr "کدپستی"
 msgid "Professional Details"
 msgstr "جزئیات حرفه‌ای"
 
-#: ../src/imports/ABContactListPage.qml:211
+#: ../src/imports/ABContactListPage.qml:243
 msgid "Quit"
 msgstr "خروج"
 
@@ -324,30 +327,30 @@ msgstr "سیم‌کارت %1"
 msgid "SIM contacts"
 msgstr "آشناهای سیم‌کارت"
 
-#: ../src/imports/ABContactEditorPage.qml:43
+#: ../src/imports/ABContactEditorPage.qml:48
 msgid "Save"
 msgstr "ذخیره"
 
-#: ../src/imports/ABContactListPage.qml:219
+#: ../src/imports/ABContactListPage.qml:251
 msgid "Search"
 msgstr "جست‌وجو"
 
-#: ../src/imports/ABContactListPage.qml:183
+#: ../src/imports/ABContactListPage.qml:215
 msgid "Search..."
 msgstr "جست‌وجو…"
 
-#: ../src/imports/ABContactListPage.qml:290
+#: ../src/imports/ABContactListPage.qml:329
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:178
 msgid "Select All"
 msgstr "گزینش همه"
 
-#: ../src/imports/ABContactListPage.qml:236
+#: ../src/imports/ABContactListPage.qml:274
 #: ../src/imports/Settings/SettingsPage.qml:30
 msgid "Settings"
 msgstr "تنظیمات"
 
-#: ../src/imports/ABContactListPage.qml:303
-#: ../src/imports/ABContactViewPage.qml:35
+#: ../src/imports/ABContactListPage.qml:342
+#: ../src/imports/ABContactViewPage.qml:38
 msgid "Share"
 msgstr "به‌اشتراک گذاری"
 
@@ -364,15 +367,15 @@ msgstr "اجتماعی"
 msgid "Street"
 msgstr "خیابان"
 
-#: ../src/imports/ABContactListPage.qml:230
+#: ../src/imports/ABContactListPage.qml:262
 msgid "Sync"
 msgstr "هم‌گام سازی"
 
-#: ../src/imports/ABContactListPage.qml:230
+#: ../src/imports/ABContactListPage.qml:262
 msgid "Syncing"
 msgstr "در حال هم‌گام سازی"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:521
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:587
 msgid "Syncing..."
 msgstr "در حال هم‌گام سازی…"
 
@@ -392,7 +395,7 @@ msgstr "بازکردن قفل"
 msgid "Unlocking..."
 msgstr "در حال باز کردن قفل…"
 
-#: ../src/imports/ABContactListPage.qml:290
+#: ../src/imports/ABContactListPage.qml:329
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:177
 msgid "Unselect All"
 msgstr "لغو انتخاب همه"
@@ -416,11 +419,11 @@ msgstr "یاهو"
 msgid "Yes"
 msgstr "بله"
 
-#: ../src/imports/ABContactListPage.qml:444
+#: ../src/imports/ABContactListPage.qml:472
 msgid "You have no contacts."
 msgstr "شما هیچ مخاطبی ندارید."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:437
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:444
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded by running Contacts "
@@ -431,7 +434,7 @@ msgstr ""
 "یابد.\n"
 "تا پایان ارتقا، تنها مخاطبان محلّی، قابل ویرایش خواهند بود."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:428
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:435
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
@@ -440,7 +443,7 @@ msgstr ""
 "حساب هم‌گام‌سازی مخاطب <b>%1</b> شما نیاز به ارتقا دارد.\n"
 "برا ی ویرایش مخاطبان، تا کامل شد ارتقا صبر کنید."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:433
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:440
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded. Use the sync "
