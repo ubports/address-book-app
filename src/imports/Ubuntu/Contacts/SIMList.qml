@@ -39,6 +39,10 @@ Item {
 
     function createQML (modems)
     {
+        if (!phoneSettings.simNames) {
+            return
+        }
+
         var component = Qt.createComponent(Qt.resolvedUrl("Ofono.qml"));
 
         sims.forEach(function (sim) {
@@ -72,6 +76,12 @@ Item {
     GSettings {
         id: phoneSettings
         schema.id: "com.ubuntu.phone"
+        onChanged: {
+            if (key === "simNames") {
+                root.createQML(ofonoManager.modems.slice(0).sort())
+            }
+        }
+        onSchemaChanged: root.createQML(ofonoManager.modems.slice(0).sort())
     }
 
     OfonoManager {

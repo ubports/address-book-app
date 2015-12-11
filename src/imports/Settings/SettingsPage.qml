@@ -135,9 +135,12 @@ Page {
         id: simCardImportPageComponent
 
         ContactsUI.SIMCardImportPage {
+            id: importFromSimPage
+
             objectName: "simCardImportPage"
             targetModel: root.contactListModel
             sims: simList.sims
+            onImportCompleted: pageStack.removePages(root)
         }
     }
 
