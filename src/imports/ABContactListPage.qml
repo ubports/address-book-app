@@ -414,10 +414,8 @@ Page {
             backAction: Action {
                 iconName: "back"
                 text: i18n.tr("Cancel")
-                // WORKAROUND: SDK does not unregister shortcut on object destruction
-                // we need to do it manually. (bug #1518420)
                 enabled: mainPage.state === "searching" && !mainPage.contactEditorPage && mainPage.active
-                shortcut: enabled ? "Esc" : undefined
+                shortcut: "Esc"
                 onTriggered: {
                     mainPage.head.sections.selectedIndex = 0
                     mainPage.state = (mainPage.state === "newphoneSearching" ? "newphone" : "default")
@@ -454,10 +452,8 @@ Page {
             backAction: Action {
                 text: i18n.tr("Cancel selection")
                 iconName: "back"
-                // WORKAROUND: SDK does not unregister shortcut on object destruction
-                // we need to do it manually. (bug #1518420)
                 enabled: mainPage.state === "selection"
-                shortcut: enabled ? "Esc" : undefined
+                shortcut: "Esc"
                 onTriggered: contactList.cancelSelection()
             }
             actions: [

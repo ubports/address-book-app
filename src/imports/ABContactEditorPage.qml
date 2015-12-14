@@ -53,10 +53,8 @@ ContactEditorPage {
 
             text: i18n.tr("Save")
             iconName: "ok"
-            // WORKAROUND: SDK does not unregister shortcut on object destruction
-            // we need to do it manually. (bug #1518420)
-            enabled: root.isContactValid && root.active
-            shortcut: enabled ? "Ctrl+s" : undefined
+            enabled: root.isContactValid && root.active && root.enabled
+            shortcut: "Ctrl+s"
             onTriggered: root.save()
         }
     ]

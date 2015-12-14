@@ -64,9 +64,7 @@ Dialog {
         color: UbuntuColors.green
         action: Action {
             shortcut: "return"
-            onTriggered: {
-                accepted()
-            }
+            onTriggered: accepted()
         }
     }
 
@@ -82,16 +80,7 @@ Dialog {
         color: UbuntuColors.red
         action: Action {
             shortcut: "esc"
-            onTriggered: {
-                canceled()
-            }
+            onTriggered: canceled()
         }
-    }
-
-    // FIXME: This is necessary due a bug on SDK. (bug #1514856)
-    // remove this when the bug get fixed:
-    Component.onDestruction:  {
-        cancelButton.action.shortcut = ""
-        acceptButton.action.shortcut = ""
     }
 }

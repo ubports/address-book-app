@@ -35,10 +35,8 @@ ContactViewPage {
         id: backAction
 
         name: "cancel"
-        // WORKAROUND: SDK does not unregister shortcut on object destruction
-        // we need to do it manually. (bug #1518420)
         enabled: root.active && root.enabled && (pageStack.columns === 1)
-        shortcut: enabled ? "Esc" : undefined
+        shortcut: "Esc"
         onTriggered: pageStack.removePages(root)
     }
 
