@@ -38,8 +38,10 @@ ContactEditorPage {
 
         text: i18n.tr("Cancel")
         iconName: "back"
+        // WORKAROUND: SDK does not unregister shortcut on object destruction
+        // we need to do it manually. (bug #1518420)
         enabled: root.active && root.enabled
-        shortcut: "Esc"
+        shortcut: enabled ? "Esc" : undefined
         onTriggered: root.cancel()
     }
 

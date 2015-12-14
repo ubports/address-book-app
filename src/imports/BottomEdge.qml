@@ -32,6 +32,7 @@ Item {
     signal openBegin
     signal openEnd
     signal clicked
+    signal bottomEdgeLoaded
 
     function open() {
         bottomEdge.state = "expanded";
@@ -96,6 +97,10 @@ Item {
                 sourceComponent: bottomEdge.contentComponent
                 asynchronous: true
                 active: bottomEdge.enabled
+                onStatusChanged: {
+                    if (status === Loader.Ready)
+                        bottomEdge.bottomEdgeLoaded()
+                }
             }
         }
 

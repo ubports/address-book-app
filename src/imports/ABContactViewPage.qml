@@ -30,6 +30,18 @@ ContactViewPage {
     property string addPhoneToContact: ""
     signal editContact(var editPageProperties)
 
+    // Override Action buttom to add shortcut to it
+     Action {
+        id: backAction
+
+        name: "cancel"
+        // WORKAROUND: SDK does not unregister shortcut on object destruction
+        // we need to do it manually. (bug #1518420)
+        enabled: root.active && root.enabled && (pageStack.columns === 1)
+        shortcut: enabled ? "Esc" : undefined
+        onTriggered: pageStack.removePages(root)
+    }
+
     head.actions: [
         Action {
             objectName: "share"

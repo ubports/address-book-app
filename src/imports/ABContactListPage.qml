@@ -228,7 +228,7 @@ Page {
         filterTerm: searchField.text
         multiSelectionEnabled: true
         multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
-        highlightSelected: pageStack.columns > 1 && !mainPage._creatingContact
+        highlightSelected: application.usingKeyboard && !mainPage._creatingContact
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
         onAddNewContactClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
 
@@ -265,6 +265,14 @@ Page {
                 mainPage.delayFetchContact()
         }
 
+        Keys.onReturnPressed: {
+            var currentContact = contactList.listModel.contacts[contactList.currentIndex]
+            if (contactViewPage && contactViewPage.contact && (contactViewPage.contact.contactId === currentContact.contactId))
+                return
+
+            contactList.view._fetchContact(contactList.currentIndex, currentContact)
+        }
+
         //WORKAROUND: SDK does not allow us to disable focus for items due bug: #1514822
         //because of that we need this
         Keys.onRightPressed: {
@@ -294,24 +302,14 @@ Page {
         readonly property bool _allowFocus: true
 
         anchors {
-            left: parent.left
-            right: parent.right
+            left: parent ? parent.left : undefined
+            right: parent ? parent.right : undefined
             rightMargin: units.gu(2)
         }
 
         visible: false
         inputMethodHints: Qt.ImhNoPredictiveText
         placeholderText: i18n.tr("Search...")
-        onVisibleChanged: {
-            if (visible) {
-                if (activeFocus) {
-                    Qt.imputMethod.show()
-                } else {
-                    searchField.forceActiveFocus()
-                }
-            }
-        }
-
         Keys.onTabPressed: contactList.forceActiveFocus()
         Keys.onDownPressed: contactList.forceActiveFocus()
     }
@@ -416,12 +414,14 @@ Page {
             backAction: Action {
                 iconName: "back"
                 text: i18n.tr("Cancel")
+                // WORKAROUND: SDK does not unregister shortcut on object destruction
+                // we need to do it manually. (bug #1518420)
                 enabled: mainPage.state === "searching" && !mainPage.contactEditorPage
-                shortcut:"Esc"
+                shortcut: enabled ? "Esc" : undefined
                 onTriggered: {
-                    contactList.forceActiveFocus()
                     mainPage.head.sections.selectedIndex = 0
                     mainPage.state = (mainPage.state === "newphoneSearching" ? "newphone" : "default")
+                    contactList.forceActiveFocus()
                 }
             }
 
@@ -454,9 +454,11 @@ Page {
             backAction: Action {
                 text: i18n.tr("Cancel selection")
                 iconName: "back"
+                // WORKAROUND: SDK does not unregister shortcut on object destruction
+                // we need to do it manually. (bug #1518420)
                 enabled: mainPage.state === "selection"
+                shortcut: enabled ? "Esc" : undefined
                 onTriggered: contactList.cancelSelection()
-                shortcut: "Esc"
             }
             actions: [
                 Action {
@@ -829,11 +831,12 @@ Page {
         }
 
         anchors.fill: parent
-        contentComponent: pageStack.columns == 1 ? editorPageBottomEdge : emptyContact
+        contentComponent: pageStack.columns === 1 ? editorPageBottomEdge : emptyContact
         flickable: contactList
         iconName: "contact-new"
         backGroundEffectEnabled: pageStack.columns === 1
 
+        onBottomEdgeLoaded: contactList.forceActiveFocus()
         onOpenBegin: {
             contactList.prepareNewContact = true;
             contactList.positionViewAtBeginning();
