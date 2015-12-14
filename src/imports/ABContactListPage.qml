@@ -171,9 +171,10 @@ Page {
     {
         if ((contactList.currentIndex >= 0) && (pageStack.columns > 1)) {
             var currentContact = contactList.listModel.contacts[contactList.currentIndex]
-            if (contactViewPage && contactViewPage.contact && (contactViewPage.contact.contactId === currentContact.contactId))
+            if (mainPage.currentViewContactId === currentContact.contactId)
                 return
 
+            console.debug("Open contact::::::::::::::::::")
             contactList.view._fetchContact(contactList.currentIndex, currentContact)
         }
     }
@@ -286,7 +287,7 @@ Page {
 
         Keys.onReturnPressed: {
             var currentContact = contactList.listModel.contacts[contactList.currentIndex]
-            if (contactViewPage && contactViewPage.contact && (contactViewPage.contact.contactId === currentContact.contactId))
+            if (mainPage.currentViewContactId === currentContact.contactId)
                 return
 
             contactList.view._fetchContact(contactList.currentIndex, currentContact)
