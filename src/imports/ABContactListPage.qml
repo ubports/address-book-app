@@ -434,7 +434,9 @@ Page {
                 Action {
                     iconName: "back"
                     text: i18n.tr("Cancel")
-                    enabled: mainPage.state === "searching" && !mainPage.contactEditorPage && mainPage.active
+                    enabled: (mainPage.state === "searching") &&
+                             mainPage.active &&
+                             ((pageStack.columns === 1) ||  (mainPage.viewPage && mainPage.viewPage.active))
                     shortcut:"Esc"
                     onTriggered: {
                         mainPage.head.sections.selectedIndex = 0

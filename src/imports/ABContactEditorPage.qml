@@ -63,6 +63,4 @@ ContactEditorPage {
             pageStack.contactListPage.moveListToContact(contact)
         }
     }
-
-    Component.onDestruction: console.debug("Destroy editor")
 }
