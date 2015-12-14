@@ -52,10 +52,11 @@ ContactEditorPage {
             name: "save"
 
             text: i18n.tr("Save")
-            shortcut: "Ctrl+s"
             iconName: "ok"
-            // disable save button while avatar scale still running
+            // WORKAROUND: SDK does not unregister shortcut on object destruction
+            // we need to do it manually. (bug #1518420)
             enabled: root.isContactValid && root.active
+            shortcut: enabled ? "Ctrl+s" : undefined
             onTriggered: root.save()
         }
     ]
