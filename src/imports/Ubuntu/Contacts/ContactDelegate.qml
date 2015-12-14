@@ -32,7 +32,6 @@ ListItemWithActions {
     signal clicked(int index, QtObject contact)
     signal pressAndHold(int index, QtObject contact)
 
-    focus: false
     implicitHeight: defaultHeight
     width: parent ? parent.width : 0
 

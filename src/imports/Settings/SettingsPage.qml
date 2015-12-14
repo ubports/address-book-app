@@ -82,8 +82,13 @@ Page {
                     }
                 }
 
-                // selection visual feedback
-                __foregroundColor: (activeFocus && (pageStack.columns > 1)) ? "white" : Theme.palette.normal.foreground
+                // Selection visual feedback
+                //
+                // FIXME: Using a private property here. This uses the old list item and the only way to change the text
+                // color is with this property.
+                // We should remove it when update the app to the new ListItem.
+                __foregroundColor: (activeFocus && (pageStack.columns > 1)) ? Theme.palette.normal.foregroundText :
+                                                                              Theme.palette.normal.foreground
                 Rectangle {
                     color: UbuntuColors.orange
                     anchors.fill: parent
@@ -107,7 +112,12 @@ Page {
                 Keys.onUpPressed: addGoogleAccountItem.forceActiveFocus()
 
                 // selection visual feedback
-                __foregroundColor: (activeFocus && (pageStack.columns > 1)) ? "white" : Theme.palette.normal.foreground
+                //
+                // FIXME: Using a private property here. This uses the old list item and the only way to change the text
+                // color is with this property.
+                // We should remove it when update the app to the new ListItem.
+                __foregroundColor: (activeFocus && (pageStack.columns > 1)) ? Theme.palette.normal.foregroundText :
+                                                                              Theme.palette.normal.foreground
                 Rectangle {
                     color: UbuntuColors.orange
                     anchors.fill: parent
@@ -125,9 +135,12 @@ Page {
         id: simCardImportPageComponent
 
         ContactsUI.SIMCardImportPage {
+            id: importFromSimPage
+
             objectName: "simCardImportPage"
             targetModel: root.contactListModel
             sims: simList.sims
+            onImportCompleted: pageStack.removePages(root)
         }
     }
 

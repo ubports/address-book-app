@@ -26,6 +26,8 @@ import Ubuntu.Content 1.1 as ContentHub
 import Ubuntu.AddressBook.Base 0.1
 import Ubuntu.AddressBook.ContactShare 0.1
 
+import "." as AB
+
 Page {
     id: mainPage
     objectName: "contactListPage"
@@ -159,10 +161,21 @@ Page {
         }
     }
 
-    function reloadContact()
+    // Delay contact fetch for some msecs (check 'fetchNewContactTimer')
+    function delayFetchContact()
     {
         fetchNewContactTimer.restart()
-        contactList.forceActiveFocus()
+    }
+
+    function fetchContact()
+    {
+        if ((contactList.currentIndex >= 0) && (pageStack.columns > 1)) {
+            var currentContact = contactList.listModel.contacts[contactList.currentIndex]
+            if (contactViewPage && contactViewPage.contact && (contactViewPage.contact.contactId === currentContact.contactId))
+                return
+
+            contactList.view._fetchContact(contactList.currentIndex, currentContact)
+        }
     }
 
     header: PageHeader {
@@ -202,21 +215,18 @@ Page {
         }
     }
 
+    // This timer is to avoid fetch unecessary contact if the user select the contacts too fast
+    // while navigating on contact list with keyboard
     Timer {
         id: fetchNewContactTimer
 
-        interval: 30
+        interval: 300
         repeat: false
-        onTriggered: {
-            if (mainPage.active && (contactList.currentIndex >= 0) && (pageStack.columns > 1)) {
-                var currentContact = contactList.listModel.contacts[contactList.currentIndex]
-                if (currentContact && (mainPage.currentViewContactId === currentContact.contactId))
-                    return
-
-                contactList.view._fetchContact(contactList.currentIndex, currentContact)
-            }
-        }
+        onTriggered: mainPage.fetchContact()
     }
+
+    title: i18n.tr("Contacts")
+    flickable: null
 
     ContactsUI.ContactListView {
         id: contactList
@@ -236,8 +246,8 @@ Page {
         filterTerm: searchField.text
         multiSelectionEnabled: true
         multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
-        highlightSelected: pageStack.columns > 1 && !mainPage._creatingContact
         showNewContact: (pageStack.columns > 1) && pageStack.bottomEdge && (pageStack.bottomEdge.status === BottomEdge.Committed    )
+        highlightSelected: application.usingKeyboard && !mainPage._creatingContact
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
         onContactClicked: mainPage.showContact(contact)
         onIsInSelectionModeChanged: mainPage.state = isInSelectionMode ? "selection"  : "default"
@@ -259,9 +269,27 @@ Page {
                 contactList.currentIndex = 0
             }
         }
+
+        onCountChanged: {
+            if (mainPage.active &&
+                (pageStack.columns > 1) &&
+                (contactList.currentIndex === -1)) {
+                contactList.currentIndex = 0
+            }
+            mainPage.delayFetchContact()
+        }
+
         onCurrentIndexChanged: {
             if (!mainPage.contactIndex)
-                fetchNewContactTimer.restart()
+                mainPage.delayFetchContact()
+        }
+
+        Keys.onReturnPressed: {
+            var currentContact = contactList.listModel.contacts[contactList.currentIndex]
+            if (contactViewPage && contactViewPage.contact && (contactViewPage.contact.contactId === currentContact.contactId))
+                return
+
+            contactList.view._fetchContact(contactList.currentIndex, currentContact)
         }
 
         //WORKAROUND: SDK does not allow us to disable focus for items due bug: #1514822
@@ -281,11 +309,6 @@ Page {
                 pageStack._nextItemInFocusChain(next, true)
             }
         }
-
-        onCountChanged: {
-            if (! mainPage.viewPage)
-                fetchNewContactTimer.restart()
-        }
     }
 
     TextField {
@@ -300,6 +323,7 @@ Page {
             left: parent ? parent.left : undefined
             right: parent ? parent.right : undefined
             margins: units.gu(1)
+            rightMargin: units.gu(2)
         }
 
         visible: false
@@ -373,9 +397,9 @@ Page {
                         incubator.onStatusChanged = function(status) {
                             if (status === Component.Ready) {
                                 incubator.object.onActiveChanged.connect(function(active) {
-                                    console.debug("Active:" + incubator.object.active)
                                     if (!incubator.object.active) {
-                                        mainPage.reloadContact()
+                                        mainPage.delayFetchContact()
+                                        contactList.forceActiveFocus()
                                     }
                                 })
                             }
@@ -409,12 +433,12 @@ Page {
                 Action {
                     iconName: "back"
                     text: i18n.tr("Cancel")
-                    enabled: mainPage.state === "searching" && !mainPage.bottomEdgeOpenOnNextCollumn
+                    enabled: mainPage.state === "searching" && !mainPage.contactEditorPage && mainPage.active
                     shortcut:"Esc"
                     onTriggered: {
-                        contactList.forceActiveFocus()
                         mainPage.head.sections.selectedIndex = 0
                         mainPage.state = "default"
+                        contactList.forceActiveFocus()
                     }
                 }
             ]
@@ -454,7 +478,7 @@ Page {
             ]
 
             property list<QtObject> trailingActions: [
-                Action {
+                 Action {
                     text: (contactList.selectedItems.count === contactList.count) ? i18n.tr("Unselect All") : i18n.tr("Select All")
                     iconName: "select"
                     onTriggered: {

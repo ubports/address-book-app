@@ -81,7 +81,6 @@ MainView {
     width: units.gu(90)
     height: units.gu(71)
     anchorToKeyboard: false
-    focus: false
 
     AdaptivePageLayout {
         id: mainStack

@@ -106,10 +106,9 @@ FocusScope {
         id: highlight
 
         anchors.fill: parent
-        opacity: 0.1
         visible: root.activeFocus
-        color: "black"
-        z: 100
+        color: Theme.palette.selected.background
+        z: -1
     }
 
     MouseArea {

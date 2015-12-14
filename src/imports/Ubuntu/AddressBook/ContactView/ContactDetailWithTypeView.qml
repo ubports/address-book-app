@@ -44,7 +44,6 @@ ContactDetailBase {
     }
 
     activeFocusOnTab: icon.visible
-    focus: false
     implicitHeight: view.implicitHeight
     onIsReadyChanged: populateValues()
 

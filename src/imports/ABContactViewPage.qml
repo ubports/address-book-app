@@ -36,6 +36,17 @@ ContactViewPage {
                                            backIconName: 'back'})
     }
 
+    // Shortcut in case of single column
+     Action {
+        id: backAction
+
+        name: "cancel"
+        enabled: root.active && root.enabled && (pageStack.columns === 1)
+        shortcut: "Esc"
+        onTriggered: pageStack.removePages(root)
+    }
+
+
     headerActions: [
         Action {
             objectName: "share"

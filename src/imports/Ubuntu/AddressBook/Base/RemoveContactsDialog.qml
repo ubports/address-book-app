@@ -64,9 +64,7 @@ Dialog {
         color: UbuntuColors.green
         action: Action {
             shortcut: "return"
-            onTriggered: {
-                accepted()
-            }
+            onTriggered: accepted()
         }
     }
 
@@ -82,14 +80,7 @@ Dialog {
         color: UbuntuColors.red
         action: Action {
             shortcut: "esc"
-            onTriggered: {
-                canceled()
-            }
+            onTriggered: canceled()
         }
-    }
-
-    Component.onDestruction:  {
-        cancelButton.action.shortcut = ""
-        acceptButton.action.shortcut = ""
     }
 }

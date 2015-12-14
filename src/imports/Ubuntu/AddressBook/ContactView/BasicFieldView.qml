@@ -27,7 +27,6 @@ import Ubuntu.Components 1.3
     property variant fields: null
     property int parentIndex: -1
 
-    focus: false
     activeFocusOnTab: false
     implicitHeight: typeLabel.height + fieldValues.height + units.gu(2)
 

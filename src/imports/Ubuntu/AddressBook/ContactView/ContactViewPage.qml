@@ -51,7 +51,6 @@ Page {
             id: trailingBar
         }
     }
-    focus: false
 
     Connections {
         target: contact

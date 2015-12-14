@@ -87,7 +87,7 @@ ContactDetailBase {
     property real myHeight: sources.currentlyExpanded ? sources.containerHeight + units.gu(6) + label.height : sources.itemHeight + units.gu(6) + label.height
 
     detail: root.contact ? contact.detail(ContactDetail.SyncTarget) : null
-    height: root.isNewContact &&  sources.model && (sources.model.count > 1) ? myHeight : 0
+    implicitHeight: root.isNewContact &&  sources.model && (sources.model.count > 1) ? myHeight : 0
     visible: height > 0
 
     ContactModel {

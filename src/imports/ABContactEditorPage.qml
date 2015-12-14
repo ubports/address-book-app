@@ -26,6 +26,8 @@ ContactEditorPage {
     objectName: "contactEditorPage"
 
     property alias backIconName: backAction.iconName
+    // Property used on unit tests
+    readonly property alias saveActionEnabled: saveAction.enabled
 
     leadingActions: [
         Action {
@@ -44,14 +46,14 @@ ContactEditorPage {
 
     headerActions: [
         Action {
+            id: saveAction
             objectName: "save"
             name: "save"
 
             text: i18n.tr("Save")
-            shortcut: "Ctrl+s"
             iconName: "ok"
-            // disable save button while avatar scale still running
-            enabled: root.isContactValid && root.active
+            enabled: root.isContactValid && root.active && root.enabled
+            shortcut: "Ctrl+s"
             onTriggered: root.save()
         }
     ]
