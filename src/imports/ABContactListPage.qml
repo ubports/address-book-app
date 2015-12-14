@@ -416,7 +416,7 @@ Page {
                 text: i18n.tr("Cancel")
                 // WORKAROUND: SDK does not unregister shortcut on object destruction
                 // we need to do it manually. (bug #1518420)
-                enabled: mainPage.state === "searching" && !mainPage.contactEditorPage
+                enabled: mainPage.state === "searching" && !mainPage.contactEditorPage && mainPage.active
                 shortcut: enabled ? "Esc" : undefined
                 onTriggered: {
                     mainPage.head.sections.selectedIndex = 0
