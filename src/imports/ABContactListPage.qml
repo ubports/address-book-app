@@ -168,6 +168,7 @@ Page {
     header: PageHeader {
         id: pageHeader
 
+        property alias leadingActions: leadingBar.actions
         property alias trailingActions: trailingBar.actions
         property alias sectionsModel: sections.model
 
@@ -175,6 +176,9 @@ Page {
         //flickable: contactList.view
         trailingActionBar {
             id: trailingBar
+        }
+        leadingActionBar {
+            id: leadingBar
         }
         extension: Sections {
             id: sections
@@ -321,7 +325,7 @@ Page {
             id: defaultState
             name: "default"
 
-            property list<QtObject> navigationActions: [
+            property list<QtObject> leadingActions: [
                 Action {
                     visible: mainPage.allowToQuit
                     iconName: "back"
@@ -385,7 +389,7 @@ Page {
 
                 // TRANSLATORS: this refers to all contacts
                 sectionsModel:  [i18n.tr("All"), i18n.tr("Favorites")]
-                navigationActions: defaultState.navigationActions
+                leadingActions: defaultState.leadingActions
                 trailingActions: defaultState.trailingActions
             }
             PropertyChanges {
@@ -401,7 +405,7 @@ Page {
             id: searchingState
             name: "searching"
 
-            property list<QtObject> navigationActions: [
+            property list<QtObject> leadingActions: [
                 Action {
                     iconName: "back"
                     text: i18n.tr("Cancel")
@@ -419,7 +423,7 @@ Page {
                 target: pageHeader
 
                 contents: searchField
-                navigationActions: searchingState.navigationActions
+                leadingActions: searchingState.leadingActions
 
             }
 
@@ -439,7 +443,7 @@ Page {
             id: selectionState
             name: "selection"
 
-            property list<QtObject> navigationActions: [
+            property list<QtObject> leadingActions: [
                 Action {
                     text: i18n.tr("Cancel selection")
                     iconName: "back"
@@ -503,7 +507,7 @@ Page {
             PropertyChanges {
                 target: pageHeader
 
-                navigationActions: selectionState.navigationActions
+                leadingActions: selectionState.leadingActions
                 trailingActions: selectionState.trailingActions
             }
 
@@ -516,7 +520,7 @@ Page {
             id: vcardImportedState
             name: "vcardImported"
 
-            property list<QtObject> navigationActions: [
+            property list<QtObject> leadingActions: [
                 Action {
                     iconName: "back"
                     text: i18n.tr("Back")
@@ -531,7 +535,7 @@ Page {
             PropertyChanges {
                 target: pageHeader
 
-                navigationActions: vcardImportedState.navigationActions
+                leadingActions: vcardImportedState.leadingActions
                 title: i18n.tr("Imported contacts")
             }
 

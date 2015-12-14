@@ -27,7 +27,7 @@ ContactEditorPage {
 
     property alias backIconName: backAction.iconName
 
-    navigationActions: [
+    leadingActions: [
         Action {
             id: backAction
 

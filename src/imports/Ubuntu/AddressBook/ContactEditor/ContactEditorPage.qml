@@ -34,7 +34,7 @@ Page {
     property string initialFocusSection: ""
     property var newDetails: []
     property alias headerActions: trailingBar.actions
-    property alias navigationActions: pageHeader.navigationActions
+    property alias leadingActions: leadingBar.actions
 
     readonly property bool isNewContact: contact && (contact.contactId === "qtcontacts:::")
     readonly property bool isContactValid: !avatarEditor.busy && (!nameEditor.isEmpty() || !phonesEditor.isEmpty())
@@ -158,6 +158,9 @@ Page {
         title: isNewContact ? i18n.dtr("address-book-app", "New contact") : i18n.dtr("address-book-app", "Edit")
         trailingActionBar {
             id: trailingBar
+        }
+        leadingActionBar {
+            id: leadingBar
         }
     }
 
