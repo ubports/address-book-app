@@ -26,8 +26,6 @@ import Ubuntu.Content 1.1 as ContentHub
 import Ubuntu.AddressBook.Base 0.1
 import Ubuntu.AddressBook.ContactShare 0.1
 
-import "." as AB
-
 Page {
     id: mainPage
     objectName: "contactListPage"
@@ -171,10 +169,9 @@ Page {
     {
         if ((contactList.currentIndex >= 0) && (pageStack.columns > 1)) {
             var currentContact = contactList.listModel.contacts[contactList.currentIndex]
-            if (mainPage.currentViewContactId === currentContact.contactId)
+            if (currentContact && (mainPage.currentViewContactId === currentContact.contactId))
                 return
 
-            console.debug("Open contact::::::::::::::::::")
             contactList.view._fetchContact(contactList.currentIndex, currentContact)
         }
     }
@@ -610,50 +607,26 @@ Page {
         id: keyboard
     }
 
-    Column {
+    ABEmptyState {
         id: emptyStateScreen
 
-        anchors.centerIn: parent
+        anchors {
+            verticalCenter: parent.verticalCenter
+            left: parent.left
+            right: parent.right
+            leftMargin: units.gu(6)
+            rightMargin: units.gu(6)
+        }
+
         height: childrenRect.height
-        width: childrenRect.width
-        spacing: units.gu(2)
-        visible: (!contactList.busy &&
+        visible: ((pageStack.columns === 1) &&
+                  !contactList.busy &&
                   !contactList.favouritesIsSelected &&
                   mainPage.isEmpty &&
                   !(contactList.filterTerm && contactList.filterTerm !== ""))
-
-        Behavior on visible {
-            SequentialAnimation {
-                 PauseAnimation {
-                     duration: !emptyStateScreen.visible ? 500 : 0
-                 }
-                 PropertyAction {
-                     target: emptyStateScreen
-                     property: "visible"
-                 }
-            }
-        }
-
-        Icon {
-            id: emptyStateIcon
-            anchors.horizontalCenter: emptyStateLabel.horizontalCenter
-            height: units.gu(5)
-            width: units.gu(5)
-            opacity: 0.3
-            name: "contact"
-        }
-        Label {
-            id: emptyStateLabel
-            width: mainPage.width - units.gu(12)
-            height: paintedHeight
-            text: mainPage.pickMode ?
-                      i18n.tr("You have no contacts.") :
-                      i18n.tr("Create a new contact by swiping up from the bottom of the screen.")
-            color: "#5d5d5d"
-            fontSize: "x-large"
-            wrapMode: Text.WordWrap
-            horizontalAlignment: Text.AlignHCenter
-        }
+        text: mainPage.pickMode ?
+                  i18n.tr("You have no contacts.") :
+                  i18n.tr("Create a new contact by swiping up from the bottom of the screen.")
     }
 
     ContactExporter {

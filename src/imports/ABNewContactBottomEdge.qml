@@ -22,8 +22,16 @@ BottomEdge {
     id: bottomEdge
     objectName: "bottomEdge"
 
+
     property var modelToEdit: null
     property var _contactToEdit: null
+    // WORKARDOUND: Bottom edge element overriwrite the page leading actions and
+    // we can not handle the 'back' button in the app.
+    // Because of that we use '_signalFired' to know if any signal was fired
+    // before start to close the page. If I signal was fired we continue the operation
+    // if no signal was fired this mean that the 'collapse' button was clicked and we
+    // need to fire the 'cancel' signal
+    property bool _signalFired: false
 
     function editContact(contact)
     {
@@ -40,7 +48,16 @@ BottomEdge {
         }
     }
     contentComponent: editorPageBottomEdge
+    onCollapseStarted: {
+        if (!_signalFired) {
+            _signalFired = true
+            if (contentItem)
+                contentItem.cancel()
+        }
+    }
+
     onCommitCompleted: {
+        _signalFired = false
         if (bottomEdge._contactToEdit)
             editorPage.contact = bottomEdge._contactToEdit
         bottomEdge._contactToEdit = null
@@ -59,8 +76,14 @@ BottomEdge {
             initialFocusSection: "name"
             enabled: bottomEdge.satus === BottomEdge.Committed
             visible: bottomEdge.satus !== BottomEdge.Hidden
-            onCanceled: bottomEdge.collapse()
-            onContactSaved: bottomEdge.collapse()
+            onCanceled: {
+                _signalFired = true
+                bottomEdge.collapse()
+            }
+            onContactSaved: {
+                _signalFired = true
+                bottomEdge.collapse()
+            }
         }
     }
 }
