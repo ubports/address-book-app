@@ -433,6 +433,7 @@ Page {
                     text: i18n.tr("Cancel")
                     enabled: (mainPage.state === "searching") &&
                              mainPage.active &&
+                             (pageStack.bottomEdge.status !== BottomEdge.Committed) &&
                              ((pageStack.columns === 1) ||  (mainPage.viewPage && mainPage.viewPage.active))
                     shortcut:"Esc"
                     onTriggered: {

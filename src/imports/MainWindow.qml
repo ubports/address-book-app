@@ -153,7 +153,6 @@ MainView {
             if (mainStack.columns > 1)
                 mainStack.addPageToNextColumn(primaryPage, Qt.resolvedUrl("./ABMultiColumnEmptyState.qml"))
         }
-
     }
 
     ABContactListPage {

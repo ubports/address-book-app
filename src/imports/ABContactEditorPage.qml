@@ -40,7 +40,11 @@ ContactEditorPage {
             iconName: "down"
             enabled: root.active && root.enabled
             shortcut: "Esc"
-            onTriggered: root.cancel()
+            onTriggered: {
+                root.cancel()
+                if (pageStack.contactListPage)
+                    pageStack.contactListPage.forceActiveFocus()
+            }
         }
     ]
 
@@ -61,6 +65,7 @@ ContactEditorPage {
     onContactSaved: {
         if (pageStack.contactListPage) {
             pageStack.contactListPage.moveListToContact(contact)
+            pageStack.contactListPage.forceActiveFocus()
         }
     }
 }

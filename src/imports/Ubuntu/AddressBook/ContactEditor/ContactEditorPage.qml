@@ -55,9 +55,9 @@ Page {
                 field.cancel()
             }
         }
-        if (pageStack.removePages) {
+        if (pageStack && pageStack.removePages) {
             pageStack.removePages(contactEditor)
-        } else {
+        } else if (pageStack) {
             pageStack.pop()
         }
         contactEditor.canceled()

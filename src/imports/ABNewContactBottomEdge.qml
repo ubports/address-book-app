@@ -42,9 +42,15 @@ BottomEdge {
     hint {
         action: Action {
             iconName: "contact-new"
-            onTriggered: bottomEdge.commit()
-            shortcut: "ctrl+n"
+            shortcut: bottomEdge.status !== BottomEdge.Committed ? "ctrl+n" : "esc"
             enabled: bottomEdge.enabled
+
+            onTriggered: {
+                if (bottomEdge.status === BottomEdge.Committed)
+                    bottomEdge.collapse()
+                else
+                    bottomEdge.commit()
+            }
         }
     }
     contentComponent: editorPageBottomEdge
@@ -74,8 +80,8 @@ BottomEdge {
             contact: ContactsUI.ContactsJS.createEmptyContact("", bottomEdge)
             model: bottomEdge.modelToEdit
             initialFocusSection: "name"
-            enabled: bottomEdge.satus === BottomEdge.Committed
-            visible: bottomEdge.satus !== BottomEdge.Hidden
+            enabled: bottomEdge.status === BottomEdge.Committed
+            visible: bottomEdge.status !== BottomEdge.Hidden
             onCanceled: {
                 _signalFired = true
                 bottomEdge.collapse()
