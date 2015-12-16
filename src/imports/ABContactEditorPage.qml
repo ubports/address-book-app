@@ -38,9 +38,11 @@ ContactEditorPage {
 
         text: i18n.tr("Cancel")
         iconName: "back"
-        onTriggered: {
-            root.cancel()
-        }
+        // WORKAROUND: SDK does not unregister shortcut on object destruction
+        // we need to do it manually. (bug #1518420)
+        enabled: root.active && root.enabled
+        shortcut: enabled ? "Esc" : undefined
+        onTriggered: root.cancel()
     }
 
     head.actions: [
@@ -51,8 +53,8 @@ ContactEditorPage {
 
             text: i18n.tr("Save")
             iconName: "ok"
-            // disable save button while avatar scale still running
-            enabled: root.isContactValid
+            enabled: root.isContactValid && root.active && root.enabled
+            shortcut: "Ctrl+s"
             onTriggered: root.save()
         }
     ]

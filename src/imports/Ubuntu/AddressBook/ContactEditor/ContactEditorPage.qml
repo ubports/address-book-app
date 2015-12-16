@@ -31,7 +31,6 @@ Page {
     property QtObject model: null
     property QtObject activeItem: null
 
-
     property string initialFocusSection: ""
     property var newDetails: []
 
@@ -39,9 +38,6 @@ Page {
     readonly property bool isContactValid: !avatarEditor.busy && (!nameEditor.isEmpty() || !phonesEditor.isEmpty())
 
     signal contactSaved(var contact);
-
-    // priv
-    property bool _edgeReady: false
 
     function cancel() {
         for (var i = 0; i < contactEditor.newDetails.length; ++i) {
@@ -105,7 +101,7 @@ Page {
     }
 
     function makeMeVisible(item) {
-        if (!_edgeReady || !item) {
+        if (!enabled || !item) {
             return
         }
 
@@ -133,8 +129,6 @@ Page {
     function ready()
     {
         enabled = true
-        _edgeReady = true
-
         switch (contactEditor.initialFocusSection)
         {
         case "phones":
@@ -153,6 +147,7 @@ Page {
     }
 
     title: isNewContact ? i18n.dtr("address-book-app", "New contact") : i18n.dtr("address-book-app", "Edit")
+    enabled: false
 
     Timer {
         id: focusTimer
@@ -181,7 +176,9 @@ Page {
         contentWidth: parent.width
 
         //after add a new field we need to wait for the contentHeight to change to scroll to the correct position
-        onContentHeightChanged: contactEditor.makeMeVisible(contactEditor.activeItem)
+        onContentHeightChanged: {
+            contactEditor.makeMeVisible(contactEditor.activeItem)
+        }
 
         Column {
             id: contents
@@ -195,6 +192,7 @@ Page {
             height: childrenRect.height
 
             Row {
+                id: editEditor
                 function save()
                 {
                     var avatarSave = avatarEditor.save()
@@ -213,7 +211,7 @@ Page {
                     leftMargin: units.gu(2)
                     right: parent.right
                 }
-                height: Math.max(avatarEditor.height, nameEditor.height) - units.gu(4)
+                height: Math.max(avatarEditor.height, nameEditor.height) - units.gu(2)
 
                 ContactDetailAvatarEditor {
                     id: avatarEditor
@@ -221,6 +219,7 @@ Page {
                     contact: contactEditor.contact
                     height: implicitHeight
                     width: implicitWidth
+                    anchors.verticalCenter: editEditor.verticalCenter
                 }
 
                 ContactDetailNameEditor {
@@ -231,6 +230,7 @@ Page {
                     contact: contactEditor.contact
                 }
             }
+
 
             ContactDetailPhoneNumbersEditor {
                 id: phonesEditor
@@ -301,8 +301,6 @@ Page {
                     left: parent.left
                     right: parent.right
                 }
-                height: implicitHeight
-
                 onChanged: {
                     if (contactEditor.enabled &&
                         !contactEditor.isNewContact &&
@@ -383,9 +381,13 @@ Page {
                     right: parent.right
                     margins: units.gu(2)
                 }
-                onClicked: {
-                    var dialog = PopupUtils.open(removeContactDialog, null)
-                    dialog.contacts = [contactEditor.contact]
+                action: Action {
+                    enabled: contactEditor.active && deleteButton.visible
+                    shortcut: "Ctrl+Delete"
+                    onTriggered: {
+                        var dialog = PopupUtils.open(removeContactDialog, null)
+                        dialog.contacts = [contactEditor.contact]
+                    }
                 }
             }
 
@@ -410,8 +412,8 @@ Page {
         }
     }
 
-    Component.onCompleted: {
-        if (!enabled) {
+    onActiveChanged: {
+        if (!active) {
             return
         }
 
@@ -475,10 +477,14 @@ Page {
             }
 
             // hide virtual keyboard if necessary
-            Component.onCompleted: Qt.inputMethod.hide()
+            Component.onCompleted: {
+                contactEditor.enabled = false
+                Qt.inputMethod.hide()
+            }
 
             // WORKAROUND: SDK element crash if pop the page where the dialog was created
             Component.onDestruction: {
+                contactEditor.enabled = true
                 if (popPages) {
                     if (contactEditor.pageStack.removePages) {
                         contactEditor.pageStack.removePages(contactEditor)

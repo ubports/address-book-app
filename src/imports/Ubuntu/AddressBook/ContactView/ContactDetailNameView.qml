@@ -25,7 +25,7 @@ ContactDetailBase {
 
     detail: root.contact ? root.contact.name : null
     implicitHeight: label.paintedHeight + (label.anchors.margins * 2)
-
+    activeFocusOnTab: false
 
     Label {
         id: label

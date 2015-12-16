@@ -38,10 +38,11 @@ Page {
     property QtObject contactIndex: null
     property string newPhoneToAdd: ""
     property alias contactManager: contactList.manager
-    property Page contactViewPage: null
-    property Page contactEditorPage: null
+    property alias contactViewPage: contactViewPageConnections.target
+    property alias contactEditorPage: contactEditorPageConnections.target
     property var _busyDialog: null
     property bool _importingTestData: false
+    property bool _creatingContact: false
 
     readonly property bool bottomEdgePageOpened: bottomEdge.opened && bottomEdge.fullLoaded
     readonly property bool isEmpty: (contactList.count === 0)
@@ -87,6 +88,12 @@ Page {
 
     function showContact(contact)
     {
+        var currentContact = contactList.listModel.contacts[contactList.currentIndex]
+        if (currentContact && contactViewPage && contactViewPage.contact && (contactViewPage.contact.contactId === currentContact.contactId)) {
+            console.debug("Skip show contact")
+            return
+        }
+
         // go back to normal state if not searching
         if ((state !== "searching") &&
             (state !== "vcardImported")) {
@@ -138,14 +145,12 @@ Page {
 
     function moveListToContact(contact)
     {
-        // skipt it if searching or importing contacts
-        if ((state === "searching") ||
-            (state === "vcardImported")) {
-            return
+        if ((state !== "searching") &&
+            (state !== "vcardImported")) {
+            mainPage.state = "default"
         }
 
         contactIndex = contact
-        mainPage.state = "default"
         // this means a new contact was created
         if (mainPage.allowToQuit) {
             application.goBackToSourceApp()
@@ -163,22 +168,53 @@ Page {
         contactList.currentIndex = -1;
         mainPage.contactEditorPage = editorPage;
         pageStack.addPageToNextColumn(mainPage, editorPage);
-        editorPage.ready();
         editorPage.contactSaved.connect(onNewContactSaved);
+        editorPage.enabled = true
     }
 
     function onNewContactSaved(contact) {
+        _creatingContact = true
+        moveListToContact(contact)
         if (pageStack.columns > 1) {
             showContact(contact);
         }
     }
 
-    title: i18n.tr("Contacts")
+    // Delay contact fetch for some msecs (check 'fetchNewContactTimer')
+    function delayFetchContact()
+    {
+        fetchNewContactTimer.restart()
+    }
 
+    function fetchContact()
+    {
+        if ((contactList.currentIndex >= 0) && (pageStack.columns > 1)) {
+            var currentContact = contactList.listModel.contacts[contactList.currentIndex]
+            if (contactViewPage && contactViewPage.contact && (contactViewPage.contact.contactId === currentContact.contactId))
+                return
+
+            contactList.view._fetchContact(contactList.currentIndex, currentContact)
+        }
+    }
+
+    // This timer is to avoid fetch unecessary contact if the user select the contacts too fast
+    // while navigating on contact list with keyboard
+    Timer {
+        id: fetchNewContactTimer
+
+        interval: 300
+        repeat: false
+        onTriggered: mainPage.fetchContact()
+    }
+
+    title: i18n.tr("Contacts")
     flickable: null
+
     ContactsUI.ContactListView {
         id: contactList
         objectName: "contactListView"
+
+        focus: true
         showImportOptions:  !mainPage.pickMode &&
                             mainPage.newPhoneToAdd === "" &&
                             (!mainPage.contactEditorPage || !mainPage.contactEditorPage.active)
@@ -188,10 +224,11 @@ Page {
             bottom: keyboard.top
             right: parent.right
         }
+        currentIndex: 0
         filterTerm: searchField.text
         multiSelectionEnabled: true
         multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
-        highlightSelected: pageStack.columns > 1
+        highlightSelected: application.usingKeyboard && !mainPage._creatingContact
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
         onAddNewContactClicked: mainPage.createContactWithPhoneNumber(mainPage.newPhoneToAdd)
 
@@ -210,25 +247,71 @@ Page {
         }
 
         onError: pageStack.contactModelError(error)
+        onActiveFocusChanged: {
+            if (activeFocus && (contactList.currentIndex === -1)) {
+                contactList.currentIndex = 0
+            }
+        }
+        onCountChanged: {
+            if (mainPage.active &&
+                (pageStack.columns > 1) &&
+                (contactList.currentIndex === -1)) {
+                contactList.currentIndex = 0
+            }
+            mainPage.delayFetchContact()
+        }
+        onCurrentIndexChanged: {
+            if (!mainPage.contactIndex)
+                mainPage.delayFetchContact()
+        }
+
+        Keys.onReturnPressed: {
+            var currentContact = contactList.listModel.contacts[contactList.currentIndex]
+            if (contactViewPage && contactViewPage.contact && (contactViewPage.contact.contactId === currentContact.contactId))
+                return
+
+            contactList.view._fetchContact(contactList.currentIndex, currentContact)
+        }
+
+        //WORKAROUND: SDK does not allow us to disable focus for items due bug: #1514822
+        //because of that we need this
+        Keys.onRightPressed: {
+            // only move focus away when in edit mode
+            if (mainPage.contactEditorPage) {
+                var next = pageStack._nextItemInFocusChain(view, true)
+                if (next === searchField) {
+                    pageStack._nextItemInFocusChain(next, true)
+                }
+            }
+        }
+        Keys.onTabPressed: {
+            var next = pageStack._nextItemInFocusChain(view, true)
+            if (next === searchField) {
+                pageStack._nextItemInFocusChain(next, true)
+            }
+        }
     }
+
+
 
     TextField {
         id: searchField
 
+        //WORKAROUND: SDK does not allow us to disable focus for items due bug: #1514822
+        //because of that we need this
+        readonly property bool _allowFocus: true
+
         anchors {
-            left: parent.left
-            right: parent.right
+            left: parent ? parent.left : undefined
+            right: parent ? parent.right : undefined
             rightMargin: units.gu(2)
         }
-        focus: false
+
         visible: false
-        onTextChanged: contactList.currentIndex = -1
         inputMethodHints: Qt.ImhNoPredictiveText
         placeholderText: i18n.tr("Search...")
-        onFocusChanged: {
-            if (visible && focus)
-                searchField.forceActiveFocus()
-        }
+        Keys.onTabPressed: contactList.forceActiveFocus()
+        Keys.onDownPressed: contactList.forceActiveFocus()
     }
 
     Connections {
@@ -267,6 +350,8 @@ Page {
                     text: i18n.tr("Search")
                     iconName: "search"
                     visible: !mainPage.isEmpty
+                    enabled: mainPage.state === "default"
+                    shortcut: "Ctrl+F"
                     onTriggered: {
                         mainPage.state = (mainPage.state === "newphone" ? "newphoneSearching" : "searching")
                         contactList.showAllContacts()
@@ -289,9 +374,21 @@ Page {
                 Action {
                     text: i18n.tr("Settings")
                     iconName: "settings"
-                    onTriggered: pageStack.addPageToNextColumn(mainPage,
-                                                               Qt.resolvedUrl("./Settings/SettingsPage.qml"),
-                                                               {"contactListModel": contactList.listModel})
+                    onTriggered:{
+                        var incubator = pageStack.addPageToNextColumn(mainPage,
+                                                                      Qt.resolvedUrl("./Settings/SettingsPage.qml"),
+                                                                     {"contactListModel": contactList.listModel})
+                        incubator.onStatusChanged = function(status) {
+                            if (status === Component.Ready) {
+                                incubator.object.onActiveChanged.connect(function(active) {
+                                    if (!incubator.object.active) {
+                                        mainPage.delayFetchContact()
+                                        contactList.forceActiveFocus()
+                                    }
+                                })
+                            }
+                        }
+                    }
                 }
             ]
             PropertyChanges {
@@ -305,6 +402,10 @@ Page {
                 target: searchField
                 text: ""
             }
+            PropertyChanges {
+                target: bottomEdge
+                enabled: true
+            }
         },
         PageHeadState {
             id: searchingState
@@ -313,10 +414,12 @@ Page {
             backAction: Action {
                 iconName: "back"
                 text: i18n.tr("Cancel")
+                enabled: mainPage.state === "searching" && !mainPage.contactEditorPage && mainPage.active
+                shortcut: "Esc"
                 onTriggered: {
-                    contactList.forceActiveFocus()
                     mainPage.head.sections.selectedIndex = 0
                     mainPage.state = (mainPage.state === "newphoneSearching" ? "newphone" : "default")
+                    contactList.forceActiveFocus()
                 }
             }
 
@@ -349,6 +452,8 @@ Page {
             backAction: Action {
                 text: i18n.tr("Cancel selection")
                 iconName: "back"
+                enabled: mainPage.state === "selection"
+                shortcut: "Esc"
                 onTriggered: contactList.cancelSelection()
             }
             actions: [
@@ -495,8 +600,11 @@ Page {
         if (active && contactList.showAddNewButton) {
             contactList.positionViewAtBeginning()
         }
+
         if (active && (state === "searching")) {
             searchField.forceActiveFocus()
+        } else if (active) {
+            contactList.forceActiveFocus()
         }
     }
 
@@ -712,18 +820,19 @@ Page {
             var newContact = ContactsJS.createEmptyContact("", mainPage);
             createObjectAsynchronously(Qt.resolvedUrl("ABContactEditorPage.qml"),
                                        {model: contactList.listModel,
+                                        enabled: false,
                                         contact: newContact,
                                         initialFocusSection: "name"},
-                                       showContactEditorPage);
+                                        showContactEditorPage);
         }
 
         anchors.fill: parent
-        contentComponent: pageStack.columns == 1 ? editorPageBottomEdge : emptyContact
+        contentComponent: pageStack.columns === 1 ? editorPageBottomEdge : emptyContact
         flickable: contactList
         iconName: "contact-new"
-        enabled: !contactList.isInSelectionMode
         backGroundEffectEnabled: pageStack.columns === 1
 
+        onBottomEdgeLoaded: contactList.forceActiveFocus()
         onOpenBegin: {
             contactList.prepareNewContact = true;
             contactList.positionViewAtBeginning();
@@ -732,7 +841,6 @@ Page {
             }
         }
         onOpenEnd: {
-            bottomEdge.visible = false;
             contactList.showNewContact = true;
             if (pageStack.columns <= 1) {
                 showContactEditorPage(bottomEdge.content);
@@ -746,10 +854,13 @@ Page {
 
     Connections {
         target: mainPage.contactModel
+
         onContactsChanged: {
             if (contactIndex) {
                 contactList.positionViewAtContact(mainPage.contactIndex)
                 mainPage.contactIndex = null
+                // at this point the operation has finished already
+                mainPage._creatingContact = false
             }
         }
         onImportCompleted: {
@@ -779,20 +890,33 @@ Page {
     }
 
     Connections {
-        target: mainPage.contactViewPage
-        onEditContact: {
-            openEditPage(editPageProperties, mainPage.contactViewPage);
+        id: contactViewPageConnections
+
+        ignoreUnknownSignals: true
+        onEditContact: openEditPage(editPageProperties, mainPage.contactViewPage);
+        onActiveChanged: {
+            if (mainPage.contactViewPage &&
+                !mainPage.contactViewPage.active &&
+                (mainPage.contactEditorPage == null)) { // not editing
+                mainPage.contactViewPage = null
+            }
         }
     }
 
     Connections {
-        target: mainPage.contactEditorPage
+        id: contactEditorPageConnections
+
+        ignoreUnknownSignals: true
         onActiveChanged: {
-            if (!mainPage.contactEditorPage.active) {
+            if (mainPage.contactEditorPage && !mainPage.contactEditorPage.active) {
                 contactList.prepareNewContact = false;
                 contactList.showNewContact = false;
-                bottomEdge.visible = true;
                 bottomEdge.close();
+                mainPage.contactEditorPage = null
+                contactList.forceActiveFocus()
+                bottomEdge.enabled = true
+            } else if (mainPage.contactEditorPage && !mainPage.contactEditorPage.active) {
+                bottomEdge.enabled = false
             }
         }
     }

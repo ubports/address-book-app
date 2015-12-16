@@ -50,6 +50,7 @@ ContactDetailGroupWithTypeView {
     defaultIcon: "image://theme/contact-group"
     detailType: ContactDetail.SyncTarget
     typeModel: null
+    activeFocusOnTab: false
 
     fields: [ SyncTarget.SyncTarget ]
 
@@ -76,7 +77,7 @@ ContactDetailGroupWithTypeView {
 
         height: implicitHeight
         width: root.width
-
+        activeFocusOnTab: false
         onClicked: root.actionTrigerred(root.defaultAction.name, detail)
 
         function overrideValue(detail, field)

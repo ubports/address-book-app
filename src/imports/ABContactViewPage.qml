@@ -30,6 +30,16 @@ ContactViewPage {
     property string addPhoneToContact: ""
     signal editContact(var editPageProperties)
 
+    // Override Action buttom to add shortcut to it
+     Action {
+        id: backAction
+
+        name: "cancel"
+        enabled: root.active && root.enabled && (pageStack.columns === 1)
+        shortcut: "Esc"
+        onTriggered: pageStack.removePages(root)
+    }
+
     head.actions: [
         Action {
             objectName: "share"
@@ -50,6 +60,8 @@ ContactViewPage {
 
             text: i18n.tr("Edit")
             iconName: "edit"
+            enabled: root.active
+            shortcut: "Ctrl+e"
             onTriggered: {
                 editContact({model: root.model,
                              contact: root.contact});

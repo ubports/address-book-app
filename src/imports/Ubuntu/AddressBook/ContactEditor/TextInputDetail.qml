@@ -25,7 +25,11 @@ import Ubuntu.Components.Themes.Ambiance 0.1
 FocusScope {
     id: root
 
+    //WORKAROUND: SDK does not allow us to disable focus for items due bug: #1514822
+    //because of that we need this
+    readonly property bool _allowFocus: true
     readonly property bool isTextField: true
+
     property QtObject detail
     property int field: -1
     property variant originalValue: root.detail && (root.field >= 0) ? root.detail.value(root.field) : null
@@ -67,6 +71,22 @@ FocusScope {
     PhoneNumberField {
         id: field
 
+        //WORKAROUND: Due the SDK bug #1514822, #1514850 we can not disable focus for some items
+        //because of that we keep the focus only for textFields. This will block the user
+        //to use keyboard on "add-field" combo box and some other functionalities
+        function forceActiveFocusForNextField(keyEvent)
+        {
+            var backward = (keyEvent.modifiers & Qt.ShiftModifier)
+            var next = field.nextItemInFocusChain(!backward)
+            // only focus on TextInputDetails
+            while (!next || !next.hasOwnProperty("isTextField")) {
+                next = next.nextItemInFocusChain(!backward)
+            }
+            if (next) {
+                next.forceActiveFocus()
+            }
+        }
+
         anchors.fill: parent
         defaultRegion: PhoneUtils.defaultRegion
         autoFormat: false
@@ -93,15 +113,9 @@ FocusScope {
             family: "Ubuntu"
             pixelSize: activeFocus ? FontUtils.sizeToPixels("large") : FontUtils.sizeToPixels("medium")
         }
-        Keys.onReturnPressed: {
-            var next = field.nextItemInFocusChain(true)
-            // only focus on TextInputDetails
-            while (!next || !next.hasOwnProperty("isTextField")) {
-                next = next.nextItemInFocusChain(true)
-            }
-            if (next) {
-                next.forceActiveFocus()
-            }
-        }
+
+        Keys.onReturnPressed: forceActiveFocusForNextField(event)
+        Keys.onTabPressed: forceActiveFocusForNextField(event)
+        Keys.onBacktabPressed: forceActiveFocusForNextField(event)
     }
 }

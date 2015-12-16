@@ -104,7 +104,8 @@ AddressBookApp::AddressBookApp(int &argc, char **argv)
       m_netManager(new QNetworkConfigurationManager),
       m_pickingMode(false),
       m_testMode(false),
-      m_withArgs(false)
+      m_withArgs(false),
+      m_withKeyboard(false)
 {
     s_elapsed.start();
     setOrganizationName(SETTINGS_ORGANIZATION_NAME);
@@ -447,6 +448,16 @@ void AddressBookApp::elapsed() const
     qDebug() << "ELAPSED:" << s_elapsed.elapsed() / 1000.0;
 }
 
+bool AddressBookApp::notify(QObject *obj, QEvent *event)
+{
+    if ((event->type() == QEvent::KeyPress) && !m_withKeyboard) {
+        m_withKeyboard = true;
+        Q_EMIT usingKeyboardChanged();
+        return true;
+    }
+    return QGuiApplication::notify(obj, event);
+}
+
 QString AddressBookApp::callbackApplication() const
 {
     return m_callbackApplication;
@@ -474,4 +485,9 @@ bool AddressBookApp::serverSafeMode() const
 bool AddressBookApp::updating() const
 {
     return !m_updateWatcher.isNull();
+}
+
+bool AddressBookApp::usingKeyboard() const
+{
+    return m_withKeyboard;
 }

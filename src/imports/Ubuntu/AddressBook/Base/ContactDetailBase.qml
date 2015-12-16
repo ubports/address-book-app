@@ -18,15 +18,19 @@ import QtQuick 2.4
 import QtContacts 5.0 as QtContacts
 import Ubuntu.Components.ListItems 1.3 as ListItem
 
-ListItem.Empty {
+FocusScope {
     id: root
     objectName: detail ? "base_" + detailToString(detail.type, -1) + "_" + index : ""
 
+    property variant action: null
     property QtObject contact: null
     property QtObject detail: null
     property variant fields: null
     // help to test used to retrieve the correct element
     property int index: -1
+    property alias highlightOnFocus: highlight.visible
+
+    signal clicked()
 
     function detailToString(detail, field)
     {
@@ -98,13 +102,23 @@ ListItem.Empty {
         }
     }
 
-    highlightWhenPressed: false
-    showDivider: false
-
     Rectangle {
+        id: highlight
+
         anchors.fill: parent
-        opacity: 0.1
-        visible: root.selected
-        z: 100
+        visible: root.activeFocus
+        color: Theme.palette.selected.background
+        z: -1
+    }
+
+    MouseArea {
+        anchors.fill: parent
+
+        onClicked: {
+            if (action) {
+                action.triggered(action)
+            }
+            root.clicked()
+        }
     }
 }

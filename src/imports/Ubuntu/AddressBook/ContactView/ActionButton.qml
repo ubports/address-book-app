@@ -30,5 +30,6 @@ AbstractButton {
         anchors.centerIn: parent
         height: root.iconSize
         width: root.iconSize
+        color: root.activeFocus ? UbuntuColors.orange : "gray"
     }
 }

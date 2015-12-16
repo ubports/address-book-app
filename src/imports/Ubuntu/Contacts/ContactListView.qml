@@ -42,7 +42,7 @@ import Buteo 0.1
         }
     \endqml
 */
-Item {
+FocusScope {
     id: root
 
     readonly property alias view: view
@@ -253,6 +253,10 @@ Item {
 
     property var _busyDialog: null
 
+    //WORKAROUND: SDK does not allow us to disable focus for items due bug: #1514822
+    //because of that we need this
+    property bool _allowFocus: true
+
     /*!
       This handler is called when the selection mode is finished without be canceled
     */
@@ -371,6 +375,8 @@ Item {
     {
        buteoSync.startSyncByCategory("contacts")
     }
+
+    focus: true
 
     ContactSimpleListView {
         id: view
@@ -623,5 +629,24 @@ Item {
                 (root.count === 0) &&
                 !view.favouritesIsSelected &&
                 !isSearching ? sourceFile : ""
+    }
+
+    Keys.onUpPressed: {
+        //WORKAROUND: SDK does not allow us to disable focus for items due bug: #1514822
+        //because of that we need this
+        if (view.currentIndex == 0) {
+            pageStack._nextItemInFocusChain(view, false)
+        } else {
+            view.currentIndex -= 1
+        }
+    }
+    Keys.onDownPressed: {
+        //WORKAROUND: SDK does not allow us to disable focus for items due bug: #1514822
+        //because of that we need this
+        if (view.currentIndex == (view.count - 1)) {
+            //DO nothing
+        } else {
+            view.currentIndex += 1
+        }
     }
 }

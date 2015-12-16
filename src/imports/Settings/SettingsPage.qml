@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2015 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -64,15 +64,66 @@ Page {
                 onCountChanged: numberFlickable.contentY = 0
             }
             ListItem.Standard {
+                id: addGoogleAccountItem
+
+                function activate()
+                {
+                    onlineAccountsHelper.setupExec()
+                }
+
                 text: i18n.tr("Add Google account")
                 progression: true
-                onClicked: onlineAccountsHelper.setupExec()
+
+                onClicked: addGoogleAccountItem.activate()
+                Keys.onRightPressed: addGoogleAccountItem.activate()
+                Keys.onDownPressed: {
+                    if (importFromSimItem.enabled) {
+                        importFromSimItem.forceActiveFocus()
+                    }
+                }
+
+                // Selection visual feedback
+                //
+                // FIXME: Using a private property here. This uses the old list item and the only way to change the text
+                // color is with this property.
+                // We should remove it when update the app to the new ListItem.
+                __foregroundColor: (activeFocus && (pageStack.columns > 1)) ? Theme.palette.normal.foregroundText :
+                                                                              Theme.palette.normal.foreground
+                Rectangle {
+                    color: UbuntuColors.orange
+                    anchors.fill: parent
+                    visible:addGoogleAccountItem.activeFocus
+                    z: -1
+                }
             }
             ListItem.Standard {
+                id: importFromSimItem
+
+                function activate()
+                {
+                    pageStack.addPageToCurrentColumn(root, simCardImportPageComponent)
+                }
+
                 text: i18n.tr("Import from SIM")
                 progression: true
-                onClicked: pageStack.addPageToCurrentColumn(root, simCardImportPageComponent)
                 enabled: (simList.sims.length > 0) && (simList.present.length > 0)
+                onClicked: importFromSimItem.activate()
+                Keys.onRightPressed: importFromSimItem.activate()
+                Keys.onUpPressed: addGoogleAccountItem.forceActiveFocus()
+
+                // selection visual feedback
+                //
+                // FIXME: Using a private property here. This uses the old list item and the only way to change the text
+                // color is with this property.
+                // We should remove it when update the app to the new ListItem.
+                __foregroundColor: (activeFocus && (pageStack.columns > 1)) ? Theme.palette.normal.foregroundText :
+                                                                              Theme.palette.normal.foreground
+                Rectangle {
+                    color: UbuntuColors.orange
+                    anchors.fill: parent
+                    visible: importFromSimItem.activeFocus
+                    z: -1
+                }
             }
             SettingsDefaultSyncTarget {
                 id: defaultSyncTarget
@@ -97,8 +148,13 @@ Page {
         }
     }
 
+    Keys.onDownPressed: addGoogleAccountItem.forceActiveFocus()
+    Keys.onRightPressed: addGoogleAccountItem.forceActiveFocus()
+    Keys.onLeftPressed: pageStack.removePages(root)
+    Keys.onEscapePressed: pageStack.removePages(root)
     onActiveChanged: {
         if (active) {
+            root.forceActiveFocus()
             defaultSyncTarget.update()
         }
     }

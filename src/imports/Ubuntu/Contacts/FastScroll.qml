@@ -71,19 +71,11 @@ Item {
         }
     }
 
-    Connections {
-        target: listView
-        onCurrentIndexChanged: {
-            if (currentIndex != -1) {
-                rail.opacity = 0.0
-            }
-        }
-    }
 
     Rectangle {
         id: magnified
 
-        color: Theme.palette.normal.overlay
+        color: Theme.palette.normal.foreground
         radius: height * 0.3
         height: pinSize * 2
         width: height
@@ -99,6 +91,7 @@ Item {
         }
 
         Label {
+            color: Theme.palette.normal.foregroundText
             anchors.fill: parent
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
@@ -141,8 +134,7 @@ Item {
         id: rail
 
         property bool isVisible: root.enabled &&
-                                 (listView.flicking || dragArea.pressed) &&
-                                 (listView.currentIndex == -1)
+                                 (listView.flicking || dragArea.pressed)
         anchors {
             right: parent.right
             rightMargin: units.gu(2)
@@ -181,7 +173,7 @@ Item {
                 horizontalAlignment: Text.AlignHCenter
                 text: modelData
                 fontSize: "x-small"
-                color: cursor.y === y ? "white" : Theme.palette.selected.backgroundText
+                color: cursor.y === y ? Theme.palette.normal.foregroundText : Theme.palette.selected.backgroundText
                 opacity: !internal.modelDirty && Sections.contains(text) ? 1.0 : 0.5
             }
         }

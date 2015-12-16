@@ -32,7 +32,7 @@ Item {
     signal openBegin
     signal openEnd
     signal clicked
-    visible: enabled
+    signal bottomEdgeLoaded
 
     function open() {
         bottomEdge.state = "expanded";
@@ -40,6 +40,13 @@ Item {
 
     function close() {
         bottomEdge.state = "collapsed";
+    }
+
+    Action {
+        text: i18n.tr("New contact")
+        enabled: bottomEdge.visible
+        shortcut: "Ctrl+N"
+        onTriggered: bottomEdge.clicked()
     }
 
     Rectangle {
@@ -90,6 +97,10 @@ Item {
                 sourceComponent: bottomEdge.contentComponent
                 asynchronous: true
                 active: bottomEdge.enabled
+                onStatusChanged: {
+                    if (status === Loader.Ready)
+                        bottomEdge.bottomEdgeLoaded()
+                }
             }
         }
 
@@ -317,5 +328,11 @@ Item {
             previousY = mouseY;
             dragDirection = yOffset > 0 ? "BottomToTop" : "TopToBottom";
         }
+    }
+
+    Binding {
+        target: bottomEdge
+        property: 'visible'
+        value: bottomEdge.enabled && !bottomEdge.opened
     }
 }

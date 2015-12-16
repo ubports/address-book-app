@@ -53,6 +53,7 @@ Dialog {
     }
 
     Button {
+        id: acceptButton
         objectName: "removeContactsDialog.Yes"
         anchors {
             left: parent.left
@@ -61,10 +62,14 @@ Dialog {
         }
         text: i18n.dtr("address-book-app", "Yes")
         color: UbuntuColors.green
-        onClicked: accepted()
+        action: Action {
+            shortcut: "return"
+            onTriggered: accepted()
+        }
     }
 
     Button {
+        id: cancelButton
         objectName: "removeContactsDialog.No"
         anchors {
             left: parent.left
@@ -73,6 +78,9 @@ Dialog {
         }
         text: i18n.dtr("address-book-app", "No")
         color: UbuntuColors.red
-        onClicked: canceled()
+        action: Action {
+            shortcut: "esc"
+            onTriggered: canceled()
+        }
     }
 }

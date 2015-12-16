@@ -29,6 +29,7 @@ ContactDetailBase {
 
     implicitHeight: units.gu(12)
     implicitWidth: parent.width
+    activeFocusOnTab: false
 
     Connections {
         id: connections

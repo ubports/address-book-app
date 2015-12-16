@@ -75,6 +75,7 @@ ContactDetailBase {
 
     detail: root.contact ? contact.detail(ContactDetail.SyncTarget) : null
     implicitHeight: root.isNewContact &&  sources.model && (sources.model.count > 1) ? myHeight : 0
+    visible: height > 0
 
     ContactModel {
         id: sourceModel
@@ -188,8 +189,12 @@ ContactDetailBase {
     ThinDivider {
         id: divider
 
-        anchors.top: label.bottom
-    }
+        anchors {
+            top: label.bottom
+            leftMargin: units.gu(2)
+            rightMargin: units.gu(2)
+        }
+   }
 
     OptionSelector {
         id: sources

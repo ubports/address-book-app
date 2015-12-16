@@ -105,7 +105,6 @@ MainView {
     AdaptivePageLayout {
         id: mainStack
 
-        primaryPage: contactPage
         property var contactListPage: null
 
         function resetStack()
@@ -113,6 +112,28 @@ MainView {
             mainStack.removePages(primaryPage);
         }
 
+        function _nextItemInFocusChain(item, foward)
+        {
+            var next = item.nextItemInFocusChain(foward)
+            var first = next
+            //WORKAROUND: SDK does not allow us to disable focus for items due bug: #1514822
+            //because of that we need this
+            while (!next || !next.hasOwnProperty("_allowFocus")) {
+                next = next.nextItemInFocusChain(foward)
+
+                // avoid loop
+                if (next === first) {
+                    next = null
+                    break
+                }
+            }
+            if (next) {
+                next.forceActiveFocus()
+            }
+            return next
+        }
+
+        primaryPage: contactPage
         onContactListPageChanged: {
             if (contentHubLoader.status === Loader.Ready) {
                 contentHubLoader.item.pageStack = mainStack
@@ -141,6 +162,7 @@ MainView {
                 }
             }
         ]
+
     }
 
     ABContactListPage {
@@ -196,6 +218,10 @@ MainView {
 
     // If application was called from uri handler and lost the focus reset the app to normal state
     onAppActiveChanged: {
+        if (appActive) {
+            mainStack.forceActiveFocus()
+        }
+
         if (!appActive && mainStack.contactListPage) {
             mainStack.contactListPage.returnToNormalState()
         }

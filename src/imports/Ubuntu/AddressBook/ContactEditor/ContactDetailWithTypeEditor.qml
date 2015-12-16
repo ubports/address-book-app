@@ -70,7 +70,6 @@ ContactDetailBase {
     }
 
     // disable listview mouse area
-    __mouseArea.visible: false
     enabled: root.detail ? !root.detail.readOnly : false
     implicitHeight: detailTypeSelector.height + fieldValues.height + units.gu(2)
     opacity: enabled ? 1.0 : 0.5
