@@ -1,3 +1,10 @@
+address-book-app (0.2+16.04.20151216-0ubuntu1) xenial; urgency=medium
+
+  * Implement keyboard navigation for contact list. Fix 'tab' navigation
+    for contact editor page. Added shortcuts for the page actions.
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Wed, 16 Dec 2015 18:36:32 +0000
+
 address-book-app (0.2+16.04.20151211.2-0ubuntu1) xenial; urgency=medium
 
   * Implemented the ability to choose the default address-book from
