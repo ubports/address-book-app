@@ -54,6 +54,7 @@ Q_SIGNALS:
     void serverSafeModeChanged();
     void updatingChanged();
     void usingKeyboardChanged();
+    void sourcesChanged();
 
 public Q_SLOTS:
     void activateWindow();
