@@ -33,6 +33,7 @@ class AddressBookApp : public QGuiApplication
     Q_PROPERTY(bool serverSafeMode READ serverSafeMode NOTIFY serverSafeModeChanged)
     Q_PROPERTY(bool updating READ updating NOTIFY updatingChanged)
     Q_PROPERTY(bool usingKeyboard READ usingKeyboard NOTIFY usingKeyboardChanged)
+    Q_PROPERTY(bool usingMouse READ usingMouse NOTIFY usingMouseChanged)
 
 public:
     AddressBookApp(int &argc, char **argv);
@@ -47,6 +48,7 @@ public:
     bool serverSafeMode() const;
     bool updating() const;
     bool usingKeyboard() const;
+    bool usingMouse() const;
 
 Q_SIGNALS:
     void callbackApplicationChanged();
@@ -54,6 +56,7 @@ Q_SIGNALS:
     void serverSafeModeChanged();
     void updatingChanged();
     void usingKeyboardChanged();
+    void usingMouseChanged();
 
 public Q_SLOTS:
     void activateWindow();
@@ -90,6 +93,7 @@ private:
     bool m_testMode;
     bool m_withArgs;
     bool m_withKeyboard;
+    bool m_withMouse;
 };
 
 #endif

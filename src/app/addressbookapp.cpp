@@ -103,7 +103,8 @@ AddressBookApp::AddressBookApp(int &argc, char **argv)
       m_pickingMode(false),
       m_testMode(false),
       m_withArgs(false),
-      m_withKeyboard(false)
+      m_withKeyboard(false),
+      m_withMouse(false)
 {
     s_elapsed.start();
     setOrganizationName(SETTINGS_ORGANIZATION_NAME);
@@ -437,11 +438,24 @@ void AddressBookApp::elapsed() const
 
 bool AddressBookApp::notify(QObject *obj, QEvent *event)
 {
-    if ((event->type() == QEvent::KeyPress) && !m_withKeyboard) {
-        m_withKeyboard = true;
-        Q_EMIT usingKeyboardChanged();
-        return true;
+    switch(event->type())
+    {
+    case QEvent::KeyPress:
+        if (!m_withKeyboard) {
+            m_withKeyboard = true;
+            Q_EMIT usingKeyboardChanged();
+        }
+        break;
+    case QEvent::MouseMove:
+        if (!m_withMouse) {
+            m_withMouse = true;
+            Q_EMIT usingMouseChanged();
+        }
+        break;
+    default:
+        break;
     }
+
     return QGuiApplication::notify(obj, event);
 }
 
@@ -477,4 +491,9 @@ bool AddressBookApp::updating() const
 bool AddressBookApp::usingKeyboard() const
 {
     return m_withKeyboard;
+}
+
+bool AddressBookApp::usingMouse() const
+{
+    return m_withMouse;
 }
