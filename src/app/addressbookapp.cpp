@@ -420,6 +420,7 @@ void AddressBookApp::connectWithServer()
         qWarning() << "Fail to connect with pim service.";
     }
     connect(m_server.data(), SIGNAL(safeModeChanged()), SIGNAL(serverSafeModeChanged()));
+    connect(m_server.data(), SIGNAL(sourcesChanged()), SIGNAL(sourcesChanged()));
     Q_EMIT serverSafeModeChanged();
 }
 

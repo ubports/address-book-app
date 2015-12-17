@@ -27,6 +27,10 @@ ContactDetailBase {
     id: root
 
     property alias active: sourceModel.autoUpdate
+    property bool isNewContact: contact && contact.contactId === "qtcontacts:::"
+    property real myHeight: label.height + units.gu(6) + (sources.currentlyExpanded ? sources.containerHeight :
+                                                                                      sources.itemHeight)
+
     signal changed()
 
     function save() {
@@ -49,9 +53,9 @@ ContactDetailBase {
         if (sources.model.count <= 0)
             return -1
 
-        var selectedContact = sources.model.get(sources.selectedIndex).contact
-        if (selectedContact) {
-            return selectedContact.guid.guid
+        var selectedSourceId = sources.model.get(sources.selectedIndex).sourceId
+        if (selectedSourceId) {
+            return selectedSourceId
         } else {
             return -1
         }
@@ -68,23 +72,6 @@ ContactDetailBase {
         }
         return true
     }
-
-    function targetIsReadOnly(target) {
-        if (!target)
-            return true
-
-        var details = target.details(ContactDetail.ExtendedDetail)
-        for(var d in details) {
-            if ((details[d].name === "READ-ONLY") && (details[d].data === true)) {
-                return true
-            }
-        }
-
-        return false
-    }
-
-    property bool isNewContact: contact && contact.contactId === "qtcontacts:::"
-    property real myHeight: sources.currentlyExpanded ? sources.containerHeight + units.gu(6) + label.height : sources.itemHeight + units.gu(6) + label.height
 
     detail: root.contact ? contact.detail(ContactDetail.SyncTarget) : null
     implicitHeight: root.isNewContact &&  sources.model && (sources.model.count > 1) ? myHeight : 0
@@ -112,6 +99,27 @@ ContactDetailBase {
     ListModel {
         id: writableSources
 
+        function getSourceMetaData(contact) {
+            var metaData = {'read-only' : false,
+                            'account-provider': '',
+                            'account-id': 0,
+                            'is-primary': false}
+
+            var details = contact.details(ContactDetail.ExtendedDetail)
+            for(var d in details) {
+                if (details[d].name === "READ-ONLY") {
+                    metaData['read-only'] = details[d].data
+                } else if (details[d].name === "PROVIDER") {
+                    metaData['account-provider'] = details[d].data
+                } else if (details[d].name === "APPLICATION-ID") {
+                    metaData['account-id'] = details[d].data
+                } else if (details[d].name === "IS-PRIMARY") {
+                    metaData['is-primary'] = details[d].data
+                }
+            }
+            return metaData
+        }
+
         function reload() {
             clear()
 
@@ -121,11 +129,47 @@ ContactDetailBase {
                 return
             }
 
+            var data = []
             for(var i in contacts) {
-                if (!targetIsReadOnly(contacts[i])) {
-                    append({'contact': contacts[i]})
+                var sourceMetaData = getSourceMetaData(contacts[i])
+                if (!sourceMetaData['readOnly']) {
+                    data.push({'sourceId': contacts[i].guid.guid,
+                               'sourceName': contacts[i].displayLabel.label,
+                               'accountId': sourceMetaData['account-id'],
+                               'accountProvider': sourceMetaData['account-provider'],
+                               'readOnly': sourceMetaData['read-only'],
+                               'isPrimary': sourceMetaData['is-primary']
+                                })
                 }
             }
+
+            data.sort(function(a, b) {
+                var valA = a.accountId
+                var valB = b.accountId
+                if (a.accountId == b.accountId) {
+                    valA = a.sourceName
+                    valB = b.sourceName
+                }
+
+                if (valA == valB) {
+                    return 0
+                } else if (valA < valB) {
+                    return -1
+                } else {
+                    return 1
+                }
+            })
+
+            var primaryIndex = 0
+            for (var i in data) {
+                if (data[i].isPrimary) {
+                    primaryIndex = i
+                }
+                append(data[i])
+            }
+
+            // select primary account
+            sources.selectedIndex = primaryIndex
         }
     }
 
@@ -169,27 +213,18 @@ ContactDetailBase {
 
         delegate: OptionSelectorDelegate {
             text: {
-                if ((contact.guid.guid != "system-address-book") &&
+                if ((sourceId != "system-address-book") &&
                     (iconSource == "image://theme/address-book-app-symbolic")) {
-                    return i18n.dtr("address-book-app", "Personal - %1").arg(contact.displayLabel.label)
+                    //TRANSLATORS: %1 is the display name of the source (address-book)
+                    return i18n.dtr("address-book-app", "Personal - %1").arg(sourceName)
                 } else {
-                    return contact.displayLabel.label
+                    return sourceName
                 }
             }
             constrainImage: true
-            iconSource: {
-                var details = contact.details(ContactDetail.ExtendedDetail)
-                for(var i in details) {
-                    if (details[i].name === "PROVIDER") {
-                        if (details[i].data === "") {
-                            return "image://theme/address-book-app-symbolic"
-                        } else {
-                            return "image://theme/online-accounts-%1".arg(details[i].data)
-                        }
-                    }
-                }
-                return "image://theme/address-book-app-symbolic"
-            }
+            iconSource: accountProvider == "" ?
+                            "image://theme/address-book-app-symbolic" :
+                            "image://theme/online-accounts-%1".arg(accountProvider)
             height: units.gu(4)
         }
 
@@ -200,6 +235,12 @@ ContactDetailBase {
         if (active) {
             sourceModel.update()
         }
+    }
+
+    // In case of sources changed we need to update the model
+    Connections {
+        target: application
+        onSourcesChanged: sourceModel.update()
     }
 }
 

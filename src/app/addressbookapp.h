@@ -57,6 +57,7 @@ Q_SIGNALS:
     void updatingChanged();
     void usingKeyboardChanged();
     void usingMouseChanged();
+    void sourcesChanged();
 
 public Q_SLOTS:
     void activateWindow();

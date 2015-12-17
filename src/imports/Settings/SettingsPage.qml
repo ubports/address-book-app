@@ -125,6 +125,10 @@ Page {
                     z: -1
                 }
             }
+            SettingsDefaultSyncTarget {
+                id: defaultSyncTarget
+                onChanged: save()
+            }
         }
     }
     ContactsUI.OnlineAccountsHelper {
@@ -151,6 +155,7 @@ Page {
     onActiveChanged: {
         if (active) {
             root.forceActiveFocus()
+            defaultSyncTarget.update()
         }
     }
 }
