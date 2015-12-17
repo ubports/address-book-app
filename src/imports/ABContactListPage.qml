@@ -369,7 +369,7 @@ Page {
                     text: i18n.tr("Search")
                     iconName: "search"
                     visible: !mainPage.isEmpty
-                    enabled: mainPage.state === "default"
+                    enabled: visible && (mainPage.state === "default")
                     shortcut: "Ctrl+F"
                     onTriggered: {
                         mainPage.state = "searching"

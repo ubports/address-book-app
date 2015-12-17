@@ -442,9 +442,10 @@ bool AddressBookApp::notify(QObject *obj, QEvent *event)
     switch(event->type())
     {
     case QEvent::KeyPress:
-        if (!m_withKeyboard) {
+        if (!m_withKeyboard && (static_cast<QKeyEvent*>(event)->key() == Qt::Key_Down)) {
             m_withKeyboard = true;
             Q_EMIT usingKeyboardChanged();
+            return false;
         }
         break;
     case QEvent::MouseMove:

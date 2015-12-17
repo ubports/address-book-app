@@ -61,7 +61,6 @@ BottomEdge {
             initialFocusSection: "name"
             enabled: bottomEdge.status === BottomEdge.Committed
             active: bottomEdge.status === BottomEdge.Committed
-            visible: contentItem
             onCanceled: bottomEdge.collapse()
             onContactSaved: bottomEdge.collapse()
             pageStack: bottomEdge.pageStack
