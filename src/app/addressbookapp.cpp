@@ -448,7 +448,7 @@ bool AddressBookApp::notify(QObject *obj, QEvent *event)
         }
         break;
     case QEvent::MouseMove:
-        if (!m_withMouse) {
+        if (!m_withMouse && (static_cast<QMouseEvent*>(event)->source() == Qt::MouseEventNotSynthesized)) {
             m_withMouse = true;
             Q_EMIT usingMouseChanged();
         }

@@ -111,6 +111,7 @@ ContactViewPage {
             height: root.height
             modelToEdit: root.model
             hint.flickable: root.flickable
+            pageStack: root.pageStack
         }
     }
 

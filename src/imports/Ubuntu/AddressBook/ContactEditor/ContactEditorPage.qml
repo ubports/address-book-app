@@ -33,8 +33,8 @@ Page {
 
     property string initialFocusSection: ""
     property var newDetails: []
+    property list<QtObject> leadingActions
     property alias headerActions: trailingBar.actions
-    property alias leadingActions: leadingBar.actions
 
     readonly property bool isNewContact: contact && (contact.contactId === "qtcontacts:::")
     readonly property bool isContactValid: !avatarEditor.busy && (!nameEditor.isEmpty() || !phonesEditor.isEmpty())
@@ -161,6 +161,7 @@ Page {
         }
         leadingActionBar {
             id: leadingBar
+            actions: contactEditor.leadingActions
         }
     }
 

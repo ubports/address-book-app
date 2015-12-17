@@ -48,8 +48,9 @@ Page {
 
             parent: root
             height: root.height
-            modelToEdit: root.model
+            modelToEdit: root.pageStack.contactListPage.contactModel
             hint.flickable: root.flickable
+            pageStack: root.pageStack
         }
     }
 

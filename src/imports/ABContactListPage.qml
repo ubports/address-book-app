@@ -169,6 +169,10 @@ Page {
     {
         if ((contactList.currentIndex >= 0) && (pageStack.columns > 1)) {
             var currentContact = contactList.listModel.contacts[contactList.currentIndex]
+            if (!currentContact) {
+                pageStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("./ABMultiColumnEmptyState.qml"))
+                return
+            }
             if (currentContact && (mainPage.currentViewContactId === currentContact.contactId))
                 return
 
@@ -231,8 +235,9 @@ Page {
         objectName: "contactListView"
 
         focus: true
-        showImportOptions:  !mainPage.pickMode &&
-                            pageStack.bottomEdge && (pageStack.bottomEdge.satus === BottomEdge.Hidden)
+        showImportOptions: !mainPage.pickMode &&
+                           pageStack.bottomEdge &&
+                           (pageStack.bottomEdge.status === BottomEdge.Hidden)
         anchors {
             top: parent.top
             topMargin: pageHeader.height
@@ -728,6 +733,7 @@ Page {
             parent: mainPage
             modelToEdit: mainPage.contactModel
             hint.flickable: contactList.view
+            pageStack: mainPage.pageStack
         }
     }
 

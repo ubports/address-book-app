@@ -42,8 +42,8 @@ ContactEditorPage {
             shortcut: "Esc"
             onTriggered: {
                 root.cancel()
-                if (pageStack.contactListPage)
-                    pageStack.contactListPage.forceActiveFocus()
+                if (root.pageStack.contactListPage)
+                    root.pageStack.contactListPage.forceActiveFocus()
             }
         }
     ]

@@ -146,12 +146,7 @@ MainView {
 
         onColumnsChanged: {
             if (mainStack.columns > 1)
-                mainStack.addPageToNextColumn(primaryPage, Qt.resolvedUrl("./ABMultiColumnEmptyState.qml"))
-        }
-
-        Component.onCompleted: {
-            if (mainStack.columns > 1)
-                mainStack.addPageToNextColumn(primaryPage, Qt.resolvedUrl("./ABMultiColumnEmptyState.qml"))
+                mainStack.addPageToNextColumn(contactPage, Qt.resolvedUrl("./ABMultiColumnEmptyState.qml"))
         }
     }
 
