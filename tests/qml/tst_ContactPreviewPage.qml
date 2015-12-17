@@ -104,13 +104,13 @@ Item {
         function test_preview_contact_with_name()
         {
             contactPreviewPage.contact = createContactWithName()
-            tryCompare(contactPreviewPage, "title", "Fulano")
+            tryCompare(contactPreviewPage.header, "title", "Fulano")
         }
 
         function test_preview_contact_with_name_and_avatar()
         {
             contactPreviewPage.contact = createContactWithNameAndAvatar()
-            tryCompare(contactPreviewPage, "title", "Fulano")
+            tryCompare(contactPreviewPage.header, "title", "Fulano")
             var avatarField = findChild(root, "contactAvatarDetail")
             tryCompare(avatarField, "avatarUrl", "image://theme/address-book-app")
         }
@@ -120,7 +120,7 @@ Item {
             compare(vcardParser.contacts.length, 1)
             var contact =  vcardParser.contacts[0]
             contactPreviewPage.contact = contact
-            tryCompare(contactPreviewPage, "title", "Forrest Gump")
+            tryCompare(contactPreviewPage.header, "title", "Forrest Gump")
             // PhoneNumbers
             // TEL;TYPE=WORK,VOICE:(111) 555-12121
             // TEL;TYPE=HOME,VOICE:(404) 555-1212
@@ -263,8 +263,7 @@ Item {
             compare(vcardParser.contacts.length, 1)
             var contact =  vcardParser.contacts[0]
             contactPreviewPage.contact = contact
-            tryCompare(contactPreviewPage, "title", "Forrest Gump")
-
+            tryCompare(contactPreviewPage.header, "title", "Forrest Gump")
 
             // page is enabled by default
             var avatar = findChild(contactPreviewPage, "avatar")
