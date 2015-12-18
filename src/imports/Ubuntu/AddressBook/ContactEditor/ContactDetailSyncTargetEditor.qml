@@ -135,7 +135,7 @@ ContactDetailBase {
             var data = []
             for(var i in contacts) {
                 var sourceMetaData = getSourceMetaData(contacts[i])
-                if (!sourceMetaData['readOnly']) {
+                if (sourceMetaData['read-only'] === false) {
                     data.push({'sourceId': contacts[i].guid.guid,
                                'sourceName': contacts[i].displayLabel.label,
                                'accountId': sourceMetaData['account-id'],
