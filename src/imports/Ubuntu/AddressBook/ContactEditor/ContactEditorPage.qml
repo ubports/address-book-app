@@ -454,7 +454,7 @@ Page {
             }
 
             Component.onCompleted: Qt.inputMethod.hide()
-            Component.onDestruction: contactEditor.pageStack.pop()
+            Component.onDestruction: contactEditor.pageStack.removePages(contactEditor)
         }
     }
 
