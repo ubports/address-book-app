@@ -611,6 +611,8 @@ Page {
 
     KeyboardRectangle {
         id: keyboard
+        active: mainPage.active &&
+                (pageStack.bottomEdge.status === BottomEdge.Hidden)
     }
 
     ABEmptyState {

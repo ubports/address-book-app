@@ -18,10 +18,13 @@ import QtQuick 2.4
 
 Item {
     id: keyboardRect
+
+    property bool active: true
+
     anchors.left: parent.left
     anchors.right: parent.right
     anchors.bottom: parent.bottom
-    height: Qt.inputMethod.visible ? Qt.inputMethod.keyboardRectangle.height : 0
+    height: active && Qt.inputMethod.visible ? Qt.inputMethod.keyboardRectangle.height : 0
 
     states: [
         State {
