@@ -25,6 +25,11 @@ BottomEdge {
     property var modelToEdit: null
     property var pageStack: null
     property var _contactToEdit: null
+    // WORKAROUND: BottomEdge component loads the page async while draging it
+    // this cause a very bad visual.
+    // To avoid that we create it as soon as the component is ready and keep
+    // it invisible until the user start to drag it.
+    property var _realPage: null
 
    function editContact(contact)
     {
@@ -41,7 +46,15 @@ BottomEdge {
             onTriggered: bottomEdge.commit()
         }
     }
-    contentComponent: editorPageBottomEdge
+
+    contentComponent: Item {
+        id: pageContent
+
+        implicitWidth: bottomEdge.width
+        implicitHeight: bottomEdge.height
+        children: bottomEdge._realPage
+    }
+
 
     onCommitCompleted: {
         if (bottomEdge._contactToEdit)
@@ -49,21 +62,42 @@ BottomEdge {
         bottomEdge._contactToEdit = null
     }
 
+    onCollapseCompleted: {
+        _realPage =  editorPageBottomEdge.createObject(bottomEdge)
+    }
+
+    Component.onCompleted:  {
+       _realPage =   editorPageBottomEdge.createObject(bottomEdge)
+    }
+
+    states: [
+        State {
+            name: "reparented"
+            when: (bottomEdge.status !== BottomEdge.Hidden) && (bottomEdge._realPage != null)
+            ParentChange {
+                target: bottomEdge._realPage
+                parent: bottomEdge.contentItem
+            }
+        }
+    ]
+
+
     Component {
         id: editorPageBottomEdge
 
         ABContactEditorPage {
-            implicitWidth: bottomEdge.width
-            implicitHeight: bottomEdge.height
+            anchors.fill: parent
             title: i18n.tr("New Contact")
             contact: ContactsUI.ContactsJS.createEmptyContact("", bottomEdge)
             model: bottomEdge.modelToEdit
             initialFocusSection: "name"
             enabled: bottomEdge.status === BottomEdge.Committed
             active: bottomEdge.status === BottomEdge.Committed
+            visible: bottomEdge.status !== BottomEdge.Hidden
             onCanceled: bottomEdge.collapse()
             onContactSaved: bottomEdge.collapse()
             pageStack: bottomEdge.pageStack
+            layer.enabled: bottomEdge.status !== BottomEdge.Committed
         }
     }
 }
