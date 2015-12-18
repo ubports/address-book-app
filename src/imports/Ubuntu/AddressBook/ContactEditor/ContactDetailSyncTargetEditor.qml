@@ -65,10 +65,8 @@ ContactDetailBase {
         var sources = sourceModel.contacts
         var contactSyncTarget = contact.syncTarget.value(SyncTarget.SyncTarget + 1)
 
-        console.debug("CHECK SOURCE:" + contactSyncTarget)
         for (var i = 0; i < writableSources.count; i++) {
             var source = writableSources.get(i)
-            console.debug("WRITABLE ID:" + writableSources.get(i).sourceId)
             if (source.sourceId === contactSyncTarget) {
                 return source.readOnly
             }
