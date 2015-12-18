@@ -68,7 +68,7 @@ ContactDetailBase {
         for (var i = 0; i < writableSources.count; i++) {
             var source = writableSources.get(i)
             if (source.sourceId === contactSyncTarget) {
-                return source.readOnly
+                return false
             }
         }
         return true
@@ -133,7 +133,7 @@ ContactDetailBase {
             var data = []
             for(var i in contacts) {
                 var sourceMetaData = getSourceMetaData(contacts[i])
-                if (sourceMetaData['read-only'] === false) {
+                if (!sourceMetaData['read-only']) {
                     data.push({'sourceId': contacts[i].guid.guid,
                                'sourceName': contacts[i].displayLabel.label,
                                'accountId': sourceMetaData['account-id'],
