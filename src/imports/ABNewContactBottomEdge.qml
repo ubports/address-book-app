@@ -70,24 +70,13 @@ BottomEdge {
        _realPage =   editorPageBottomEdge.createObject(bottomEdge)
     }
 
-    states: [
-        State {
-            name: "reparented"
-            when: (bottomEdge.status !== BottomEdge.Hidden) && (bottomEdge._realPage != null)
-            ParentChange {
-                target: bottomEdge._realPage
-                parent: bottomEdge.contentItem
-            }
-        }
-    ]
-
-
     Component {
         id: editorPageBottomEdge
 
         ABContactEditorPage {
-            anchors.fill: parent
             title: i18n.tr("New Contact")
+            implicitWidth: bottomEdge.width
+            implicitHeight: bottomEdge.height
             contact: ContactsUI.ContactsJS.createEmptyContact("", bottomEdge)
             model: bottomEdge.modelToEdit
             initialFocusSection: "name"

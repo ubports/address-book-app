@@ -729,6 +729,7 @@ Page {
 
         enabled: false
         active: (pageStack.columns === 1) && bottomEdgeLoader.enabled
+        asynchronous: true
         sourceComponent: ABNewContactBottomEdge {
             parent: mainPage
             modelToEdit: mainPage.contactModel

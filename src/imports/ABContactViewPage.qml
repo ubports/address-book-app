@@ -104,6 +104,7 @@ ContactViewPage {
         id: bottomEdgeLoader
 
         active: (pageStack.columns > 1)
+        asynchronous: true
         sourceComponent: ABNewContactBottomEdge {
             id: bottomEdge
 
