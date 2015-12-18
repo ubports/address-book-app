@@ -450,11 +450,19 @@ void AddressBookApp::elapsed() const
 
 bool AddressBookApp::notify(QObject *obj, QEvent *event)
 {
-    if ((event->type() == QEvent::KeyPress) && !m_withKeyboard) {
-        m_withKeyboard = true;
-        Q_EMIT usingKeyboardChanged();
-        return true;
+    switch(event->type())
+    {
+    case QEvent::KeyPress:
+        if (!m_withKeyboard && (static_cast<QKeyEvent*>(event)->key() == Qt::Key_Down)) {
+            m_withKeyboard = true;
+            Q_EMIT usingKeyboardChanged();
+            return false;
+        }
+        break;
+    default:
+        break;
     }
+
     return QGuiApplication::notify(obj, event);
 }
 
