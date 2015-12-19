@@ -29,8 +29,9 @@ ContactViewPage {
 
     function editContact(contact)
     {
+        var component = Qt.createComponent(Qt.resolvedUrl("ABContactEditorPage.qml"))
         pageStack.addPageToCurrentColumn(root,
-                                         Qt.resolvedUrl("ABContactEditorPage.qml"),
+                                         component,
                                          { model: root.model,
                                            contact: contact,
                                            backIconName: 'back'})
