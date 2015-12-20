@@ -27,14 +27,30 @@ ContactViewPage {
     id: root
     objectName: "contactViewPage"
 
+    property bool editing: false
+
     function editContact(contact)
     {
+        if (editing)
+            return
+        editing = true
         var component = Qt.createComponent(Qt.resolvedUrl("ABContactEditorPage.qml"))
-        pageStack.addPageToCurrentColumn(root,
-                                         component,
-                                         { model: root.model,
-                                           contact: contact,
-                                           backIconName: 'back'})
+        var incubator = pageStack.addPageToCurrentColumn(root,
+                                                         component,
+                                                         { model: root.model,
+                                                           contact: contact,
+                                                           backIconName: 'back'})
+        if (incubator && (incubator.status === Component.Loading)) {
+            incubator.onStatusChanged = function(status) {
+                if (status === Component.Ready) {
+                    incubator.object.Component.destruction.connect(function() {
+                        root.editing = false;
+                    });
+                }
+            }
+        } else {
+            editing = false
+        }
     }
 
     // Shortcut in case of single column
@@ -68,7 +84,7 @@ ContactViewPage {
 
             text: i18n.tr("Edit")
             iconName: "edit"
-            enabled: root.active
+            enabled: root.active && !editing
             shortcut: "Ctrl+e"
             onTriggered: root.editContact(root.contact)
         }
