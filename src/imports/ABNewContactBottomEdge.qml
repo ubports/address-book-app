@@ -31,7 +31,7 @@ BottomEdge {
     // it invisible until the user start to drag it.
     property var _realPage: null
 
-   function editContact(contact)
+    function editContact(contact)
     {
         _contactToEdit = contact
         commit()
@@ -63,11 +63,11 @@ BottomEdge {
     }
 
     onCollapseCompleted: {
-        _realPage =  editorPageBottomEdge.createObject(bottomEdge)
+        _realPage = editorPageBottomEdge.createObject(null)
     }
 
     Component.onCompleted:  {
-       _realPage =   editorPageBottomEdge.createObject(bottomEdge)
+        _realPage = editorPageBottomEdge.createObject(null)
     }
 
     Component {
