@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-09-21 10:30-0300\n"
-"PO-Revision-Date: 2015-11-30 23:11+0000\n"
+"PO-Revision-Date: 2015-12-20 09:27+0000\n"
 "Last-Translator: schuko24 <gerdsaenger@t-online.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-12-18 05:51+0000\n"
+"X-Launchpad-Export-Date: 2015-12-21 05:33+0000\n"
 "X-Generator: Launchpad (build 17865)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
@@ -54,7 +54,7 @@ msgstr "Nummer hinzufügen …"
 msgid "Address"
 msgstr "Adresse"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:179
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:180
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:49
 msgid "Addressbook"
 msgstr "Adressbuch"
@@ -122,8 +122,8 @@ msgstr "Land"
 #: ../src/imports/ABContactListPage.qml:659
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
-"Einen neuen Kontakt erstellen, durch das Wischen von unten nach oben über "
-"den Bildschirm."
+"Einen neuen Kontakt erstellen durch Wischen vom unteren Bildschirmrand nach "
+"oben."
 
 #: ../src/imports/ABContactListPage.qml:491
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:376
@@ -434,10 +434,9 @@ msgid ""
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
-"Ihr <b>%1</b> Kontakt-Synchronisations-Konto muss beim Laufen der "
+"Ihr <b>%1</b> Kontakt-Synchronisations-Konto muss durch die "
 "Kontakteanwendung aktualisiert werden.\n"
-"Nur lokale Kontakte können bearbeitet werden, bis die Aktualisierung "
-"abgeschlossen ist."
+"Bis dies abgeschlossen ist, können nur lokale Kontakte bearbeitet werden."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:437
 #, qt-format
@@ -446,7 +445,8 @@ msgid ""
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
 "Ihr <b>%1</b> Kontakt-Synchronisations-Konto muss aktualisiert werden.\n"
-"Bitte bis zur vollständigen Aktualisierung warten, um Kontakte zu bearbeiten."
+"Bitte warten Sie die vollständige Aktualisierung ab, um Kontakte zu "
+"bearbeiten."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:442
 #, qt-format
@@ -456,10 +456,9 @@ msgid ""
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
 "Ihr <b>%1</b> Kontakt-Synchronisations-Konto muss aktualisiert werden. "
-"Nutzen Sie den Synchronisierungsknopf um die Kontaktanwendung zu "
+"Nutzen Sie den Synchronisierungsknopf, um die Kontakteanwendung zu "
 "aktualisieren.\n"
-"Nur lokale Kontakte können bearbeitet werden, bis die Aktualisierung "
-"abgeschlossen ist."
+"Bis dies abgeschlossen ist, können nur lokale Kontakte bearbeitet werden."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:46
 msgid "Discard changes"
