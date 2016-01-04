@@ -35,7 +35,6 @@ ContactEditorPage {
 
             objectName: "cancel"
             name: "cancel"
-
             text: i18n.tr("Cancel")
             iconName: "down"
             enabled: root.active && root.enabled
@@ -51,9 +50,9 @@ ContactEditorPage {
     headerActions: [
         Action {
             id: saveAction
+
             objectName: "save"
             name: "save"
-
             text: i18n.tr("Save")
             iconName: "ok"
             enabled: root.isContactValid && root.active && root.enabled

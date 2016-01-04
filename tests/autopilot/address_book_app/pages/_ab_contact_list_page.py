@@ -137,21 +137,3 @@ class ABContactListPage(address_book.PageWithHeader):
             'ContactListButtonDelegate',
             objectName='contactListView.importFromSimCardButton')
         return import_from_sim_button.visible
-
-    def reveal_bottom_edge_page(self):
-        """Bring the bottom edge page to the screen"""
-        self.bottomEdgePageOpened.wait_for(False)
-        try:
-            action_item = self.wait_select_single(objectName='bottomEdgeDragArea')
-            action_item.enabled.wait_for(True)
-            start_x = (action_item.globalRect.x +
-                       (action_item.globalRect.width * 0.5))
-            start_y = action_item.globalRect.y + (action_item.height * 0.2)
-            stop_y = start_y - (self.height * 0.7)
-            self.pointing_device.drag(
-                start_x, start_y, start_x, stop_y, rate=2)
-            #self pointer became invalid at this point
-            #self.bottomEdgePageOpened.wait_for(True)
-        except dbus.StateNotFoundError:
-            logger.error('ButtomEdge element not found.')
-            raise

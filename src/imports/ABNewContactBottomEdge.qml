@@ -24,8 +24,6 @@ BottomEdge {
 
     property var modelToEdit: null
     property var pageStack: null
-    readonly property bool opened: bottomEdge.status === BottomEdge.Committed
-    readonly property bool closed: bottomEdge.status === BottomEdge.Hidden
     property var _contactToEdit: null
     // WORKAROUND: BottomEdge component loads the page async while draging it
     // this cause a very bad visual.

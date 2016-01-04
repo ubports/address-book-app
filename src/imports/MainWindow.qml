@@ -84,9 +84,11 @@ MainView {
 
     AdaptivePageLayout {
         id: mainStack
+        objectName: "mainStack"
 
         property var contactListPage: null
         property var bottomEdge: null
+        readonly property bool bottomEdgeOpened: (bottomEdge && bottomEdge.status === BottomEdge.Committed)
 
         function resetStack()
         {

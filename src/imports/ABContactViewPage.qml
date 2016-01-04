@@ -28,6 +28,8 @@ ContactViewPage {
     objectName: "contactViewPage"
 
     property bool editing: false
+    // used by autopilot test
+    readonly property string headerTitle: header.title
 
     function editContact(contact)
     {
