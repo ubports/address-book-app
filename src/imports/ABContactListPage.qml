@@ -170,7 +170,12 @@ Page {
         if ((contactList.currentIndex >= 0) && (pageStack.columns > 1)) {
             var currentContact = contactList.listModel.contacts[contactList.currentIndex]
             if (!currentContact) {
-                pageStack.addPageToNextColumn(mainPage, Qt.resolvedUrl("./ABMultiColumnEmptyState.qml"))
+                var component = Qt.createComponent(Qt.resolvedUrl("ABMultiColumnEmptyState.qml"))
+                var searching = contactList.filterTerm !== ""
+                pageStack.addPageToNextColumn(mainPage, component,
+                                              {bottomEdgeEnabled: !searching,
+                                               showEmptyMessage: !searching,
+                                               headerTitle: searching ? i18n.tr("No contact found") : i18n.tr("No contacts") })
                 return
             }
             if (currentContact && (mainPage.currentViewContactId === currentContact.contactId))

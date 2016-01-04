@@ -21,8 +21,12 @@ import Ubuntu.Components 1.3
 Page {
     id: root
 
+    property alias showEmptyMessage: emptyStateScreen.visible
+    property string headerTitle: i18n.tr("No contacts")
+    property bool bottomEdgeEnabled: true
+
     header: PageHeader {
-        title: i18n.tr("No contacts")
+        title: root.headerTitle
     }
 
     ABEmptyState {
@@ -42,7 +46,7 @@ Page {
     Loader {
         id: bottomEdgeLoader
 
-        active: (pageStack.columns > 1)
+        active: (pageStack.columns > 1) && bottomEdgeEnabled
         asynchronous: true
         sourceComponent: ABNewContactBottomEdge {
             id: bottomEdge
