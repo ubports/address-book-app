@@ -140,6 +140,7 @@ Page {
             contactEditor.focusToLastPhoneField()
             break;
         case "name":
+        default:
             nameEditor.fieldDelegates[0].forceActiveFocus()
             break;
         }

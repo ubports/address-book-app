@@ -24,6 +24,8 @@ BottomEdge {
 
     property var modelToEdit: null
     property var pageStack: null
+    readonly property bool opened: bottomEdge.status === BottomEdge.Committed
+    readonly property bool closed: bottomEdge.status === BottomEdge.Hidden
     property var _contactToEdit: null
     // WORKAROUND: BottomEdge component loads the page async while draging it
     // this cause a very bad visual.
@@ -74,19 +76,16 @@ BottomEdge {
         id: editorPageBottomEdge
 
         ABContactEditorPage {
-            title: i18n.tr("New Contact")
             implicitWidth: bottomEdge.width
             implicitHeight: bottomEdge.height
             contact: ContactsUI.ContactsJS.createEmptyContact("", bottomEdge)
             model: bottomEdge.modelToEdit
-            initialFocusSection: "name"
             enabled: bottomEdge.status === BottomEdge.Committed
             active: bottomEdge.status === BottomEdge.Committed
             visible: bottomEdge.status !== BottomEdge.Hidden
             onCanceled: bottomEdge.collapse()
             onContactSaved: bottomEdge.collapse()
             pageStack: bottomEdge.pageStack
-            layer.enabled: bottomEdge.status !== BottomEdge.Committed
         }
     }
 }
