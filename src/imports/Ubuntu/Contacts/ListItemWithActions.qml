@@ -264,7 +264,7 @@ Item {
         }
 
         width: parent.width
-        color: root.selected ? root.selectedColor : root.color
+        color: root.selected || mouseArea.pressed ? root.selectedColor : root.color
 
         Loader {
             id: selectionIcon

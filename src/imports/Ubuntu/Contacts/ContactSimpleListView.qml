@@ -271,8 +271,8 @@ MultipleSelectionListView {
         width: parent.width
         selected: (contactListView.multiSelectionEnabled && contactListView.isSelected(contactDelegate))
                   || (contactListView.highlightSelected && (contactListView.currentIndex == index))
-        selectedColor: contactListView.parent.activeFocus && !contactListView.isInSelectionMode ? UbuntuColors.orange :
-                                                                                                  Theme.palette.selected.background
+        selectedColor: contactListView.parent.activeFocus && !contactListView.isInSelectionMode && contactListView.highlightSelected ?
+                           UbuntuColors.orange : Theme.palette.selected.background
         selectionMode: contactListView.isInSelectionMode
         defaultAvatarUrl: contactListView.defaultAvatarImageUrl
         isCurrentItem: ListView.isCurrentItem
