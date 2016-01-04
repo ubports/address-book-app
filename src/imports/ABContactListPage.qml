@@ -173,9 +173,7 @@ Page {
                 var component = Qt.createComponent(Qt.resolvedUrl("ABMultiColumnEmptyState.qml"))
                 var searching = contactList.filterTerm !== ""
                 pageStack.addPageToNextColumn(mainPage, component,
-                                              {bottomEdgeEnabled: !searching,
-                                               showEmptyMessage: !searching,
-                                               headerTitle: searching ? i18n.tr("No contact found") : i18n.tr("No contacts") })
+                                              { headerTitle: searching ? i18n.tr("No contact found") : i18n.tr("No contacts") })
                 return
             }
             if (currentContact && (mainPage.currentViewContactId === currentContact.contactId))
@@ -281,7 +279,8 @@ Page {
         onCountChanged: {
             if (mainPage.active &&
                 (pageStack.columns > 1) &&
-                (contactList.currentIndex === -1)) {
+                (contactList.currentIndex === -1) &&
+                (pageStack.bottomEdge.status === BottomEdge.Hidden)) {
                 contactList.currentIndex = 0
             }
             mainPage.delayFetchContact()
@@ -788,6 +787,16 @@ Page {
                     PopupUtils.close(mainPage._busyDialog)
                     mainPage._busyDialog = null
                 }
+            }
+        }
+    }
+
+    Connections {
+        target: pageStack.bottomEdge
+        onCommitCompleted: {
+            if (mainPage.state !== "default") {
+                mainPage.head.sections.selectedIndex = 0
+                mainPage.state = "default"
             }
         }
     }
