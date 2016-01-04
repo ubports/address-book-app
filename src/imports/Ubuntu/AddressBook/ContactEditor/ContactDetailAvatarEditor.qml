@@ -144,7 +144,6 @@ ContactDetailBase {
     }
 
     Component.onDestruction: {
-        console.debug("Delete temporary avatar image:" + root.temporaryAvatar)
         Contacts.removeFile("file:///" + root.temporaryAvatar)
         root.temporaryAvatar = ""
     }
