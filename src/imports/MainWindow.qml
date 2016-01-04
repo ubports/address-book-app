@@ -147,8 +147,12 @@ MainView {
         ]
 
         onColumnsChanged: {
-            if (mainStack.columns > 1)
-                mainStack.addPageToNextColumn(contactPage, Qt.resolvedUrl("./ABMultiColumnEmptyState.qml"))
+            if (mainStack.columns > 1) {
+                if (mainStack.contactListPage)
+                    mainStack.contactListPage.fetchContact()
+                else
+                    mainStack.addPageToNextColumn(contactPage, Qt.resolvedUrl("./ABMultiColumnEmptyState.qml"))
+            }
         }
     }
 
