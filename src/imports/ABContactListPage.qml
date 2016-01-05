@@ -744,6 +744,7 @@ Page {
             modelToEdit: mainPage.contactModel
             hint.flickable: contactList.view
             pageStack: mainPage.pageStack
+            enabled: mainPage.active
         }
     }
 
