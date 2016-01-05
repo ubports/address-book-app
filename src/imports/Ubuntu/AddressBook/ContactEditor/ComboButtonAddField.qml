@@ -106,8 +106,8 @@ ComboButton {
     // make sure that the signal will be fired after the item collapse
     onHeightChanged: {
         if (!expanded && (selectedDetail !== -1) && (height === collapsedHeight)) {
-            fieldSelected(root.nameFromEnum(selectedDetail), root.qmlTypeFromEnum(selectedDetail))
-            selectedDetail = -1
+            root.fieldSelected(root.nameFromEnum(root.selectedDetail), root.qmlTypeFromEnum(root.selectedDetail))
+            root.selectedDetail = -1
         }
     }
 

@@ -56,12 +56,6 @@ FocusScope {
         value: visible
     }
 
-    onActiveFocusChanged:  {
-        if (activeFocus && field.visible) {
-            field.forceActiveFocus()
-        }
-    }
-
     onOriginalValueChanged: {
         if (originalValue && (originalValue !== "")) {
             field.text = originalValue

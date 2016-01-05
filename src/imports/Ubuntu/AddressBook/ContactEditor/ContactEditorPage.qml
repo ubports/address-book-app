@@ -117,6 +117,7 @@ Page {
         var bottomY = scrollArea.contentY + scrollArea.height
         var itemBottom = position.y + (item.height * 3) // extra margin
         if (position.y >= scrollArea.contentY && itemBottom <= bottomY) {
+            Qt.inputMethod.show()
             return;
         }
 
@@ -128,7 +129,9 @@ Page {
             // if it is hidden at the top, also show it
             scrollArea.contentY = position.y;
         }
+
         scrollArea.returnToBounds()
+        Qt.inputMethod.show()
     }
 
     function ready()
@@ -167,7 +170,7 @@ Page {
     }
 
     enabled: false
-
+    flickable: null
     Timer {
         id: focusTimer
 
@@ -177,7 +180,6 @@ Page {
         onTriggered: contactEditor.ready()
     }
 
-    flickable: null
     Flickable {
         id: scrollArea
         objectName: "scrollArea"
@@ -194,11 +196,6 @@ Page {
         }
         contentHeight: contents.height + units.gu(2)
         contentWidth: parent.width
-
-        //after add a new field we need to wait for the contentHeight to change to scroll to the correct position
-        onContentHeightChanged: {
-            contactEditor.makeMeVisible(contactEditor.activeItem)
-        }
 
         Column {
             id: contents
@@ -262,6 +259,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                onNewFieldAdded: root.makeMeVisible(field)
             }
 
             ContactDetailEmailsEditor {
@@ -274,6 +272,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                onNewFieldAdded: root.makeMeVisible(field)
             }
 
             ContactDetailOnlineAccountsEditor {
@@ -286,6 +285,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                onNewFieldAdded: root.makeMeVisible(field)
             }
 
             ContactDetailAddressesEditor {
@@ -298,6 +298,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                onNewFieldAdded: root.makeMeVisible(field)
             }
 
             ContactDetailOrganizationsEditor {
@@ -310,6 +311,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                onNewFieldAdded: root.makeMeVisible(field)
             }
 
             ContactDetailSyncTargetEditor {
@@ -352,6 +354,7 @@ Page {
                     margins: units.gu(2)
                 }
                 height: implicitHeight
+                activeFocusOnPress: false
                 onHeightChanged: {
                     if (expanded && (height === expandedHeight) && !scrollArea.atYEnd) {
                         moveToBottom.start()
@@ -363,9 +366,11 @@ Page {
 
                     target: scrollArea
                     property: "contentY"
-                    from: scrollArea.contentY
-                    to: Math.min(scrollArea.contentHeight - scrollArea.height,
-                                 scrollArea.contentY + (addNewFieldButton.height - addNewFieldButton.collapsedHeight - units.gu(3)))
+                    to: scrollArea.contentHeight - scrollArea.height
+                    onStopped: {
+                        scrollArea.returnToBounds()
+                        addNewFieldButton.forceActiveFocus()
+                    }
                 }
 
                 onFieldSelected: {
@@ -426,7 +431,10 @@ Page {
         id: keyboardRectangle
 
         onHeightChanged: {
-            if (activeItem) {
+            if (addNewFieldButton.expanded) {
+                scrollArea.contentY = scrollArea.contentHeight - scrollArea.height
+                scrollArea.returnToBounds()
+            } else if (activeItem) {
                 makeMeVisible(activeItem)
             }
         }
