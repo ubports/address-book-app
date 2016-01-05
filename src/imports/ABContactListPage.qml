@@ -254,7 +254,7 @@ Page {
         multiSelectionEnabled: true
         multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
         showNewContact: (pageStack.columns > 1) && pageStack.bottomEdge && (pageStack.bottomEdge.status === BottomEdge.Committed)
-        highlightSelected: pagestack.hasKeyboard && !mainPage._creatingContact
+        highlightSelected: pageStack.hasKeyboard && !mainPage._creatingContact
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
         onContactClicked: mainPage.showContact(contact)
         onIsInSelectionModeChanged: mainPage.state = isInSelectionMode ? "selection"  : "default"
@@ -798,6 +798,13 @@ Page {
             if (mainPage.state !== "default") {
                 mainPage.head.sections.selectedIndex = 0
                 mainPage.state = "default"
+            }
+        }
+        onCollapseCompleted: {
+            if (!mainPage._creatingContact) {
+                if (contactList.currentIndex === -1)
+                    contactList.currentIndex = 0
+                mainPage.delayFetchContact()
             }
         }
     }
