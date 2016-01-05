@@ -18,6 +18,8 @@ import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3 as Popups
 
+import Unity.InputInfo 0.1
+
 MainView {
     id: mainWindow
     objectName: "addressBookAppMainWindow"
@@ -82,6 +84,22 @@ MainView {
     height: units.gu(71)
     anchorToKeyboard: false
 
+    InputDeviceModel {
+        id: miceModel
+        deviceFilter: InputInfo.Mouse
+    }
+
+    InputDeviceModel {
+        id: touchPadModel
+        deviceFilter: InputInfo.TouchPad
+    }
+
+    InputDeviceModel {
+        id: keyboardsModel
+        deviceFilter: InputInfo.Keyboard
+    }
+
+
     AdaptivePageLayout {
         id: mainStack
         objectName: "mainStack"
@@ -89,6 +107,8 @@ MainView {
         property var contactListPage: null
         property var bottomEdge: null
         readonly property bool bottomEdgeOpened: (bottomEdge && bottomEdge.status === BottomEdge.Committed)
+        readonly property bool hasMouse: ((miceModel.count > 0) || (touchPadModel.count > 0))
+        readonly property bool hasKeyboard: (keyboardsModel.count > 0)
 
         function resetStack()
         {
@@ -175,7 +195,7 @@ MainView {
     Binding {
         target:  QuickUtils
         property: "mouseAttached"
-        value: application.usingMouse
+        value: mainStack.hasMouse
     }
 
     Component {

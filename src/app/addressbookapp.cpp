@@ -197,6 +197,7 @@ bool AddressBookApp::setup()
     m_view->setTitle("AddressBook");
     qDebug() << "New import path:" << QCoreApplication::applicationDirPath() + "/" + importPath("");
     m_view->engine()->addImportPath(QCoreApplication::applicationDirPath() + "/" + importPath(""));
+    m_view->engine()->addImportPath(UNITY8_QML_PATH);
     m_view->rootContext()->setContextProperty("QTCONTACTS_MANAGER_OVERRIDE", defaultManager);
     m_view->rootContext()->setContextProperty("application", this);
     m_view->rootContext()->setContextProperty("contactKey", contactKey);
@@ -437,32 +438,6 @@ void AddressBookApp::elapsed() const
     qDebug() << "ELAPSED:" << s_elapsed.elapsed() / 1000.0;
 }
 
-bool AddressBookApp::notify(QObject *obj, QEvent *event)
-{
-    switch(event->type())
-    {
-    case QEvent::KeyPress:
-        // we have no way to detect when a physical keyboard is connected, so we
-        // assume there is one when the down key is pressed
-        if (!m_withKeyboard && (static_cast<QKeyEvent*>(event)->key() == Qt::Key_Down)) {
-            m_withKeyboard = true;
-            Q_EMIT usingKeyboardChanged();
-            return false;
-        }
-        break;
-    case QEvent::MouseMove:
-        if (!m_withMouse && (static_cast<QMouseEvent*>(event)->source() == Qt::MouseEventNotSynthesized)) {
-            m_withMouse = true;
-            Q_EMIT usingMouseChanged();
-        }
-        break;
-    default:
-        break;
-    }
-
-    return QGuiApplication::notify(obj, event);
-}
-
 QString AddressBookApp::callbackApplication() const
 {
     return m_callbackApplication;
@@ -492,12 +467,3 @@ bool AddressBookApp::updating() const
     return !m_updateWatcher.isNull();
 }
 
-bool AddressBookApp::usingKeyboard() const
-{
-    return m_withKeyboard;
-}
-
-bool AddressBookApp::usingMouse() const
-{
-    return m_withMouse;
-}

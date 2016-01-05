@@ -26,6 +26,7 @@ import Ubuntu.Content 1.1 as ContentHub
 import Ubuntu.AddressBook.Base 0.1
 import Ubuntu.AddressBook.ContactShare 0.1
 
+
 Page {
     id: mainPage
     objectName: "contactListPage"
@@ -253,7 +254,7 @@ Page {
         multiSelectionEnabled: true
         multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
         showNewContact: (pageStack.columns > 1) && pageStack.bottomEdge && (pageStack.bottomEdge.status === BottomEdge.Committed)
-        highlightSelected: application.usingKeyboard && !mainPage._creatingContact
+        highlightSelected: pagestack.hasKeyboard && !mainPage._creatingContact
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
         onContactClicked: mainPage.showContact(contact)
         onIsInSelectionModeChanged: mainPage.state = isInSelectionMode ? "selection"  : "default"
