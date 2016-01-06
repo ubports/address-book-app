@@ -812,6 +812,7 @@ Page {
                     contactList.currentIndex = 0
                 mainPage.delayFetchContact()
             }
+            contactList.forceActiveFocus()
         }
     }
 }
