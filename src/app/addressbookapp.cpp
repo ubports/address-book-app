@@ -191,6 +191,8 @@ bool AddressBookApp::setup()
                      this, SLOT(onViewStatusChanged(QQuickView::Status)));
     QObject::connect(m_view->engine(), SIGNAL(quit()), SLOT(quit()));
 
+    m_view->setMinimumWidth(300);
+    m_view->setMinimumHeight(500);
     m_view->setResizeMode(QQuickView::SizeRootObjectToView);
     m_view->setTitle("AddressBook");
     qDebug() << "New import path:" << QCoreApplication::applicationDirPath() + "/" + importPath("");
