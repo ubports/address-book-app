@@ -33,6 +33,7 @@ ContactDetailBase {
     property variant placeholderTexts: []
     property int inputMethodHints: Qt.ImhNone
     property bool usePhoneFormat: false
+    readonly property alias repeater: fieldRepeater
 
     function selectType(type) {
         detailTypeSelector.selectItem(type)
@@ -96,7 +97,6 @@ ContactDetailBase {
 
                 detail: root.detail
                 field: modelData
-                focus: true
                 placeholderText: root.placeholderTexts[index]
                 inputMethodHints: root.inputMethodHints
                 autoFormat: root.usePhoneFormat

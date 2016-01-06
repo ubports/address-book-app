@@ -105,14 +105,20 @@ Page {
         }
     }
 
-    function makeMeVisible(item) {
+    function idleMakeMeVisible(item) {
         if (!enabled || !item) {
             return
         }
 
         activeItem = item
-        var position = scrollArea.contentItem.mapFromItem(item, 0, activeItem.y);
+        timerMakemakeMeVisible.restart()
+    }
 
+    function makeMeVisible(item) {
+        if (!item)
+            return
+
+        var position = activeItem.mapToItem(editEditor, item.x, item.y);
         // check if the item is already visible
         var bottomY = scrollArea.contentY + scrollArea.height
         var itemBottom = position.y + (item.height * 3) // extra margin
@@ -155,6 +161,26 @@ Page {
         lastPhoneField.forceActiveFocus()
     }
 
+    function focusToFirstEntry(field)
+    {
+        var itemToFocus = field
+        if (field.repeater)
+            itemToFocus = field.repeater.itemAt(0)
+
+        if (itemToFocus) {
+            root.idleMakeMeVisible(itemToFocus)
+            itemToFocus.forceActiveFocus()
+        }
+    }
+
+    Timer {
+        id: timerMakemakeMeVisible
+
+        interval: 100
+        repeat: false
+        running: false
+        onTriggered: root.makeMeVisible(root.activeItem)
+    }
 
     header: PageHeader {
         id: pageHeader
@@ -259,7 +285,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
-                onNewFieldAdded: root.makeMeVisible(field)
+                onNewFieldAdded: root.focusToFirstEntry(field)
             }
 
             ContactDetailEmailsEditor {
@@ -272,7 +298,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
-                onNewFieldAdded: root.makeMeVisible(field)
+                onNewFieldAdded: root.focusToFirstEntry(field)
             }
 
             ContactDetailOnlineAccountsEditor {
@@ -285,7 +311,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
-                onNewFieldAdded: root.makeMeVisible(field)
+                onNewFieldAdded: root.focusToFirstEntry(field)
             }
 
             ContactDetailAddressesEditor {
@@ -298,7 +324,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
-                onNewFieldAdded: root.makeMeVisible(field)
+                onNewFieldAdded: root.focusToFirstEntry(field)
             }
 
             ContactDetailOrganizationsEditor {
@@ -311,7 +337,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
-                onNewFieldAdded: root.makeMeVisible(field)
+                onNewFieldAdded: root.focusToFirstEntry(field)
             }
 
             ContactDetailSyncTargetEditor {
@@ -435,7 +461,7 @@ Page {
                 scrollArea.contentY = scrollArea.contentHeight - scrollArea.height
                 scrollArea.returnToBounds()
             } else if (activeItem) {
-                makeMeVisible(activeItem)
+                idleMakeMeVisible(activeItem)
             }
         }
     }
