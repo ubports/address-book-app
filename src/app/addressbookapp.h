@@ -85,8 +85,6 @@ private:
     bool m_pickingMode;
     bool m_testMode;
     bool m_withArgs;
-    bool m_withKeyboard;
-    bool m_withMouse;
 };
 
 #endif

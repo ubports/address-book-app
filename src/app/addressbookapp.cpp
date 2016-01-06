@@ -102,9 +102,7 @@ AddressBookApp::AddressBookApp(int &argc, char **argv)
       m_netManager(new QNetworkConfigurationManager),
       m_pickingMode(false),
       m_testMode(false),
-      m_withArgs(false),
-      m_withKeyboard(false),
-      m_withMouse(false)
+      m_withArgs(false)
 {
     s_elapsed.start();
     setOrganizationName(SETTINGS_ORGANIZATION_NAME);
