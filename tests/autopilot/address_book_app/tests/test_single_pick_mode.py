@@ -32,6 +32,7 @@ class TestSinglePickerMode(AddressBookAppTestCase):
             if (contact.visible):
                 item = contact.select_single("QQuickRectangle",
                                              objectName="mainItem")
+                self.assertThat(contact.selected, Eventually(Equals(False)))
                 self.assertThat(item.color, Eventually(Equals(contact.color)))
                 selected_items.append(item)
                 item_to_contacts[item] = contact

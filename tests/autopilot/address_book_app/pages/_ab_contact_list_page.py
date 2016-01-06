@@ -112,7 +112,7 @@ class ABContactListPage(address_book.PageWithHeader):
     @log_action_info
     def delete_selected_contacts(self, main_window):
         main_window.delete()
-        self.bottomEdgePageOpened.wait_for(False)
+        main_window.wait_bottom_edge(False)
         dialog = self.get_root_instance().wait_select_single(
             address_book.RemoveContactsDialog, objectName='removeContactsDialog')
         dialog.confirm_removal()

@@ -36,8 +36,6 @@ class TestAddContact(AddressBookAppTestCase):
         contact_editor = self.app.main_window.go_to_add_contact()
 
         # Check if the contact list disapear and contact editor appears
-        #FIXME: list_page became an invalid pointer after push a new page
-        #self.assertThat(list_page.bottomEdgePageOpened, Eventually(Equals(True)))
         self.assertThat(contact_editor.visible, Eventually(Equals(True)))
         self.assertThat(contact_editor.active, Eventually(Equals(True)))
 
@@ -46,7 +44,7 @@ class TestAddContact(AddressBookAppTestCase):
 
         # Check if the contact list is visible again
         self.assertThat(list_page.visible, Eventually(Equals(True)))
-        self.assertThat(list_page.bottomEdgePageOpened, Eventually(Equals(False)))
+        self.app.main_window.wait_bottom_edge(False)
 
         # Check if the contact list still empty
         list_view = self.app.main_window.get_contact_list_view()

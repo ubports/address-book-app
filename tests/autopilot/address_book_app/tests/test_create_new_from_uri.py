@@ -23,8 +23,6 @@ class TestCreateNewContactFromURI(AddressBookAppTestCase):
 
     def test_save_new_contact(self):
         list_page = self.app.main_window.get_contact_list_page()
-        #FIXME: contacts list object became invalid after push a new page
-        #list_page.bottomEdgePageOpened.wait_for(True)
 
         edit_page = self.app.main_window.get_contact_edit_page()
         self.assertThat(edit_page.visible, Eventually(Equals(True)))

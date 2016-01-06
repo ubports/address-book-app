@@ -154,6 +154,11 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
 
         return header
 
+    def wait_bottom_edge(self, opened):
+        # wait bottom edge to fully appear
+        mainStack = self.wait_select_single(objectName='mainStack')
+        mainStack.bottomEdgeOpened.wait_for(opened)
+
     def reveal_bottom_edge_page(self):
         flickable = self.get_contact_list_view()
 
@@ -166,8 +171,7 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
             start_x, start_y, start_x, stop_y, rate=5)
 
         # wait bottom edge to fully appear
-        mainStack = self.wait_select_single(objectName='mainStack')
-        mainStack.bottomEdgeOpened.wait_for(True)
+        self.wait_bottom_edge(True)
 
     def cancel(self):
         """
