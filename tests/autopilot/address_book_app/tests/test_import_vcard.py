@@ -30,7 +30,7 @@ class TeseImportVCard(AddressBookAppTestCase):
         # check if app enter on import state
         list_page = self.app.main_window.get_contact_list_page()
         self.assertThat(list_page.state, Eventually(Equals('vcardImported')))
-        self.assertThat(list_page.title, Eventually(Equals('Imported contacts')))
+        self.assertThat(list_page.headerTitle, Eventually(Equals('Imported contacts')))
         self.assertThat(len(list_page.get_contacts()), Equals(3))
 
         #leave import state and show full contact list

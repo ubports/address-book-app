@@ -125,14 +125,13 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
         return None
 
     def click_action_button(self, action_name):
-        actionbars = self.select_many('ActionBar', objectName='headerActionBar')
-        for actionbar in actionbars:
-            try:
-                actionbar.click_action_button(action_name)
-                return
-            except ubuntuuitoolkit.ToolkitException:
-                continue
-        raise exceptions.StateNotFoundError('Action %s not found.' % action_name)
+        actions = self.select_many(objectName='%s_button'%action_name)
+        for action in actions:
+           if action.enabled:
+               self.pointing_device.click_object(action)
+               return
+
+        raise exceptions.StateNotFoundError(action_name)
 
     def open_header(self):
         header = self.get_header()
@@ -155,6 +154,25 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
 
         return header
 
+    def wait_bottom_edge(self, opened):
+        # wait bottom edge to fully appear
+        mainStack = self.wait_select_single(objectName='mainStack')
+        mainStack.bottomEdgeOpened.wait_for(opened)
+
+    def reveal_bottom_edge_page(self):
+        flickable = self.get_contact_list_view()
+
+        globalRect = flickable.globalRect
+        start_x = globalRect.x + (globalRect.width * 0.5)
+        start_y = globalRect.y + (flickable.height * 0.98)
+        stop_y = globalRect.y + (flickable.height * 0.4)
+
+        self.pointing_device.drag(
+            start_x, start_y, start_x, stop_y, rate=5)
+
+        # wait bottom edge to fully appear
+        self.wait_bottom_edge(True)
+
     def cancel(self):
         """
         Press the 'Cancel' button
@@ -165,6 +183,7 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
                 self.pointing_device.click_object(button)
                 return
 
+        self.click_action_button('cancel')
         #self.click_action_button("customBackButton")
 
     def save(self):
@@ -200,7 +219,6 @@ class AddressBookAppMainWindow(ubuntuuitoolkit.MainView):
         """
         Press the 'Add' button and return the contact editor page
         """
-        bottom_swipe_page = self.get_contact_list_page()
-        bottom_swipe_page.reveal_bottom_edge_page()
+        self.reveal_bottom_edge_page()
 
         return self.get_contact_edit_page()

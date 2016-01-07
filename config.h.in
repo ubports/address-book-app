@@ -10,6 +10,7 @@
 #define QT_EXTRA_IMPORTS_DIR                "@QT_EXTRA_IMPORTS_DIR@"
 #define ADDRESS_BOOK_APP_CLICK_PACKAGE      "@CLICK_MODE@"
 #define I18N_DIRECTORY                      "@CMAKE_INSTALL_PREFIX@/share/locale"
+#define UNITY8_QML_PATH                     "/usr/lib/@CMAKE_C_LIBRARY_ARCHITECTURE@/unity8/qml/"
 
 #define SETTINGS_ORGANIZATION_NAME          "com.ubuntu.address-book"
 #define SETTINGS_ORGANIZATION_DOMAIN         "canonical.com"

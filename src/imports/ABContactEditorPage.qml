@@ -26,31 +26,33 @@ ContactEditorPage {
     objectName: "contactEditorPage"
 
     property alias backIconName: backAction.iconName
-
     // Property used on unit tests
     readonly property alias saveActionEnabled: saveAction.enabled
 
-    head.backAction: Action {
-        id: backAction
+    leadingActions: [
+        Action {
+            id: backAction
 
-        objectName: "cancel"
-        name: "cancel"
+            objectName: "cancel"
+            name: "cancel"
+            text: i18n.tr("Cancel")
+            iconName: "down"
+            enabled: root.active && root.enabled
+            shortcut: "Esc"
+            onTriggered: {
+                root.cancel()
+                if (root.pageStack.contactListPage)
+                    root.pageStack.contactListPage.forceActiveFocus()
+            }
+        }
+    ]
 
-        text: i18n.tr("Cancel")
-        iconName: "back"
-        // WORKAROUND: SDK does not unregister shortcut on object destruction
-        // we need to do it manually. (bug #1518420)
-        enabled: root.active && root.enabled
-        shortcut: enabled ? "Esc" : undefined
-        onTriggered: root.cancel()
-    }
-
-    head.actions: [
+    headerActions: [
         Action {
             id: saveAction
+
             objectName: "save"
             name: "save"
-
             text: i18n.tr("Save")
             iconName: "ok"
             enabled: root.isContactValid && root.active && root.enabled
@@ -62,6 +64,7 @@ ContactEditorPage {
     onContactSaved: {
         if (pageStack.contactListPage) {
             pageStack.contactListPage.moveListToContact(contact)
+            pageStack.contactListPage.forceActiveFocus()
         }
     }
 }

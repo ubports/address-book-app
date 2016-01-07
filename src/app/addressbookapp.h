@@ -32,7 +32,6 @@ class AddressBookApp : public QGuiApplication
     Q_PROPERTY(bool isOnline READ isOnline NOTIFY isOnlineChanged)
     Q_PROPERTY(bool serverSafeMode READ serverSafeMode NOTIFY serverSafeModeChanged)
     Q_PROPERTY(bool updating READ updating NOTIFY updatingChanged)
-    Q_PROPERTY(bool usingKeyboard READ usingKeyboard NOTIFY usingKeyboardChanged)
 
 public:
     AddressBookApp(int &argc, char **argv);
@@ -46,14 +45,12 @@ public:
     bool isOnline() const;
     bool serverSafeMode() const;
     bool updating() const;
-    bool usingKeyboard() const;
 
 Q_SIGNALS:
     void callbackApplicationChanged();
     void isOnlineChanged();
     void serverSafeModeChanged();
     void updatingChanged();
-    void usingKeyboardChanged();
     void sourcesChanged();
 
 public Q_SLOTS:
@@ -69,8 +66,6 @@ public Q_SLOTS:
     // debug
     void elapsed() const;
 
-protected:
-    bool notify(QObject *obj, QEvent *event);
 
 private Q_SLOTS:
     void onUpdateCallFinished(QDBusPendingCallWatcher *watcher);
@@ -90,7 +85,6 @@ private:
     bool m_pickingMode;
     bool m_testMode;
     bool m_withArgs;
-    bool m_withKeyboard;
 };
 
 #endif

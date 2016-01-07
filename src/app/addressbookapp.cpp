@@ -44,8 +44,6 @@ static void printUsage(const QStringList& arguments)
 {
     qDebug() << "usage:"
              << arguments.at(0).toUtf8().constData()
-             << "[addressbook:///addphone?id=<contact-id>&phone=<phone-number>]"
-             << "[addressbook:///addnewphone?phone=<phone-number>]"
              << "[addressbook:///contact?id=<contact-id>]"
              << "[addressbook:///create?phone=<phone-number>]"
              << "[addressbook:///pick?single=<true/false>]"
@@ -104,8 +102,7 @@ AddressBookApp::AddressBookApp(int &argc, char **argv)
       m_netManager(new QNetworkConfigurationManager),
       m_pickingMode(false),
       m_testMode(false),
-      m_withArgs(false),
-      m_withKeyboard(false)
+      m_withArgs(false)
 {
     s_elapsed.start();
     setOrganizationName(SETTINGS_ORGANIZATION_NAME);
@@ -194,10 +191,13 @@ bool AddressBookApp::setup()
                      this, SLOT(onViewStatusChanged(QQuickView::Status)));
     QObject::connect(m_view->engine(), SIGNAL(quit()), SLOT(quit()));
 
+    m_view->setMinimumWidth(300);
+    m_view->setMinimumHeight(500);
     m_view->setResizeMode(QQuickView::SizeRootObjectToView);
     m_view->setTitle("AddressBook");
     qDebug() << "New import path:" << QCoreApplication::applicationDirPath() + "/" + importPath("");
     m_view->engine()->addImportPath(QCoreApplication::applicationDirPath() + "/" + importPath(""));
+    m_view->engine()->addImportPath(UNITY8_QML_PATH);
     m_view->rootContext()->setContextProperty("QTCONTACTS_MANAGER_OVERRIDE", defaultManager);
     m_view->rootContext()->setContextProperty("application", this);
     m_view->rootContext()->setContextProperty("contactKey", contactKey);
@@ -318,17 +318,12 @@ void AddressBookApp::parseUrl(const QString &arg)
 
     if (methodsMetaData.isEmpty()) {
         QStringList args;
-        //edit
-        args << "id" << "phone";
-        methodsMetaData.insert("addphone", args);
-        args.clear();
-
         //view
         args << "id";
         methodsMetaData.insert("contact", args);
         args.clear();
 
-        //add
+        //create
         args << "phone";
         methodsMetaData.insert("create", args);
         args.clear();
@@ -341,11 +336,6 @@ void AddressBookApp::parseUrl(const QString &arg)
         //vcard
         args << "url";
         methodsMetaData.insert("importvcard", args);
-        args.clear();
-
-        //addnewphone
-        args << "phone";
-        methodsMetaData.insert("addnewphone", args);
         args.clear();
     }
 
@@ -448,26 +438,6 @@ void AddressBookApp::elapsed() const
     qDebug() << "ELAPSED:" << s_elapsed.elapsed() / 1000.0;
 }
 
-bool AddressBookApp::notify(QObject *obj, QEvent *event)
-{
-    switch(event->type())
-    {
-    case QEvent::KeyPress:
-        // we have no way to detect when a physical keyboard is connected, so we
-        // assume there is one when the down key is pressed
-        if (!m_withKeyboard && (static_cast<QKeyEvent*>(event)->key() == Qt::Key_Down)) {
-            m_withKeyboard = true;
-            Q_EMIT usingKeyboardChanged();
-            return false;
-        }
-        break;
-    default:
-        break;
-    }
-
-    return QGuiApplication::notify(obj, event);
-}
-
 QString AddressBookApp::callbackApplication() const
 {
     return m_callbackApplication;
@@ -497,7 +467,3 @@ bool AddressBookApp::updating() const
     return !m_updateWatcher.isNull();
 }
 
-bool AddressBookApp::usingKeyboard() const
-{
-    return m_withKeyboard;
-}

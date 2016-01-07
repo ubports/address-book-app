@@ -167,16 +167,14 @@ class TestEditContact(AddressBookAppTestCase):
         self.clear_text_on_field(last_name_field)
 
         # check if is possible to save a contact without name
-        self.app.main_window.save()
-        accept_button = self.app.main_window.get_action("save")
-        self.assertThat(accept_button.enabled, Eventually(Equals(False)))
+        self.assertThat(edit_page.saveActionEnabled, Eventually(Equals(False)))
 
         # Cancel edit
         self.app.main_window.cancel()
 
         # Check if the names still there
         view_page = self.app.main_window.get_contact_view_page()
-        self.assertThat(view_page.title, Eventually(Equals("Fulano de Tal")))
+        self.assertThat(view_page.headerTitle, Eventually(Equals("Fulano de Tal")))
 
     def test_im_type(self):
         contact_editor = self.app.main_window.go_to_add_contact()

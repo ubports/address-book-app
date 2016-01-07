@@ -50,13 +50,21 @@ Page {
             if (exporter.activeTransfer) {
                 exporter.activeTransfer.state = ContentHub.ContentTransfer.Aborted
             }
-            pageStack.removePages(root)
+            if (root.pageStack.removePages)
+                root.pageStack.removePages(root)
+            else
+                root.pageStack.pop()
         }
     }
 
     ContactExporter {
         id: exporter
 
-        onDone: pageStack.removePages(root)
+        onDone: {
+            if (root.pageStack.removePages)
+                root.pageStack.removePages(root)
+            else
+                root.pageStack.pop()
+        }
     }
 }

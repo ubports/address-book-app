@@ -47,25 +47,16 @@ FocusScope {
 
     //FIXME: Move this property to TextField as soon as the SDK get ported to QtQuick 2.2
     activeFocusOnTab: true
-
-    // WORKAROUND: For some reason TextField.focus property get reset to false
-    // we need do a deep investigation on that
-    Binding {
-        target: field
-        property: "focus"
-        value: visible
-    }
-
-    onActiveFocusChanged:  {
-        if (activeFocus && field.visible) {
-            field.forceActiveFocus()
-        }
-    }
-
     onOriginalValueChanged: {
         if (originalValue && (originalValue !== "")) {
             field.text = originalValue
         }
+    }
+
+    // propage focus to text field
+    onActiveFocusChanged: {
+        if (activeFocus)
+            field.forceActiveFocus()
     }
 
     PhoneNumberField {

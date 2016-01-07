@@ -33,11 +33,15 @@ Page {
 
     property string initialFocusSection: ""
     property var newDetails: []
+    property list<QtObject> leadingActions
+    property alias headerActions: trailingBar.actions
 
     readonly property bool isNewContact: contact && (contact.contactId === "qtcontacts:::")
     readonly property bool isContactValid: !avatarEditor.busy && (!nameEditor.isEmpty() || !phonesEditor.isEmpty())
+    readonly property alias editorFlickable: scrollArea
 
     signal contactSaved(var contact);
+    signal canceled()
 
     function cancel() {
         for (var i = 0; i < contactEditor.newDetails.length; ++i) {
@@ -51,11 +55,12 @@ Page {
                 field.cancel()
             }
         }
-        if (pageStack.removePages) {
+        if (pageStack && pageStack.removePages) {
             pageStack.removePages(contactEditor)
-        } else {
+        } else if (pageStack) {
             pageStack.pop()
         }
+        contactEditor.canceled()
     }
 
     function save() {
@@ -100,18 +105,25 @@ Page {
         }
     }
 
-    function makeMeVisible(item) {
+    function idleMakeMeVisible(item) {
         if (!enabled || !item) {
             return
         }
 
         activeItem = item
-        var position = scrollArea.contentItem.mapFromItem(item, 0, activeItem.y);
+        timerMakemakeMeVisible.restart()
+    }
 
+    function makeMeVisible(item) {
+        if (!item)
+            return
+
+        var position = activeItem.mapToItem(editEditor, item.x, item.y);
         // check if the item is already visible
         var bottomY = scrollArea.contentY + scrollArea.height
         var itemBottom = position.y + (item.height * 3) // extra margin
         if (position.y >= scrollArea.contentY && itemBottom <= bottomY) {
+            Qt.inputMethod.show()
             return;
         }
 
@@ -123,7 +135,9 @@ Page {
             // if it is hidden at the top, also show it
             scrollArea.contentY = position.y;
         }
+
         scrollArea.returnToBounds()
+        Qt.inputMethod.show()
     }
 
     function ready()
@@ -135,6 +149,7 @@ Page {
             contactEditor.focusToLastPhoneField()
             break;
         case "name":
+        default:
             nameEditor.fieldDelegates[0].forceActiveFocus()
             break;
         }
@@ -146,9 +161,42 @@ Page {
         lastPhoneField.forceActiveFocus()
     }
 
-    title: isNewContact ? i18n.dtr("address-book-app", "New contact") : i18n.dtr("address-book-app", "Edit")
-    enabled: false
+    function focusToFirstEntry(field)
+    {
+        var itemToFocus = field
+        if (field.repeater)
+            itemToFocus = field.repeater.itemAt(0)
 
+        if (itemToFocus) {
+            root.idleMakeMeVisible(itemToFocus)
+            itemToFocus.forceActiveFocus()
+        }
+    }
+
+    Timer {
+        id: timerMakemakeMeVisible
+
+        interval: 100
+        repeat: false
+        running: false
+        onTriggered: root.makeMeVisible(root.activeItem)
+    }
+
+    header: PageHeader {
+        id: pageHeader
+
+        title: isNewContact ? i18n.dtr("address-book-app", "New contact") : i18n.dtr("address-book-app", "Edit")
+        trailingActionBar {
+            id: trailingBar
+        }
+        leadingActionBar {
+            id: leadingBar
+            actions: contactEditor.leadingActions
+        }
+    }
+
+    enabled: false
+    flickable: null
     Timer {
         id: focusTimer
 
@@ -158,7 +206,6 @@ Page {
         onTriggered: contactEditor.ready()
     }
 
-    flickable: null
     Flickable {
         id: scrollArea
         objectName: "scrollArea"
@@ -169,16 +216,12 @@ Page {
         anchors{
             left: parent.left
             top: parent.top
+            topMargin: pageHeader.height
             right: parent.right
             bottom: keyboardRectangle.top
         }
         contentHeight: contents.height + units.gu(2)
         contentWidth: parent.width
-
-        //after add a new field we need to wait for the contentHeight to change to scroll to the correct position
-        onContentHeightChanged: {
-            contactEditor.makeMeVisible(contactEditor.activeItem)
-        }
 
         Column {
             id: contents
@@ -242,6 +285,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                onNewFieldAdded: root.focusToFirstEntry(field)
             }
 
             ContactDetailEmailsEditor {
@@ -254,6 +298,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                onNewFieldAdded: root.focusToFirstEntry(field)
             }
 
             ContactDetailOnlineAccountsEditor {
@@ -266,6 +311,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                onNewFieldAdded: root.focusToFirstEntry(field)
             }
 
             ContactDetailAddressesEditor {
@@ -278,6 +324,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                onNewFieldAdded: root.focusToFirstEntry(field)
             }
 
             ContactDetailOrganizationsEditor {
@@ -290,6 +337,7 @@ Page {
                     right: parent.right
                 }
                 height: implicitHeight
+                onNewFieldAdded: root.focusToFirstEntry(field)
             }
 
             ContactDetailSyncTargetEditor {
@@ -332,6 +380,7 @@ Page {
                     margins: units.gu(2)
                 }
                 height: implicitHeight
+                activeFocusOnPress: false
                 onHeightChanged: {
                     if (expanded && (height === expandedHeight) && !scrollArea.atYEnd) {
                         moveToBottom.start()
@@ -343,9 +392,11 @@ Page {
 
                     target: scrollArea
                     property: "contentY"
-                    from: scrollArea.contentY
-                    to: Math.min(scrollArea.contentHeight - scrollArea.height,
-                                 scrollArea.contentY + (addNewFieldButton.height - addNewFieldButton.collapsedHeight - units.gu(3)))
+                    to: scrollArea.contentHeight - scrollArea.height
+                    onStopped: {
+                        scrollArea.returnToBounds()
+                        addNewFieldButton.forceActiveFocus()
+                    }
                 }
 
                 onFieldSelected: {
@@ -406,8 +457,11 @@ Page {
         id: keyboardRectangle
 
         onHeightChanged: {
-            if (activeItem) {
-                makeMeVisible(activeItem)
+            if (addNewFieldButton.expanded) {
+                scrollArea.contentY = scrollArea.contentHeight - scrollArea.height
+                scrollArea.returnToBounds()
+            } else if (activeItem) {
+                idleMakeMeVisible(activeItem)
             }
         }
     }
@@ -493,6 +547,8 @@ Page {
                         contactEditor.pageStack.pop() // view page
                     }
                 }
+                if (contactEditor.pageStack.primaryPage)
+                    contactEditor.pageStack.primaryPage.forceActiveFocus()
             }
         }
     }

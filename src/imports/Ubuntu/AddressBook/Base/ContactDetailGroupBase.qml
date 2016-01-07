@@ -33,9 +33,8 @@ FocusScope {
     property int minimumHeight: 0
     property bool loaded: false
     property bool showEmpty: true
-    property bool forceFocusOnFieldCreation: false
 
-    signal newFieldAdded(var index)
+    signal newFieldAdded(int fieldIndex, QtObject field)
 
     function reloadDetails(clearFields)
     {
@@ -145,10 +144,10 @@ FocusScope {
                     if (status === Loader.Ready) {
                         var newFields = root.inputFields
                         newFields.push(detailItem.item)
-                        root.newFieldAdded(detailItem.item)
+
                         root.inputFields = newFields
-                        if (root.loaded && root.forceFocusOnFieldCreation) {
-                            item.forceActiveFocus()
+                        if (root.loaded) {
+                            root.newFieldAdded(detailItem.item, item)
                         }
                     }
                 }

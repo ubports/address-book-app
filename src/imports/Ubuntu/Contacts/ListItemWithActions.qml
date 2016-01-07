@@ -314,6 +314,23 @@ Item {
     }
 
     SequentialAnimation {
+        id: clickAnimation
+
+        running: false
+        alwaysRunToEnd: true
+        PropertyAnimation {
+            target: main
+            property: "color"
+            to: root.selectedColor
+        }
+        PropertyAction {
+            target: main
+            property: "color"
+            value: root.selected ? root.selectedColor : root.color
+        }
+    }
+
+    SequentialAnimation {
         id: triggerAction
 
         property var currentItem: root.activeItem ? root.activeItem.image : null
@@ -424,6 +441,8 @@ Item {
         onClicked: {
             if (main.x === 0) {
                 root.itemClicked(mouse)
+                if (!root.selected)
+                    clickAnimation.start()
             } else if (main.x > 0) {
                 var action = getActionAt(Qt.point(mouse.x, mouse.y))
                 if (action && action !== -1) {

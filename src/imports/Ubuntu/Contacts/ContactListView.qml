@@ -202,12 +202,6 @@ FocusScope {
     */
     property bool showAddNewButton: false
     /*!
-      \qmlproperty bool prepareNewContact
-
-      This property holds if space for a draft new contact should be made available or not
-    */
-    property bool prepareNewContact: false
-    /*!
       \qmlproperty bool showNewContact
 
       This property holds if a draft new contact should be visible or not
@@ -407,6 +401,7 @@ FocusScope {
         }
         anchors.fill: parent
 
+
         // WORKAROUND: The SDK header causes the contactY to move to a wrong postion
         // calling the positionViewAtBeginning after the list created fix that
         Timer {
@@ -424,15 +419,18 @@ FocusScope {
                 right: parent.right
             }
 
-            Connections {
-                target: root
-                onPrepareNewContactChanged: {
-                    if (root.prepareNewContact) {
-                        view.contentY = Qt.binding(function() {return -view.headerItem.height});
-                    } else {
-                        view.contentY = view.contentY;
-                    }
-                }
+            Binding {
+                target: view
+                property: 'contentY'
+                value: -view.headerItem.height
+                when: root.showNewContact
+            }
+
+            Binding {
+                target: view
+                property: 'currentIndex'
+                value: -1
+                when: root.showNewContact
             }
 
             // AddNewButton
@@ -461,10 +459,9 @@ FocusScope {
                     }
                 }
                 selected: true
-                visible: root.prepareNewContact
-                height: root.prepareNewContact ? defaultHeight : 0
+                visible: root.showNewContact
+                height: root.showNewContact ? defaultHeight : 0
                 Behavior on height {UbuntuNumberAnimation {}}
-                opacity: root.showNewContact ? 1.0 : 0.0
             }
 
             Column {

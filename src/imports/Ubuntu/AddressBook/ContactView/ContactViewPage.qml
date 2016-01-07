@@ -29,6 +29,7 @@ Page {
     property alias extensions: extensionsContents.children
     property alias model: contactFetch.model
     property alias editable: contactDetailAvatar.editable
+    property alias headerActions: trailingBar.actions
 
     signal contactFetched(QtObject contact)
     signal contactRemoved()
@@ -41,12 +42,20 @@ Page {
         }
     }
 
-    title: contact ? ContactsJS.formatToDisplay(contact, i18n.dtr("address-book-app", "No name")) : ""
+    header: PageHeader {
+        id: pageHeader
+
+        flickable: flickable
+        title: contact ? ContactsJS.formatToDisplay(contact, i18n.dtr("address-book-app", "No name")) : ""
+        trailingActionBar {
+            id: trailingBar
+        }
+    }
 
     Connections {
         target: contact
         onContactChanged: {
-            root.title = ContactsJS.formatToDisplay(contact, i18n.dtr("address-book-app", "No name"))
+            pageHeader.title = ContactsJS.formatToDisplay(contact, i18n.dtr("address-book-app", "No name"))
         }
     }
 
@@ -88,11 +97,13 @@ Page {
         }
     }
 
+
     Flickable {
         id: flickable
 
         flickableDirection: Flickable.VerticalFlick
         anchors.fill: parent
+        clip: true
         //WORKAROUND: There is a bug on SDK page that causes the page to appear flicked with small contents
         // see bug #1223050
         contentHeight: Math.max(contents.height, parent.height) + units.gu(2)

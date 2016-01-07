@@ -18,6 +18,8 @@ import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3 as Popups
 
+import Unity.InputInfo 0.1
+
 MainView {
     id: mainWindow
     objectName: "addressBookAppMainWindow"
@@ -44,16 +46,6 @@ MainView {
             mainStack.contactListPage.createContactWithPhoneNumber(phoneNumber)
         } else {
             console.error("Contact creation requested but ContactListPage not loaded")
-        }
-    }
-
-    function addphone(contactId, phoneNumber)
-    {
-        mainStack.resetStack()
-        if (mainStack.contactListPage) {
-            mainStack.contactListPage.addPhoneToContact(contactId, phoneNumber)
-        } else {
-            console.error("Add phone to contact requested but ContactListPage not loaded")
         }
     }
 
@@ -88,24 +80,35 @@ MainView {
         }
     }
 
-    function addnewphone(phoneNumer)
-    {
-        mainStack.resetStack()
-        if (mainStack.contactListPage) {
-            mainStack.contactListPage.addNewPhone(phoneNumer)
-        } else {
-            console.error("Add new phone requested but ContactListPage not loaded")
-        }
-    }
-
     width: units.gu(90)
     height: units.gu(71)
     anchorToKeyboard: false
 
+    InputDeviceModel {
+        id: miceModel
+        deviceFilter: InputInfo.Mouse
+    }
+
+    InputDeviceModel {
+        id: touchPadModel
+        deviceFilter: InputInfo.TouchPad
+    }
+
+    InputDeviceModel {
+        id: keyboardsModel
+        deviceFilter: InputInfo.Keyboard
+    }
+
+
     AdaptivePageLayout {
         id: mainStack
+        objectName: "mainStack"
 
         property var contactListPage: null
+        property var bottomEdge: null
+        readonly property bool bottomEdgeOpened: (bottomEdge && bottomEdge.status === BottomEdge.Committed)
+        readonly property bool hasMouse: ((miceModel.count > 0) || (touchPadModel.count > 0))
+        readonly property bool hasKeyboard: (keyboardsModel.count > 0)
 
         function resetStack()
         {
@@ -145,7 +148,7 @@ MainView {
         anchors.fill: parent
         layouts: [
             PageColumnsLayout {
-                when: mainStack.width >= units.gu(80)
+                when: mainStack.width >= units.gu(70)
                 PageColumn {
                     maximumWidth: units.gu(50)
                     minimumWidth: units.gu(40)
@@ -163,6 +166,14 @@ MainView {
             }
         ]
 
+        onColumnsChanged: {
+            if (mainStack.columns > 1) {
+                if (mainStack.contactListPage)
+                    mainStack.contactListPage.fetchContact()
+                else
+                    mainStack.addPageToNextColumn(contactPage, Qt.resolvedUrl("./ABMultiColumnEmptyState.qml"))
+            }
+        }
     }
 
     ABContactListPage {
@@ -175,6 +186,16 @@ MainView {
         i18n.domain = "address-book-app"
         i18n.bindtextdomain("address-book-app", i18nDirectory)
         mainWindow.applicationReady()
+    }
+
+    // WORKAROUND: Due the missing feature on SDK, they can not detect if
+    // there is a mouse attached to device or not. And this will cause the
+    // bootom edge component to not work correct on desktop.
+    // We will consider that  a mouse is always attached until it get implement on SDK.
+    Binding {
+        target:  QuickUtils
+        property: "mouseAttached"
+        value: mainStack.hasMouse
     }
 
     Component {

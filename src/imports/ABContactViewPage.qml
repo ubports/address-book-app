@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2012-2015 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -27,10 +27,35 @@ ContactViewPage {
     id: root
     objectName: "contactViewPage"
 
-    property string addPhoneToContact: ""
-    signal editContact(var editPageProperties)
+    property bool editing: false
+    // used by autopilot test
+    readonly property string headerTitle: header.title
 
-    // Override Action buttom to add shortcut to it
+    function editContact(contact)
+    {
+        if (editing)
+            return
+        editing = true
+        var component = Qt.createComponent(Qt.resolvedUrl("ABContactEditorPage.qml"))
+        var incubator = pageStack.addPageToCurrentColumn(root,
+                                                         component,
+                                                         { model: root.model,
+                                                           contact: contact,
+                                                           backIconName: 'back'})
+        if (incubator && (incubator.status === Component.Loading)) {
+            incubator.onStatusChanged = function(status) {
+                if (status === Component.Ready) {
+                    incubator.object.Component.destruction.connect(function() {
+                        root.editing = false;
+                    });
+                }
+            }
+        } else {
+            editing = false
+        }
+    }
+
+    // Shortcut in case of single column
      Action {
         id: backAction
 
@@ -40,7 +65,8 @@ ContactViewPage {
         onTriggered: pageStack.removePages(root)
     }
 
-    head.actions: [
+
+    headerActions: [
         Action {
             objectName: "share"
             name: "share"
@@ -60,12 +86,9 @@ ContactViewPage {
 
             text: i18n.tr("Edit")
             iconName: "edit"
-            enabled: root.active
+            enabled: root.active && !editing
             shortcut: "Ctrl+e"
-            onTriggered: {
-                editContact({model: root.model,
-                             contact: root.contact});
-            }
+            onTriggered: root.editContact(root.contact)
         }
     ]
 
@@ -78,23 +101,6 @@ ContactViewPage {
             right: parent.right
         }
         height: implicitHeight
-    }
-
-    // This will load the contact information when the app was launched with
-    // the URI: addressbook:///contact?id=<id>
-    onContactFetched: {
-        if (root.addPhoneToContact != "") {
-            var detailSourceTemplate = "import QtContacts 5.0; PhoneNumber{ number: \"" + root.addPhoneToContact.trim() + "\" }"
-            var newDetail = Qt.createQmlObject(detailSourceTemplate, contact)
-            if (newDetail) {
-                contact.addDetail(newDetail)
-                editContact({ model: root.model,
-                              contact: contact,
-                              initialFocusSection: "phones",
-                              newDetails: [newDetail] })
-                root.addPhoneToContact = ""
-            }
-        }
     }
 
     onActionTrigerred: {
@@ -111,5 +117,28 @@ ContactViewPage {
     Component {
         id: contactShareComponent
         ContactSharePage {}
+    }
+
+    Loader {
+        id: bottomEdgeLoader
+
+        active: (pageStack.columns > 1)
+        asynchronous: true
+        sourceComponent: ABNewContactBottomEdge {
+            id: bottomEdge
+
+            parent: root
+            height: root.height
+            modelToEdit: root.model
+            hint.flickable: root.flickable
+            pageStack: root.pageStack
+        }
+    }
+
+    Binding {
+        target: pageStack
+        property: 'bottomEdge'
+        value: bottomEdgeLoader.item
+        when: bottomEdgeLoader.status === Loader.Ready
     }
 }
