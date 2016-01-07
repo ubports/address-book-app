@@ -547,6 +547,8 @@ Page {
                         contactEditor.pageStack.pop() // view page
                     }
                 }
+                if (contactEditor.pageStack.primaryPage)
+                    contactEditor.pageStack.primaryPage.forceActiveFocus()
             }
         }
     }
