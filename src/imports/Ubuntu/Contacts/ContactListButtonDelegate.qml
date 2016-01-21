@@ -73,7 +73,6 @@ Item {
            right: parent.right
            rightMargin: units.gu(2)
        }
-       color: UbuntuColors.lightAubergine
        elide: Text.ElideRight
        visible: root.showContents
    }

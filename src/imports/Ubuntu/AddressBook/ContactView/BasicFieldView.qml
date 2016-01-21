@@ -59,7 +59,6 @@ import Ubuntu.Components 1.3
 
                 // style
                 fontSize: "medium"
-                color: UbuntuColors.lightAubergine
             }
         }
     }

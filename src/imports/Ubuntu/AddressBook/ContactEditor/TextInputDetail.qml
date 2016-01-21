@@ -91,7 +91,6 @@ FocusScope {
             overlaySpacing: 0
             frameSpacing: 0
             background: Item {}
-            color: UbuntuColors.lightAubergine
         }
         onActiveFocusChanged: {
             if (activeFocus) {
