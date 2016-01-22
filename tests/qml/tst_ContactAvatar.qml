@@ -151,14 +151,20 @@ Item {
             waitForRendering(avatarComponent);
             var avatarInitials = findChild(avatarComponent, "avatarInitials")
             var avatarImage = findChild(avatarComponent, "avatarImage")
+            var avatarFallback = findChild(avatarComponent, "fallbackIcon")
 
             avatarComponent.showAvatarPicture = true
             tryCompare(avatarInitials, "visible", false)
-            tryCompare(avatarImage, "source", avatarComponent.fallbackAvatarUrl)
+            tryCompare(avatarImage, "source", "")
+            tryCompare(avatarFallback, "visible", true)
+            tryCompare(avatarFallback, "source", avatarComponent.fallbackAvatarUrl)
 
             avatarComponent.showAvatarPicture = false
             tryCompare(avatarImage, "source", "")
             tryCompare(avatarImage, "status", Image.Null)
+            tryCompare(avatarFallback, "visible", false)
+            tryCompare(avatarFallback, "source", "")
+
             tryCompare(avatarInitials, "visible", true)
         }
     }

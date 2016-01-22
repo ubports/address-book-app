@@ -77,6 +77,7 @@ UbuntuShape {
 
     Icon {
         id: fallbackIcon
+        objectName: "fallbackIcon"
 
         source: visible ? img.avatarUrl : ""
         visible: avatar.showAvatarPicture && (avatar.avatarUrl.indexOf("image://theme/") === 0)
