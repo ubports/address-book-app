@@ -149,13 +149,6 @@ function isNewContact(contact)
 
 function contactColor(name)
 {
-    var hash = 0, i, chr, len;
-    if (name.length === 0) return hash;
-    for (i = 0, len = Math.min(name.length, 3); i < len; i++) {
-        chr   = name.charCodeAt(i);
-        hash  = ((hash << 5) - hash) + chr;
-        hash |= 0; // Convert to 32bit integer
-    }
-
+    var hash = Contacts.qHash(name)
     return contactColors[(hash % contactColors.length)]
 }

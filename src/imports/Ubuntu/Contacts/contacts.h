@@ -40,6 +40,7 @@ public:
     Q_INVOKABLE bool containsLetters(const QString &value);
     Q_INVOKABLE bool removeFile(const QUrl &file);
     Q_INVOKABLE bool updateIsRunning() const;
+    Q_INVOKABLE uint qHash(const QString &str);
 
 Q_SIGNALS:
     void imageCopyDone(const QString &id, const QString &fileName);
