@@ -31,6 +31,7 @@ set(CONTACT_COMPONENTS_QMLS
     SIMList.qml
     SIMCardImportPage.qml
     SubtitledWithColors.qml
+    Triangle.qml
     VCardParser.qml
 )
 
