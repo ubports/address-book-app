@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2015-09-21 10:30-0300\n"
-"PO-Revision-Date: 2015-03-23 07:18+0000\n"
-"Last-Translator: Damir Jerovšek <Unknown>\n"
+"PO-Revision-Date: 2016-01-31 19:44+0000\n"
+"Last-Translator: Bernard Banko <Unknown>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-12-18 05:51+0000\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Launchpad-Export-Date: 2016-02-01 05:35+0000\n"
+"X-Generator: Launchpad (build 17908)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
 #, qt-format
@@ -28,11 +28,11 @@ msgid "%1 vCards imported"
 msgstr "Uvoženih je %1 kartic vCard"
 
 #. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:449
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:447
 msgid "+ Create New"
 msgstr "+ Ustvari nov"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:328
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:376
 msgid "Add Field"
 msgstr "Dodaj polje"
 
@@ -54,7 +54,7 @@ msgstr "Dodaj številko ..."
 msgid "Address"
 msgstr "Naslov"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:179
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:180
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:49
 msgid "Addressbook"
 msgstr "Imenik"
@@ -65,7 +65,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:399
+#: ../src/imports/ABContactListPage.qml:424
 msgid "All"
 msgstr "Vse"
 
@@ -77,30 +77,31 @@ msgstr "Ali ste prepričani, da želite odstraniti vse izbrane stike?"
 msgid "Are you sure that you want to remove this contact?"
 msgstr "Ali ste prepričani, da želite odstraniti ta stik?"
 
-#: ../src/imports/ABContactEditorPage.qml:39
-#: ../src/imports/ABContactListPage.qml:416 ../src/imports/MainWindow.qml:190
+#: ../src/imports/ABContactEditorPage.qml:38
+#: ../src/imports/ABContactListPage.qml:444 ../src/imports/MainWindow.qml:211
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "Prekliči"
 
-#: ../src/imports/ABContactListPage.qml:453
+#: ../src/imports/ABContactListPage.qml:488
 msgid "Cancel selection"
 msgstr "Prekliči izbiro"
 
-#: ../src/imports/ABContactListPage.qml:725
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:452
+#: ../src/imports/ABContactListPage.qml:710
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:506
 msgid "Close"
 msgstr "Zapri"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:433
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:487
 msgid "Contact Editor"
-msgstr ""
+msgstr "Urejevalnik stikov"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
 msgstr "Stika ni mogoče najti"
 
-#: ../src/imports/ABContactListPage.qml:210
+#: ../src/imports/ABContactListPage.qml:195
+#: ../src/imports/ABContactListPage.qml:235
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Stiki"
@@ -117,17 +118,18 @@ msgstr "Stiki;Ljudje;Številke"
 msgid "Country"
 msgstr "Država"
 
-#: ../src/imports/ABContactListPage.qml:659
+#: ../src/imports/ABContactListPage.qml:649 ../src/imports/ABEmptyState.qml:55
+#: ../src/imports/ABMultiColumnEmptyState.qml:41
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "Ustvarite nov stik s potegom navzgor z dna zaslona."
 
-#: ../src/imports/ABContactListPage.qml:491
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:376
+#: ../src/imports/ABContactListPage.qml:528
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:427
 msgid "Delete"
 msgstr "Izbriši"
 
-#: ../src/imports/ABContactViewPage.qml:61
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:149
+#: ../src/imports/ABContactViewPage.qml:87
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:188
 msgid "Edit"
 msgstr "Uredi"
 
@@ -150,7 +152,7 @@ msgstr "Vnesite družabni vzdevek"
 msgid "Enter an email address"
 msgstr "Vnesite naslov e-pošte"
 
-#: ../src/imports/MainWindow.qml:186
+#: ../src/imports/MainWindow.qml:207
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
 msgstr "Napaka"
@@ -163,7 +165,7 @@ msgstr "Izvažanje stikov ..."
 msgid "Fail to read SIM card"
 msgstr "Branje kartice SIM ni uspelo"
 
-#: ../src/imports/ABContactListPage.qml:399
+#: ../src/imports/ABContactListPage.qml:424
 msgid "Favorites"
 msgstr "Priljubljeni"
 
@@ -193,11 +195,11 @@ msgstr "IM"
 msgid "Import"
 msgstr "Uvozi"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:510
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:507
 msgid "Import contacts from Google"
 msgstr "Izvozi stike iz Googlea"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:521
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:518
 msgid "Import contacts from SIM card"
 msgstr "Uvozi stike s kartice SIM"
 
@@ -209,7 +211,7 @@ msgstr "Uvozi s SIM"
 msgid "Import vCards"
 msgstr "Uvozi kartice vCard"
 
-#: ../src/imports/ABContactListPage.qml:716
+#: ../src/imports/ABContactListPage.qml:701
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:238
 msgid "Importing..."
 msgstr "Uvažanje ..."
@@ -222,7 +224,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Priimek"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:588
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:585
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:221
 msgid "Loading..."
 msgstr "Nalaganje …"
@@ -249,15 +251,14 @@ msgstr "Več stikov"
 msgid "My phone number: %1"
 msgstr "Moja telefonska številka: %1"
 
-#: ../src/imports/ABContactListPage.qml:774 ../src/imports/BottomEdge.qml:46
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:149
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:457
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:188
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:455
 msgid "New contact"
 msgstr "Nov stik"
 
 #. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
 #. this word must be less than 5 characters
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/TextInputDetail.qml:97
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/TextInputDetail.qml:88
 msgid "Next"
 msgstr "Naprej"
 
@@ -273,8 +274,8 @@ msgstr "Noben stik ni izbran."
 msgid "No contacts found"
 msgstr "Ni najdenih stikov"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:44
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:49
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:58
 #: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:80
 msgid "No name"
 msgstr "Brez imena"
@@ -306,7 +307,7 @@ msgstr "Poštna številka"
 msgid "Professional Details"
 msgstr "Strokovne podrobnosti"
 
-#: ../src/imports/ABContactListPage.qml:342
+#: ../src/imports/ABContactListPage.qml:365
 msgid "Quit"
 msgstr "Izhod"
 
@@ -327,30 +328,30 @@ msgstr "SIM %1"
 msgid "SIM contacts"
 msgstr "Stiki SIM"
 
-#: ../src/imports/ABContactEditorPage.qml:54
+#: ../src/imports/ABContactEditorPage.qml:56
 msgid "Save"
 msgstr "Shrani"
 
-#: ../src/imports/ABContactListPage.qml:350
+#: ../src/imports/ABContactListPage.qml:375
 msgid "Search"
 msgstr "Iskanje"
 
-#: ../src/imports/ABContactListPage.qml:312
+#: ../src/imports/ABContactListPage.qml:340
 msgid "Search..."
 msgstr "Iskanje ..."
 
-#: ../src/imports/ABContactListPage.qml:461
+#: ../src/imports/ABContactListPage.qml:498
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:181
 msgid "Select All"
 msgstr "Izberi vse"
 
-#: ../src/imports/ABContactListPage.qml:375
+#: ../src/imports/ABContactListPage.qml:400
 #: ../src/imports/Settings/SettingsPage.qml:30
 msgid "Settings"
 msgstr "Nastavitve"
 
-#: ../src/imports/ABContactListPage.qml:474
-#: ../src/imports/ABContactViewPage.qml:48
+#: ../src/imports/ABContactListPage.qml:511
+#: ../src/imports/ABContactViewPage.qml:74
 msgid "Share"
 msgstr "Deli"
 
@@ -367,15 +368,15 @@ msgstr "Družabno"
 msgid "Street"
 msgstr "Ulica"
 
-#: ../src/imports/ABContactListPage.qml:363
+#: ../src/imports/ABContactListPage.qml:388
 msgid "Sync"
 msgstr "Uskladi"
 
-#: ../src/imports/ABContactListPage.qml:363
+#: ../src/imports/ABContactListPage.qml:388
 msgid "Syncing"
 msgstr "Usklajevanje"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:588
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:585
 msgid "Syncing..."
 msgstr "Usklajevanje ..."
 
@@ -393,9 +394,9 @@ msgstr "Odkleni"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:230
 msgid "Unlocking..."
-msgstr ""
+msgstr "Odklepanje ..."
 
-#: ../src/imports/ABContactListPage.qml:461
+#: ../src/imports/ABContactListPage.qml:498
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:180
 msgid "Unselect All"
 msgstr "Počisti izbor"
@@ -419,44 +420,52 @@ msgstr "Yahoo"
 msgid "Yes"
 msgstr "Da"
 
-#: ../src/imports/ABContactListPage.qml:658
+#: ../src/imports/ABContactListPage.qml:648
 msgid "You have no contacts."
 msgstr "Nimate stikov."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:446
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:500
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded by running Contacts "
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Vaš <b>%1</b> račun usklajenih stikov mora biti nadgrajen z zagonom programa "
+"Stiki.\n"
+"Do končanja nadgradnje bodo za urejanje na voljo le krajevni stiki."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:437
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:491
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
+"Vaš <b>%1</b> račun usklajenih stikov mora biti nadgrajen.\n"
+"Za urejanje počakajte do konca nadgrajevanja."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:442
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:496
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded. Use the sync "
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Vaš <b>%1</b> račun usklajenih stikov mora biti nadgrajen. Z gumbom za "
+"uskladitev nadgradite program Stiki.\n"
+"Do končanja nadgradnje bodo za urejanje na voljo le krajevni stiki."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:46
 msgid "Discard changes"
-msgstr ""
+msgstr "Zavrzi spremembe"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:24
 msgid "Discard contact changes"
-msgstr ""
+msgstr "Zavrzi spremembe stika"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:35
 msgid "Keep editing"
-msgstr ""
+msgstr "Nadaljuj z urejanjem"
 
 #~ msgid ""
 #~ "Would you like to sync contacts\n"
