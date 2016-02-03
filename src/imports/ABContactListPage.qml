@@ -791,8 +791,11 @@ Page {
                 mainPage.state = "vcardImported"
 
                 if (mainPage._busyDialog) {
+                    console.debug("Closing import dialog")
                     PopupUtils.close(mainPage._busyDialog)
                     mainPage._busyDialog = null
+                } else {
+                    console.debug("No import dialog")
                 }
             }
         }

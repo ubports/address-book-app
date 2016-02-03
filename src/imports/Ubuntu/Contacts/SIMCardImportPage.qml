@@ -98,7 +98,7 @@ Page {
         multiSelectionEnabled: true
         multipleSelection: true
         showSections: false
-        visible: !indicator.visible
+        visible: !indicator.visible && !statusMessage.visible
         showBusyIndicator: false
 
         manager: "memory"
@@ -171,6 +171,7 @@ Page {
                 root.state = "saving"
                 targetModel.importContacts(url)
              } else {
+                console.debug("Failt to export selected contacts")
                 root.state = "error"
             }
         }
@@ -179,13 +180,13 @@ Page {
     Connections {
         target: root.targetModel
         onImportCompleted: {
-             if (error !== ContactModel.ImportNoError) {
-                 root.state = "error"
-             } else {
+             if (error === ContactModel.ImportNoError) {
                  Contacts.removeFile(root.exportFile)
-                 root.exportFile = ""
                  root.state = ""
                  root.importCompleted()
+             } else {
+                 console.error("Fail to import contacts on device")
+                 root.state = "error"
              }
         }
     }
@@ -251,7 +252,7 @@ Page {
             name: "importing"
             PropertyChanges {
                 target: indicator
-                title: i18n.dtr("address-book-app", "Reading from SIM...")
+                title: i18n.dtr("address-book-app", "Reading contacts from SIM...")
                 visible: true
             }
         },
@@ -259,7 +260,7 @@ Page {
             name: "saving"
             PropertyChanges {
                 target: indicator
-                title: i18n.dtr("address-book-app", "Saving on phone...")
+                title: i18n.dtr("address-book-app", "Saving contacts on phone...")
                 visible: true
             }
         },
