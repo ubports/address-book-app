@@ -40,8 +40,9 @@ UbuntuShape {
         initialsLabel.contactDisplayName = Qt.binding(function() { return ContactsJS.formatToDisplayWithDetails(contactElement, ContactDetail.Name, [Name.FirstName, Name.LastName], fallbackDisplayName) })
     }
 
+    aspect: UbuntuShape.Flat
     radius: "medium"
-    backgroundColor: Theme.palette.normal.overlay
+    backgroundColor: ContactsJS.contactColor(displayName)
 
     Label {
         id: initialsLabel
@@ -51,8 +52,8 @@ UbuntuShape {
 
         anchors.centerIn: parent
         text: Contacts.contactInitialsFromString(contactDisplayName)
-        color: UbuntuColors.lightAubergine
-        visible: (img.status != Image.Ready)
+        color: "white"
+        visible: (img.status != Image.Ready) && !fallbackIcon.visible
         fontSize: "large"
     }
 
@@ -65,13 +66,24 @@ UbuntuShape {
 
         property string avatarUrl: ContactsJS.getAvatar(contactElement, fallbackAvatarUrl)
 
-        anchors.centerIn: visible ? avatar : undefined
         asynchronous: true
-        source: avatar.showAvatarPicture ? avatar.avatarUrl : ""
-        height: visible ? units.gu(3) : avatar.height
+        source: avatar.showAvatarPicture && (avatar.avatarUrl.indexOf("image://theme/") === -1)  ? avatar.avatarUrl : ""
+        height: avatar.height
         width: height
-        visible: avatar.avatarUrl.indexOf("image://theme/") === 0
+        visible: false
         sourceSize.width: avatar.width
         sourceSize.height: avatar.height
+    }
+
+    Icon {
+        id: fallbackIcon
+        objectName: "fallbackIcon"
+
+        source: visible ? img.avatarUrl : ""
+        visible: avatar.showAvatarPicture && (avatar.avatarUrl.indexOf("image://theme/") === 0)
+        color: "white"
+        anchors.centerIn: avatar
+        height: units.gu(3)
+        width: height
     }
 }

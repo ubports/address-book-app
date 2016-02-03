@@ -80,7 +80,6 @@ Item {
                 }
 
                 text: i18n.dtr("address-book-app", "Add number...")
-                color: UbuntuColors.lightAubergine
             }
             visible: phoneNumberEntries.count == 0
             MouseArea {
@@ -104,7 +103,6 @@ Item {
                 text: modelData.number
                 subText: phoneTypeModel.get(phoneTypeModel.getTypeIndex(modelData)).label
                 onClicked: root.detailClicked(modelData, "call")
-                textColor: UbuntuColors.lightAubergine
 
                 MouseArea {
                     anchors {
