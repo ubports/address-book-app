@@ -132,6 +132,7 @@ ContactViewPage {
             modelToEdit: root.model
             hint.flickable: root.flickable
             pageStack: root.pageStack
+            hintVisible: false
         }
     }
 

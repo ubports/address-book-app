@@ -414,6 +414,13 @@ Page {
                             }
                         }
                     }
+                },
+                Action {
+                    iconName: "contact-new"
+                    shortcut: "ctrl+n"
+                    enabled: pageStack.bottomEdge && pageStack.bottomEdge.enabled && (pageStack.columns > 1)
+                    visible: enabled
+                    onTriggered: pageStack.bottomEdge.commit()
                 }
             ]
 
@@ -494,7 +501,7 @@ Page {
             ]
 
             property list<QtObject> trailingActions: [
-                 Action {
+                Action {
                     text: (contactList.selectedItems.count === contactList.count) ? i18n.tr("Unselect All") : i18n.tr("Select All")
                     iconName: "select"
                     onTriggered: {
