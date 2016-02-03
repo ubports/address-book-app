@@ -26,7 +26,7 @@ import MeeGo.QOfono 0.2
 Page {
     id: root
 
-    readonly property string exportFile: "file://%1/ubuntu_contacts_sim.vcf".arg(Contacts.tempPath)
+    readonly property string exportFile: Contacts.tempFile("ubuntu_contacts_XXXXXX.vcf")
     readonly property alias hasContacts: simCardContacts.hasContacts
     property var targetModel: null
     property var sims: []
@@ -168,9 +168,25 @@ Page {
 
         onExportCompleted: {
             if ((error === ContactModel.ExportNoError) && targetModel) {
+                root.state = "saving"
                 targetModel.importContacts(url)
+             } else {
+                root.state = "error"
+            }
+        }
+    }
+
+    Connections {
+        target: root.targetModel
+        onImportCompleted: {
+             if (error !== ContactModel.ImportNoError) {
+                 root.state = "error"
+             } else {
+                 Contacts.removeFile(root.exportFile)
+                 root.exportFile = ""
+                 root.state = ""
+                 root.importCompleted()
              }
-            root.importCompleted()
         }
     }
 
@@ -235,7 +251,15 @@ Page {
             name: "importing"
             PropertyChanges {
                 target: indicator
-                title: i18n.dtr("address-book-app", "Importing...")
+                title: i18n.dtr("address-book-app", "Reading from SIM...")
+                visible: true
+            }
+        },
+        State {
+            name: "saving"
+            PropertyChanges {
+                target: indicator
+                title: i18n.dtr("address-book-app", "Saving on phone...")
                 visible: true
             }
         },
@@ -249,6 +273,7 @@ Page {
         }
     ]
 
+    Component.onCompleted: console.debug("Temporary file:" + exportFile)
     Component.onDestruction: {
         Contacts.removeFile(root.exportFile)
     }

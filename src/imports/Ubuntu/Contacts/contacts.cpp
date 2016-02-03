@@ -109,6 +109,13 @@ bool UbuntuContacts::updateIsRunning() const
     return QFile::exists(updaterLockFile());
 }
 
+QUrl UbuntuContacts::tempFile(const QString &templateName)
+{
+    QTemporaryFile tmp(templateName);
+    tmp.setAutoRemove(false);
+    return QUrl::fromLocalFile(QString("%1/%2").arg(tempPath()).arg(tmp.fileName()));
+}
+
 QString UbuntuContacts::updaterLockFile()
 {
     return QString("%1/%2").arg(QDir::tempPath()).arg("/address-book-updater.lock");
