@@ -145,31 +145,39 @@ Page {
 
         Component.onCompleted: {
             if (vcardFile != "" && !contactImported) {
+                console.debug("Initial vcard file received from sim:" + vcardFile)
                 contactImported = true
                 contactList.listModel.importContacts(vcardFile)
-
             }
         }
         onVcardFileChanged: {
             if ((vcardFile != "") && !contactImported) {
+                console.debug("New vcard file from sim:" + vcardFile)
                 contactImported = true
                 contactList.listModel.importContacts(vcardFile)
             }
         }
-        onImportFail: root.state = "error"
+        onImportFail: {
+            console.error("Sim card import fail")
+            root.state = "error"
+        }
     }
 
     Connections {
         target: contactList.listModel
         onImportCompleted: {
+            console.debug("Contacts imported in memory.")
             contactList.startSelection()
             root.state = ""
+            console.debug("Contacts imported in memory: Waiting user to select")
         }
 
         onExportCompleted: {
             if ((error === ContactModel.ExportNoError) && targetModel) {
+                console.debug("Contacts exported to temporary file:" + root.exportFile)
                 root.state = "saving"
                 targetModel.importContacts(url)
+                console.debug("importing contacts to phone...")
              } else {
                 console.debug("Failt to export selected contacts")
                 root.state = "error"
@@ -181,13 +189,17 @@ Page {
         target: root.targetModel
         onImportCompleted: {
              if (error === ContactModel.ImportNoError) {
+                 console.debug("Contacts imported to phone")
                  Contacts.removeFile(root.exportFile)
+                 console.debug("Temporary file removed:" + root.exportFile)
                  root.state = ""
+                 console.debug("Will send import completed singal")
                  root.importCompleted()
              } else {
                  console.error("Fail to import contacts on device")
                  root.state = "error"
              }
+             console.debug("Contacts imported to phone: DONE")
         }
     }
 
@@ -274,8 +286,12 @@ Page {
         }
     ]
 
-    Component.onCompleted: console.debug("Temporary file:" + exportFile)
+    Component.onCompleted: {
+        console.debug("Temporary file:" + exportFile)
+    }
     Component.onDestruction: {
+        console.debug("Sim card import page destroyed")
         Contacts.removeFile(root.exportFile)
+        console.debug("Sim card import page destroyed: temporary file removed")
     }
 }
