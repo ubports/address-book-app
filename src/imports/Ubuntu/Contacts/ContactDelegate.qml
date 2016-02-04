@@ -76,7 +76,7 @@ ListItemWithActions {
                 verticalCenter: parent.verticalCenter
                 right: parent.right
             }
-            color: selected ? "white" : UbuntuColors.darkGrey
+            color: UbuntuColors.darkGrey
             text: root.displayLabel != "" ? root.displayLabel : i18n.dtr("address-book-app", "No name")
             elide: Text.ElideRight
         }
