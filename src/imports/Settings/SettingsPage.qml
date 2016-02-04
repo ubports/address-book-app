@@ -144,9 +144,7 @@ Page {
             objectName: "simCardImportPage"
             targetModel: root.contactListModel
             sims: simList.sims
-            onImportCompleted: {
-                pageStack.removePages(root)
-            }
+            onImportCompleted: pageStack.removePages(root)
         }
     }
 
