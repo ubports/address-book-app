@@ -145,9 +145,7 @@ Page {
             targetModel: root.contactListModel
             sims: simList.sims
             onImportCompleted: {
-                console.debug("Import completed signal received, will pop the page")
                 pageStack.removePages(root)
-                console.debug("operation completed")
             }
         }
     }
