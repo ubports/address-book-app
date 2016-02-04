@@ -92,7 +92,7 @@ Page {
                 Rectangle {
                     color: UbuntuColors.orange
                     anchors.fill: parent
-                    visible:addGoogleAccountItem.activeFocus && pageStack.hasKeyboard
+                    visible: addGoogleAccountItem.activeFocus && pageStack.hasKeyboard
                     z: -1
                 }
             }
@@ -116,12 +116,12 @@ Page {
                 // FIXME: Using a private property here. This uses the old list item and the only way to change the text
                 // color is with this property.
                 // We should remove it when update the app to the new ListItem.
-                __foregroundColor: (activeFocus && (pageStack.columns > 1)) ? Theme.palette.normal.foregroundText :
+                __foregroundColor: (activeFocus && pageStack.hasKeyboard) ? Theme.palette.normal.foregroundText :
                                                                               Theme.palette.normal.foreground
                 Rectangle {
                     color: UbuntuColors.orange
                     anchors.fill: parent
-                    visible: importFromSimItem.activeFocus
+                    visible: importFromSimItem.activeFocus && pageStack.hasKeyboard
                     z: -1
                 }
             }
