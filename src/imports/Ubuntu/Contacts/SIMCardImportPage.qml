@@ -194,6 +194,10 @@ Page {
                  console.debug("Temporary file removed:" + root.exportFile)
                  root.state = ""
                  console.debug("Will send import completed singal")
+                 if (pageStack.removePages)
+                     pageStack.removePages(root)
+                 else
+                     pageStack.pop()
                  root.importCompleted()
              } else {
                  console.error("Fail to import contacts on device")
