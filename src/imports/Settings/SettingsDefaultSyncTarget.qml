@@ -171,7 +171,7 @@ Empty {
    Label {
        id: label
 
-       text: i18n.tr("Default Addressbook")
+       text: i18n.tr("Default address book")
        anchors {
            left: parent.left
            top: parent.top
@@ -197,19 +197,41 @@ Empty {
        }
 
        delegate: OptionSelectorDelegate {
-           text: {
-               if ((sourceId != "system-address-book") &&
-                   (iconSource == "image://theme/address-book-app-symbolic")) {
-                   return i18n.dtr("address-book-app", "Personal - %1").arg(sourceName)
-               } else {
-                   return sourceName
+           height: units.gu(4)
+
+           Icon {
+                id: accountIcon
+
+                anchors {
+                    top: parent.top
+                    bottom: parent.bottom
+                    left: parent.left
+                    margins: units.gu(1)
+                }
+                width: height
+                name: accountProvider == "" ?
+                                "address-book-app-symbolic" :
+                                "online-accounts-%1".arg(accountProvider)
+           }
+
+           Label {
+               anchors {
+                   top: parent.top
+                   bottom: parent.bottom
+                   left: accountIcon.right
+                   right: parent.right
+                   margins: units.gu(1)
+               }
+
+               text: {
+                   if ((sourceId != "system-address-book") &&
+                       (iconSource == "image://theme/address-book-app-symbolic")) {
+                       return i18n.dtr("address-book-app", "Personal - %1").arg(sourceName)
+                   } else {
+                       return sourceName
+                   }
                }
            }
-           constrainImage: true
-           iconSource: accountProvider == "" ?
-                           "image://theme/address-book-app-symbolic" :
-                           "image://theme/online-accounts-%1".arg(accountProvider)
-           height: units.gu(4)
        }
 
        containerHeight: sources.model && sources.model.count > 4 ? itemHeight * 4 : sources.model ? itemHeight * sources.model.count : 0
