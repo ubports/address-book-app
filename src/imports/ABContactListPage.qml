@@ -242,7 +242,7 @@ Page {
         focus: true
         showImportOptions: !mainPage.pickMode &&
                            pageStack.bottomEdge &&
-                           (pageStack.bottomEdge.status === BottomEdge.Hidden)
+                           (pageStack.bottomEdge.status !== BottomEdge.Committed)
         anchors {
             top: parent.top
             topMargin: pageHeader.height
