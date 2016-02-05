@@ -264,7 +264,11 @@ Item {
         }
 
         width: parent.width
-        color: root.selected ? root.selectedColor : root.color
+        border {
+            color: root.selectedColor
+            width: root.selected ? units.dp(1) : 0
+        }
+        color: root.color
 
         Loader {
             id: selectionIcon
