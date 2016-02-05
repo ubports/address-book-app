@@ -175,7 +175,7 @@ Page {
                 var component = Qt.createComponent(Qt.resolvedUrl("ABMultiColumnEmptyState.qml"))
                 var searching = contactList.filterTerm !== ""
                 pageStack.addPageToNextColumn(mainPage, component,
-                                              { headerTitle: searching ? i18n.tr("No contact found") : i18n.tr("No contacts") })
+                                              { headerTitle: searching ? i18n.tr("No contact found") : i18n.tr("No contact selected") })
                 return
             }
             if (currentContact && (mainPage.currentViewContactId === currentContact.contactId))

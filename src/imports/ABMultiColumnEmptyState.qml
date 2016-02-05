@@ -38,7 +38,7 @@ Page {
             rightMargin: units.gu(6)
         }
         height: childrenRect.height
-        text: i18n.tr("Create a new contact by swiping up from the bottom of the screen.")
+        text: ""
     }
 
     Loader {
@@ -49,6 +49,7 @@ Page {
         sourceComponent: ABNewContactBottomEdge {
             id: bottomEdge
 
+            hintVisible: false
             parent: root
             height: root.height
             modelToEdit: root.pageStack.contactListPage.contactModel
