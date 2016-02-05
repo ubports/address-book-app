@@ -66,6 +66,8 @@ Page {
             ListItem.Standard {
                 id: addGoogleAccountItem
 
+                property bool selected: (activeFocus && pageStack.hasKeyboard)
+
                 function activate()
                 {
                     onlineAccountsHelper.setupExec()
@@ -82,22 +84,28 @@ Page {
                     }
                 }
 
-                // Selection visual feedback
+                // selection visual feedback
                 //
                 // FIXME: Using a private property here. This uses the old list item and the only way to change the text
                 // color is with this property.
                 // We should remove it when update the app to the new ListItem.
-                __foregroundColor: (activeFocus && pageStack.hasKeyboard) ? Theme.palette.normal.foregroundText :
-                                                                                Theme.palette.normal.foreground
+                __foregroundColor: selected ? UbuntuColors.blue : Theme.palette.normal.foreground
+
                 Rectangle {
-                    color: UbuntuColors.orange
+                    border {
+                        color: UbuntuColors.orange
+                        width: units.dp(1)
+                    }
+                    color: "#E6E6E6"
                     anchors.fill: parent
-                    visible: addGoogleAccountItem.activeFocus && pageStack.hasKeyboard
+                    visible: addGoogleAccountItem.selected
                     z: -1
                 }
             }
             ListItem.Standard {
                 id: importFromSimItem
+
+                property bool selected: (activeFocus && pageStack.hasKeyboard)
 
                 function activate()
                 {
@@ -116,12 +124,16 @@ Page {
                 // FIXME: Using a private property here. This uses the old list item and the only way to change the text
                 // color is with this property.
                 // We should remove it when update the app to the new ListItem.
-                __foregroundColor: (activeFocus && pageStack.hasKeyboard) ? Theme.palette.normal.foregroundText :
-                                                                              Theme.palette.normal.foreground
+                __foregroundColor: selected ? UbuntuColors.blue : Theme.palette.normal.foreground
+
                 Rectangle {
-                    color: UbuntuColors.orange
+                    border {
+                        color: UbuntuColors.orange
+                        width: units.dp(1)
+                    }
+                    color: "#E6E6E6"
                     anchors.fill: parent
-                    visible: importFromSimItem.activeFocus && pageStack.hasKeyboard
+                    visible: importFromSimItem.selected
                     z: -1
                 }
             }

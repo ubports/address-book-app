@@ -265,10 +265,10 @@ Item {
 
         width: parent.width
         border {
-            color: root.selectedColor
+            color: UbuntuColors.orange
             width: root.selected ? units.dp(1) : 0
         }
-        color: root.color
+        color: root.selected ? root.selectedColor : root.color
 
         Loader {
             id: selectionIcon
