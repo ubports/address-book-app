@@ -417,8 +417,8 @@ Page {
                 },
                 Action {
                     iconName: "contact-new"
-                    enabled: pageStack.bottomEdge && pageStack.bottomEdge.enabled && (pageStack.columns > 1)
-                    visible: enabled
+                    enabled: pageStack.bottomEdge && pageStack.bottomEdge.status === BottomEdge.Hidden
+                    visible: pageStack.bottomEdge && pageStack.bottomEdge.enabled && (pageStack.columns > 1)
                     onTriggered: pageStack.bottomEdge.commit()
                 }
             ]
@@ -819,6 +819,12 @@ Page {
                 mainPage.delayFetchContact()
             }
             contactList.forceActiveFocus()
+        }
+    }
+
+    onActiveFocusChanged: {
+        if (activeFocus && pageStack.bottomEdge && (pageStack.bottomEdge.status !== BottomEdge.Hidden)) {
+            pageStack.bottomEdge.collapse()
         }
     }
 }
