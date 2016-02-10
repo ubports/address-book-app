@@ -384,6 +384,12 @@ Page {
                     }
                 },
                 Action {
+                    iconName: "contact-new"
+                    enabled: pageStack.bottomEdge && pageStack.bottomEdge.status === BottomEdge.Hidden
+                    visible: pageStack.bottomEdge && pageStack.bottomEdge.enabled && (pageStack.columns > 1)
+                    onTriggered: pageStack.bottomEdge.commit()
+                },
+                Action {
                     visible: (application.isOnline && (contactList.syncEnabled || application.serverSafeMode))
                     text: contactList.syncing ? i18n.tr("Syncing") : i18n.tr("Sync")
                     iconName: application.serverSafeMode ? "reset" : "reload"
@@ -414,12 +420,6 @@ Page {
                             }
                         }
                     }
-                },
-                Action {
-                    iconName: "contact-new"
-                    enabled: pageStack.bottomEdge && pageStack.bottomEdge.status === BottomEdge.Hidden
-                    visible: pageStack.bottomEdge && pageStack.bottomEdge.enabled && (pageStack.columns > 1)
-                    onTriggered: pageStack.bottomEdge.commit()
                 }
             ]
 
