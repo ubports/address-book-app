@@ -417,7 +417,6 @@ Page {
                 },
                 Action {
                     iconName: "contact-new"
-                    shortcut: "ctrl+n"
                     enabled: pageStack.bottomEdge && pageStack.bottomEdge.enabled && (pageStack.columns > 1)
                     visible: enabled
                     onTriggered: pageStack.bottomEdge.commit()
