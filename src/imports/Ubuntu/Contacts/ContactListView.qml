@@ -419,11 +419,13 @@ FocusScope {
                 right: parent.right
             }
 
-            Binding {
-                target: view
-                property: 'contentY'
-                value: -view.headerItem.height
-                when: root.showNewContact
+            // top margin
+            Item {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                height: units.gu(0.5)
             }
 
             Binding {
@@ -461,6 +463,7 @@ FocusScope {
                 selected: true
                 visible: root.showNewContact
                 height: root.showNewContact ? defaultHeight : 0
+                onHeightChanged: view.positionViewAtBeginning()
                 Behavior on height {UbuntuNumberAnimation {}}
             }
 
