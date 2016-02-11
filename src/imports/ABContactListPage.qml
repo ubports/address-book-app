@@ -261,7 +261,7 @@ Page {
         multiSelectionEnabled: true
         multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
         showNewContact: (pageStack.columns > 1) && pageStack.bottomEdge && (pageStack.bottomEdge.status === BottomEdge.Committed)
-        highlightSelected: pageStack.hasKeyboard && !mainPage._creatingContact
+        highlightSelected: !showNewContact && pageStack.hasKeyboard && !mainPage._creatingContact
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
         onContactClicked: mainPage.showContact(contact)
         onIsInSelectionModeChanged: mainPage.state = isInSelectionMode ? "selection"  : "default"
@@ -825,12 +825,6 @@ Page {
                 mainPage.delayFetchContact()
             }
             contactList.forceActiveFocus()
-        }
-    }
-
-    onActiveFocusChanged: {
-        if (activeFocus && pageStack.bottomEdge && (pageStack.bottomEdge.status !== BottomEdge.Hidden)) {
-            pageStack.bottomEdge.collapse()
         }
     }
 }
