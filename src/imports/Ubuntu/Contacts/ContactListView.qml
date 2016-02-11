@@ -463,7 +463,10 @@ FocusScope {
                 selected: pageStack.hasKeyboard
                 visible: root.showNewContact
                 height: root.showNewContact ? defaultHeight : 0
-                onHeightChanged: view.positionViewAtBeginning()
+                onHeightChanged: {
+                    if (visible)
+                        view.positionViewAtBeginning()
+                }
                 Behavior on height {UbuntuNumberAnimation {}}
             }
 
