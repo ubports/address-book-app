@@ -74,6 +74,12 @@ Page {
     }
 
     function openViewPage(viewPageProperties) {
+        if (viewPage) {
+            // FIXME: bug #1544745
+            // Adaptive layout is not destroying all pages correct, we do it manually for now
+            viewPage.cancelEdit()
+            viewPage = null
+        }
         var component = Qt.createComponent(Qt.resolvedUrl("ABContactViewPage.qml"))
         var incubator = pageStack.addPageToNextColumn(mainPage, component, viewPageProperties)
         if (incubator && (incubator.status === Component.Loading)) {

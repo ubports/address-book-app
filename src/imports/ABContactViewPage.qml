@@ -31,6 +31,17 @@ ContactViewPage {
     // used by autopilot test
     readonly property string headerTitle: header.title
 
+    // FIXME: bug #1544745
+    // Adaptive layout is not destroying all pages correct, we do it manually for now
+    property var _editPage: null
+    function cancelEdit()
+    {
+        if (_editPage) {
+            pageStack.removePages(_editPage)
+            _editPage = null
+        }
+    }
+
     function editContact(contact)
     {
         if (editing)
@@ -45,7 +56,9 @@ ContactViewPage {
         if (incubator && (incubator.status === Component.Loading)) {
             incubator.onStatusChanged = function(status) {
                 if (status === Component.Ready) {
+                    root._editPage = incubator.object
                     incubator.object.Component.destruction.connect(function() {
+                        root._editPage = null;
                         root.editing = false;
                     });
                 }
@@ -133,6 +146,7 @@ ContactViewPage {
             hint.flickable: root.flickable
             pageStack: root.pageStack
             hintVisible: false
+            enabled: !root.editing
         }
     }
 
