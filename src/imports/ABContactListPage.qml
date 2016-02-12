@@ -307,6 +307,9 @@ Page {
 
         onError: pageStack.contactModelError(error)
         onCountChanged: {
+            if (mainPage.state === "searching") {
+                currentIndex = 0
+            }
             mainPage.delayFetchContact()
         }
 
