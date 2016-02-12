@@ -75,7 +75,9 @@ ContactViewPage {
         name: "cancel"
         enabled: root.active && root.enabled && (pageStack.columns === 1)
         shortcut: "Esc"
-        onTriggered: pageStack.removePages(root)
+        onTriggered: {
+            pageStack.removePage(root)
+        }
     }
 
 

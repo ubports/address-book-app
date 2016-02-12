@@ -50,6 +50,26 @@ Page {
         trailingActionBar {
             id: trailingBar
         }
+        leadingActionBar {
+            id: leadingBar
+            actions:  Action {
+                id: backAction
+
+                iconName: "back"
+                name: "cancel"
+                enabled: visible && root.active && root.enabled
+                visible: (pageStack.columns === 1)
+                onTriggered: {
+                    if (pageStack.removePage)
+                        pageStack.removePage(root)
+                    else if (pageStack.removePages)
+                        pageStack.removePages(root)
+                    else
+                        pageStack.pop()
+                }
+            }
+
+        }
     }
 
     Connections {

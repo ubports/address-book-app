@@ -32,6 +32,7 @@ Page {
     objectName: "contactListPage"
 
     property var viewPage: null
+    property var emptyPage: null
     property bool pickMode: false
     property alias contentHubTransfer: contactExporter.activeTransfer
     property bool pickMultipleContacts: false
@@ -74,24 +75,29 @@ Page {
     }
 
     function openViewPage(viewPageProperties) {
+        if (viewPage && viewPageProperties.contact &&
+            (viewPageProperties.contact.contactId === viewPage.contact.contactId) ) {
+            return
+        }
+
+        if (emptyPage) {
+            pageStack.removePage(emptyPage)
+            emptyPage = null
+        }
+
         if (viewPage) {
             // FIXME: bug #1544745
             // Adaptive layout is not destroying all pages correct, we do it manually for now
             viewPage.cancelEdit()
+            pageStack.removePage(viewPage)
             viewPage = null
         }
-        var component = Qt.createComponent(Qt.resolvedUrl("ABContactViewPage.qml"))
-        var incubator = pageStack.addPageToNextColumn(mainPage, component, viewPageProperties)
-        if (incubator && (incubator.status === Component.Loading)) {
-            incubator.onStatusChanged = function(status) {
-                if (status === Component.Ready)
-                    mainPage.viewPage =  incubator.object
-            }
-        } else if (incubator && incubator.status ===- Component.Ready) {
-            mainPage.viewPage =  incubator.object
-        } else {
-            mainPage.viewPage =  null
-        }
+
+        // make sure all pages get removed
+        pageStack.removePages(mainPage)
+
+        viewPage = pageStack.addFileToNextColumnSync(mainPage, Qt.resolvedUrl("ABContactViewPage.qml"), viewPageProperties)
+        viewPage.Component.onDestruction.connect(function() { mainPage.viewPage = null })
     }
 
     function showContact(contact)
@@ -109,6 +115,18 @@ Page {
         }
         openViewPage({model: contactList.listModel,
                       contact: contact});
+    }
+
+    function showEmptyPage()
+    {
+        if ((pageStack.columns > 1) && !mainPage.emptyPage) {
+            var searching = contactList.filterTerm !== ""
+            mainPage.emptyPage  = pageStack.addFileToNextColumnSync(pageStack.primaryPage,
+                                                                    Qt.resolvedUrl("ABMultiColumnEmptyState.qml"),
+                                                                    { 'headerTitle': searching ? i18n.tr("No contact found") : i18n.tr("No contact selected"),
+                                                                      'pageStack': mainPage.pageStack })
+            mainPage.emptyPage.Component.onDestruction.connect(function() {console.debug("Empty page destroyed"); mainPage.emptyPage = null})
+        }
     }
 
     function showContactWithId(contactId)
@@ -175,17 +193,17 @@ Page {
 
     function fetchContact()
     {
-        if ((contactList.currentIndex >= 0) && (pageStack.columns > 1)) {
-            var currentContact = contactList.listModel.contacts[contactList.currentIndex]
+        if (pageStack.columns > 1 && !contactList.showNewContact) {
+            var currentContact = null
+            if (contactList.currentIndex >= 0)
+                currentContact = contactList.listModel.contacts[contactList.currentIndex]
+
             if (!currentContact) {
-                var component = Qt.createComponent(Qt.resolvedUrl("ABMultiColumnEmptyState.qml"))
-                var searching = contactList.filterTerm !== ""
-                pageStack.addPageToNextColumn(mainPage, component,
-                                              { headerTitle: searching ? i18n.tr("No contact found") : i18n.tr("No contact selected") })
+                showEmptyPage()
+                return
+            } else if (currentContact && (mainPage.currentViewContactId === currentContact.contactId)) {
                 return
             }
-            if (currentContact && (mainPage.currentViewContactId === currentContact.contactId))
-                return
 
             contactList.view._fetchContact(contactList.currentIndex, currentContact)
         }
@@ -278,19 +296,7 @@ Page {
         }
 
         onError: pageStack.contactModelError(error)
-        onActiveFocusChanged: {
-            if (activeFocus && (contactList.currentIndex === -1)) {
-                contactList.currentIndex = 0
-            }
-        }
-
         onCountChanged: {
-            if (mainPage.active &&
-                (pageStack.columns > 1) &&
-                (contactList.currentIndex === -1) &&
-                (pageStack.bottomEdge.status === BottomEdge.Hidden)) {
-                contactList.currentIndex = 0
-            }
             mainPage.delayFetchContact()
         }
 
@@ -747,6 +753,7 @@ Page {
 
         if (pageStack) {
             pageStack.contactListPage = mainPage
+            mainPage.delayFetchContact()
         }
     }
 
@@ -781,7 +788,7 @@ Page {
                 mainPage.contactIndex = null
                 // at this point the operation has finished already
                 mainPage._creatingContact = false
-                fetchNewContactTimer.restart()
+                mainPage.delayFetchContact()
             }
         }
         onImportCompleted: {
