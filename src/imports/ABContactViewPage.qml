@@ -40,6 +40,9 @@ ContactViewPage {
             pageStack.removePages(_editPage)
             _editPage = null
         }
+        if (pageStack.bottomEdge) {
+            pageStack.bottomEdge.collapse()
+        }
     }
 
     function editContact(contact)

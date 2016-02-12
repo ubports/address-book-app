@@ -23,8 +23,21 @@ Page {
 
     property string headerTitle: i18n.tr("No contacts")
 
+    property bool openBottomEdgeWhenReady: false
+
     header: PageHeader {
         title: root.headerTitle
+    }
+
+    function commitBottomEdge()
+    {
+        if (bottomEdgeLoader.status !== Loader.Ready) {
+            console.debug("dealy open bottom edges")
+            openBottomEdgeWhenReady = true
+        } else {
+            console.debug("open bottom edge")
+            bottomEdgeLoader.item.commit()
+        }
     }
 
     ABEmptyState {
@@ -55,7 +68,16 @@ Page {
             modelToEdit: root.pageStack.contactListPage.contactModel
             hint.flickable: root.flickable
             pageStack: root.pageStack
+            onCommitCompleted: { root.openBottomEdgeWhenReady = false }
         }
+
+        onStatusChanged:  {
+            if ((status === Loader.Ready) && root.openBottomEdgeWhenReady) {
+                console.debug("OPEEEEEEEEEEEEEEEEEEEE")
+                bottomEdgeLoader.item.commit()
+            }
+        }
+
     }
 
     Binding {

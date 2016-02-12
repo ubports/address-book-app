@@ -119,6 +119,11 @@ Page {
 
     function showEmptyPage()
     {
+        if (viewPage) {
+            viewPage.cancelEdit()
+            pageStack.removePage(viewPage)
+            viewPage = null
+        }
         if ((pageStack.columns > 1) && !mainPage.emptyPage) {
             var searching = contactList.filterTerm !== ""
             mainPage.emptyPage  = pageStack.addFileToNextColumnSync(pageStack.primaryPage,
@@ -126,6 +131,34 @@ Page {
                                                                     { 'headerTitle': searching ? i18n.tr("No contact found") : i18n.tr("No contact selected"),
                                                                       'pageStack': mainPage.pageStack })
             mainPage.emptyPage.Component.onDestruction.connect(function() {console.debug("Empty page destroyed"); mainPage.emptyPage = null})
+        }
+    }
+
+    function showSettingsPage()
+    {
+        if (emptyPage) {
+            pageStack.removePage(emptyPage)
+            emptyPage = null
+        }
+
+        if (viewPage) {
+            viewPage.cancelEdit()
+            pageStack.removePage(viewPage)
+            viewPage = null
+        }
+
+        var incubator = pageStack.addPageToNextColumn(mainPage,
+                                                      Qt.resolvedUrl("./Settings/SettingsPage.qml"),
+                                                     {"contactListModel": contactList.listModel})
+        incubator.onStatusChanged = function(status) {
+            if (status === Component.Ready) {
+                incubator.object.onActiveChanged.connect(function(active) {
+                    if (!incubator.object.active) {
+                        mainPage.delayFetchContact()
+                        contactList.forceActiveFocus()
+                    }
+                })
+            }
         }
     }
 
@@ -392,6 +425,9 @@ Page {
                     onTriggered: {
                         mainPage.state = "searching"
                         contactList.showAllContacts()
+                        if (pageStack.bottomEdge) {
+                            pageStack.bottomEdge.collapse()
+                        }
                         searchField.forceActiveFocus()
                     }
                 },
@@ -399,7 +435,14 @@ Page {
                     iconName: "contact-new"
                     enabled: pageStack.bottomEdge && pageStack.bottomEdge.status === BottomEdge.Hidden
                     visible: pageStack.bottomEdge && pageStack.bottomEdge.enabled && (pageStack.columns > 1)
-                    onTriggered: pageStack.bottomEdge.commit()
+                    onTriggered: {
+                        if (!mainPage.viewPage && !mainPage.emptyPage) {
+                            showEmptyPage()
+                            emptyPage.commitBottomEdge()
+                        } else {
+                            pageStack.bottomEdge.commit()
+                        }
+                    }
                 },
                 Action {
                     visible: (application.isOnline && (contactList.syncEnabled || application.serverSafeMode))
@@ -417,21 +460,7 @@ Page {
                 Action {
                     text: i18n.tr("Settings")
                     iconName: "settings"
-                    onTriggered:{
-                        var incubator = pageStack.addPageToNextColumn(mainPage,
-                                                                      Qt.resolvedUrl("./Settings/SettingsPage.qml"),
-                                                                     {"contactListModel": contactList.listModel})
-                        incubator.onStatusChanged = function(status) {
-                            if (status === Component.Ready) {
-                                incubator.object.onActiveChanged.connect(function(active) {
-                                    if (!incubator.object.active) {
-                                        mainPage.delayFetchContact()
-                                        contactList.forceActiveFocus()
-                                    }
-                                })
-                            }
-                        }
-                    }
+                    onTriggered: mainPage.showSettingsPage()
                 }
             ]
 
@@ -831,7 +860,10 @@ Page {
                     contactList.currentIndex = 0
                 mainPage.delayFetchContact()
             }
-            contactList.forceActiveFocus()
+
+            if (mainPage.status === "default") {
+                contactList.forceActiveFocus()
+            }
         }
     }
 }
