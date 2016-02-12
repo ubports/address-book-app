@@ -161,4 +161,8 @@ ContactViewPage {
         value: bottomEdgeLoader.item
         when: bottomEdgeLoader.status === Loader.Ready
     }
+
+    Component.onDestruction: {
+        pageStack.bottomEdge = null
+    }
 }

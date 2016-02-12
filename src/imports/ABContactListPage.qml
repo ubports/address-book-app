@@ -32,7 +32,6 @@ Page {
     objectName: "contactListPage"
 
     property var viewPage: null
-    property var emptyPage: null
     property bool pickMode: false
     property alias contentHubTransfer: contactExporter.activeTransfer
     property bool pickMultipleContacts: false
@@ -74,30 +73,18 @@ Page {
         }
     }
 
-    function openViewPage(viewPageProperties) {
+    function openViewPage(viewPageProperties)
+    {
         if (viewPage && viewPageProperties.contact &&
             (viewPageProperties.contact.contactId === viewPage.contact.contactId) ) {
             return
         }
-
-        if (emptyPage) {
-            pageStack.removePage(emptyPage)
-            emptyPage = null
-        }
-
-        if (viewPage) {
-            // FIXME: bug #1544745
-            // Adaptive layout is not destroying all pages correct, we do it manually for now
-            viewPage.cancelEdit()
-            pageStack.removePage(viewPage)
-            viewPage = null
-        }
-
-        // make sure all pages get removed
-        pageStack.removePages(mainPage)
+        pageStack.deleteInstances()
 
         viewPage = pageStack.addFileToNextColumnSync(mainPage, Qt.resolvedUrl("ABContactViewPage.qml"), viewPageProperties)
-        viewPage.Component.onDestruction.connect(function() { mainPage.viewPage = null })
+        viewPage.Component.onDestruction.connect(function() {
+            mainPage.viewPage = null
+        })
     }
 
     function showContact(contact)
@@ -117,35 +104,25 @@ Page {
                       contact: contact});
     }
 
-    function showEmptyPage()
+    function showEmptyPage(openBottomEdge)
     {
-        if (viewPage) {
-            viewPage.cancelEdit()
-            pageStack.removePage(viewPage)
-            viewPage = null
-        }
-        if ((pageStack.columns > 1) && !mainPage.emptyPage) {
+        pageStack.deleteInstances()
+
+        if (pageStack.columns > 1) {
             var searching = contactList.filterTerm !== ""
-            mainPage.emptyPage  = pageStack.addFileToNextColumnSync(pageStack.primaryPage,
+            var emptyPage  = pageStack.addFileToNextColumnSync(pageStack.primaryPage,
                                                                     Qt.resolvedUrl("ABMultiColumnEmptyState.qml"),
                                                                     { 'headerTitle': searching ? i18n.tr("No contact found") : i18n.tr("No contact selected"),
                                                                       'pageStack': mainPage.pageStack })
-            mainPage.emptyPage.Component.onDestruction.connect(function() {console.debug("Empty page destroyed"); mainPage.emptyPage = null})
+            if (openBottomEdge) {
+                emptyPage.commitBottomEdge()
+            }
         }
     }
 
     function showSettingsPage()
     {
-        if (emptyPage) {
-            pageStack.removePage(emptyPage)
-            emptyPage = null
-        }
-
-        if (viewPage) {
-            viewPage.cancelEdit()
-            pageStack.removePage(viewPage)
-            viewPage = null
-        }
+        pageStack.deleteInstances()
 
         var incubator = pageStack.addPageToNextColumn(mainPage,
                                                       Qt.resolvedUrl("./Settings/SettingsPage.qml"),
@@ -415,7 +392,7 @@ Page {
                 }
             ]
 
-            property list<QtObject> trailingActions:  [
+            property list<QtObject> trailingActions: [
                 Action {
                     text: i18n.tr("Search")
                     iconName: "search"
@@ -423,24 +400,30 @@ Page {
                     enabled: visible && (mainPage.state === "default")
                     shortcut: "Ctrl+F"
                     onTriggered: {
+                        if (viewPage) {
+                            viewPage.cancelEdit()
+                        }
+
                         mainPage.state = "searching"
                         contactList.showAllContacts()
                         if (pageStack.bottomEdge) {
                             pageStack.bottomEdge.collapse()
+                        } else {
+                            showEmptyPage(false)
                         }
                         searchField.forceActiveFocus()
                     }
                 },
                 Action {
                     iconName: "contact-new"
-                    enabled: pageStack.bottomEdge && pageStack.bottomEdge.status === BottomEdge.Hidden
-                    visible: pageStack.bottomEdge && pageStack.bottomEdge.enabled && (pageStack.columns > 1)
+                    enabled: !pageStack.bottomEdge || (pageStack.bottomEdge.enabled && (pageStack.bottomEdge.status === BottomEdge.Hidden))
+                    visible: (pageStack.columns > 1)
+                    shortcut: "Ctrl+N"
                     onTriggered: {
-                        if (!mainPage.viewPage && !mainPage.emptyPage) {
-                            showEmptyPage()
-                            emptyPage.commitBottomEdge()
-                        } else {
+                        if (pageStack.bottomEdge) {
                             pageStack.bottomEdge.commit()
+                        } else {
+                            showEmptyPage(true)
                         }
                     }
                 },
@@ -489,12 +472,7 @@ Page {
                 Action {
                     iconName: "back"
                     text: i18n.tr("Cancel")
-                    enabled: (mainPage.state === "searching") &&
-                             mainPage.active &&
-                             (!pageStack.bottomEdge ||
-                              (pageStack.bottomEdge && (pageStack.bottomEdge.status === BottomEdge.Hidden))) &&
-                             ((pageStack.columns === 1) ||
-                              (mainPage.viewPage && mainPage.viewPage.active))
+                    enabled: (mainPage.state === "searching") && mainPage.active
                     shortcut:"Esc"
                     onTriggered: {
                         mainPage.head.sections.selectedIndex = 0

@@ -28,6 +28,7 @@ AdaptivePageLayout {
             }
         }
         _pagesToRemove = []
+        removePages(layout.primaryPage)
     }
 
     function removePage(page) {

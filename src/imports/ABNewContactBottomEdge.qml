@@ -42,7 +42,6 @@ BottomEdge {
         id: bottomEdgeHint
         action: Action {
             iconName: "contact-new"
-            shortcut: "ctrl+n"
             enabled: bottomEdge.enabled
 
             onTriggered: bottomEdge.commit()

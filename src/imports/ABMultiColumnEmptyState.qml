@@ -40,6 +40,14 @@ Page {
         }
     }
 
+    function close()
+    {
+        if (bottomEdge.item) {
+            bottomEdge.item.collapse()
+        }
+    }
+
+
     ABEmptyState {
         id: emptyStateScreen
 
@@ -73,7 +81,6 @@ Page {
 
         onStatusChanged:  {
             if ((status === Loader.Ready) && root.openBottomEdgeWhenReady) {
-                console.debug("OPEEEEEEEEEEEEEEEEEEEE")
                 bottomEdgeLoader.item.commit()
             }
         }
@@ -94,5 +101,9 @@ Page {
                 pageStack.removePages(root)
             }
         }
+    }
+
+    Component.onDestruction: {
+        pageStack.bottomEdge = null
     }
 }
