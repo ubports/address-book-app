@@ -74,18 +74,26 @@ Page {
         }
     }
 
+    function clearViewPage()
+    {
+        viewPage = null
+    }
+
     function openViewPage(viewPageProperties)
     {
-        if (viewPage && viewPageProperties.contact &&
-            (viewPageProperties.contact.contactId === viewPage.contact.contactId) ) {
+        if (currentViewContactId === viewPageProperties.contact.contactId) {
             return
         }
+
+        if (viewPage) {
+            viewPage.Component.onDestruction.disconnect(clearViewPage)
+        }
+
         pageStack.deleteInstances()
+        viewPage = null
 
         viewPage = pageStack.addFileToNextColumnSync(mainPage, Qt.resolvedUrl("ABContactViewPage.qml"), viewPageProperties)
-        viewPage.Component.onDestruction.connect(function() {
-            mainPage.viewPage = null
-        })
+        viewPage.Component.onDestruction.connect(clearViewPage)
     }
 
     function showContact(contact)
@@ -120,7 +128,7 @@ Page {
                                                                         { 'headerTitle': "",
                                                                           'pageStack': mainPage.pageStack })
                 emptyPage.Component.onDestruction.connect(function() {
-                    mainPage.viewPage = null
+                    mainPage.emptyPage = null
                 })
 
             }
@@ -226,6 +234,7 @@ Page {
                 return
             }
 
+            console.debug("Will fetch new contact")
             contactList.view._fetchContact(contactList.currentIndex, currentContact)
         }
     }
@@ -430,7 +439,7 @@ Page {
                 },
                 Action {
                     iconName: "contact-new"
-                    enabled: !pageStack.bottomEdge || (pageStack.bottomEdge.enabled && (pageStack.bottomEdge.status === BottomEdge.Hidden))
+                    enabled: visible && (!pageStack.bottomEdge || (pageStack.bottomEdge.enabled && (pageStack.bottomEdge.status === BottomEdge.Hidden)))
                     visible: (pageStack.columns > 1)
                     shortcut: "Ctrl+N"
                     onTriggered: {
@@ -785,6 +794,7 @@ Page {
         active: (pageStack.columns === 1) && bottomEdgeLoader.enabled
         asynchronous: true
         sourceComponent: ABNewContactBottomEdge {
+            id: bottomEdge
             parent: mainPage
             modelToEdit: mainPage.contactModel
             hint.flickable: contactList.view
@@ -792,6 +802,18 @@ Page {
             enabled: mainPage.active
         }
     }
+
+    Action {
+        iconName: "contact-new"
+        enabled: mainPage.active &&
+                 (bottomEdgeLoader.status === Loader.Ready) &&
+                 (bottomEdgeLoader.item.status === BottomEdge.Hidden)
+        shortcut: "Ctrl+N"
+        onTriggered: {
+            bottomEdgeLoader.item.commit()
+        }
+    }
+
 
     Binding {
         target: pageStack
