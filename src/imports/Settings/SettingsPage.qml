@@ -147,6 +147,12 @@ Page {
         id: onlineAccountsHelper
     }
 
+    Binding {
+        target: pageStack
+        property: 'bottomEdge'
+        value: null
+    }
+
     Component {
         id: simCardImportPageComponent
 

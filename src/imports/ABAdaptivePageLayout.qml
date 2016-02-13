@@ -61,7 +61,7 @@ AdaptivePageLayout {
             properties['pageStack'] = layout
         }
 
-        var page = component.createObject(parentObject, properties)
+        var page = component.createObject(layout, properties)
         layout.addPageToNextColumn(parentObject, page)
         _pagesToRemove.push(page)
         return page
@@ -73,7 +73,7 @@ AdaptivePageLayout {
         } else {
             properties['pageStack'] = layout
         }
-        var page = component.createObject(parentObject, properties)
+        var page = component.createObject(layout, properties)
         layout.addPageToCurrentColumn(parentObject, page)
         _pagesToRemove.push(page)
         return page

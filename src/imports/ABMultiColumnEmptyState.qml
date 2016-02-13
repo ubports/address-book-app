@@ -102,8 +102,4 @@ Page {
             }
         }
     }
-
-    Component.onDestruction: {
-        pageStack.bottomEdge = null
-    }
 }
