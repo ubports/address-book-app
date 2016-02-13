@@ -19,31 +19,13 @@ import Ubuntu.Components 1.3
 
 AdaptivePageLayout {
     id: layout
-    property var _pagesToRemove: []
 
     function deleteInstances() {
         removePages(layout.primaryPage)
-
-        for (var i in _pagesToRemove) {
-            if (_pagesToRemove[i].destroy) {
-                _pagesToRemove[i].destroy(1)
-            }
-        }
-        _pagesToRemove = []
     }
 
     function removePage(page) {
         removePages(page)
-
-        // check if this page was allocated dynamically and then remove it
-        for (var i in _pagesToRemove) {
-            if (_pagesToRemove[i] == page) {
-                _pagesToRemove[i].destroy(1)
-                _pagesToRemove.splice(i, 1)
-                break
-            }
-        }
-
     }
 
     function addFileToNextColumnSync(parentObject, resolvedUrl, properties) {
@@ -56,28 +38,21 @@ AdaptivePageLayout {
 
     function addComponentToNextColumnSync(parentObject, component, properties) {
         if (typeof(properties) === 'undefined') {
-            properties = {'pageStack': layout }
-        } else {
-            properties['pageStack'] = layout
+            properties = {}
         }
 
-        var page = component.createObject(layout, properties)
-        layout.addPageToNextColumn(parentObject, page)
-        _pagesToRemove.push(page)
-        return page
+        var incubator = layout.addPageToNextColumn(parentObject, component, properties)
+        incubator.forceCompletion()
+        return incubator.object
     }
 
     function addComponentToCurrentColumnSync(parentObject, component, properties) {
         if (typeof(properties) === 'undefined') {
-            properties = {'pageStack': layout }
-        } else {
-            properties['pageStack'] = layout
+            properties = {}
         }
-        var page = component.createObject(layout, properties)
-        layout.addPageToCurrentColumn(parentObject, page)
-        _pagesToRemove.push(page)
-        return page
-    }
 
-    Component.onDestruction: deleteInstances()
+        var incubator = layout.addPageToCurrentColumn(parentObject, component, properties)
+        incubator.forceCompletion()
+        return incubator.object
+    }
 }
