@@ -22,25 +22,28 @@ AdaptivePageLayout {
     property var _pagesToRemove: []
 
     function deleteInstances() {
+        removePages(layout.primaryPage)
+
         for (var i in _pagesToRemove) {
             if (_pagesToRemove[i].destroy) {
-                _pagesToRemove[i].destroy()
+                _pagesToRemove[i].destroy(1)
             }
         }
         _pagesToRemove = []
-        removePages(layout.primaryPage)
     }
 
     function removePage(page) {
+        removePages(page)
+
         // check if this page was allocated dynamically and then remove it
         for (var i in _pagesToRemove) {
             if (_pagesToRemove[i] == page) {
-                _pagesToRemove[i].destroy()
+                _pagesToRemove[i].destroy(1)
                 _pagesToRemove.splice(i, 1)
                 break
             }
         }
-        removePages(page)
+
     }
 
     function addFileToNextColumnSync(parentObject, resolvedUrl, properties) {

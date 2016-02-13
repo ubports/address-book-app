@@ -32,6 +32,7 @@ Page {
     objectName: "contactListPage"
 
     property var viewPage: null
+    property var emptyPage: null
     property bool pickMode: false
     property alias contentHubTransfer: contactExporter.activeTransfer
     property bool pickMultipleContacts: false
@@ -106,18 +107,28 @@ Page {
 
     function showEmptyPage(openBottomEdge)
     {
-        pageStack.deleteInstances()
+        if (pageStack.columns === 1)
+            return
 
-        if (pageStack.columns > 1) {
-            var searching = contactList.filterTerm !== ""
-            var emptyPage  = pageStack.addFileToNextColumnSync(pageStack.primaryPage,
-                                                                    Qt.resolvedUrl("ABMultiColumnEmptyState.qml"),
-                                                                    { 'headerTitle': searching ? i18n.tr("No contact found") : i18n.tr("No contact selected"),
-                                                                      'pageStack': mainPage.pageStack })
-            if (openBottomEdge) {
-                emptyPage.commitBottomEdge()
+        if (!emptyPage) {
+            contactList.currentIndex = -1
+            pageStack.deleteInstances()
+
+            if (pageStack.columns > 1) {
+                emptyPage  = pageStack.addFileToNextColumnSync(pageStack.primaryPage,
+                                                                        Qt.resolvedUrl("ABMultiColumnEmptyState.qml"),
+                                                                        { 'headerTitle': "",
+                                                                          'pageStack': mainPage.pageStack })
+                emptyPage.Component.onDestruction.connect(function() {
+                    mainPage.viewPage = null
+                })
+
             }
         }
+        if (openBottomEdge) {
+            mainPage.emptyPage.commitBottomEdge()
+        }
+
     }
 
     function showSettingsPage()
