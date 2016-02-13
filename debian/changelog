@@ -1,3 +1,14 @@
+address-book-app (0.2+16.04.20160213.1-0ubuntu1) xenial; urgency=medium
+
+  * Add "add new" bottom in the header and disable bottom edge hint on
+    second column, if the app is running on multiple columns mode. (LP:
+    #1542047)
+  * Use a list of colors as avatar background color. Use flat visual for
+    avatar ubuntu shape. Does not use 'lightAubergine' for labels.
+    added: src/imports/Ubuntu/Contacts/Triangle.qml
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Sat, 13 Feb 2016 02:37:28 +0000
+
 address-book-app (0.2+16.04.20160107.1-0ubuntu1) xenial; urgency=medium
 
   * Implement the new bottom edge using the SDK component. removed:
