@@ -60,9 +60,7 @@ Page {
                 enabled: visible && root.active && root.enabled
                 visible: (pageStack.columns === 1)
                 onTriggered: {
-                    if (pageStack.removePage)
-                        pageStack.removePage(root)
-                    else if (pageStack.removePages)
+                   if (pageStack.removePages)
                         pageStack.removePages(root)
                     else
                         pageStack.pop()

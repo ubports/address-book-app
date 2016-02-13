@@ -27,9 +27,9 @@ ContactViewPage {
     id: root
     objectName: "contactViewPage"
 
-    property bool editing: false
     // used by autopilot test
     readonly property string headerTitle: header.title
+    readonly property bool editing: _editPage != null
 
     // FIXME: bug #1544745
     // Adaptive layout is not destroying all pages correct, we do it manually for now
@@ -47,28 +47,11 @@ ContactViewPage {
 
     function editContact(contact)
     {
-        if (editing)
-            return
-        editing = true
-        var component = Qt.createComponent(Qt.resolvedUrl("ABContactEditorPage.qml"))
-        var incubator = pageStack.addPageToCurrentColumn(root,
-                                                         component,
-                                                         { model: root.model,
-                                                           contact: contact,
-                                                           backIconName: 'back'})
-        if (incubator && (incubator.status === Component.Loading)) {
-            incubator.onStatusChanged = function(status) {
-                if (status === Component.Ready) {
-                    root._editPage = incubator.object
-                    incubator.object.Component.destruction.connect(function() {
-                        root._editPage = null;
-                        root.editing = false;
-                    });
-                }
-            }
-        } else {
-            editing = false
-        }
+        root._editPage = pageStack.addComponentToCurrentColumnSync(root, Qt.resolvedUrl("ABContactEditorPage.qml"),
+                                                                  { model: root.model, contact: contact, backIconName: 'back'})
+        root._editPage.Component.onDestruction(function() {
+            root._editPage = null
+        })
     }
 
     // Shortcut in case of single column
@@ -79,7 +62,7 @@ ContactViewPage {
         enabled: root.active && root.enabled && (pageStack.columns === 1)
         shortcut: "Esc"
         onTriggered: {
-            pageStack.removePage(root)
+            pageStack.removePages(root)
         }
     }
 
@@ -104,7 +87,7 @@ ContactViewPage {
 
             text: i18n.tr("Edit")
             iconName: "edit"
-            enabled: root.active && !editing
+            enabled: root.active && !root.editing
             shortcut: "Ctrl+e"
             onTriggered: root.editContact(root.contact)
         }

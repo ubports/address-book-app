@@ -89,7 +89,7 @@ Page {
             viewPage.Component.onDestruction.disconnect(clearViewPage)
         }
 
-        pageStack.deleteInstances()
+        pageStack.removePages(mainPage)
         viewPage = null
 
         viewPage = pageStack.addFileToNextColumnSync(mainPage, Qt.resolvedUrl("ABContactViewPage.qml"), viewPageProperties)
@@ -120,7 +120,7 @@ Page {
 
         if (!emptyPage) {
             contactList.currentIndex = -1
-            pageStack.deleteInstances()
+            pageStack.removePages(mainPage)
 
             if (pageStack.columns > 1) {
                 emptyPage  = pageStack.addFileToNextColumnSync(pageStack.primaryPage,
@@ -141,7 +141,7 @@ Page {
 
     function showSettingsPage()
     {
-        pageStack.deleteInstances()
+        pageStack.removePages(mainPage)
 
         var incubator = pageStack.addPageToNextColumn(mainPage,
                                                       Qt.resolvedUrl("./Settings/SettingsPage.qml"),

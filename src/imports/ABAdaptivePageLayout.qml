@@ -20,14 +20,6 @@ import Ubuntu.Components 1.3
 AdaptivePageLayout {
     id: layout
 
-    function deleteInstances() {
-        removePages(layout.primaryPage)
-    }
-
-    function removePage(page) {
-        removePages(page)
-    }
-
     function addFileToNextColumnSync(parentObject, resolvedUrl, properties) {
         return addComponentToNextColumnSync(parentObject, Qt.createComponent(resolvedUrl), properties)
     }
