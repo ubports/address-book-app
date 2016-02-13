@@ -1,5 +1,6 @@
 
 var phoneTypeModel = null
+var contactColors = ["#DC3023", "#FF8936", "#FFB95A", "#8DB255", "#749F8D", "#48929B", "#A87CA0"]
 
 // Format contact name to be displayed
 function formatToDisplayWithDetails(contact, contactDetail, detailFields, defaultTitle)
@@ -144,4 +145,10 @@ function createEmptyContact(phoneNumber, parent)
 function isNewContact(contact)
 {
     return (contact && (contact.contactId === "qtcontacts:::"))
+}
+
+function contactColor(name)
+{
+    var hash = Contacts.qHash(name)
+    return contactColors[(hash % contactColors.length)]
 }

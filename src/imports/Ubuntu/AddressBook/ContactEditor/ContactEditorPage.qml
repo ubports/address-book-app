@@ -118,7 +118,8 @@ Page {
         if (!item)
             return
 
-        var position = activeItem.mapToItem(editEditor, item.x, item.y);
+
+        var position = item.mapToItem(editEditor, item.x, item.y);
         // check if the item is already visible
         var bottomY = scrollArea.contentY + scrollArea.height
         var itemBottom = position.y + (item.height * 3) // extra margin

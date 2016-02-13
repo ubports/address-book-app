@@ -72,21 +72,36 @@ Item {
     }
 
 
-    Rectangle {
+    UbuntuShape {
         id: magnified
 
+        aspect: UbuntuShape.Flat
         color: Theme.palette.normal.foreground
-        radius: height * 0.3
-        height: pinSize * 2
-        width: height
+        radius: "medium"
+        height: units.gu(6)
+        width: units.gu(8)
         opacity: internal.fastScrolling && root.enabled ? 1.0 : 0.0
-        x: -cursor.width - units.gu(3)
+        x: -magnified.width
         y: {
             if (internal.currentItem) {
                 var itemCenterY = rail.y + internal.currentItem.y + (internal.currentItem.height / 2)
                 return (itemCenterY - (magnified.height / 2))
             } else {
                 return 0
+            }
+        }
+
+        Triangle {
+            id: arrow
+
+            color: magnified.color
+            fill: true
+            height: units.gu(1.5)
+            width: units.gu(0.5)
+            anchors {
+                verticalCenter: parent.verticalCenter
+                right: parent.right
+                rightMargin: -width
             }
         }
 
