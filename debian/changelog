@@ -1,3 +1,10 @@
+address-book-app (0.2+16.04.20160222-0ubuntu1) xenial; urgency=medium
+
+  * Make sure the import page still visible while importing contacts
+    from sim. (LP: #1450252)
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Mon, 22 Feb 2016 14:20:10 +0000
+
 address-book-app (0.2+16.04.20160213.1-0ubuntu1) xenial; urgency=medium
 
   * Add "add new" bottom in the header and disable bottom edge hint on
