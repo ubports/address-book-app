@@ -26,7 +26,7 @@ import MeeGo.QOfono 0.2
 Page {
     id: root
 
-    readonly property string exportFile: "file://%1/ubuntu_contacts_sim.vcf".arg(Contacts.tempPath)
+    readonly property string exportFile: Contacts.tempFile("ubuntu_contacts_XXXXXX.vcf")
     readonly property alias hasContacts: simCardContacts.hasContacts
     property var targetModel: null
     property var sims: []
@@ -98,7 +98,7 @@ Page {
         multiSelectionEnabled: true
         multipleSelection: true
         showSections: false
-        visible: !indicator.visible
+        visible: !indicator.visible && !statusMessage.visible
         showBusyIndicator: false
 
         manager: "memory"
@@ -147,7 +147,6 @@ Page {
             if (vcardFile != "" && !contactImported) {
                 contactImported = true
                 contactList.listModel.importContacts(vcardFile)
-
             }
         }
         onVcardFileChanged: {
@@ -156,7 +155,10 @@ Page {
                 contactList.listModel.importContacts(vcardFile)
             }
         }
-        onImportFail: root.state = "error"
+        onImportFail: {
+            console.error("Sim card import fail")
+            root.state = "error"
+        }
     }
 
     Connections {
@@ -168,9 +170,30 @@ Page {
 
         onExportCompleted: {
             if ((error === ContactModel.ExportNoError) && targetModel) {
+                root.state = "saving"
                 targetModel.importContacts(url)
+             } else {
+                console.error("Failt to export selected contacts")
+                root.state = "error"
+            }
+        }
+    }
+
+    Connections {
+        target: root.targetModel
+        onImportCompleted: {
+             if (error === ContactModel.ImportNoError) {
+                 Contacts.removeFile(root.exportFile)
+                 root.state = ""
+                 if (pageStack.removePages)
+                     pageStack.removePages(root)
+                 else
+                     pageStack.pop()
+                 root.importCompleted()
+             } else {
+                 console.error("Fail to import contacts on device")
+                 root.state = "error"
              }
-            root.importCompleted()
         }
     }
 
@@ -235,7 +258,15 @@ Page {
             name: "importing"
             PropertyChanges {
                 target: indicator
-                title: i18n.dtr("address-book-app", "Importing...")
+                title: i18n.dtr("address-book-app", "Reading contacts from SIM...")
+                visible: true
+            }
+        },
+        State {
+            name: "saving"
+            PropertyChanges {
+                target: indicator
+                title: i18n.dtr("address-book-app", "Saving contacts on phone...")
                 visible: true
             }
         },

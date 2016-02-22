@@ -109,6 +109,17 @@ bool UbuntuContacts::updateIsRunning() const
     return QFile::exists(updaterLockFile());
 }
 
+
+QUrl UbuntuContacts::tempFile(const QString &templateName)
+{
+    QTemporaryFile tmp(QString("%1/%2").arg(tempPath()).arg(templateName));
+    tmp.setAutoRemove(false);
+    if (tmp.open())
+        return QUrl::fromLocalFile(tmp.fileName());
+    else
+        return QUrl();
+}
+
 uint UbuntuContacts::qHash(const QString &str)
 {
     return ::qHash(str);
