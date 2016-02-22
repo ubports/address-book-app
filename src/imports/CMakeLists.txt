@@ -1,6 +1,7 @@
 project(imports)
 
 set(ADDRESS_BOOK_APP_QMLS
+    ABAdaptivePageLayout.qml
     ABContactListPage.qml
     ABContactEditorPage.qml
     ABContactViewPage.qml

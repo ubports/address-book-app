@@ -89,6 +89,6 @@ ContactDetailItem {
         onFieldChanged: checkIsEmpty()
 
         //style
-        font.pixelSize: FontUtils.sizeToPixels("x-large")
+        font.pixelSize: FontUtils.sizeToPixels("large")
     }
 }

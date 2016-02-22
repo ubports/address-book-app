@@ -194,7 +194,7 @@ bool AddressBookApp::setup()
     m_view->setMinimumWidth(300);
     m_view->setMinimumHeight(500);
     m_view->setResizeMode(QQuickView::SizeRootObjectToView);
-    m_view->setTitle("AddressBook");
+    m_view->setTitle("Contacts");
     qDebug() << "New import path:" << QCoreApplication::applicationDirPath() + "/" + importPath("");
     m_view->engine()->addImportPath(QCoreApplication::applicationDirPath() + "/" + importPath(""));
     m_view->engine()->addImportPath(UNITY8_QML_PATH);

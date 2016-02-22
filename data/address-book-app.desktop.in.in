@@ -11,7 +11,6 @@ Exec=@DESKTOP_EXEC@ %u
 Icon=@ADDRESS_BOOK_ARTWORK_PATH@/@ADDRESS_BOOK_APP_ICON@
 X-Ubuntu-SymbolicIcon=@ADDRESS_BOOK_ARTWORK_PATH@/@ADDRESS_BOOK_APP_SYMBOLIC_ICON@
 X-Ubuntu-Touch=true
-X-Ubuntu-StageHint=SideStage
 X-Ubuntu-Single-Instance=true
 X-Ubuntu-Splash-Show-Header=true
 X-Ubuntu-Supported-Orientations=portrait

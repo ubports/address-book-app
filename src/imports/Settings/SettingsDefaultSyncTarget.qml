@@ -171,7 +171,7 @@ Empty {
    Label {
        id: label
 
-       text: i18n.tr("Default Addressbook")
+       text: i18n.tr("Default address book")
        anchors {
            left: parent.left
            top: parent.top
@@ -198,17 +198,12 @@ Empty {
 
        delegate: OptionSelectorDelegate {
            text: {
-               if ((sourceId != "system-address-book") &&
-                   (iconSource == "image://theme/address-book-app-symbolic")) {
+               if ((sourceId != "system-address-book") && (accountProvider == "")) {
                    return i18n.dtr("address-book-app", "Personal - %1").arg(sourceName)
                } else {
                    return sourceName
                }
            }
-           constrainImage: true
-           iconSource: accountProvider == "" ?
-                           "image://theme/address-book-app-symbolic" :
-                           "image://theme/online-accounts-%1".arg(accountProvider)
            height: units.gu(4)
        }
 

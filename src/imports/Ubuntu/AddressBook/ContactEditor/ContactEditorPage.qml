@@ -374,7 +374,7 @@ Page {
                 objectName: "addNewFieldButton"
 
                 contact: contactEditor.contact
-                text: i18n.dtr("address-book-app", "Add Field")
+                text: i18n.dtr("address-book-app", "Add field")
                 anchors {
                     left: parent.left
                     right: parent.right

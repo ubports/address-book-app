@@ -99,8 +99,7 @@ MainView {
         deviceFilter: InputInfo.Keyboard
     }
 
-
-    AdaptivePageLayout {
+    ABAdaptivePageLayout {
         id: mainStack
         objectName: "mainStack"
 
@@ -169,7 +168,7 @@ MainView {
         onColumnsChanged: {
             if (mainStack.columns > 1) {
                 if (mainStack.contactListPage)
-                    mainStack.contactListPage.fetchContact()
+                    mainStack.contactListPage.delayFetchContact()
                 else
                     mainStack.addPageToNextColumn(contactPage, Qt.resolvedUrl("./ABMultiColumnEmptyState.qml"))
             }

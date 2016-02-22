@@ -23,9 +23,28 @@ Page {
 
     property string headerTitle: i18n.tr("No contacts")
 
+    property bool openBottomEdgeWhenReady: false
+
     header: PageHeader {
         title: root.headerTitle
     }
+
+    function commitBottomEdge()
+    {
+        if (bottomEdgeLoader.status !== Loader.Ready) {
+            openBottomEdgeWhenReady = true
+        } else {
+            bottomEdgeLoader.item.commit()
+        }
+    }
+
+    function close()
+    {
+        if (bottomEdge.item) {
+            bottomEdge.item.collapse()
+        }
+    }
+
 
     ABEmptyState {
         id: emptyStateScreen
@@ -38,7 +57,7 @@ Page {
             rightMargin: units.gu(6)
         }
         height: childrenRect.height
-        text: i18n.tr("Create a new contact by swiping up from the bottom of the screen.")
+        text: ""
     }
 
     Loader {
@@ -49,12 +68,21 @@ Page {
         sourceComponent: ABNewContactBottomEdge {
             id: bottomEdge
 
+            hintVisible: false
             parent: root
             height: root.height
             modelToEdit: root.pageStack.contactListPage.contactModel
             hint.flickable: root.flickable
             pageStack: root.pageStack
+            onCommitCompleted: { root.openBottomEdgeWhenReady = false }
         }
+
+        onStatusChanged:  {
+            if ((status === Loader.Ready) && root.openBottomEdgeWhenReady) {
+                bottomEdgeLoader.item.commit()
+            }
+        }
+
     }
 
     Binding {

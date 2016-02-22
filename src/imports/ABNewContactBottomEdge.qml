@@ -24,6 +24,7 @@ BottomEdge {
 
     property var modelToEdit: null
     property var pageStack: null
+    property alias hintVisible: bottomEdgeHint.visible
     property var _contactToEdit: null
     // WORKAROUND: BottomEdge component loads the page async while draging it
     // this cause a very bad visual.
@@ -38,9 +39,9 @@ BottomEdge {
     }
 
     hint {
+        id: bottomEdgeHint
         action: Action {
             iconName: "contact-new"
-            shortcut: "ctrl+n"
             enabled: bottomEdge.enabled
 
             onTriggered: bottomEdge.commit()
