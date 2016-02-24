@@ -58,7 +58,7 @@ Page {
                 iconName: "back"
                 name: "cancel"
                 enabled: visible && root.active && root.enabled
-                visible: (pageStack.columns === 1)
+                visible: (pageStack.columns == 1) || (pageStack.columns == undefined)
                 onTriggered: {
                    if (pageStack.removePages)
                         pageStack.removePages(root)
