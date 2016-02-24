@@ -1,3 +1,11 @@
+address-book-app (0.2+16.04.20160224-0ubuntu1) xenial; urgency=medium
+
+  * Make sure that the contact view back button still visible for apps
+    that are not using AdaptivePageLayout. (LP: #1549362)
+  * Update pot file.
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Wed, 24 Feb 2016 23:17:51 +0000
+
 address-book-app (0.2+16.04.20160222-0ubuntu1) xenial; urgency=medium
 
   * Make sure the import page still visible while importing contacts
