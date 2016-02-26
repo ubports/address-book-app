@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-02-24 17:07-0300\n"
-"PO-Revision-Date: 2015-09-23 09:10+0000\n"
+"PO-Revision-Date: 2016-02-25 08:33+0000\n"
 "Last-Translator: Richard Somlói <ricsipontaz@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-02-25 05:21+0000\n"
+"X-Launchpad-Export-Date: 2016-02-26 05:27+0000\n"
 "X-Generator: Launchpad (build 17925)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
@@ -33,7 +33,7 @@ msgstr "Google fiók hozzáadása"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:377
 msgid "Add field"
-msgstr ""
+msgstr "Mező hozzáadás"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
@@ -70,7 +70,7 @@ msgstr "Biztosan törli ezt a névjegyet?"
 
 #: ../src/imports/ABContactListPage.qml:616
 msgid "Back"
-msgstr ""
+msgstr "Vissza"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:497 ../src/imports/MainWindow.qml:210
@@ -120,7 +120,7 @@ msgstr ""
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
-msgstr ""
+msgstr "Alapértelmezett címjegyzék"
 
 #: ../src/imports/ABContactListPage.qml:576
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:428
@@ -162,7 +162,7 @@ msgstr "Névjegyek exportálása"
 
 #: ../src/imports/ABContactListPage.qml:845
 msgid "Fail to import contacts!"
-msgstr ""
+msgstr "Nem sikerült a névjegyek importálása!"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Fail to read SIM card"
@@ -212,7 +212,7 @@ msgstr "SIM kártyáról importálás"
 
 #: ../src/imports/ABContactListPage.qml:629
 msgid "Imported contacts"
-msgstr ""
+msgstr "Importált névjegyek"
 
 #: ../src/imports/ABContactListPage.qml:749
 msgid "Importing..."
@@ -274,7 +274,7 @@ msgstr "Nincs kijelölve névjegy."
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
-msgstr ""
+msgstr "Nincsenek névjegyek"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:112
 msgid "No contacts found"
@@ -301,7 +301,7 @@ msgstr "Egyéb"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:88
 #, qt-format
 msgid "Personal - %1"
-msgstr ""
+msgstr "Személyes - %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:47
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:23
@@ -326,7 +326,7 @@ msgstr "Kilépés"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
 msgid "Reading contacts from SIM..."
-msgstr ""
+msgstr "Névjegyek beolvasása SIM kártyáról…"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -351,7 +351,7 @@ msgstr "Mentés"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Saving contacts on phone..."
-msgstr ""
+msgstr "Névjegyek mentése a telefonon…"
 
 #: ../src/imports/ABContactListPage.qml:420
 msgid "Search"
