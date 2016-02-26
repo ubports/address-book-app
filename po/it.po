@@ -7,42 +7,33 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-09-21 10:30-0300\n"
+"POT-Creation-Date: 2016-02-24 17:07-0300\n"
 "PO-Revision-Date: 2015-09-23 13:43+0000\n"
 "Last-Translator: Claudio Arseni <claudio.arseni@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-12-18 05:51+0000\n"
-"X-Generator: Launchpad (build 17865)\n"
+"X-Launchpad-Export-Date: 2016-02-25 05:22+0000\n"
+"X-Generator: Launchpad (build 17925)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
 #, qt-format
 msgid "%1 is locked"
 msgstr "%1 è bloccata"
 
-#: ../src/imports/VCardImportDialog.qml:72
-#, qt-format
-msgid "%1 vCards imported"
-msgstr "%1 vCard importata"
-
 #. TRANSLATORS: this refers to a new contact
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:449
 msgid "+ Create New"
 msgstr "+ Crea nuovo"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:328
-msgid "Add Field"
-msgstr "Aggiungi campo"
-
-#: ../src/imports/Settings/SettingsPage.qml:74
+#: ../src/imports/Settings/SettingsPage.qml:76
 msgid "Add Google account"
 msgstr "Aggiungi account Google"
 
-#: ../src/imports/ABContactListPage.qml:529
-msgid "Add contact"
-msgstr "Aggiungi contatto"
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:377
+msgid "Add field"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
@@ -54,7 +45,7 @@ msgstr "Aggiungi numero..."
 msgid "Address"
 msgstr "Indirizzo"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:179
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:180
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:49
 msgid "Addressbook"
 msgstr "Rubrica"
@@ -65,7 +56,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:399
+#: ../src/imports/ABContactListPage.qml:477
 msgid "All"
 msgstr "Tutti"
 
@@ -77,22 +68,26 @@ msgstr "Rimuovere veramente tutti i contatti selezionati?"
 msgid "Are you sure that you want to remove this contact?"
 msgstr "Rimuovere veramente questo contatto?"
 
-#: ../src/imports/ABContactEditorPage.qml:39
-#: ../src/imports/ABContactListPage.qml:416 ../src/imports/MainWindow.qml:190
+#: ../src/imports/ABContactListPage.qml:616
+msgid "Back"
+msgstr ""
+
+#: ../src/imports/ABContactEditorPage.qml:38
+#: ../src/imports/ABContactListPage.qml:497 ../src/imports/MainWindow.qml:210
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "Annulla"
 
-#: ../src/imports/ABContactListPage.qml:453
+#: ../src/imports/ABContactListPage.qml:536
 msgid "Cancel selection"
 msgstr "Annulla selezione"
 
-#: ../src/imports/ABContactListPage.qml:725
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:452
+#: ../src/imports/ABContactListPage.qml:758
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:507
 msgid "Close"
 msgstr "Chiudi"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:433
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:488
 msgid "Contact Editor"
 msgstr "Editor dei contatti"
 
@@ -100,7 +95,8 @@ msgstr "Editor dei contatti"
 msgid "Contact not found"
 msgstr "Contatto non trovato"
 
-#: ../src/imports/ABContactListPage.qml:210
+#: ../src/imports/ABContactListPage.qml:249
+#: ../src/imports/ABContactListPage.qml:289
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Contatti"
@@ -117,18 +113,22 @@ msgstr "Contatti;Persone;Numeri;Rubrica"
 msgid "Country"
 msgstr "Paese"
 
-#: ../src/imports/ABContactListPage.qml:659
+#: ../src/imports/ABContactListPage.qml:697 ../src/imports/ABEmptyState.qml:55
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
 "Crea un nuovo contatto facendo scorrere dal basso verso l'alto dello schermo."
 
-#: ../src/imports/ABContactListPage.qml:491
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:376
+#: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
+msgid "Default address book"
+msgstr ""
+
+#: ../src/imports/ABContactListPage.qml:576
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:428
 msgid "Delete"
 msgstr "Elimina"
 
-#: ../src/imports/ABContactViewPage.qml:61
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:149
+#: ../src/imports/ABContactViewPage.qml:88
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:189
 msgid "Edit"
 msgstr "Modifica"
 
@@ -151,7 +151,7 @@ msgstr "Inserire soprannome"
 msgid "Enter an email address"
 msgstr "Inserire indirizzo email"
 
-#: ../src/imports/MainWindow.qml:186
+#: ../src/imports/MainWindow.qml:206
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
 msgstr "Errore"
@@ -160,11 +160,15 @@ msgstr "Errore"
 msgid "Exporting contacts..."
 msgstr "Esportazione contatti..."
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:246
+#: ../src/imports/ABContactListPage.qml:845
+msgid "Fail to import contacts!"
+msgstr ""
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Fail to read SIM card"
 msgstr "Impossibile leggere la scheda SIM"
 
-#: ../src/imports/ABContactListPage.qml:399
+#: ../src/imports/ABContactListPage.qml:477
 msgid "Favorites"
 msgstr "Preferiti"
 
@@ -190,28 +194,27 @@ msgstr "ICQ"
 msgid "IM"
 msgstr "Messaggistica istantanea"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:193
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:216
 msgid "Import"
 msgstr "Importa"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:510
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:513
 msgid "Import contacts from Google"
 msgstr "Importa contatti da Google"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:521
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:524
 msgid "Import contacts from SIM card"
 msgstr "Importa contatti dalla scheda SIM"
 
-#: ../src/imports/Settings/SettingsPage.qml:107
+#: ../src/imports/Settings/SettingsPage.qml:115
 msgid "Import from SIM"
 msgstr "Importa da SIM"
 
-#: ../src/imports/VCardImportDialog.qml:71
-msgid "Import vCards"
-msgstr "Importa vCard"
+#: ../src/imports/ABContactListPage.qml:629
+msgid "Imported contacts"
+msgstr ""
 
-#: ../src/imports/ABContactListPage.qml:716
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:238
+#: ../src/imports/ABContactListPage.qml:749
 msgid "Importing..."
 msgstr "Importazione in corso..."
 
@@ -223,8 +226,8 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Cognome"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:588
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:221
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:597
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:244
 msgid "Loading..."
 msgstr "Caricamento..."
 
@@ -250,15 +253,14 @@ msgstr "Contatti multipli"
 msgid "My phone number: %1"
 msgstr "Mio numero di telefono: %1"
 
-#: ../src/imports/ABContactListPage.qml:774 ../src/imports/BottomEdge.qml:46
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:149
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:189
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:457
 msgid "New contact"
 msgstr "Nuovo contatto"
 
 #. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
 #. this word must be less than 5 characters
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/TextInputDetail.qml:97
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/TextInputDetail.qml:88
 msgid "Next"
 msgstr "Avanti"
 
@@ -270,12 +272,16 @@ msgstr "No"
 msgid "No contact selected."
 msgstr "Nessun contatto selezionato."
 
+#: ../src/imports/ABMultiColumnEmptyState.qml:24
+msgid "No contacts"
+msgstr ""
+
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:112
 msgid "No contacts found"
 msgstr "Nessun contatto trovato"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:44
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:49
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:76
 #: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:80
 msgid "No name"
 msgstr "Nessun nome"
@@ -289,6 +295,13 @@ msgstr "Società"
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:121
 msgid "Other"
 msgstr "Altro"
+
+#: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:202
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:218
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:88
+#, qt-format
+msgid "Personal - %1"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:47
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:23
@@ -307,9 +320,13 @@ msgstr "CAP"
 msgid "Professional Details"
 msgstr "Dettagli sulla professione"
 
-#: ../src/imports/ABContactListPage.qml:342
+#: ../src/imports/ABContactListPage.qml:410
 msgid "Quit"
 msgstr "Esci"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
+msgid "Reading contacts from SIM..."
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -328,30 +345,34 @@ msgstr "SIM %1"
 msgid "SIM contacts"
 msgstr "Contatti SIM"
 
-#: ../src/imports/ABContactEditorPage.qml:54
+#: ../src/imports/ABContactEditorPage.qml:56
 msgid "Save"
 msgstr "Salva"
 
-#: ../src/imports/ABContactListPage.qml:350
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
+msgid "Saving contacts on phone..."
+msgstr ""
+
+#: ../src/imports/ABContactListPage.qml:420
 msgid "Search"
 msgstr "Cerca"
 
-#: ../src/imports/ABContactListPage.qml:312
+#: ../src/imports/ABContactListPage.qml:385
 msgid "Search..."
 msgstr "Cerca..."
 
-#: ../src/imports/ABContactListPage.qml:461
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:181
+#: ../src/imports/ABContactListPage.qml:546
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:204
 msgid "Select All"
 msgstr "Seleziona tutti"
 
-#: ../src/imports/ABContactListPage.qml:375
+#: ../src/imports/ABContactListPage.qml:467
 #: ../src/imports/Settings/SettingsPage.qml:30
 msgid "Settings"
 msgstr "Impostazioni"
 
-#: ../src/imports/ABContactListPage.qml:474
-#: ../src/imports/ABContactViewPage.qml:48
+#: ../src/imports/ABContactListPage.qml:559
+#: ../src/imports/ABContactViewPage.qml:75
 msgid "Share"
 msgstr "Condividi"
 
@@ -368,15 +389,15 @@ msgstr "Social"
 msgid "Street"
 msgstr "Via"
 
-#: ../src/imports/ABContactListPage.qml:363
+#: ../src/imports/ABContactListPage.qml:455
 msgid "Sync"
 msgstr "Sincronizza"
 
-#: ../src/imports/ABContactListPage.qml:363
+#: ../src/imports/ABContactListPage.qml:455
 msgid "Syncing"
 msgstr "Sincronizzazione"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:588
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:597
 msgid "Syncing..."
 msgstr "Sincronizzazione..."
 
@@ -392,12 +413,12 @@ msgstr "Touch"
 msgid "Unlock"
 msgstr "Sblocca"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:230
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:253
 msgid "Unlocking..."
 msgstr "Sblocco..."
 
-#: ../src/imports/ABContactListPage.qml:461
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:180
+#: ../src/imports/ABContactListPage.qml:546
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:203
 msgid "Unselect All"
 msgstr "Deseleziona tutto"
 
@@ -420,11 +441,11 @@ msgstr "Yahoo!"
 msgid "Yes"
 msgstr "Sì"
 
-#: ../src/imports/ABContactListPage.qml:658
+#: ../src/imports/ABContactListPage.qml:696
 msgid "You have no contacts."
 msgstr "Non è presente alcun contatto."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:446
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:501
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded by running Contacts "
@@ -436,7 +457,7 @@ msgstr ""
 "Solo i contatti locali saranno modificabili fino al completamento "
 "dell'aggiornamento."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:437
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:492
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
@@ -445,7 +466,7 @@ msgstr ""
 "Il servizio di sincronizzazione  <b>%1</b> deve essere aggiornato.\n"
 "Attendere il completamento dell'aggiornamento prima di modificare i contatti."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:442
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:497
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded. Use the sync "
@@ -457,24 +478,25 @@ msgstr ""
 "Solo i contatti locali saranno modificabili fino al completamento "
 "dell'aggiornamento"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:46
-msgid "Discard changes"
-msgstr "Scarta modifiche"
-
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:24
-msgid "Discard contact changes"
-msgstr "Scarta le modifiche del contatto"
-
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/CancelEditDialog.qml:35
-msgid "Keep editing"
-msgstr "Continua modifica"
-
 #~ msgid ""
 #~ "Would you like to sync contacts\n"
 #~ "from online accounts now?"
 #~ msgstr ""
 #~ "Sincronizzare i contatti con\n"
 #~ "gli account online adesso?"
+
+#~ msgid "Add Field"
+#~ msgstr "Aggiungi campo"
+
+#, qt-format
+#~ msgid "%1 vCards imported"
+#~ msgstr "%1 vCard importata"
+
+#~ msgid "Import vCards"
+#~ msgstr "Importa vCard"
+
+#~ msgid "Add contact"
+#~ msgstr "Aggiungi contatto"
 
 #~ msgid "Would you like to sync contacts from your google online accounts now?"
 #~ msgstr "Sincronizzare ora i contatti degli account online di google?"
