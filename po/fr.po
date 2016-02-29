@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-02-24 17:07-0300\n"
-"PO-Revision-Date: 2016-02-25 20:32+0000\n"
-"Last-Translator: Anne <anneonyme017@gmail.com>\n"
+"PO-Revision-Date: 2016-02-28 15:14+0000\n"
+"Last-Translator: Jean-Marc <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-02-27 05:05+0000\n"
+"X-Launchpad-Export-Date: 2016-02-29 05:57+0000\n"
 "X-Generator: Launchpad (build 17925)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
@@ -62,11 +62,12 @@ msgstr "Tous"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
-msgstr "Êtes-vous sûr de vouloir supprimer tous les contacts sélectionnés ?"
+msgstr ""
+"Êtes-vous sûr(e) de vouloir supprimer tous les contacts sélectionnés ?"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
-msgstr "Êtes-vous sûr de vouloir supprimer ce contact ?"
+msgstr "Êtes-vous sûr(e) de vouloir supprimer ce contact ?"
 
 #: ../src/imports/ABContactListPage.qml:616
 msgid "Back"
@@ -359,7 +360,7 @@ msgstr "Rechercher"
 
 #: ../src/imports/ABContactListPage.qml:385
 msgid "Search..."
-msgstr "Recherche…"
+msgstr "Recherche..."
 
 #: ../src/imports/ABContactListPage.qml:546
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:204
@@ -399,7 +400,7 @@ msgstr "Synchronisation"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:597
 msgid "Syncing..."
-msgstr "Synchronisation…"
+msgstr "Synchronisation..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:30
 msgid "Title"
