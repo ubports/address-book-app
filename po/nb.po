@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-02-24 17:07-0300\n"
-"PO-Revision-Date: 2015-09-28 07:36+0000\n"
+"PO-Revision-Date: 2016-02-29 06:57+0000\n"
 "Last-Translator: Åka Sikrom <Unknown>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-02-27 05:05+0000\n"
+"X-Launchpad-Export-Date: 2016-03-01 05:50+0000\n"
 "X-Generator: Launchpad (build 17925)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
@@ -33,7 +33,7 @@ msgstr "Legg til Google-konto"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:377
 msgid "Add field"
-msgstr ""
+msgstr "Legg til felt"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
@@ -70,7 +70,7 @@ msgstr "Er du sikker på at du vil fjerne denne kontakten?"
 
 #: ../src/imports/ABContactListPage.qml:616
 msgid "Back"
-msgstr ""
+msgstr "Tilbake"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:497 ../src/imports/MainWindow.qml:210
@@ -119,7 +119,7 @@ msgstr "Dra oppover fra bunnen av skjermen for å lage en ny kontakt."
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
-msgstr ""
+msgstr "Standard adressebok"
 
 #: ../src/imports/ABContactListPage.qml:576
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:428
@@ -161,7 +161,7 @@ msgstr "Eksporterer kontakter …"
 
 #: ../src/imports/ABContactListPage.qml:845
 msgid "Fail to import contacts!"
-msgstr ""
+msgstr "Klarte ikke å importere kontakter."
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Fail to read SIM card"
@@ -211,7 +211,7 @@ msgstr "Importer fra SIM-kort"
 
 #: ../src/imports/ABContactListPage.qml:629
 msgid "Imported contacts"
-msgstr ""
+msgstr "Importerte kontakter"
 
 #: ../src/imports/ABContactListPage.qml:749
 msgid "Importing..."
@@ -273,7 +273,7 @@ msgstr "Ingen kontakter er valgt."
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
-msgstr ""
+msgstr "Ingen kontakter"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:112
 msgid "No contacts found"
@@ -300,7 +300,7 @@ msgstr "Annet"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:88
 #, qt-format
 msgid "Personal - %1"
-msgstr ""
+msgstr "Personlig - %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:47
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:23
@@ -325,7 +325,7 @@ msgstr "Avslutt"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
 msgid "Reading contacts from SIM..."
-msgstr ""
+msgstr "Leser kontakter fra SIM-kort …"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -350,7 +350,7 @@ msgstr "Lagre"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Saving contacts on phone..."
-msgstr ""
+msgstr "Lagrer kontakter på telefon …"
 
 #: ../src/imports/ABContactListPage.qml:420
 msgid "Search"
