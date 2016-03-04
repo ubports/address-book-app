@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-02-24 17:07-0300\n"
-"PO-Revision-Date: 2016-01-26 23:18+0000\n"
+"PO-Revision-Date: 2016-03-03 13:13+0000\n"
 "Last-Translator: GunChleoc <Unknown>\n"
 "Language-Team: Fòram na Gàidhlig\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-02-27 05:05+0000\n"
-"X-Generator: Launchpad (build 17925)\n"
+"X-Launchpad-Export-Date: 2016-03-04 06:10+0000\n"
+"X-Generator: Launchpad (build 17936)\n"
 "Language: gd\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
@@ -35,7 +35,7 @@ msgstr "Cuir cunntas Google ris"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:377
 msgid "Add field"
-msgstr ""
+msgstr "Cuir raon ris"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
@@ -76,7 +76,7 @@ msgstr ""
 
 #: ../src/imports/ABContactListPage.qml:616
 msgid "Back"
-msgstr ""
+msgstr "Air ais"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:497 ../src/imports/MainWindow.qml:210
@@ -170,7 +170,7 @@ msgstr "Ag às-phortadh an luchd-aithne..."
 
 #: ../src/imports/ABContactListPage.qml:845
 msgid "Fail to import contacts!"
-msgstr ""
+msgstr "Dh’fhàillig ion-phortadh an luchd-aithne!"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Fail to read SIM card"
@@ -220,7 +220,7 @@ msgstr "Ion-phortaich on t-SIM"
 
 #: ../src/imports/ABContactListPage.qml:629
 msgid "Imported contacts"
-msgstr ""
+msgstr "Luchd-aithne a chaidh ion-phortadh"
 
 #: ../src/imports/ABContactListPage.qml:749
 msgid "Importing..."
@@ -282,7 +282,7 @@ msgstr "Cha deach neach-aithne a thaghadh."
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
-msgstr ""
+msgstr "Chan eil neach-aithne ann"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:112
 msgid "No contacts found"
@@ -309,7 +309,7 @@ msgstr "Eile"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:88
 #, qt-format
 msgid "Personal - %1"
-msgstr ""
+msgstr "Pearsanta - %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:47
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:23
@@ -334,7 +334,7 @@ msgstr "Fàg an-seo"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
 msgid "Reading contacts from SIM..."
-msgstr ""
+msgstr "A' leughadh luchd-aithne o SIM..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -359,7 +359,7 @@ msgstr "Sàbhail"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Saving contacts on phone..."
-msgstr ""
+msgstr "A' sàbhaladh luchd-aithne air a' fòn..."
 
 #: ../src/imports/ABContactListPage.qml:420
 msgid "Search"
