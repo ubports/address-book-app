@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-02-24 17:07-0300\n"
-"PO-Revision-Date: 2016-02-25 22:07+0000\n"
-"Last-Translator: schuko24 <gerdsaenger@t-online.de>\n"
+"PO-Revision-Date: 2016-03-07 12:28+0000\n"
+"Last-Translator: Tobias Bannert <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-02-27 05:05+0000\n"
-"X-Generator: Launchpad (build 17925)\n"
+"X-Launchpad-Export-Date: 2016-03-08 05:51+0000\n"
+"X-Generator: Launchpad (build 17936)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
 #, qt-format
@@ -33,7 +33,7 @@ msgstr "Google-Konto hinzufügen"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:377
 msgid "Add field"
-msgstr ""
+msgstr "Feld hinzufügen"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
@@ -123,7 +123,7 @@ msgstr ""
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
-msgstr ""
+msgstr "Standardadressbuch"
 
 #: ../src/imports/ABContactListPage.qml:576
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:428
@@ -329,7 +329,7 @@ msgstr "Beenden"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
 msgid "Reading contacts from SIM..."
-msgstr ""
+msgstr "Kontakte werden von der Sim-Karte gelesen …"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -354,7 +354,7 @@ msgstr "Speichern"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Saving contacts on phone..."
-msgstr ""
+msgstr "Kontakte werden auf das Telefon gespeichert …"
 
 #: ../src/imports/ABContactListPage.qml:420
 msgid "Search"
