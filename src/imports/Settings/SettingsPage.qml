@@ -89,7 +89,7 @@ Page {
                 // FIXME: Using a private property here. This uses the old list item and the only way to change the text
                 // color is with this property.
                 // We should remove it when update the app to the new ListItem.
-                __foregroundColor: selected ? UbuntuColors.blue : Theme.palette.normal.foreground
+                __foregroundColor: selected ? UbuntuColors.blue : Theme.palette.normal.baseText
 
                 Rectangle {
                     border {
@@ -124,7 +124,7 @@ Page {
                 // FIXME: Using a private property here. This uses the old list item and the only way to change the text
                 // color is with this property.
                 // We should remove it when update the app to the new ListItem.
-                __foregroundColor: selected ? UbuntuColors.blue : Theme.palette.normal.foreground
+                __foregroundColor: selected ? UbuntuColors.blue : Theme.palette.normal.baseText
 
                 Rectangle {
                     border {
