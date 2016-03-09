@@ -1,3 +1,13 @@
+address-book-app (0.2+16.04.20160309-0ubuntu1) xenial; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Fix settings pages font color. (LP: #1555255)
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Wed, 09 Mar 2016 19:28:37 +0000
+
 address-book-app (0.2+16.04.20160224-0ubuntu1) xenial; urgency=medium
 
   * Make sure that the contact view back button still visible for apps
