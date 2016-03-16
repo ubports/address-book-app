@@ -18,7 +18,7 @@ import QtQuick 2.4
 import QtContacts 5.0
 
 import Ubuntu.Components 1.3
-import Ubuntu.Content 1.1 as ContentHub
+import Ubuntu.Content 1.3 as ContentHub
 
 import Ubuntu.AddressBook.Base 0.1
 
