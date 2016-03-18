@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-02-24 17:07-0300\n"
-"PO-Revision-Date: 2015-11-02 17:50+0000\n"
-"Last-Translator: enolp <enolp@softastur.org>\n"
+"PO-Revision-Date: 2016-03-17 18:57+0000\n"
+"Last-Translator: Xuacu Saturio <xuacusk8@gmail.com>\n"
 "Language-Team: Asturian <ast@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-03-17 05:55+0000\n"
+"X-Launchpad-Export-Date: 2016-03-18 06:08+0000\n"
 "X-Generator: Launchpad (build 17947)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
@@ -33,7 +33,7 @@ msgstr "Amestar cuenta Google"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:377
 msgid "Add field"
-msgstr ""
+msgstr "Amestar campu"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
@@ -120,7 +120,7 @@ msgstr ""
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
-msgstr ""
+msgstr "Axenda predeterminada"
 
 #: ../src/imports/ABContactListPage.qml:576
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:428
@@ -162,7 +162,7 @@ msgstr "Esportando contautos..."
 
 #: ../src/imports/ABContactListPage.qml:845
 msgid "Fail to import contacts!"
-msgstr ""
+msgstr "Nun pudieron importase los contactos"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Fail to read SIM card"
@@ -212,7 +212,7 @@ msgstr "Importar de la SIM"
 
 #: ../src/imports/ABContactListPage.qml:629
 msgid "Imported contacts"
-msgstr ""
+msgstr "Contactos importaos"
 
 #: ../src/imports/ABContactListPage.qml:749
 msgid "Importing..."
@@ -274,7 +274,7 @@ msgstr "Nun se seleicionó contautu."
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
-msgstr ""
+msgstr "Nun hai contactos"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:112
 msgid "No contacts found"
@@ -301,7 +301,7 @@ msgstr "Otru"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:88
 #, qt-format
 msgid "Personal - %1"
-msgstr ""
+msgstr "Personal - %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:47
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:23
@@ -326,7 +326,7 @@ msgstr "Colar"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
 msgid "Reading contacts from SIM..."
-msgstr ""
+msgstr "Lleyendo los contactos de la SIM..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -351,7 +351,7 @@ msgstr "Guardar"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Saving contacts on phone..."
-msgstr ""
+msgstr "Guardando los contactos nel teléfonu..."
 
 #: ../src/imports/ABContactListPage.qml:420
 msgid "Search"
@@ -452,6 +452,10 @@ msgid ""
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"La cuenta de sincronización de contactos <b>%1</b> tien d'anovase executando "
+"l'app Contactos.\n"
+"Mentanto nun se complete l'anovamientu sólo podrán editase los contactos "
+"llocales."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:492
 #, qt-format
@@ -459,6 +463,8 @@ msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
+"Tien d'anovase la cuenta de sincronización de contactos <b>%1</b>.\n"
+"Espera a que se complete l'anovamientu pa editar los contactos."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:497
 #, qt-format
@@ -467,6 +473,10 @@ msgid ""
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Tien d'anovase la cuenta de sincronización de contactos <b>%1</b>. Usa'l "
+"botón de sincronización p'anovar l'app Contactos.\n"
+"Sólo podrás editar los contactos llocales mentanto nun se complete "
+"l'anovamientu."
 
 #~ msgid "Add Field"
 #~ msgstr "Amestar campu"
