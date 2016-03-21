@@ -18,7 +18,7 @@ import QtQuick 2.4
 import QtContacts 5.0
 
 import Ubuntu.Components 1.3
-import Ubuntu.Content 1.1
+import Ubuntu.Content 1.3
 import Ubuntu.Components.Popups 1.3
 
 Item {
@@ -112,7 +112,7 @@ Item {
             onExportCompleted: {
                 // send contacts back to source app (pick mode)
                 if (error === ContactModel.ExportNoError) {
-                    var obj = Qt.createQmlObject("import Ubuntu.Content 1.1;  ContentItem { url: '" + url + "' }", root)
+                    var obj = Qt.createQmlObject("import Ubuntu.Content 1.3;  ContentItem { url: '" + url + "' }", root)
                     if (root.activeTransfer) {
                         root.activeTransfer.items = [obj]
                         root.activeTransfer.state = ContentTransfer.Charged
