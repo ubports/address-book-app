@@ -13,5 +13,4 @@ X-Ubuntu-SymbolicIcon=@ADDRESS_BOOK_ARTWORK_PATH@/@ADDRESS_BOOK_APP_SYMBOLIC_ICO
 X-Ubuntu-Touch=true
 X-Ubuntu-Single-Instance=true
 X-Ubuntu-Splash-Show-Header=true
-X-Ubuntu-Supported-Orientations=portrait
 @XSCREENSHOT@

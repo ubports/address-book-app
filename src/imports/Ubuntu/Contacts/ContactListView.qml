@@ -224,6 +224,8 @@ FocusScope {
     // the value will be checked only on app startup
     readonly property bool syncEnabled: (buteoSync.profilesCount > 0) &&
                                         (buteoSync.syncProfilesByCategory("contacts").length > 0)
+
+    property alias headerItem: view.headerItem
     /*!
       \qmlproperty bool busy
 

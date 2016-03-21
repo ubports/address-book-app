@@ -680,6 +680,7 @@ Page {
 
         anchors {
             verticalCenter: parent.verticalCenter
+            verticalCenterOffset: contactList.headerItem ? contactList.headerItem.height / 2 : 0
             left: parent.left
             right: parent.right
             leftMargin: units.gu(6)
