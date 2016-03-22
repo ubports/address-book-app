@@ -8,6 +8,13 @@ address-book-app (0.2+16.04.20160321-0ubuntu1) xenial; urgency=medium
 
  -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Mon, 21 Mar 2016 12:33:55 +0000
 
+address-book-app (0.2+16.04.20160311-0ubuntu1) xenial; urgency=medium
+
+  [ Renato Araujo Oliveira Filho ]
+  * Remove custom back button from contact view.
+
+ -- Tiago Salem Herrmann <tiago.herrmann@canonical.com>  Fri, 11 Mar 2016 15:32:08 +0000
+
 address-book-app (0.2+16.04.20160309-0ubuntu1) xenial; urgency=medium
 
   [ CI Train Bot ]
