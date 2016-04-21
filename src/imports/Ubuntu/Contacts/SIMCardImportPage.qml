@@ -33,7 +33,50 @@ Page {
 
     signal importCompleted()
 
-    title: i18n.dtr("address-book-app", "SIM contacts")
+    header: PageHeader {
+        id: pageHeader
+
+        title: i18n.dtr("address-book-app", "SIM contacts")
+        flickable: contactList.view
+        trailingActionBar {
+            actions: [
+                Action {
+                    text: (contactList.selectedItems.count === contactList.count) ?
+                              i18n.dtr("address-book-app", "Unselect All") :
+                              i18n.dtr("address-book-app", "Select All")
+                    iconName: "select"
+                    onTriggered: {
+                        if (contactList.selectedItems.count === contactList.count) {
+                            contactList.clearSelection()
+                        } else {
+                            contactList.selectAll()
+                        }
+                    }
+                    visible: (contactList.count > 0)
+                },
+                Action {
+                    text: i18n.dtr("address-book-app", "Import")
+                    objectName: "confirmImport"
+
+                    iconName: "tick"
+                    enabled: (contactList.selectedItems.count > 0)
+                    onTriggered: {
+                        root.state = "importing"
+                        var contacts = []
+                        var items = contactList.selectedItems
+
+                        for (var i=0, iMax=items.count; i < iMax; i++) {
+                            contacts.push(items.get(i).model.contact)
+                        }
+
+                        contactList.listModel.exportContacts(root.exportFile,
+                                                             [],
+                                                             contacts)
+                    }
+                }
+            ]
+        }
+    }
 
     function lockedSIMCount()
     {
@@ -197,42 +240,7 @@ Page {
         }
     }
 
-    head.actions: [
-        Action {
-            text: (contactList.selectedItems.count === contactList.count) ?
-                      i18n.dtr("address-book-app", "Unselect All") :
-                      i18n.dtr("address-book-app", "Select All")
-            iconName: "select"
-            onTriggered: {
-                if (contactList.selectedItems.count === contactList.count) {
-                    contactList.clearSelection()
-                } else {
-                    contactList.selectAll()
-                }
-            }
-            visible: (contactList.count > 0)
-        },
-        Action {
-            text: i18n.dtr("address-book-app", "Import")
-            objectName: "confirmImport"
 
-            iconName: "tick"
-            enabled: (contactList.selectedItems.count > 0)
-            onTriggered: {
-                root.state = "importing"
-                var contacts = []
-                var items = contactList.selectedItems
-
-                for (var i=0, iMax=items.count; i < iMax; i++) {
-                    contacts.push(items.get(i).model.contact)
-                }
-
-                contactList.listModel.exportContacts(root.exportFile,
-                                                     [],
-                                                     contacts)
-            }
-        }
-    ]
 
     states: [
         State {

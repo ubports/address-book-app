@@ -27,7 +27,12 @@ Page {
 
     property var contactListModel
 
-    title: i18n.tr("Settings")
+    header: PageHeader {
+        id: pageHeader
+
+        title: i18n.tr("Settings")
+        flickable: numberFlickable
+    }
 
     ContactsUI.SIMList {
         id: simList
