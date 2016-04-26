@@ -27,7 +27,12 @@ Page {
 
     property var contactListModel
 
-    title: i18n.tr("Settings")
+    header: PageHeader {
+        id: pageHeader
+
+        title: i18n.tr("Settings")
+        flickable: null
+    }
 
     ContactsUI.SIMList {
         id: simList
@@ -37,11 +42,15 @@ Page {
         id: myself
     }
 
-    flickable: null
     Flickable {
         id: numberFlickable
         contentHeight: childrenRect.height
-        anchors.fill: parent
+        anchors {
+            top: pageHeader.bottom
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
         clip: true
 
         Column {
