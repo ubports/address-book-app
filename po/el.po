@@ -14,10 +14,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-04-26 06:03+0000\n"
+"X-Launchpad-Export-Date: 2016-04-29 06:04+0000\n"
 "X-Generator: Launchpad (build 17995)\n"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
 msgid "%1 is locked"
 msgstr "%1 είναι κλειδωμένο"
@@ -27,7 +27,7 @@ msgstr "%1 είναι κλειδωμένο"
 msgid "+ Create New"
 msgstr "+ Δημιουργία νέας"
 
-#: ../src/imports/Settings/SettingsPage.qml:76
+#: ../src/imports/Settings/SettingsPage.qml:85
 msgid "Add Google account"
 msgstr "Προσθήκη λογαριασμού Google"
 
@@ -165,7 +165,7 @@ msgstr "Εξαγωγή επαφών..."
 msgid "Fail to import contacts!"
 msgstr "Αποτυχία εισαγωγής επαφών!"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:285
 msgid "Fail to read SIM card"
 msgstr "Αποτυχία ανάγνωσης κάρτας SIM"
 
@@ -195,7 +195,7 @@ msgstr "ICQ"
 msgid "IM"
 msgstr "IM"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:216
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:58
 msgid "Import"
 msgstr "Εισαγωγή"
 
@@ -207,7 +207,7 @@ msgstr "Εισαγωγή επαφών από Google"
 msgid "Import contacts from SIM card"
 msgstr "Εισαγωγή επαφών από κάρτα SIM"
 
-#: ../src/imports/Settings/SettingsPage.qml:115
+#: ../src/imports/Settings/SettingsPage.qml:124
 msgid "Import from SIM"
 msgstr "Εισαγωγή από SIM"
 
@@ -228,7 +228,7 @@ msgid "Last name"
 msgstr "Επώνυμο"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:599
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:244
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "Γίνεται φόρτωση..."
 
@@ -249,7 +249,7 @@ msgstr "Κινητό"
 msgid "Multiple contacts"
 msgstr "Πολλαπλές επαφές"
 
-#: ../src/imports/Settings/SettingsPage.qml:61
+#: ../src/imports/Settings/SettingsPage.qml:70
 #, qt-format
 msgid "My phone number: %1"
 msgstr "Ο αριθμός μου: %1"
@@ -277,7 +277,7 @@ msgstr "Δεν επελέγη καμία επαφή."
 msgid "No contacts"
 msgstr "Καμία επαφή"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:112
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:155
 msgid "No contacts found"
 msgstr "Δε βρέθηκαν επαφές"
 
@@ -325,7 +325,7 @@ msgstr "Επαγγελματικές λεπτομέρειες"
 msgid "Quit"
 msgstr "'Εξοδος"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Reading contacts from SIM..."
 msgstr "Ανάγνωση επαφών από SIM..."
 
@@ -337,12 +337,12 @@ msgstr "Περιφέρεια"
 msgid "Role"
 msgstr "Ρόλος"
 
-#: ../src/imports/Settings/SettingsPage.qml:62
+#: ../src/imports/Settings/SettingsPage.qml:71
 #, qt-format
 msgid "SIM %1"
 msgstr "Κάρτα SIM %1"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:36
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:39
 msgid "SIM contacts"
 msgstr "Επαφές SIM"
 
@@ -350,7 +350,7 @@ msgstr "Επαφές SIM"
 msgid "Save"
 msgstr "Αποθήκευση"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Saving contacts on phone..."
 msgstr "Αποθήκευση επαφών στο τηλέφωνο..."
 
@@ -363,12 +363,12 @@ msgid "Search..."
 msgstr "Αναζήτηση..."
 
 #: ../src/imports/ABContactListPage.qml:546
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:204
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
 msgstr "Επιλογή όλων"
 
 #: ../src/imports/ABContactListPage.qml:467
-#: ../src/imports/Settings/SettingsPage.qml:30
+#: ../src/imports/Settings/SettingsPage.qml:33
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
@@ -410,16 +410,16 @@ msgstr "Προσφώνηση"
 msgid "Touch"
 msgstr "Αφή"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:81
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:124
 msgid "Unlock"
 msgstr "Ξεκλείδωμα"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:253
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
 msgid "Unlocking..."
 msgstr "Ξεκλείδωμα..."
 
 #: ../src/imports/ABContactListPage.qml:546
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:203
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
 msgstr "Αποεπιλογή όλων"
 
