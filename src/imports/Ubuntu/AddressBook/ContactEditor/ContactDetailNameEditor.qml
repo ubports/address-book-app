@@ -92,7 +92,7 @@ ContactDetailItem {
         function placeholderTextFromField(field)
         {
             switch (field) {
-                case Name.firstName:
+                case Name.FirstName:
                     return i18n.dtr("address-book-app", "First name")
                 case Name.MiddleName:
                     return i18n.dtr("address-book-app", "Midle name")
