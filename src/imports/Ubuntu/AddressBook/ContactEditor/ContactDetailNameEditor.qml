@@ -26,6 +26,7 @@ ContactDetailItem {
 
     property variant emptyFields: []
     property bool showMiddleName: (detail && (detail.value(Name.MiddleName) !== undefined))
+    readonly property Item middleNameField: showMiddleName ? fieldDelegates[1] : null
 
     function isEmpty() {
         return (fields == -1) || (emptyFields.length === fields.length)
@@ -53,15 +54,6 @@ ContactDetailItem {
         }
 
         return changed
-    }
-
-    function forceMiddleNameFocus()
-    {
-
-        if (fieldDelagates.length === 3)
-            fieldDelegates[1].forceActiveFocus()
-        else
-            console.warn("Midle field not available")
     }
 
     spacing: units.gu(1)

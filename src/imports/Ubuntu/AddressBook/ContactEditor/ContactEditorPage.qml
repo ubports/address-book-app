@@ -385,7 +385,10 @@ Page {
                 height: implicitHeight
                 activeFocusOnPress: false
                 onHeightChanged: {
-                    if (expanded && (height === expandedHeight) && !scrollArea.atYEnd) {
+                    if (expanded &&
+                            (height === expandedHeight) &&
+                            !scrollArea.atYEnd &&
+                            !moveToBottom.running) {
                         moveToBottom.start()
                     }
                 }
@@ -395,6 +398,7 @@ Page {
 
                     target: scrollArea
                     property: "contentY"
+                    alwaysRunToEnd: true
                     to: scrollArea.contentHeight - scrollArea.height
                     onStopped: {
                         scrollArea.returnToBounds()
@@ -405,7 +409,8 @@ Page {
                 onSpecialFieldSelected: {
                     if (type === addNewFieldButton.specialFields.CONTACT_DETAIL_MIDDLE_NAME) {
                         nameEditor.showMiddleName = true
-                        nameEditor.forceMiddleNameFocus()
+                        nameEditor.middleNameField.forceActiveFocus()
+                        root.idleMakeMeVisible(nameEditor.middleNameField)
                     }
                 }
 
