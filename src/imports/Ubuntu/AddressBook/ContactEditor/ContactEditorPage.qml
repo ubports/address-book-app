@@ -263,7 +263,9 @@ Page {
                     contact: contactEditor.contact
                     height: implicitHeight
                     width: implicitWidth
-                    anchors.verticalCenter: editEditor.verticalCenter
+                    anchors {
+                        top: parent.top
+                    }
                 }
 
                 ContactDetailNameEditor {
@@ -397,6 +399,13 @@ Page {
                     onStopped: {
                         scrollArea.returnToBounds()
                         addNewFieldButton.forceActiveFocus()
+                    }
+                }
+
+                onSpecialFieldSelected: {
+                    if (type === addNewFieldButton.specialFields.CONTACT_DETAIL_MIDDLE_NAME) {
+                        nameEditor.showMiddleName = true
+                        nameEditor.forceMiddleNameFocus()
                     }
                 }
 

@@ -36,8 +36,12 @@ ComboButton {
                                           // ContactDetail.Url
                                          ]
     readonly property var singleValueDetails: [ ContactDetail.Organization ]
+    readonly property var specialFields: {
+        "CONTACT_DETAIL_MIDDLE_NAME": 1000
+    }
 
     signal fieldSelected(string fieldName, string qmlTypeName)
+    signal specialFieldSelected(string fieldName, int type)
 
     function nameFromEnum(value)
     {
@@ -53,6 +57,9 @@ ComboButton {
             return i18n.dtr("address-book-app", "Social")
         case ContactDetail.Organization:
             return i18n.dtr("address-book-app", "Professional Details")
+        // special cases
+        case root.specialFields.CONTACT_DETAIL_MIDDLE_NAME:
+            return i18n.dtr("address-book-app", "Middle Name")
         default:
             console.error("Invalid contact detail enum value:" + value)
             return ""
@@ -85,6 +92,13 @@ ComboButton {
     {
         var result = []
         if (contact) {
+            // Handle special cases
+            // MiddleName: Only allow to add middle name if the field is empty
+            var nameDet = contact.detail(ContactDetail.Name)
+            if (nameDet && (nameDet.value(Name.MiddleName) === undefined)) {
+                result.push(root.specialFields.CONTACT_DETAIL_MIDDLE_NAME)
+            }
+
             for(var i=0; i < details.length; i++) {
                 var det = details[i]
                 if (singleValueDetails.indexOf(det) != -1) {
@@ -106,8 +120,12 @@ ComboButton {
     // make sure that the signal will be fired after the item collapse
     onHeightChanged: {
         if (!expanded && (selectedDetail !== -1) && (height === collapsedHeight)) {
-            root.fieldSelected(root.nameFromEnum(root.selectedDetail), root.qmlTypeFromEnum(root.selectedDetail))
+            if (root.selectedDetail >= root.specialFields.CONTACT_DETAIL_MIDDLE_NAME)
+                root.specialFieldSelected(root.nameFromEnum(root.selectedDetail), root.selectedDetail)
+            else
+                root.fieldSelected(root.nameFromEnum(root.selectedDetail), root.qmlTypeFromEnum(root.selectedDetail))
             root.selectedDetail = -1
+            view.model = root.filterSingleDetails(validDetails, root.contact)
         }
     }
 

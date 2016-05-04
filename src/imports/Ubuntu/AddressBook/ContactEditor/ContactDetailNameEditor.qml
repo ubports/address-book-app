@@ -25,6 +25,7 @@ ContactDetailItem {
     id: root
 
     property variant emptyFields: []
+    property bool showMiddleName: (detail && (detail.value(Name.MiddleName) !== undefined))
 
     function isEmpty() {
         return (fields == -1) || (emptyFields.length === fields.length)
@@ -32,7 +33,7 @@ ContactDetailItem {
 
     function save() {
         var changed = false;
-
+        var names = []
         for(var i=0; i < fieldDelegates.length; i++) {
             var delegate = fieldDelegates[i]
 
@@ -42,7 +43,9 @@ ContactDetailItem {
             }
 
             if (delegate.detail && (delegate.field >= 0)) {
-                if (delegate.text != delegate.detail.value(delegate.field)) {
+                var value = delegate.detail.value(delegate.field)
+                names.push(value)
+                if (delegate.text != value) {
                     delegate.detail.setValue(delegate.field, delegate.text)
                     changed  = true;
                 }
@@ -52,9 +55,18 @@ ContactDetailItem {
         return changed
     }
 
+    function forceMiddleNameFocus()
+    {
+
+        if (fieldDelagates.length === 3)
+            fieldDelegates[1].forceActiveFocus()
+        else
+            console.warn("Midle field not available")
+    }
+
     spacing: units.gu(1)
     detail: root.contact ? root.contact.name : null
-    fields: [ Name.FirstName, Name.LastName ]
+    fields: [ Name.FirstName, Name.MiddleName, Name.LastName ]
     highlightOnFocus: false
 
     fieldDelegate: TextInputDetail {
@@ -77,13 +89,27 @@ ContactDetailItem {
             root.emptyFields = newEmtpyFields
         }
 
+        function placeholderTextFromField(field)
+        {
+            switch (field) {
+                case Name.firstName:
+                    return i18n.dtr("address-book-app", "First name")
+                case Name.MiddleName:
+                    return i18n.dtr("address-book-app", "Midle name")
+                case Name.LastName:
+                    return i18n.dtr("address-book-app", "Last name")
+                default:
+                    return "";
+            }
+        }
+
         focus: true
         width: root.width - units.gu(4)
         x: units.gu(2)
         detail: root.detail
-        height: units.gu(4)
-        placeholderText: field == Name.FirstName ? i18n.dtr("address-book-app", "First name") :
-                                                   i18n.dtr("address-book-app", "Last name")
+        visible: field === Name.MiddleName ? root.showMiddleName : true
+        height: visible ? units.gu(4) : 0
+        placeholderText: placeholderTextFromField(field)
         inputMethodHints: Qt.ImhNoPredictiveText
         onTextChanged: checkIsEmpty()
         onFieldChanged: checkIsEmpty()
