@@ -87,7 +87,7 @@ ContactDetailItem {
                 case Name.FirstName:
                     return i18n.dtr("address-book-app", "First name")
                 case Name.MiddleName:
-                    return i18n.dtr("address-book-app", "Midle name")
+                    return i18n.dtr("address-book-app", "Middle name")
                 case Name.LastName:
                     return i18n.dtr("address-book-app", "Last name")
                 default:
