@@ -140,7 +140,7 @@ ContactModel {
             }
 
             root.changeFilter(root.externalFilter)
-            contactTermFilter.value = root.filterTerm
+            contactTermFilter.value = root.filterTerm.trim()
 
             // manually update if autoUpdate is disabled
             if (!root.autoUpdate) {
@@ -149,7 +149,11 @@ ContactModel {
         }
     }
 
-    onFilterTermChanged: contactSearchTimeout.restart()
+    onFilterTermChanged: {
+        var newFilterTerm = root.filterTerm.trim()
+        if (contactTermFilter.value != newFilterTerm)
+            contactSearchTimeout.restart()
+    }
 
     onErrorChanged: {
         if (error) {
