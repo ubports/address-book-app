@@ -126,7 +126,8 @@ Page {
                 emptyPage  = pageStack.addFileToNextColumnSync(pageStack.primaryPage,
                                                                         Qt.resolvedUrl("ABMultiColumnEmptyState.qml"),
                                                                         { 'headerTitle': "",
-                                                                          'pageStack': mainPage.pageStack })
+                                                                          'pageStack': mainPage.pageStack,
+                                                                          'model': mainPage.contactModel })
                 emptyPage.Component.onDestruction.connect(function() {
                     mainPage.emptyPage = null
                 })

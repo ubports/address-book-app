@@ -24,6 +24,7 @@ Page {
     property string headerTitle: i18n.tr("No contacts")
 
     property bool openBottomEdgeWhenReady: false
+    property var model: null
 
     header: PageHeader {
         title: root.headerTitle
@@ -71,7 +72,7 @@ Page {
             hintVisible: false
             parent: root
             height: root.height
-            modelToEdit: root.pageStack.contactListPage.contactModel
+            modelToEdit: root.model
             hint.flickable: root.flickable
             pageStack: root.pageStack
             onCommitCompleted: { root.openBottomEdgeWhenReady = false }
