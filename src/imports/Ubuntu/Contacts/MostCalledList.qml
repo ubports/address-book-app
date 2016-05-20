@@ -78,10 +78,6 @@ Column {
                     root._nextCurrentIndex = currentIndex
                 }
             }
-
-            // WORKAROUND: The SDK header causes the contactY to move to a wrong postion
-            // calling the positionViewAtBeginning after the list created fix that
-            onLoaded: moveToBegining.restart()
         }
     }
 
