@@ -253,11 +253,12 @@ Item {
        }
     }
 
-
     Rectangle {
         id: main
         objectName: "mainItem"
 
+        // make sure that this item is behind the mouse area
+        z: -1
         anchors {
             top: parent.top
             bottom: parent.bottom
@@ -285,7 +286,6 @@ Item {
                 }
             }
         }
-
 
         Item {
             id: mainContents
