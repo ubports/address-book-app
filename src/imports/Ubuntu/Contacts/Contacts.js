@@ -43,7 +43,14 @@ function formatToDisplay(contact, defaultTitle)
 
     detail = contact.detail(ContactDetail.Name)
     if (detail) {
-        var fullName = (detail.firstName + " " + detail.lastName).trim()
+        var fullName = detail.firstName
+
+        if (detail.middleName != "")
+            fullName += " " + detail.middleName
+
+        if (detail.lastName != "")
+            fullName += " " + detail.lastName
+
         if (fullName.length > 0) {
             return fullName
         }
