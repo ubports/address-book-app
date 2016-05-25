@@ -273,6 +273,7 @@ Item {
 
         Loader {
             id: selectionIcon
+            objectName: "selectionIcon"
 
             anchors {
                 left: main.left
@@ -393,6 +394,7 @@ Item {
         property string direction: "None"
         property real lastX: -1
 
+        propagateComposedEvents: true
         anchors.fill: parent
         drag {
             target: locked ? null : main
@@ -462,6 +464,7 @@ Item {
                 }
             }
             root.resetSwipe()
+            mouse.accepted = false
         }
 
         onPositionChanged: {

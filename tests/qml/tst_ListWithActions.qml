@@ -52,15 +52,33 @@ Item {
                     id: listWithActions
                     objectName: "listWithActions" + index
 
+                    property int clickCount: 0
+
                     anchors {
                         left: parent.left
                         right: parent.right
                     }
                     height: units.gu(8)
                     triggerActionOnMouseRelease: true
+                    onItemPressAndHold:  {
+                        selectionMode = true
+                    }
+                    onItemClicked: {
+                        if (selectionMode) {
+                            selected = !selected
+                        }
+                    }
+
                     Rectangle {
                         anchors.fill: parent
                         color: "green"
+                        MouseArea {
+                            objectName: "itemMouseArea"
+                            anchors.fill: parent
+                            onClicked: {
+                                listWithActions.clickCount++
+                            }
+                        }
                     }
 
                     leftSideAction: Action {
@@ -444,6 +462,35 @@ Item {
                             10, 100)
             mouseRelease(itemData.item, finalX, itemData.y)
             tryCompare(itemData.item, "swipeState", "Normal")
+        }
+
+        function test_enterSelectionMode()
+        {
+            var item = findChild(itemList, "listWithActions0")
+            mousePress(item, item.width / 2, item.height / 2, Qt.LeftButton, Qt.NoModifier, 2000)
+            tryCompare(item, "selectionMode", true)
+        }
+
+
+        function test_selectAnItem()
+        {
+            var item = findChild(itemList, "listWithActions0")
+            mousePress(item, item.width / 2, item.height / 2, Qt.LeftButton, Qt.NoModifier, 2000)
+            tryCompare(item, "selectionMode", true)
+
+            var checkBox = findChild(item, "selectionIcon")
+            // wait checkbox to be fully visible
+            mouseClick(checkBox)
+            tryCompare(item, "selected", true)
+        }
+
+        function test_clickInsideOfAnItem()
+        {
+            var item = findChild(itemList, "listWithActions0")
+            waitForRendering(item)
+            var mouseArea = findChild(item, "itemMouseArea")
+            mouseClick(mouseArea, mouseArea.width / 2, mouseArea.height /2)
+            tryCompare(item, "clickCount", 1)
         }
     }
 }

@@ -18,6 +18,7 @@ import QtQuick 2.4
 import Ubuntu.Components 1.3
 
 CheckBox {
+    objectName: "listItemWithActionsCheckBox"
     checked: root.selected
     width: implicitWidth
     // disable item mouse area to avoid conflicts with parent mouse area
