@@ -52,7 +52,6 @@ Item {
                     id: listWithActions
                     objectName: "listWithActions" + index
 
-                    property int clickCount: 0
 
                     anchors {
                         left: parent.left
@@ -60,25 +59,10 @@ Item {
                     }
                     height: units.gu(8)
                     triggerActionOnMouseRelease: true
-                    onItemPressAndHold:  {
-                        selectionMode = true
-                    }
-                    onItemClicked: {
-                        if (selectionMode) {
-                            selected = !selected
-                        }
-                    }
 
                     Rectangle {
                         anchors.fill: parent
                         color: "green"
-                        MouseArea {
-                            objectName: "itemMouseArea"
-                            anchors.fill: parent
-                            onClicked: {
-                                listWithActions.clickCount++
-                            }
-                        }
                     }
 
                     leftSideAction: Action {
@@ -232,6 +216,40 @@ Item {
                             onTriggered: itemList.actionTriggered(contactAction3)
                         }
                     ]
+                }
+            }
+
+            ListItemWithActions {
+                id: itemWithMouseArea
+                objectName: "itemWithMouseArea"
+
+                property int clickCount: 0
+
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+
+                Rectangle {
+                    anchors.fill: parent
+                    color: "black"
+
+                    MouseArea {
+                        objectName: "itemMouseArea"
+                        anchors.fill: parent
+                        onClicked: {
+                            itemWithMouseArea.clickCount++
+                        }
+                    }
+                }
+
+                onItemPressAndHold: {
+                    selectionMode = true
+                }
+                onItemClicked: {
+                    if (selectionMode) {
+                        selected = !selected
+                    }
                 }
             }
 
@@ -466,15 +484,15 @@ Item {
 
         function test_enterSelectionMode()
         {
-            var item = findChild(itemList, "listWithActions0")
-            mousePress(item, item.width / 2, item.height / 2, Qt.LeftButton, Qt.NoModifier, 2000)
+            var item = findChild(itemList, "itemWithMouseArea")
+            mousePress(item, item.width / 2, item.height / 2, Qt.LeftButton, Qt.NoModifier, 3000)
             tryCompare(item, "selectionMode", true)
         }
 
 
         function test_selectAnItem()
         {
-            var item = findChild(itemList, "listWithActions0")
+            var item = findChild(itemList, "itemWithMouseArea")
             mousePress(item, item.width / 2, item.height / 2, Qt.LeftButton, Qt.NoModifier, 2000)
             tryCompare(item, "selectionMode", true)
 
@@ -486,7 +504,7 @@ Item {
 
         function test_clickInsideOfAnItem()
         {
-            var item = findChild(itemList, "listWithActions0")
+            var item = findChild(itemList, "itemWithMouseArea")
             waitForRendering(item)
             var mouseArea = findChild(item, "itemMouseArea")
             mouseClick(mouseArea, mouseArea.width / 2, mouseArea.height /2)
