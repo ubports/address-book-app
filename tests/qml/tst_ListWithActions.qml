@@ -52,12 +52,14 @@ Item {
                     id: listWithActions
                     objectName: "listWithActions" + index
 
+
                     anchors {
                         left: parent.left
                         right: parent.right
                     }
                     height: units.gu(8)
                     triggerActionOnMouseRelease: true
+
                     Rectangle {
                         anchors.fill: parent
                         color: "green"
@@ -214,6 +216,45 @@ Item {
                             onTriggered: itemList.actionTriggered(contactAction3)
                         }
                     ]
+                }
+            }
+
+            ListItemWithActions {
+                id: itemWithMouseArea
+                objectName: "itemWithMouseArea"
+
+                property int clickCount: 0
+
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+
+                Rectangle {
+                    anchors.fill: parent
+                    color: "black"
+
+                    MouseArea {
+                        objectName: "itemMouseArea"
+                        anchors {
+                            left: parent.left
+                            top: parent.top
+                            bottom: parent.bottom
+                        }
+                        width: units.gu(6)
+                        onClicked: {
+                            itemWithMouseArea.clickCount++
+                        }
+                    }
+                }
+
+                onItemPressAndHold: {
+                    selectionMode = true
+                }
+                onItemClicked: {
+                    if (selectionMode) {
+                        selected = !selected
+                    }
                 }
             }
 
@@ -444,6 +485,35 @@ Item {
                             10, 100)
             mouseRelease(itemData.item, finalX, itemData.y)
             tryCompare(itemData.item, "swipeState", "Normal")
+        }
+
+        function test_enterSelectionMode()
+        {
+            var item = findChild(itemList, "itemWithMouseArea")
+            mousePress(item, item.width / 2, item.height / 2, Qt.LeftButton, Qt.NoModifier, 3000)
+            tryCompare(item, "selectionMode", true)
+        }
+
+
+        function test_selectAnItem()
+        {
+            var item = findChild(itemList, "itemWithMouseArea")
+            mousePress(item, item.width / 2, item.height / 2, Qt.LeftButton, Qt.NoModifier, 2000)
+            tryCompare(item, "selectionMode", true)
+
+            var checkBox = findChild(item, "selectionIcon")
+            // wait checkbox to be fully visible
+            mouseClick(checkBox)
+            tryCompare(item, "selected", true)
+        }
+
+        function test_clickInsideOfAnItem()
+        {
+            var item = findChild(itemList, "itemWithMouseArea")
+            waitForRendering(item)
+            var mouseArea = findChild(item, "itemMouseArea")
+            mouseClick(mouseArea, mouseArea.width / 2, mouseArea.height /2)
+            tryCompare(item, "clickCount", 1)
         }
     }
 }

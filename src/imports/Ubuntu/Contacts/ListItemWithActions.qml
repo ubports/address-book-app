@@ -257,8 +257,6 @@ Item {
         id: main
         objectName: "mainItem"
 
-        // make sure that this item is behind the mouse area
-        z: -1
         anchors {
             top: parent.top
             bottom: parent.bottom
@@ -273,6 +271,7 @@ Item {
 
         Loader {
             id: selectionIcon
+            objectName: "selectionIcon"
 
             anchors {
                 left: main.left
@@ -394,6 +393,7 @@ Item {
         property real lastX: -1
 
         anchors.fill: parent
+        z: -1
         drag {
             target: locked ? null : main
             axis: Drag.XAxis
@@ -474,6 +474,5 @@ Item {
                 root.itemPressAndHold(mouse)
             }
         }
-        z: -1
     }
 }
