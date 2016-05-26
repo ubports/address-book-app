@@ -1,3 +1,13 @@
+address-book-app (0.2+16.10.20160526-0ubuntu1) yakkety; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Propagate mouse click on ListItemWithActions. (LP: #1585791)
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Thu, 26 May 2016 18:54:06 +0000
+
 address-book-app (0.2+16.10.20160520-0ubuntu1) yakkety; urgency=medium
 
   [ CI Train Bot ]
