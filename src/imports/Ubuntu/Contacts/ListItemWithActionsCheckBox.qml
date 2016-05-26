@@ -18,9 +18,20 @@ import QtQuick 2.4
 import Ubuntu.Components 1.3
 
 CheckBox {
+    id: checkBoxk
     objectName: "listItemWithActionsCheckBox"
-    checked: root.selected
     width: implicitWidth
     // disable item mouse area to avoid conflicts with parent mouse area
-    __mouseArea.enabled: false
+    __mouseArea {
+        propagateComposedEvents: true
+        onClicked: {
+            mouse.accepted = false
+        }
+    }
+
+    Binding {
+        target: checkBoxk
+        property: "checked"
+        value: root.selected
+    }
 }

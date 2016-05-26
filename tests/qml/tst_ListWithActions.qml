@@ -236,7 +236,12 @@ Item {
 
                     MouseArea {
                         objectName: "itemMouseArea"
-                        anchors.fill: parent
+                        anchors {
+                            left: parent.left
+                            top: parent.top
+                            bottom: parent.bottom
+                        }
+                        width: units.gu(6)
                         onClicked: {
                             itemWithMouseArea.clickCount++
                         }
