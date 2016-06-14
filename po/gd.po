@@ -8,32 +8,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-02-24 17:07-0300\n"
+"POT-Creation-Date: 2016-06-13 10:07-0300\n"
 "PO-Revision-Date: 2016-03-03 13:13+0000\n"
 "Last-Translator: GunChleoc <Unknown>\n"
 "Language-Team: Fòram na Gàidhlig\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-03-22 05:59+0000\n"
-"X-Generator: Launchpad (build 17958)\n"
+"X-Launchpad-Export-Date: 2016-06-14 06:21+0000\n"
+"X-Generator: Launchpad (build 18097)\n"
 "Language: gd\n"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:79
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
 msgid "%1 is locked"
 msgstr "Tha %1 glaiste"
 
 #. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:449
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:451
 msgid "+ Create New"
 msgstr "+ Cruthaich fear ùr"
 
-#: ../src/imports/Settings/SettingsPage.qml:76
+#: ../src/imports/Settings/SettingsPage.qml:85
 msgid "Add Google account"
 msgstr "Cuir cunntas Google ris"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:377
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:379
 msgid "Add field"
 msgstr "Cuir raon ris"
 
@@ -41,7 +41,7 @@ msgstr "Cuir raon ris"
 msgid "Add number..."
 msgstr "Cuir àireamh ris..."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:51
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:55
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:23
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailAddressesView.qml:24
 msgid "Address"
@@ -58,7 +58,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:477
+#: ../src/imports/ABContactListPage.qml:478
 msgid "All"
 msgstr "Na h-uile"
 
@@ -74,26 +74,26 @@ msgstr ""
 "A bheil thu cinnteach gu bheil thu airson an neach-aithne seo a thoirt air "
 "falbh?"
 
-#: ../src/imports/ABContactListPage.qml:616
+#: ../src/imports/ABContactListPage.qml:617
 msgid "Back"
 msgstr "Air ais"
 
 #: ../src/imports/ABContactEditorPage.qml:38
-#: ../src/imports/ABContactListPage.qml:497 ../src/imports/MainWindow.qml:210
+#: ../src/imports/ABContactListPage.qml:498 ../src/imports/MainWindow.qml:210
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "Sguir dheth"
 
-#: ../src/imports/ABContactListPage.qml:536
+#: ../src/imports/ABContactListPage.qml:537
 msgid "Cancel selection"
 msgstr "Sguir dhen taghadh"
 
-#: ../src/imports/ABContactListPage.qml:758
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:507
+#: ../src/imports/ABContactListPage.qml:760
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:521
 msgid "Close"
 msgstr "Dùin"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:488
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:502
 msgid "Contact Editor"
 msgstr "Deasaiche an luchd-aithne"
 
@@ -101,8 +101,8 @@ msgstr "Deasaiche an luchd-aithne"
 msgid "Contact not found"
 msgstr "Cha deach an neach-aithne a lorg"
 
-#: ../src/imports/ABContactListPage.qml:249
-#: ../src/imports/ABContactListPage.qml:289
+#: ../src/imports/ABContactListPage.qml:250
+#: ../src/imports/ABContactListPage.qml:290
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Luchd-aithne"
@@ -121,7 +121,7 @@ msgstr ""
 msgid "Country"
 msgstr "Dùthaich"
 
-#: ../src/imports/ABContactListPage.qml:697 ../src/imports/ABEmptyState.qml:55
+#: ../src/imports/ABContactListPage.qml:699 ../src/imports/ABEmptyState.qml:55
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
 "Grad-shlaighd suas o bhonn na sgrìn gus neach-aithne ùr a chruthachadh."
@@ -130,8 +130,8 @@ msgstr ""
 msgid "Default address book"
 msgstr "Leabhar nan seòladh tùsail"
 
-#: ../src/imports/ABContactListPage.qml:576
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:428
+#: ../src/imports/ABContactListPage.qml:577
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:442
 msgid "Delete"
 msgstr "Sguab às"
 
@@ -140,7 +140,7 @@ msgstr "Sguab às"
 msgid "Edit"
 msgstr "Deasaich"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:49
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:53
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailEmailsEditor.qml:24
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailEmailsView.qml:25
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailEmailsView.qml:28
@@ -168,19 +168,19 @@ msgstr "Mearachd"
 msgid "Exporting contacts..."
 msgstr "Ag às-phortadh an luchd-aithne..."
 
-#: ../src/imports/ABContactListPage.qml:845
+#: ../src/imports/ABContactListPage.qml:847
 msgid "Fail to import contacts!"
 msgstr "Dh’fhàillig ion-phortadh an luchd-aithne!"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:285
 msgid "Fail to read SIM card"
 msgstr "Cha deach leinn a' chairt SIM a leughadh"
 
-#: ../src/imports/ABContactListPage.qml:477
+#: ../src/imports/ABContactListPage.qml:478
 msgid "Favorites"
 msgstr "Annsachdan"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:85
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:88
 msgid "First name"
 msgstr "Ainm"
 
@@ -202,27 +202,27 @@ msgstr "ICQ"
 msgid "IM"
 msgstr "IM"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:216
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:58
 msgid "Import"
 msgstr "Ion-phortaich"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:513
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:515
 msgid "Import contacts from Google"
 msgstr "Ion-phortaich luchd-aithne o Google"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:524
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:526
 msgid "Import contacts from SIM card"
 msgstr "Ion-phortaich luchd-aithne on chairt SIM"
 
-#: ../src/imports/Settings/SettingsPage.qml:115
+#: ../src/imports/Settings/SettingsPage.qml:124
 msgid "Import from SIM"
 msgstr "Ion-phortaich on t-SIM"
 
-#: ../src/imports/ABContactListPage.qml:629
+#: ../src/imports/ABContactListPage.qml:630
 msgid "Imported contacts"
 msgstr "Luchd-aithne a chaidh ion-phortadh"
 
-#: ../src/imports/ABContactListPage.qml:749
+#: ../src/imports/ABContactListPage.qml:751
 msgid "Importing..."
 msgstr "'Ga ion-phortachadh..."
 
@@ -230,12 +230,12 @@ msgstr "'Ga ion-phortachadh..."
 msgid "Jabber"
 msgstr "Jabber"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:86
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:92
 msgid "Last name"
 msgstr "Sloinneadh"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:597
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:244
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:599
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "'Ga luchdadh..."
 
@@ -247,6 +247,14 @@ msgstr "Àite"
 msgid "MSN"
 msgstr "MSN"
 
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:62
+msgid "Middle Name"
+msgstr ""
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:90
+msgid "Middle name"
+msgstr ""
+
 #. TRANSLATORS: This refers to mobile/cellphone phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
 msgid "Mobile"
@@ -256,13 +264,13 @@ msgstr "Fòn-làimhe"
 msgid "Multiple contacts"
 msgstr "Iomadh neach-aithne"
 
-#: ../src/imports/Settings/SettingsPage.qml:61
+#: ../src/imports/Settings/SettingsPage.qml:70
 #, qt-format
 msgid "My phone number: %1"
 msgstr "An àireamh fòn agam: %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:189
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:457
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:459
 msgid "New contact"
 msgstr "Neach-aithne ùr"
 
@@ -284,12 +292,12 @@ msgstr "Cha deach neach-aithne a thaghadh."
 msgid "No contacts"
 msgstr "Chan eil neach-aithne ann"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:112
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:155
 msgid "No contacts found"
 msgstr "Cha deach neach-aithne sam bith a lorg"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:49
-#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:76
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:58
 #: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:80
 msgid "No name"
 msgstr "Gun ainm"
@@ -311,7 +319,7 @@ msgstr "Eile"
 msgid "Personal - %1"
 msgstr "Pearsanta - %1"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:47
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:51
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:23
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailPhoneNumbersView.qml:29
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailPhoneNumbersView.qml:32
@@ -322,17 +330,17 @@ msgstr "Fòn"
 msgid "Post code"
 msgstr "Còd-puist"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:55
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:59
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:21
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailOrganizationsView.qml:24
 msgid "Professional Details"
 msgstr "Fiosrachadh obrach"
 
-#: ../src/imports/ABContactListPage.qml:410
+#: ../src/imports/ABContactListPage.qml:411
 msgid "Quit"
 msgstr "Fàg an-seo"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Reading contacts from SIM..."
 msgstr "A' leughadh luchd-aithne o SIM..."
 
@@ -344,12 +352,12 @@ msgstr "Roinn-dùthcha"
 msgid "Role"
 msgstr "Dreuchd"
 
-#: ../src/imports/Settings/SettingsPage.qml:62
+#: ../src/imports/Settings/SettingsPage.qml:71
 #, qt-format
 msgid "SIM %1"
 msgstr "SIM %1"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:36
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:39
 msgid "SIM contacts"
 msgstr "Luchd-aithne an t-SIM"
 
@@ -357,29 +365,29 @@ msgstr "Luchd-aithne an t-SIM"
 msgid "Save"
 msgstr "Sàbhail"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Saving contacts on phone..."
 msgstr "A' sàbhaladh luchd-aithne air a' fòn..."
 
-#: ../src/imports/ABContactListPage.qml:420
+#: ../src/imports/ABContactListPage.qml:421
 msgid "Search"
 msgstr "Lorg"
 
-#: ../src/imports/ABContactListPage.qml:385
+#: ../src/imports/ABContactListPage.qml:386
 msgid "Search..."
 msgstr "Lorg..."
 
-#: ../src/imports/ABContactListPage.qml:546
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:204
+#: ../src/imports/ABContactListPage.qml:547
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
 msgstr "Tagh na h-uile"
 
-#: ../src/imports/ABContactListPage.qml:467
-#: ../src/imports/Settings/SettingsPage.qml:30
+#: ../src/imports/ABContactListPage.qml:468
+#: ../src/imports/Settings/SettingsPage.qml:33
 msgid "Settings"
 msgstr "Roghainnean"
 
-#: ../src/imports/ABContactListPage.qml:559
+#: ../src/imports/ABContactListPage.qml:560
 #: ../src/imports/ABContactViewPage.qml:75
 msgid "Share"
 msgstr "Co-roinn"
@@ -388,7 +396,7 @@ msgstr "Co-roinn"
 msgid "Skype"
 msgstr "Skype"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:53
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:57
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailOnlineAccountsView.qml:26
 msgid "Social"
 msgstr "Sòisealta"
@@ -397,15 +405,15 @@ msgstr "Sòisealta"
 msgid "Street"
 msgstr "Sràid"
 
-#: ../src/imports/ABContactListPage.qml:455
+#: ../src/imports/ABContactListPage.qml:456
 msgid "Sync"
 msgstr "Sioncronaich"
 
-#: ../src/imports/ABContactListPage.qml:455
+#: ../src/imports/ABContactListPage.qml:456
 msgid "Syncing"
 msgstr "'Ga shioncronachadh"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:597
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:599
 msgid "Syncing..."
 msgstr "'Ga shioncronachadh..."
 
@@ -417,16 +425,16 @@ msgstr "Tiotal"
 msgid "Touch"
 msgstr "Beantainn"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:81
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:124
 msgid "Unlock"
 msgstr "Thoir a' ghlas dheth"
 
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:253
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
 msgid "Unlocking..."
 msgstr "’Ga neo-ghlasadh..."
 
-#: ../src/imports/ABContactListPage.qml:546
-#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:203
+#: ../src/imports/ABContactListPage.qml:547
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
 msgstr "Dì-thagh na h-uile"
 
@@ -449,11 +457,11 @@ msgstr "Yahoo"
 msgid "Yes"
 msgstr "Tha"
 
-#: ../src/imports/ABContactListPage.qml:696
+#: ../src/imports/ABContactListPage.qml:698
 msgid "You have no contacts."
 msgstr "Chan eil neach-aithne agad."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:501
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:515
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded by running Contacts "
@@ -465,7 +473,7 @@ msgstr ""
 "Chan urrainn dhut ach luchd-aithne ionadail a dheasachadh gus an deach an t-"
 "ùrachadh a choileanadh."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:492
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:506
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
@@ -475,7 +483,7 @@ msgstr ""
 "Fuirich ort gus an deach an t-àrdachadh a choileanadh is deasaich luchd-"
 "aithne an uairsin."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:497
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:511
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded. Use the sync "
