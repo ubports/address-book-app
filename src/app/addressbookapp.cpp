@@ -48,7 +48,7 @@ static void printUsage(const QStringList& arguments)
              << "[addressbook:///create?phone=<phone-number>]"
              << "[addressbook:///pick?single=<true/false>]"
              << "[addressbook:///importvcard?url=<vcard-file>]"
-             << "[addressbook:///createAccount]""
+             << "[addressbook:///createAccount]"
              << "[--fullscreen]"
              << "[--help]"
              << "[-testability]";
