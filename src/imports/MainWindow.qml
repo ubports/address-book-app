@@ -83,7 +83,8 @@ MainView {
     function createAccount()
     {
         if (mainStack.contactListPage) {
-            mainStack.contactListPage.contactListItem.createOnlineAccount(true)
+            mainStack.resetStack()
+            mainStack.contactListPage.contactListItem.createOnlineAccount()
         } else {
             console.error("Create online account requested but ContactListPage not loaded")
         }
@@ -120,7 +121,10 @@ MainView {
 
         function resetStack()
         {
+            if (bottomEdge)
+                bottomEdge.collapse()
             mainStack.removePages(primaryPage);
+
         }
 
         function _nextItemInFocusChain(item, foward)

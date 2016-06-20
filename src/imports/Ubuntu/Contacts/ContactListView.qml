@@ -287,6 +287,10 @@ FocusScope {
       This handler is called when any contact in the list receives a click
     */
     signal contactClicked(QtObject contact)
+    /*!
+      This handler is called when online account operation finish
+    */
+    signal onlineAccountFinished()
 
     function startSelection()
     {
@@ -381,9 +385,9 @@ FocusScope {
     /*!
       start an online account creation
     */
-    function createOnlineAccount(exitOnFinish)
+    function createOnlineAccount()
     {
-        onlineAccountHelper.start(exitOnFinish)
+        onlineAccountHelper.start()
     }
 
     focus: true
@@ -650,13 +654,12 @@ FocusScope {
                                       Qt.resolvedUrl("OnlineAccountsDummy.qml") :
                                       Qt.resolvedUrl("OnlineAccountsHelper.qml")
 
-        function start(exitOnFinish)
+        function start()
         {
             if (root.onlineAccountApplicationId !== "address-book-app") {
                 // invoke address book app
-                Qt.openUrlExternally("addressbook:///createAccount")
+                Qt.openUrlExternally("addressbook:///createAccount?callback=" + root.onlineAccountApplicationId)
             } else {
-                onlineAccountHelper.exitOnFinish = exitOnFinish
                 if (item)
                     item.setupExec()
                 else
@@ -679,11 +682,7 @@ FocusScope {
 
         Connections {
             target: onlineAccountHelper.item ? onlineAccountHelper.item : null
-            onFinished: {
-                if (onlineAccountHelper.exitOnFinish) {
-                    application.quit()
-                }
-            }
+            onFinished: root.onlineAccountFinished()
         }
 
         Binding {

@@ -340,6 +340,12 @@ Page {
                 mainPage.delayFetchContact()
         }
 
+        onOnlineAccountFinished: {
+            if (mainPage.allowToQuit) {
+                application.goBackToSourceApp()
+            }
+        }
+
         Keys.onReturnPressed: {
             var currentContact = contactList.listModel.contacts[contactList.currentIndex]
             if (mainPage.currentViewContactId === currentContact.contactId)
