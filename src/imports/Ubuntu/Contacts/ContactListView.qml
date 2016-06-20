@@ -372,6 +372,14 @@ FocusScope {
        buteoSync.startSyncByCategory("contacts")
     }
 
+    /*!
+      start an online account creation
+    */
+    function createOnlineAccount(exitOnFinish)
+    {
+        onlineAccountHelper.start(exitOnFinish)
+    }
+
     focus: true
 
     ContactSimpleListView {
@@ -513,7 +521,7 @@ FocusScope {
                     expandIcon: true
                     iconSource: "image://theme/google"
                     labelText: i18n.dtr("address-book-app", "Import contacts from Google")
-                    onClicked: onlineAccountHelper.item.setupExec()
+                    onClicked: root.createOnlineAccount()
                 }
 
                 // Import from sim card
@@ -628,11 +636,22 @@ FocusScope {
         id: onlineAccountHelper
         objectName: "onlineAccountHelper"
 
+        property bool createAccount: false
+        property bool exitOnFinish: false
         readonly property bool isSearching: (root.filterTerm && root.filterTerm !== "")
         // if running on test mode does not load online account modules
-        property string sourceFile: (typeof(runningOnTestMode) !== "undefined") ?
+        readonly property string sourceFile: (typeof(runningOnTestMode) !== "undefined") ?
                                       Qt.resolvedUrl("OnlineAccountsDummy.qml") :
                                       Qt.resolvedUrl("OnlineAccountsHelper.qml")
+
+        function start(exitOnFinish)
+        {
+            onlineAccountHelper.exitOnFinish = exitOnFinish
+            if (item)
+                item.setupExec()
+            else
+                createAccount = true
+        }
 
         anchors.fill: parent
         asynchronous: true
@@ -640,6 +659,21 @@ FocusScope {
                 (root.count === 0) &&
                 !view.favouritesIsSelected &&
                 !isSearching ? sourceFile : ""
+        onStatusChanged: {
+            if (createAccount && (status === Loader.Ready)) {
+                createAccount = false
+                item.setupExec()
+            }
+        }
+
+        Connections {
+            target: onlineAccountHelper.item ? onlineAccountHelper.item : null
+            onFinished: {
+                if (onlineAccountHelper.exitOnFinish) {
+                    application.quit()
+                }
+            }
+        }
     }
 
     Keys.onUpPressed: {

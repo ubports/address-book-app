@@ -49,6 +49,7 @@ Page {
     readonly property var contactModel: contactList.listModel ? contactList.listModel : null
     readonly property bool searching: state === "searching"
     readonly property string headerTitle: pageHeader.title
+    readonly property alias contactListItem: contactList
 
     // this function is used to reset the contact list page to the default state if it was called
     // from the uri. For example when called to add a new contact

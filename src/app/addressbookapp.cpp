@@ -337,6 +337,8 @@ void AddressBookApp::parseUrl(const QString &arg)
         args << "url";
         methodsMetaData.insert("importvcard", args);
         args.clear();
+
+        methodsMetaData.insert("createAccount", args);
     }
 
     QUrlQuery query(url);

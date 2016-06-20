@@ -80,6 +80,15 @@ MainView {
         }
     }
 
+    function createAccount()
+    {
+        if (mainStack.contactListPage) {
+            mainStack.contactListPage.contactListItem.createOnlineAccount(true)
+        } else {
+            console.error("Create online account requested but ContactListPage not loaded")
+        }
+    }
+
     width: units.gu(90)
     height: units.gu(71)
     anchorToKeyboard: false

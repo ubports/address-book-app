@@ -23,6 +23,7 @@ Item {
     id: root
 
     property bool running: false
+    signal finished()
 
     function setupExec()
     {
@@ -37,6 +38,7 @@ Item {
         providerId: "google"
         onFinished: {
             root.running = false
+            root.finished()
         }
     }
 }
