@@ -253,6 +253,12 @@ FocusScope {
     //because of that we need this
     property bool _allowFocus: true
 
+
+    /*!
+      This property holds the application id used to request access to online accounts
+    */
+    property string onlineAccountApplicationId: "address-book-app"
+
     /*!
       This handler is called when the selection mode is finished without be canceled
     */
@@ -646,11 +652,16 @@ FocusScope {
 
         function start(exitOnFinish)
         {
-            onlineAccountHelper.exitOnFinish = exitOnFinish
-            if (item)
-                item.setupExec()
-            else
-                createAccount = true
+            if (root.onlineAccountApplicationId !== "address-book-app") {
+                // invoke address book app
+                Qt.openUrlExternally("addressbook:///createAccount")
+            } else {
+                onlineAccountHelper.exitOnFinish = exitOnFinish
+                if (item)
+                    item.setupExec()
+                else
+                    createAccount = true
+            }
         }
 
         anchors.fill: parent
@@ -673,6 +684,13 @@ FocusScope {
                     application.quit()
                 }
             }
+        }
+
+        Binding {
+            target: onlineAccountHelper.item
+            property: "applicationId"
+            value: root.onlineAccountApplicationId
+            when: onlineAccountHelper.status == Loader.Ready
         }
     }
 
