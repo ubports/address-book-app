@@ -527,7 +527,7 @@ FocusScope {
                     expandIcon: true
                     iconSource: "image://theme/google"
                     labelText: i18n.dtr("address-book-app", "Import contacts from Google")
-                    onClicked: root.createOnlineAccount()
+                    onClicked: root.createOnlineAccount(false)
                 }
 
                 // Import from sim card

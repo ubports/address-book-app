@@ -25,6 +25,9 @@ import "ContactUtil.js" as ContactUtilJS
 Item {
     id: root
 
+    property var pageStack: Item {
+        property bool hasKeyboard: false
+    }
     property var application
     property var contactListViewObj
     // enable dummy mode for contact list view
