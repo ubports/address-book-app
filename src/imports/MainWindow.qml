@@ -80,6 +80,16 @@ MainView {
         }
     }
 
+    function createAccount()
+    {
+        if (mainStack.contactListPage) {
+            mainStack.resetStack()
+            mainStack.contactListPage.contactListItem.createOnlineAccount()
+        } else {
+            console.error("Create online account requested but ContactListPage not loaded")
+        }
+    }
+
     width: units.gu(90)
     height: units.gu(71)
     anchorToKeyboard: false
@@ -111,7 +121,10 @@ MainView {
 
         function resetStack()
         {
+            if (bottomEdge)
+                bottomEdge.collapse()
             mainStack.removePages(primaryPage);
+
         }
 
         function _nextItemInFocusChain(item, foward)
