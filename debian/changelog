@@ -1,3 +1,10 @@
+address-book-app (0.2+16.10.20160621.3-0ubuntu1) yakkety; urgency=medium
+
+  * Allow modify "ApplicationId" used by online account. (LP: #1583014)
+  * Does not autoremove temporary avatar. (LP: #1565941)
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Tue, 21 Jun 2016 15:16:05 +0000
+
 address-book-app (0.2+16.10.20160526-0ubuntu1) yakkety; urgency=medium
 
   [ CI Train Bot ]
