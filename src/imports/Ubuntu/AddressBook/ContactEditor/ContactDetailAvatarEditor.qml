@@ -144,9 +144,6 @@ ContactDetailBase {
     }
 
     Component.onDestruction: {
-        Contacts.removeFile("file:///" + root.temporaryAvatar)
         root.temporaryAvatar = ""
     }
 }
-
-

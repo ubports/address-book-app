@@ -100,7 +100,6 @@ void ImageScaleThread::run()
         scaledAvatar.save(m_tmpFile, "png");
     }
 
-    m_tmpFile->setAutoRemove(false);
     m_tmpFile->close();
 
     if (m_listener) {
