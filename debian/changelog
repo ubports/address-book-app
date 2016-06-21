@@ -1,3 +1,30 @@
+address-book-app (0.2+16.10.20160526-0ubuntu1) yakkety; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Propagate mouse click on ListItemWithActions. (LP: #1585791)
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Thu, 26 May 2016 18:54:06 +0000
+
+address-book-app (0.2+16.10.20160520-0ubuntu1) yakkety; urgency=medium
+
+  [ CI Train Bot ]
+  * Resync trunk.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Implemented support for middle-name. (LP: #1375933, #1548783)
+  * Make sure that click on check box select a contact during the multi-
+    selection.
+  * Make sure that the contact list scroll to correct contact on dual
+    panel mode.
+  * Trim search term before query. (LP: #1467271)
+  * Update most called model to use new history API. Avoid scroll back
+    contact list after load it. (LP: #1488063)
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Fri, 20 May 2016 14:23:10 +0000
+
 address-book-app (0.2+16.04.20160426-0ubuntu1) xenial; urgency=medium
 
   * Fixed page header.

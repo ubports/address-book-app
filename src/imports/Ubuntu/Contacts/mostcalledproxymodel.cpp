@@ -225,10 +225,13 @@ void MostCalledContactsModel::queryContacts()
             break;
         }
 
-        QVariant participants = getSourceData(row, participantsRole);
-        if (participants.isValid()) {
-            Q_FOREACH(const QString phone, participants.toStringList()) {
-                m_phones << phone;
+        QVariant data = getSourceData(row, participantsRole);
+        if (data.isValid()) {
+            const QVariantList participants = data.toList();
+            Q_FOREACH(const QVariant &map, participants) {
+                const QString phone =  map.toMap().value("identifier").toString();
+                if (!phone.isEmpty())
+                    m_phones << phone;
             }
         }
 

@@ -253,7 +253,6 @@ Item {
        }
     }
 
-
     Rectangle {
         id: main
         objectName: "mainItem"
@@ -272,6 +271,7 @@ Item {
 
         Loader {
             id: selectionIcon
+            objectName: "selectionIcon"
 
             anchors {
                 left: main.left
@@ -285,7 +285,6 @@ Item {
                 }
             }
         }
-
 
         Item {
             id: mainContents
@@ -394,6 +393,7 @@ Item {
         property real lastX: -1
 
         anchors.fill: parent
+        z: -1
         drag {
             target: locked ? null : main
             axis: Drag.XAxis
@@ -474,6 +474,5 @@ Item {
                 root.itemPressAndHold(mouse)
             }
         }
-        z: -1
     }
 }
