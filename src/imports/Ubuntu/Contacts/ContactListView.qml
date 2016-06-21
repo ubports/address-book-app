@@ -658,7 +658,7 @@ FocusScope {
         {
             if (root.onlineAccountApplicationId !== "address-book-app") {
                 // invoke address book app
-                Qt.openUrlExternally("addressbook:///createAccount?callback=" + root.onlineAccountApplicationId)
+                Qt.openUrlExternally("addressbook:///createAccount?callback=%1.desktop".arg(root.onlineAccountApplicationId))
             } else {
                 if (item)
                     item.setupExec()
