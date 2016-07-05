@@ -57,11 +57,7 @@ enable_testing()
 if(CLICK_MODE)
     set(QT_IMPORTS_DIR "${ADDRESS_BOOK_APP_DIR}/imports/")
 else()
-    execute_process(
-        COMMAND qmake -query QT_INSTALL_QML
-        OUTPUT_VARIABLE QT_IMPORTS_DIR
-        OUTPUT_STRIP_TRAILING_WHITESPACE
-    )
+    set(QT_IMPORTS_DIR "${CMAKE_INSTALL_LIBDIR}/qt5/qml")
 endif()
 if(CLICK_MODE)
     set(CLICK_MODE_ENABLED 1)
