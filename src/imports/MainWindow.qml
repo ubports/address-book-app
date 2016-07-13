@@ -160,7 +160,7 @@ MainView {
         anchors.fill: parent
         layouts: [
             PageColumnsLayout {
-                when: mainStack.width >= units.gu(90)
+                when: mainStack.width >= units.gu(70)
                 PageColumn {
                     maximumWidth: units.gu(50)
                     minimumWidth: units.gu(40)
@@ -181,9 +181,15 @@ MainView {
         onColumnsChanged: {
             if (mainStack.columns > 1) {
                 if (mainStack.contactListPage)
-                    mainStack.contactListPage.delayFetchContact()
+                {
+                    if (!mainStack.contactListPage.hasChildPage())
+                        mainStack.contactListPage.delayFetchContact()
+                }
                 else
-                    mainStack.addPageToNextColumn(contactPage, Qt.resolvedUrl("./ABMultiColumnEmptyState.qml"))
+                {
+                    if (!contactPage.hasChildPage())
+                        mainStack.addPageToNextColumn(contactPage, Qt.resolvedUrl("./ABMultiColumnEmptyState.qml"))
+                }
             }
         }
     }
