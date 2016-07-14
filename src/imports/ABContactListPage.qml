@@ -33,6 +33,7 @@ Page {
 
     property var viewPage: null
     property var emptyPage: null
+    property var settingsPage: null
     property bool pickMode: false
     property alias contentHubTransfer: contactExporter.activeTransfer
     property bool pickMultipleContacts: false
@@ -80,6 +81,16 @@ Page {
         viewPage = null
     }
 
+    function clearSettingsPage()
+    {
+        settingsPage = null
+    }
+
+    function hasChildPage()
+    {
+        return (settingsPage != null);
+    }
+
     function openViewPage(viewPageProperties)
     {
         if (currentViewContactId === viewPageProperties.contact.contactId) {
@@ -123,7 +134,7 @@ Page {
             contactList.currentIndex = -1
             pageStack.removePages(mainPage)
 
-            if (pageStack.columns > 1) {
+            if ((pageStack.columns > 1) && !hasChildPage()) {
                 emptyPage  = pageStack.addFileToNextColumnSync(pageStack.primaryPage,
                                                                         Qt.resolvedUrl("ABMultiColumnEmptyState.qml"),
                                                                         { 'headerTitle': "",
@@ -145,19 +156,18 @@ Page {
     {
         pageStack.removePages(mainPage)
 
-        var incubator = pageStack.addPageToNextColumn(mainPage,
-                                                      Qt.resolvedUrl("./Settings/SettingsPage.qml"),
-                                                     {"contactListModel": contactList.listModel})
-        incubator.onStatusChanged = function(status) {
-            if (status === Component.Ready) {
-                incubator.object.onActiveChanged.connect(function(active) {
-                    if (!incubator.object.active) {
-                        mainPage.delayFetchContact()
-                        contactList.forceActiveFocus()
-                    }
-                })
-            }
+
+        if (settingsPage) {
+            settingsPage.Component.onDestruction.disconnect(clearSettingsPage)
         }
+
+        pageStack.removePages(mainPage)
+        viewPage = null
+
+        settingsPage = pageStack.addFileToNextColumnSync(mainPage,
+                                                         Qt.resolvedUrl("./Settings/SettingsPage.qml"),
+                                                        {"contactListModel": contactList.listModel})
+        settingsPage.Component.onDestruction.connect(clearSettingsPage)
     }
 
     function showContactWithId(contactId)
@@ -236,7 +246,6 @@ Page {
                 return
             }
 
-            console.debug("Will fetch new contact")
             contactList.view._fetchContact(contactList.currentIndex, currentContact)
         }
     }
