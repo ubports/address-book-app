@@ -1,3 +1,9 @@
+address-book-app (0.2+16.10.20160714.1-0ubuntu1) yakkety; urgency=medium
+
+  * Does not close settings page if rotate the device while it is open.
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Thu, 14 Jul 2016 18:24:14 +0000
+
 address-book-app (0.2+16.10.20160621.3-0ubuntu1) yakkety; urgency=medium
 
   * Allow modify "ApplicationId" used by online account. (LP: #1583014)
