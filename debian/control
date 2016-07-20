@@ -29,7 +29,7 @@ Build-Depends: cmake,
                libqofono-dev,
                thumbnailer-service,
                xvfb [i386 amd64 arm64 armhf],
-               lsb-release, # Temporarily for bileto_pre_release_hook
+               lsb-release,
 Standards-Version: 3.9.5
 Homepage: https://launchpad.net/address-book-app
 # If you aren't a member of ~phablet-team but need to upload packaging changes,
