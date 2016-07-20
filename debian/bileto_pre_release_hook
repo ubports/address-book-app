@@ -1,0 +1,23 @@
+# Temporary bilet pre-release hook that disables arm64 builds for non-xenial
+# series. This needs to be removed as the new oxide-qt fixing LP: #1582638
+# lands in the primary archive.
+# Bug for tracking this: http://pad.lv/1604869
+
+#!/bin/sh
+
+set -e  # Fail if any command fails.
+
+progname=$(basename $0)
+
+[ $# -gt 1 ] && {
+    echo "usage: $progname [path-to-debian-dir]" >&2
+    exit 1
+}
+dir=$1
+
+[ -n "$dir" ] || dir="./debian"
+[ -n "$SERIES" ] || SERIES="$(lsb_release -c -s)"
+
+if [ "$SERIES" != "xenial" ]; then
+    sed -i 's/ arm64 / /' $dir/control
+fi
