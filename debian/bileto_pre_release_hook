@@ -18,6 +18,10 @@ dir=$1
 [ -n "$dir" ] || dir="./debian"
 [ -n "$SERIES" ] || SERIES="$(lsb_release -c -s)"
 
+# We do it in this way as we do not want to modify the debian/control field
+# with any 'special' tags
 if [ "$SERIES" != "xenial" ]; then
-    sed -i 's/ arm64 / /' $dir/control
+    sed -i 's/i386 amd64 arm64 armhf/i386 amd64 armhf/' $dir/control
+else
+    sed -i 's/i386 amd64 armhf/i386 amd64 arm64 armhf/' $dir/control
 fi
