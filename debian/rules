@@ -21,5 +21,5 @@ override_dh_strip:
 override_dh_auto_clean:
 	# Temporarily use a bileto_pre_release_hook to only build arm64
 	# binaries for xenial. Be sure to remove this!
-	SERIES=yakkety /bin/sh $(CURDIR)/debian/bileto_pre_release_hook
+	/bin/sh $(CURDIR)/debian/bileto_pre_release_hook
 	dh_auto_clean
