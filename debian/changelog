@@ -1,3 +1,14 @@
+address-book-app (0.2+16.10.20160722.1-0ubuntu1) yakkety; urgency=medium
+
+  [ Łukasz 'sil2100' Zemczak ]
+  * Build address-book-app for arm64 as well.
+  * Add a temporary bileto_pre_release_hook that disables arm64 binary
+    package builds for anything that's not xenial (LP: #1604869). Add
+    the build-dependency of lsb-release for the use of the bileto hook.
+    (LP: #1604869)
+
+ -- Łukasz Zemczak <lukasz.zemczak@canonical.com>  Fri, 22 Jul 2016 15:24:10 +0000
+
 address-book-app (0.2+16.10.20160714.1-0ubuntu1) yakkety; urgency=medium
 
   * Does not close settings page if rotate the device while it is open.
