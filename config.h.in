@@ -7,6 +7,7 @@
 #define ADDRESS_BOOK_APP_DEV_DATADIR        "@address-book-app-src_SOURCE_DIR@"
 #define ADDRESS_BOOK_APP_BINDIR             "@ADDRESS_BOOK_APP_BINDIR@"
 #define ADDRESS_BOOK_DEV_BINDIR             "@CMAKE_BINARY_DIR@"
+#define SNAP_PATH                           "SNAP"
 #define QT_EXTRA_IMPORTS_DIR                "@QT_EXTRA_IMPORTS_DIR@"
 #define ADDRESS_BOOK_APP_CLICK_PACKAGE      "@CLICK_MODE@"
 #define I18N_DIRECTORY                      "@CMAKE_INSTALL_PREFIX@/share/locale"
