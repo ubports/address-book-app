@@ -20,9 +20,23 @@ Item {
     id: root
 
     property bool running: false
+    property string applicationId: "address-book"
+    signal finished()
 
     function setupExec()
     {
         root.running = true
+        fakeEnd.start()
+    }
+
+    Timer {
+        id: fakeEnd
+
+        running: false
+        interval: 500
+        onTriggered: {
+            root.running = false
+            root.finished()
+        }
     }
 }

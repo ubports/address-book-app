@@ -253,6 +253,12 @@ FocusScope {
     //because of that we need this
     property bool _allowFocus: true
 
+
+    /*!
+      This property holds the application id used to request access to online accounts
+    */
+    property string onlineAccountApplicationId: "address-book-app"
+
     /*!
       This handler is called when the selection mode is finished without be canceled
     */
@@ -281,6 +287,10 @@ FocusScope {
       This handler is called when any contact in the list receives a click
     */
     signal contactClicked(QtObject contact)
+    /*!
+      This handler is called when online account operation finish
+    */
+    signal onlineAccountFinished()
 
     function startSelection()
     {
@@ -370,6 +380,14 @@ FocusScope {
     function sync()
     {
        buteoSync.startSyncByCategory("contacts")
+    }
+
+    /*!
+      start an online account creation
+    */
+    function createOnlineAccount()
+    {
+        onlineAccountHelper.start()
     }
 
     focus: true
@@ -513,7 +531,7 @@ FocusScope {
                     expandIcon: true
                     iconSource: "image://theme/google"
                     labelText: i18n.dtr("address-book-app", "Import contacts from Google")
-                    onClicked: onlineAccountHelper.item.setupExec()
+                    onClicked: root.createOnlineAccount(false)
                 }
 
                 // Import from sim card
@@ -628,11 +646,26 @@ FocusScope {
         id: onlineAccountHelper
         objectName: "onlineAccountHelper"
 
+        property bool createAccount: false
+        property bool exitOnFinish: false
         readonly property bool isSearching: (root.filterTerm && root.filterTerm !== "")
         // if running on test mode does not load online account modules
-        property string sourceFile: (typeof(runningOnTestMode) !== "undefined") ?
+        readonly property string sourceFile: (typeof(runningOnTestMode) !== "undefined") ?
                                       Qt.resolvedUrl("OnlineAccountsDummy.qml") :
                                       Qt.resolvedUrl("OnlineAccountsHelper.qml")
+
+        function start()
+        {
+            if (root.onlineAccountApplicationId !== "address-book-app") {
+                // invoke address book app
+                Qt.openUrlExternally("addressbook:///createAccount?callback=%1.desktop".arg(root.onlineAccountApplicationId))
+            } else {
+                if (item)
+                    item.setupExec()
+                else
+                    createAccount = true
+            }
+        }
 
         anchors.fill: parent
         asynchronous: true
@@ -640,6 +673,24 @@ FocusScope {
                 (root.count === 0) &&
                 !view.favouritesIsSelected &&
                 !isSearching ? sourceFile : ""
+        onStatusChanged: {
+            if (createAccount && (status === Loader.Ready)) {
+                createAccount = false
+                item.setupExec()
+            }
+        }
+
+        Connections {
+            target: onlineAccountHelper.item ? onlineAccountHelper.item : null
+            onFinished: root.onlineAccountFinished()
+        }
+
+        Binding {
+            target: onlineAccountHelper.item
+            property: "applicationId"
+            value: root.onlineAccountApplicationId
+            when: onlineAccountHelper.status == Loader.Ready
+        }
     }
 
     Keys.onUpPressed: {
