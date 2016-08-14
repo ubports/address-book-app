@@ -156,7 +156,7 @@ class AddressBookAppTestCase(AutopilotTestCase):
         self.assertThat(field.activeFocus, Eventually(Equals(True)))
 
         # click on clear button
-        clear_button = field.select_single("AbstractButton")
+        clear_button = field.select_single(objectName='clear_button')
         self.pointing_device.click_object(clear_button)
         self.assertThat(field.text, Eventually(Equals("")))
 
