@@ -16,8 +16,10 @@ from address_book_app.tests import AddressBookAppTestCase
 from address_book_app import helpers
 
 
-@skipUnless(helpers.is_phonesim_running(),
-            "this test needs to run under with-ofono-phonesim")
+#@skipUnless(helpers.is_phonesim_running(),
+#            "this test needs to run under with-ofono-phonesim")
+@skipUnless(False,
+            "skip this test due bug lp:1532795")
 class TestImportFromSimContact(AddressBookAppTestCase):
     """Tests import a contact from sim card"""
 
@@ -31,7 +33,7 @@ class TestImportFromSimContact(AddressBookAppTestCase):
             view.busy,
             Eventually(Equals(False), timeout=30))
 
-    def test_impot_item_is_visible_on_the_list(self):
+    def test_import_item_is_visible_on_the_list(self):
         # contact list is empty
         list_page = self.app.main_window.get_contact_list_page()
         self.assertThat(len(list_page.get_contacts()), Equals(0))
