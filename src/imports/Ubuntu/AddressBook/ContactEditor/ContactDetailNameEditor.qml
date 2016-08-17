@@ -96,11 +96,15 @@ ContactDetailItem {
         }
 
         focus: true
-        width: root.width - units.gu(4)
-        x: units.gu(2)
+        anchors {
+            left: parent.left
+            right: parent.right
+            margins: units.gu(2)
+        }
+        height: units.gu(4)
         detail: root.detail
         visible: field === Name.MiddleName ? root.showMiddleName : true
-        height: visible ? units.gu(4) : 0
+
         placeholderText: placeholderTextFromField(field)
         inputMethodHints: Qt.ImhNoPredictiveText
         onTextChanged: checkIsEmpty()

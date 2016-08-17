@@ -306,7 +306,6 @@ Page {
 
         focus: true
         showImportOptions: !mainPage.pickMode &&
-                           pageStack.bottomEdge &&
                            !pageStack.bottomEdgeOpened
         anchors {
             top: parent.top

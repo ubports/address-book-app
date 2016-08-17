@@ -82,9 +82,8 @@ BottomEdge {
         ABContactEditorPage {
             id: editorPageItem
 
-            //active: false
             implicitHeight: mainWindow.height
-            //implicitWidth: bottomEdge.width
+            implicitWidth: parent ? parent.width : bottomEdge.width
             enabled: active
             model: bottomEdge.modelToEdit
             contact: ContactsUI.ContactsJS.createEmptyContact("", editorPageItem)
