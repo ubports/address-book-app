@@ -234,7 +234,7 @@ Page {
 
     function fetchContact()
     {
-        if (pageStack.columns > 1 && !contactList.showNewContact) {
+        if (pageStack.columns > 1 && !contactList.showNewContact && !pageStack.bottomEdgeOpened) {
             var currentContact = null
             if (contactList.currentIndex >= 0)
                 currentContact = contactList.listModel.contacts[contactList.currentIndex]
@@ -307,7 +307,7 @@ Page {
         focus: true
         showImportOptions: !mainPage.pickMode &&
                            pageStack.bottomEdge &&
-                           (pageStack.bottomEdge.status !== BottomEdge.Committed)
+                           !pageStack.bottomEdgeOpened
         anchors {
             top: parent.top
             topMargin: pageHeader.height
@@ -319,7 +319,7 @@ Page {
         filterTerm: searchField.text
         multiSelectionEnabled: true
         multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
-        showNewContact: (pageStack.columns > 1) && pageStack.bottomEdge && (pageStack.bottomEdge.status === BottomEdge.Committed)
+        showNewContact: (pageStack.columns > 1) && pageStack.bottomEdgeOpened
         highlightSelected: !showNewContact && pageStack.hasKeyboard && !mainPage._creatingContact
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
         onContactClicked: mainPage.showContact(contact)
@@ -367,7 +367,7 @@ Page {
         //because of that we need this
         Keys.onRightPressed: {
             // only move focus away when in edit mode
-            if (pageStack.bottomEdge.status === BottomEdge.Committed) {
+            if (pageStack.bottomEdgeOpened) {
                 var next = pageStack._nextItemInFocusChain(view, true)
                 if (next === searchField) {
                     pageStack._nextItemInFocusChain(next, true)
@@ -444,24 +444,29 @@ Page {
                             viewPage.cancelEdit()
                         }
 
-                        mainPage.state = "searching"
-                        contactList.showAllContacts()
-                        if (pageStack.bottomEdge) {
-                            pageStack.bottomEdge.collapse()
+
+                        if (pageStack.bottomEdgeOpened) {
+                            pageStack.closeBottomEdge()
                         } else {
                             showEmptyPage(false)
                         }
+                        mainPage.state = "searching"
+                        contactList.showAllContacts()
                         searchField.forceActiveFocus()
                     }
                 },
                 Action {
                     iconName: "contact-new"
-                    enabled: visible && (!pageStack.bottomEdge || (pageStack.bottomEdge.enabled && (pageStack.bottomEdge.status === BottomEdge.Hidden)))
+                    enabled: visible && !pageStack.bottomEdgeOpened
                     visible: (pageStack.columns > 1)
                     shortcut: "Ctrl+N"
                     onTriggered: {
-                        if (pageStack.bottomEdge) {
-                            pageStack.bottomEdge.commit()
+                        if (!pageStack.bottomEdgeOpened) {
+                            if (viewPage) {
+
+                            }
+
+                            pageStack._bottomEdge.commit()
                         } else {
                             showEmptyPage(true)
                         }
@@ -689,7 +694,7 @@ Page {
     KeyboardRectangle {
         id: keyboard
         active: mainPage.active &&
-                (pageStack.bottomEdge && (pageStack.bottomEdge.status === BottomEdge.Hidden))
+                !pageStack.bottomEdgeOpened
     }
 
     ABEmptyState {
@@ -809,7 +814,7 @@ Page {
         id: bottomEdgeLoader
 
         enabled: false
-        active: (pageStack.columns === 1) && bottomEdgeLoader.enabled
+        active: true
         asynchronous: true
         sourceComponent: ABNewContactBottomEdge {
             id: bottomEdge
@@ -818,26 +823,27 @@ Page {
             hint.flickable: contactList.view
             pageStack: mainPage.pageStack
             enabled: mainPage.active
+            hintVisible: (pageStack.columns === 1) && bottomEdgeLoader.enabled
+            visible: hintVisible
         }
+    }
+
+    Binding {
+        target: pageStack
+        property: '_bottomEdge'
+        value: bottomEdgeLoader.item
+        when: (bottomEdgeLoader.status === Loader.Ready) &&
+              (pageStack.columns === 1) &&
+              bottomEdgeLoader.enabled
     }
 
     Action {
         iconName: "contact-new"
-        enabled: mainPage.active &&
-                 (bottomEdgeLoader.status === Loader.Ready) &&
-                 (bottomEdgeLoader.item.status === BottomEdge.Hidden)
+        enabled: mainPage.active && !mainPage.bottomEdgeOpened
         shortcut: "Ctrl+N"
         onTriggered: {
             bottomEdgeLoader.item.commit()
         }
-    }
-
-
-    Binding {
-        target: pageStack
-        property: 'bottomEdge'
-        value: bottomEdgeLoader.item
-        when: bottomEdgeLoader.status == Loader.Ready
     }
 
     Connections {
@@ -879,22 +885,23 @@ Page {
     }
 
     Connections {
-        target: pageStack.bottomEdge
-        onCommitCompleted: {
-            if (mainPage.state !== "default") {
-                mainPage.head.sections.selectedIndex = 0
-                mainPage.state = "default"
-            }
-        }
-        onCollapseCompleted: {
-            if (!mainPage._creatingContact) {
-                if (contactList.currentIndex === -1)
-                    contactList.currentIndex = 0
-                mainPage.delayFetchContact()
-            }
+        target: pageStack
+        onBottomEdgeOpenedChanged: {
+            if (pageStack.bottomEdgeOpened) {
+                if (mainPage.state !== "default") {
+                    mainPage.head.sections.selectedIndex = 0
+                    mainPage.state = "default"
+                }
+            } else {
+                if (!mainPage._creatingContact) {
+                    if (contactList.currentIndex === -1)
+                        contactList.currentIndex = 0
+                    mainPage.delayFetchContact()
+                }
 
-            if (mainPage.status === "default") {
-                contactList.forceActiveFocus()
+                if (mainPage.status === "default") {
+                    contactList.forceActiveFocus()
+                }
             }
         }
     }
