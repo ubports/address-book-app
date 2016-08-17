@@ -97,7 +97,6 @@ FocusScope {
         } else if ((detail in detailNameMap) && (field == -1)){
             return detailNameMap[detail]
         } else {
-            console.debug("Unknown : [" + detail + "] [" + field + "]")
             return "unknown"
         }
     }
