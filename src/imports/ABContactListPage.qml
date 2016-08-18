@@ -37,12 +37,12 @@ Page {
     property bool pickMode: false
     property alias contentHubTransfer: contactExporter.activeTransfer
     property bool pickMultipleContacts: false
-    property QtObject contactIndex: null
     property alias contactManager: contactList.manager
 
     property var _busyDialog: null
     property bool _importingTestData: false
     property bool _creatingContact: false
+    property string _newContactId: ""
 
     readonly property string currentViewContactId: viewPage && viewPage.contact ? viewPage.contact.contactId : ""
     readonly property bool isEmpty: (contactList.count === 0)
@@ -110,7 +110,7 @@ Page {
 
     function showContact(contact)
     {
-        var currentContact = contactList.listModel.contacts[contactList.currentIndex]
+        var currentContact = contactList.currentIndex != -1 ? contactList.listModel.contacts[contactList.currentIndex] : null
         if (currentContact && (mainPage.currentViewContactId === currentContact.contactId)) {
             // contact view already opened with this contact
             return
@@ -203,27 +203,8 @@ Page {
         contactList.startSelection()
     }
 
-    function moveListToContact(contact)
-    {
-        if ((state !== "searching") &&
-            (state !== "vcardImported")) {
-            mainPage.state = "default"
-        }
-
-        contactIndex = contact
-        // this means a new contact was created
-        if (mainPage.allowToQuit) {
-            application.goBackToSourceApp()
-        }
-    }
-
-
     function onNewContactSaved(contact) {
-        _creatingContact = true
-        moveListToContact(contact)
-        if (pageStack.columns > 1) {
-            showContact(contact);
-        }
+        _newContactId = contact.contactId
     }
 
     // Delay contact fetch for some msecs (check 'fetchNewContactTimer')
@@ -319,7 +300,7 @@ Page {
         multiSelectionEnabled: true
         multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
         showNewContact: (pageStack.columns > 1) && pageStack.bottomEdgeOpened
-        highlightSelected: !showNewContact && pageStack.hasKeyboard && !mainPage._creatingContact
+        highlightSelected: !showNewContact && pageStack.hasKeyboard && (mainPage._newContactId === "")
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
         onContactClicked: mainPage.showContact(contact)
         onIsInSelectionModeChanged: mainPage.state = isInSelectionMode ? "selection"  : "default"
@@ -344,8 +325,7 @@ Page {
         }
 
         onCurrentIndexChanged: {
-            if (!mainPage.contactIndex)
-                mainPage.delayFetchContact()
+            mainPage.delayFetchContact()
         }
 
         onOnlineAccountFinished: {
@@ -849,14 +829,13 @@ Page {
         target: mainPage.contactModel
 
         onContactsChanged: {
-            if (contactIndex) {
-                contactList.positionViewAtContact(mainPage.contactIndex)
-                mainPage.contactIndex = null
-                // at this point the operation has finished already
-                mainPage._creatingContact = false
-                mainPage.delayFetchContact()
+            // if is a new contact show it
+            if (mainPage._newContactId != "") {
+                contactList.positionViewAtContactId(mainPage._newContactId)
+                mainPage._newContactId = ""
             }
         }
+
         onImportCompleted: {
             if (mainPage._importingTestData) {
                 mainPage._importingTestData = false
@@ -892,7 +871,7 @@ Page {
                     mainPage.state = "default"
                 }
             } else {
-                if (!mainPage._creatingContact) {
+                if (mainPage._creatingContact === "") {
                     if (contactList.currentIndex === -1)
                         contactList.currentIndex = 0
                     mainPage.delayFetchContact()

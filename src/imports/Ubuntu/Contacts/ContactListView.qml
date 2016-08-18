@@ -332,6 +332,10 @@ FocusScope {
     {
         view.positionViewAtContact(contact)
     }
+    function positionViewAtContactId(contactId)
+    {
+        view.positionViewAtContactId(contactId)
+    }
     function positionViewAtBeginning()
     {
         moveToBegining.restart()

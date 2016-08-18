@@ -43,6 +43,15 @@ Page {
     signal contactSaved(var contact);
     signal canceled()
 
+    function close() {
+        if (pageStack.removePages) {
+            pageStack.removePages(contactEditor)
+        } else {
+            pageStack.pop()
+        }
+    }
+
+
     function cancel() {
         for (var i = 0; i < contactEditor.newDetails.length; ++i) {
             contactEditor.contact.removeDetail(contactEditor.newDetails[i])
@@ -93,15 +102,11 @@ Page {
         if (changed) {
             // backend error will be handled by the root page (contact list)
             var newContact = (contact.model == null)
+            contactEditor.enabled = false
+            contact.onContactChanged.connect(contactEditor._onContactSaved)
             contactEditor.model.saveContact(contact)
-            if (newContact) {
-                contactEditor.contactSaved(contact)
-            }
-        }
-        if (pageStack.removePages) {
-            pageStack.removePages(contactEditor)
         } else {
-            pageStack.pop()
+            close()
         }
     }
 
@@ -172,6 +177,13 @@ Page {
             root.idleMakeMeVisible(itemToFocus)
             itemToFocus.forceActiveFocus()
         }
+    }
+
+    function _onContactSaved()
+    {
+        contact.onContactChanged.disconnect(contactEditor._onContactSaved)
+        contactEditor.contactSaved(contact)
+        close()
     }
 
     Timer {
