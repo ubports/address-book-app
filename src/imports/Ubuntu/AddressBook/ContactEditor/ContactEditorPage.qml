@@ -494,15 +494,11 @@ Page {
     }
 
     onActiveChanged: {
-        if (!active) {
+        if (!active || !enabled) {
             return
         }
 
-        if (contactEditor.initialFocusSection != "") {
-            focusTimer.restart()
-        } else {
-            contactEditor.ready()
-        }
+        focusTimer.restart()
     }
 
     Component {

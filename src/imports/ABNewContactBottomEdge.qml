@@ -84,7 +84,7 @@ BottomEdge {
 
             implicitHeight: mainWindow.height
             implicitWidth: parent ? parent.width : bottomEdge.width
-            enabled: active
+            enabled: false
             model: bottomEdge.modelToEdit
             contact: ContactsUI.ContactsJS.createEmptyContact("", editorPageItem)
             onCanceled: pageStack.removePages(editorPageItem)
