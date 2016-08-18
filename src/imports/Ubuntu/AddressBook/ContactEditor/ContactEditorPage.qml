@@ -208,7 +208,7 @@ Page {
         }
     }
 
-    enabled: false
+    enabled: active
     flickable: null
     Timer {
         id: focusTimer
