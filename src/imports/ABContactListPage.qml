@@ -130,39 +130,45 @@ Page {
         if (pageStack.columns === 1)
             return
 
-        if (!emptyPage) {
+        var newEmptyPage = null
+        if (!mainPage.emptyPage) {
             contactList.currentIndex = -1
             pageStack.removePages(mainPage)
 
-            if ((pageStack.columns > 1) && !hasChildPage()) {
-                emptyPage  = pageStack.addFileToNextColumnSync(pageStack.primaryPage,
-                                                                        Qt.resolvedUrl("ABMultiColumnEmptyState.qml"),
-                                                                        { 'headerTitle': "",
-                                                                          'pageStack': mainPage.pageStack,
-                                                                          'model': mainPage.contactModel })
-                emptyPage.Component.onDestruction.connect(function() {
+            if (pageStack.columns) {
+                newEmptyPage  = pageStack.addFileToNextColumnSync(pageStack.primaryPage,
+                                                               Qt.resolvedUrl("ABMultiColumnEmptyState.qml"),
+                                                               { 'headerTitle': "",
+                                                                 'pageStack': mainPage.pageStack,
+                                                                 'model': mainPage.contactModel })
+                newEmptyPage.Component.onDestruction.connect(function() {
                     mainPage.emptyPage = null
                 })
 
             }
+        } else {
+            newEmptyPage = mainPage.emptyPage
         }
+
         if (openBottomEdge) {
-            mainPage.emptyPage.commitBottomEdge()
+            newEmptyPage.commitBottomEdge()
         }
+
+        mainPage.emptyPage = newEmptyPage
 
     }
 
     function showSettingsPage()
     {
-        pageStack.removePages(mainPage)
-
-
         if (settingsPage) {
             settingsPage.Component.onDestruction.disconnect(clearSettingsPage)
         }
 
         pageStack.removePages(mainPage)
         viewPage = null
+        settingsPage = null
+        emptyPage = null
+
 
         settingsPage = pageStack.addFileToNextColumnSync(mainPage,
                                                          Qt.resolvedUrl("./Settings/SettingsPage.qml"),
@@ -440,11 +446,7 @@ Page {
                     visible: (pageStack.columns > 1)
                     shortcut: "Ctrl+N"
                     onTriggered: {
-                        if (!pageStack.bottomEdgeOpened) {
-                            if (viewPage) {
-
-                            }
-
+                        if (!pageStack.bottomEdgeOpened && (viewPage || emptyPage)) {
                             pageStack._bottomEdge.commit()
                         } else {
                             showEmptyPage(true)
