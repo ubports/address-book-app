@@ -1,3 +1,12 @@
+address-book-app (0.2+16.10.20160823-0ubuntu1) yakkety; urgency=medium
+
+  * Avoid building the package for s390x arch by introducing a s390x
+    qtdeclarative5-ubuntu-content1 build-dependency.
+  * Keep bottom edge page live while changing app: munticolumn <->
+    single column
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Tue, 23 Aug 2016 14:40:35 +0000
+
 address-book-app (0.2+16.10.20160722.1-0ubuntu1) yakkety; urgency=medium
 
   [ Łukasz 'sil2100' Zemczak ]
