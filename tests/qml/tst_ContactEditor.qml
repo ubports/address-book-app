@@ -46,6 +46,7 @@ Item {
             anchors.fill: parent
             model: dummyDataModel
             contact: createEmptyContact('')
+            enabled: true
         }
     }
 

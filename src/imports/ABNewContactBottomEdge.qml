@@ -26,16 +26,36 @@ BottomEdge {
     property var pageStack: null
     property alias hintVisible: bottomEdgeHint.visible
     property var _contactToEdit: null
-    // WORKAROUND: BottomEdge component loads the page async while draging it
-    // this cause a very bad visual.
-    // To avoid that we create it as soon as the component is ready and keep
-    // it invisible until the user start to drag it.
-    property var _realPage: null
 
     function editContact(contact)
     {
         _contactToEdit = contact
         commit()
+    }
+
+    function close()
+    {
+        if (pageStack.bottomEdgeFloatingPage) {
+            pageStack.removePages(pageStack.bottomEdgeFloatingPage)
+        }
+    }
+
+    function pushPage()
+    {
+        var properties = {enabled: true,
+                          visible: true,
+                          parent: bottomEdge.parent}
+        if (bottomEdge._contactToEdit)
+            properties[contact] = bottomEdge._contactToEdit
+
+
+        var incubator = pageStack.addPageToNextColumn(bottomEdge.parent, editorPageBottomEdge, properties)
+        incubator.forceCompletion()
+        pageStack.bottomEdgeFloatingPage = incubator.object
+        incubator.object.Component.onDestruction.connect(function() {
+            pageStack.bottomEdgeFloatingPage = null
+        })
+        bottomEdge._contactToEdit = null
     }
 
     hint {
@@ -48,42 +68,27 @@ BottomEdge {
         }
     }
 
-    contentComponent: Item {
-        id: pageContent
-
-        implicitWidth: bottomEdge.width
-        implicitHeight: bottomEdge.height
-        children: bottomEdge._realPage
-    }
-
+    contentComponent: editorPageBottomEdge
+    preloadContent: visible
 
     onCommitCompleted: {
-        if (bottomEdge._contactToEdit)
-            editorPage.contact = bottomEdge._contactToEdit
-        bottomEdge._contactToEdit = null
-    }
-
-    onCollapseCompleted: {
-        _realPage = editorPageBottomEdge.createObject(null)
-    }
-
-    Component.onCompleted:  {
-        _realPage = editorPageBottomEdge.createObject(null)
+        pushPage()
+        collapse()
     }
 
     Component {
         id: editorPageBottomEdge
 
         ABContactEditorPage {
-            implicitWidth: bottomEdge.width
-            implicitHeight: bottomEdge.height
-            contact: ContactsUI.ContactsJS.createEmptyContact("", bottomEdge)
+            id: editorPageItem
+
+            implicitHeight: mainWindow.height
+            implicitWidth: parent ? parent.width : bottomEdge.width
+            enabled: false
             model: bottomEdge.modelToEdit
-            enabled: bottomEdge.status === BottomEdge.Committed
-            active: bottomEdge.status === BottomEdge.Committed
-            visible: bottomEdge.status !== BottomEdge.Hidden
-            onCanceled: bottomEdge.collapse()
-            onContactSaved: bottomEdge.collapse()
+            contact: ContactsUI.ContactsJS.createEmptyContact("", editorPageItem)
+            onCanceled: pageStack.removePages(editorPageItem)
+            onContactSaved: pageStack.removePages(editorPageItem)
             pageStack: bottomEdge.pageStack
         }
     }

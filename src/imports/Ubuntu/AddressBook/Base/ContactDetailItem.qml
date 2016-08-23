@@ -23,7 +23,7 @@ ContactDetailBase {
     id: root
 
     readonly property alias fieldDelegates: fieldsColumn.children
-    property Component fieldDelegate: null
+    property alias fieldDelegate: fieldRepeater.delegate
     property alias spacing: fieldsColumn.spacing
 
     implicitHeight: fieldsColumn.height
@@ -36,26 +36,14 @@ ContactDetailBase {
         }
         spacing: units.gu(2)
 
-        height: childrenRect.height
+        //height: childrenRect.height
         Repeater {
             id: fieldRepeater
 
             model: root.fields
-            Loader {
-                id: field
-
-                sourceComponent: fieldDelegate
-                Binding {
-                    target: item
-                    property: "field"
-                    value: modelData
-                }
-
-                Binding {
-                    target: item
-                    property: "detail"
-                    value: root.detail
-                }
+            onItemAdded: {
+                item.field = Qt.binding(function() { return model[index] })
+                item.detail = Qt.binding(function() { return root.detail })
             }
         }
     }

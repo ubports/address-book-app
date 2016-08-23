@@ -63,7 +63,7 @@ ContactEditorPage {
 
     onContactSaved: {
         if (pageStack.contactListPage) {
-            pageStack.contactListPage.moveListToContact(contact)
+            pageStack.contactListPage.onNewContactSaved(contact)
             pageStack.contactListPage.forceActiveFocus()
         }
     }

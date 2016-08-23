@@ -208,6 +208,24 @@ MultipleSelectionListView {
         positionViewAtIndex(currentIndex, ListView.Center)
     }
 
+
+    /*!
+      Scroll the list to requested contact if the contact exists in the list
+    */
+    function positionViewAtContactId(contactId)
+    {
+        var contacts = listModel.contacts
+
+        for (var i = 0, count = contacts.length; i < count; i++) {
+            var c = contacts[i]
+            if (c.contactId === contactId) {
+                currentIndex = i
+                positionViewAtIndex(i, ListView.Center)
+                return
+            }
+        }
+    }
+
     /*!
       private
       Fetch contact and emit contact clicked signal

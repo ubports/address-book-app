@@ -37,12 +37,12 @@ Page {
     property bool pickMode: false
     property alias contentHubTransfer: contactExporter.activeTransfer
     property bool pickMultipleContacts: false
-    property QtObject contactIndex: null
     property alias contactManager: contactList.manager
 
     property var _busyDialog: null
     property bool _importingTestData: false
     property bool _creatingContact: false
+    property string _newContactId: ""
 
     readonly property string currentViewContactId: viewPage && viewPage.contact ? viewPage.contact.contactId : ""
     readonly property bool isEmpty: (contactList.count === 0)
@@ -110,7 +110,7 @@ Page {
 
     function showContact(contact)
     {
-        var currentContact = contactList.listModel.contacts[contactList.currentIndex]
+        var currentContact = contactList.currentIndex != -1 ? contactList.listModel.contacts[contactList.currentIndex] : null
         if (currentContact && (mainPage.currentViewContactId === currentContact.contactId)) {
             // contact view already opened with this contact
             return
@@ -130,39 +130,45 @@ Page {
         if (pageStack.columns === 1)
             return
 
-        if (!emptyPage) {
+        var newEmptyPage = null
+        if (!mainPage.emptyPage) {
             contactList.currentIndex = -1
             pageStack.removePages(mainPage)
 
-            if ((pageStack.columns > 1) && !hasChildPage()) {
-                emptyPage  = pageStack.addFileToNextColumnSync(pageStack.primaryPage,
-                                                                        Qt.resolvedUrl("ABMultiColumnEmptyState.qml"),
-                                                                        { 'headerTitle': "",
-                                                                          'pageStack': mainPage.pageStack,
-                                                                          'model': mainPage.contactModel })
-                emptyPage.Component.onDestruction.connect(function() {
+            if (pageStack.columns) {
+                newEmptyPage  = pageStack.addFileToNextColumnSync(pageStack.primaryPage,
+                                                               Qt.resolvedUrl("ABMultiColumnEmptyState.qml"),
+                                                               { 'headerTitle': "",
+                                                                 'pageStack': mainPage.pageStack,
+                                                                 'model': mainPage.contactModel })
+                newEmptyPage.Component.onDestruction.connect(function() {
                     mainPage.emptyPage = null
                 })
 
             }
+        } else {
+            newEmptyPage = mainPage.emptyPage
         }
+
         if (openBottomEdge) {
-            mainPage.emptyPage.commitBottomEdge()
+            newEmptyPage.commitBottomEdge()
         }
+
+        mainPage.emptyPage = newEmptyPage
 
     }
 
     function showSettingsPage()
     {
-        pageStack.removePages(mainPage)
-
-
         if (settingsPage) {
             settingsPage.Component.onDestruction.disconnect(clearSettingsPage)
         }
 
         pageStack.removePages(mainPage)
         viewPage = null
+        settingsPage = null
+        emptyPage = null
+
 
         settingsPage = pageStack.addFileToNextColumnSync(mainPage,
                                                          Qt.resolvedUrl("./Settings/SettingsPage.qml"),
@@ -203,27 +209,8 @@ Page {
         contactList.startSelection()
     }
 
-    function moveListToContact(contact)
-    {
-        if ((state !== "searching") &&
-            (state !== "vcardImported")) {
-            mainPage.state = "default"
-        }
-
-        contactIndex = contact
-        // this means a new contact was created
-        if (mainPage.allowToQuit) {
-            application.goBackToSourceApp()
-        }
-    }
-
-
     function onNewContactSaved(contact) {
-        _creatingContact = true
-        moveListToContact(contact)
-        if (pageStack.columns > 1) {
-            showContact(contact);
-        }
+        _newContactId = contact.contactId
     }
 
     // Delay contact fetch for some msecs (check 'fetchNewContactTimer')
@@ -234,7 +221,7 @@ Page {
 
     function fetchContact()
     {
-        if (pageStack.columns > 1 && !contactList.showNewContact) {
+        if (pageStack.columns > 1 && !contactList.showNewContact && !pageStack.bottomEdgeOpened) {
             var currentContact = null
             if (contactList.currentIndex >= 0)
                 currentContact = contactList.listModel.contacts[contactList.currentIndex]
@@ -306,8 +293,7 @@ Page {
 
         focus: true
         showImportOptions: !mainPage.pickMode &&
-                           pageStack.bottomEdge &&
-                           (pageStack.bottomEdge.status !== BottomEdge.Committed)
+                           !pageStack.bottomEdgeOpened
         anchors {
             top: parent.top
             topMargin: pageHeader.height
@@ -319,8 +305,8 @@ Page {
         filterTerm: searchField.text
         multiSelectionEnabled: true
         multipleSelection: (mainPage.pickMode && mainPage.pickMultipleContacts) || !mainPage.pickMode
-        showNewContact: (pageStack.columns > 1) && pageStack.bottomEdge && (pageStack.bottomEdge.status === BottomEdge.Committed)
-        highlightSelected: !showNewContact && pageStack.hasKeyboard && !mainPage._creatingContact
+        showNewContact: (pageStack.columns > 1) && pageStack.bottomEdgeOpened
+        highlightSelected: !showNewContact && pageStack.hasKeyboard && (mainPage._newContactId === "")
         onAddContactClicked: mainPage.createContactWithPhoneNumber(label)
         onContactClicked: mainPage.showContact(contact)
         onIsInSelectionModeChanged: mainPage.state = isInSelectionMode ? "selection"  : "default"
@@ -345,8 +331,7 @@ Page {
         }
 
         onCurrentIndexChanged: {
-            if (!mainPage.contactIndex)
-                mainPage.delayFetchContact()
+            mainPage.delayFetchContact()
         }
 
         onOnlineAccountFinished: {
@@ -367,7 +352,7 @@ Page {
         //because of that we need this
         Keys.onRightPressed: {
             // only move focus away when in edit mode
-            if (pageStack.bottomEdge.status === BottomEdge.Committed) {
+            if (pageStack.bottomEdgeOpened) {
                 var next = pageStack._nextItemInFocusChain(view, true)
                 if (next === searchField) {
                     pageStack._nextItemInFocusChain(next, true)
@@ -444,24 +429,25 @@ Page {
                             viewPage.cancelEdit()
                         }
 
-                        mainPage.state = "searching"
-                        contactList.showAllContacts()
-                        if (pageStack.bottomEdge) {
-                            pageStack.bottomEdge.collapse()
+
+                        if (pageStack.bottomEdgeOpened) {
+                            pageStack.closeBottomEdge()
                         } else {
                             showEmptyPage(false)
                         }
+                        mainPage.state = "searching"
+                        contactList.showAllContacts()
                         searchField.forceActiveFocus()
                     }
                 },
                 Action {
                     iconName: "contact-new"
-                    enabled: visible && (!pageStack.bottomEdge || (pageStack.bottomEdge.enabled && (pageStack.bottomEdge.status === BottomEdge.Hidden)))
+                    enabled: visible && !pageStack.bottomEdgeOpened
                     visible: (pageStack.columns > 1)
                     shortcut: "Ctrl+N"
                     onTriggered: {
-                        if (pageStack.bottomEdge) {
-                            pageStack.bottomEdge.commit()
+                        if (!pageStack.bottomEdgeOpened && (viewPage || emptyPage)) {
+                            pageStack._bottomEdge.commit()
                         } else {
                             showEmptyPage(true)
                         }
@@ -689,7 +675,7 @@ Page {
     KeyboardRectangle {
         id: keyboard
         active: mainPage.active &&
-                (pageStack.bottomEdge && (pageStack.bottomEdge.status === BottomEdge.Hidden))
+                !pageStack.bottomEdgeOpened
     }
 
     ABEmptyState {
@@ -809,7 +795,7 @@ Page {
         id: bottomEdgeLoader
 
         enabled: false
-        active: (pageStack.columns === 1) && bottomEdgeLoader.enabled
+        active: true
         asynchronous: true
         sourceComponent: ABNewContactBottomEdge {
             id: bottomEdge
@@ -818,40 +804,40 @@ Page {
             hint.flickable: contactList.view
             pageStack: mainPage.pageStack
             enabled: mainPage.active
+            hintVisible: (pageStack.columns === 1) && bottomEdgeLoader.enabled
+            visible: hintVisible
         }
+    }
+
+    Binding {
+        target: pageStack
+        property: '_bottomEdge'
+        value: bottomEdgeLoader.item
+        when: (bottomEdgeLoader.status === Loader.Ready) &&
+              (pageStack.columns === 1) &&
+              bottomEdgeLoader.enabled
     }
 
     Action {
         iconName: "contact-new"
-        enabled: mainPage.active &&
-                 (bottomEdgeLoader.status === Loader.Ready) &&
-                 (bottomEdgeLoader.item.status === BottomEdge.Hidden)
+        enabled: mainPage.active && !mainPage.bottomEdgeOpened
         shortcut: "Ctrl+N"
         onTriggered: {
             bottomEdgeLoader.item.commit()
         }
     }
 
-
-    Binding {
-        target: pageStack
-        property: 'bottomEdge'
-        value: bottomEdgeLoader.item
-        when: bottomEdgeLoader.status == Loader.Ready
-    }
-
     Connections {
         target: mainPage.contactModel
 
         onContactsChanged: {
-            if (contactIndex) {
-                contactList.positionViewAtContact(mainPage.contactIndex)
-                mainPage.contactIndex = null
-                // at this point the operation has finished already
-                mainPage._creatingContact = false
-                mainPage.delayFetchContact()
+            // if is a new contact show it
+            if (mainPage._newContactId != "") {
+                contactList.positionViewAtContactId(mainPage._newContactId)
+                mainPage._newContactId = ""
             }
         }
+
         onImportCompleted: {
             if (mainPage._importingTestData) {
                 mainPage._importingTestData = false
@@ -879,22 +865,23 @@ Page {
     }
 
     Connections {
-        target: pageStack.bottomEdge
-        onCommitCompleted: {
-            if (mainPage.state !== "default") {
-                mainPage.head.sections.selectedIndex = 0
-                mainPage.state = "default"
-            }
-        }
-        onCollapseCompleted: {
-            if (!mainPage._creatingContact) {
-                if (contactList.currentIndex === -1)
-                    contactList.currentIndex = 0
-                mainPage.delayFetchContact()
-            }
+        target: pageStack
+        onBottomEdgeOpenedChanged: {
+            if (pageStack.bottomEdgeOpened) {
+                if (mainPage.state !== "default") {
+                    mainPage.head.sections.selectedIndex = 0
+                    mainPage.state = "default"
+                }
+            } else {
+                if (mainPage._creatingContact === "") {
+                    if (contactList.currentIndex === -1)
+                        contactList.currentIndex = 0
+                    mainPage.delayFetchContact()
+                }
 
-            if (mainPage.status === "default") {
-                contactList.forceActiveFocus()
+                if (mainPage.status === "default") {
+                    contactList.forceActiveFocus()
+                }
             }
         }
     }

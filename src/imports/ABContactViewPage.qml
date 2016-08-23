@@ -41,7 +41,7 @@ ContactViewPage {
             _editPage = null
         }
         if (pageStack.bottomEdge) {
-            pageStack.bottomEdge.collapse()
+            pageStack.bottomEdge.close()
         }
     }
 
@@ -55,7 +55,7 @@ ContactViewPage {
     }
 
     // Shortcut in case of single column
-     Action {
+    Action {
         id: backAction
 
         name: "cancel"
@@ -123,7 +123,6 @@ ContactViewPage {
     Loader {
         id: bottomEdgeLoader
 
-        active: (pageStack.columns > 1)
         asynchronous: true
         sourceComponent: ABNewContactBottomEdge {
             id: bottomEdge
@@ -135,13 +134,14 @@ ContactViewPage {
             pageStack: root.pageStack
             hintVisible: false
             enabled: !root.editing
+            visible: (pageStack.columns > 1)
         }
     }
 
     Binding {
         target: pageStack
-        property: 'bottomEdge'
+        property: '_bottomEdge'
         value: bottomEdgeLoader.item
-        when: bottomEdgeLoader.status === Loader.Ready
+        when: (bottomEdgeLoader.status === Loader.Ready) && (pageStack.columns > 1)
     }
 }

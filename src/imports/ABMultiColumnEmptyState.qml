@@ -42,7 +42,7 @@ Page {
     function close()
     {
         if (bottomEdge.item) {
-            bottomEdge.item.collapse()
+            bottomEdge.item.close()
         }
     }
 
@@ -64,12 +64,12 @@ Page {
     Loader {
         id: bottomEdgeLoader
 
-        active: (pageStack.columns > 1)
         asynchronous: true
         sourceComponent: ABNewContactBottomEdge {
             id: bottomEdge
 
             hintVisible: false
+            visible: (pageStack.columns > 1)
             parent: root
             height: root.height
             modelToEdit: root.model
@@ -88,17 +88,25 @@ Page {
 
     Binding {
         target: pageStack
-        property: 'bottomEdge'
+        property: '_bottomEdge'
         value: bottomEdgeLoader.item
-        when: bottomEdgeLoader.status === Loader.Ready
+        when: (bottomEdgeLoader.status === Loader.Ready) && (pageStack.columns > 1)
     }
 
+
+    // Remove empty page when app changes to 1 column mode
     Connections {
         target: pageStack
-        onColumnsChanged: {
-            if (pageStack.columns === 1) {
+        onBottomEdgeOpenedChanged: {
+            if (!pageStack.bottomEdgeOpened && (pageStack.columns === 1)) {
                 pageStack.removePages(root)
             }
         }
+    }
+    onActiveChanged: {
+        if (active && (pageStack.columns === 1)) {
+            pageStack.removePages(root)
+        }
+
     }
 }

@@ -114,17 +114,21 @@ MainView {
         objectName: "mainStack"
 
         property var contactListPage: null
-        property var bottomEdge: null
-        readonly property bool bottomEdgeOpened: (bottomEdge && bottomEdge.status === BottomEdge.Committed)
+        property var bottomEdgeFloatingPage: null
+        readonly property bool bottomEdgeOpened: bottomEdgeFloatingPage != null
         readonly property bool hasMouse: ((miceModel.count > 0) || (touchPadModel.count > 0))
         readonly property bool hasKeyboard: (keyboardsModel.count > 0)
+        property var _bottomEdge: null
+
+        function closeBottomEdge()
+        {
+            if (bottomEdgeFloatingPage)
+                mainStack.removePages(bottomEdgeFloatingPage);
+        }
 
         function resetStack()
         {
-            if (bottomEdge)
-                bottomEdge.collapse()
             mainStack.removePages(primaryPage);
-
         }
 
         function _nextItemInFocusChain(item, foward)
@@ -182,13 +186,16 @@ MainView {
             if (mainStack.columns > 1) {
                 if (mainStack.contactListPage)
                 {
-                    if (!mainStack.contactListPage.hasChildPage())
+                    if (!mainStack.contactListPage.hasChildPage() && !mainStack.bottomEdgeOpened)
+                        console.debug("Fech contact:" + mainStack.bottomEdgeOpened)
                         mainStack.contactListPage.delayFetchContact()
                 }
                 else
                 {
-                    if (!contactPage.hasChildPage())
+                    if (!contactPage.hasChildPage() && !mainStack.bottomEdgeOpened) {
+                        console.debug("Push empty page:" + mainStack.bottomEdgeOpened)
                         mainStack.addPageToNextColumn(contactPage, Qt.resolvedUrl("./ABMultiColumnEmptyState.qml"))
+                    }
                 }
             }
         }
@@ -208,7 +215,7 @@ MainView {
 
     // WORKAROUND: Due the missing feature on SDK, they can not detect if
     // there is a mouse attached to device or not. And this will cause the
-    // bootom edge component to not work correct on desktop.
+    // bottom edge component to not work correct on desktop.
     // We will consider that  a mouse is always attached until it get implement on SDK.
     Binding {
         target:  QuickUtils
