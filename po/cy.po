@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-08-23 06:06+0000\n"
-"X-Generator: Launchpad (build 18176)\n"
+"X-Launchpad-Export-Date: 2016-08-31 06:21+0000\n"
+"X-Generator: Launchpad (build 18179)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
@@ -23,7 +23,7 @@ msgid "%1 is locked"
 msgstr "%1 ar glo"
 
 #. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:469
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:473
 msgid "+ Create New"
 msgstr "+ Creu un newydd"
 
@@ -31,7 +31,7 @@ msgstr "+ Creu un newydd"
 msgid "Add Google account"
 msgstr "Ychwanegu Cyfrif Google"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:379
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:391
 msgid "Add field"
 msgstr "Ychwanegu maes"
 
@@ -56,7 +56,7 @@ msgid "Aim"
 msgstr "AIM"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:494
+#: ../src/imports/ABContactListPage.qml:480
 msgid "All"
 msgstr "Pob un"
 
@@ -68,26 +68,26 @@ msgstr "Ydych chi'n sicr eich bod am dynnu'r cysylltiadau hyn?"
 msgid "Are you sure that you want to remove this contact?"
 msgstr "Ydych chi'n sicr eich bod am dynnu'r cyswllt hwn?"
 
-#: ../src/imports/ABContactListPage.qml:633
+#: ../src/imports/ABContactListPage.qml:619
 msgid "Back"
 msgstr "Nôl"
 
 #: ../src/imports/ABContactEditorPage.qml:38
-#: ../src/imports/ABContactListPage.qml:514 ../src/imports/MainWindow.qml:229
+#: ../src/imports/ABContactListPage.qml:500 ../src/imports/MainWindow.qml:236
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "Diddymu"
 
-#: ../src/imports/ABContactListPage.qml:553
+#: ../src/imports/ABContactListPage.qml:539
 msgid "Cancel selection"
 msgstr "Diddymu'r dewis"
 
-#: ../src/imports/ABContactListPage.qml:776
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:521
+#: ../src/imports/ABContactListPage.qml:762
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:529
 msgid "Close"
 msgstr "Cau"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:502
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:510
 msgid "Contact Editor"
 msgstr "Golygydd Cysylltiadau"
 
@@ -95,8 +95,8 @@ msgstr "Golygydd Cysylltiadau"
 msgid "Contact not found"
 msgstr "Cyswllt heb ei ganfod"
 
-#: ../src/imports/ABContactListPage.qml:260
-#: ../src/imports/ABContactListPage.qml:300
+#: ../src/imports/ABContactListPage.qml:247
+#: ../src/imports/ABContactListPage.qml:287
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Cysylltiadau"
@@ -113,7 +113,7 @@ msgstr "Cysylltiadau;Pobl;Rhifau"
 msgid "Country"
 msgstr "Gwlad"
 
-#: ../src/imports/ABContactListPage.qml:715 ../src/imports/ABEmptyState.qml:55
+#: ../src/imports/ABContactListPage.qml:701 ../src/imports/ABEmptyState.qml:55
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "Trawiwch o waelod y sgrîn er mwyn creu cyswllt newydd."
 
@@ -121,13 +121,13 @@ msgstr "Trawiwch o waelod y sgrîn er mwyn creu cyswllt newydd."
 msgid "Default address book"
 msgstr "Llyfr cyfeiriadau diofyn"
 
-#: ../src/imports/ABContactListPage.qml:593
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:442
+#: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:454
 msgid "Delete"
 msgstr "Dileu"
 
 #: ../src/imports/ABContactViewPage.qml:88
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:189
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
 msgid "Edit"
 msgstr "Golygu"
 
@@ -150,7 +150,7 @@ msgstr "Cyflwynwch alias cymdeithasol"
 msgid "Enter an email address"
 msgstr "Cyflwynwch gyfeiriad ebost"
 
-#: ../src/imports/MainWindow.qml:225
+#: ../src/imports/MainWindow.qml:232
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
 msgstr "Gwall"
@@ -159,7 +159,7 @@ msgstr "Gwall"
 msgid "Exporting contacts..."
 msgstr "Allforio cysylltiadau..."
 
-#: ../src/imports/ABContactListPage.qml:863
+#: ../src/imports/ABContactListPage.qml:849
 msgid "Fail to import contacts!"
 msgstr "Methu mewnforio cysylltiadau!"
 
@@ -167,7 +167,7 @@ msgstr "Methu mewnforio cysylltiadau!"
 msgid "Fail to read SIM card"
 msgstr "Methwyd darllen cerdyn SIM"
 
-#: ../src/imports/ABContactListPage.qml:494
+#: ../src/imports/ABContactListPage.qml:480
 msgid "Favorites"
 msgstr "Ffefrynnau"
 
@@ -197,11 +197,11 @@ msgstr "IM"
 msgid "Import"
 msgstr "Mewnforio"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:533
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:537
 msgid "Import contacts from Google"
 msgstr "Mewnforio cysylltiadau o Google"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:548
 msgid "Import contacts from SIM card"
 msgstr "Mewnforio cysylltiadau o gerdyn SIM"
 
@@ -209,11 +209,11 @@ msgstr "Mewnforio cysylltiadau o gerdyn SIM"
 msgid "Import from SIM"
 msgstr "Mewnforio o SIM"
 
-#: ../src/imports/ABContactListPage.qml:646
+#: ../src/imports/ABContactListPage.qml:632
 msgid "Imported contacts"
 msgstr "Cysylltiadau fewnforiwyd"
 
-#: ../src/imports/ABContactListPage.qml:767
+#: ../src/imports/ABContactListPage.qml:753
 msgid "Importing..."
 msgstr "Mewnforio..."
 
@@ -225,7 +225,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Cyfenw"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:617
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:621
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "Llwytho..."
@@ -260,8 +260,8 @@ msgstr "Cysylltiadau lluosol"
 msgid "My phone number: %1"
 msgstr "Fy rhif ffôn: %1"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:189
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:477
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:481
 msgid "New contact"
 msgstr "Cyswllt newydd"
 
@@ -327,7 +327,7 @@ msgstr "Côd Post"
 msgid "Professional Details"
 msgstr "Manylion Proffesiynol"
 
-#: ../src/imports/ABContactListPage.qml:427
+#: ../src/imports/ABContactListPage.qml:412
 msgid "Quit"
 msgstr "Gadael"
 
@@ -360,25 +360,25 @@ msgstr "Cadw"
 msgid "Saving contacts on phone..."
 msgstr "Cadw cysylltiadau i'r ffôn"
 
-#: ../src/imports/ABContactListPage.qml:437
+#: ../src/imports/ABContactListPage.qml:422
 msgid "Search"
 msgstr "Chwilio"
 
-#: ../src/imports/ABContactListPage.qml:402
+#: ../src/imports/ABContactListPage.qml:387
 msgid "Search..."
 msgstr "Chwilio..."
 
-#: ../src/imports/ABContactListPage.qml:563
+#: ../src/imports/ABContactListPage.qml:549
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
 msgstr "Dewis y Cyfan"
 
-#: ../src/imports/ABContactListPage.qml:484
+#: ../src/imports/ABContactListPage.qml:470
 #: ../src/imports/Settings/SettingsPage.qml:33
 msgid "Settings"
 msgstr "Gosodiadau"
 
-#: ../src/imports/ABContactListPage.qml:576
+#: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/ABContactViewPage.qml:75
 msgid "Share"
 msgstr "Rhannu"
@@ -396,15 +396,15 @@ msgstr "Cymdeithasol"
 msgid "Street"
 msgstr "Stryd"
 
-#: ../src/imports/ABContactListPage.qml:472
+#: ../src/imports/ABContactListPage.qml:458
 msgid "Sync"
 msgstr "Cydweddu"
 
-#: ../src/imports/ABContactListPage.qml:472
+#: ../src/imports/ABContactListPage.qml:458
 msgid "Syncing"
 msgstr "Yn cydweddu"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:617
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:621
 msgid "Syncing..."
 msgstr "Yn cydweddu..."
 
@@ -424,7 +424,7 @@ msgstr "Datgloi"
 msgid "Unlocking..."
 msgstr "Datgloi..."
 
-#: ../src/imports/ABContactListPage.qml:563
+#: ../src/imports/ABContactListPage.qml:549
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
 msgstr "Dad-ddewis Popeth"
@@ -448,11 +448,11 @@ msgstr "Yahoo"
 msgid "Yes"
 msgstr "Iawn"
 
-#: ../src/imports/ABContactListPage.qml:714
+#: ../src/imports/ABContactListPage.qml:700
 msgid "You have no contacts."
 msgstr "Does dim cysylltiadau gennych"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:515
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:523
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded by running Contacts "
@@ -464,7 +464,7 @@ msgstr ""
 "Dim ond cysylltiadau lleol y bydd modd eu golygu tan bod y diweddariad yn "
 "cwblhau."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:506
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:514
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
@@ -473,7 +473,7 @@ msgstr ""
 "Mae angen diweddaru eich cyfri cysylltiadau <b>%1</b>.\n"
 "Arhoswch i'r diweddariad gwblhau cyn golygu cysylltiadau."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:511
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:519
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded. Use the sync "
