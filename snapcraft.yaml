@@ -1,0 +1,47 @@
+name: address-book-app
+version: 0.1
+summary: Address Book app
+description: Address Book app
+confinement: strict # devmode  # use "strict" to enforce system access only via declared interfaces
+
+apps:
+    address-book-app:
+        command: desktop-launch $SNAP/bin/address-book-app
+        plugs: [gsettings, unity7, opengl, address-book]
+
+parts:
+    address-book-app:
+        plugin: cmake
+        configflags: [-DCMAKE_INSTALL_PREFIX=/usr, -DCLICK_MODE=off]
+        source: . 
+        stage-packages:
+            - qmlscene
+            - qml-module-qt-labs-settings
+            - qml-module-ubuntu-components
+            - qml-module-ubuntu-onlineaccounts
+            - qtcontact5-galera
+            - qtdeclarative5-ubuntu-content1
+            - qtdeclarative5-ubuntu-syncmonitor0.1
+            - qtdeclarative5-buteo-syncfw0.1
+            - qtdeclarative5-gsettings1.0
+            - qtdeclarative5-qtcontacts-plugin
+            - qtdeclarative5-qtquick2-plugin
+            - qtdeclarative5-ofono0.2
+            - qtdeclarative5-ubuntu-history0.1
+            - qtdeclarative5-ubuntu-keyboard-extensions0.1
+            - qtdeclarative5-ubuntu-telephony-phonenumber0.1
+            - qtdeclarative5-ubuntu-ui-toolkit-plugin
+        stage:
+            - -usr/share/pkgconfig/xkeyboard-config.pc
+            - -usr/share/pkgconfig/shared-mime-info.pc
+        snap:
+            - -usr/lib/python3
+            - -usr/share/doc
+            - -usr/include           
+        after: [desktop/gtk3]
+
+    environment:
+        plugin: copy
+        files:
+            address-book-app.wrapper: bin/address-book-app
+            snappy-qt5.conf: etc/xdg/qtchooser/snappy-qt5.conf
