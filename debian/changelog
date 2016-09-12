@@ -1,3 +1,9 @@
+address-book-app (0.2+16.10.20160823-0ubuntu2) yakkety; urgency=medium
+
+  * Rebuild against new protobuf 3.
+
+ -- Gianfranco Costamagna <locutusofborg@debian.org>  Mon, 12 Sep 2016 15:18:02 +0200
+
 address-book-app (0.2+16.10.20160823-0ubuntu1) yakkety; urgency=medium
 
   * Avoid building the package for s390x arch by introducing a s390x
