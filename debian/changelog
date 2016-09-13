@@ -1,3 +1,10 @@
+address-book-app (0.2+16.10.20160913-0ubuntu1) yakkety; urgency=medium
+
+  * handle rename of qtdeclarative5-ofono0.2 to qml-module-ofono (LP:
+    #1342031)
+
+ -- Ken VanDine <ken.vandine@canonical.com>  Tue, 13 Sep 2016 13:14:48 +0000
+
 address-book-app (0.2+16.10.20160823-0ubuntu2) yakkety; urgency=medium
 
   * Rebuild against new protobuf 3.

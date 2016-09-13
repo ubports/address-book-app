@@ -17,17 +17,17 @@ Build-Depends: cmake,
                libgles2-mesa-dev,
                python3,
                pkg-config,
-               qml-module-qttest [amd64 arm64 armhf i386],
-               qtdeclarative5-dev-tools [amd64 arm64 armhf i386],
-               qtdeclarative5-gsettings1.0 [amd64 arm64 armhf i386],
-               qtdeclarative5-ofono0.2 [amd64 arm64 armhf i386],
-               qtdeclarative5-qtcontacts-plugin [amd64 arm64 armhf i386],
-               qtdeclarative5-ubuntu-content1 [amd64 arm64 armhf i386 s390x],
-               qtdeclarative5-ubuntu-history0.1 [amd64 arm64 armhf i386],
-               qtdeclarative5-ubuntu-keyboard-extensions0.1 [amd64 arm64 armhf i386],
-               qtdeclarative5-buteo-syncfw0.1 [amd64 arm64 armhf i386],
-               qtdeclarative5-ubuntu-telephony-phonenumber0.1 [amd64 arm64 armhf i386],
-               qtdeclarative5-ubuntu-ui-toolkit-plugin [amd64 arm64 armhf i386],
+               qml-module-qttest [amd64 armhf i386],
+               qtdeclarative5-dev-tools [amd64 armhf i386],
+               qtdeclarative5-gsettings1.0 [amd64 armhf i386],
+               qml-module-ofono [amd64 armhf i386],
+               qtdeclarative5-qtcontacts-plugin [amd64 armhf i386],
+               qtdeclarative5-ubuntu-content1 [amd64 armhf i386 s390x],
+               qtdeclarative5-ubuntu-history0.1 [amd64 armhf i386],
+               qtdeclarative5-ubuntu-keyboard-extensions0.1 [amd64 armhf i386],
+               qtdeclarative5-buteo-syncfw0.1 [amd64 armhf i386],
+               qtdeclarative5-ubuntu-telephony-phonenumber0.1 [amd64 armhf i386],
+               qtdeclarative5-ubuntu-ui-toolkit-plugin [amd64 armhf i386],
                qt5-default,
                qtbase5-dev,
                qtdeclarative5-dev,
@@ -35,7 +35,7 @@ Build-Depends: cmake,
                libqofono-qt5-0,
                libqofono-dev,
                thumbnailer-service,
-               xvfb [amd64 arm64 armhf i386],
+               xvfb [amd64 armhf i386],
                lsb-release,
 Standards-Version: 3.9.5
 Homepage: https://launchpad.net/address-book-app
@@ -46,7 +46,7 @@ Vcs-Browser: http://bazaar.launchpad.net/~phablet-team/address-book-app/trunk/fi
 X-Ubuntu-Use-Langpack: yes
 
 Package: address-book-app
-Architecture: amd64 arm64 armhf i386
+Architecture: amd64 armhf i386
 Depends: libqt5contacts5,
          libqt5versit5,
          ubuntu-ui-toolkit-theme (>= 0.1.49+14.10.20140707),
@@ -55,7 +55,7 @@ Depends: libqt5contacts5,
          qtdeclarative5-gsettings1.0,
          qtdeclarative5-qtcontacts-plugin,
          qtdeclarative5-qtquick2-plugin,
-         qtdeclarative5-ofono0.2,
+         qml-module-ofono,
          qtdeclarative5-ubuntu-addressbook0.1 (= ${binary:Version}),
          qtdeclarative5-ubuntu-history0.1,
          qtdeclarative5-ubuntu-keyboard-extensions0.1,
@@ -96,7 +96,7 @@ Description: Qt Ubuntu Address Book  Components - QML plugin
  This package contains the Ubuntu Address Book Components QML plugin.
 
 Package: address-book-app-dbg
-Architecture: amd64 arm64 armhf i386
+Architecture: amd64 armhf i386
 Section: debug
 Priority: extra
 Depends: address-book-app (= ${binary:Version}),
