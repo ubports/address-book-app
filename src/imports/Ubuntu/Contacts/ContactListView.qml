@@ -674,6 +674,7 @@ FocusScope {
         anchors.fill: parent
         asynchronous: true
         source: root.showImportOptions &&
+                buteoSync.serviceAvailable &&
                 (root.count === 0) &&
                 !view.favouritesIsSelected &&
                 !isSearching ? sourceFile : ""
