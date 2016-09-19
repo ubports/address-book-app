@@ -194,7 +194,14 @@ FocusScope {
 
       This property holds if the import options should be visible on the list
     */
-    property bool showImportOptions: false
+    property bool showImportOptions: false    
+    /*!
+      \qmlproperty bool showImportFromAccountOption
+
+      This property holds if the import from account option should be visible on the list
+    */
+    property bool showImportFromAccountOption: buteoSync.serviceAvailable
+
     /*!
       \qmlproperty bool showAddNewButton
 
@@ -674,7 +681,7 @@ FocusScope {
         anchors.fill: parent
         asynchronous: true
         source: root.showImportOptions &&
-                buteoSync.serviceAvailable &&
+                root.showImportFromAccountOption &&
                 (root.count === 0) &&
                 !view.favouritesIsSelected &&
                 !isSearching ? sourceFile : ""
