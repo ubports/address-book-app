@@ -66,13 +66,12 @@ Page {
             bottomEdgeLoader.editContact(newContact)
         } else {
             contactList.currentIndex = -1
-            var incubator = pageStack.addPageToNextColumn(mainPage,
-                                                         Qt.resolvedUrl("ABContactEditorPage.qml"),
-                                                        { model: mainPage.contactModel,
-                                                          contact: newContact,
-                                                          backIconName: 'back',
-                                                          enabled: false
-                                                          })
+            pageStack.addPageToNextColumn(mainPage,
+                                          Qt.resolvedUrl("ABContactEditorPage.qml"),
+                                          { model: mainPage.contactModel,
+                                            contact: newContact,
+                                            backIconName: 'back'
+                                           })
         }
     }
 
