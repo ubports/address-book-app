@@ -1,3 +1,16 @@
+address-book-app (0.2+16.10.20160920-0ubuntu1) yakkety; urgency=medium
+
+  [ Florian Boucault ]
+  * Fixes for crossbuilding.
+
+  [ Renato Araujo Oliveira Filho ]
+  * Make sure that the editor page is enabled when calling the app with
+    "addressbook:///create?phone=<phone-number>" (LP: #1618981)
+  * Does not show import contacts from account if sync service is not
+    available. (LP: #1625172)
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Tue, 20 Sep 2016 11:43:59 +0000
+
 address-book-app (0.2+16.10.20160913-0ubuntu1) yakkety; urgency=medium
 
   * handle rename of qtdeclarative5-ofono0.2 to qml-module-ofono (LP:
