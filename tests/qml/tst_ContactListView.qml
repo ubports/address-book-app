@@ -44,6 +44,8 @@ Item {
             id: contactListPage
             objectName: "contactListViewTest"
             anchors.fill: parent
+            //force import from account option be visible without the service running
+            showImportFromAccountOption: true
         }
 
     }

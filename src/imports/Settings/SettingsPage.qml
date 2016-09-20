@@ -21,6 +21,8 @@ import Ubuntu.Components 1.3
 import Ubuntu.Components.ListItems 1.3 as ListItem
 import Ubuntu.Contacts 0.1 as ContactsUI
 
+import Buteo 0.1
+
 Page {
     id: root
     objectName: "settingsPage"
@@ -84,6 +86,7 @@ Page {
 
                 text: i18n.tr("Add Google account")
                 progression: true
+                enabled: buteoSync.serviceAvailable
 
                 onClicked: addGoogleAccountItem.activate()
                 Keys.onRightPressed: addGoogleAccountItem.activate()
@@ -173,6 +176,10 @@ Page {
             sims: simList.sims
             onImportCompleted: pageStack.removePages(root)
         }
+    }
+
+    ButeoSync {
+        id: buteoSync
     }
 
     Keys.onDownPressed: addGoogleAccountItem.forceActiveFocus()
