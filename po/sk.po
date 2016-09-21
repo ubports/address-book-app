@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-09-09 06:31+0000\n"
-"X-Generator: Launchpad (build 18184)\n"
+"X-Launchpad-Export-Date: 2016-09-21 06:41+0000\n"
+"X-Generator: Launchpad (build 18204)\n"
 "Language: sk\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
@@ -24,7 +24,7 @@ msgid "%1 is locked"
 msgstr "%1 je zamknuté"
 
 #. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:469
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:473
 msgid "+ Create New"
 msgstr "+ Vytvoriť nový"
 
@@ -32,7 +32,7 @@ msgstr "+ Vytvoriť nový"
 msgid "Add Google account"
 msgstr "Pridať účet Google"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:379
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:391
 msgid "Add field"
 msgstr "Pridať pole"
 
@@ -57,7 +57,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:485
+#: ../src/imports/ABContactListPage.qml:480
 msgid "All"
 msgstr "Všetko"
 
@@ -69,26 +69,26 @@ msgstr "Ste si istý, že chcete vymazať všetky označené kontakty?"
 msgid "Are you sure that you want to remove this contact?"
 msgstr "Ste si istý, že chcete vymazať označený kontakt?"
 
-#: ../src/imports/ABContactListPage.qml:624
+#: ../src/imports/ABContactListPage.qml:619
 msgid "Back"
 msgstr "Naspäť"
 
 #: ../src/imports/ABContactEditorPage.qml:38
-#: ../src/imports/ABContactListPage.qml:505 ../src/imports/MainWindow.qml:223
+#: ../src/imports/ABContactListPage.qml:500 ../src/imports/MainWindow.qml:236
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "Zrušiť"
 
-#: ../src/imports/ABContactListPage.qml:544
+#: ../src/imports/ABContactListPage.qml:539
 msgid "Cancel selection"
 msgstr "Zrušiť výber"
 
-#: ../src/imports/ABContactListPage.qml:767
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:521
+#: ../src/imports/ABContactListPage.qml:762
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:529
 msgid "Close"
 msgstr "Zavrieť"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:502
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:510
 msgid "Contact Editor"
 msgstr "Editor kontaktov"
 
@@ -96,8 +96,8 @@ msgstr "Editor kontaktov"
 msgid "Contact not found"
 msgstr "Kontakt nenájdený"
 
-#: ../src/imports/ABContactListPage.qml:251
-#: ../src/imports/ABContactListPage.qml:291
+#: ../src/imports/ABContactListPage.qml:247
+#: ../src/imports/ABContactListPage.qml:287
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Kontakty"
@@ -114,7 +114,7 @@ msgstr "Kontakty;Ľudia;Čísla"
 msgid "Country"
 msgstr "Krajina"
 
-#: ../src/imports/ABContactListPage.qml:706 ../src/imports/ABEmptyState.qml:55
+#: ../src/imports/ABContactListPage.qml:701 ../src/imports/ABEmptyState.qml:55
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
 "Pre vytvorenie nového kontaktu potiahnite hore od spodnej časti obrazovky."
@@ -123,13 +123,13 @@ msgstr ""
 msgid "Default address book"
 msgstr "Predvolený adresár kontaktov"
 
-#: ../src/imports/ABContactListPage.qml:584
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:442
+#: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:454
 msgid "Delete"
 msgstr "Vymazať"
 
 #: ../src/imports/ABContactViewPage.qml:88
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:189
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
 msgid "Edit"
 msgstr "Zmeniť"
 
@@ -152,7 +152,7 @@ msgstr "Zadajte prezývku"
 msgid "Enter an email address"
 msgstr "Zadajte emailovú adresu"
 
-#: ../src/imports/MainWindow.qml:219
+#: ../src/imports/MainWindow.qml:232
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
 msgstr "Chyba"
@@ -161,7 +161,7 @@ msgstr "Chyba"
 msgid "Exporting contacts..."
 msgstr "Exportovanie kontaktov..."
 
-#: ../src/imports/ABContactListPage.qml:854
+#: ../src/imports/ABContactListPage.qml:849
 msgid "Fail to import contacts!"
 msgstr "Importovanie kontaktov zlyhalo!"
 
@@ -169,7 +169,7 @@ msgstr "Importovanie kontaktov zlyhalo!"
 msgid "Fail to read SIM card"
 msgstr "Čítanie SIM karty zlyhalo"
 
-#: ../src/imports/ABContactListPage.qml:485
+#: ../src/imports/ABContactListPage.qml:480
 msgid "Favorites"
 msgstr "Obľúbené"
 
@@ -199,11 +199,11 @@ msgstr "IM"
 msgid "Import"
 msgstr "Importovať"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:533
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:537
 msgid "Import contacts from Google"
 msgstr "Importovať kontakty z Google"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:548
 msgid "Import contacts from SIM card"
 msgstr "Importovať kontakty zo SIM karty"
 
@@ -211,11 +211,11 @@ msgstr "Importovať kontakty zo SIM karty"
 msgid "Import from SIM"
 msgstr "Importovať zo SIM"
 
-#: ../src/imports/ABContactListPage.qml:637
+#: ../src/imports/ABContactListPage.qml:632
 msgid "Imported contacts"
 msgstr "Importované kontakty"
 
-#: ../src/imports/ABContactListPage.qml:758
+#: ../src/imports/ABContactListPage.qml:753
 msgid "Importing..."
 msgstr "Importuje sa..."
 
@@ -227,7 +227,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Priezvisko"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:617
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:621
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "Načítavam..."
@@ -262,8 +262,8 @@ msgstr "Viac kontaktov"
 msgid "My phone number: %1"
 msgstr "Moje telefónne číslo: %1"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:189
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:477
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:481
 msgid "New contact"
 msgstr "Nový kontakt"
 
@@ -329,7 +329,7 @@ msgstr "PSČ"
 msgid "Professional Details"
 msgstr "Podrobnosti profesie"
 
-#: ../src/imports/ABContactListPage.qml:418
+#: ../src/imports/ABContactListPage.qml:412
 msgid "Quit"
 msgstr "Ukončiť"
 
@@ -362,25 +362,25 @@ msgstr "Uložiť"
 msgid "Saving contacts on phone..."
 msgstr "Ukladanie kontaktov do telefónu..."
 
-#: ../src/imports/ABContactListPage.qml:428
+#: ../src/imports/ABContactListPage.qml:422
 msgid "Search"
 msgstr "Hľadať"
 
-#: ../src/imports/ABContactListPage.qml:393
+#: ../src/imports/ABContactListPage.qml:387
 msgid "Search..."
 msgstr "Hľadať..."
 
-#: ../src/imports/ABContactListPage.qml:554
+#: ../src/imports/ABContactListPage.qml:549
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
 msgstr "Vybrať všetko"
 
-#: ../src/imports/ABContactListPage.qml:475
+#: ../src/imports/ABContactListPage.qml:470
 #: ../src/imports/Settings/SettingsPage.qml:33
 msgid "Settings"
 msgstr "Nastavenia"
 
-#: ../src/imports/ABContactListPage.qml:567
+#: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/ABContactViewPage.qml:75
 msgid "Share"
 msgstr "Zdieľať"
@@ -398,15 +398,15 @@ msgstr "Sociálne"
 msgid "Street"
 msgstr "Ulica"
 
-#: ../src/imports/ABContactListPage.qml:463
+#: ../src/imports/ABContactListPage.qml:458
 msgid "Sync"
 msgstr "Synchronizovať"
 
-#: ../src/imports/ABContactListPage.qml:463
+#: ../src/imports/ABContactListPage.qml:458
 msgid "Syncing"
 msgstr "Synchronizovanie"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:617
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:621
 msgid "Syncing..."
 msgstr "Synchronizovanie..."
 
@@ -426,7 +426,7 @@ msgstr "Odomknúť"
 msgid "Unlocking..."
 msgstr "Odomykanie"
 
-#: ../src/imports/ABContactListPage.qml:554
+#: ../src/imports/ABContactListPage.qml:549
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
 msgstr "Odznačiť všetko"
@@ -450,11 +450,11 @@ msgstr "Yahoo"
 msgid "Yes"
 msgstr "Áno"
 
-#: ../src/imports/ABContactListPage.qml:705
+#: ../src/imports/ABContactListPage.qml:700
 msgid "You have no contacts."
 msgstr "Nemáte žiadne kontakty."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:515
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:523
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded by running Contacts "
@@ -465,7 +465,7 @@ msgstr ""
 "aplikácii Kontakty.\n"
 "Do skončenia aktualizácie môžete upravovať len lokálne kontakty."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:506
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:514
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
@@ -474,7 +474,7 @@ msgstr ""
 "<b>%1</b> synchronizačný účet kontaktov potrebuje aktualizovať.\n"
 "Pre editovanie kontaktov počkajte do ukončenia aktualizácie."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:511
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:519
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded. Use the sync "
