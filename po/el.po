@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-09-21 06:41+0000\n"
+"X-Launchpad-Export-Date: 2016-09-22 08:53+0000\n"
 "X-Generator: Launchpad (build 18204)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
@@ -23,11 +23,11 @@ msgid "%1 is locked"
 msgstr "%1 είναι κλειδωμένο"
 
 #. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:473
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:480
 msgid "+ Create New"
 msgstr "+ Δημιουργία νέας"
 
-#: ../src/imports/Settings/SettingsPage.qml:85
+#: ../src/imports/Settings/SettingsPage.qml:87
 msgid "Add Google account"
 msgstr "Προσθήκη λογαριασμού Google"
 
@@ -56,7 +56,7 @@ msgid "Aim"
 msgstr "AIM"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:480
+#: ../src/imports/ABContactListPage.qml:479
 msgid "All"
 msgstr "Όλες"
 
@@ -68,21 +68,21 @@ msgstr "Θέλετε σίγουρα να αφαιρέστε όλες τις επ
 msgid "Are you sure that you want to remove this contact?"
 msgstr "Θέλετε σίγουρα να αφαιρέσετε αυτή την επαφή;"
 
-#: ../src/imports/ABContactListPage.qml:619
+#: ../src/imports/ABContactListPage.qml:618
 msgid "Back"
 msgstr "Πίσω"
 
 #: ../src/imports/ABContactEditorPage.qml:38
-#: ../src/imports/ABContactListPage.qml:500 ../src/imports/MainWindow.qml:236
+#: ../src/imports/ABContactListPage.qml:499 ../src/imports/MainWindow.qml:236
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#: ../src/imports/ABContactListPage.qml:539
+#: ../src/imports/ABContactListPage.qml:538
 msgid "Cancel selection"
 msgstr "Ακύρωση επιλογής"
 
-#: ../src/imports/ABContactListPage.qml:762
+#: ../src/imports/ABContactListPage.qml:761
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:529
 msgid "Close"
 msgstr "Κλείσιμο"
@@ -95,8 +95,8 @@ msgstr "Επεξεργαστής επαφών"
 msgid "Contact not found"
 msgstr "Η επαφή δε βρέθηκε"
 
-#: ../src/imports/ABContactListPage.qml:247
-#: ../src/imports/ABContactListPage.qml:287
+#: ../src/imports/ABContactListPage.qml:246
+#: ../src/imports/ABContactListPage.qml:286
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Επαφές"
@@ -113,7 +113,7 @@ msgstr "Επαφές;Άνθρωποι;Αριθμοί"
 msgid "Country"
 msgstr "Χώρα"
 
-#: ../src/imports/ABContactListPage.qml:701 ../src/imports/ABEmptyState.qml:55
+#: ../src/imports/ABContactListPage.qml:700 ../src/imports/ABEmptyState.qml:55
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
 "Δημιουργία νέας επαφής σέρνοντας προς τα πάνω, ξεκινώντας από το κάτω μέρος "
@@ -123,7 +123,7 @@ msgstr ""
 msgid "Default address book"
 msgstr "Προεπιλεγμένο βιβλίο διευθύνσεων"
 
-#: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/ABContactListPage.qml:578
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:454
 msgid "Delete"
 msgstr "Διαγραφή"
@@ -161,7 +161,7 @@ msgstr "Σφάλμα"
 msgid "Exporting contacts..."
 msgstr "Εξαγωγή επαφών..."
 
-#: ../src/imports/ABContactListPage.qml:849
+#: ../src/imports/ABContactListPage.qml:848
 msgid "Fail to import contacts!"
 msgstr "Αποτυχία εισαγωγής επαφών!"
 
@@ -169,7 +169,7 @@ msgstr "Αποτυχία εισαγωγής επαφών!"
 msgid "Fail to read SIM card"
 msgstr "Αποτυχία ανάγνωσης κάρτας SIM"
 
-#: ../src/imports/ABContactListPage.qml:480
+#: ../src/imports/ABContactListPage.qml:479
 msgid "Favorites"
 msgstr "Αγαπημένα"
 
@@ -199,23 +199,23 @@ msgstr "IM"
 msgid "Import"
 msgstr "Εισαγωγή"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:537
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
 msgid "Import contacts from Google"
 msgstr "Εισαγωγή επαφών από Google"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:548
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:555
 msgid "Import contacts from SIM card"
 msgstr "Εισαγωγή επαφών από κάρτα SIM"
 
-#: ../src/imports/Settings/SettingsPage.qml:124
+#: ../src/imports/Settings/SettingsPage.qml:127
 msgid "Import from SIM"
 msgstr "Εισαγωγή από SIM"
 
-#: ../src/imports/ABContactListPage.qml:632
+#: ../src/imports/ABContactListPage.qml:631
 msgid "Imported contacts"
 msgstr "Εισαγμένες επαφές"
 
-#: ../src/imports/ABContactListPage.qml:753
+#: ../src/imports/ABContactListPage.qml:752
 msgid "Importing..."
 msgstr "Γίνεται εισαγωγή..."
 
@@ -227,7 +227,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Επώνυμο"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:621
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "Γίνεται φόρτωση..."
@@ -257,13 +257,13 @@ msgstr "Κινητό"
 msgid "Multiple contacts"
 msgstr "Πολλαπλές επαφές"
 
-#: ../src/imports/Settings/SettingsPage.qml:70
+#: ../src/imports/Settings/SettingsPage.qml:72
 #, qt-format
 msgid "My phone number: %1"
 msgstr "Ο αριθμός μου: %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:481
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
 msgstr "Νέα επαφή"
 
@@ -329,7 +329,7 @@ msgstr "Τ.Κ."
 msgid "Professional Details"
 msgstr "Επαγγελματικές λεπτομέρειες"
 
-#: ../src/imports/ABContactListPage.qml:412
+#: ../src/imports/ABContactListPage.qml:411
 msgid "Quit"
 msgstr "'Εξοδος"
 
@@ -345,7 +345,7 @@ msgstr "Περιφέρεια"
 msgid "Role"
 msgstr "Ρόλος"
 
-#: ../src/imports/Settings/SettingsPage.qml:71
+#: ../src/imports/Settings/SettingsPage.qml:73
 #, qt-format
 msgid "SIM %1"
 msgstr "Κάρτα SIM %1"
@@ -362,25 +362,25 @@ msgstr "Αποθήκευση"
 msgid "Saving contacts on phone..."
 msgstr "Αποθήκευση επαφών στο τηλέφωνο..."
 
-#: ../src/imports/ABContactListPage.qml:422
+#: ../src/imports/ABContactListPage.qml:421
 msgid "Search"
 msgstr "Αναζήτηση"
 
-#: ../src/imports/ABContactListPage.qml:387
+#: ../src/imports/ABContactListPage.qml:386
 msgid "Search..."
 msgstr "Αναζήτηση..."
 
-#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/ABContactListPage.qml:548
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
 msgstr "Επιλογή όλων"
 
-#: ../src/imports/ABContactListPage.qml:470
-#: ../src/imports/Settings/SettingsPage.qml:33
+#: ../src/imports/ABContactListPage.qml:469
+#: ../src/imports/Settings/SettingsPage.qml:35
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
-#: ../src/imports/ABContactListPage.qml:562
+#: ../src/imports/ABContactListPage.qml:561
 #: ../src/imports/ABContactViewPage.qml:75
 msgid "Share"
 msgstr "Κοινοποίηση"
@@ -398,15 +398,15 @@ msgstr "Κοινωνικά"
 msgid "Street"
 msgstr "Οδός"
 
-#: ../src/imports/ABContactListPage.qml:458
+#: ../src/imports/ABContactListPage.qml:457
 msgid "Sync"
 msgstr "Συγχρονισμός"
 
-#: ../src/imports/ABContactListPage.qml:458
+#: ../src/imports/ABContactListPage.qml:457
 msgid "Syncing"
 msgstr "Γίνεται συγχρονισμός"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:621
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
 msgid "Syncing..."
 msgstr "Γίνεται συγχρονισμός..."
 
@@ -426,7 +426,7 @@ msgstr "Ξεκλείδωμα"
 msgid "Unlocking..."
 msgstr "Ξεκλείδωμα..."
 
-#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/ABContactListPage.qml:548
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
 msgstr "Αποεπιλογή όλων"
@@ -450,7 +450,7 @@ msgstr "Yahoo"
 msgid "Yes"
 msgstr "Ναι"
 
-#: ../src/imports/ABContactListPage.qml:700
+#: ../src/imports/ABContactListPage.qml:699
 msgid "You have no contacts."
 msgstr "Δεν έχετε επαφές."
 

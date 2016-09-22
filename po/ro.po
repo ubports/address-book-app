@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-09-21 06:41+0000\n"
+"X-Launchpad-Export-Date: 2016-09-22 08:53+0000\n"
 "X-Generator: Launchpad (build 18204)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
@@ -23,11 +23,11 @@ msgid "%1 is locked"
 msgstr "%1 este blocat"
 
 #. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:473
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:480
 msgid "+ Create New"
 msgstr "+Creare contact nou"
 
-#: ../src/imports/Settings/SettingsPage.qml:85
+#: ../src/imports/Settings/SettingsPage.qml:87
 msgid "Add Google account"
 msgstr "Adăugați un cont Google"
 
@@ -56,7 +56,7 @@ msgid "Aim"
 msgstr "Scop"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:480
+#: ../src/imports/ABContactListPage.qml:479
 msgid "All"
 msgstr "Tot"
 
@@ -68,21 +68,21 @@ msgstr "Sigur doriți să eliminați toate contactele selectate?"
 msgid "Are you sure that you want to remove this contact?"
 msgstr "Sigur doriți să eliminați acest contact?"
 
-#: ../src/imports/ABContactListPage.qml:619
+#: ../src/imports/ABContactListPage.qml:618
 msgid "Back"
 msgstr ""
 
 #: ../src/imports/ABContactEditorPage.qml:38
-#: ../src/imports/ABContactListPage.qml:500 ../src/imports/MainWindow.qml:236
+#: ../src/imports/ABContactListPage.qml:499 ../src/imports/MainWindow.qml:236
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "Anulează"
 
-#: ../src/imports/ABContactListPage.qml:539
+#: ../src/imports/ABContactListPage.qml:538
 msgid "Cancel selection"
 msgstr "Anulează selecția"
 
-#: ../src/imports/ABContactListPage.qml:762
+#: ../src/imports/ABContactListPage.qml:761
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:529
 msgid "Close"
 msgstr "Închide"
@@ -95,8 +95,8 @@ msgstr ""
 msgid "Contact not found"
 msgstr "Contactul nu a fost găsit"
 
-#: ../src/imports/ABContactListPage.qml:247
-#: ../src/imports/ABContactListPage.qml:287
+#: ../src/imports/ABContactListPage.qml:246
+#: ../src/imports/ABContactListPage.qml:286
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Contacte"
@@ -113,7 +113,7 @@ msgstr "Contacte;Persoane;Numere"
 msgid "Country"
 msgstr "Ţara"
 
-#: ../src/imports/ABContactListPage.qml:701 ../src/imports/ABEmptyState.qml:55
+#: ../src/imports/ABContactListPage.qml:700 ../src/imports/ABEmptyState.qml:55
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
 "Creați un contact nou prin glisarea din josul ecranului către marginea "
@@ -123,7 +123,7 @@ msgstr ""
 msgid "Default address book"
 msgstr ""
 
-#: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/ABContactListPage.qml:578
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:454
 msgid "Delete"
 msgstr "Șterge"
@@ -161,7 +161,7 @@ msgstr "Eroare"
 msgid "Exporting contacts..."
 msgstr "Se exportă contactele..."
 
-#: ../src/imports/ABContactListPage.qml:849
+#: ../src/imports/ABContactListPage.qml:848
 msgid "Fail to import contacts!"
 msgstr ""
 
@@ -169,7 +169,7 @@ msgstr ""
 msgid "Fail to read SIM card"
 msgstr "Eșec la cititrea cardului SIM"
 
-#: ../src/imports/ABContactListPage.qml:480
+#: ../src/imports/ABContactListPage.qml:479
 msgid "Favorites"
 msgstr "Favorite"
 
@@ -199,23 +199,23 @@ msgstr "Mesagerie în timp real (IM)"
 msgid "Import"
 msgstr "Importați"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:537
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
 msgid "Import contacts from Google"
 msgstr "Importaţi contactele din Google"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:548
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:555
 msgid "Import contacts from SIM card"
 msgstr "Importați contactele de pe cardul SIM"
 
-#: ../src/imports/Settings/SettingsPage.qml:124
+#: ../src/imports/Settings/SettingsPage.qml:127
 msgid "Import from SIM"
 msgstr "Importați de pe SIM"
 
-#: ../src/imports/ABContactListPage.qml:632
+#: ../src/imports/ABContactListPage.qml:631
 msgid "Imported contacts"
 msgstr ""
 
-#: ../src/imports/ABContactListPage.qml:753
+#: ../src/imports/ABContactListPage.qml:752
 msgid "Importing..."
 msgstr "Se importă..."
 
@@ -227,7 +227,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Nume de familie"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:621
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "Se încarcă..."
@@ -257,13 +257,13 @@ msgstr "Mobil"
 msgid "Multiple contacts"
 msgstr "Contacte multiple"
 
-#: ../src/imports/Settings/SettingsPage.qml:70
+#: ../src/imports/Settings/SettingsPage.qml:72
 #, qt-format
 msgid "My phone number: %1"
 msgstr "Numărul meu de telefon: %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:481
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
 msgstr "Contact nou"
 
@@ -329,7 +329,7 @@ msgstr "Cod poștal"
 msgid "Professional Details"
 msgstr "Detalii profesionale"
 
-#: ../src/imports/ABContactListPage.qml:412
+#: ../src/imports/ABContactListPage.qml:411
 msgid "Quit"
 msgstr "Ieșire"
 
@@ -345,7 +345,7 @@ msgstr "Regiune"
 msgid "Role"
 msgstr "Rol"
 
-#: ../src/imports/Settings/SettingsPage.qml:71
+#: ../src/imports/Settings/SettingsPage.qml:73
 #, qt-format
 msgid "SIM %1"
 msgstr "SIM %1"
@@ -362,25 +362,25 @@ msgstr "Salvează"
 msgid "Saving contacts on phone..."
 msgstr ""
 
-#: ../src/imports/ABContactListPage.qml:422
+#: ../src/imports/ABContactListPage.qml:421
 msgid "Search"
 msgstr "Căutare"
 
-#: ../src/imports/ABContactListPage.qml:387
+#: ../src/imports/ABContactListPage.qml:386
 msgid "Search..."
 msgstr "Căutare...."
 
-#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/ABContactListPage.qml:548
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
 msgstr "Selectați tot"
 
-#: ../src/imports/ABContactListPage.qml:470
-#: ../src/imports/Settings/SettingsPage.qml:33
+#: ../src/imports/ABContactListPage.qml:469
+#: ../src/imports/Settings/SettingsPage.qml:35
 msgid "Settings"
 msgstr "Configurări"
 
-#: ../src/imports/ABContactListPage.qml:562
+#: ../src/imports/ABContactListPage.qml:561
 #: ../src/imports/ABContactViewPage.qml:75
 msgid "Share"
 msgstr "Partajare"
@@ -398,15 +398,15 @@ msgstr "Social"
 msgid "Street"
 msgstr "Stradă"
 
-#: ../src/imports/ABContactListPage.qml:458
+#: ../src/imports/ABContactListPage.qml:457
 msgid "Sync"
 msgstr "Sincronizare"
 
-#: ../src/imports/ABContactListPage.qml:458
+#: ../src/imports/ABContactListPage.qml:457
 msgid "Syncing"
 msgstr "Se sincronizează"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:621
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
 msgid "Syncing..."
 msgstr "Sincronizare..."
 
@@ -426,7 +426,7 @@ msgstr "Deblocare"
 msgid "Unlocking..."
 msgstr "Se deblochează..."
 
-#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/ABContactListPage.qml:548
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
 msgstr "Deselectează tot"
@@ -450,7 +450,7 @@ msgstr "Yahoo"
 msgid "Yes"
 msgstr "Da"
 
-#: ../src/imports/ABContactListPage.qml:700
+#: ../src/imports/ABContactListPage.qml:699
 msgid "You have no contacts."
 msgstr "Nu aveți contacte."
 

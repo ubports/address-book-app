@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-09-21 06:41+0000\n"
+"X-Launchpad-Export-Date: 2016-09-22 08:53+0000\n"
 "X-Generator: Launchpad (build 18204)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
@@ -23,11 +23,11 @@ msgid "%1 is locked"
 msgstr "%1 заблоковано"
 
 #. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:473
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:480
 msgid "+ Create New"
 msgstr "+ Створити"
 
-#: ../src/imports/Settings/SettingsPage.qml:85
+#: ../src/imports/Settings/SettingsPage.qml:87
 msgid "Add Google account"
 msgstr "Додати обліковий запис Google"
 
@@ -56,7 +56,7 @@ msgid "Aim"
 msgstr "Мета"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:480
+#: ../src/imports/ABContactListPage.qml:479
 msgid "All"
 msgstr "Усі"
 
@@ -68,21 +68,21 @@ msgstr "Ви справді хочете вилучити усі позначе�
 msgid "Are you sure that you want to remove this contact?"
 msgstr "Ви справді хочете вилучити цей запис контакту?"
 
-#: ../src/imports/ABContactListPage.qml:619
+#: ../src/imports/ABContactListPage.qml:618
 msgid "Back"
 msgstr "Назад"
 
 #: ../src/imports/ABContactEditorPage.qml:38
-#: ../src/imports/ABContactListPage.qml:500 ../src/imports/MainWindow.qml:236
+#: ../src/imports/ABContactListPage.qml:499 ../src/imports/MainWindow.qml:236
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: ../src/imports/ABContactListPage.qml:539
+#: ../src/imports/ABContactListPage.qml:538
 msgid "Cancel selection"
 msgstr "Скасувати позначення"
 
-#: ../src/imports/ABContactListPage.qml:762
+#: ../src/imports/ABContactListPage.qml:761
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:529
 msgid "Close"
 msgstr "Закрити"
@@ -95,8 +95,8 @@ msgstr "Редактор контактів"
 msgid "Contact not found"
 msgstr "Контакт не знайдено"
 
-#: ../src/imports/ABContactListPage.qml:247
-#: ../src/imports/ABContactListPage.qml:287
+#: ../src/imports/ABContactListPage.qml:246
+#: ../src/imports/ABContactListPage.qml:286
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Контакти"
@@ -113,7 +113,7 @@ msgstr "Контакти;Особи;Номери"
 msgid "Country"
 msgstr "Країна"
 
-#: ../src/imports/ABContactListPage.qml:701 ../src/imports/ABEmptyState.qml:55
+#: ../src/imports/ABContactListPage.qml:700 ../src/imports/ABEmptyState.qml:55
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
 "Створити запис контакту можна рухом вгору від нижньої частини екрана."
@@ -122,7 +122,7 @@ msgstr ""
 msgid "Default address book"
 msgstr "Типова адресна книга"
 
-#: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/ABContactListPage.qml:578
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:454
 msgid "Delete"
 msgstr "Вилучити"
@@ -160,7 +160,7 @@ msgstr "Помилка"
 msgid "Exporting contacts..."
 msgstr "Експортуємо контакти…"
 
-#: ../src/imports/ABContactListPage.qml:849
+#: ../src/imports/ABContactListPage.qml:848
 msgid "Fail to import contacts!"
 msgstr "Не вдалося імпортувати записи контактів!"
 
@@ -168,7 +168,7 @@ msgstr "Не вдалося імпортувати записи контакті
 msgid "Fail to read SIM card"
 msgstr "Не вдалося прочитати SIM-картку"
 
-#: ../src/imports/ABContactListPage.qml:480
+#: ../src/imports/ABContactListPage.qml:479
 msgid "Favorites"
 msgstr "Вибрані"
 
@@ -198,23 +198,23 @@ msgstr "МП"
 msgid "Import"
 msgstr "Імпортувати"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:537
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
 msgid "Import contacts from Google"
 msgstr "Імпортувати контакти з Google"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:548
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:555
 msgid "Import contacts from SIM card"
 msgstr "Імпортувати контакти з SIM-картки"
 
-#: ../src/imports/Settings/SettingsPage.qml:124
+#: ../src/imports/Settings/SettingsPage.qml:127
 msgid "Import from SIM"
 msgstr "Імпортувати з SIM-картки"
 
-#: ../src/imports/ABContactListPage.qml:632
+#: ../src/imports/ABContactListPage.qml:631
 msgid "Imported contacts"
 msgstr "Імпортовані контакти"
 
-#: ../src/imports/ABContactListPage.qml:753
+#: ../src/imports/ABContactListPage.qml:752
 msgid "Importing..."
 msgstr "Імпортування…"
 
@@ -226,7 +226,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Прізвище"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:621
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "Завантаження…"
@@ -256,13 +256,13 @@ msgstr "Мобільний"
 msgid "Multiple contacts"
 msgstr "Декілька контактів"
 
-#: ../src/imports/Settings/SettingsPage.qml:70
+#: ../src/imports/Settings/SettingsPage.qml:72
 #, qt-format
 msgid "My phone number: %1"
 msgstr "Ваш номер телефону: %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:481
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
 msgstr "Новий контакт"
 
@@ -328,7 +328,7 @@ msgstr "Поштовий індекс"
 msgid "Professional Details"
 msgstr "Професійні подробиці"
 
-#: ../src/imports/ABContactListPage.qml:412
+#: ../src/imports/ABContactListPage.qml:411
 msgid "Quit"
 msgstr "Вийти"
 
@@ -344,7 +344,7 @@ msgstr "Область/Регіон"
 msgid "Role"
 msgstr "Посада"
 
-#: ../src/imports/Settings/SettingsPage.qml:71
+#: ../src/imports/Settings/SettingsPage.qml:73
 #, qt-format
 msgid "SIM %1"
 msgstr "SIM %1"
@@ -361,25 +361,25 @@ msgstr "Зберегти"
 msgid "Saving contacts on phone..."
 msgstr "Зберігаємо записи контактів на телефоні…"
 
-#: ../src/imports/ABContactListPage.qml:422
+#: ../src/imports/ABContactListPage.qml:421
 msgid "Search"
 msgstr "Пошук"
 
-#: ../src/imports/ABContactListPage.qml:387
+#: ../src/imports/ABContactListPage.qml:386
 msgid "Search..."
 msgstr "Шукати…"
 
-#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/ABContactListPage.qml:548
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
 msgstr "Позначити всі"
 
-#: ../src/imports/ABContactListPage.qml:470
-#: ../src/imports/Settings/SettingsPage.qml:33
+#: ../src/imports/ABContactListPage.qml:469
+#: ../src/imports/Settings/SettingsPage.qml:35
 msgid "Settings"
 msgstr "Параметри"
 
-#: ../src/imports/ABContactListPage.qml:562
+#: ../src/imports/ABContactListPage.qml:561
 #: ../src/imports/ABContactViewPage.qml:75
 msgid "Share"
 msgstr "Поділитися"
@@ -397,15 +397,15 @@ msgstr "Соціальне"
 msgid "Street"
 msgstr "Вулиця"
 
-#: ../src/imports/ABContactListPage.qml:458
+#: ../src/imports/ABContactListPage.qml:457
 msgid "Sync"
 msgstr "Синхронізувати"
 
-#: ../src/imports/ABContactListPage.qml:458
+#: ../src/imports/ABContactListPage.qml:457
 msgid "Syncing"
 msgstr "Синхронізація"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:621
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
 msgid "Syncing..."
 msgstr "Синхронізація..."
 
@@ -425,7 +425,7 @@ msgstr "Розблокувати"
 msgid "Unlocking..."
 msgstr "Розблокування…"
 
-#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/ABContactListPage.qml:548
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
 msgstr "Зняти позначення з усіх"
@@ -449,7 +449,7 @@ msgstr "Yahoo"
 msgid "Yes"
 msgstr "Так"
 
-#: ../src/imports/ABContactListPage.qml:700
+#: ../src/imports/ABContactListPage.qml:699
 msgid "You have no contacts."
 msgstr "У вас немає записів контактів."
 
