@@ -52,6 +52,7 @@ Item {
        backgroundColor: Theme.palette.normal.overlay
        source: Image {
            source: root.expandIcon ? root.iconSource : ""
+           asynchronous: true
        }
        Image {
            anchors.centerIn: parent
