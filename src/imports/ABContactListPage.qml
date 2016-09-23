@@ -321,7 +321,6 @@ Page {
             mainPage.state = "default"
         }
 
-        onError: pageStack.contactModelError(error)
         onCountChanged: {
             if (mainPage.state === "searching") {
                 currentIndex = 0
