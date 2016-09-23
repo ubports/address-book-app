@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2016 Canonical, Ltd.
+ * Copyright (C) 2016 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,24 +17,20 @@
 import QtQuick 2.4
 
 import Ubuntu.Components 1.3
-import Ubuntu.Components.Popups 1.3
+import Ubuntu.Components.Popups 1.3 as Popups
+import Ubuntu.AddressBook.Base 0.1
 
-Item {
-    id: root
+RemoveContactsDialog {
+    id: removeContactsDialog
 
-    property var importDialog: null
+    property var contactListModel
 
-    signal avatarReceived(string avatarUrl)
-
-    function requestNewAvatar()
-    {
-        if (!root.importDialog) {
-            root.importDialog = PopupUtils.open(Qt.resolvedUrl("AvatarImportDialog.qml"), null)
-            root.importDialog.avatarReceived.connect(root.avatarReceived)
-            root.importDialog.destruction.connect(function () {root.importDialog = null})
-
-        } else {
-            console.warn("Import dialog already running")
-        }
+    onCanceled: {
+        PopupUtils.close(removeContactsDialog)
+    }
+    
+    onAccepted: {
+        removeContactsDialog.removeContacts(removeContactsDialog.contactListModel)
+        PopupUtils.close(removeContactsDialog)
     }
 }

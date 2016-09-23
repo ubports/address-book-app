@@ -1,5 +1,7 @@
 set(AB_CONTACT_EDITOR_QMLS
+    AlertMessageDialog.qml
     AvatarImport.qml
+    AvatarImportDialog.qml
     ComboButtonAddField.qml
     ContactDetailAddressesEditor.qml
     ContactDetailAvatarEditor.qml
@@ -12,6 +14,7 @@ set(AB_CONTACT_EDITOR_QMLS
     ContactDetailSyncTargetEditor.qml
     ContactDetailWithTypeEditor.qml
     ContactEditorPage.qml
+    RemoveContactsDialog.qml
     TextInputDetail.qml
     ValueSelector.qml
     qmldir

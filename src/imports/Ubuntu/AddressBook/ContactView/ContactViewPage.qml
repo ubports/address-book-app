@@ -82,15 +82,11 @@ Page {
         anchors.centerIn: parent
     }
 
-    ContactFetchError {
-        id: fetchErrorDialog
-    }
-
     ContactFetch {
         id: contactFetch
 
         onContactRemoved: root.contactRemoved()
-        onContactNotFound: PopupUtils.open(fetchErrorDialog, root)
+        onContactNotFound: PopupUtils.open(Qt.resolvedUrl("ContactFetchError.qml"), root)
         onContactFetched: {
             root.contact = contact
             root.contactFetched(root.contact)

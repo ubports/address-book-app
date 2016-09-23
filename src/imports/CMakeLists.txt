@@ -11,6 +11,8 @@ set(ADDRESS_BOOK_APP_QMLS
     ABMultiColumnEmptyState.qml
     ContentHubProxy.qml
     MainWindow.qml
+    RemoveContactsDialog.qml
+    BusyImportingDialog.qml
 )
 
 install(FILES ${ADDRESS_BOOK_APP_QMLS}

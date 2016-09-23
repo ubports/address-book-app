@@ -65,16 +65,18 @@ Page {
         id: bottomEdgeLoader
 
         asynchronous: true
-        sourceComponent: ABNewContactBottomEdge {
-            id: bottomEdge
+        Component.onCompleted: setSource(Qt.resolvedUrl("ABNewContactBottomEdge.qml"),
+                                         {"hintVisible": false,
+                                          "visible": Qt.binding(function () {return mainPage.pageStack.columns > 1}),
+                                          "parent": root,
+                                          "height": Qt.binding(function () {return root.height}),
+                                          "modelToEdit": Qt.binding(function () {return root.model}),
+                                          "hint.flickable": Qt.binding(function () {return root.flickable}),
+                                          "pageStack": Qt.binding(function () {return root.pageStack})
+                                         })
 
-            hintVisible: false
-            visible: (pageStack.columns > 1)
-            parent: root
-            height: root.height
-            modelToEdit: root.model
-            hint.flickable: root.flickable
-            pageStack: root.pageStack
+        Connections {
+            target: bottomEdgeLoader.item
             onCommitCompleted: { root.openBottomEdgeWhenReady = false }
         }
 

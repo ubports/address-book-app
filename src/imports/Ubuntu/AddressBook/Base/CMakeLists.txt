@@ -1,4 +1,5 @@
 set(AB_CONTACT_COMMON_QMLS
+    BusyExportingDialog.qml
     ContactDetailBase.qml
     ContactDetailItem.qml
     ContactDetailGroupBase.qml
