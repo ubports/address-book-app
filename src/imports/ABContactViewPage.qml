@@ -118,18 +118,6 @@ ContactViewPage {
         id: bottomEdgeLoader
 
         asynchronous: true
-        sourceComponent: ABNewContactBottomEdge {
-            id: bottomEdge
-
-            parent: root
-            height: root.height
-            modelToEdit: root.model
-            hint.flickable: root.flickable
-            pageStack: root.pageStack
-            hintVisible: false
-            enabled: !root.editing
-            visible: (pageStack.columns > 1)
-        }
         Component.onCompleted: setSource(Qt.resolvedUrl("ABNewContactBottomEdge.qml"),
                                          {"parent": root,
                                           "height": Qt.binding(function () {return root.height}),
