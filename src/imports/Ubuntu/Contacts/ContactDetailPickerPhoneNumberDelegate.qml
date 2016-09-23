@@ -122,6 +122,7 @@ Item {
                         height: units.gu(3)
                         width: height
                         anchors.verticalCenter: parent.verticalCenter
+                        asynchronous: true
                     }
                 }
             }

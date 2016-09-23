@@ -97,6 +97,7 @@ Item {
             color: "black"
             height: units.gu(1)
             width: height
+            asynchronous: true
 
             anchors {
                 verticalCenter: parent.verticalCenter
@@ -169,6 +170,7 @@ Item {
                 height: visible ? units.gu(1) : 0
                 width: height
                 visible: index < (listView.count - 1)
+                asynchronous: true
 
                 anchors {
                     verticalCenter: listLabel.verticalCenter

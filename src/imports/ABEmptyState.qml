@@ -44,6 +44,7 @@ Column {
         width: units.gu(5)
         opacity: 0.3
         name: "contact"
+        asynchronous: true
     }
     Label {
         id: emptyStateLabel

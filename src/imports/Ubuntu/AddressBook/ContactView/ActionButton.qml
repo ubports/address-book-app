@@ -31,5 +31,6 @@ AbstractButton {
         height: root.iconSize
         width: root.iconSize
         color: root.activeFocus ? UbuntuColors.orange : "gray"
+        asynchronous: true
     }
 }

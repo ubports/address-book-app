@@ -205,6 +205,7 @@ Item {
             color: Theme.palette.selected.field
             height: units.gu(3)
             width: units.gu(3)
+            asynchronous: true
         }
     }
 
@@ -247,6 +248,7 @@ Item {
                        height: units.gu(3)
                        name: modelData.iconName
                        color: root.activeAction === modelData ? UbuntuColors.orange : UbuntuColors.lightGrey
+                       asynchronous: true
                    }
               }
            }

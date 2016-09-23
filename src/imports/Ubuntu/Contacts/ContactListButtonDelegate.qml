@@ -59,6 +59,7 @@ Item {
            visible: !root.expandIcon
            width: units.gu(2)
            height: units.gu(2)
+           asynchronous: true
        }
        visible: root.showContents
    }

@@ -46,6 +46,7 @@ ContactDetailBase {
         anchors.fill: parent
         fillMode: Image.PreserveAspectCrop
         visible: false
+        asynchronous: true
     }
 
     FastBlur {
