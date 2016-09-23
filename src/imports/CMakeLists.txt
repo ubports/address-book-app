@@ -4,6 +4,7 @@ set(ADDRESS_BOOK_APP_QMLS
     ABAdaptivePageLayout.qml
     ABContactListPage.qml
     ABContactEditorPage.qml
+    ABContactEditorPageWithEmptyContact.qml
     ABContactViewPage.qml
     ABEmptyState.qml
     ABNewContactBottomEdge.qml

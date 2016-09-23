@@ -49,8 +49,9 @@ BottomEdge {
             properties[contact] = bottomEdge._contactToEdit
 
 
-        var incubator = pageStack.addPageToNextColumn(bottomEdge.parent, editorPageBottomEdge, properties)
+        var incubator = pageStack.addPageToNextColumn(bottomEdge.parent, bottomEdge.contentUrl, properties)
         incubator.forceCompletion()
+        setContactEditorPageProperties(incubator.object)
         pageStack.bottomEdgeFloatingPage = incubator.object
         incubator.object.Component.onDestruction.connect(function() {
             pageStack.bottomEdgeFloatingPage = null
@@ -68,28 +69,32 @@ BottomEdge {
         }
     }
 
-    contentComponent: editorPageBottomEdge
-    preloadContent: visible
+    contentUrl: Qt.resolvedUrl("ABContactEditorPageWithEmptyContact.qml")
+    onContentItemChanged: setContactEditorPageProperties(bottomEdge.contentItem)
+    preloadContent: false
+
+    Timer {
+        interval: 1
+        repeat: false
+        running: bottomEdge.visible
+        onTriggered: bottomEdge.preloadContent = true
+    }
 
     onCommitCompleted: {
         pushPage()
         collapse()
     }
 
-    Component {
-        id: editorPageBottomEdge
-
-        ABContactEditorPage {
-            id: editorPageItem
-
-            implicitHeight: mainWindow.height
-            implicitWidth: parent ? parent.width : bottomEdge.width
-            enabled: false
-            model: bottomEdge.modelToEdit
-            contact: ContactsUI.ContactsJS.createEmptyContact("", editorPageItem)
-            onCanceled: pageStack.removePages(editorPageItem)
-            onContactSaved: pageStack.removePages(editorPageItem)
-            pageStack: bottomEdge.pageStack
+    function setContactEditorPageProperties(contactEditorPage) {
+        if (contactEditorPage) {
+            contactEditorPage.implicitHeight = Qt.binding(function () {return mainWindow.height;});
+            contactEditorPage.implicitWidth = Qt.binding(function () {
+                return contactEditorPage.parent ? contactEditorPage.parent.width
+                                                : bottomEdge.width;
+            });
+            contactEditorPage.enabled = false;
+            contactEditorPage.model = Qt.binding(function () {return bottomEdge.modelToEdit;});
+            contactEditorPage.pageStack = Qt.binding(function () {return bottomEdge.pageStack;});
         }
     }
 }
