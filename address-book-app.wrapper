@@ -15,6 +15,14 @@ export XKB_CONFIG_ROOT=$SNAP/usr/share/X11/xkb
 export QTCHOOSER_NO_GLOBAL_DIR=1
 export QT_SELECT=snappy-qt5
 
+if [ "$DESKTOP_SESSION" == "unity8" ]; then
+	# Qt Platform to Mir
+	export QT_QPA_PLATFORM=ubuntumirclient
+	# Mir runtime
+	export MIR_SOCKET=$XDG_RUNTIME_DIR/mir_socket
+	export MIR_CLIENT_PLATFORM_PATH=$SNAP/usr/lib/$ARCH/mir/client-platform
+fi
+
 # Qt Libs
 export LD_LIBRARY_PATH=$SNAP/usr/lib/$ARCH/qt5/libs:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$SNAP/usr/lib/$ARCH/pulseaudio:$LD_LIBRARY_PATH
@@ -23,6 +31,8 @@ export LD_LIBRARY_PATH=$SNAP/usr/lib/$ARCH/pulseaudio:$LD_LIBRARY_PATH
 export QT_PLUGIN_PATH=$SNAP/usr/lib/$ARCH/qt5/plugins
 export QML2_IMPORT_PATH=$QML2_IMPORT_PATH:$SNAP/usr/lib/$ARCH/qt5/qml
 export QML2_IMPORT_PATH=$QML2_IMPORT_PATH:$SNAP/lib/$ARCH
+# Unity8 private
+export QML2_IMPORT_PATH=$QML2_IMPORT_PATH:$SNAP/usr/lib/x86_64-linux-gnu/unity8/qml
 
 # Necessary for the SDK to find the translations directory
 export APP_DIR=$SNAP
@@ -31,4 +41,10 @@ export APP_DIR=$SNAP
 export LD_LIBRARY_PATH=$SNAP/usr/lib/$ARCH/mesa:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$SNAP/usr/lib/$ARCH/mesa-egl:$LD_LIBRARY_PATH
 
-exec $SNAP/usr/bin/address-book-app
+# Tell libGL where to find the drivers
+export LIBGL_DRIVERS_PATH=$SNAP/usr/lib/$ARCH/dri
+# ensure the snappy gl libs win
+export LD_LIBRARY_PATH="$SNAP_LIBRARY_PATH:$LD_LIBRARY_PATH"
+
+cd $SNAP
+exec $SNAP/usr/bin/address-book-app "$@" 
