@@ -7,7 +7,7 @@ grade: devel
 
 apps:
     address-book-app:
-        command: desktop-launch $SNAP/bin/address-book-app
+        command: desktop-launch $SNAP/bin/address-book-app --desktop_file_hint=unity8 "$@"
         plugs: [gsettings, unity7, opengl] # FIXME: add  'address-book' interface after it get merged on snapd
 
 parts:
@@ -47,11 +47,10 @@ parts:
             - -usr/lib/python3
             - -usr/share/doc
             - -usr/include           
-        after: [desktop/gtk3]
+        after: [desktop-gtk3]
 
     environment:
         plugin: dump
         source: .
         organize:
             address-book-app.wrapper: bin/address-book-app
-            snappy-qt5.conf: etc/xdg/qtchooser/snappy-qt5.conf
