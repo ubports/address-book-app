@@ -1,3 +1,12 @@
+address-book-app (0.2+16.10.20160929-0ubuntu1) yakkety; urgency=medium
+
+  [ Łukasz 'sil2100' Zemczak ]
+  * Do not depend on the transitional UITK declarative package. This
+    should essentially fix touch-image build issues on non-arm platforms
+    (yakkety).
+
+ -- Łukasz Zemczak <lukasz.zemczak@canonical.com>  Thu, 29 Sep 2016 07:46:07 +0000
+
 address-book-app (0.2+16.10.20160920-0ubuntu1) yakkety; urgency=medium
 
   [ Florian Boucault ]
