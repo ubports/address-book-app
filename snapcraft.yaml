@@ -15,6 +15,14 @@ parts:
         plugin: cmake
         configflags: [-DCMAKE_INSTALL_PREFIX=/usr, -DCLICK_MODE=off]
         source: . 
+        build-packages:
+            - cmake
+            - intltool
+            - qt5-default
+            - qtbase5-dev
+            - qtdeclarative5-dev
+            - qtpim5-dev
+            - libqofono-dev
         stage-packages:
             - accountsservice
             - accountsservice-ubuntu-schemas
