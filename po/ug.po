@@ -14,26 +14,26 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-09-22 08:53+0000\n"
-"X-Generator: Launchpad (build 18204)\n"
+"X-Launchpad-Export-Date: 2016-10-15 06:17+0000\n"
+"X-Generator: Launchpad (build 18232)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
 msgid "%1 is locked"
-msgstr ""
+msgstr "%1 قۇلۇپلانغان"
 
 #. TRANSLATORS: this refers to a new contact
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:480
 msgid "+ Create New"
-msgstr "+ يېڭىدىن ياسا"
+msgstr "+ يېڭىدىن قۇر"
 
 #: ../src/imports/Settings/SettingsPage.qml:87
 msgid "Add Google account"
-msgstr ""
+msgstr "گۇگىل ھېساباتى قوش"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:391
 msgid "Add field"
-msgstr ""
+msgstr "سوز بۆلىكى قوش"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
@@ -70,7 +70,7 @@ msgstr "راستلا بۇ ئالاقەداشنى ئۆچۈرەمسىز؟"
 
 #: ../src/imports/ABContactListPage.qml:618
 msgid "Back"
-msgstr ""
+msgstr "كەينى"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:499 ../src/imports/MainWindow.qml:236
@@ -103,7 +103,7 @@ msgstr "ئالاقەداشلار"
 
 #: ../data/address-book-app.desktop.in.in.h:2
 msgid "Contacts Address Book"
-msgstr "ئادرېس دەپتىرى"
+msgstr "ئالاقەداشلارنىڭ ئادرېس دەپتىرى"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
@@ -121,7 +121,7 @@ msgstr ""
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
-msgstr ""
+msgstr "كۆڭۈلدىكى ئادرېس دەپتىرى"
 
 #: ../src/imports/ABContactListPage.qml:578
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:454
@@ -159,19 +159,19 @@ msgstr "خاتالىق"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactExporter.qml:167
 msgid "Exporting contacts..."
-msgstr "ئالاقىلاشقۇچىلار تىزىملىكىنى چقىرىش"
+msgstr "ئالاقىلەشكۈچىلەرنى ئېكسپورت قىلىۋاتىدۇ…"
 
 #: ../src/imports/ABContactListPage.qml:848
 msgid "Fail to import contacts!"
-msgstr ""
+msgstr "ئالاقەداش ئىمپورت قىلىش مەغلۇپ بولدى"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:285
 msgid "Fail to read SIM card"
-msgstr ""
+msgstr "سىم كارتىدىن ئوقۇش مەغلۇپ بولدى"
 
 #: ../src/imports/ABContactListPage.qml:479
 msgid "Favorites"
-msgstr "ياقتۇرغانلىرىم"
+msgstr "يىغقۇچ"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:88
 msgid "First name"
@@ -197,27 +197,27 @@ msgstr "IM"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:58
 msgid "Import"
-msgstr "ئەكىر"
+msgstr "ئىمپورت قىل"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
 msgid "Import contacts from Google"
-msgstr ""
+msgstr "گۇگىلدىن ئالاقەداش ئىمپورت قىل"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:555
 msgid "Import contacts from SIM card"
-msgstr ""
+msgstr "سىم كارتىدىن  ئالاقەداش ئىمپورت قىل"
 
 #: ../src/imports/Settings/SettingsPage.qml:127
 msgid "Import from SIM"
-msgstr ""
+msgstr "سىم كارتىدىن  ئىمپورت قىل"
 
 #: ../src/imports/ABContactListPage.qml:631
 msgid "Imported contacts"
-msgstr ""
+msgstr "ئىمپورت قىلىنغان ئالاقەداشلار"
 
 #: ../src/imports/ABContactListPage.qml:752
 msgid "Importing..."
-msgstr "ئىمپورت قىلىۋاتىدۇ…"
+msgstr "ئەكىرىۋاتىدۇ…"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
 msgid "Jabber"
@@ -242,11 +242,11 @@ msgstr "MSN"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:62
 msgid "Middle Name"
-msgstr ""
+msgstr "ئوتتۇرا ئاتى"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:90
 msgid "Middle name"
-msgstr ""
+msgstr "ئوتتۇرا ئاتى"
 
 #. TRANSLATORS: This refers to mobile/cellphone phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
@@ -260,7 +260,7 @@ msgstr "بىر قانچە ئالاقەداش"
 #: ../src/imports/Settings/SettingsPage.qml:72
 #, qt-format
 msgid "My phone number: %1"
-msgstr ""
+msgstr "تېلېفون نومۇرۇم: %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
@@ -283,7 +283,7 @@ msgstr "ئالاقەداش تاللانمىدى."
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
-msgstr ""
+msgstr "ئالاقەداش يوق"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:155
 msgid "No contacts found"
@@ -310,7 +310,7 @@ msgstr "باشقا"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:88
 #, qt-format
 msgid "Personal - %1"
-msgstr ""
+msgstr "شەخسىي - %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:51
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:23
@@ -335,7 +335,7 @@ msgstr "ئاخىرلاشتۇر"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Reading contacts from SIM..."
-msgstr ""
+msgstr "سىم كارتىدىن  ئالاقەداش ئوقۇۋاتىدۇ..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -352,7 +352,7 @@ msgstr "SIM %1"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:39
 msgid "SIM contacts"
-msgstr ""
+msgstr "سىم كارتىدىكى ئالاقەداشلار"
 
 #: ../src/imports/ABContactEditorPage.qml:56
 msgid "Save"
@@ -360,7 +360,7 @@ msgstr "ساقلا"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Saving contacts on phone..."
-msgstr ""
+msgstr "ئالاقەداشلارنى تېلېفونغا  ساقلاۋاتىدۇ…"
 
 #: ../src/imports/ABContactListPage.qml:421
 msgid "Search"
@@ -383,7 +383,7 @@ msgstr "تەڭشەكلەر"
 #: ../src/imports/ABContactListPage.qml:561
 #: ../src/imports/ABContactViewPage.qml:75
 msgid "Share"
-msgstr "ھەمبەھىرلە"
+msgstr "ھەمبەھىر"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Skype"
