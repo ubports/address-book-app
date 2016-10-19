@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-06-13 10:07-0300\n"
-"PO-Revision-Date: 2016-02-08 09:39+0000\n"
-"Last-Translator: David Planella <david.planella@gmail.com>\n"
+"PO-Revision-Date: 2016-10-18 06:53+0000\n"
+"Last-Translator: Walter Garcia-Fontes <walter.garcia@upf.edu>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-10-15 06:16+0000\n"
+"X-Launchpad-Export-Date: 2016-10-19 06:33+0000\n"
 "X-Generator: Launchpad (build 18232)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
@@ -70,7 +70,7 @@ msgstr "Segur que voleu suprimir aquest contacte?"
 
 #: ../src/imports/ABContactListPage.qml:618
 msgid "Back"
-msgstr ""
+msgstr "Enrere"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:499 ../src/imports/MainWindow.qml:236
@@ -121,7 +121,7 @@ msgstr ""
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
-msgstr ""
+msgstr "Llibreta d'adreces per defecte"
 
 #: ../src/imports/ABContactListPage.qml:578
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:454
@@ -163,7 +163,7 @@ msgstr "S'estan exportant els contactes..."
 
 #: ../src/imports/ABContactListPage.qml:848
 msgid "Fail to import contacts!"
-msgstr ""
+msgstr "Ha fallat la importació de contactes"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:285
 msgid "Fail to read SIM card"
@@ -213,7 +213,7 @@ msgstr "Importa des de la targeta SIM"
 
 #: ../src/imports/ABContactListPage.qml:631
 msgid "Imported contacts"
-msgstr ""
+msgstr "S'han importat els contactes"
 
 #: ../src/imports/ABContactListPage.qml:752
 msgid "Importing..."
@@ -242,11 +242,11 @@ msgstr "MSN"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:62
 msgid "Middle Name"
-msgstr ""
+msgstr "Segon nom"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:90
 msgid "Middle name"
-msgstr ""
+msgstr "Segon nom"
 
 #. TRANSLATORS: This refers to mobile/cellphone phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
@@ -283,7 +283,7 @@ msgstr "No s'ha seleccionat cap contacte."
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
-msgstr ""
+msgstr "Cap contacte"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:155
 msgid "No contacts found"
@@ -310,7 +310,7 @@ msgstr "Un altre"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:88
 #, qt-format
 msgid "Personal - %1"
-msgstr ""
+msgstr "Personal - %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:51
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:23
@@ -360,7 +360,7 @@ msgstr "Desa"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Saving contacts on phone..."
-msgstr ""
+msgstr "S'estan desant els contactes al telèfon..."
 
 #: ../src/imports/ABContactListPage.qml:421
 msgid "Search"
