@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2016-06-13 10:07-0300\n"
-"PO-Revision-Date: 2016-10-18 06:53+0000\n"
+"PO-Revision-Date: 2016-10-26 07:45+0000\n"
 "Last-Translator: Walter Garcia-Fontes <walter.garcia@upf.edu>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-10-19 06:33+0000\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Launchpad-Export-Date: 2016-10-27 06:29+0000\n"
+"X-Generator: Launchpad (build 18246)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
@@ -33,7 +33,7 @@ msgstr "Afegeix un compte de Google"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:391
 msgid "Add field"
-msgstr ""
+msgstr "Afegeix un camp"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
@@ -335,7 +335,7 @@ msgstr "Surt"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Reading contacts from SIM..."
-msgstr ""
+msgstr "S'estan llegint els contactes de la SIM..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -461,6 +461,9 @@ msgid ""
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Cal actualitzar el vostre compte de sincronització de contactes <b>%1</b> "
+"executant l'app Contacts.\n"
+"Fins que acabi la sincronització sols es poden editar els contactes locals."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:514
 #, qt-format
@@ -468,6 +471,8 @@ msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
+"Cal actualitzar el vostre compte de sincronització de contactes <b>%1</b>.\n"
+"Espereu que acabi la sincronització per editar els contactes."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:519
 #, qt-format
@@ -476,6 +481,9 @@ msgid ""
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Cal actualitzar el vostre compte de sincronització de contactes <b>%1</b>. "
+"Useu el botó de sincronització per actualitzar l'app Contacts.\n"
+"Fins que acabi la sincronització sols es poden editar els contactes locals."
 
 #~ msgid ""
 #~ "Would you like to sync contacts\n"
