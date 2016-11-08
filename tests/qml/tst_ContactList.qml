@@ -62,8 +62,11 @@ Item {
         id: mainView
         pageStack: Item {
             property var contactListPage: null
+            property var _bottomEdge: null
+
             readonly property int columns: 1
             readonly property bool hasKeyboard: false
+            property bool bottomEdgeOpened: false
         }
 
         anchors.fill: parent
@@ -95,7 +98,7 @@ Item {
         {
             //WORKAROUND: avoid problems with async object
             //if the test run too fast it can cause problems with async objects
-            wait(1000)
+            wait(2000)
             root.contactListPageObj.destroy()
         }
 
