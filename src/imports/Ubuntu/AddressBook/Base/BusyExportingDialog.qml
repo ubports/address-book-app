@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2016 Canonical, Ltd.
+ * Copyright (C) 2016 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,22 +19,13 @@ import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 
-Item {
-    id: root
+Dialog {
+    title: i18n.dtr("address-book-app", "Exporting contacts...")
 
-    property var importDialog: null
+    ActivityIndicator {
+        id: activity
 
-    signal avatarReceived(string avatarUrl)
-
-    function requestNewAvatar()
-    {
-        if (!root.importDialog) {
-            root.importDialog = PopupUtils.open(Qt.resolvedUrl("AvatarImportDialog.qml"), null)
-            root.importDialog.avatarReceived.connect(root.avatarReceived)
-            root.importDialog.destruction.connect(function () {root.importDialog = null})
-
-        } else {
-            console.warn("Import dialog already running")
-        }
+        anchors.horizontalCenter: parent.horizontalCenter
+        running: true
     }
 }

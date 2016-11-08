@@ -223,23 +223,6 @@ MainView {
         value: mainStack.hasMouse
     }
 
-    Component {
-        id: errorDialog
-
-        Popups.Dialog {
-            id: dialogue
-
-            title: i18n.tr("Error")
-            text: mainWindow.modelErrorMessage
-
-            Button {
-                text: i18n.tr("Cancel")
-                gradient: UbuntuColors.greyGradient
-                onClicked: PopupUtils.close(dialogue)
-            }
-        }
-    }
-
     Connections {
         target: UriHandler
         onOpened: {

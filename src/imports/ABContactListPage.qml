@@ -24,7 +24,6 @@ import Ubuntu.Contacts 0.1 as ContactsUI
 import Ubuntu.Content 1.3 as ContentHub
 
 import Ubuntu.AddressBook.Base 0.1
-import Ubuntu.AddressBook.ContactShare 0.1
 
 
 Page {
@@ -183,7 +182,8 @@ Page {
 
     function importContact(urls)
     {
-        mainPage._busyDialog = PopupUtils.open(busyDialogComponent, mainPage)
+        mainPage._busyDialog = PopupUtils.open(Qt.resolvedUrl("./BusyImportingDialog.qml"), mainPage)
+        mainPage._busyDialog.destruction.connect(function() {mainPage._busyDialog = null})
 
         var importing = false
         for(var i=0, iMax=urls.length; i < iMax; i++) {
@@ -321,7 +321,6 @@ Page {
             mainPage.state = "default"
         }
 
-        onError: pageStack.contactModelError(error)
         onCountChanged: {
             if (mainPage.state === "searching") {
                 currentIndex = 0
@@ -587,7 +586,9 @@ Page {
                             contacts.push(items.get(i).model.contact)
                         }
 
-                        var dialog = PopupUtils.open(removeContactDialog, null)
+                        var dialog = PopupUtils.open(Qt.resolvedUrl("RemoveContactsDialog.qml"),
+                                                     null,
+                                                     {"contactListModel": contactList.listModel})
                         dialog.contacts = contacts
                         contactList.endSelection()
                     }
@@ -716,64 +717,10 @@ Page {
             if (!mainPage.pickMode) {
                 contactExporter.dismissBusyDialog()
                 pageStack.addPageToNextColumn(mainPage,
-                                              contactShareComponent,
+                                              Qt.resolvedUrl("ContactShare/ContactSharePage.qml"),
                                               {contactModel: contactExporter.contactModel,
                                                contacts: contacts })
             }
-        }
-    }
-
-    Component {
-        id: removeContactDialog
-
-        RemoveContactsDialog {
-            id: removeContactsDialogMessage
-
-            onCanceled: {
-                PopupUtils.close(removeContactsDialogMessage)
-            }
-
-            onAccepted: {
-                removeContacts(contactList.listModel)
-                PopupUtils.close(removeContactsDialogMessage)
-            }
-        }
-    }
-
-    Component {
-        id: busyDialogComponent
-
-        Popups.Dialog {
-            id: busyDialog
-
-            property alias allowToClose: closeButton.visible
-            property alias showActivity: busyIndicator.visible
-
-            title: i18n.tr("Importing...")
-
-            ActivityIndicator {
-                id: busyIndicator
-                running: visible
-                visible: true
-            }
-            Button {
-                id: closeButton
-                text: i18n.tr("Close")
-                visible: false
-                color: UbuntuColors.red
-                onClicked: {
-                    PopupUtils.close(mainPage._busyDialog)
-                    mainPage._busyDialog = null
-                }
-            }
-        }
-    }
-
-    Component {
-        id: contactShareComponent
-
-        ContactSharePage {
-            objectName: "contactSharePage"
         }
     }
 
@@ -796,16 +743,15 @@ Page {
         enabled: false
         active: true
         asynchronous: true
-        sourceComponent: ABNewContactBottomEdge {
-            id: bottomEdge
-            parent: mainPage
-            modelToEdit: mainPage.contactModel
-            hint.flickable: contactList.view
-            pageStack: mainPage.pageStack
-            enabled: mainPage.active
-            hintVisible: (pageStack.columns === 1) && bottomEdgeLoader.enabled
-            visible: hintVisible
-        }
+        Component.onCompleted: setSource(Qt.resolvedUrl("ABNewContactBottomEdge.qml"),
+                                         {"parent": mainPage,
+                                          "modelToEdit": Qt.binding(function () {return mainPage.contactModel}),
+                                          "hint.flickable": Qt.binding(function () {return contactList.view}),
+                                          "pageStack": Qt.binding(function () {return mainPage.pageStack}),
+                                          "enabled": Qt.binding(function () {return mainPage.active}),
+                                          "hintVisible": Qt.binding(function () {return mainPage.pageStack.columns === 1}),
+                                          "visible": Qt.binding(function () {return mainPage.pageStack.columns === 1})
+                                         })
     }
 
     Binding {

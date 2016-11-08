@@ -44,7 +44,7 @@ Item {
         }
 
         if (!priv.busyDialog) {
-            priv.busyDialog = PopupUtils.open(busyDialogComponent, root)
+            priv.busyDialog = PopupUtils.open(Qt.resolvedUrl("BusyExportingDialog.qml"), root)
         }
 
         var ids = []
@@ -156,21 +156,6 @@ Item {
                     root.activeTransfer = null
                     root.done("")
                 }
-            }
-        }
-    }
-
-    Component {
-        id: busyDialogComponent
-
-        Dialog {
-            title: i18n.dtr("address-book-app", "Exporting contacts...")
-
-            ActivityIndicator {
-                id: activity
-
-                anchors.horizontalCenter: parent.horizontalCenter
-                running: true
             }
         }
     }

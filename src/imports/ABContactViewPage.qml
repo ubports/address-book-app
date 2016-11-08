@@ -21,7 +21,6 @@ import Ubuntu.Contacts 0.1
 
 import Ubuntu.AddressBook.Base 0.1
 import Ubuntu.AddressBook.ContactView 0.1
-import Ubuntu.AddressBook.ContactShare 0.1
 
 ContactViewPage {
     id: root
@@ -76,7 +75,7 @@ ContactViewPage {
             iconName: "share"
             onTriggered: {
                 pageStack.addPageToCurrentColumn(root,
-                                                 contactShareComponent,
+                                                 Qt.resolvedUrl("ContactShare/ContactSharePage.qml"),
                                                  {contactModel: root.model,
                                                   contacts: [root.contact]})
             }
@@ -115,27 +114,20 @@ ContactViewPage {
         Qt.openUrlExternally(("%1:%2").arg(action).arg(detail.value(0)))
     }
 
-    Component {
-        id: contactShareComponent
-        ContactSharePage {}
-    }
-
     Loader {
         id: bottomEdgeLoader
 
         asynchronous: true
-        sourceComponent: ABNewContactBottomEdge {
-            id: bottomEdge
-
-            parent: root
-            height: root.height
-            modelToEdit: root.model
-            hint.flickable: root.flickable
-            pageStack: root.pageStack
-            hintVisible: false
-            enabled: !root.editing
-            visible: (pageStack.columns > 1)
-        }
+        Component.onCompleted: setSource(Qt.resolvedUrl("ABNewContactBottomEdge.qml"),
+                                         {"parent": root,
+                                          "height": Qt.binding(function () {return root.height}),
+                                          "modelToEdit": Qt.binding(function () {return root.model}),
+                                          "hint.flickable": Qt.binding(function () {return root.flickable}),
+                                          "pageStack": Qt.binding(function () {return root.pageStack}),
+                                          "hintVisible": false,
+                                          "enabled": Qt.binding(function () {return !root.editing}),
+                                          "visible": Qt.binding(function () {return root.pageStack.columns > 1})
+                                         })
     }
 
     Binding {

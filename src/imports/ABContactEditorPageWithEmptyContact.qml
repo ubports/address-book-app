@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2015 Canonical, Ltd.
+ * Copyright (C) 2016 Canonical, Ltd.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,22 +15,13 @@
  */
 
 import QtQuick 2.4
-import Ubuntu.Components 1.3
 
-AbstractButton {
-    id: root
+import Ubuntu.AddressBook.ContactEditor 0.1
+import Ubuntu.Contacts 0.1 as ContactsUI
 
-    property QtObject actions
-    property alias iconName: icon.name
-    property real iconSize: units.gu(2.5)
-
-    Icon {
-        id: icon
-
-        anchors.centerIn: parent
-        height: root.iconSize
-        width: root.iconSize
-        color: root.activeFocus ? UbuntuColors.orange : "gray"
-        asynchronous: true
-    }
+ABContactEditorPage {
+    id: contactEditorPage
+    contact: ContactsUI.ContactsJS.createEmptyContact("", contactEditorPage)
+    onCanceled: contactEditorPage.pageStack.removePages(contactEditorPage)
+    onContactSaved: contactEditorPage.pageStack.removePages(contactEditorPage)
 }

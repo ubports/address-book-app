@@ -4,12 +4,15 @@ set(ADDRESS_BOOK_APP_QMLS
     ABAdaptivePageLayout.qml
     ABContactListPage.qml
     ABContactEditorPage.qml
+    ABContactEditorPageWithEmptyContact.qml
     ABContactViewPage.qml
     ABEmptyState.qml
     ABNewContactBottomEdge.qml
     ABMultiColumnEmptyState.qml
     ContentHubProxy.qml
     MainWindow.qml
+    RemoveContactsDialog.qml
+    BusyImportingDialog.qml
 )
 
 install(FILES ${ADDRESS_BOOK_APP_QMLS}

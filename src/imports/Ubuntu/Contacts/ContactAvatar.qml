@@ -85,5 +85,6 @@ UbuntuShape {
         anchors.centerIn: avatar
         height: units.gu(3)
         width: height
+        asynchronous: true
     }
 }

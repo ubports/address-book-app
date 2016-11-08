@@ -81,5 +81,6 @@ ContactDetailBase {
         name: root.action ? root.action.iconName : ""
         color: root.activeFocus ? UbuntuColors.orange : "gray"
         visible: width > 0
+        asynchronous: true
     }
 }

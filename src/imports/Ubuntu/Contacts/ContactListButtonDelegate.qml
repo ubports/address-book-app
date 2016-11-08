@@ -52,6 +52,7 @@ Item {
        backgroundColor: Theme.palette.normal.overlay
        source: Image {
            source: root.expandIcon ? root.iconSource : ""
+           asynchronous: true
        }
        Image {
            anchors.centerIn: parent
@@ -59,6 +60,7 @@ Item {
            visible: !root.expandIcon
            width: units.gu(2)
            height: units.gu(2)
+           asynchronous: true
        }
        visible: root.showContents
    }

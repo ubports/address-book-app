@@ -364,11 +364,15 @@ Page {
                     left: parent.left
                     right: parent.right
                 }
+                property var alertMessageDialog
                 onChanged: {
                     if (contactEditor.enabled &&
                         !contactEditor.isNewContact &&
                         syncTargetEditor.contactIsReadOnly(contactEditor.contact)) {
-                        PopupUtils.open(alertMessage)
+                        syncTargetEditor.alertMessageDialog = PopupUtils.open(Qt.resolvedUrl("AlertMessageDialog.qml"),
+                                                                              null,
+                                                                              {"contact": contactEditor.contact})
+                        syncTargetEditor.alertMessageDialog.destruction.connect(contactEditor.close)
                     }
                 }
             }
@@ -463,7 +467,8 @@ Page {
                     enabled: contactEditor.active && deleteButton.visible
                     shortcut: "Ctrl+Delete"
                     onTriggered: {
-                        var dialog = PopupUtils.open(removeContactDialog, null)
+                        var dialog = PopupUtils.open(Qt.resolvedUrl("RemoveContactsDialog.qml"), null,
+                                                     {"contactEditor": contactEditor})
                         dialog.contacts = [contactEditor.contact]
                     }
                 }
@@ -499,80 +504,5 @@ Page {
         }
 
         focusTimer.restart()
-    }
-
-    Component {
-        id: alertMessage
-
-        Dialog {
-            id: aletMessageDialog
-
-            title: i18n.dtr("address-book-app", "Contact Editor")
-            text: {
-                if (ContactsUI.Contacts.updateIsRunning) {
-                    return i18n.dtr("address-book-app",
-                                    "Your <b>%1</b> contact sync account needs to be upgraded.\nWait until the upgrade is complete to edit contacts.")
-                                    .arg(contactEditor.contact.syncTarget.syncTarget)
-                }
-                if (Qt.application.name === "AddressBookApp") {
-                      i18n.dtr("address-book-app",
-                               "Your <b>%1</b> contact sync account needs to be upgraded. Use the sync button to upgrade the Contacts app.\nOnly local contacts will be editable until upgrade is complete.")
-                        .arg(contactEditor.contact.syncTarget.syncTarget)
-                } else {
-                      i18n.dtr("address-book-app",
-                               "Your <b>%1</b> contact sync account needs to be upgraded by running Contacts app.\nOnly local contacts will be editable until upgrade is complete.")
-                        .arg(contactEditor.contact.syncTarget.syncTarget);
-                }
-            }
-
-            Button {
-                text: i18n.dtr("address-book-app", "Close")
-                onClicked: PopupUtils.close(aletMessageDialog)
-            }
-
-            Component.onCompleted: Qt.inputMethod.hide()
-            Component.onDestruction: contactEditor.pageStack.removePages(contactEditor)
-        }
-    }
-
-    Component {
-        id: removeContactDialog
-
-        RemoveContactsDialog {
-            id: removeContactsDialogMessage
-
-            property bool popPages: false
-
-            onCanceled: {
-                PopupUtils.close(removeContactsDialogMessage)
-            }
-
-            onAccepted: {
-                popPages = true
-                removeContacts(contactEditor.model)
-                PopupUtils.close(removeContactsDialogMessage)
-            }
-
-            // hide virtual keyboard if necessary
-            Component.onCompleted: {
-                contactEditor.enabled = false
-                Qt.inputMethod.hide()
-            }
-
-            // WORKAROUND: SDK element crash if pop the page where the dialog was created
-            Component.onDestruction: {
-                contactEditor.enabled = true
-                if (popPages) {
-                    if (contactEditor.pageStack.removePages) {
-                        contactEditor.pageStack.removePages(contactEditor)
-                    } else {
-                        contactEditor.pageStack.pop() // editor page
-                        contactEditor.pageStack.pop() // view page
-                    }
-                }
-                if (contactEditor.pageStack.primaryPage)
-                    contactEditor.pageStack.primaryPage.forceActiveFocus()
-            }
-        }
     }
 }
