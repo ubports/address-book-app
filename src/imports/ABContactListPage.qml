@@ -182,7 +182,7 @@ Page {
 
     function importContact(urls)
     {
-        mainPage._busyDialog = PopupUtils.open("BusyImportingDialog.qml", mainPage)
+        mainPage._busyDialog = PopupUtils.open(Qt.resolvedUrl("./BusyImportingDialog.qml"), mainPage)
         mainPage._busyDialog.destruction.connect(function() {mainPage._busyDialog = null})
 
         var importing = false
