@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-10-15 06:16+0000\n"
-"X-Generator: Launchpad (build 18232)\n"
+"X-Launchpad-Export-Date: 2016-11-16 06:15+0000\n"
+"X-Generator: Launchpad (build 18269)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
@@ -31,7 +31,7 @@ msgstr "+ Buat Baru"
 msgid "Add Google account"
 msgstr "Tambah akun Google"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:391
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
 msgid "Add field"
 msgstr "Tambah kolom"
 
@@ -56,7 +56,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:479
+#: ../src/imports/ABContactListPage.qml:478
 msgid "All"
 msgstr "Semua"
 
@@ -68,26 +68,26 @@ msgstr "Yakin untuk menghapus semua kontak?"
 msgid "Are you sure that you want to remove this contact?"
 msgstr "Yakin untuk menghapus kontak ini?"
 
-#: ../src/imports/ABContactListPage.qml:618
+#: ../src/imports/ABContactListPage.qml:619
 msgid "Back"
 msgstr "Mundur"
 
 #: ../src/imports/ABContactEditorPage.qml:38
-#: ../src/imports/ABContactListPage.qml:499 ../src/imports/MainWindow.qml:236
+#: ../src/imports/ABContactListPage.qml:498
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "Batal"
 
-#: ../src/imports/ABContactListPage.qml:538
+#: ../src/imports/ABContactListPage.qml:537
 msgid "Cancel selection"
 msgstr "Batal memilih"
 
-#: ../src/imports/ABContactListPage.qml:761
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:529
+#: ../src/imports/BusyImportingDialog.qml:40
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:48
 msgid "Close"
 msgstr "Tutup"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:510
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:29
 msgid "Contact Editor"
 msgstr "Penyunting Kontak"
 
@@ -113,7 +113,7 @@ msgstr "Contacts;People;Numbers;Kontak;Kenalan;Orang;Nomor"
 msgid "Country"
 msgstr "Negara"
 
-#: ../src/imports/ABContactListPage.qml:700 ../src/imports/ABEmptyState.qml:55
+#: ../src/imports/ABContactListPage.qml:701 ../src/imports/ABEmptyState.qml:56
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "Buat kontak baru dengan mengusap layar dari arah bawah."
 
@@ -121,12 +121,12 @@ msgstr "Buat kontak baru dengan mengusap layar dari arah bawah."
 msgid "Default address book"
 msgstr "Buku alamat baku"
 
-#: ../src/imports/ABContactListPage.qml:578
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:454
+#: ../src/imports/ABContactListPage.qml:577
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
 msgid "Delete"
 msgstr "Hapus"
 
-#: ../src/imports/ABContactViewPage.qml:88
+#: ../src/imports/ABContactViewPage.qml:87
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
 msgid "Edit"
 msgstr "Sunting"
@@ -150,16 +150,15 @@ msgstr "Masukkan alias sosial"
 msgid "Enter an email address"
 msgstr "Masukkan surel"
 
-#: ../src/imports/MainWindow.qml:232
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
 msgstr "Galat"
 
-#: ../src/imports/Ubuntu/AddressBook/Base/ContactExporter.qml:167
+#: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
 msgstr "Mengekspor kontak..."
 
-#: ../src/imports/ABContactListPage.qml:848
+#: ../src/imports/ABContactListPage.qml:794
 msgid "Fail to import contacts!"
 msgstr "Gagal mengimpor kontak!"
 
@@ -167,7 +166,7 @@ msgstr "Gagal mengimpor kontak!"
 msgid "Fail to read SIM card"
 msgstr "Gagal membaca kartu SIM"
 
-#: ../src/imports/ABContactListPage.qml:479
+#: ../src/imports/ABContactListPage.qml:478
 msgid "Favorites"
 msgstr "Favorit"
 
@@ -209,11 +208,11 @@ msgstr "Mengimpor kontak dari kartu SIM"
 msgid "Import from SIM"
 msgstr "Impor dari SIM"
 
-#: ../src/imports/ABContactListPage.qml:631
+#: ../src/imports/ABContactListPage.qml:632
 msgid "Imported contacts"
 msgstr "Kontak yang diimpor"
 
-#: ../src/imports/ABContactListPage.qml:752
+#: ../src/imports/BusyImportingDialog.qml:31
 msgid "Importing..."
 msgstr "Mengimpor..."
 
@@ -327,7 +326,7 @@ msgstr "Kode Pos"
 msgid "Professional Details"
 msgstr "Detail Profesi"
 
-#: ../src/imports/ABContactListPage.qml:411
+#: ../src/imports/ABContactListPage.qml:410
 msgid "Quit"
 msgstr "Keluar"
 
@@ -360,26 +359,26 @@ msgstr "Simpan"
 msgid "Saving contacts on phone..."
 msgstr "Menyimpan kontak pada telepon..."
 
-#: ../src/imports/ABContactListPage.qml:421
+#: ../src/imports/ABContactListPage.qml:420
 msgid "Search"
 msgstr "Cari"
 
-#: ../src/imports/ABContactListPage.qml:386
+#: ../src/imports/ABContactListPage.qml:385
 msgid "Search..."
 msgstr "Cari..."
 
-#: ../src/imports/ABContactListPage.qml:548
+#: ../src/imports/ABContactListPage.qml:547
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
 msgstr "Pilih Semua"
 
-#: ../src/imports/ABContactListPage.qml:469
+#: ../src/imports/ABContactListPage.qml:468
 #: ../src/imports/Settings/SettingsPage.qml:35
 msgid "Settings"
 msgstr "Pengaturan"
 
-#: ../src/imports/ABContactListPage.qml:561
-#: ../src/imports/ABContactViewPage.qml:75
+#: ../src/imports/ABContactListPage.qml:560
+#: ../src/imports/ABContactViewPage.qml:74
 msgid "Share"
 msgstr "Bagikan"
 
@@ -396,11 +395,11 @@ msgstr "Sosial"
 msgid "Street"
 msgstr "Jalan"
 
-#: ../src/imports/ABContactListPage.qml:457
+#: ../src/imports/ABContactListPage.qml:456
 msgid "Sync"
 msgstr "Selaraskan"
 
-#: ../src/imports/ABContactListPage.qml:457
+#: ../src/imports/ABContactListPage.qml:456
 msgid "Syncing"
 msgstr "Selaraskan"
 
@@ -424,7 +423,7 @@ msgstr "Buka Kunci"
 msgid "Unlocking..."
 msgstr "Membuka kunci..."
 
-#: ../src/imports/ABContactListPage.qml:548
+#: ../src/imports/ABContactListPage.qml:547
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
 msgstr "Tak Pilih Semua"
@@ -448,11 +447,11 @@ msgstr "Yahoo"
 msgid "Yes"
 msgstr "Ya"
 
-#: ../src/imports/ABContactListPage.qml:699
+#: ../src/imports/ABContactListPage.qml:700
 msgid "You have no contacts."
 msgstr "Tidak ada kontak"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:523
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:42
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded by running Contacts "
@@ -463,7 +462,7 @@ msgstr ""
 "menjalankan app Kontak.\n"
 "Hanya kontak lokal yang dapat disunting sampai peningkatan selesai."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:514
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:33
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
@@ -472,7 +471,7 @@ msgstr ""
 "Akun penyelarasan kontak <b>%1</b> Anda perlu ditingkatkan.\n"
 "Tunggu sampai peningkatan selesai untuk menyunting kontak."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:519
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:38
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded. Use the sync "
