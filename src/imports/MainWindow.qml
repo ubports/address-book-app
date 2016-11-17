@@ -17,8 +17,8 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3 as Popups
+import QtSystemInfo 5.5
 
-import Unity.InputInfo 0.1
 
 MainView {
     id: mainWindow
@@ -94,19 +94,20 @@ MainView {
     height: units.gu(71)
     anchorToKeyboard: false
 
-    InputDeviceModel {
+
+    InputDeviceManager {
         id: miceModel
-        deviceFilter: InputInfo.Mouse
+        filter: InputInfo.Mouse
     }
 
-    InputDeviceModel {
+    InputDeviceManager {
         id: touchPadModel
-        deviceFilter: InputInfo.TouchPad
+        filter: InputInfo.TouchPad
     }
 
-    InputDeviceModel {
+    InputDeviceManager {
         id: keyboardsModel
-        deviceFilter: InputInfo.Keyboard
+        filter: InputInfo.Keyboard
     }
 
     ABAdaptivePageLayout {
