@@ -79,7 +79,9 @@ static QString fullPath(const QString &fileName)
 static QString importPath(const QString &suffix)
 {
     QString appPath = QCoreApplication::applicationDirPath();
-    if (ADDRESS_BOOK_APP_CLICK_MODE) {
+    if (qEnvironmentVariableIsSet(SNAP_PATH)) {
+        return qgetenv(SNAP_PATH) + suffix;
+    } else if (ADDRESS_BOOK_APP_CLICK_MODE) {
         return QString(QT_EXTRA_IMPORTS_DIR) + suffix;
     } else if (appPath.startsWith(ADDRESS_BOOK_DEV_BINDIR)) {
         return QString(ADDRESS_BOOK_APP_DEV_DATADIR) + suffix;
@@ -200,7 +202,6 @@ bool AddressBookApp::setup()
     m_view->setTitle("Contacts");
     qDebug() << "New import path:" << QCoreApplication::applicationDirPath() + "/" + importPath("");
     m_view->engine()->addImportPath(QCoreApplication::applicationDirPath() + "/" + importPath(""));
-    m_view->engine()->addImportPath(UNITY8_QML_PATH);
     m_view->rootContext()->setContextProperty("QTCONTACTS_MANAGER_OVERRIDE", defaultManager);
     m_view->rootContext()->setContextProperty("application", this);
     m_view->rootContext()->setContextProperty("contactKey", contactKey);
