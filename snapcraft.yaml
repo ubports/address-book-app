@@ -39,10 +39,6 @@ parts:
             - qtdeclarative5-ubuntu-keyboard-extensions0.1
             - qtdeclarative5-ubuntu-telephony-phonenumber0.1
 
-        stage:
-            - -usr/share/pkgconfig/xkeyboard-config.pc
-            - -usr/share/pkgconfig/shared-mime-info.pc
-
         snap:
             - -usr/lib/python3
             - -usr/share/doc
