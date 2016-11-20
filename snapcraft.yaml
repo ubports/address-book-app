@@ -7,8 +7,15 @@ grade: devel
 
 apps:
     address-book-app:
-        command: desktop-launch $SNAP/bin/address-book-app --desktop_file_hint=unity8 "$@"
-        plugs: [gsettings, unity7, opengl] # FIXME: add  'address-book' interface after it get merged on snapd
+        command: desktop-launch $SNAP/usr/bin/address-book-app --desktop_file_hint=unity8 "$@"
+        plugs: [gsettings, unity7, opengl, platform] # FIXME: add  'address-book' interface after it get merged on snapd
+
+plugs:
+    platform:
+        interface: content
+        content: ubuntu-app-platform1
+        target: ubuntu-app-platform
+        default-provider: ubuntu-app-platform
 
 parts:
     address-book-app:
@@ -23,42 +30,27 @@ parts:
             - qtdeclarative5-dev
             - qtpim5-dev
             - libqofono-dev
+
         stage-packages:
-            - accountsservice
-            - accountsservice-ubuntu-schemas
-            - account-plugin-google
-            - qmlscene
-            - qml-module-qt-labs-settings
-            - qml-module-ubuntu-components
-            - qml-module-ubuntu-onlineaccounts
-            - qtcontact5-galera
-            - qtdeclarative5-ubuntu-content1
-            - qtdeclarative5-ubuntu-syncmonitor0.1
             - qtdeclarative5-buteo-syncfw0.1
             - qtdeclarative5-gsettings1.0
-            - qtdeclarative5-qtcontacts-plugin
-            - qtdeclarative5-qtquick2-plugin
             - qtdeclarative5-ofono0.2
             - qtdeclarative5-ubuntu-history0.1
             - qtdeclarative5-ubuntu-keyboard-extensions0.1
             - qtdeclarative5-ubuntu-telephony-phonenumber0.1
-            - qtdeclarative5-ubuntu-ui-toolkit-plugin
-            - qtubuntu-desktop
-            - suru-icon-theme
-            - mir-graphics-drivers-desktop
-            # FIXME: This is necessary for now, to detect mouse and keyboard
-            - unity8-private
+
         stage:
             - -usr/share/pkgconfig/xkeyboard-config.pc
             - -usr/share/pkgconfig/shared-mime-info.pc
+
         snap:
             - -usr/lib/python3
             - -usr/share/doc
             - -usr/include           
-        after: [desktop-gtk3]
+
+        after: 
+            - desktop-ubuntu-app-platform
 
     environment:
         plugin: dump
-        source: .
-        organize:
-            address-book-app.wrapper: bin/address-book-app
+        source: snap
