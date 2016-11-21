@@ -40,9 +40,56 @@ parts:
             - qtdeclarative5-ubuntu-telephony-phonenumber0.1
 
         snap:
-            - -usr/lib/python3
-            - -usr/share/doc
-            - -usr/include           
+            #Buteo
+            - usr/share/doc/qtdeclarative5-buteo-syncfw0.1/copyright
+            - usr/lib/*/qt5/qml/Buteo/libbuteo-syncfw-qml.so
+            - usr/lib/*/qt5/qml/Buteo/qmldir
+
+            #Gsettings
+            - usr/share/doc/qtdeclarative5-gsettings1.0/copyright
+            - usr/lib/*/qt5/qml/GSettings.1.0/plugins.qmltypes
+            - usr/lib/*/qt5/qml/GSettings.1.0/libGSettingsQmlPlugin.so
+            - usr/lib/*/qt5/qml/GSettings.1.0/qmldir
+
+            #Ofono
+            - usr/share/doc/qtdeclarative5-ofono0.2/copyright
+            - usr/lib/*/qt5/qml/MeeGo/QOfono/qmldir
+            - usr/lib/*/qt5/qml/MeeGo/QOfono/libQOfonoQtDeclarative.so
+            - usr/lib/*/libqofono-qt5.so.*
+
+            #History
+            - usr/share/doc/qtdeclarative5-ubuntu-history0.1/copyright
+            - usr/lib/*/qt5/qml/Ubuntu/History/libhistory-qml.so
+            - usr/lib/*/qt5/qml/Ubuntu/History/qmldir
+            - usr/lib/*/libhistoryservice.so.*
+
+            #Keyboard
+            - usr/share/doc/qtdeclarative5-ubuntu-keyboard-extensions0.1/copyright
+            - usr/lib/*/qt5/qml/Ubuntu/Keyboard/libubuntu-keyboard-qml.so
+            - usr/lib/*/qt5/qml/Ubuntu/Keyboard/qmldir  
+
+            #PhoneNumber
+            - usr/share/doc/qtdeclarative5-ubuntu-telephony-phonenumber0.1/copyright
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/PhoneNumber/PhoneNumberField.qml
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/PhoneNumber/libtelephonyservice-phonenumber-qml.so
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/PhoneNumber/PhoneNumber.js
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/PhoneNumber/PhoneNumberInput.qml
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/PhoneNumber/qmldir
+            - usr/lib/*/libphonenumber.so.7*
+
+            #Address-book-app
+            - usr/lib/*/qt5/qml/Ubuntu/AddressBook/Base
+            - usr/lib/*/qt5/qml/Ubuntu/AddressBook/ContactView
+            - usr/lib/*/qt5/qml/Ubuntu/AddressBook/ContactEditor
+            - usr/lib/*/qt5/qml/Ubuntu/AddressBook/ContactShare
+            - usr/lib/*/qt5/qml/Ubuntu/Contacts*
+            - usr/bin/address-book-app
+            - usr/share/address-book-app/artwork
+            - usr/share/address-book-app/imports
+            - usr/share/applications/address-book-app.desktop
+            - usr/share/url-dispatcher/urls/
+            - usr/share/content-hub/peers/address-book-app
+            - usr/share/locale/*/LC_MESSAGES/address-book-app.mo
 
         after: 
             - desktop-ubuntu-app-platform
