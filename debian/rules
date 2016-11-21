@@ -8,6 +8,11 @@ export DPKG_GENSYMBOLS_CHECK_LEVEL=4
 %:
 	dh $@ --parallel --fail-missing --with translations
 
+override_dh_auto_install:
+	dh_auto_install
+	dh_apparmor -paddress-book-app --profile-name=address-book-app
+
+
 override_dh_translations:
 	# Override dh_translations to work around http://pad.lv/1183262.
 	# Unfortunately, the default build directory is not exposed

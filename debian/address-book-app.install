@@ -5,3 +5,4 @@ usr/share/applications/address-book-app.desktop
 usr/share/url-dispatcher/urls/
 usr/share/content-hub/peers/address-book-app
 usr/share/locale/*/LC_MESSAGES/address-book-app.mo
+debian/apparmor/address-book-app etc/apparmor.d
