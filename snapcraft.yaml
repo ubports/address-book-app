@@ -66,6 +66,7 @@ parts:
             - usr/lib/*/qt5/qml/Ubuntu/History/libhistory-qml.so
             - usr/lib/*/qt5/qml/Ubuntu/History/qmldir
             - usr/lib/*/libhistoryservice.so.*
+            - usr/lib/*/libtelepathy-qt5.so.*
 
             #Keyboard
             - usr/share/doc/qtdeclarative5-ubuntu-keyboard-extensions0.1/copyright
