@@ -53,6 +53,7 @@ parts:
             - usr/lib/*/qt5/qml/GSettings.1.0/plugins.qmltypes
             - usr/lib/*/qt5/qml/GSettings.1.0/libGSettingsQmlPlugin.so
             - usr/lib/*/qt5/qml/GSettings.1.0/qmldir
+            - usr/lib/*/libgsettings-qt.so.*
 
             #Ofono
             - usr/share/doc/qtdeclarative5-ofono0.2/copyright
