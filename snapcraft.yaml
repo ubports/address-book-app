@@ -32,12 +32,15 @@ parts:
             - libqofono-dev
 
         stage-packages:
+            # FIXME: bug #1643660
             - qtdeclarative5-buteo-syncfw0.1
             - qtdeclarative5-gsettings1.0
             - qtdeclarative5-ofono0.2
             - qtdeclarative5-ubuntu-history0.1
             - qtdeclarative5-ubuntu-keyboard-extensions0.1
             - qtdeclarative5-ubuntu-telephony-phonenumber0.1
+            # FIXME: bug #1643659
+            - qtdeclarative5-qtcontacts-plugin
 
         snap:
             #Buteo
@@ -91,11 +94,17 @@ parts:
             - usr/share/content-hub/peers/address-book-app
             - usr/share/locale/*/LC_MESSAGES/address-book-app.mo
 
+            #QtContacts
+            - usr/lib/*/qt5/qml/QtContacts/libdeclarative_contacts.so
+            - usr/lib/*/qt5/qml/QtContacts/plugins.qmltypes
+            - usr/lib/*/qt5/qml/QtContacts/qmldir
+
+
         after: 
             - desktop-ubuntu-app-platform
 
     environment:
         plugin: dump
-        source: snap
-        organizer:
+        source: snap        
+        organize:
             address-book-app.wrapper: bin/address-book-app
