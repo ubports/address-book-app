@@ -54,6 +54,7 @@ Item {
         ABContactListPage {
             id: contactListPage
             anchors.fill: parent
+            _bottomEdgeEnabled: false
         }
 
     }
@@ -96,9 +97,6 @@ Item {
 
         function cleanup()
         {
-            //WORKAROUND: avoid problems with async object
-            //if the test run too fast it can cause problems with async objects
-            wait(2000)
             root.contactListPageObj.destroy()
         }
 
