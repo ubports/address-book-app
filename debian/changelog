@@ -1,3 +1,9 @@
+address-book-app (0.2+17.04.20161124.2-0ubuntu1) zesty; urgency=medium
+
+  * Use 'SNAP_PATH' to import files if available. (LP: #1629009)
+
+ -- Renato Araujo Oliveira Filho <renato.filho@canonical.com>  Thu, 24 Nov 2016 18:54:55 +0000
+
 address-book-app (0.2+17.04.20161108.10-0ubuntu1) zesty; urgency=medium
 
   [ Florian Boucault ]
