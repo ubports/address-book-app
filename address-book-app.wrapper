@@ -17,8 +17,6 @@ export LD_LIBRARY_PATH=$SNAP/usr/lib/$ARCH/qt5/libs:$LD_LIBRARY_PATH
 export QT_PLUGIN_PATH=$SNAP/usr/lib/$ARCH/qt5/plugins
 export QML2_IMPORT_PATH=$QML2_IMPORT_PATH:$SNAP/usr/lib/$ARCH/qt5/qml
 export QML2_IMPORT_PATH=$QML2_IMPORT_PATH:$SNAP/lib/$ARCH
-# Unity8 private
-export QML2_IMPORT_PATH=$QML2_IMPORT_PATH:$SNAP/usr/lib/x86_64-linux-gnu/unity8/qml
 
 # Necessary for the SDK to find the translations directory
 export APP_DIR=$SNAP

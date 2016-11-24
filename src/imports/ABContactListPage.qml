@@ -42,6 +42,8 @@ Page {
     property bool _importingTestData: false
     property bool _creatingContact: false
     property string _newContactId: ""
+    // used by tests
+    property bool _bottomEdgeEnabled: true
 
     readonly property string currentViewContactId: viewPage && viewPage.contact ? viewPage.contact.contactId : ""
     readonly property bool isEmpty: (contactList.count === 0)
@@ -743,7 +745,9 @@ Page {
         enabled: false
         active: true
         asynchronous: true
-        Component.onCompleted: setSource(Qt.resolvedUrl("ABNewContactBottomEdge.qml"),
+        Component.onCompleted: {
+            if (mainPage._bottomEdgeEnabled) {
+                setSource(Qt.resolvedUrl("ABNewContactBottomEdge.qml"),
                                          {"parent": mainPage,
                                           "modelToEdit": Qt.binding(function () {return mainPage.contactModel}),
                                           "hint.flickable": Qt.binding(function () {return contactList.view}),
@@ -752,6 +756,8 @@ Page {
                                           "hintVisible": Qt.binding(function () {return mainPage.pageStack.columns === 1}),
                                           "visible": Qt.binding(function () {return mainPage.pageStack.columns === 1})
                                          })
+            }
+        }
     }
 
     Binding {
