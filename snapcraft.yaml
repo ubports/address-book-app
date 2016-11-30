@@ -8,7 +8,7 @@ grade: devel
 apps:
     address-book-app:
         command: desktop-launch $SNAP/usr/bin/address-book-app --desktop_file_hint=unity8 "$@"
-        plugs: [gsettings, unity7, opengl, platform] # FIXME: add  'address-book' interface after it get merged on snapd
+        plugs: [gsettings, unity7, unity8, opengl, platform] # FIXME: add  'address-book' interface after it get merged on snapd
 
 plugs:
     platform:
