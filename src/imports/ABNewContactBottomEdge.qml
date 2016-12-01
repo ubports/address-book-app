@@ -74,6 +74,8 @@ BottomEdge {
     preloadContent: false
 
     Timer {
+        id: delayPreload
+
         interval: 1
         repeat: false
         running: bottomEdge.visible

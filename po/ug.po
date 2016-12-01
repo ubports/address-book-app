@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-11-16 06:15+0000\n"
-"X-Generator: Launchpad (build 18269)\n"
+"X-Launchpad-Export-Date: 2016-12-01 04:56+0000\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
@@ -56,7 +56,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:478
+#: ../src/imports/ABContactListPage.qml:480
 msgid "All"
 msgstr "ھەممىسى"
 
@@ -68,17 +68,17 @@ msgstr "راستلا تاللانغان ئالاقەداشلارنىڭ ھەمم�
 msgid "Are you sure that you want to remove this contact?"
 msgstr "راستلا بۇ ئالاقەداشنى ئۆچۈرەمسىز؟"
 
-#: ../src/imports/ABContactListPage.qml:619
+#: ../src/imports/ABContactListPage.qml:621
 msgid "Back"
 msgstr "كەينى"
 
 #: ../src/imports/ABContactEditorPage.qml:38
-#: ../src/imports/ABContactListPage.qml:498
+#: ../src/imports/ABContactListPage.qml:500
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "ئەمەلدىن قالدۇر"
 
-#: ../src/imports/ABContactListPage.qml:537
+#: ../src/imports/ABContactListPage.qml:539
 msgid "Cancel selection"
 msgstr "تاللاشنى ئەمەلدىن قالدۇر"
 
@@ -95,8 +95,8 @@ msgstr "ئالاقەداش تەھرىرلىگۈچ"
 msgid "Contact not found"
 msgstr "ئالاقەداش تېپىلمىدى"
 
-#: ../src/imports/ABContactListPage.qml:246
-#: ../src/imports/ABContactListPage.qml:286
+#: ../src/imports/ABContactListPage.qml:248
+#: ../src/imports/ABContactListPage.qml:288
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "ئالاقەداشلار"
@@ -113,7 +113,7 @@ msgstr "ئالاقەداشلار;ئادەملەر;نومۇرلار"
 msgid "Country"
 msgstr "دۆلەت"
 
-#: ../src/imports/ABContactListPage.qml:701 ../src/imports/ABEmptyState.qml:56
+#: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
 "يېڭى ئالاقەداش ياشاش ئۈچۈن ئېكراننىڭ ئاستىدىن ئۈستىگە قارىتىپ تېز سىيرىسىڭىز "
@@ -123,7 +123,7 @@ msgstr ""
 msgid "Default address book"
 msgstr "كۆڭۈلدىكى ئادرېس دەپتىرى"
 
-#: ../src/imports/ABContactListPage.qml:577
+#: ../src/imports/ABContactListPage.qml:579
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
 msgid "Delete"
 msgstr "ئۆچۈر"
@@ -160,7 +160,7 @@ msgstr "خاتالىق"
 msgid "Exporting contacts..."
 msgstr "ئالاقىلەشكۈچىلەرنى ئېكسپورت قىلىۋاتىدۇ…"
 
-#: ../src/imports/ABContactListPage.qml:794
+#: ../src/imports/ABContactListPage.qml:800
 msgid "Fail to import contacts!"
 msgstr "ئالاقەداش ئىمپورت قىلىش مەغلۇپ بولدى"
 
@@ -168,7 +168,7 @@ msgstr "ئالاقەداش ئىمپورت قىلىش مەغلۇپ بولدى"
 msgid "Fail to read SIM card"
 msgstr "سىم كارتىدىن ئوقۇش مەغلۇپ بولدى"
 
-#: ../src/imports/ABContactListPage.qml:478
+#: ../src/imports/ABContactListPage.qml:480
 msgid "Favorites"
 msgstr "يىغقۇچ"
 
@@ -210,7 +210,7 @@ msgstr "سىم كارتىدىن  ئالاقەداش ئىمپورت قىل"
 msgid "Import from SIM"
 msgstr "سىم كارتىدىن  ئىمپورت قىل"
 
-#: ../src/imports/ABContactListPage.qml:632
+#: ../src/imports/ABContactListPage.qml:634
 msgid "Imported contacts"
 msgstr "ئىمپورت قىلىنغان ئالاقەداشلار"
 
@@ -328,7 +328,7 @@ msgstr "پوچتا نومۇرى"
 msgid "Professional Details"
 msgstr "تەۋەلىكى"
 
-#: ../src/imports/ABContactListPage.qml:410
+#: ../src/imports/ABContactListPage.qml:412
 msgid "Quit"
 msgstr "ئاخىرلاشتۇر"
 
@@ -361,25 +361,25 @@ msgstr "ساقلا"
 msgid "Saving contacts on phone..."
 msgstr "ئالاقەداشلارنى تېلېفونغا  ساقلاۋاتىدۇ…"
 
-#: ../src/imports/ABContactListPage.qml:420
+#: ../src/imports/ABContactListPage.qml:422
 msgid "Search"
 msgstr "ئىزدە"
 
-#: ../src/imports/ABContactListPage.qml:385
+#: ../src/imports/ABContactListPage.qml:387
 msgid "Search..."
 msgstr "ئىزدە…"
 
-#: ../src/imports/ABContactListPage.qml:547
+#: ../src/imports/ABContactListPage.qml:549
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
 msgstr "ھەممىنى تاللا"
 
-#: ../src/imports/ABContactListPage.qml:468
+#: ../src/imports/ABContactListPage.qml:470
 #: ../src/imports/Settings/SettingsPage.qml:35
 msgid "Settings"
 msgstr "تەڭشەكلەر"
 
-#: ../src/imports/ABContactListPage.qml:560
+#: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/ABContactViewPage.qml:74
 msgid "Share"
 msgstr "ھەمبەھىر"
@@ -397,11 +397,11 @@ msgstr "ئىجتىمائىي"
 msgid "Street"
 msgstr "كوچا"
 
-#: ../src/imports/ABContactListPage.qml:456
+#: ../src/imports/ABContactListPage.qml:458
 msgid "Sync"
 msgstr "قەدەمداشلا"
 
-#: ../src/imports/ABContactListPage.qml:456
+#: ../src/imports/ABContactListPage.qml:458
 msgid "Syncing"
 msgstr "قەدەمداشلاۋاتىدۇ"
 
@@ -425,7 +425,7 @@ msgstr "قۇلۇپسىزلا"
 msgid "Unlocking..."
 msgstr "قۇلۇپنى ئاچ"
 
-#: ../src/imports/ABContactListPage.qml:547
+#: ../src/imports/ABContactListPage.qml:549
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
 msgstr "ھەممىنى تاللىما"
@@ -449,7 +449,7 @@ msgstr "ياخۇ"
 msgid "Yes"
 msgstr "ھەئە"
 
-#: ../src/imports/ABContactListPage.qml:700
+#: ../src/imports/ABContactListPage.qml:702
 msgid "You have no contacts."
 msgstr "ئالاقەداشلىرىڭىز يوق"
 

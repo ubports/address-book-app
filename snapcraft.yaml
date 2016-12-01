@@ -1,5 +1,5 @@
 name: address-book-app
-version: 0.1
+version: 0.2+17.04.20161124.2-0ubuntu1
 summary: Address Book app
 description: Address Book app
 confinement: devmode  # use "strict" to enforce system access only via declared interfaces
@@ -7,8 +7,15 @@ grade: devel
 
 apps:
     address-book-app:
-        command: desktop-launch $SNAP/bin/address-book-app --desktop_file_hint=unity8 "$@"
-        plugs: [gsettings, unity7, opengl] # FIXME: add  'address-book' interface after it get merged on snapd
+        command: desktop-launch $SNAP/usr/bin/address-book-app --desktop_file_hint=unity8 "$@"
+        plugs: [gsettings, unity7, unity8, opengl, platform] # FIXME: add  'address-book' interface after it get merged on snapd
+
+plugs:
+    platform:
+        interface: content
+        content: ubuntu-app-platform1
+        target: ubuntu-app-platform
+        default-provider: ubuntu-app-platform
 
 parts:
     address-book-app:
@@ -18,47 +25,87 @@ parts:
         build-packages:
             - cmake
             - intltool
+            - pkg-config
             - qt5-default
             - qtbase5-dev
             - qtdeclarative5-dev
             - qtpim5-dev
             - libqofono-dev
+
         stage-packages:
-            - accountsservice
-            - accountsservice-ubuntu-schemas
-            - account-plugin-google
-            - qmlscene
-            - qml-module-qt-labs-settings
-            - qml-module-ubuntu-components
-            - qml-module-ubuntu-onlineaccounts
-            - qtcontact5-galera
-            - qtdeclarative5-ubuntu-content1
-            - qtdeclarative5-ubuntu-syncmonitor0.1
+            # FIXME: bug #1643660
             - qtdeclarative5-buteo-syncfw0.1
             - qtdeclarative5-gsettings1.0
-            - qtdeclarative5-qtcontacts-plugin
-            - qtdeclarative5-qtquick2-plugin
             - qtdeclarative5-ofono0.2
             - qtdeclarative5-ubuntu-history0.1
             - qtdeclarative5-ubuntu-keyboard-extensions0.1
             - qtdeclarative5-ubuntu-telephony-phonenumber0.1
-            - qtdeclarative5-ubuntu-ui-toolkit-plugin
-            - qtubuntu-desktop
-            - suru-icon-theme
-            - mir-graphics-drivers-desktop
-            # FIXME: This is necessary for now, to detect mouse and keyboard
-            - unity8-private
-        stage:
-            - -usr/share/pkgconfig/xkeyboard-config.pc
-            - -usr/share/pkgconfig/shared-mime-info.pc
+            # FIXME: bug #1643659
+            - qtdeclarative5-qtcontacts-plugin
+
         snap:
-            - -usr/lib/python3
-            - -usr/share/doc
-            - -usr/include           
-        after: [desktop-gtk3]
+            #Buteo
+            - usr/share/doc/qtdeclarative5-buteo-syncfw0.1/copyright
+            - usr/lib/*/qt5/qml/Buteo/libbuteo-syncfw-qml.so
+            - usr/lib/*/qt5/qml/Buteo/qmldir
+
+            #Gsettings
+            - usr/share/doc/qtdeclarative5-gsettings1.0/copyright
+            - usr/lib/*/qt5/qml/GSettings.1.0/plugins.qmltypes
+            - usr/lib/*/qt5/qml/GSettings.1.0/libGSettingsQmlPlugin.so
+            - usr/lib/*/qt5/qml/GSettings.1.0/qmldir
+            - usr/lib/*/libgsettings-qt.so.*
+
+            #Ofono
+            - usr/share/doc/qtdeclarative5-ofono0.2/copyright
+            - usr/lib/*/qt5/qml/MeeGo/QOfono/qmldir
+            - usr/lib/*/qt5/qml/MeeGo/QOfono/libQOfonoQtDeclarative.so
+            - usr/lib/*/libqofono-qt5.so.*
+
+            #History
+            - usr/share/doc/qtdeclarative5-ubuntu-history0.1/copyright
+            - usr/lib/*/qt5/qml/Ubuntu/History/libhistory-qml.so
+            - usr/lib/*/qt5/qml/Ubuntu/History/qmldir
+            - usr/lib/*/libhistoryservice.so.*
+            - usr/lib/*/libtelepathy-qt5.so.*
+
+            #Keyboard
+            - usr/share/doc/qtdeclarative5-ubuntu-keyboard-extensions0.1/copyright
+            - usr/lib/*/qt5/qml/Ubuntu/Keyboard/libubuntu-keyboard-qml.so
+            - usr/lib/*/qt5/qml/Ubuntu/Keyboard/qmldir  
+
+            #PhoneNumber
+            - usr/share/doc/qtdeclarative5-ubuntu-telephony-phonenumber0.1/copyright
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/PhoneNumber/PhoneNumberField.qml
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/PhoneNumber/libtelephonyservice-phonenumber-qml.so
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/PhoneNumber/PhoneNumber.js
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/PhoneNumber/PhoneNumberInput.qml
+            - usr/lib/*/qt5/qml/Ubuntu/Telephony/PhoneNumber/qmldir
+            - usr/lib/*/libphonenumber.so.7*
+
+            #Address-book-app
+            - usr/lib/*/qt5/qml/Ubuntu/AddressBook/Base
+            - usr/lib/*/qt5/qml/Ubuntu/AddressBook/ContactView
+            - usr/lib/*/qt5/qml/Ubuntu/AddressBook/ContactEditor
+            - usr/lib/*/qt5/qml/Ubuntu/AddressBook/ContactShare
+            - usr/lib/*/qt5/qml/Ubuntu/Contacts*
+            - usr/bin/address-book-app
+            - usr/share/address-book-app/artwork
+            - usr/share/address-book-app/imports
+            - usr/share/applications/address-book-app.desktop
+            - usr/share/url-dispatcher/urls/
+            - usr/share/content-hub/peers/address-book-app
+            - usr/share/locale/*/LC_MESSAGES/address-book-app.mo
+
+            #QtContacts
+            - usr/lib/*/qt5/qml/QtContacts/libdeclarative_contacts.so
+            - usr/lib/*/qt5/qml/QtContacts/plugins.qmltypes
+            - usr/lib/*/qt5/qml/QtContacts/qmldir
+
+
+        after: 
+            - desktop-ubuntu-app-platform
 
     environment:
         plugin: dump
-        source: .
-        organize:
-            address-book-app.wrapper: bin/address-book-app
+        source: snap        

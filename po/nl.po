@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-11-16 06:15+0000\n"
-"X-Generator: Launchpad (build 18269)\n"
+"X-Launchpad-Export-Date: 2016-12-01 04:56+0000\n"
+"X-Generator: Launchpad (build 18282)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
@@ -56,7 +56,7 @@ msgid "Aim"
 msgstr "Bestemming"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:478
+#: ../src/imports/ABContactListPage.qml:480
 msgid "All"
 msgstr "Alle"
 
@@ -68,17 +68,17 @@ msgstr "Weet u zeker dat u alle geselecteerde contacten wilt verwijderen?"
 msgid "Are you sure that you want to remove this contact?"
 msgstr "Weet u zeker dat u dit contact wilt verwijderen?"
 
-#: ../src/imports/ABContactListPage.qml:619
+#: ../src/imports/ABContactListPage.qml:621
 msgid "Back"
 msgstr "Terug"
 
 #: ../src/imports/ABContactEditorPage.qml:38
-#: ../src/imports/ABContactListPage.qml:498
+#: ../src/imports/ABContactListPage.qml:500
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: ../src/imports/ABContactListPage.qml:537
+#: ../src/imports/ABContactListPage.qml:539
 msgid "Cancel selection"
 msgstr "Selectie ongedaan maken"
 
@@ -95,8 +95,8 @@ msgstr "Contacten bewerken"
 msgid "Contact not found"
 msgstr "Contact niet gevonden"
 
-#: ../src/imports/ABContactListPage.qml:246
-#: ../src/imports/ABContactListPage.qml:286
+#: ../src/imports/ABContactListPage.qml:248
+#: ../src/imports/ABContactListPage.qml:288
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Contacten"
@@ -113,7 +113,7 @@ msgstr "Contacts;People;Numbers;Contacten;Mensen;Nummers"
 msgid "Country"
 msgstr "Land"
 
-#: ../src/imports/ABContactListPage.qml:701 ../src/imports/ABEmptyState.qml:56
+#: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
 "Maak een nieuw contact aan door vanaf onderin het scherm omhoog te vegen."
@@ -122,7 +122,7 @@ msgstr ""
 msgid "Default address book"
 msgstr "Standaard adresboek"
 
-#: ../src/imports/ABContactListPage.qml:577
+#: ../src/imports/ABContactListPage.qml:579
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
 msgid "Delete"
 msgstr "Verwijderen"
@@ -159,7 +159,7 @@ msgstr "Fout"
 msgid "Exporting contacts..."
 msgstr "Contacten exporteren…"
 
-#: ../src/imports/ABContactListPage.qml:794
+#: ../src/imports/ABContactListPage.qml:800
 msgid "Fail to import contacts!"
 msgstr "Contacten importeren mislukt!"
 
@@ -167,7 +167,7 @@ msgstr "Contacten importeren mislukt!"
 msgid "Fail to read SIM card"
 msgstr "Kon simkaart niet lezen"
 
-#: ../src/imports/ABContactListPage.qml:478
+#: ../src/imports/ABContactListPage.qml:480
 msgid "Favorites"
 msgstr "Favorieten"
 
@@ -209,7 +209,7 @@ msgstr "Contacten importeren vanaf simkaart"
 msgid "Import from SIM"
 msgstr "Importeren vanaf sim"
 
-#: ../src/imports/ABContactListPage.qml:632
+#: ../src/imports/ABContactListPage.qml:634
 msgid "Imported contacts"
 msgstr "Geïmporteerde contacten"
 
@@ -327,7 +327,7 @@ msgstr "Postcode"
 msgid "Professional Details"
 msgstr "Zakelijke informatie"
 
-#: ../src/imports/ABContactListPage.qml:410
+#: ../src/imports/ABContactListPage.qml:412
 msgid "Quit"
 msgstr "Afsluiten"
 
@@ -360,25 +360,25 @@ msgstr "Opslaan"
 msgid "Saving contacts on phone..."
 msgstr "Contacten worden opgeslagen op het toestel…"
 
-#: ../src/imports/ABContactListPage.qml:420
+#: ../src/imports/ABContactListPage.qml:422
 msgid "Search"
 msgstr "Zoeken"
 
-#: ../src/imports/ABContactListPage.qml:385
+#: ../src/imports/ABContactListPage.qml:387
 msgid "Search..."
 msgstr "Zoeken…"
 
-#: ../src/imports/ABContactListPage.qml:547
+#: ../src/imports/ABContactListPage.qml:549
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
 msgstr "Alles selecteren"
 
-#: ../src/imports/ABContactListPage.qml:468
+#: ../src/imports/ABContactListPage.qml:470
 #: ../src/imports/Settings/SettingsPage.qml:35
 msgid "Settings"
 msgstr "Instellingen"
 
-#: ../src/imports/ABContactListPage.qml:560
+#: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/ABContactViewPage.qml:74
 msgid "Share"
 msgstr "Delen"
@@ -396,11 +396,11 @@ msgstr "Sociaal"
 msgid "Street"
 msgstr "Straat"
 
-#: ../src/imports/ABContactListPage.qml:456
+#: ../src/imports/ABContactListPage.qml:458
 msgid "Sync"
 msgstr "Synchroniseren"
 
-#: ../src/imports/ABContactListPage.qml:456
+#: ../src/imports/ABContactListPage.qml:458
 msgid "Syncing"
 msgstr "Synchroniseren"
 
@@ -424,7 +424,7 @@ msgstr "Ontgrendelen"
 msgid "Unlocking..."
 msgstr "Ontgrendelen…"
 
-#: ../src/imports/ABContactListPage.qml:547
+#: ../src/imports/ABContactListPage.qml:549
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
 msgstr "Alles deselecteren"
@@ -448,7 +448,7 @@ msgstr "Yahoo"
 msgid "Yes"
 msgstr "Ja"
 
-#: ../src/imports/ABContactListPage.qml:700
+#: ../src/imports/ABContactListPage.qml:702
 msgid "You have no contacts."
 msgstr "U heeft geen contacten."
 
