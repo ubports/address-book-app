@@ -5,6 +5,7 @@ Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 Build-Depends: cmake,
                dbus,
                debhelper (>= 9),
+               dh-apparmor,
                dh-translations,
                libgl1-mesa-dev | libgl-dev,
                libgles2-mesa-dev,
