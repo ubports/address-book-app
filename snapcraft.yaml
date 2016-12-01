@@ -25,6 +25,7 @@ parts:
         build-packages:
             - cmake
             - intltool
+            - pkg-config
             - qt5-default
             - qtbase5-dev
             - qtdeclarative5-dev
