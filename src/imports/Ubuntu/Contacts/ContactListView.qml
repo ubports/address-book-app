@@ -570,19 +570,6 @@ FocusScope {
                     }
                 }
             }
-
-            MostCalledList {
-                id: mostCalledView
-
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    margins: units.gu(1)
-                }
-                parentView: view
-                visible: view.favouritesIsSelected
-                height: visible && (count > 0) ? childrenRect.height : 0
-            }
         }
         onError: root.error(message)
         onContactClicked: root.contactClicked(contact)

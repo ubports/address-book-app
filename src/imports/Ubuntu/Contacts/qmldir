@@ -28,8 +28,6 @@ internal ContactSimpleListView ContactSimpleListView.qml
 internal FastScrollJs FastScroll.js
 internal FastScroll FastScroll.qml
 internal ListItemWithActionsCheckBox ListItemWithActionsCheckBox.qml
-internal MostCalledList MostCalledList.qml
-internal MostCalledModel MostCalledModel.qml
 internal Ofono Ofono.qml
 internal SectionDelegate SectionDelegate.qml
 internal SubtitledWithColors SubtitledWithColors.qml
