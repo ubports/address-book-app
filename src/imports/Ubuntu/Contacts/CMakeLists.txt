@@ -18,8 +18,6 @@ set(CONTACT_COMPONENTS_QMLS
     FastScroll.qml
     ListItemWithActionsCheckBox.qml
     ListItemWithActions.qml
-    MostCalledList.qml
-    MostCalledModel.qml
     MultipleSelectionListView.qml
     MultipleSelectionVisualModel.qml
     Ofono.qml
@@ -40,8 +38,6 @@ set(CONTACT_COMPONENTS_SRC
     contacts.cpp
     imagescalethread.h
     imagescalethread.cpp
-    mostcalledproxymodel.h
-    mostcalledproxymodel.cpp
     plugin.h
     plugin.cpp
     simcardcontacts.h
