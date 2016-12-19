@@ -1,3 +1,9 @@
+address-book-app (0.2+17.04.20161219-0ubuntu1) zesty; urgency=medium
+
+  * added apparmor profile for address-book-app
+
+ -- Ken VanDine <ken.vandine@canonical.com>  Mon, 19 Dec 2016 15:36:37 +0000
+
 address-book-app (0.2+17.04.20161214.2-0ubuntu1) zesty; urgency=medium
 
   * Remove MostCalledList.

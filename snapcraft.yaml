@@ -1,5 +1,5 @@
 name: address-book-app
-version: 0.2+17.04.20161214.2-0ubuntu1
+version: 0.2+17.04.20161219-0ubuntu1
 summary: Address Book app
 description: Address Book app
 confinement: devmode  # use "strict" to enforce system access only via declared interfaces
