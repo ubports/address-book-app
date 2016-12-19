@@ -1,0 +1,15 @@
+# vim:syntax=apparmor
+#include <tunables/global>
+
+# Mostly unconfined. Don't allow capability or any mount rules. Also ensure that
+# exec inherits from this profile
+profile address-book-app (attach_disconnected) {
+  network,
+  / rwkl,
+  /** rwlkm,
+  /** pix,
+  dbus,
+  signal,
+  ptrace,
+  unix,
+}
