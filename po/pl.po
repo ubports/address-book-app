@@ -6,16 +6,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-13 10:07-0300\n"
-"PO-Revision-Date: 2016-06-22 13:50+0000\n"
-"Last-Translator: Krzysztof Tataradziński <Unknown>\n"
-"Language-Team: Polish <pl@li.org>\n"
+"PO-Revision-Date: 2017-09-27 22:22+0000\n"
+"Last-Translator: Daniel Frańczak <danielfranczak5@wp.pl>\n"
+"Language-Team: Polish <https://translate.ubports.com/projects/ubports"
+"/address-book-app/pl/>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 2.15\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:51+0000\n"
-"X-Generator: Launchpad (build 18326)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
@@ -23,15 +27,15 @@ msgid "%1 is locked"
 msgstr "%1 zablokowano"
 
 #. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:480
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:451
 msgid "+ Create New"
 msgstr "+ Utwórz nowy"
 
-#: ../src/imports/Settings/SettingsPage.qml:87
+#: ../src/imports/Settings/SettingsPage.qml:85
 msgid "Add Google account"
 msgstr "Dodaj konto google"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:379
 msgid "Add field"
 msgstr "Dodaj pole"
 
@@ -56,7 +60,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:480
+#: ../src/imports/ABContactListPage.qml:478
 msgid "All"
 msgstr "Wszystkie"
 
@@ -68,26 +72,26 @@ msgstr "Czy na pewno usunąć wszystkie zaznaczone kontakty?"
 msgid "Are you sure that you want to remove this contact?"
 msgstr "Czy na pewno usunąć zaznaczony kontakt?"
 
-#: ../src/imports/ABContactListPage.qml:621
+#: ../src/imports/ABContactListPage.qml:617
 msgid "Back"
 msgstr "Wstecz"
 
 #: ../src/imports/ABContactEditorPage.qml:38
-#: ../src/imports/ABContactListPage.qml:500
+#: ../src/imports/ABContactListPage.qml:498 ../src/imports/MainWindow.qml:210
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "Anuluj"
 
-#: ../src/imports/ABContactListPage.qml:539
+#: ../src/imports/ABContactListPage.qml:537
 msgid "Cancel selection"
 msgstr "Anuluj zaznaczenie"
 
-#: ../src/imports/BusyImportingDialog.qml:40
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:48
+#: ../src/imports/ABContactListPage.qml:760
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:521
 msgid "Close"
 msgstr "Zamknij"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:29
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:502
 msgid "Contact Editor"
 msgstr "Edytor kontaktów"
 
@@ -95,8 +99,8 @@ msgstr "Edytor kontaktów"
 msgid "Contact not found"
 msgstr "Nie odnaleziono kontaktu"
 
-#: ../src/imports/ABContactListPage.qml:248
-#: ../src/imports/ABContactListPage.qml:288
+#: ../src/imports/ABContactListPage.qml:250
+#: ../src/imports/ABContactListPage.qml:290
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Kontakty"
@@ -113,7 +117,7 @@ msgstr "kontakty;ludzie;numery"
 msgid "Country"
 msgstr "Kraj"
 
-#: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
+#: ../src/imports/ABContactListPage.qml:699 ../src/imports/ABEmptyState.qml:55
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "Utwórz nowy kontakt przeciągając palcem w górę ekranu."
 
@@ -121,13 +125,13 @@ msgstr "Utwórz nowy kontakt przeciągając palcem w górę ekranu."
 msgid "Default address book"
 msgstr "Domyślna książka adresowa"
 
-#: ../src/imports/ABContactListPage.qml:579
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
+#: ../src/imports/ABContactListPage.qml:577
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:442
 msgid "Delete"
 msgstr "Usuń"
 
-#: ../src/imports/ABContactViewPage.qml:87
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/ABContactViewPage.qml:88
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:189
 msgid "Edit"
 msgstr "Edytuj"
 
@@ -150,15 +154,16 @@ msgstr "Podaj alias społecznościowy"
 msgid "Enter an email address"
 msgstr "Wprowadź adres e-mail"
 
+#: ../src/imports/MainWindow.qml:206
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
 msgstr "Błąd"
 
-#: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
+#: ../src/imports/Ubuntu/AddressBook/Base/ContactExporter.qml:167
 msgid "Exporting contacts..."
 msgstr "Eksportowanie kontaktów..."
 
-#: ../src/imports/ABContactListPage.qml:800
+#: ../src/imports/ABContactListPage.qml:847
 msgid "Fail to import contacts!"
 msgstr "Nie udało się zaimportować kontaktów!"
 
@@ -166,7 +171,7 @@ msgstr "Nie udało się zaimportować kontaktów!"
 msgid "Fail to read SIM card"
 msgstr "Błąd odczytu karty SIM"
 
-#: ../src/imports/ABContactListPage.qml:480
+#: ../src/imports/ABContactListPage.qml:478
 msgid "Favorites"
 msgstr "Ulubione"
 
@@ -196,23 +201,23 @@ msgstr "Komunikator (IM)"
 msgid "Import"
 msgstr "Importuj"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:515
 msgid "Import contacts from Google"
 msgstr "Importuj kontakty z konta Google"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:555
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:526
 msgid "Import contacts from SIM card"
 msgstr "Importuj kontakty z karty SIM"
 
-#: ../src/imports/Settings/SettingsPage.qml:127
+#: ../src/imports/Settings/SettingsPage.qml:124
 msgid "Import from SIM"
 msgstr "Importuj z karty SIM"
 
-#: ../src/imports/ABContactListPage.qml:634
+#: ../src/imports/ABContactListPage.qml:630
 msgid "Imported contacts"
 msgstr "Zimportowane kontakty"
 
-#: ../src/imports/BusyImportingDialog.qml:31
+#: ../src/imports/ABContactListPage.qml:751
 msgid "Importing..."
 msgstr "Importuję..."
 
@@ -224,7 +229,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Nazwisko"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:599
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "Ładowanie..."
@@ -254,13 +259,13 @@ msgstr "Telefon komórkowy"
 msgid "Multiple contacts"
 msgstr "Wiele kontaktów"
 
-#: ../src/imports/Settings/SettingsPage.qml:72
+#: ../src/imports/Settings/SettingsPage.qml:70
 #, qt-format
 msgid "My phone number: %1"
 msgstr "Mój numer telefonu: %1"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:189
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:459
 msgid "New contact"
 msgstr "Nowy kontakt"
 
@@ -326,7 +331,7 @@ msgstr "Kod pocztowy"
 msgid "Professional Details"
 msgstr "Detale służbowe"
 
-#: ../src/imports/ABContactListPage.qml:412
+#: ../src/imports/ABContactListPage.qml:411
 msgid "Quit"
 msgstr "Wyjdź"
 
@@ -342,7 +347,7 @@ msgstr "Region"
 msgid "Role"
 msgstr "Stanowisko"
 
-#: ../src/imports/Settings/SettingsPage.qml:73
+#: ../src/imports/Settings/SettingsPage.qml:71
 #, qt-format
 msgid "SIM %1"
 msgstr "SIM %1"
@@ -359,26 +364,26 @@ msgstr "Zapisz"
 msgid "Saving contacts on phone..."
 msgstr "Zapisywanie kontaktów w telefonie..."
 
-#: ../src/imports/ABContactListPage.qml:422
+#: ../src/imports/ABContactListPage.qml:421
 msgid "Search"
 msgstr "Szukaj"
 
-#: ../src/imports/ABContactListPage.qml:387
+#: ../src/imports/ABContactListPage.qml:386
 msgid "Search..."
-msgstr "Wyszukiwanie..."
+msgstr "Szukaj..."
 
-#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/ABContactListPage.qml:547
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
 msgstr "Zaznacz wszystko"
 
-#: ../src/imports/ABContactListPage.qml:470
-#: ../src/imports/Settings/SettingsPage.qml:35
+#: ../src/imports/ABContactListPage.qml:468
+#: ../src/imports/Settings/SettingsPage.qml:33
 msgid "Settings"
 msgstr "Ustawienia"
 
-#: ../src/imports/ABContactListPage.qml:562
-#: ../src/imports/ABContactViewPage.qml:74
+#: ../src/imports/ABContactListPage.qml:560
+#: ../src/imports/ABContactViewPage.qml:75
 msgid "Share"
 msgstr "Udostępnij"
 
@@ -395,15 +400,15 @@ msgstr "Serwisy społecznościowe"
 msgid "Street"
 msgstr "Ulica"
 
-#: ../src/imports/ABContactListPage.qml:458
+#: ../src/imports/ABContactListPage.qml:456
 msgid "Sync"
 msgstr "Synchronizuj"
 
-#: ../src/imports/ABContactListPage.qml:458
+#: ../src/imports/ABContactListPage.qml:456
 msgid "Syncing"
 msgstr "Synchronizowanie"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:599
 msgid "Syncing..."
 msgstr "Synchronizowanie..."
 
@@ -423,7 +428,7 @@ msgstr "Odblokuj"
 msgid "Unlocking..."
 msgstr "Odblokowywanie..."
 
-#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/ABContactListPage.qml:547
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
 msgstr "Odznacz wszystkie"
@@ -447,11 +452,11 @@ msgstr "Yahoo!"
 msgid "Yes"
 msgstr "Tak"
 
-#: ../src/imports/ABContactListPage.qml:702
+#: ../src/imports/ABContactListPage.qml:698
 msgid "You have no contacts."
 msgstr "Brak kontaktów"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:42
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:515
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded by running Contacts "
@@ -463,7 +468,7 @@ msgstr ""
 "Do czasu zakończenia uaktualniania, będzie można edytować tylko lokalnie "
 "utworzone kontakty."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:33
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:506
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
@@ -473,7 +478,7 @@ msgstr ""
 "uaktualnione.\n"
 "Edycja kontaktów będzie możliwa po zakończeniu aktualizacji."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:38
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:511
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded. Use the sync "
@@ -502,9 +507,9 @@ msgstr ""
 #~ msgid "Add contact"
 #~ msgstr "Dodaj kontakt"
 
-#, qt-format
 #~ msgid "%1 vCards imported"
 #~ msgstr "Zaimportowano %1 wizytówek"
 
-#~ msgid "Would you like to sync contacts from your google online accounts now?"
+#~ msgid ""
+#~ "Would you like to sync contacts from your google online accounts now?"
 #~ msgstr "Czy rozpocząć synchronizację kontaktów z kontem Google?"
