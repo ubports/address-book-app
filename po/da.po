@@ -7,38 +7,41 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-13 10:07-0300\n"
-"PO-Revision-Date: 2014-07-29 21:15+0000\n"
-"Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
-"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
+"PO-Revision-Date: 2017-09-28 20:11+0000\n"
+"Last-Translator: Henrik Holm <hbir@post10.tele.dk>\n"
+"Language-Team: Danish <https://translate.ubports.com/projects/ubports"
+"/address-book-app/da/>\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.15\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:50+0000\n"
-"X-Generator: Launchpad (build 18326)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
 msgid "%1 is locked"
-msgstr ""
+msgstr "%1 er låst"
 
 #. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:480
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:451
 msgid "+ Create New"
-msgstr ""
+msgstr "+Opret ny"
 
-#: ../src/imports/Settings/SettingsPage.qml:87
+#: ../src/imports/Settings/SettingsPage.qml:85
 msgid "Add Google account"
-msgstr ""
+msgstr "Tilføj google konto"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:379
 msgid "Add field"
-msgstr ""
+msgstr "Tilføj felt"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
-msgstr ""
+msgstr "Tilføj nummer..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:55
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:23
@@ -57,7 +60,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:480
+#: ../src/imports/ABContactListPage.qml:478
 msgid "All"
 msgstr "Alle"
 
@@ -69,66 +72,66 @@ msgstr "Er du sikker på at du vil fjerne alle de valgte kontakter?"
 msgid "Are you sure that you want to remove this contact?"
 msgstr "Er du sikker på at du vil fjerne denne kontakt?"
 
-#: ../src/imports/ABContactListPage.qml:621
+#: ../src/imports/ABContactListPage.qml:617
 msgid "Back"
-msgstr ""
+msgstr "Tilbage"
 
 #: ../src/imports/ABContactEditorPage.qml:38
-#: ../src/imports/ABContactListPage.qml:500
+#: ../src/imports/ABContactListPage.qml:498 ../src/imports/MainWindow.qml:210
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "Annullér"
 
-#: ../src/imports/ABContactListPage.qml:539
+#: ../src/imports/ABContactListPage.qml:537
 msgid "Cancel selection"
 msgstr "Annullér valg"
 
-#: ../src/imports/BusyImportingDialog.qml:40
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:48
+#: ../src/imports/ABContactListPage.qml:760
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:521
 msgid "Close"
 msgstr "Luk"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:29
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:502
 msgid "Contact Editor"
-msgstr ""
+msgstr "Rediger kontakter"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
 msgstr "Kontakt ikke fundet"
 
-#: ../src/imports/ABContactListPage.qml:248
-#: ../src/imports/ABContactListPage.qml:288
+#: ../src/imports/ABContactListPage.qml:250
+#: ../src/imports/ABContactListPage.qml:290
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Kontakter"
 
 #: ../data/address-book-app.desktop.in.in.h:2
 msgid "Contacts Address Book"
-msgstr ""
+msgstr "Adressebog"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
-msgstr ""
+msgstr "Kontakter;Personer;Numre"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:35
 msgid "Country"
 msgstr "Land"
 
-#: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
+#: ../src/imports/ABContactListPage.qml:699 ../src/imports/ABEmptyState.qml:55
 msgid "Create a new contact by swiping up from the bottom of the screen."
-msgstr ""
+msgstr "Swipe op fra bunden af skærmen for at skabe en ny kontakt."
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
-msgstr ""
+msgstr "Standard adressebog"
 
-#: ../src/imports/ABContactListPage.qml:579
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
+#: ../src/imports/ABContactListPage.qml:577
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:442
 msgid "Delete"
 msgstr "Slet"
 
-#: ../src/imports/ABContactViewPage.qml:87
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/ABContactViewPage.qml:88
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:189
 msgid "Edit"
 msgstr "Redigér"
 
@@ -151,25 +154,26 @@ msgstr "Indtast et kaldenavn"
 msgid "Enter an email address"
 msgstr "Indtast en e-mail-adresse"
 
+#: ../src/imports/MainWindow.qml:206
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
 msgstr "Fejl"
 
-#: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
+#: ../src/imports/Ubuntu/AddressBook/Base/ContactExporter.qml:167
 msgid "Exporting contacts..."
-msgstr ""
+msgstr "Eksporterer kontakter..."
 
-#: ../src/imports/ABContactListPage.qml:800
+#: ../src/imports/ABContactListPage.qml:847
 msgid "Fail to import contacts!"
-msgstr ""
+msgstr "Fejl ved import af kontakter!"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:285
 msgid "Fail to read SIM card"
-msgstr ""
+msgstr "Fejl ved læs af SIM kort"
 
-#: ../src/imports/ABContactListPage.qml:480
+#: ../src/imports/ABContactListPage.qml:478
 msgid "Favorites"
-msgstr ""
+msgstr "Favoritter"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:88
 msgid "First name"
@@ -195,25 +199,25 @@ msgstr "Lynbeskeder"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:58
 msgid "Import"
-msgstr ""
+msgstr "Importer"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:515
 msgid "Import contacts from Google"
-msgstr ""
+msgstr "Importer kontakter fra Google"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:555
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:526
 msgid "Import contacts from SIM card"
-msgstr ""
+msgstr "Importer kontakter fra SIM kort"
 
-#: ../src/imports/Settings/SettingsPage.qml:127
+#: ../src/imports/Settings/SettingsPage.qml:124
 msgid "Import from SIM"
-msgstr ""
+msgstr "Importer fra SIM"
 
-#: ../src/imports/ABContactListPage.qml:634
+#: ../src/imports/ABContactListPage.qml:630
 msgid "Imported contacts"
-msgstr ""
+msgstr "Importerede kontakter"
 
-#: ../src/imports/BusyImportingDialog.qml:31
+#: ../src/imports/ABContactListPage.qml:751
 msgid "Importing..."
 msgstr "Importerer..."
 
@@ -225,7 +229,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Efternavn"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:599
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "Indlæser..."
@@ -240,11 +244,11 @@ msgstr "MSN"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:62
 msgid "Middle Name"
-msgstr ""
+msgstr "Mellemnavn"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:90
 msgid "Middle name"
-msgstr ""
+msgstr "Mellemnavn"
 
 #. TRANSLATORS: This refers to mobile/cellphone phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
@@ -255,15 +259,15 @@ msgstr "Mobil"
 msgid "Multiple contacts"
 msgstr "Flere kontakter"
 
-#: ../src/imports/Settings/SettingsPage.qml:72
+#: ../src/imports/Settings/SettingsPage.qml:70
 #, qt-format
 msgid "My phone number: %1"
-msgstr ""
+msgstr "Mit telefonnummer: %1"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:189
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:459
 msgid "New contact"
-msgstr ""
+msgstr "Ny kontakt"
 
 #. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
 #. this word must be less than 5 characters
@@ -281,17 +285,17 @@ msgstr "Ingen kontakt valgt."
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
-msgstr ""
+msgstr "Ny kontakt"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:155
 msgid "No contacts found"
-msgstr ""
+msgstr "Ny kontakt fundet"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:49
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:58
 #: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:80
 msgid "No name"
-msgstr ""
+msgstr "Ingen navn"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -308,7 +312,7 @@ msgstr "Andet"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:88
 #, qt-format
 msgid "Personal - %1"
-msgstr ""
+msgstr "Personlig - %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:51
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:23
@@ -327,13 +331,13 @@ msgstr "Postnummer"
 msgid "Professional Details"
 msgstr "Arbejdsdetaljer"
 
-#: ../src/imports/ABContactListPage.qml:412
+#: ../src/imports/ABContactListPage.qml:411
 msgid "Quit"
 msgstr "Afslut"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Reading contacts from SIM..."
-msgstr ""
+msgstr "Læser kontakter fra SIM..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -343,14 +347,14 @@ msgstr "Region"
 msgid "Role"
 msgstr "Rolle"
 
-#: ../src/imports/Settings/SettingsPage.qml:73
+#: ../src/imports/Settings/SettingsPage.qml:71
 #, qt-format
 msgid "SIM %1"
-msgstr ""
+msgstr "SIM %1"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:39
 msgid "SIM contacts"
-msgstr ""
+msgstr "SIM kontakter"
 
 #: ../src/imports/ABContactEditorPage.qml:56
 msgid "Save"
@@ -358,28 +362,28 @@ msgstr "Gem"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Saving contacts on phone..."
-msgstr ""
+msgstr "Gemmer kontakter på telefon..."
 
-#: ../src/imports/ABContactListPage.qml:422
+#: ../src/imports/ABContactListPage.qml:421
 msgid "Search"
 msgstr "Søg"
 
-#: ../src/imports/ABContactListPage.qml:387
+#: ../src/imports/ABContactListPage.qml:386
 msgid "Search..."
-msgstr ""
+msgstr "Søger..."
 
-#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/ABContactListPage.qml:547
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
 msgstr "Vælg alle"
 
-#: ../src/imports/ABContactListPage.qml:470
-#: ../src/imports/Settings/SettingsPage.qml:35
+#: ../src/imports/ABContactListPage.qml:468
+#: ../src/imports/Settings/SettingsPage.qml:33
 msgid "Settings"
-msgstr ""
+msgstr "Indstillinger"
 
-#: ../src/imports/ABContactListPage.qml:562
-#: ../src/imports/ABContactViewPage.qml:74
+#: ../src/imports/ABContactListPage.qml:560
+#: ../src/imports/ABContactViewPage.qml:75
 msgid "Share"
 msgstr "Del"
 
@@ -396,15 +400,15 @@ msgstr "Socialt"
 msgid "Street"
 msgstr "Gade"
 
-#: ../src/imports/ABContactListPage.qml:458
+#: ../src/imports/ABContactListPage.qml:456
 msgid "Sync"
 msgstr "Synkronisering"
 
-#: ../src/imports/ABContactListPage.qml:458
+#: ../src/imports/ABContactListPage.qml:456
 msgid "Syncing"
 msgstr "Synkroniserer"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:599
 msgid "Syncing..."
 msgstr "Synkroniserer..."
 
@@ -418,16 +422,16 @@ msgstr "Berøring"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:124
 msgid "Unlock"
-msgstr ""
+msgstr "Lås op"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
 msgid "Unlocking..."
-msgstr ""
+msgstr "Låser op..."
 
-#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/ABContactListPage.qml:547
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
-msgstr ""
+msgstr "Fravælg alle"
 
 #. TRANSLATORS: This refers to landline work phone label
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:119
@@ -448,34 +452,41 @@ msgstr "Yahoo"
 msgid "Yes"
 msgstr "Ja"
 
-#: ../src/imports/ABContactListPage.qml:702
+#: ../src/imports/ABContactListPage.qml:698
 msgid "You have no contacts."
 msgstr "Du har ingen kontakter."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:42
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:515
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded by running Contacts "
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Din <b>%1</b> kontakt synkroneringskonto skal opgraderes ved at køre Kontakt "
+"app\n"
+"Indtil opgradering er gennemført, er det kun lokale kontakter der kan rettes."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:33
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:506
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
+"Din <b>%1</b> kontaktsynkroniserings-konto kræver opgradering.\n"
+"Vent med at rette kontakter indtil synkronisering er færdig."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:38
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:511
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded. Use the sync "
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Din <b>%1</b> kontaktsynkroniserings-konto kræver opgradering. Brug "
+"synkroniserings knappen til at opgradere Kontakt app\n"
+"Kun lokale kontakter kan rettes indtil  synkronisering er færdig."
 
-#, qt-format
 #~ msgid "%1 vCards imported"
 #~ msgstr "%1 vCards importeret"
 
