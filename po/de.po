@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-13 10:07-0300\n"
-"PO-Revision-Date: 2017-10-05 19:54+0000\n"
-"Last-Translator: Florian Leeber <flori@bin.org.in>\n"
+"PO-Revision-Date: 2017-10-06 06:57+0000\n"
+"Last-Translator: Twinkybot <me@twinkybot.org>\n"
 "Language-Team: German <https://translate.ubports.com/projects/ubports"
 "/address-book-app/de/>\n"
 "Language: de\n"
@@ -164,7 +164,7 @@ msgstr "Fehler"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactExporter.qml:167
 msgid "Exporting contacts..."
-msgstr "Kontakte werden exportiert …"
+msgstr "Kontakte werden exportiert..."
 
 #: ../src/imports/ABContactListPage.qml:847
 msgid "Fail to import contacts!"
@@ -222,7 +222,7 @@ msgstr "Importierte Kontakte"
 
 #: ../src/imports/ABContactListPage.qml:751
 msgid "Importing..."
-msgstr "Import läuft …"
+msgstr "Import läuft..."
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
 msgid "Jabber"
@@ -235,7 +235,7 @@ msgstr "Nachname"
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:599
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
-msgstr "Wird geladen …"
+msgstr "Wird geladen..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:32
 msgid "Locality"
@@ -340,7 +340,7 @@ msgstr "Beenden"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Reading contacts from SIM..."
-msgstr "Kontakte werden von der Sim-Karte gelesen …"
+msgstr "Kontakte werden von der Sim-Karte gelesen..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -365,7 +365,7 @@ msgstr "Speichern"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Saving contacts on phone..."
-msgstr "Kontakte werden auf das Telefon gespeichert …"
+msgstr "Kontakte werden auf das Telefon gespeichert..."
 
 #: ../src/imports/ABContactListPage.qml:421
 msgid "Search"
@@ -413,7 +413,7 @@ msgstr "Synchronisation läuft"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:599
 msgid "Syncing..."
-msgstr "Synchronisierung läuft  …"
+msgstr "Synchronisierung läuft..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:30
 msgid "Title"
@@ -429,7 +429,7 @@ msgstr "Entsperren"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
 msgid "Unlocking..."
-msgstr "Entsperren …"
+msgstr "Entsperren..."
 
 #: ../src/imports/ABContactListPage.qml:547
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
