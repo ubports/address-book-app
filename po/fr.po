@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-13 10:07-0300\n"
-"PO-Revision-Date: 2017-10-05 08:32+0000\n"
+"PO-Revision-Date: 2017-10-17 09:45+0000\n"
 "Last-Translator: RedXXIII <adered7@gmail.com>\n"
 "Language-Team: French <https://translate.ubports.com/projects/ubports"
 "/address-book-app/fr/>\n"
@@ -272,8 +272,9 @@ msgstr "Nouveau contact"
 #. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
 #. this word must be less than 5 characters
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/TextInputDetail.qml:88
+#, fuzzy
 msgid "Next"
-msgstr "Suivant"
+msgstr "Suiv"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:79
 msgid "No"
