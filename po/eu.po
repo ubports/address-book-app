@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-13 10:07-0300\n"
+"POT-Creation-Date: 2017-11-01 12:27+0000\n"
 "PO-Revision-Date: 2017-10-29 17:11+0000\n"
 "Last-Translator: Aitzol Berasategi <aitzol76@gmail.com>\n"
-"Language-Team: Basque <https://translate.ubports.com/projects/ubports"
-"/address-book-app/eu/>\n"
+"Language-Team: Basque <https://translate.ubports.com/projects/ubports/"
+"address-book-app/eu/>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,15 +26,20 @@ msgid "%1 is locked"
 msgstr "%1 blokeatuta dago"
 
 #. TRANSLATORS: this refers to a new contact
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:451
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:480
 msgid "+ Create New"
 msgstr "+ Sortu berria"
 
-#: ../src/imports/Settings/SettingsPage.qml:85
-msgid "Add Google account"
+#: ../src/imports/Settings/SettingsPage.qml:90
+#, fuzzy, qt-format
+msgid "Add %1 account"
 msgstr "Gehitu Google kontua"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:379
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
+msgid "Add Field"
+msgstr "Gehitu eremua"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
 msgid "Add field"
 msgstr ""
 
@@ -59,7 +64,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:478
+#: ../src/imports/ABContactListPage.qml:480
 msgid "All"
 msgstr "Guztiak"
 
@@ -71,26 +76,27 @@ msgstr "Ziur hautatutako kontaktu guztiak kendu nahi dituzula?"
 msgid "Are you sure that you want to remove this contact?"
 msgstr "Ziur kontaktu hau kendu nahi duzula?"
 
-#: ../src/imports/ABContactListPage.qml:617
+#: ../src/imports/ABContactListPage.qml:621
 msgid "Back"
 msgstr "Itzuli"
 
 #: ../src/imports/ABContactEditorPage.qml:38
-#: ../src/imports/ABContactListPage.qml:498 ../src/imports/MainWindow.qml:210
+#: ../src/imports/ABContactListPage.qml:500
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "Utzi"
 
-#: ../src/imports/ABContactListPage.qml:537
+#: ../src/imports/ABContactListPage.qml:539
 msgid "Cancel selection"
 msgstr "Desegin hautaketa"
 
-#: ../src/imports/ABContactListPage.qml:760
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:521
+#: ../src/imports/BusyImportingDialog.qml:40
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:48
 msgid "Close"
 msgstr "Itxi"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:502
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:29
 msgid "Contact Editor"
 msgstr ""
 
@@ -98,8 +104,8 @@ msgstr ""
 msgid "Contact not found"
 msgstr "Ez da kontaktua aurkitu"
 
-#: ../src/imports/ABContactListPage.qml:250
-#: ../src/imports/ABContactListPage.qml:290
+#: ../src/imports/ABContactListPage.qml:248
+#: ../src/imports/ABContactListPage.qml:288
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
 msgstr "Kontaktuak"
@@ -116,7 +122,7 @@ msgstr "Kontaktuak;Jendea;Zenbakiak"
 msgid "Country"
 msgstr "Herrialdea"
 
-#: ../src/imports/ABContactListPage.qml:699 ../src/imports/ABEmptyState.qml:55
+#: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "Sortu kontaktu berri bat hatza pantailaren azpitik gorantz pasaz."
 
@@ -124,13 +130,16 @@ msgstr "Sortu kontaktu berri bat hatza pantailaren azpitik gorantz pasaz."
 msgid "Default address book"
 msgstr ""
 
-#: ../src/imports/ABContactListPage.qml:577
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:442
+#: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
 msgid "Delete"
 msgstr "Ezabatu"
 
-#: ../src/imports/ABContactViewPage.qml:88
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:189
+#: ../src/imports/ABContactViewPage.qml:87
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "Editatu"
 
@@ -153,16 +162,15 @@ msgstr "Idatzi goitizen bat"
 msgid "Enter an email address"
 msgstr "Idatzi helbide elektroniko bat"
 
-#: ../src/imports/MainWindow.qml:206
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
 msgstr "Errorea"
 
-#: ../src/imports/Ubuntu/AddressBook/Base/ContactExporter.qml:167
+#: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
 msgstr "Kontaktuak esportatzen..."
 
-#: ../src/imports/ABContactListPage.qml:847
+#: ../src/imports/ABContactListPage.qml:800
 msgid "Fail to import contacts!"
 msgstr ""
 
@@ -170,17 +178,13 @@ msgstr ""
 msgid "Fail to read SIM card"
 msgstr "Huts egin du SIM txartela irakurtzean"
 
-#: ../src/imports/ABContactListPage.qml:478
+#: ../src/imports/ABContactListPage.qml:480
 msgid "Favorites"
 msgstr "Gogokoak"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:88
 msgid "First name"
 msgstr "Izena"
-
-#: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
-msgid "Frequently called"
-msgstr "Maiz deitua"
 
 #. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:116
@@ -200,23 +204,24 @@ msgstr "Berehalako mezularitza"
 msgid "Import"
 msgstr "Inportatu"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:515
-msgid "Import contacts from Google"
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
+#, fuzzy, qt-format
+msgid "Import contacts from %1"
 msgstr "Inportatu kontaktuak Google-etik"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:526
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
 msgstr "Inportatu kontaktuak SIM txarteletik"
 
-#: ../src/imports/Settings/SettingsPage.qml:124
+#: ../src/imports/Settings/SettingsPage.qml:131
 msgid "Import from SIM"
 msgstr "Inportatu SIMetik"
 
-#: ../src/imports/ABContactListPage.qml:630
+#: ../src/imports/ABContactListPage.qml:634
 msgid "Imported contacts"
 msgstr ""
 
-#: ../src/imports/ABContactListPage.qml:751
+#: ../src/imports/BusyImportingDialog.qml:31
 msgid "Importing..."
 msgstr "Inportatzen..."
 
@@ -228,7 +233,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Abizena"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:599
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "Kargatzen..."
@@ -258,13 +263,14 @@ msgstr "Mugikorra"
 msgid "Multiple contacts"
 msgstr "Kontaktu anitzekoa"
 
-#: ../src/imports/Settings/SettingsPage.qml:70
+#: ../src/imports/Settings/SettingsPage.qml:72
 #, qt-format
 msgid "My phone number: %1"
 msgstr "Nire telefono-zenbakia: %1"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:189
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:459
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
 msgstr "Kontaktu berria"
 
@@ -330,7 +336,7 @@ msgstr "Posta-kodea"
 msgid "Professional Details"
 msgstr "Laneko xehetasunak"
 
-#: ../src/imports/ABContactListPage.qml:411
+#: ../src/imports/ABContactListPage.qml:412
 msgid "Quit"
 msgstr "Irten"
 
@@ -346,7 +352,7 @@ msgstr "Eskualdea"
 msgid "Role"
 msgstr "Lanpostua"
 
-#: ../src/imports/Settings/SettingsPage.qml:71
+#: ../src/imports/Settings/SettingsPage.qml:73
 #, qt-format
 msgid "SIM %1"
 msgstr "%1. SIMa"
@@ -356,6 +362,7 @@ msgid "SIM contacts"
 msgstr "SIMeko kontaktuak"
 
 #: ../src/imports/ABContactEditorPage.qml:56
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:411
 msgid "Save"
 msgstr "Gorde"
 
@@ -363,26 +370,27 @@ msgstr "Gorde"
 msgid "Saving contacts on phone..."
 msgstr ""
 
-#: ../src/imports/ABContactListPage.qml:421
+#: ../src/imports/ABContactListPage.qml:422
 msgid "Search"
 msgstr "Bilatu"
 
-#: ../src/imports/ABContactListPage.qml:386
+#: ../src/imports/ABContactListPage.qml:387
 msgid "Search..."
 msgstr "Bilatu..."
 
-#: ../src/imports/ABContactListPage.qml:547
+#: ../src/imports/ABContactListPage.qml:549
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
 msgstr "Hautatu dena"
 
-#: ../src/imports/ABContactListPage.qml:468
-#: ../src/imports/Settings/SettingsPage.qml:33
+#: ../src/imports/ABContactListPage.qml:470
+#: ../src/imports/Settings/SettingsPage.qml:35
 msgid "Settings"
 msgstr "Ezarpenak"
 
-#: ../src/imports/ABContactListPage.qml:560
-#: ../src/imports/ABContactViewPage.qml:75
+#: ../src/imports/ABContactListPage.qml:562
+#: ../src/imports/ABContactViewPage.qml:74
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Partekatu"
 
@@ -399,15 +407,15 @@ msgstr "Sare sozialak"
 msgid "Street"
 msgstr "Kalea"
 
-#: ../src/imports/ABContactListPage.qml:456
+#: ../src/imports/ABContactListPage.qml:458
 msgid "Sync"
 msgstr "Sinkronizatu"
 
-#: ../src/imports/ABContactListPage.qml:456
+#: ../src/imports/ABContactListPage.qml:458
 msgid "Syncing"
 msgstr "Sinkronizatzen"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:599
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 msgid "Syncing..."
 msgstr "Sinkronizatzen..."
 
@@ -427,7 +435,7 @@ msgstr "Desblokeatu"
 msgid "Unlocking..."
 msgstr ""
 
-#: ../src/imports/ABContactListPage.qml:547
+#: ../src/imports/ABContactListPage.qml:549
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
 msgstr "Desautatu dena"
@@ -451,11 +459,11 @@ msgstr "Yahoo"
 msgid "Yes"
 msgstr "Bai"
 
-#: ../src/imports/ABContactListPage.qml:698
+#: ../src/imports/ABContactListPage.qml:702
 msgid "You have no contacts."
 msgstr "Ez duzu kontakturik."
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:515
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:42
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded by running Contacts "
@@ -463,14 +471,14 @@ msgid ""
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:506
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:33
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:511
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:38
 #, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded. Use the sync "
@@ -478,8 +486,8 @@ msgid ""
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
 
-#~ msgid "Add Field"
-#~ msgstr "Gehitu eremua"
+#~ msgid "Frequently called"
+#~ msgstr "Maiz deitua"
 
 #~ msgid "%1 vCards imported"
 #~ msgstr "%1 vCard inportatuta"
