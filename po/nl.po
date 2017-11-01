@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-13 10:07-0300\n"
-"PO-Revision-Date: 2017-11-01 23:34+0000\n"
+"PO-Revision-Date: 2017-11-01 23:37+0000\n"
 "Last-Translator: Terence Sambo <arubislander@zonnet.nl>\n"
 "Language-Team: Dutch <https://translate.ubports.com/projects/ubports/address-"
 "book-app/nl/>\n"
@@ -65,7 +65,7 @@ msgstr "Alle"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
-msgstr "Weet u zeker dat u alle geselecteerde contacten wilt verwijderen?"
+msgstr "Weet u zeker dat u alle geselecteerde contactpersonen wilt verwijderen?"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
@@ -109,8 +109,9 @@ msgid "Contacts Address Book"
 msgstr "Adresboek van contacten"
 
 #: ../data/address-book-app.desktop.in.in.h:3
+#, fuzzy
 msgid "Contacts;People;Numbers"
-msgstr "Contacts;People;Numbers;Contacten;Mensen;Nummers"
+msgstr "Contacten;Mensen;Nummers"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:35
 msgid "Country"
@@ -203,11 +204,11 @@ msgstr "Importeren"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:515
 msgid "Import contacts from Google"
-msgstr "Google-contacten importeren"
+msgstr "Google-contactpersonen importeren"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:526
 msgid "Import contacts from SIM card"
-msgstr "Contacten importeren vanaf simkaart"
+msgstr "Contactpersonen importeren vanaf simkaart"
 
 #: ../src/imports/Settings/SettingsPage.qml:124
 msgid "Import from SIM"
@@ -267,7 +268,7 @@ msgstr "Mijn telefoonnummer: %1"
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:189
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:459
 msgid "New contact"
-msgstr "Nieuw contact"
+msgstr "Nieuw contactpersoon"
 
 #. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
 #. this word must be less than 5 characters
@@ -289,7 +290,7 @@ msgstr "Geen contacten"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:155
 msgid "No contacts found"
-msgstr "Geen contacten gevonden"
+msgstr "Geen contactpersonen gevonden"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:49
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:58
