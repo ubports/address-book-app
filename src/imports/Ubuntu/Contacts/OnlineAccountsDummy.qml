@@ -21,9 +21,10 @@ Item {
 
     property bool running: false
     property string applicationId: "address-book"
+    property var providerModel: providers
     signal finished()
 
-    function setupExec()
+    function setupExec(provider)
     {
         root.running = true
         fakeEnd.start()
@@ -38,5 +39,9 @@ Item {
             root.running = false
             root.finished()
         }
+    }
+
+    ListModel {
+        id: providers
     }
 }
