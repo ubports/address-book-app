@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-13 10:07-0300\n"
-"PO-Revision-Date: 2017-11-09 21:37+0000\n"
+"PO-Revision-Date: 2017-11-09 21:38+0000\n"
 "Last-Translator: Brînzariu Cristian <info@ebeton.ro>\n"
 "Language-Team: Romanian <https://translate.ubports.com/projects/ubports"
 "/address-book-app/ro/>\n"
@@ -283,7 +283,7 @@ msgstr "Nu"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:40
 msgid "No contact selected."
-msgstr "Niciun contact selectat"
+msgstr "Niciun contact selectat."
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
