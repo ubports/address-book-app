@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-13 10:07-0300\n"
-"PO-Revision-Date: 2017-10-30 21:35+0000\n"
+"PO-Revision-Date: 2017-11-09 21:37+0000\n"
 "Last-Translator: Brînzariu Cristian <info@ebeton.ro>\n"
 "Language-Team: Romanian <https://translate.ubports.com/projects/ubports"
 "/address-book-app/ro/>\n"
@@ -37,7 +37,7 @@ msgstr "Adăugați un cont Google"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:379
 msgid "Add field"
-msgstr ""
+msgstr "Adaugă un câmp"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
@@ -93,7 +93,7 @@ msgstr "Închide"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:502
 msgid "Contact Editor"
-msgstr ""
+msgstr "Editor contact"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
@@ -125,7 +125,7 @@ msgstr ""
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
-msgstr ""
+msgstr "Lista de contacte implicită"
 
 #: ../src/imports/ABContactListPage.qml:577
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:442
@@ -167,7 +167,7 @@ msgstr "Se exportă contactele..."
 
 #: ../src/imports/ABContactListPage.qml:847
 msgid "Fail to import contacts!"
-msgstr ""
+msgstr "Importarea contactelor a eșuat!"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:285
 msgid "Fail to read SIM card"
@@ -217,7 +217,7 @@ msgstr "Importați de pe SIM"
 
 #: ../src/imports/ABContactListPage.qml:630
 msgid "Imported contacts"
-msgstr ""
+msgstr "Contacte importate"
 
 #: ../src/imports/ABContactListPage.qml:751
 msgid "Importing..."
@@ -246,11 +246,11 @@ msgstr "MSN"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:62
 msgid "Middle Name"
-msgstr ""
+msgstr "Al doilea nume"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:90
 msgid "Middle name"
-msgstr ""
+msgstr "Al doilea nume"
 
 #. TRANSLATORS: This refers to mobile/cellphone phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
@@ -275,7 +275,7 @@ msgstr "Contact nou"
 #. this word must be less than 5 characters
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/TextInputDetail.qml:88
 msgid "Next"
-msgstr "Înainte"
+msgstr "Următorul"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:79
 msgid "No"
@@ -287,7 +287,7 @@ msgstr "Niciun contact selectat"
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
-msgstr ""
+msgstr "Fără contacte"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:155
 msgid "No contacts found"
@@ -307,14 +307,14 @@ msgstr "Organizație"
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:122
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:121
 msgid "Other"
-msgstr "Altele"
+msgstr "Altceva"
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:202
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:218
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:88
 #, qt-format
 msgid "Personal - %1"
-msgstr ""
+msgstr "Personal - %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:51
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:23
@@ -339,7 +339,7 @@ msgstr "Ieșire"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Reading contacts from SIM..."
-msgstr ""
+msgstr "Se citesc contactele de pe SIM..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -364,7 +364,7 @@ msgstr "Salvează"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Saving contacts on phone..."
-msgstr ""
+msgstr "Se salvează contactele pe telefon..."
 
 #: ../src/imports/ABContactListPage.qml:421
 msgid "Search"
@@ -424,7 +424,7 @@ msgstr "Touch"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:124
 msgid "Unlock"
-msgstr "Deblocare"
+msgstr "Deplocare"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
 msgid "Unlocking..."
@@ -465,6 +465,9 @@ msgid ""
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Contul tău <b>%1</b> pentru sincronizarea  contactelor trebuie să fie "
+"actualizat prin rularea aplicației Contacte.\n"
+"Numai contactele locale vor fir modificabile până la încheierea actualizării."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:506
 #, qt-format
@@ -472,6 +475,9 @@ msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
+"Contul tău <b>%1</b> pentru sincronizarea contactelor trebuie să se "
+"actualizeze.\n"
+"Așteaptă până se termină actualizarea pentru a edita contactele."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:511
 #, qt-format
@@ -480,6 +486,10 @@ msgid ""
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Contul tău <b>%1</b> pentru actualizarea contactelor trebuie să fie "
+"actualizat. Folosește butonul de sincronizare pentru a actualiza contactele "
+"din aplicația de contacte.\n"
+"Numai contactele locale vor fi editabile până la încheierea actualizării."
 
 #~ msgid "Add Field"
 #~ msgstr "Adaugă câmp"
