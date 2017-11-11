@@ -24,22 +24,28 @@ Item {
 
     property bool running: false
     property alias applicationId: setup.applicationId
+    property var providerModel: providers
     signal finished()
 
-    function setupExec()
+    function setupExec(provider)
     {
         if (!root.running) {
             root.running = true
+            setup.providerId = provider
             setup.exec()
         }
     }
     Setup {
         id: setup
         applicationId: "address-book-app"
-        providerId: "google"
         onFinished: {
             root.running = false
             root.finished()
         }
+    }
+
+    ProviderModel {
+        id: providers
+        applicationId: "address-book-app"
     }
 }
