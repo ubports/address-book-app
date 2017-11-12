@@ -74,44 +74,48 @@ Page {
                 }
                 onCountChanged: numberFlickable.contentY = 0
             }
-            ListItem.Standard {
-                id: addGoogleAccountItem
 
-                property bool selected: (activeFocus && pageStack.hasKeyboard)
+            Repeater {
+                model: onlineAccountsHelper.providerModel
 
-                function activate()
-                {
-                    onlineAccountsHelper.setupExec()
-                }
+                ListItem.Standard {
+                    id: addAccountItem
+                    property bool selected: (activeFocus && pageStack.hasKeyboard)
 
-                text: i18n.tr("Add Google account")
-                progression: true
-                enabled: buteoSync.serviceAvailable
-
-                onClicked: addGoogleAccountItem.activate()
-                Keys.onRightPressed: addGoogleAccountItem.activate()
-                Keys.onDownPressed: {
-                    if (importFromSimItem.enabled) {
-                        importFromSimItem.forceActiveFocus()
+                    function activate()
+                    {
+                        onlineAccountsHelper.setupExec(model.providerId)
                     }
-                }
 
-                // selection visual feedback
-                //
-                // FIXME: Using a private property here. This uses the old list item and the only way to change the text
-                // color is with this property.
-                // We should remove it when update the app to the new ListItem.
-                __foregroundColor: selected ? UbuntuColors.blue : Theme.palette.normal.baseText
+                    text: i18n.tr("Add %1 account").arg(model.displayName)
+                    progression: true
+                    enabled: buteoSync.serviceAvailable
 
-                Rectangle {
-                    border {
-                        color: UbuntuColors.orange
-                        width: units.dp(1)
+                    onClicked: activate()
+                    Keys.onRightPressed: activate()
+                    Keys.onDownPressed: {
+                        if (importFromSimItem.enabled) {
+                            importFromSimItem.forceActiveFocus()
+                        }
                     }
-                    color: "#E6E6E6"
-                    anchors.fill: parent
-                    visible: addGoogleAccountItem.selected
-                    z: -1
+
+                    // selection visual feedback
+                    //
+                    // FIXME: Using a private property here. This uses the old list item and the only way to change the text
+                    // color is with this property.
+                    // We should remove it when update the app to the new ListItem.
+                    __foregroundColor: selected ? UbuntuColors.blue : Theme.palette.normal.baseText
+
+                    Rectangle {
+                        border {
+                            color: UbuntuColors.orange
+                            width: units.dp(1)
+                        }
+                        color: "#E6E6E6"
+                        anchors.fill: parent
+                        visible: addAccountItem.selected
+                        z: -1
+                    }
                 }
             }
             ListItem.Standard {

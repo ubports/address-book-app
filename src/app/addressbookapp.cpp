@@ -48,7 +48,7 @@ static void printUsage(const QStringList& arguments)
              << "[addressbook:///create?phone=<phone-number>]"
              << "[addressbook:///pick?single=<true/false>]"
              << "[addressbook:///importvcard?url=<vcard-file>]"
-             << "[addressbook:///createAccount]"
+             << "[addressbook:///createAccount?providerId=<provider-id>]"
              << "[--fullscreen]"
              << "[--help]"
              << "[-testability]";
@@ -342,7 +342,10 @@ void AddressBookApp::parseUrl(const QString &arg)
         methodsMetaData.insert("importvcard", args);
         args.clear();
 
+        //providerId
+        args << "providerId";
         methodsMetaData.insert("createAccount", args);
+        args.clear();
     }
 
     QUrlQuery query(url);

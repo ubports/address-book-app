@@ -80,11 +80,11 @@ MainView {
         }
     }
 
-    function createAccount()
+    function createAccount(provider)
     {
         if (mainStack.contactListPage) {
             mainStack.resetStack()
-            mainStack.contactListPage.contactListItem.createOnlineAccount()
+            mainStack.contactListPage.contactListItem.createOnlineAccount(provider)
         } else {
             console.error("Create online account requested but ContactListPage not loaded")
         }

@@ -396,9 +396,9 @@ FocusScope {
     /*!
       start an online account creation
     */
-    function createOnlineAccount()
+    function createOnlineAccount(provider)
     {
-        onlineAccountHelper.start()
+        onlineAccountHelper.start(provider)
     }
 
     focus: true
@@ -533,16 +533,17 @@ FocusScope {
                     }
                 }
 
-                // Import from google
-                ContactListButtonDelegate {
-                    id: importFromGoogleButton
-                    objectName: "%1.importFromOnlineAccountButton".arg(root.objectName)
+                Repeater {
+                    model: onlineAccountHelper.status === Loader.Ready ? onlineAccountHelper.item.providerModel : []
+                    ContactListButtonDelegate {
+                        objectName: "%1.importFromOnlineAccountButton.%2".arg(root.objectName).arg(model.providerId)
 
-                    visible: (onlineAccountHelper.status === Loader.Ready)
-                    expandIcon: true
-                    iconSource: "image://theme/google"
-                    labelText: i18n.dtr("address-book-app", "Import contacts from Google")
-                    onClicked: root.createOnlineAccount(false)
+                        expandIcon: true
+                        iconSource: model.iconName.indexOf("/") === 0 ?
+                            model.iconName : "image://theme/" + model.iconName
+                        labelText: i18n.dtr("address-book-app", "Import contacts from %1").arg(model.displayName)
+                        onClicked: root.createOnlineAccount(model.providerId)
+                    }
                 }
 
                 // Import from sim card
@@ -644,7 +645,7 @@ FocusScope {
         id: onlineAccountHelper
         objectName: "onlineAccountHelper"
 
-        property bool createAccount: false
+        property string createAccount: ""
         property bool exitOnFinish: false
         readonly property bool isSearching: (root.filterTerm && root.filterTerm !== "")
         // if running on test mode does not load online account modules
@@ -652,16 +653,16 @@ FocusScope {
                                       Qt.resolvedUrl("OnlineAccountsDummy.qml") :
                                       Qt.resolvedUrl("OnlineAccountsHelper.qml")
 
-        function start()
+        function start(provider)
         {
             if (root.onlineAccountApplicationId !== "address-book-app") {
                 // invoke address book app
-                Qt.openUrlExternally("addressbook:///createAccount?callback=%1.desktop".arg(root.onlineAccountApplicationId))
+                Qt.openUrlExternally("addressbook:///createAccount?providerId=%1&callback=%2.desktop".arg(provider).arg(root.onlineAccountApplicationId))
             } else {
                 if (item)
-                    item.setupExec()
+                    item.setupExec(provider)
                 else
-                    createAccount = true
+                    createAccount = provider
             }
         }
 
@@ -674,8 +675,8 @@ FocusScope {
                 !isSearching ? sourceFile : ""
         onStatusChanged: {
             if (createAccount && (status === Loader.Ready)) {
-                createAccount = false
-                item.setupExec()
+                item.setupExec(createAccount)
+                createAccount = ""
             }
         }
 
