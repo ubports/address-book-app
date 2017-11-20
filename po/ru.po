@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2017-11-20 21:42+0000\n"
-"Last-Translator: anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2017-11-20 21:57+0000\n"
+"Last-Translator: Alexey Balmashnov <a.balmashnov@gmail.com>\n"
 "Language-Team: Russian <https://translate.ubports.com/projects/ubports"
 "/address-book-app/ru/>\n"
 "Language: ru\n"
@@ -32,9 +32,9 @@ msgid "+ Create New"
 msgstr "+ Создать новый"
 
 #: ../src/imports/Settings/SettingsPage.qml:90
-#, fuzzy, qt-format
+#, qt-format
 msgid "Add %1 account"
-msgstr "Добавить учётную запись Google"
+msgstr "Добавить учётную запись %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
 msgid "Add Field"
@@ -173,7 +173,7 @@ msgstr "Экспорт контактов..."
 
 #: ../src/imports/ABContactListPage.qml:800
 msgid "Fail to import contacts!"
-msgstr "Ошибка импорта контактов"
+msgstr "Ошибка импорта контактов!"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:285
 msgid "Fail to read SIM card"
@@ -206,9 +206,9 @@ msgid "Import"
 msgstr "Импортировать"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
-#, fuzzy, qt-format
+#, qt-format
 msgid "Import contacts from %1"
-msgstr "Импортировать контакты из Google"
+msgstr "Импортировать контакты из %1"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
@@ -220,7 +220,7 @@ msgstr "Импортировать с SIM"
 
 #: ../src/imports/ABContactListPage.qml:634
 msgid "Imported contacts"
-msgstr ""
+msgstr "Контакты импортированы"
 
 #: ../src/imports/BusyImportingDialog.qml:31
 msgid "Importing..."
@@ -249,11 +249,11 @@ msgstr "MSN"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:62
 msgid "Middle Name"
-msgstr ""
+msgstr "Отчество"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:90
 msgid "Middle name"
-msgstr ""
+msgstr "Отчество"
 
 #. TRANSLATORS: This refers to mobile/cellphone phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
@@ -318,7 +318,7 @@ msgstr "Другой"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:88
 #, qt-format
 msgid "Personal - %1"
-msgstr ""
+msgstr "Персональные - %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:51
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:23
@@ -471,6 +471,10 @@ msgid ""
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Приложению Контакты необходимо обновить учётную запись <b>%1</b>, "
+"используемую для синхронизации контактов.\n"
+"До завершения обновления только локально созданные контакты будут доступны "
+"для редактирования."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:33
 #, qt-format
@@ -478,6 +482,9 @@ msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
+"Необходимо обновить учётную запись <b>%1</b>, используемую для синхронизации "
+"контактов.\n"
+"Воздержитесь от изменения контактов до завершения обновления."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:38
 #, qt-format
@@ -486,6 +493,10 @@ msgid ""
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Необходимо обновить учётную запись синхронизации контактов <b>%1</b>. "
+"Воспользуйтесь кнопкой синхронизировать для обновления приложения Контакты.\n"
+"До завершения обновления только локально созданные контакты будут доступны "
+"для редактирования."
 
 #~ msgid "Frequently called"
 #~ msgstr "Частые вызовы"
