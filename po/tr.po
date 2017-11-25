@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2017-11-25 19:34+0000\n"
-"Last-Translator: Taka Turgut <takaturgut@gmail.com>\n"
+"PO-Revision-Date: 2017-11-25 22:17+0000\n"
+"Last-Translator: Mevlüt Erdem Güven <merdem2002@yandex.com>\n"
 "Language-Team: Turkish <https://translate.ubports.com/projects/ubports"
 "/address-book-app/tr/>\n"
 "Language: tr\n"
@@ -98,7 +98,7 @@ msgstr "Kapat"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:29
 msgid "Contact Editor"
-msgstr "İletişim Düzenleyicisi"
+msgstr "Kayıt Düzenleyici"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
@@ -116,7 +116,7 @@ msgstr "Kişi Adres Defteri"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
-msgstr "Bağlantılar;Kişiler;Numaralar"
+msgstr "Kayıtlar;Kişiler;Numaralar"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:35
 msgid "Country"
@@ -168,11 +168,11 @@ msgstr "Hata"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
-msgstr "Kişiler dışarı aktarılıyor..."
+msgstr "Kişiler dışa aktarılıyor..."
 
 #: ../src/imports/ABContactListPage.qml:800
 msgid "Fail to import contacts!"
-msgstr "Kişiler içeri aktarılamadı!"
+msgstr "Kişiler içe aktarılamadı!"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:285
 msgid "Fail to read SIM card"
@@ -421,7 +421,7 @@ msgstr "Eşitleniyor..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:30
 msgid "Title"
-msgstr "Ünvan"
+msgstr "Unvan"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailOnlineAccountsView.qml:29
 msgid "Touch"
