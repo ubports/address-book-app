@@ -6,16 +6,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-06-13 10:07-0300\n"
-"PO-Revision-Date: 2015-03-22 15:37+0000\n"
-"Last-Translator: Arda Ünlü <aarda.uunlu@gmail.com>\n"
-"Language-Team: Turkish <tr@li.org>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-01 12:27+0000\n"
+"PO-Revision-Date: 2017-11-25 19:05+0000\n"
+"Last-Translator: Ataberk Özen <ataberkozen123@gmail.com>\n"
+"Language-Team: Turkish <https://translate.ubports.com/projects/ubports"
+"/address-book-app/tr/>\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.15\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:51+0000\n"
-"X-Generator: Launchpad (build 18326)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
@@ -27,13 +30,18 @@ msgstr "%1 kilitli"
 msgid "+ Create New"
 msgstr "+ Yeni Oluştur"
 
-#: ../src/imports/Settings/SettingsPage.qml:87
-msgid "Add Google account"
-msgstr "Google hesabı ekle"
+#: ../src/imports/Settings/SettingsPage.qml:90
+#, qt-format
+msgid "Add %1 account"
+msgstr "%1 hesabı ekle"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
+msgid "Add Field"
+msgstr "Alan Ekle"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
 msgid "Add field"
-msgstr ""
+msgstr "Alan ekle"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
@@ -70,10 +78,11 @@ msgstr "Bu kişiyi silmek istediğinizden emin misiniz?"
 
 #: ../src/imports/ABContactListPage.qml:621
 msgid "Back"
-msgstr ""
+msgstr "Geri"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:500
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "İptal"
@@ -89,7 +98,7 @@ msgstr "Kapat"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:29
 msgid "Contact Editor"
-msgstr ""
+msgstr "İletişim Düzenleyicisi"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
@@ -119,15 +128,18 @@ msgstr "Ekranın altından yukarı kaydırarak yeni kişi oluşturun."
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
-msgstr ""
+msgstr "Varsayılan adres defteri"
 
 #: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
 msgid "Delete"
 msgstr "Sil"
 
 #: ../src/imports/ABContactViewPage.qml:87
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "Düzenle"
 
@@ -160,7 +172,7 @@ msgstr "Kişiler dışarı aktarılıyor..."
 
 #: ../src/imports/ABContactListPage.qml:800
 msgid "Fail to import contacts!"
-msgstr ""
+msgstr "Kişiler içeri aktarılamadı!"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:285
 msgid "Fail to read SIM card"
@@ -173,10 +185,6 @@ msgstr "Favoriler"
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:88
 msgid "First name"
 msgstr "Adı"
-
-#: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
-msgid "Frequently called"
-msgstr "Sık arananlar"
 
 #. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:116
@@ -197,20 +205,21 @@ msgid "Import"
 msgstr "İçe Aktar"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
-msgid "Import contacts from Google"
-msgstr "Kişileri Google'dan aktar"
+#, qt-format
+msgid "Import contacts from %1"
+msgstr "Kişileri %1 'dan aktar"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:555
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
 msgstr "Kişileri SIM kartından aktar"
 
-#: ../src/imports/Settings/SettingsPage.qml:127
+#: ../src/imports/Settings/SettingsPage.qml:131
 msgid "Import from SIM"
 msgstr "SIM'den aktar"
 
 #: ../src/imports/ABContactListPage.qml:634
 msgid "Imported contacts"
-msgstr ""
+msgstr "İçe aktarılan kişiler"
 
 #: ../src/imports/BusyImportingDialog.qml:31
 msgid "Importing..."
@@ -224,7 +233,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Soyadı"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "Yükleniyor..."
@@ -239,11 +248,11 @@ msgstr "MSN"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:62
 msgid "Middle Name"
-msgstr ""
+msgstr "Orta Ad"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:90
 msgid "Middle name"
-msgstr ""
+msgstr "Orta ad"
 
 #. TRANSLATORS: This refers to mobile/cellphone phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
@@ -259,6 +268,7 @@ msgstr "Çoklu kişiler"
 msgid "My phone number: %1"
 msgstr "Telefon numaram: %1"
 
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
@@ -280,7 +290,7 @@ msgstr "Hiç kişi seçilmedi."
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
-msgstr ""
+msgstr "Kişi yok"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:155
 msgid "No contacts found"
@@ -307,7 +317,7 @@ msgstr "Diğer"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:88
 #, qt-format
 msgid "Personal - %1"
-msgstr ""
+msgstr "Kişisel - %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:51
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:23
@@ -332,7 +342,7 @@ msgstr "Çık"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Reading contacts from SIM..."
-msgstr ""
+msgstr "Kişiler SIM kartından okunuyor..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -352,12 +362,13 @@ msgid "SIM contacts"
 msgstr "SIM bağlantıları"
 
 #: ../src/imports/ABContactEditorPage.qml:56
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:411
 msgid "Save"
 msgstr "Kaydet"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Saving contacts on phone..."
-msgstr ""
+msgstr "Kişiler telefona kaydediliyor..."
 
 #: ../src/imports/ABContactListPage.qml:422
 msgid "Search"
@@ -379,6 +390,7 @@ msgstr "Ayarlar"
 
 #: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/ABContactViewPage.qml:74
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Paylaş"
 
@@ -403,7 +415,7 @@ msgstr "Eşitle"
 msgid "Syncing"
 msgstr "Eşitleniyor"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 msgid "Syncing..."
 msgstr "Eşitleniyor..."
 
@@ -458,6 +470,9 @@ msgid ""
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"<b> %1 </b> kişi senkorize hesabın Kişiler uygulamasını açarak yükseltilmesi "
+"gerekiyor.\n"
+"Yükseltme bitene kadar sadece yerel kişiler düzenlenebilir olacak."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:33
 #, qt-format
@@ -465,6 +480,8 @@ msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
+"<b> %1 </b> kişileri senkorize etme hesabının yükseltilmeye ihtiyacı var.\n"
+"Kişileri düzenlemek için yükseltilmenin tamamlanmasını bekleyin."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:38
 #, qt-format
@@ -473,9 +490,12 @@ msgid ""
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"<b> %1 </b> kişileri senkorize etme hesabının yükseltilmesi gerekiyor. "
+"Senkorize et tuşunu kullanarak Kişiler uygulamasını güncelleyin.\n"
+"Yükseltilme bitene kadar sadece yerel kişiler düzenlenebilir olacak."
 
-#~ msgid "Add Field"
-#~ msgstr "Alan Ekle"
+#~ msgid "Frequently called"
+#~ msgstr "Sık arananlar"
 
 #~ msgid "Add contact"
 #~ msgstr "Kişi ekle"
@@ -490,6 +510,5 @@ msgstr ""
 #~ "Kişileri çevrim içi kişilerden\n"
 #~ "eşitlemek ister misiniz?"
 
-#, qt-format
 #~ msgid "%1 vCards imported"
 #~ msgstr "%1 vCard içe aktarıldı"
