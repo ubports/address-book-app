@@ -1,4 +1,4 @@
-#Building for desktop
+# Building for desktop
 
     mkdir build
     cd build
