@@ -1,41 +1,37 @@
-Building for desktop
-====================
+#Building for desktop
 
-mkdir build
-cd build
-cmake ..
-make
+    mkdir build
+    cd build
+    cmake ..
+    make
 
-Run on desktop
-==============
+#Run
+##on desktop
 
-cd build
-./src/app/address-book-app
+    cd build
+    ./src/app/address-book-app
 
-Run the QML tests
-=================
+##the QML tests
 
-cd build
-make test or ctest 
+    cd build
+    make test or ctest 
 
-Run the Autopilot tests
-=======================
+##the Autopilot tests
 
-cd build
-make autopilot
+    cd build
+    make autopilot
 
-Building for click
-==================
+#Building for click
 
 To build for a click package configure cmake as:
 
-mkdir build
-cd build
-cmake [path_to_this_location] -DCLICK_MODE=on \
-    -DBZR_REVNO=$(cd [path_to_this_location]; bzr revno)
-make DESTDIR=[package dir] install
-click build [package dir]
+    mkdir build
+    cd build
+    cmake [path_to_this_location] -DCLICK_MODE=on \
+        -DBZR_REVNO=$(cd [path_to_this_location]; bzr revno)
+    make DESTDIR=[package dir] install
+    click build [package dir]
 
-This package can be installed by running:
+    This package can be installed by running:
 
-pkcon install-local com.ubuntu.address-book_*.click
+    pkcon install-local com.ubuntu.address-book_*.click
