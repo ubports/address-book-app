@@ -8,15 +8,17 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2016-06-18 16:40+0000\n"
-"Last-Translator: Po-Hsu Lin <po-hsu.lin@canonical.com>\n"
-"Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2018-03-06 10:44+0000\n"
+"Last-Translator: P.-H. Lin <cypressyew@gmail.com>\n"
+"Language-Team: Chinese (Traditional) "
+"<https://translate.ubports.com/projects/ubports/address-book-app/zh_Hant/>\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.15\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:51+0000\n"
-"X-Generator: Launchpad (build 18326)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
@@ -29,9 +31,9 @@ msgid "+ Create New"
 msgstr "+ 建立新的"
 
 #: ../src/imports/Settings/SettingsPage.qml:90
-#, fuzzy, qt-format
+#, qt-format
 msgid "Add %1 account"
-msgstr "新增 Google 帳號"
+msgstr "新增 %1 帳號"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
 msgid "Add Field"
@@ -114,7 +116,7 @@ msgstr "聯絡人通訊錄"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
-msgstr "Contacts;People;Numbers;聯絡人;人物;號碼;"
+msgstr "Contacts;People;Numbers;聯絡人;人物;號碼"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:35
 msgid "Country"
@@ -187,8 +189,9 @@ msgstr "名字"
 #. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:116
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
+#, fuzzy
 msgid "Home"
-msgstr "首頁"
+msgstr "住家"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:63
 msgid "ICQ"
@@ -203,9 +206,9 @@ msgid "Import"
 msgstr "匯入"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
-#, fuzzy, qt-format
+#, qt-format
 msgid "Import contacts from %1"
-msgstr "自 Google 匯入聯絡人"
+msgstr "自 %1 匯入聯絡人"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
@@ -315,7 +318,7 @@ msgstr "其他"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:88
 #, qt-format
 msgid "Personal - %1"
-msgstr ""
+msgstr "個人 - %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:51
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:23
@@ -468,6 +471,8 @@ msgid ""
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"您需要執行聯絡人應用程式來更新您的 <b>%1</b> 聯絡人同步帳號。\n"
+"在更新完成前僅能編輯本機上的聯絡人。"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:33
 #, qt-format
@@ -475,6 +480,8 @@ msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
+"您的 <b>%1</b> 聯絡人同步帳號需要更新。\n"
+"請於更新完成後再編輯聯絡人。"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:38
 #, qt-format
@@ -483,6 +490,8 @@ msgid ""
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"您的 <b>%1</b> 聯絡人同步帳號需要更新。請按下同步按鈕來更新您的聯絡人應用程式。\n"
+"在更新完成前僅能編輯本機上的聯絡人。"
 
 #~ msgid "Frequently called"
 #~ msgstr "經常撥打"
