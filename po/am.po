@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2017-12-24 00:04+0000\n"
+"PO-Revision-Date: 2017-12-27 00:59+0000\n"
 "Last-Translator: Samson <sambelet@yahoo.com>\n"
 "Language-Team: Amharic <https://translate.ubports.com/projects/ubports"
 "/address-book-app/am/>\n"
@@ -61,7 +61,7 @@ msgstr "የ አድራሻ ደብተር"
 #. TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "Aim"
-msgstr "ኤይም"
+msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
 #: ../src/imports/ABContactListPage.qml:480
@@ -124,7 +124,7 @@ msgstr "አገር"
 
 #: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
 msgid "Create a new contact by swiping up from the bottom of the screen."
-msgstr "አዲስ ግንኙነት ይፍጠሩ ከ መመልከቻው በታች በኩል ወደ ላይ በ መጥረግ"
+msgstr "አዲስ ግንኙነት ይፍጠሩ ከ መመልከቻው በታች በኩል ወደ ላይ በ መጥረግ:"
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
@@ -286,7 +286,7 @@ msgstr "አይ"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:40
 msgid "No contact selected."
-msgstr "ምንም ግንኙነት አልተመረጠም"
+msgstr "ምንም ግንኙነት አልተመረጠም:"
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
@@ -461,7 +461,7 @@ msgstr "አዎ"
 
 #: ../src/imports/ABContactListPage.qml:702
 msgid "You have no contacts."
-msgstr "እርስዎ ምንም ግንኙነት የሎትም"
+msgstr "እርስዎ ምንም ግንኙነት የሎትም:"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:42
 #, qt-format
@@ -470,8 +470,8 @@ msgid ""
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
-"የ እርስዎ <b>%1</b> ግንኙነት መግለጫ ማስማሚያ መሻሻል አለበት የ ግንኙነቶችን መተግበሪያ በማስኬድ\n"
-"በ እርስዎ አካል አካባቢ ውስጥ ያሉ ግንኙነቶች ብቻ ነው ማረም የሚችሉት ማሻሻሉ እስከሚጨርስ"
+"የ እርስዎ <b>%1</b> ግንኙነት መግለጫ ማስማሚያ መሻሻል አለበት የ ግንኙነቶችን መተግበሪያ በማስኬድ:\n"
+"በ እርስዎ አካል አካባቢ ውስጥ ያሉ ግንኙነቶች ብቻ ነው ማረም የሚችሉት ማሻሻሉ እስከሚጨርስ:"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:33
 #, qt-format
@@ -479,8 +479,8 @@ msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
-"የ እርስዎ <b>%1</b> ግንኙነት መግለጫ ማስማሚያ መሻሻል አለበት\n"
-"እባክዎን ማሻሻሉ እስከሚጨርስ ይጠብቁ ግንኙነት ለማረም"
+"የ እርስዎ <b>%1</b> ግንኙነት መግለጫ ማስማሚያ መሻሻል አለበት:\n"
+"እባክዎን ማሻሻሉ እስከሚጨርስ ይጠብቁ ግንኙነት ለማረም:"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:38
 #, qt-format
@@ -490,8 +490,8 @@ msgid ""
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
 "የ እርስዎ <b>%1</b> ግንኙነት መግለጫ ማስማሚያ መሻሻል አለበት: ማስማሚያ ቁልፍን ይጠቀሙ ለማሻሻል የ ግንኙነቶችን "
-"መተግበሪያ \n"
-"በ እርስዎ አካል አካባቢ ውስጥ ያሉ ግንኙነቶች ብቻ ነው ማረም የሚችሉት ማሻሻሉ እስከሚጨርስ"
+"መተግበሪያ:\n"
+"በ እርስዎ አካል አካባቢ ውስጥ ያሉ ግንኙነቶች ብቻ ነው ማረም የሚችሉት ማሻሻሉ እስከሚጨርስ:"
 
 #~ msgid "Frequently called"
 #~ msgstr "ብዙ ጊዜ የተደወሉ"
