@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-06-13 10:07-0300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-01 12:27+0000\n"
 "PO-Revision-Date: 2016-08-29 11:19+0000\n"
 "Last-Translator: Fohanno Thierry <thierry.fohanno@ofis-bzh.org>\n"
 "Language-Team: Breton <br@li.org>\n"
+"Language: br\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,9 +28,14 @@ msgstr "%1 zo prennet"
 msgid "+ Create New"
 msgstr "+ Krouiñ unan nevez"
 
-#: ../src/imports/Settings/SettingsPage.qml:87
-msgid "Add Google account"
+#: ../src/imports/Settings/SettingsPage.qml:90
+#, fuzzy, qt-format
+msgid "Add %1 account"
 msgstr "Ouzhpennañ ur gont Google"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
+msgid "Add Field"
+msgstr "Ouzhpennañ ur vaezienn"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
 msgid "Add field"
@@ -74,6 +80,7 @@ msgstr "Distreiñ"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:500
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "Nullañ"
@@ -122,12 +129,15 @@ msgid "Default address book"
 msgstr "Karned chomlec'hioù dre ziouer"
 
 #: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
 msgid "Delete"
 msgstr "Diverkañ"
 
 #: ../src/imports/ABContactViewPage.qml:87
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "Aozañ"
 
@@ -174,10 +184,6 @@ msgstr "Gwellañ deuet"
 msgid "First name"
 msgstr "Anv-bihan"
 
-#: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
-msgid "Frequently called"
-msgstr "Galvet alies"
-
 #. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:116
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
@@ -197,14 +203,15 @@ msgid "Import"
 msgstr "Enporzhiañ"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
-msgid "Import contacts from Google"
+#, fuzzy, qt-format
+msgid "Import contacts from %1"
 msgstr "Enporzhiañ darempredoù eus Google"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:555
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
 msgstr "Enporzhiañ darempredoù diwar ar gartenn SIM"
 
-#: ../src/imports/Settings/SettingsPage.qml:127
+#: ../src/imports/Settings/SettingsPage.qml:131
 msgid "Import from SIM"
 msgstr "Enporzhiañ diwar ar gartenn SIM"
 
@@ -224,7 +231,7 @@ msgstr "Flapañ"
 msgid "Last name"
 msgstr "Anv"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "O kargañ..."
@@ -259,6 +266,7 @@ msgstr "Darempredoù liezek"
 msgid "My phone number: %1"
 msgstr "Ma niverenn bellgomz : %1"
 
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
@@ -352,6 +360,7 @@ msgid "SIM contacts"
 msgstr "Darempredoù SIM"
 
 #: ../src/imports/ABContactEditorPage.qml:56
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:411
 msgid "Save"
 msgstr "Enrollañ"
 
@@ -379,6 +388,7 @@ msgstr "Arventennoù"
 
 #: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/ABContactViewPage.qml:74
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Rannañ"
 
@@ -403,7 +413,7 @@ msgstr "Sink"
 msgid "Syncing"
 msgstr "O sinkronelaat"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 msgid "Syncing..."
 msgstr "O sinkronelaat..."
 
@@ -486,6 +496,9 @@ msgstr ""
 "N'eus nemet an darempredoù lec'hel a gement a c'hallo bezañ aozet betek ma "
 "vo echu al lakaat a-live."
 
+#~ msgid "Frequently called"
+#~ msgstr "Galvet alies"
+
 #~ msgid ""
 #~ "Would you like to sync contacts\n"
 #~ "from online accounts now?"
@@ -493,12 +506,8 @@ msgstr ""
 #~ "Ha fellout a ra deoc'h sinkronelaat an darempredoù\n"
 #~ "diwar gontoù enlinenn bremañ ?"
 
-#, qt-format
 #~ msgid "%1 vCards imported"
 #~ msgstr "%1 vKartenn enporzhiet"
-
-#~ msgid "Add Field"
-#~ msgstr "Ouzhpennañ ur vaezienn"
 
 #~ msgid "Import vCards"
 #~ msgstr "Enporzhiañ vKartennoù"
@@ -506,7 +515,8 @@ msgstr ""
 #~ msgid "Add contact"
 #~ msgstr "Ouzhpennañ un darempred"
 
-#~ msgid "Would you like to sync contacts from your google online accounts now?"
+#~ msgid ""
+#~ "Would you like to sync contacts from your google online accounts now?"
 #~ msgstr ""
 #~ "Ha fellout a ra deoc'h sinkronelaat darempredoù eus ho kontoù enlinenn "
 #~ "google bremañ ?"
