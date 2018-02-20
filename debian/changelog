@@ -1,3 +1,9 @@
+address-book-app (0.3+ubports1) UNRELEASED; urgency=medium
+
+  * No change rebuild to generate sources in ubports repo
+
+ -- Dan Chapman <dan@ubports.com>  Tue, 20 Feb 2018 07:30:25 +0000
+
 address-book-app (0.3+ubports) xenial; urgency=medium
 
   * No change rebuild for ubports xenial repo
