@@ -1,3 +1,15 @@
+address-book-app (0.3+ubports1) UNRELEASED; urgency=medium
+
+  * No change rebuild to generate sources in ubports repo
+
+ -- Dan Chapman <dan@ubports.com>  Tue, 20 Feb 2018 07:30:25 +0000
+
+address-book-app (0.3+ubports) xenial; urgency=medium
+
+  * No change rebuild for ubports xenial repo
+
+ -- Dan Chapman <dan@ubports.com>  Sat, 06 Jan 2018 11:02:28 +0000
+
 address-book-app (0.2+17.04.20161219-0ubuntu1) zesty; urgency=medium
 
   * added apparmor profile for address-book-app
