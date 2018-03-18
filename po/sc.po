@@ -81,7 +81,6 @@ msgstr "Seguru chi nde boles bogare custu cuntatu?"
 msgid "Back"
 msgstr "In segus"
 
-#: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:500
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
@@ -237,7 +236,6 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Sambenadu"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "Carrighende..."
