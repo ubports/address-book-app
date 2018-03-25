@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2018-02-19 08:43+0000\n"
+"PO-Revision-Date: 2018-03-20 08:06+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål "
 "<https://translate.ubports.com/projects/ubports/address-book-app/nb/>\n"
@@ -31,9 +31,9 @@ msgid "+ Create New"
 msgstr "+ Lag ny"
 
 #: ../src/imports/Settings/SettingsPage.qml:90
-#, fuzzy, qt-format
+#, qt-format
 msgid "Add %1 account"
-msgstr "Legg til Google-konto"
+msgstr "Legg til %1-konto"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
 msgid "Add Field"
@@ -205,9 +205,9 @@ msgid "Import"
 msgstr "Importer"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
-#, fuzzy, qt-format
+#, qt-format
 msgid "Import contacts from %1"
-msgstr "Importer kontakter fra Google"
+msgstr "Importer kontakter fra %1"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
@@ -408,7 +408,6 @@ msgid "Street"
 msgstr "Gate"
 
 #: ../src/imports/ABContactListPage.qml:458
-#, fuzzy
 msgid "Sync"
 msgstr "Synk."
 
