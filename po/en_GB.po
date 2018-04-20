@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2017-12-08 20:28+0000\n"
-"Last-Translator: Zaunz Kenny <bluez@linuxmail.org>\n"
+"PO-Revision-Date: 2018-04-20 19:29+0000\n"
+"Last-Translator: Tommaso Pelà <tom_pla@yahoo.it>\n"
 "Language-Team: English (United Kingdom) "
 "<https://translate.ubports.com/projects/ubports/address-book-app/en_GB/>\n"
 "Language: en_GB\n"
@@ -206,9 +206,9 @@ msgid "Import"
 msgstr "Import"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
-#, fuzzy, qt-format
+#, qt-format
 msgid "Import contacts from %1"
-msgstr "Import contacts from Google"
+msgstr "Import contacts from %1"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
