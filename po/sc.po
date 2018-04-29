@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2018-01-03 13:59+0000\n"
+"PO-Revision-Date: 2018-04-27 13:39+0000\n"
 "Last-Translator: Adrià <adriamartinmor@gmail.com>\n"
 "Language-Team: Sardinian <https://translate.ubports.com/projects/ubports"
 "/address-book-app/sc/>\n"
@@ -68,12 +68,10 @@ msgid "All"
 msgstr "Totus"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:51
-#, fuzzy
 msgid "Are you sure that you want to remove all selected contacts?"
 msgstr "Seguru chi nde boles bogare totu is cuntatos seletzionados?"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:49
-#, fuzzy
 msgid "Are you sure that you want to remove this contact?"
 msgstr "Seguru chi nde boles bogare custu cuntatu?"
 
@@ -81,6 +79,7 @@ msgstr "Seguru chi nde boles bogare custu cuntatu?"
 msgid "Back"
 msgstr "In segus"
 
+#: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:500
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
@@ -101,7 +100,6 @@ msgid "Contact Editor"
 msgstr "Editore de cuntatos"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:26
-#, fuzzy
 msgid "Contact not found"
 msgstr "Cuntatu no agatadu"
 
@@ -124,9 +122,8 @@ msgid "Country"
 msgstr "Paisu"
 
 #: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
-#, fuzzy
 msgid "Create a new contact by swiping up from the bottom of the screen."
-msgstr "Crea unu cuntatu nou iscurrende in susu dae su bassu de s'ischermu."
+msgstr "Crea unu cuntatu nou iscurrende dae bàsciu a susu de s'ischermu."
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
@@ -150,7 +147,7 @@ msgstr "Modìfica"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailEmailsView.qml:25
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailEmailsView.qml:28
 msgid "Email"
-msgstr ""
+msgstr "Indiritzu eletrònicu"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
@@ -158,11 +155,11 @@ msgstr "Inserta·nche unu nùmeru"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOnlineAccountsEditor.qml:27
 msgid "Enter a social alias"
-msgstr ""
+msgstr "Inserta unu nomìngiu"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailEmailsEditor.qml:28
 msgid "Enter an email address"
-msgstr ""
+msgstr "Inserta un'indiritzu de posta eletrònica"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
@@ -170,16 +167,15 @@ msgstr "Faddina"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
-msgstr ""
+msgstr "Esportende cuntatos..."
 
 #: ../src/imports/ABContactListPage.qml:800
-#, fuzzy
 msgid "Fail to import contacts!"
-msgstr "Faddina in s'importatzione de is cuntatos."
+msgstr "Faddina in s'importatzione de is cuntatos!"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:285
 msgid "Fail to read SIM card"
-msgstr ""
+msgstr "Faddina in sa letura de s'ischeda SIM"
 
 #: ../src/imports/ABContactListPage.qml:480
 msgid "Favorites"
@@ -236,6 +232,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Sambenadu"
 
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "Carrighende..."
@@ -288,7 +285,7 @@ msgstr "Nono"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:40
 msgid "No contact selected."
-msgstr "Perunu cuntatu seletzionadu"
+msgstr "Perunu cuntatu seletzionadu."
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
@@ -344,7 +341,7 @@ msgstr "Essi"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Reading contacts from SIM..."
-msgstr "Leghende cuntatos dae sa SIM"
+msgstr "Leghende cuntatos dae sa SIM..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -370,7 +367,7 @@ msgstr "Sarva"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Saving contacts on phone..."
-msgstr "Sarvende cuntatos in su telèfonu"
+msgstr "Sarvende cuntatos in su telèfonu..."
 
 #: ../src/imports/ABContactListPage.qml:422
 msgid "Search"
@@ -382,6 +379,7 @@ msgstr "Chirca..."
 
 #: ../src/imports/ABContactListPage.qml:549
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
+#, fuzzy
 msgid "Select All"
 msgstr "Seletziona totus"
 
@@ -440,7 +438,7 @@ msgstr "Isblochende..."
 #: ../src/imports/ABContactListPage.qml:549
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
-msgstr ""
+msgstr "Deseletziona totu"
 
 #. TRANSLATORS: This refers to landline work phone label
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:119
@@ -450,9 +448,8 @@ msgstr "Traballu"
 
 #. TRANSLATORS: This refers to mobile/cellphone work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:117
-#, fuzzy
 msgid "Work Mobile"
-msgstr "Mòbile de su traballu"
+msgstr "Tzellulare de traballu"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
 msgid "Yahoo"
@@ -473,6 +470,10 @@ msgid ""
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Su contu de sincronizatzione de cuntatos <b>%1</b> bolet atualizadu cun "
+"s'aplicatzione Cuntatos.\n"
+"Isceti is cuntatos locales s'ant a pòdere modificare fintzas a chi "
+"s'atualizatzione at a èssere acabada."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:33
 #, qt-format
@@ -480,6 +481,8 @@ msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
+"Su contu de sincronizatzione de cuntatos <b>%1</b> bolet atualizadu. \n"
+"Abeta fintzas a chi s'atualizatzione siat acabada pro modificare cuntatos."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:38
 #, qt-format
@@ -488,3 +491,7 @@ msgid ""
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Su contu de sincronizatzione de cuntatos <b>%1</b> bolet atualizadu. Imprea "
+"su pulsante de sincronizatzione pro atualizare s'aplicatzione Cuntatos.\n"
+"Isceti is cuntatos locales s'ant a pòdere modificare fintzas a chi "
+"s'atualizatzione at a èssere acabada."
