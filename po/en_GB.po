@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2018-05-05 20:42+0000\n"
+"PO-Revision-Date: 2018-05-05 20:43+0000\n"
 "Last-Translator: Jolan <jo@jolanberard.com>\n"
 "Language-Team: English (United Kingdom) "
 "<https://translate.ubports.com/projects/ubports/address-book-app/en_GB/>\n"
@@ -453,7 +453,7 @@ msgstr "Work Mobile"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
 msgid "Yahoo"
-msgstr "Yahoo!"
+msgstr "Yahoo"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
 msgid "Yes"
