@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2017-11-12 15:07+0000\n"
+"PO-Revision-Date: 2018-05-12 09:52+0000\n"
 "Last-Translator: Peter Nerlich <peter.nerlich+ubports@googlemail.com>\n"
 "Language-Team: German <https://translate.ubports.com/projects/ubports"
 "/address-book-app/de/>\n"
@@ -417,7 +417,7 @@ msgstr "Synchronisieren"
 
 #: ../src/imports/ABContactListPage.qml:458
 msgid "Syncing"
-msgstr "Synchronisation läuft"
+msgstr "Synchronisiere"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 msgid "Syncing..."
