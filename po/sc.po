@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2018-05-25 10:51+0000\n"
-"Last-Translator: Matteo Mandis <mandismatteo@gmail.com>\n"
+"PO-Revision-Date: 2018-05-29 12:03+0000\n"
+"Last-Translator: Flavia <flavia.efloris@gmail.com>\n"
 "Language-Team: Sardinian <https://translate.ubports.com/projects/ubports"
 "/address-book-app/sc/>\n"
 "Language: sc\n"
@@ -69,7 +69,7 @@ msgstr "Totu"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
-msgstr "Seguru chi nde boles bogare totu is cuntatos seletzionados?"
+msgstr "Seguru chi nde boles bogare totus is cuntatos seletzionados?"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
