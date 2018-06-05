@@ -10,7 +10,7 @@
         }
     },
     "icon": "address-book-app.svg",
-    "maintainer": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
+    "maintainer": "UBports <dev@ubports.com>",
     "name": "com.ubuntu.address-book",
     "title": "Address Book",
     "version": "1.0.1.@BZR_REVNO@",
