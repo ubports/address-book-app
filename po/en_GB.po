@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2018-07-05 07:40+0000\n"
+"PO-Revision-Date: 2018-07-05 11:28+0000\n"
 "Last-Translator: konrad <kohofer@gmail.com>\n"
 "Language-Team: English (United Kingdom) "
 "<https://translate.ubports.com/projects/ubports/address-book-app/en_GB/>\n"
@@ -78,14 +78,14 @@ msgstr "Are you sure that you want to remove this contact?"
 
 #: ../src/imports/ABContactListPage.qml:621
 msgid "Back"
-msgstr "Tillbaka"
+msgstr "Back"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:500
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
-msgstr "Annuler"
+msgstr "Cancel"
 
 #: ../src/imports/ABContactListPage.qml:539
 msgid "Cancel selection"
@@ -134,7 +134,7 @@ msgstr "Default address book"
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
 msgid "Delete"
-msgstr "Supprimer"
+msgstr "Delete"
 
 #: ../src/imports/ABContactViewPage.qml:87
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
@@ -164,7 +164,7 @@ msgstr "Enter an e-mail address"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
-msgstr "Fel"
+msgstr "Error"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
@@ -409,11 +409,11 @@ msgstr "Street"
 
 #: ../src/imports/ABContactListPage.qml:458
 msgid "Sync"
-msgstr "Synka"
+msgstr "Sync"
 
 #: ../src/imports/ABContactListPage.qml:458
 msgid "Syncing"
-msgstr "Synkning"
+msgstr "Syncing"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 msgid "Syncing..."
