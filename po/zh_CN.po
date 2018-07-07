@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2018-05-01 17:42+0000\n"
+"PO-Revision-Date: 2018-05-18 15:22+0000\n"
 "Last-Translator: Hugh Y <hugh_yan@live.com>\n"
 "Language-Team: Chinese (Simplified) "
 "<https://translate.ubports.com/projects/ubports/address-book-app/zh_Hans/>\n"
@@ -31,9 +31,9 @@ msgid "+ Create New"
 msgstr "+ 新建"
 
 #: ../src/imports/Settings/SettingsPage.qml:90
-#, fuzzy, qt-format
+#, qt-format
 msgid "Add %1 account"
-msgstr "添加谷歌账号"
+msgstr "添加 %1 账号"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
 msgid "Add Field"
@@ -45,7 +45,7 @@ msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
-msgstr "添加电话号码"
+msgstr "添加电话号码..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:55
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:23
@@ -124,7 +124,7 @@ msgstr "国家"
 
 #: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
 msgid "Create a new contact by swiping up from the bottom of the screen."
-msgstr "从屏幕底部上滑以新建联系人"
+msgstr "从屏幕底部上滑以新建联系人。"
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
@@ -205,9 +205,9 @@ msgid "Import"
 msgstr "导入"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
-#, fuzzy, qt-format
+#, qt-format
 msgid "Import contacts from %1"
-msgstr "从谷歌导入联系人"
+msgstr "从 %1 导入联系人"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
@@ -258,7 +258,7 @@ msgstr "中间名"
 #. TRANSLATORS: This refers to mobile/cellphone phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
 msgid "Mobile"
-msgstr "手机"
+msgstr "移动电话"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:44
 msgid "Multiple contacts"
@@ -343,7 +343,7 @@ msgstr "退出"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Reading contacts from SIM..."
-msgstr "正在从SIM卡读取联系人"
+msgstr "正在从SIM卡读取联系人..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -369,7 +369,7 @@ msgstr "保存"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Saving contacts on phone..."
-msgstr "正在保存联系人到手机"
+msgstr "正在保存联系人到手机..."
 
 #: ../src/imports/ABContactListPage.qml:422
 msgid "Search"
@@ -484,12 +484,14 @@ msgstr ""
 "如需编辑联系人请等待升级完毕。"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:38
-#, qt-format
+#, fuzzy, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded. Use the sync "
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"您的 <b>%1</b>联系人同步需要升级。请选择“同步”来升级联系人应用。\n"
+"直到升级完毕，您只可编辑本地联系人。"
 
 #~ msgid "Frequently called"
 #~ msgstr "常用联系人"
