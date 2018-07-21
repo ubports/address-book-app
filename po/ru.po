@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2017-11-20 21:59+0000\n"
-"Last-Translator: Alexey Balmashnov <a.balmashnov@gmail.com>\n"
+"PO-Revision-Date: 2018-07-21 09:00+0000\n"
+"Last-Translator: ierihon <idekovets@mail.ru>\n"
 "Language-Team: Russian <https://translate.ubports.com/projects/ubports"
 "/address-book-app/ru/>\n"
 "Language: ru\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
 "4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 2.17\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:51+0000\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
@@ -454,7 +454,7 @@ msgstr "Рабочий телефон"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
 msgid "Yahoo"
-msgstr "Yahoo"
+msgstr "Yahoo!"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
 msgid "Yes"
