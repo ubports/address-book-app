@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2018-05-18 15:22+0000\n"
-"Last-Translator: Hugh Y <hugh_yan@live.com>\n"
-"Language-Team: Chinese (Simplified) "
-"<https://translate.ubports.com/projects/ubports/address-book-app/zh_Hans/>\n"
+"PO-Revision-Date: 2018-08-03 21:27+0000\n"
+"Last-Translator: joseph <joseph@liau.ca>\n"
+"Language-Team: Chinese (Simplified) <https://translate.ubports.com/projects/"
+"ubports/address-book-app/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 2.19.1\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:51+0000\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
@@ -41,7 +41,7 @@ msgstr "添加字段"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
 msgid "Add field"
-msgstr ""
+msgstr "添加字段"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
@@ -218,7 +218,6 @@ msgid "Import from SIM"
 msgstr "从SIM卡导入"
 
 #: ../src/imports/ABContactListPage.qml:634
-#, fuzzy
 msgid "Imported contacts"
 msgstr "导入的联系人"
 
@@ -484,7 +483,7 @@ msgstr ""
 "如需编辑联系人请等待升级完毕。"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:38
-#, fuzzy, qt-format
+#, qt-format
 msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded. Use the sync "
 "button to upgrade the Contacts app.\n"
