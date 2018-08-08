@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2018-08-08 14:48+0000\n"
+"PO-Revision-Date: 2018-08-12 06:21+0000\n"
 "Last-Translator: ierihon <idekovets@mail.ru>\n"
 "Language-Team: Belarusian <https://translate.ubports.com/projects/ubports/"
 "address-book-app/be/>\n"
@@ -79,7 +79,7 @@ msgstr "Выдаліць абраны кантакт?"
 
 #: ../src/imports/ABContactListPage.qml:621
 msgid "Back"
-msgstr "Вярнуцца"
+msgstr "Назад"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:500
@@ -255,7 +255,7 @@ msgstr "Імя па бацьку"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:90
 msgid "Middle name"
-msgstr ""
+msgstr "Імя па бацьку"
 
 #. TRANSLATORS: This refers to mobile/cellphone phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
@@ -293,7 +293,7 @@ msgstr "Кантакты не абраныя."
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
-msgstr ""
+msgstr "Няма кантактаў"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:155
 msgid "No contacts found"
@@ -345,7 +345,7 @@ msgstr "Зачыніць"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Reading contacts from SIM..."
-msgstr ""
+msgstr "Чытанне кантактаў з SIM-карты…"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -371,7 +371,7 @@ msgstr "Захаваць"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Saving contacts on phone..."
-msgstr ""
+msgstr "Захаванне кантактаў на тэлефоне…"
 
 #: ../src/imports/ABContactListPage.qml:422
 msgid "Search"
@@ -416,7 +416,7 @@ msgstr "Сінхранізацыя"
 
 #: ../src/imports/ABContactListPage.qml:458
 msgid "Syncing"
-msgstr "Сінхранізіравана"
+msgstr "Сінхранізацыя"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 msgid "Syncing..."
