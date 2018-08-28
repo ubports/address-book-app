@@ -39,10 +39,6 @@ msgstr "%1 fiók hozzáadása"
 msgid "Add Field"
 msgstr "Mező hozzáadása"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
-msgid "Add Field"
-msgstr "Mező hozzáadása"
-
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
 msgid "Add field"
 msgstr "Mező hozzáadás"
