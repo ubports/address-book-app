@@ -1,4 +1,10 @@
-address-book-app (0.3+ubports1) xenial; urgency=medium
+address-book-app (0.4+ubports1) xenial; urgency=medium
+
+  * Language updates
+
+ -- Dan Chapman <dan@ubports.com>  Wed, 29 Aug 2018 23:24:30 +0000
+
+address-book-app (0.3+ubports1) UNRELEASED; urgency=medium
 
   * No change rebuild to generate sources in ubports repo
 
