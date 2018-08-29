@@ -39,10 +39,6 @@ msgstr "新增 %1 帳號"
 msgid "Add Field"
 msgstr "新增欄位"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
-msgid "Add Field"
-msgstr "新增欄位"
-
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
 msgid "Add field"
 msgstr "新增欄位"
