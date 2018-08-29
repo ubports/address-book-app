@@ -1,4 +1,4 @@
-address-book-app (0.3+ubports1) UNRELEASED; urgency=medium
+address-book-app (0.3+ubports1) xenial; urgency=medium
 
   * No change rebuild to generate sources in ubports repo
 
