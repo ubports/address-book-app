@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
 "PO-Revision-Date: 2018-10-14 18:56+0000\n"
-"Last-Translator: SongInseo <andra123438@gmail.com>\n"
+"Last-Translator: Ace <quickn@cityarts.cf>\n"
 "Language-Team: Korean <https://translate.ubports.com/projects/ubports/"
 "address-book-app/ko/>\n"
 "Language: ko\n"
@@ -23,7 +23,7 @@ msgstr ""
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
 msgid "%1 is locked"
-msgstr "%1은 잠기"
+msgstr "%1 은(는) 잠겼습니다"
 
 #. TRANSLATORS: this refers to a new contact
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:480
