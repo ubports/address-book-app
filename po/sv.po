@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2018-05-12 15:15+0000\n"
-"Last-Translator: Tomas Öqvist <tomas.oqvist@gmail.com>\n"
-"Language-Team: Swedish <https://translate.ubports.com/projects/ubports"
-"/address-book-app/sv/>\n"
+"PO-Revision-Date: 2018-09-02 20:02+0000\n"
+"Last-Translator: Rondy Andersson <rondarius@gmail.com>\n"
+"Language-Team: Swedish <https://translate.ubports.com/projects/ubports/"
+"address-book-app/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 2.20\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:51+0000\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
@@ -31,9 +31,9 @@ msgid "+ Create New"
 msgstr "+ Skapa ny"
 
 #: ../src/imports/Settings/SettingsPage.qml:90
-#, fuzzy, qt-format
+#, qt-format
 msgid "Add %1 account"
-msgstr "Lägg till Google-konto"
+msgstr "Lägg till %1 konto"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
 msgid "Add Field"
@@ -205,9 +205,9 @@ msgid "Import"
 msgstr "Importera"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
-#, fuzzy, qt-format
+#, qt-format
 msgid "Import contacts from %1"
-msgstr "Importerar kontakter från Google"
+msgstr "Importerar kontakter från %1"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
