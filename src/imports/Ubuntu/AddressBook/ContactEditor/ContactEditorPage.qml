@@ -36,7 +36,7 @@ Page {
     property list<QtObject> leadingActions
     property alias headerActions: trailingBar.actions
 
-    readonly property bool isNewContact: contact && (contact.contactId === "qtcontacts:::")
+    readonly property bool isNewContact: contact && (!contact.contactId || contact.contactId === "qtcontacts:::")
     readonly property bool isContactValid: !avatarEditor.busy && (!nameEditor.isEmpty() || !phonesEditor.isEmpty())
     readonly property alias editorFlickable: scrollArea
 
