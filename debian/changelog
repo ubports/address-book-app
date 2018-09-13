@@ -1,8 +1,8 @@
-address-book-app (0.3+ubports1) UNRELEASED; urgency=medium
+address-book-app (0.4~0ubports1) xenial; urgency=medium
 
-  * No change rebuild to generate sources in ubports repo
+  * Don't show the 'Edit' page when adding a new contact.
 
- -- Dan Chapman <dan@ubports.com>  Tue, 20 Feb 2018 07:30:25 +0000
+ -- Alberto Mardegan <mardy@users.sourceforge.net>  Fri, 14 Sep 2018 00:17:29 +0300
 
 address-book-app (0.3+ubports) xenial; urgency=medium
 
