@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
 "PO-Revision-Date: 2018-11-04 00:01+0000\n"
-"Last-Translator: Florian Leeber <flori@bin.org.in>\n"
+"Last-Translator: honigwald <sblanck@win.tu-berlin.de>\n"
 "Language-Team: German <https://translate.ubports.com/projects/ubports/"
 "address-book-app/de/>\n"
 "Language: de\n"
@@ -376,7 +376,7 @@ msgstr "Kontakte werden auf das Telefon gespeichert..."
 
 #: ../src/imports/ABContactListPage.qml:422
 msgid "Search"
-msgstr "Suchen"
+msgstr "Suche"
 
 #: ../src/imports/ABContactListPage.qml:387
 msgid "Search..."
