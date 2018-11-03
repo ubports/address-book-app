@@ -33,7 +33,7 @@ Build-Depends:
  qtdeclarative5-ubuntu-telephony-phonenumber0.1,
  qtpim5-dev,
  thumbnailer-service,
- xvfb,
+ xvfb <!nocheck>,
 Standards-Version: 3.9.5
 Homepage: https://github.com/ubports/address-book-app
 Vcs-Git: https://github.com/ubports/address-book-app.
