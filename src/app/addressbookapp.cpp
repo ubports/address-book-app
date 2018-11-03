@@ -128,7 +128,7 @@ bool AddressBookApp::setup()
 
     QString contactKey;
     QStringList arguments = this->arguments();
-    QByteArray defaultManager("galera");
+    QByteArray defaultManager("org.nemomobile.contacts.sqlite");
     QByteArray testData;
 
     // use galare as default QtContacts Manager
