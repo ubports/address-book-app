@@ -31,7 +31,7 @@ Build-Depends: cmake,
                libqofono-qt5-0,
                libqofono-dev,
                thumbnailer-service,
-               xvfb,
+               xvfb <!nocheck>,
                lsb-release,
 Standards-Version: 3.9.5
 Homepage: https://launchpad.net/address-book-app
