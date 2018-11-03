@@ -126,9 +126,9 @@ MultipleSelectionListView {
       \qmlproperty string manager
 
       This property holds the manager uri of the contact backend engine.
-      By default this is set to "galera"
+      By default this is set to "org.nemomobile.contacts.sqlite"
     */
-    property string manager: (typeof(QTCONTACTS_MANAGER_OVERRIDE) !== "undefined") && (QTCONTACTS_MANAGER_OVERRIDE != "") ? QTCONTACTS_MANAGER_OVERRIDE : "galera"
+    property string manager: (typeof(QTCONTACTS_MANAGER_OVERRIDE) !== "undefined") && (QTCONTACTS_MANAGER_OVERRIDE != "") ? QTCONTACTS_MANAGER_OVERRIDE : "org.nemomobile.contacts.sqlite"
 
     /*!
       \qmlproperty Action leftSideAction

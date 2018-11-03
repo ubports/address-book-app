@@ -50,7 +50,7 @@ Depends:
  qml-module-qtquick2,
  qml-module-qtsysteminfo (>= 5.0~),
  qmlscene,
- qtcontact5-galera,
+ qtcontacts-sqlite-qt5-extension,
  qtdeclarative5-gsettings1.0,
  qtdeclarative5-ubuntu-addressbook0.1 (= ${binary:Version}),
  qtdeclarative5-ubuntu-history0.1,

@@ -57,7 +57,7 @@ ContactDetailGroupWithTypeView {
     ContactModel {
         id: sourceModel
 
-        manager: (typeof(QTCONTACTS_MANAGER_OVERRIDE) !== "undefined") && (QTCONTACTS_MANAGER_OVERRIDE != "") ? QTCONTACTS_MANAGER_OVERRIDE : "galera"
+        manager: (typeof(QTCONTACTS_MANAGER_OVERRIDE) !== "undefined") && (QTCONTACTS_MANAGER_OVERRIDE != "") ? QTCONTACTS_MANAGER_OVERRIDE : "org.nemomobile.contacts.sqlite"
         filter:  DetailFilter {
             detail: ContactDetail.Type
             field: Type.TypeField
