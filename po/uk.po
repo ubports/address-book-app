@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2018-11-30 12:25+0000\n"
+"PO-Revision-Date: 2018-12-02 00:01+0000\n"
 "Last-Translator: Dmytro Gladkyi <gladimdim@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.ubports.com/projects/ubports/"
 "address-book-app/uk/>\n"
@@ -387,7 +387,7 @@ msgstr "Позначити всі"
 #: ../src/imports/ABContactListPage.qml:470
 #: ../src/imports/Settings/SettingsPage.qml:35
 msgid "Settings"
-msgstr "Параметри"
+msgstr "Налаштування"
 
 #: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/ABContactViewPage.qml:74
