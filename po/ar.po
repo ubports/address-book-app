@@ -8,17 +8,17 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2018-02-01 12:20+0000\n"
-"Last-Translator: ubports_arabic <ubportsarabic@gmail.com>\n"
-"Language-Team: Arabic <https://translate.ubports.com/projects/ubports"
-"/address-book-app/ar/>\n"
+"PO-Revision-Date: 2018-12-23 00:00+0000\n"
+"Last-Translator: Hussain Hashem Aljafri <baddea14@gmail.com>\n"
+"Language-Team: Arabic <https://translate.ubports.com/projects/ubports/"
+"address-book-app/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 3.1.1\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:50+0000\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
@@ -86,7 +86,7 @@ msgstr "للوراء"
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
-msgstr "ألغاء"
+msgstr "إلغاء;الإلغاء"
 
 #: ../src/imports/ABContactListPage.qml:539
 msgid "Cancel selection"
@@ -458,7 +458,7 @@ msgstr "ياهو"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
 msgid "Yes"
-msgstr "اجعل"
+msgstr "نعم"
 
 #: ../src/imports/ABContactListPage.qml:702
 msgid "You have no contacts."
