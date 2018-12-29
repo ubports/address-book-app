@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2018-05-09 08:42+0000\n"
+"PO-Revision-Date: 2018-12-26 10:46+0000\n"
 "Last-Translator: Dito Kurnia P <ditokpl@gmail.com>\n"
-"Language-Team: Indonesian <https://translate.ubports.com/projects/ubports"
-"/address-book-app/id/>\n"
+"Language-Team: Indonesian <https://translate.ubports.com/projects/ubports/"
+"address-book-app/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 3.1.1\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:51+0000\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
@@ -429,7 +429,7 @@ msgstr "Sentuh"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:124
 msgid "Unlock"
-msgstr "Buka Kunci"
+msgstr "Buka kunci"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
 msgid "Unlocking..."
