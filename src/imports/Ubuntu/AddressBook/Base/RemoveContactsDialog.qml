@@ -60,8 +60,8 @@ Dialog {
             right: parent.right
             margins: units.gu(1)
         }
-        text: i18n.dtr("address-book-app", "Yes")
-        color: UbuntuColors.green
+        text: i18n.dtr("address-book-app", "Remove")
+        color: theme.palette.normal.negative
         action: Action {
             shortcut: "return"
             onTriggered: accepted()
@@ -76,8 +76,7 @@ Dialog {
             right: parent.right
             margins: units.gu(1)
         }
-        text: i18n.dtr("address-book-app", "No")
-        color: UbuntuColors.red
+        text: i18n.dtr("address-book-app", "Cancel")
         action: Action {
             shortcut: "esc"
             onTriggered: canceled()
