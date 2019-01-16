@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2018-12-22 00:04+0000\n"
+"PO-Revision-Date: 2019-01-06 00:00+0000\n"
 "Last-Translator: Louies <louies0623@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.ubports.com/projects/"
 "ubports/address-book-app/zh_Hant/>\n"
@@ -421,7 +421,7 @@ msgstr "同步中…"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:30
 msgid "Title"
-msgstr "職銜"
+msgstr "名稱"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailOnlineAccountsView.qml:29
 msgid "Touch"
