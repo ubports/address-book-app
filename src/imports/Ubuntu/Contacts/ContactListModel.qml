@@ -162,12 +162,7 @@ ContactModel {
     }
 
     onContactsChanged: {
-        //WORKAROUND: clear the model before start populate it with the new contacts
-        //otherwise the model will wait for all contacts before show any new contact
-
-        //after all contacts get removed we can populate the model again, this will show
-        //new contacts as soon as it arrives in the model
-        if (root._clearModel && contacts.length === 0) {
+        if (root._clearModel) {
             root._clearModel = false
             // do a new update if autoUpdate is false
             if (!root.autoUpdate) {
