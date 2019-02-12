@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2019-01-06 00:00+0000\n"
-"Last-Translator: Jaume Angrill <txaume@protonmail.com>\n"
+"PO-Revision-Date: 2019-02-17 00:00+0000\n"
+"Last-Translator: Joan CiberSheep <cibersheep@gmail.com>\n"
 "Language-Team: Catalan <https://translate.ubports.com/projects/ubports/"
 "address-book-app/ca/>\n"
 "Language: ca\n"
@@ -388,7 +388,7 @@ msgstr "Selecciona-ho tot"
 #: ../src/imports/ABContactListPage.qml:470
 #: ../src/imports/Settings/SettingsPage.qml:35
 msgid "Settings"
-msgstr "Configuració"
+msgstr "Paràmetres"
 
 #: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/ABContactViewPage.qml:74
