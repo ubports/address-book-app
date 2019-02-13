@@ -43,5 +43,10 @@ Item {
 
     ListModel {
         id: providers
+        ListElement {
+            iconName: "testIcon"
+            providerId: "testProvider"
+            displayName: "Test provider"
+        }
     }
 }

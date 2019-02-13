@@ -124,16 +124,18 @@ Item {
 
         function test_importButtonsVisibility()
         {
+            function findImportButton() {
+                return findChild(root.contactListViewObj, "contactListViewTest.importFromOnlineAccountButton.testProvider")
+            }
             var bottonsHeader = findChild(root.contactListViewObj, "importFromButtons")
-            var importButton = findChild(root.contactListViewObj, "contactListViewTest.importFromOnlineAccountButton")
+            var importButton = findImportButton()
             var onlineAccountHelper = findChild(root.contactListViewObj, "onlineAccountHelper")
 
             tryCompare(root.contactListViewObj, "showImportOptions", false)
             tryCompare(bottonsHeader, "visible", false)
-            tryCompare(importButton, "visible", false)
+            verify(!importButton)
             tryCompare(onlineAccountHelper, "status", Loader.Null)
             tryCompare(onlineAccountHelper, "isSearching", false)
-            verify(importButton.height === 0)
 
             root.contactListViewObj.showImportOptions = true
             tryCompare(root.contactListViewObj, "showImportOptions", true)
@@ -141,19 +143,20 @@ Item {
             tryCompare(onlineAccountHelper, "status", Loader.Ready)
             // need to wait a bit more until the list leave the loading state
             tryCompare(bottonsHeader, "visible", true, 10000)
+            importButton = findImportButton()
             tryCompare(importButton, "visible", true)
             verify(importButton.height > 0)
 
             // Button should disapear if the list is not empty
             var newContact = root.createContact("Phablet", "+558187042133", "phablet@ubuntu.com")
             root.contactListViewObj.listModel.saveContact(newContact)
-            tryCompare(importButton, "visible", false)
+            tryVerify(function() { return !findImportButton() })
 
             // Button should not be visible during a search with empty results
             root.contactListViewObj.filterTerm = "xox"
             tryCompare(root.contactListViewObj, "count", 0)
             tryCompare(onlineAccountHelper, "status", Loader.Null)
-            tryCompare(importButton, "visible", false)
+            tryVerify(function() { return !findImportButton() })
         }
 
         function test_importButtonClick()
@@ -168,7 +171,7 @@ Item {
 
             // click
             var bottonsHeader = findChild(root.contactListViewObj, "importFromButtons")
-            var importButton = findChild(root.contactListViewObj, "contactListViewTest.importFromOnlineAccountButton")
+            var importButton = findChild(root.contactListViewObj, "contactListViewTest.importFromOnlineAccountButton.testProvider")
             // need to wait a bit more until the list leave the loading state
             tryCompare(bottonsHeader, "visible", true, 10000)
             tryCompare(importButton, "visible", true, 10000)
