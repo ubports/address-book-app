@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2019-02-11 20:37+0000\n"
-"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
+"PO-Revision-Date: 2019-03-31 00:00+0000\n"
+"Last-Translator: Tom Dom <thomas@patoel.nl>\n"
 "Language-Team: Dutch <https://translate.ubports.com/projects/ubports/"
 "address-book-app/nl/>\n"
 "Language: nl\n"
@@ -79,14 +79,14 @@ msgstr "Weet je zeker dat je deze contactpersoon wilt verwijderen?"
 
 #: ../src/imports/ABContactListPage.qml:621
 msgid "Back"
-msgstr "Terug"
+msgstr "Vorige"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:500
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
-msgstr "Afbreken"
+msgstr "Annuleren"
 
 #: ../src/imports/ABContactListPage.qml:539
 msgid "Cancel selection"
@@ -281,7 +281,7 @@ msgstr "Nieuw contactpersoon"
 #. this word must be less than 5 characters
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/TextInputDetail.qml:88
 msgid "Next"
-msgstr "Volgende"
+msgstr "Volg."
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:79
 msgid "No"
@@ -412,7 +412,7 @@ msgstr "Straatnaam"
 
 #: ../src/imports/ABContactListPage.qml:458
 msgid "Sync"
-msgstr "Synchroniseren"
+msgstr "Synchroniseer"
 
 #: ../src/imports/ABContactListPage.qml:458
 msgid "Syncing"
