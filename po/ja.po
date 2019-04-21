@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2019-01-27 00:00+0000\n"
-"Last-Translator: louies0623 <louies0623@gmail.com>\n"
+"PO-Revision-Date: 2019-04-24 21:36+0000\n"
+"Last-Translator: M.Sugahara <equaaqua@hotmail.com>\n"
 "Language-Team: Japanese <https://translate.ubports.com/projects/ubports/"
 "address-book-app/ja/>\n"
 "Language: ja\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.1.1\n"
+"X-Generator: Weblate 3.2.2\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:51+0000\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
@@ -207,7 +207,7 @@ msgstr "インポート"
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
 #, qt-format
 msgid "Import contacts from %1"
-msgstr ""
+msgstr "%1 から連絡先をインポート"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
@@ -249,11 +249,11 @@ msgstr "MSN"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:62
 msgid "Middle Name"
-msgstr ""
+msgstr "ミドルネーム"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:90
 msgid "Middle name"
-msgstr ""
+msgstr "ミドルネーム"
 
 #. TRANSLATORS: This refers to mobile/cellphone phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
@@ -267,13 +267,13 @@ msgstr "複数の連絡先"
 #: ../src/imports/Settings/SettingsPage.qml:72
 #, qt-format
 msgid "My phone number: %1"
-msgstr ""
+msgstr "この携帯電話の番号: %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
-msgstr ""
+msgstr "新規連絡先"
 
 #. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
 #. this word must be less than 5 characters
@@ -291,17 +291,17 @@ msgstr "連絡先を選択していません。"
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
-msgstr ""
+msgstr "連絡先がありません"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:155
 msgid "No contacts found"
-msgstr ""
+msgstr "連絡先は見つかりませんでした"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:49
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:58
 #: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:80
 msgid "No name"
-msgstr ""
+msgstr "名前未登録"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -343,7 +343,7 @@ msgstr "終了"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Reading contacts from SIM..."
-msgstr ""
+msgstr "SIMカードから連絡先を読み込み中..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -369,7 +369,7 @@ msgstr "保存"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Saving contacts on phone..."
-msgstr ""
+msgstr "連絡先を保存中..."
 
 #: ../src/imports/ABContactListPage.qml:422
 msgid "Search"
@@ -434,12 +434,12 @@ msgstr "ロック解除"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
 msgid "Unlocking..."
-msgstr ""
+msgstr "ロック解除中..."
 
 #: ../src/imports/ABContactListPage.qml:549
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
-msgstr ""
+msgstr "選択解除"
 
 #. TRANSLATORS: This refers to landline work phone label
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:119
