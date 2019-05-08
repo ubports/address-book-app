@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2018-11-25 00:01+0000\n"
-"Last-Translator: Louies <louies0623@gmail.com>\n"
+"PO-Revision-Date: 2019-05-10 06:02+0000\n"
+"Last-Translator: louies0623 <louies0623@gmail.com>\n"
 "Language-Team: Chinese (Hong Kong) <https://translate.ubports.com/projects/"
 "ubports/address-book-app/zh_Hant_HK/>\n"
 "Language: zh_HK\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.1.1\n"
+"X-Generator: Weblate 3.6.1\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:51+0000\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
@@ -89,7 +89,7 @@ msgstr "取消"
 
 #: ../src/imports/ABContactListPage.qml:539
 msgid "Cancel selection"
-msgstr ""
+msgstr "取消選取"
 
 #: ../src/imports/BusyImportingDialog.qml:40
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:48
@@ -381,7 +381,7 @@ msgstr "搜尋…"
 #: ../src/imports/ABContactListPage.qml:549
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
-msgstr ""
+msgstr "所有選取"
 
 #: ../src/imports/ABContactListPage.qml:470
 #: ../src/imports/Settings/SettingsPage.qml:35
