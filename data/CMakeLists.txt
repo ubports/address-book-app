@@ -26,3 +26,7 @@ endif()
 install(FILES "address-book-app.url-dispatcher"
     DESTINATION ${CMAKE_INSTALL_DATADIR}/url-dispatcher/urls
 )
+
+install(FILES "address-book-app.application"
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/accounts/applications
+)
