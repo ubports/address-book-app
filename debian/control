@@ -59,6 +59,8 @@ Depends: libqt5contacts5,
          qtdeclarative5-ubuntu-telephony-phonenumber0.1 (>= 0.1+14.10.20140715.1),
          ${misc:Depends},
          ${shlibs:Depends},
+Replaces: buteo-sync-plugins-contacts-google (<< 0.4)
+Breaks: buteo-sync-plugins-contacts-google (<< 0.4)
 Description: Address Book application
  Address Book application to manager contacts.
 

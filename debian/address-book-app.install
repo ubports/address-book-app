@@ -1,4 +1,5 @@
 usr/bin/address-book-app
+usr/share/accounts/applications/address-book-app.application
 usr/share/address-book-app/artwork
 usr/share/address-book-app/imports
 usr/share/applications/address-book-app.desktop

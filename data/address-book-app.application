@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application id="address-book-app">
+  <description>Contacts</description>
+  <desktop-entry>address-book-app.desktop</desktop-entry>
+
+  <service-types>
+    <service-type id="buteo-contacts">
+      <description>Synchronize your contacts</description>
+    </service-type>
+    <service-type id="carddav">
+      <description>Synchronize your contacts</description>
+    </service-type>
+  </service-types>
+</application>
