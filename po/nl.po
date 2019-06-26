@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2019-05-13 20:02+0000\n"
+"PO-Revision-Date: 2019-07-05 08:13+0000\n"
 "Last-Translator: Tom Dom <thomas@patoel.nl>\n"
 "Language-Team: Dutch <https://translate.ubports.com/projects/ubports/"
 "address-book-app/nl/>\n"
@@ -167,7 +167,7 @@ msgstr "Voer een e-mailadres in"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
-msgstr "Fout"
+msgstr "Error"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
