@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2018-12-23 00:00+0000\n"
-"Last-Translator: Hussain Hashem Aljafri <baddea14@gmail.com>\n"
+"PO-Revision-Date: 2019-07-16 07:48+0000\n"
+"Last-Translator: Yasser Lotfy <yasser-lotfy@hotmail.com>\n"
 "Language-Team: Arabic <https://translate.ubports.com/projects/ubports/"
 "address-book-app/ar/>\n"
 "Language: ar\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 3.1.1\n"
+"X-Generator: Weblate 3.6.1\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:50+0000\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
@@ -86,7 +86,7 @@ msgstr "للوراء"
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
-msgstr "إلغاء;الإلغاء"
+msgstr "إلغاء"
 
 #: ../src/imports/ABContactListPage.qml:539
 msgid "Cancel selection"
@@ -471,6 +471,9 @@ msgid ""
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"يحتاج <b>%1</b> حساب مزامنة جهات الإتصال للتحديث عن طريق تشغيل تطبيق جهات "
+"الإتصال.\n"
+"ستكون جهات الإتصال المحلية فقط قابلة للتعديل حتى يكتمل التحديث."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:33
 #, qt-format
@@ -488,6 +491,9 @@ msgid ""
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"يحتاج <b>%1</b> حساب مزامنة جهات الإتصال للتحديث.\n"
+"استخدم زر المزامنة لتحيث تطبيق جهات الإتصال.\n"
+"ستكون جهات الإتصال المحلية فقط قابلة للتعديل حتى يكتمل التحديث."
 
 #~ msgid ""
 #~ "Would you like to sync contacts\n"
