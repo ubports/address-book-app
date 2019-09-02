@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2019-06-23 20:04+0000\n"
+"PO-Revision-Date: 2019-09-03 03:50+0000\n"
 "Last-Translator: Samson <sambelet@yahoo.com>\n"
 "Language-Team: Amharic <https://translate.ubports.com/projects/ubports/"
 "address-book-app/am/>\n"
@@ -461,7 +461,7 @@ msgstr "አዎ"
 
 #: ../src/imports/ABContactListPage.qml:702
 msgid "You have no contacts."
-msgstr "እርስዎ ምንም ግንኙነት የሎትም:"
+msgstr "እርስዎ ምንም ግንኙነት የለዎትም:"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:42
 #, qt-format
