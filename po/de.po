@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
 "PO-Revision-Date: 2019-11-10 13:12+0000\n"
-"Last-Translator: Kai Goldbeck <kaiuwe.goldbeck@mailbox.org>\n"
+"Last-Translator: Rüdiger Kupper <ruediger.kupper+launchpad@gmail.com>\n"
 "Language-Team: German <https://translate.ubports.com/projects/ubports/"
 "address-book-app/de/>\n"
 "Language: de\n"
@@ -160,7 +160,7 @@ msgstr "Geben Sie eine Nummer ein"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOnlineAccountsEditor.qml:27
 msgid "Enter a social alias"
-msgstr "Bitte einen Spitznamen eingeben"
+msgstr "Geben Sie einen Spitznamen ein"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailEmailsEditor.qml:28
 msgid "Enter an email address"
