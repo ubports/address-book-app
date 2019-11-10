@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2019-11-10 07:34+0000\n"
-"Last-Translator: konrad <kohofer@gmail.com>\n"
+"PO-Revision-Date: 2019-11-10 13:12+0000\n"
+"Last-Translator: Kai Goldbeck <kaiuwe.goldbeck@mailbox.org>\n"
 "Language-Team: German <https://translate.ubports.com/projects/ubports/"
 "address-book-app/de/>\n"
 "Language: de\n"
@@ -114,7 +114,7 @@ msgstr "Kontakte"
 
 #: ../data/address-book-app.desktop.in.in.h:2
 msgid "Contacts Address Book"
-msgstr "Kontakte Adressbuch"
+msgstr "Kontakte-Adressbuch"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
