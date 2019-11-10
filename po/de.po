@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2019-11-03 19:36+0000\n"
-"Last-Translator: Florian Leeber <flori@bin.org.in>\n"
+"PO-Revision-Date: 2019-11-10 07:34+0000\n"
+"Last-Translator: Kai Goldbeck <kaiuwe.goldbeck@mailbox.org>\n"
 "Language-Team: German <https://translate.ubports.com/projects/ubports/"
 "address-book-app/de/>\n"
 "Language: de\n"
@@ -234,7 +234,6 @@ msgid "Jabber"
 msgstr "Jabber"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:92
-#, fuzzy
 msgid "Last name"
 msgstr "Nachname"
 
