@@ -6,30 +6,38 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-06-13 10:07-0300\n"
-"PO-Revision-Date: 2014-07-19 07:49+0000\n"
-"Last-Translator: MinSik CHO <Unknown>\n"
-"Language-Team: Korean <ko@li.org>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-01 12:27+0000\n"
+"PO-Revision-Date: 2018-10-14 18:56+0000\n"
+"Last-Translator: Ace <quickn@cityarts.cf>\n"
+"Language-Team: Korean <https://translate.ubports.com/projects/ubports/"
+"address-book-app/ko/>\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.0\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:51+0000\n"
-"X-Generator: Launchpad (build 18326)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
 msgid "%1 is locked"
-msgstr "%1은 잠기"
+msgstr "%1 은(는) 잠겼습니다"
 
 #. TRANSLATORS: this refers to a new contact
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:480
 msgid "+ Create New"
 msgstr "+ 새 연락처"
 
-#: ../src/imports/Settings/SettingsPage.qml:87
-msgid "Add Google account"
+#: ../src/imports/Settings/SettingsPage.qml:90
+#, fuzzy, qt-format
+msgid "Add %1 account"
 msgstr "구글 계정 추가"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
+msgid "Add Field"
+msgstr "필드 추가"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
 msgid "Add field"
@@ -74,6 +82,7 @@ msgstr "뒤로"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:500
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "취소"
@@ -122,12 +131,15 @@ msgid "Default address book"
 msgstr "기본 주소록"
 
 #: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
 msgid "Delete"
-msgstr "삭제"
+msgstr "지우기"
 
 #: ../src/imports/ABContactViewPage.qml:87
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "편집"
 
@@ -174,10 +186,6 @@ msgstr "즐겨찾기"
 msgid "First name"
 msgstr "이름"
 
-#: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
-msgid "Frequently called"
-msgstr "자주 전화한 번호"
-
 #. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:116
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
@@ -197,14 +205,15 @@ msgid "Import"
 msgstr "가져오기"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
-msgid "Import contacts from Google"
+#, fuzzy, qt-format
+msgid "Import contacts from %1"
 msgstr "구글에서 연락처 가져오기"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:555
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
 msgstr "심 카드에서 연락처 가져오기"
 
-#: ../src/imports/Settings/SettingsPage.qml:127
+#: ../src/imports/Settings/SettingsPage.qml:131
 msgid "Import from SIM"
 msgstr "심카드에서 가져오기"
 
@@ -224,7 +233,7 @@ msgstr "재버"
 msgid "Last name"
 msgstr "성"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "불러오는 중..."
@@ -259,6 +268,7 @@ msgstr "여러 연락처"
 msgid "My phone number: %1"
 msgstr "내 전화 번호: %1"
 
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
@@ -352,6 +362,7 @@ msgid "SIM contacts"
 msgstr "심 연락처"
 
 #: ../src/imports/ABContactEditorPage.qml:56
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:411
 msgid "Save"
 msgstr "저장"
 
@@ -370,7 +381,7 @@ msgstr "검색..."
 #: ../src/imports/ABContactListPage.qml:549
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
-msgstr "전체 선택"
+msgstr "모두 선택"
 
 #: ../src/imports/ABContactListPage.qml:470
 #: ../src/imports/Settings/SettingsPage.qml:35
@@ -379,6 +390,7 @@ msgstr "설정"
 
 #: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/ABContactViewPage.qml:74
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "공유"
 
@@ -403,7 +415,7 @@ msgstr "동기화"
 msgid "Syncing"
 msgstr "동기화 중"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 msgid "Syncing..."
 msgstr "동기화 중..."
 
@@ -458,7 +470,8 @@ msgid ""
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
-"연락처 앱을 실행해 사용자의 <b>%1</b> 연락처 동기화 계정을 업그레이드해야 합니다.\n"
+"연락처 앱을 실행해 사용자의 <b>%1</b> 연락처 동기화 계정을 업그레이드해야 합"
+"니다.\n"
 "업그레이드가 끝나기 전에는 로컬 연락처만 편집할 수 있습니다."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:33
@@ -467,7 +480,8 @@ msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
-"연락처 앱을 실행해 사용자의 <b>%1</b> 연락처 동기화 계정을 업그레이드해야 합니다.\n"
+"연락처 앱을 실행해 사용자의 <b>%1</b> 연락처 동기화 계정을 업그레이드해야 합"
+"니다.\n"
 "연락처를 편집하려면 업그레이드가 끝날 때까지 기다려주십시오."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:38
@@ -477,18 +491,18 @@ msgid ""
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
-"사용자의 <b>%1</b> 연락처 동기화 계정을 업그레이드해야 합니다. 동가화 단추를 이용해 연락처 앱을 업그레이드하십시오.\n"
+"사용자의 <b>%1</b> 연락처 동기화 계정을 업그레이드해야 합니다. 동가화 단추를 "
+"이용해 연락처 앱을 업그레이드하십시오.\n"
 "업그레이드가 끝나기 전에는 로컬 연락처만 편집할 수 있습니다."
 
-#, qt-format
+#~ msgid "Frequently called"
+#~ msgstr "자주 전화한 번호"
+
 #~ msgid "%1 vCards imported"
 #~ msgstr "%1 vCard를 가져왔습니다."
 
 #~ msgid "Add contact"
 #~ msgstr "연락처 추가"
-
-#~ msgid "Add Field"
-#~ msgstr "필드 추가"
 
 #~ msgid "Import vCards"
 #~ msgstr "vCard 가져오기"
@@ -500,5 +514,6 @@ msgstr ""
 #~ "온라인 계정에서\n"
 #~ "연락처를 동기화할까요?"
 
-#~ msgid "Would you like to sync contacts from your google online accounts now?"
+#~ msgid ""
+#~ "Would you like to sync contacts from your google online accounts now?"
 #~ msgstr "지금 구글 온라인 계정의 연락처와 동시화하시겠습니까?"

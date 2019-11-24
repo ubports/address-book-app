@@ -6,16 +6,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-06-13 10:07-0300\n"
-"PO-Revision-Date: 2016-06-18 16:40+0000\n"
-"Last-Translator: Po-Hsu Lin <po-hsu.lin@canonical.com>\n"
-"Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-01 12:27+0000\n"
+"PO-Revision-Date: 2019-06-06 10:03+0000\n"
+"Last-Translator: P.-H. Lin <cypressyew@gmail.com>\n"
+"Language-Team: Chinese (Traditional) <https://translate.ubports.com/projects/"
+"ubports/address-book-app/zh_Hant/>\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.6.1\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:51+0000\n"
-"X-Generator: Launchpad (build 18326)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
@@ -27,13 +30,18 @@ msgstr "%1 已被鎖定"
 msgid "+ Create New"
 msgstr "+ 建立新的"
 
-#: ../src/imports/Settings/SettingsPage.qml:87
-msgid "Add Google account"
-msgstr "新增 Google 帳號"
+#: ../src/imports/Settings/SettingsPage.qml:90
+#, qt-format
+msgid "Add %1 account"
+msgstr "加入 %1 帳戶"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
+msgid "Add Field"
+msgstr "加入欄位"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
 msgid "Add field"
-msgstr "增加欄位"
+msgstr "加入欄位"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
@@ -43,7 +51,7 @@ msgstr "加入號碼..."
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:23
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailAddressesView.qml:24
 msgid "Address"
-msgstr "地址"
+msgstr "通訊位址"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:180
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:49
@@ -53,7 +61,7 @@ msgstr "通訊錄"
 #. TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "Aim"
-msgstr "瞄準"
+msgstr "AIM 即時通"
 
 #. TRANSLATORS: this refers to all contacts
 #: ../src/imports/ABContactListPage.qml:480
@@ -74,6 +82,7 @@ msgstr "返回"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:500
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "取消"
@@ -107,7 +116,7 @@ msgstr "聯絡人通訊錄"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
-msgstr "Contacts;People;Numbers;聯絡人;人物;號碼;"
+msgstr "聯絡人;人員;號碼"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:35
 msgid "Country"
@@ -115,19 +124,22 @@ msgstr "國家"
 
 #: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
 msgid "Create a new contact by swiping up from the bottom of the screen."
-msgstr "由螢幕下方向上掃，以建立新聯絡人。"
+msgstr "從螢幕底部往上拉來建立新的聯絡人。"
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
 msgstr "預設通訊錄"
 
 #: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
 msgid "Delete"
 msgstr "刪除"
 
 #: ../src/imports/ABContactViewPage.qml:87
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "編輯"
 
@@ -136,19 +148,19 @@ msgstr "編輯"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailEmailsView.qml:25
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailEmailsView.qml:28
 msgid "Email"
-msgstr "Email"
+msgstr "電子郵件"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
-msgstr "請輸入號碼"
+msgstr "輸入號碼"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOnlineAccountsEditor.qml:27
 msgid "Enter a social alias"
-msgstr "請輸入綽號"
+msgstr "輸入綽號"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailEmailsEditor.qml:28
 msgid "Enter an email address"
-msgstr "請輸入 email 位址"
+msgstr "輸入電子郵件位址"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
@@ -156,7 +168,7 @@ msgstr "錯誤"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
-msgstr "匯出聯絡人..."
+msgstr "匯出聯絡人中..."
 
 #: ../src/imports/ABContactListPage.qml:800
 msgid "Fail to import contacts!"
@@ -168,15 +180,11 @@ msgstr "讀取 SIM 卡失敗"
 
 #: ../src/imports/ABContactListPage.qml:480
 msgid "Favorites"
-msgstr "最愛"
+msgstr "常用"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:88
 msgid "First name"
 msgstr "名字"
-
-#: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
-msgid "Frequently called"
-msgstr "經常撥打"
 
 #. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:116
@@ -190,27 +198,28 @@ msgstr "ICQ"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOnlineAccountsEditor.qml:23
 msgid "IM"
-msgstr "即時通"
+msgstr "即時通訊軟體"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:58
 msgid "Import"
 msgstr "匯入"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
-msgid "Import contacts from Google"
-msgstr "自 Google 匯入聯絡人"
+#, qt-format
+msgid "Import contacts from %1"
+msgstr "自 %1 匯入聯絡人"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:555
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
 msgstr "自 SIM 卡匯入聯絡人"
 
-#: ../src/imports/Settings/SettingsPage.qml:127
+#: ../src/imports/Settings/SettingsPage.qml:131
 msgid "Import from SIM"
 msgstr "自 SIM 卡匯入"
 
 #: ../src/imports/ABContactListPage.qml:634
 msgid "Imported contacts"
-msgstr "匯入的聯絡人"
+msgstr "已匯入聯絡人"
 
 #: ../src/imports/BusyImportingDialog.qml:31
 msgid "Importing..."
@@ -224,7 +233,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "姓氏"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "載入中…"
@@ -248,17 +257,18 @@ msgstr "中間名"
 #. TRANSLATORS: This refers to mobile/cellphone phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
 msgid "Mobile"
-msgstr "行動"
+msgstr "手機"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:44
 msgid "Multiple contacts"
-msgstr "多位聯絡人"
+msgstr "多個連絡人"
 
 #: ../src/imports/Settings/SettingsPage.qml:72
 #, qt-format
 msgid "My phone number: %1"
 msgstr "我的電話號碼是：%1"
 
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
@@ -268,11 +278,11 @@ msgstr "新增聯絡人"
 #. this word must be less than 5 characters
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/TextInputDetail.qml:88
 msgid "Next"
-msgstr "下一個"
+msgstr "下一步"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:79
 msgid "No"
-msgstr "無"
+msgstr "否"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:40
 msgid "No contact selected."
@@ -290,7 +300,7 @@ msgstr "找不到聯絡人"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:58
 #: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:80
 msgid "No name"
-msgstr "無名稱"
+msgstr "沒有名稱"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -307,14 +317,14 @@ msgstr "其他"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:88
 #, qt-format
 msgid "Personal - %1"
-msgstr ""
+msgstr "個人-%1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:51
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:23
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailPhoneNumbersView.qml:29
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailPhoneNumbersView.qml:32
 msgid "Phone"
-msgstr "手機"
+msgstr "電話"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
@@ -324,7 +334,7 @@ msgstr "郵遞區號"
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:21
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailOrganizationsView.qml:24
 msgid "Professional Details"
-msgstr "專業詳情"
+msgstr "詳細職業"
 
 #: ../src/imports/ABContactListPage.qml:412
 msgid "Quit"
@@ -340,7 +350,7 @@ msgstr "區域"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
-msgstr "角色"
+msgstr "職務"
 
 #: ../src/imports/Settings/SettingsPage.qml:73
 #, qt-format
@@ -352,6 +362,7 @@ msgid "SIM contacts"
 msgstr "SIM 卡聯絡人"
 
 #: ../src/imports/ABContactEditorPage.qml:56
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:411
 msgid "Save"
 msgstr "儲存"
 
@@ -370,7 +381,7 @@ msgstr "搜尋..."
 #: ../src/imports/ABContactListPage.qml:549
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
-msgstr "全部選取"
+msgstr "全選"
 
 #: ../src/imports/ABContactListPage.qml:470
 #: ../src/imports/Settings/SettingsPage.qml:35
@@ -379,6 +390,7 @@ msgstr "設定"
 
 #: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/ABContactViewPage.qml:74
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "分享"
 
@@ -397,19 +409,19 @@ msgstr "街道"
 
 #: ../src/imports/ABContactListPage.qml:458
 msgid "Sync"
-msgstr "同步"
+msgstr "同步處理"
 
 #: ../src/imports/ABContactListPage.qml:458
 msgid "Syncing"
-msgstr "同步中"
+msgstr "同步處理中"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 msgid "Syncing..."
 msgstr "同步中…"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:30
 msgid "Title"
-msgstr "職銜"
+msgstr "名稱"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailOnlineAccountsView.qml:29
 msgid "Touch"
@@ -417,7 +429,7 @@ msgstr "觸控"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:124
 msgid "Unlock"
-msgstr "解除鎖定"
+msgstr "解鎖"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
 msgid "Unlocking..."
@@ -432,12 +444,12 @@ msgstr "取消全選"
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:119
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
 msgid "Work"
-msgstr "辦公"
+msgstr "公司"
 
 #. TRANSLATORS: This refers to mobile/cellphone work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:117
 msgid "Work Mobile"
-msgstr "辦公手機"
+msgstr "公司手機"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
 msgid "Yahoo"
@@ -458,6 +470,8 @@ msgid ""
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"您需要執行聯絡人應用程式來更新您的 <b>%1</b> 聯絡人同步帳號。\n"
+"在更新完成前僅能編輯本機上的聯絡人。"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:33
 #, qt-format
@@ -465,6 +479,8 @@ msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
+"您的 <b>%1</b> 聯絡人同步帳號需要更新。\n"
+"請於更新完成後再編輯聯絡人。"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:38
 #, qt-format
@@ -473,13 +489,14 @@ msgid ""
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"您的 <b>%1</b> 聯絡人同步帳號需要更新。請按下同步按鈕來更新您的聯絡人應用程式。\n"
+"在更新完成前僅能編輯本機上的聯絡人。"
 
-#, qt-format
+#~ msgid "Frequently called"
+#~ msgstr "經常撥打"
+
 #~ msgid "%1 vCards imported"
 #~ msgstr "已匯入 %1 份 vCard"
-
-#~ msgid "Add Field"
-#~ msgstr "新增欄位"
 
 #~ msgid "Import vCards"
 #~ msgstr "匯入 vCard"
@@ -494,5 +511,6 @@ msgstr ""
 #~ msgid "Add contact"
 #~ msgstr "新增聯絡人"
 
-#~ msgid "Would you like to sync contacts from your google online accounts now?"
+#~ msgid ""
+#~ "Would you like to sync contacts from your google online accounts now?"
 #~ msgstr "是否馬上和 Google 線上帳號同步聯絡人？"

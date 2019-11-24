@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-06-13 10:07-0300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-01 12:27+0000\n"
 "PO-Revision-Date: 2016-07-09 07:14+0000\n"
 "Last-Translator: Danial Behzadi <dani.behzi@gmail.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
+"Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,9 +28,14 @@ msgstr "%1 قفل شده است"
 msgid "+ Create New"
 msgstr "+ افزودن جدید"
 
-#: ../src/imports/Settings/SettingsPage.qml:87
-msgid "Add Google account"
+#: ../src/imports/Settings/SettingsPage.qml:90
+#, fuzzy, qt-format
+msgid "Add %1 account"
 msgstr "افزودن حساب گوگل"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
+msgid "Add Field"
+msgstr "افزودن زمینه"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
 msgid "Add field"
@@ -74,6 +80,7 @@ msgstr "بازگشت"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:500
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "لغو"
@@ -122,12 +129,15 @@ msgid "Default address book"
 msgstr "دفترچهٔ نشانی پیش‌گزیده"
 
 #: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
 msgid "Delete"
 msgstr "حذف"
 
 #: ../src/imports/ABContactViewPage.qml:87
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "ویرایش"
 
@@ -174,10 +184,6 @@ msgstr "برگزیده‌ها"
 msgid "First name"
 msgstr "نام"
 
-#: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
-msgid "Frequently called"
-msgstr "لقب"
-
 #. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:116
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
@@ -197,14 +203,15 @@ msgid "Import"
 msgstr "وارد کردن"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
-msgid "Import contacts from Google"
+#, fuzzy, qt-format
+msgid "Import contacts from %1"
 msgstr "وارد کردن مخاطب‌ها از گوگل"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:555
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
 msgstr "وارد کردن آشناها از سیم‌کارت"
 
-#: ../src/imports/Settings/SettingsPage.qml:127
+#: ../src/imports/Settings/SettingsPage.qml:131
 msgid "Import from SIM"
 msgstr "وارد کردن از سیم‌کارت"
 
@@ -224,7 +231,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "نام خانوادگی"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "در حال بار کردن…"
@@ -259,6 +266,7 @@ msgstr "چند مخاطب"
 msgid "My phone number: %1"
 msgstr "شماره تلفن من: %1"
 
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
@@ -352,6 +360,7 @@ msgid "SIM contacts"
 msgstr "آشناهای سیم‌کارت"
 
 #: ../src/imports/ABContactEditorPage.qml:56
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:411
 msgid "Save"
 msgstr "ذخیره"
 
@@ -379,6 +388,7 @@ msgstr "تنظیمات"
 
 #: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/ABContactViewPage.qml:74
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "به‌اشتراک گذاری"
 
@@ -403,7 +413,7 @@ msgstr "هم‌گام سازی"
 msgid "Syncing"
 msgstr "در حال هم‌گام سازی"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 msgid "Syncing..."
 msgstr "در حال هم‌گام سازی…"
 
@@ -482,15 +492,14 @@ msgstr ""
 "مخاطب‌ها از دکمهٔ هم‌گام‌سازی استفاده کنید.\n"
 "تا پایان ارتقا، تنها مخاطبان محلّی، قابل ویرایش خواهند بود."
 
+#~ msgid "Frequently called"
+#~ msgstr "لقب"
+
 #~ msgid "Add contact"
 #~ msgstr "افزودن مخاطب"
 
-#, qt-format
 #~ msgid "%1 vCards imported"
 #~ msgstr "%1 کارت مجازی وارد شد"
-
-#~ msgid "Add Field"
-#~ msgstr "افزودن زمینه"
 
 #~ msgid "Import vCards"
 #~ msgstr "وارد کردن کارت‌های مجازی"
@@ -502,5 +511,6 @@ msgstr ""
 #~ "می‌خواهید هم‌اکنون مخاطبین را از\n"
 #~ "حساب کاربری برخط وارد کنید؟"
 
-#~ msgid "Would you like to sync contacts from your google online accounts now?"
+#~ msgid ""
+#~ "Would you like to sync contacts from your google online accounts now?"
 #~ msgstr "می‌خواهید هم‌اکنون مخاطبین را با حساب برخط گوگلتان هم‌گام کنید؟"

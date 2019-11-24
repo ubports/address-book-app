@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-06-13 10:07-0300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-01 12:27+0000\n"
 "PO-Revision-Date: 2015-03-10 15:03+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
+"Language: bs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,9 +28,14 @@ msgstr "%1 je zaključano"
 msgid "+ Create New"
 msgstr "+ Kreiraj Novi"
 
-#: ../src/imports/Settings/SettingsPage.qml:87
-msgid "Add Google account"
+#: ../src/imports/Settings/SettingsPage.qml:90
+#, fuzzy, qt-format
+msgid "Add %1 account"
 msgstr "Dodaj Google račun"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
+msgid "Add Field"
+msgstr "Dodaj Polje"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
 msgid "Add field"
@@ -74,6 +80,7 @@ msgstr "Nazad"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:500
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "Otkaži"
@@ -122,12 +129,15 @@ msgid "Default address book"
 msgstr "Zadani adresar"
 
 #: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
 msgid "Delete"
 msgstr "Izbriši"
 
 #: ../src/imports/ABContactViewPage.qml:87
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "Izmijeni"
 
@@ -174,10 +184,6 @@ msgstr "Omiljeno"
 msgid "First name"
 msgstr "Ime"
 
-#: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
-msgid "Frequently called"
-msgstr "Često pozivani"
-
 #. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:116
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
@@ -197,14 +203,15 @@ msgid "Import"
 msgstr "Importuj"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
-msgid "Import contacts from Google"
+#, fuzzy, qt-format
+msgid "Import contacts from %1"
 msgstr "Importuj kontakte sa Googlea"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:555
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
 msgstr "Importuj kontakte sa SIM kartice"
 
-#: ../src/imports/Settings/SettingsPage.qml:127
+#: ../src/imports/Settings/SettingsPage.qml:131
 msgid "Import from SIM"
 msgstr "Importuj sa SIMa"
 
@@ -224,7 +231,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Prezime"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "Učitavanje..."
@@ -259,6 +266,7 @@ msgstr "Višestruki kontakti"
 msgid "My phone number: %1"
 msgstr "Moj telefonski broj: %1"
 
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
@@ -352,6 +360,7 @@ msgid "SIM contacts"
 msgstr "SIM kontakti"
 
 #: ../src/imports/ABContactEditorPage.qml:56
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:411
 msgid "Save"
 msgstr "Sačuvaj"
 
@@ -379,6 +388,7 @@ msgstr "Postavke"
 
 #: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/ABContactViewPage.qml:74
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "Podijeli"
 
@@ -403,7 +413,7 @@ msgstr "Sinhronizacija"
 msgid "Syncing"
 msgstr "Sinhronizujem"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 msgid "Syncing..."
 msgstr "Sinhronizujem..."
 
@@ -483,12 +493,11 @@ msgstr ""
 "nadogradi. Kliknite na sync dugme da nadogradite Contacts aplikaciju.\n"
 "Samo lokalni kontakti ce biti uredivi dok se nadogradnja završi."
 
-#, qt-format
+#~ msgid "Frequently called"
+#~ msgstr "Često pozivani"
+
 #~ msgid "%1 vCards imported"
 #~ msgstr "%1 vCards importovane"
-
-#~ msgid "Add Field"
-#~ msgstr "Dodaj Polje"
 
 #~ msgid "Add contact"
 #~ msgstr "Dodaj kontakt"

@@ -6,16 +6,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-06-13 10:07-0300\n"
-"PO-Revision-Date: 2016-06-14 12:23+0000\n"
-"Last-Translator: samson <Unknown>\n"
-"Language-Team: Amharic <am@li.org>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-01 12:27+0000\n"
+"PO-Revision-Date: 2019-09-03 03:50+0000\n"
+"Last-Translator: Samson <sambelet@yahoo.com>\n"
+"Language-Team: Amharic <https://translate.ubports.com/projects/ubports/"
+"address-book-app/am/>\n"
+"Language: am\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.6.1\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:50+0000\n"
-"X-Generator: Launchpad (build 18326)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
@@ -27,9 +30,14 @@ msgstr "%1 ተቆልፏል"
 msgid "+ Create New"
 msgstr "+ አዲስ መፍጠሪያ"
 
-#: ../src/imports/Settings/SettingsPage.qml:87
-msgid "Add Google account"
-msgstr "የ ጉግል መግለጫ መጨመሪያ"
+#: ../src/imports/Settings/SettingsPage.qml:90
+#, qt-format
+msgid "Add %1 account"
+msgstr "መግለጫ %1 መጨመሪያ"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
+msgid "Add Field"
+msgstr "ሜዳ መጨመሪያ"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
 msgid "Add field"
@@ -53,7 +61,7 @@ msgstr "የ አድራሻ ደብተር"
 #. TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "Aim"
-msgstr "ኤይም"
+msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
 #: ../src/imports/ABContactListPage.qml:480
@@ -74,6 +82,7 @@ msgstr "ወደ ኋላ"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:500
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "መሰረዣ"
@@ -115,19 +124,22 @@ msgstr "አገር"
 
 #: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
 msgid "Create a new contact by swiping up from the bottom of the screen."
-msgstr "አዲስ ግንኙነት ይፍጠሩ ከ መመልከቻው በታች በኩል ወደ ላይ በመጥረግ"
+msgstr "አዲስ ግንኙነት ይፍጠሩ ከ መመልከቻው በታች በኩል ወደ ላይ በ መጥረግ:"
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
 msgstr "ነባር የ አድራሻ ደብተር"
 
 #: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
 msgid "Delete"
 msgstr "ማጥፊያ"
 
 #: ../src/imports/ABContactViewPage.qml:87
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "ማረሚያ"
 
@@ -172,11 +184,7 @@ msgstr "የምወዳቸው"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:88
 msgid "First name"
-msgstr "የመጀመሪያ ስም"
-
-#: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
-msgid "Frequently called"
-msgstr "ብዙ ጊዜ የተደወሉ"
+msgstr "የ መጀመሪያ ስም"
 
 #. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:116
@@ -186,25 +194,26 @@ msgstr "ቤት"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:63
 msgid "ICQ"
-msgstr "አይሲኪው"
+msgstr "ICQ"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOnlineAccountsEditor.qml:23
 msgid "IM"
-msgstr "አይኤም"
+msgstr "IM"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:58
 msgid "Import"
 msgstr "ማምጫ"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
-msgid "Import contacts from Google"
-msgstr "ግንኙነት ከ ጉግል ማምጫ"
+#, qt-format
+msgid "Import contacts from %1"
+msgstr "ግንኙነት ማምጫ ከ %1"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:555
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
 msgstr "ከ ሲም ካርድ ውስጥ ግንኙነቶች ማምጫ"
 
-#: ../src/imports/Settings/SettingsPage.qml:127
+#: ../src/imports/Settings/SettingsPage.qml:131
 msgid "Import from SIM"
 msgstr "ከ ሲም ካርድ ውስጥ ማምጫ"
 
@@ -218,16 +227,16 @@ msgstr "በማምጣት ላይ..."
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
 msgid "Jabber"
-msgstr "ጃበር"
+msgstr "Jabber"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:92
 msgid "Last name"
 msgstr "የ አባት ስም"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
-msgstr "በመጫን ላይ..."
+msgstr "በ መጫን ላይ..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:32
 msgid "Locality"
@@ -235,7 +244,7 @@ msgstr "አካባቢ"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:66
 msgid "MSN"
-msgstr "ኤምኤስኤን"
+msgstr "MSN"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:62
 msgid "Middle Name"
@@ -259,6 +268,7 @@ msgstr "በርካታ ግንኙነቶች"
 msgid "My phone number: %1"
 msgstr "የ እኔ ስልክ ቁጥር: %1"
 
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
@@ -276,7 +286,7 @@ msgstr "አይ"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:40
 msgid "No contact selected."
-msgstr "ምንም ግንኙነት አልተመረጠም"
+msgstr "ምንም ግንኙነት አልተመረጠም:"
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
@@ -352,6 +362,7 @@ msgid "SIM contacts"
 msgstr "የ ሲም ግንኙነቶች"
 
 #: ../src/imports/ABContactEditorPage.qml:56
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:411
 msgid "Save"
 msgstr "ማስቀመጫ"
 
@@ -375,10 +386,11 @@ msgstr "ሁሉንም መምረጫ"
 #: ../src/imports/ABContactListPage.qml:470
 #: ../src/imports/Settings/SettingsPage.qml:35
 msgid "Settings"
-msgstr "ማሰናጃዎች"
+msgstr "ማሰናጃ"
 
 #: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/ABContactViewPage.qml:74
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "ማካፈያ"
 
@@ -403,7 +415,7 @@ msgstr "ማስማሚያ"
 msgid "Syncing"
 msgstr "በ ማስማማት ላይ"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 msgid "Syncing..."
 msgstr "በ ማስማማት ላይ..."
 
@@ -449,7 +461,7 @@ msgstr "አዎ"
 
 #: ../src/imports/ABContactListPage.qml:702
 msgid "You have no contacts."
-msgstr "ግንኙነት የለም"
+msgstr "እርስዎ ምንም ግንኙነት የለዎትም:"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:42
 #, qt-format
@@ -458,8 +470,8 @@ msgid ""
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
-"የ እርስዎ <b>%1</b> ግንኙነት መግለጫ ማስማሚያ መሻሻል አለበት የ ግንኙነቶችን መተግበሪያ በማስኬድ\n"
-"በ እርስዎ አካል አካባቢ ውስጥ ያሉ ግንኙነቶች ብቻ ነው ማረም የሚችሉት ማሻሻሉ እስከሚጨርስ"
+"የ እርስዎ <b>%1</b> ግንኙነት መግለጫ ማስማሚያ መሻሻል አለበት የ ግንኙነቶችን መተግበሪያ በማስኬድ:\n"
+"በ እርስዎ አካል አካባቢ ውስጥ ያሉ ግንኙነቶች ብቻ ነው ማረም የሚችሉት ማሻሻሉ እስከሚጨርስ:"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:33
 #, qt-format
@@ -467,8 +479,8 @@ msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
-"የ እርስዎ <b>%1</b> ግንኙነት መግለጫ ማስማሚያ መሻሻል አለበት\n"
-"እባክዎን ማሻሻሉ እስከሚጨርስ ይጠብቁ ግንኙነት ለማረም"
+"የ እርስዎ <b>%1</b> ግንኙነት መግለጫ ማስማሚያ መሻሻል አለበት:\n"
+"እባክዎን ማሻሻሉ እስከሚጨርስ ይጠብቁ ግንኙነት ለማረም:"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:38
 #, qt-format
@@ -478,16 +490,15 @@ msgid ""
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
 "የ እርስዎ <b>%1</b> ግንኙነት መግለጫ ማስማሚያ መሻሻል አለበት: ማስማሚያ ቁልፍን ይጠቀሙ ለማሻሻል የ ግንኙነቶችን "
-"መተግበሪያ \n"
-"በ እርስዎ አካል አካባቢ ውስጥ ያሉ ግንኙነቶች ብቻ ነው ማረም የሚችሉት ማሻሻሉ እስከሚጨርስ"
+"መተግበሪያ:\n"
+"በ እርስዎ አካል አካባቢ ውስጥ ያሉ ግንኙነቶች ብቻ ነው ማረም የሚችሉት ማሻሻሉ እስከሚጨርስ:"
 
-#~ msgid "Add Field"
-#~ msgstr "ሜዳ መጨመሪያ"
+#~ msgid "Frequently called"
+#~ msgstr "ብዙ ጊዜ የተደወሉ"
 
 #~ msgid "Add contact"
 #~ msgstr "ግንኙነት መጨመሪያ"
 
-#, qt-format
 #~ msgid "%1 vCards imported"
 #~ msgstr "%1  የ ንግድ ካርድ መጥቷል"
 
@@ -501,5 +512,6 @@ msgstr ""
 #~ "ግንኙነቶችን ማስማማት ይፈልጋሉ\n"
 #~ "መግለጫዎችን በ መስመር ላይ አሁን?"
 
-#~ msgid "Would you like to sync contacts from your google online accounts now?"
+#~ msgid ""
+#~ "Would you like to sync contacts from your google online accounts now?"
 #~ msgstr "የ እርስዎን ግንኙነቶች ከ ጉግል መስመር ላይ መግለጫ ጋር አሁን ማስማማት ይፈልጋሉ?"

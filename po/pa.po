@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-06-13 10:07-0300\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-01 12:27+0000\n"
 "PO-Revision-Date: 2015-03-26 04:52+0000\n"
 "Last-Translator: Gursharnjit_Singh <ubuntuser13@gmail.com>\n"
 "Language-Team: Punjabi <pa@li.org>\n"
+"Language: pa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,9 +28,14 @@ msgstr "%1 ਲਾਕ ਹੋਇਆ"
 msgid "+ Create New"
 msgstr "+ ਨਵਾਂ ਬਣਾਓ"
 
-#: ../src/imports/Settings/SettingsPage.qml:87
-msgid "Add Google account"
+#: ../src/imports/Settings/SettingsPage.qml:90
+#, fuzzy, qt-format
+msgid "Add %1 account"
 msgstr "ਗੂਗਲ ਖਾਤਾ ਜੋੜੋ"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
+msgid "Add Field"
+msgstr "ਖੇਤਰ ਸ਼ਾਮਿਲ"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
 msgid "Add field"
@@ -74,6 +80,7 @@ msgstr ""
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:500
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "ਰੱਦ"
@@ -122,12 +129,15 @@ msgid "Default address book"
 msgstr ""
 
 #: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
 msgid "Delete"
 msgstr "ਹਟਾਓ"
 
 #: ../src/imports/ABContactViewPage.qml:87
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "ਸੋਧ"
 
@@ -174,10 +184,6 @@ msgstr "ਮਨਪਸੰਦ"
 msgid "First name"
 msgstr "ਪਹਿਲਾਂ ਨਾਂ"
 
-#: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
-msgid "Frequently called"
-msgstr "ਅਕਸਰ ਕਿਹਾ ਜਾਂਦਾ"
-
 #. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:116
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
@@ -197,14 +203,15 @@ msgid "Import"
 msgstr "ਆਮਦ"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
-msgid "Import contacts from Google"
+#, fuzzy, qt-format
+msgid "Import contacts from %1"
 msgstr "ਗੂਗਲ ਤੋਂ ਸੰਪਰਕਾਂ ਦੀ ਆਮਦ"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:555
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
 msgstr "ਸਿਮ ਕਾਰਡ ਤੋਂ ਸੰਪਰਕਾਂ ਦੀ ਆਮਦ ਕਰੋ"
 
-#: ../src/imports/Settings/SettingsPage.qml:127
+#: ../src/imports/Settings/SettingsPage.qml:131
 msgid "Import from SIM"
 msgstr "ਸਿਮ ਤੋਂ ਆਮਦ"
 
@@ -224,7 +231,7 @@ msgstr "ਜੱਬਰ"
 msgid "Last name"
 msgstr "ਆਖਰੀ ਨਾਂ"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "ਲੋਡ ਕਰ ਰਿਹਾ..."
@@ -259,6 +266,7 @@ msgstr "ਬਹੁਤ ਸਾਰੇ ਸੰਪਰਕ"
 msgid "My phone number: %1"
 msgstr "ਮੇਰਾ ਫ਼ੋਨ ਨੰਬਰ: %1"
 
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
@@ -352,6 +360,7 @@ msgid "SIM contacts"
 msgstr "ਸਿਮ ਸੰਪਰਕ"
 
 #: ../src/imports/ABContactEditorPage.qml:56
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:411
 msgid "Save"
 msgstr "ਸੰਭਾਲ੍ਹੋ"
 
@@ -379,6 +388,7 @@ msgstr "ਸੈਟਿੰਗ"
 
 #: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/ABContactViewPage.qml:74
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "ਸਾਂਝਾ ਕਰੋ"
 
@@ -403,7 +413,7 @@ msgstr "ਸਿੰਕ"
 msgid "Syncing"
 msgstr "ਸਿੰਕ ਕਰ ਰਿਹਾ"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 msgid "Syncing..."
 msgstr "ਸਿੰਕ ਕਰ ਰਿਹਾ..."
 
@@ -474,13 +484,12 @@ msgid ""
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
 
-#~ msgid "Add Field"
-#~ msgstr "ਖੇਤਰ ਸ਼ਾਮਿਲ"
+#~ msgid "Frequently called"
+#~ msgstr "ਅਕਸਰ ਕਿਹਾ ਜਾਂਦਾ"
 
 #~ msgid "Import vCards"
 #~ msgstr "vCards ਆਮਦ"
 
-#, qt-format
 #~ msgid "%1 vCards imported"
 #~ msgstr "%1 vCards ਆਮਦ ਹੋਏ"
 

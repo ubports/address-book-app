@@ -6,34 +6,43 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2016-06-13 10:07-0300\n"
-"PO-Revision-Date: 2014-12-23 13:18+0000\n"
-"Last-Translator: Yaron <sh.yaron@gmail.com>\n"
-"Language-Team: Hebrew <he@li.org>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-01 12:27+0000\n"
+"PO-Revision-Date: 2019-03-31 00:00+0000\n"
+"Last-Translator: maor26 <maor262@gmail.com>\n"
+"Language-Team: Hebrew <https://translate.ubports.com/projects/ubports/"
+"address-book-app/he/>\n"
+"Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
+"n % 10 == 0) ? 2 : 3));\n"
+"X-Generator: Weblate 3.1.1\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:51+0000\n"
-"X-Generator: Launchpad (build 18326)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
 msgid "%1 is locked"
-msgstr ""
+msgstr "%1 נעול"
 
 #. TRANSLATORS: this refers to a new contact
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:480
 msgid "+ Create New"
 msgstr "+ יצירת חדש"
 
-#: ../src/imports/Settings/SettingsPage.qml:87
-msgid "Add Google account"
-msgstr ""
+#: ../src/imports/Settings/SettingsPage.qml:90
+#, qt-format
+msgid "Add %1 account"
+msgstr "הוספת חשבון %1"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
+msgid "Add Field"
+msgstr "הוספת שדה"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
 msgid "Add field"
-msgstr ""
+msgstr "הוספת שדה"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
@@ -62,18 +71,19 @@ msgstr "הכול"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
-msgstr "האם אכן להסיר את כל אנשי הקשר הנבחרים?"
+msgstr "להסיר את כל אנשי הקשר הנבחרים?"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
-msgstr "האם אכן להסיר את איש הקשר הזה?"
+msgstr "להסיר את איש הקשר הזה?"
 
 #: ../src/imports/ABContactListPage.qml:621
 msgid "Back"
-msgstr ""
+msgstr "אחורה"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:500
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "ביטול"
@@ -89,7 +99,7 @@ msgstr "סגירה"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:29
 msgid "Contact Editor"
-msgstr ""
+msgstr "עורך אנשי קשר"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
@@ -103,11 +113,11 @@ msgstr "אנשי קשר"
 
 #: ../data/address-book-app.desktop.in.in.h:2
 msgid "Contacts Address Book"
-msgstr ""
+msgstr "ספר כתובות אנשי קשר"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
-msgstr ""
+msgstr "אנשי קשר;אנשים;מספרים;טלפונים"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:35
 msgid "Country"
@@ -115,21 +125,24 @@ msgstr "מדינה"
 
 #: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
 msgid "Create a new contact by swiping up from the bottom of the screen."
-msgstr ""
+msgstr "ניתן ליצור איש קשר חדש על ידי משיכה כלפי מעלה מתחתית המסך."
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
-msgstr ""
+msgstr "ספר טלפונים כבררת מחדל"
 
 #: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
 msgid "Delete"
-msgstr "מחיקה"
+msgstr "מחק"
 
 #: ../src/imports/ABContactViewPage.qml:87
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:107
 msgid "Edit"
-msgstr "עריכה"
+msgstr "ערוך"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:53
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailEmailsEditor.qml:24
@@ -140,15 +153,15 @@ msgstr "דוא״ל"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
-msgstr "נא להזין מספר"
+msgstr "נא להקליד מספר"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOnlineAccountsEditor.qml:27
 msgid "Enter a social alias"
-msgstr "נא להזין כינוי חברתי"
+msgstr "נא להקליד כינוי חברתי"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailEmailsEditor.qml:28
 msgid "Enter an email address"
-msgstr "נא להזין כתובת דוא״ל"
+msgstr "נא להקליד כתובת דוא״ל"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
@@ -156,15 +169,15 @@ msgstr "שגיאה"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
-msgstr ""
+msgstr "אנשי הקשר מיוצאים…"
 
 #: ../src/imports/ABContactListPage.qml:800
 msgid "Fail to import contacts!"
-msgstr ""
+msgstr "ייבוא אנשי הקשר נכשל!"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:285
 msgid "Fail to read SIM card"
-msgstr ""
+msgstr "קריאת כרטיס ה־SIM נכשלה"
 
 #: ../src/imports/ABContactListPage.qml:480
 msgid "Favorites"
@@ -173,10 +186,6 @@ msgstr "מועדפים"
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:88
 msgid "First name"
 msgstr "שם פרטי"
-
-#: ../src/imports/Ubuntu/Contacts/MostCalledList.qml:63
-msgid "Frequently called"
-msgstr "נקרא לעתים קרובות"
 
 #. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:116
@@ -194,27 +203,28 @@ msgstr "הודעה מיידית"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:58
 msgid "Import"
-msgstr ""
+msgstr "ייבוא"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
-msgid "Import contacts from Google"
-msgstr ""
+#, qt-format
+msgid "Import contacts from %1"
+msgstr "ייבוא אנשי קשר מ־%1"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:555
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
-msgstr ""
+msgstr "ייבוא אנשי קשר מכרטיס ה־SIM"
 
-#: ../src/imports/Settings/SettingsPage.qml:127
+#: ../src/imports/Settings/SettingsPage.qml:131
 msgid "Import from SIM"
-msgstr ""
+msgstr "ייבוא מ־SIM"
 
 #: ../src/imports/ABContactListPage.qml:634
 msgid "Imported contacts"
-msgstr ""
+msgstr "אנשי קשר מיובאים"
 
 #: ../src/imports/BusyImportingDialog.qml:31
 msgid "Importing..."
-msgstr "מתבצע יבוא..."
+msgstr "מתבצע ייבוא..."
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
 msgid "Jabber"
@@ -224,7 +234,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "שם משפחה"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "בטעינה…"
@@ -239,11 +249,11 @@ msgstr "MSN"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:62
 msgid "Middle Name"
-msgstr ""
+msgstr "שם אמצעי"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:90
 msgid "Middle name"
-msgstr ""
+msgstr "שם אמצעי"
 
 #. TRANSLATORS: This refers to mobile/cellphone phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
@@ -257,12 +267,13 @@ msgstr "מספר אנשי קשר"
 #: ../src/imports/Settings/SettingsPage.qml:72
 #, qt-format
 msgid "My phone number: %1"
-msgstr ""
+msgstr "מספר הטלפון שלי: %1"
 
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
-msgstr ""
+msgstr "איש קשר חדש"
 
 #. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
 #. this word must be less than 5 characters
@@ -280,11 +291,11 @@ msgstr "לא נבחר איש קשר."
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
-msgstr ""
+msgstr "אין אנשי קשר"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:155
 msgid "No contacts found"
-msgstr ""
+msgstr "לא נמצאו אנשי קשר"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:49
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:58
@@ -307,7 +318,7 @@ msgstr "אחר"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:88
 #, qt-format
 msgid "Personal - %1"
-msgstr ""
+msgstr "אישי - %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:51
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:23
@@ -332,7 +343,7 @@ msgstr "יציאה"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Reading contacts from SIM..."
-msgstr ""
+msgstr "אנשי הקשר נקראים מה־SIM…"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -345,19 +356,20 @@ msgstr "תפקיד"
 #: ../src/imports/Settings/SettingsPage.qml:73
 #, qt-format
 msgid "SIM %1"
-msgstr ""
+msgstr "SIM %1"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:39
 msgid "SIM contacts"
-msgstr ""
+msgstr "אנשי קשר מה־SIM"
 
 #: ../src/imports/ABContactEditorPage.qml:56
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:411
 msgid "Save"
 msgstr "שמירה"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Saving contacts on phone..."
-msgstr ""
+msgstr "אנשי הקשר נשמרים בטלפון…"
 
 #: ../src/imports/ABContactListPage.qml:422
 msgid "Search"
@@ -375,10 +387,11 @@ msgstr "בחירת הכול"
 #: ../src/imports/ABContactListPage.qml:470
 #: ../src/imports/Settings/SettingsPage.qml:35
 msgid "Settings"
-msgstr ""
+msgstr "הגדרות"
 
 #: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/ABContactViewPage.qml:74
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:98
 msgid "Share"
 msgstr "שיתוף"
 
@@ -403,7 +416,7 @@ msgstr "סנכרון"
 msgid "Syncing"
 msgstr "בסנכרון"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:628
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 msgid "Syncing..."
 msgstr "בסנכרון…"
 
@@ -417,16 +430,16 @@ msgstr "מגע"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:124
 msgid "Unlock"
-msgstr ""
+msgstr "שחרור"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
 msgid "Unlocking..."
-msgstr ""
+msgstr "מתבצע שחרור…"
 
 #: ../src/imports/ABContactListPage.qml:549
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
-msgstr ""
+msgstr "ביטול הבחירה"
 
 #. TRANSLATORS: This refers to landline work phone label
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:119
@@ -474,6 +487,9 @@ msgid ""
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
 
+#~ msgid "Frequently called"
+#~ msgstr "נקרא לעתים קרובות"
+
 #~ msgid ""
 #~ "Would you like to sync contacts\n"
 #~ "from online accounts now?"
@@ -481,15 +497,8 @@ msgstr ""
 #~ "האם לסנכרן את אנשי הקשר\n"
 #~ "עם החשבונות המקוונים כעת?"
 
-#, qt-format
 #~ msgid "%1 vCards imported"
 #~ msgstr "%1 ערכות vCard יובאו"
 
-#~ msgid "Add Field"
-#~ msgstr "הוספת שדה"
-
 #~ msgid "Import vCards"
 #~ msgstr "יבוא ערכות vCard"
-
-#~ msgid "Add contact"
-#~ msgstr "הוספת איש קשר"

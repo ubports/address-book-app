@@ -1,221 +1,220 @@
-# Catalan translation for address-book-app
-# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
-# This file is distributed under the same license as the address-book-app package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Canonical Ltd.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2015-02-22 06:46+0000\n"
-"Last-Translator: Pau Iranzo <Unknown>\n"
-"Language-Team: Catalan <ca@li.org>\n"
-"Language: ca\n"
+"PO-Revision-Date: 2018-08-05 15:01+0000\n"
+"Last-Translator: thanakit srisearmpok <thanakit.ssp@gmail.com>\n"
+"Language-Team: Thai <https://translate.ubports.com/projects/ubports/"
+"address-book-app/th/>\n"
+"Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2017-02-17 05:51+0000\n"
-"X-Generator: Launchpad (build 18326)\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 2.20\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
 msgid "%1 is locked"
-msgstr ""
+msgstr "ล็อค"
 
 #. TRANSLATORS: this refers to a new contact
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:480
 msgid "+ Create New"
-msgstr "+ Contacte nou"
+msgstr "สร้างใหม่"
 
 #: ../src/imports/Settings/SettingsPage.qml:90
-#, fuzzy, qt-format
+#, qt-format
 msgid "Add %1 account"
-msgstr "Afig un contacte"
+msgstr "เพิ่มบัญชี"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
 msgid "Add Field"
-msgstr "Afig un camp"
+msgstr "เพิ่ม"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
 msgid "Add field"
-msgstr ""
+msgstr "เพิ่ม"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
-msgstr "Afig un número..."
+msgstr "เพิ่มเบอร์โทร"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:55
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:23
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailAddressesView.qml:24
 msgid "Address"
-msgstr "Adreça"
+msgstr "ที่อยู่"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:180
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:49
 msgid "Addressbook"
-msgstr "Llibreta d'adreces"
+msgstr "บันทึกที่อยู่"
 
 #. TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "Aim"
-msgstr "AIM"
+msgstr "เอไอเอ็ม"
 
 #. TRANSLATORS: this refers to all contacts
 #: ../src/imports/ABContactListPage.qml:480
 msgid "All"
-msgstr "Tots"
+msgstr "ทั้งหมด"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
-msgstr "Segur que voleu suprimir tots els contactes seleccionats?"
+msgstr "คุณแน่ใจหรือไม่ว่าต้องการลบรายชื่อที่เลือกทั้งหมดออก?"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
-msgstr "Segur que voleu suprimir este contacte?"
+msgstr "คุณแน่ใจหรือไม่ว่าต้องการลบรายชื่อติดต่อนี้"
 
 #: ../src/imports/ABContactListPage.qml:621
 msgid "Back"
-msgstr ""
+msgstr "กลับ"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:500
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
-msgstr "Cancel·la"
+msgstr "ยกเลิก"
 
 #: ../src/imports/ABContactListPage.qml:539
 msgid "Cancel selection"
-msgstr "Cancel·la la selecció"
+msgstr "ยกเลิกการเลือก"
 
 #: ../src/imports/BusyImportingDialog.qml:40
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:48
 msgid "Close"
-msgstr "Tanca"
+msgstr "ปิด"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:29
 msgid "Contact Editor"
-msgstr ""
+msgstr "แก้ไขผู้ติดต่อ"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
-msgstr "No s'ha trobat el contacte"
+msgstr "ไม่พบข้อมูลผู้ติดต่อ"
 
 #: ../src/imports/ABContactListPage.qml:248
 #: ../src/imports/ABContactListPage.qml:288
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
-msgstr "Contactes"
+msgstr "ผู้ติดต่อ"
 
 #: ../data/address-book-app.desktop.in.in.h:2
 msgid "Contacts Address Book"
-msgstr "Contactes"
+msgstr "สมุดที่อยู่สมุดติดต่อ"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
-msgstr "Contactes; adreces; gent; amics; números"
+msgstr "ผู้ติดต่อ;ผู้คน;หมายเลข"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:35
 msgid "Country"
-msgstr "País"
+msgstr "ประเทศ"
 
 #: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
 msgid "Create a new contact by swiping up from the bottom of the screen."
-msgstr ""
-"Creeu un contacte nou fent lliscar el dit des de la part inferior de la "
-"pantalla."
+msgstr "สร้างผู้ติดต่อใหม่โดยกวาดนิ้วขึ้นจากด้านล่างของหน้าจอ"
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
-msgstr ""
+msgstr "สมุดที่อยู่ค่าเริ่มต้น"
 
 #: ../src/imports/ABContactListPage.qml:579
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
 msgid "Delete"
-msgstr "Suprimeix"
+msgstr "ลบ"
 
 #: ../src/imports/ABContactViewPage.qml:87
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:107
 msgid "Edit"
-msgstr "Edita"
+msgstr "แก้ไข"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:53
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailEmailsEditor.qml:24
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailEmailsView.qml:25
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailEmailsView.qml:28
 msgid "Email"
-msgstr "Adreça electrònica"
+msgstr "อีเมล์"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
-msgstr "Introduïu un número"
+msgstr "ใส่หมายเลข"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOnlineAccountsEditor.qml:27
 msgid "Enter a social alias"
-msgstr "Escriviu un sobrenom"
+msgstr "ใส่นามแฝงทางสังคม"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailEmailsEditor.qml:28
 msgid "Enter an email address"
-msgstr "Escriviu una adreça electrònica"
+msgstr "ใส่ที่อยู่อีเมล์"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
-msgstr "Error"
+msgstr "ผิดพลาด"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
-msgstr ""
+msgstr "กำลังส่งออกรายชื่อติดต่อ..."
 
 #: ../src/imports/ABContactListPage.qml:800
 msgid "Fail to import contacts!"
-msgstr ""
+msgstr "ไม่สามารถนำเข้าที่อยู่ติดต่อได้!"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:285
 msgid "Fail to read SIM card"
-msgstr ""
+msgstr "ไม่สามารถอ่านซิมการ์ด"
 
 #: ../src/imports/ABContactListPage.qml:480
 msgid "Favorites"
-msgstr "Preferits"
+msgstr "รายการโปรด"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:88
 msgid "First name"
-msgstr "Nom"
+msgstr "ชื่อ"
 
 #. TRANSLATORS: This refers to home landline phone label
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:116
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
 msgid "Home"
-msgstr "Casa"
+msgstr "บ้าน"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:63
 msgid "ICQ"
-msgstr "ICQ"
+msgstr "ไอซีคิว"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOnlineAccountsEditor.qml:23
 msgid "IM"
-msgstr "Missatgeria instantània"
+msgstr "ไอเอ็ม"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:58
 msgid "Import"
-msgstr ""
+msgstr "นำเข้า"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
-#, fuzzy, qt-format
+#, qt-format
 msgid "Import contacts from %1"
-msgstr "Importa els contactes de Google"
+msgstr "นำเข้าที่อยู่ติดต่อจาก% 1"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
-msgstr ""
+msgstr "นำเข้ารายชื่อจากซิมการ์ด"
 
 #: ../src/imports/Settings/SettingsPage.qml:131
 msgid "Import from SIM"
-msgstr ""
+msgstr "นำเข้าจากซิม"
 
 #: ../src/imports/ABContactListPage.qml:634
 msgid "Imported contacts"
@@ -223,28 +222,28 @@ msgstr ""
 
 #: ../src/imports/BusyImportingDialog.qml:31
 msgid "Importing..."
-msgstr "S'està important..."
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
 msgid "Jabber"
-msgstr "Jabber"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:92
 msgid "Last name"
-msgstr "Cognoms"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
-msgstr "S'està carregant..."
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:32
 msgid "Locality"
-msgstr "Localitat"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:66
 msgid "MSN"
-msgstr "MSN"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:62
 msgid "Middle Name"
@@ -257,11 +256,11 @@ msgstr ""
 #. TRANSLATORS: This refers to mobile/cellphone phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
 msgid "Mobile"
-msgstr "Mòbil"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:44
 msgid "Multiple contacts"
-msgstr "Múltiples contactes"
+msgstr ""
 
 #: ../src/imports/Settings/SettingsPage.qml:72
 #, qt-format
@@ -272,21 +271,21 @@ msgstr ""
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
-msgstr "Contacte nou"
+msgstr ""
 
 #. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
 #. this word must be less than 5 characters
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/TextInputDetail.qml:88
 msgid "Next"
-msgstr "Següent"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:79
 msgid "No"
-msgstr "No"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:40
 msgid "No contact selected."
-msgstr "No s'ha seleccionat cap contacte."
+msgstr ""
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
@@ -300,17 +299,17 @@ msgstr ""
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:58
 #: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:80
 msgid "No name"
-msgstr "Sense nom"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
-msgstr "Organització"
+msgstr ""
 
 #. TRANSLATORS: This refers to any other phone label
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:122
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:121
 msgid "Other"
-msgstr "Un altre"
+msgstr ""
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:202
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:218
@@ -324,21 +323,21 @@ msgstr ""
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailPhoneNumbersView.qml:29
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailPhoneNumbersView.qml:32
 msgid "Phone"
-msgstr "Telèfon"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
-msgstr "Codi postal"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:59
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:21
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailOrganizationsView.qml:24
 msgid "Professional Details"
-msgstr "Detalls professionals"
+msgstr ""
 
 #: ../src/imports/ABContactListPage.qml:412
 msgid "Quit"
-msgstr "Ix"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Reading contacts from SIM..."
@@ -346,11 +345,11 @@ msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
-msgstr "Regió"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
-msgstr "Rol"
+msgstr ""
 
 #: ../src/imports/Settings/SettingsPage.qml:73
 #, qt-format
@@ -364,7 +363,7 @@ msgstr ""
 #: ../src/imports/ABContactEditorPage.qml:56
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:411
 msgid "Save"
-msgstr "Guarda"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Saving contacts on phone..."
@@ -372,16 +371,16 @@ msgstr ""
 
 #: ../src/imports/ABContactListPage.qml:422
 msgid "Search"
-msgstr "Cerca"
+msgstr ""
 
 #: ../src/imports/ABContactListPage.qml:387
 msgid "Search..."
-msgstr "Cerca..."
+msgstr ""
 
 #: ../src/imports/ABContactListPage.qml:549
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
-msgstr "Selecciona-ho tot"
+msgstr ""
 
 #: ../src/imports/ABContactListPage.qml:470
 #: ../src/imports/Settings/SettingsPage.qml:35
@@ -392,40 +391,40 @@ msgstr ""
 #: ../src/imports/ABContactViewPage.qml:74
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:98
 msgid "Share"
-msgstr "Comparteix"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Skype"
-msgstr "Skype"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:57
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailOnlineAccountsView.qml:26
 msgid "Social"
-msgstr "Social"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:31
 msgid "Street"
-msgstr "Carrer"
+msgstr ""
 
 #: ../src/imports/ABContactListPage.qml:458
 msgid "Sync"
-msgstr "Sincronitza"
+msgstr ""
 
 #: ../src/imports/ABContactListPage.qml:458
 msgid "Syncing"
-msgstr "S'està sincronitzant"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 msgid "Syncing..."
-msgstr "S'està sincronitzant..."
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:30
 msgid "Title"
-msgstr "Títol"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailOnlineAccountsView.qml:29
 msgid "Touch"
-msgstr "Toca"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:124
 msgid "Unlock"
@@ -438,30 +437,30 @@ msgstr ""
 #: ../src/imports/ABContactListPage.qml:549
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
-msgstr "Desselecciona-ho tot"
+msgstr ""
 
 #. TRANSLATORS: This refers to landline work phone label
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:119
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
 msgid "Work"
-msgstr "Faena"
+msgstr ""
 
 #. TRANSLATORS: This refers to mobile/cellphone work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:117
 msgid "Work Mobile"
-msgstr "Mòbil de la faena"
+msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
 msgid "Yahoo"
-msgstr "Yahoo"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
 msgid "Yes"
-msgstr "Sí"
+msgstr ""
 
 #: ../src/imports/ABContactListPage.qml:702
 msgid "You have no contacts."
-msgstr "No teniu cap contacte"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:42
 #, qt-format
@@ -485,23 +484,3 @@ msgid ""
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
-
-#~ msgid "Frequently called"
-#~ msgstr "Cridats freqüentment"
-
-#~ msgid "%1 vCards imported"
-#~ msgstr "S'han importat %1 targetes vCard"
-
-#~ msgid "Import vCards"
-#~ msgstr "Importa targetes vCard"
-
-#~ msgid ""
-#~ "Would you like to sync contacts\n"
-#~ "from online accounts now?"
-#~ msgstr ""
-#~ "Voleu sincronitzar els contactes\n"
-#~ "dels comptes en línia ara?"
-
-#~ msgid ""
-#~ "Would you like to sync contacts from your google online accounts now?"
-#~ msgstr "Voleu sincronitzar els contactes del compte en línia de Google?"

@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2017-11-15 19:23+0000\n"
-"Last-Translator: Henrik Holm <hbir@post10.tele.dk>\n"
-"Language-Team: Danish <https://translate.ubports.com/projects/ubports"
-"/address-book-app/da/>\n"
+"PO-Revision-Date: 2019-01-06 00:00+0000\n"
+"Last-Translator: Tom Rausner <tomrausner@gmail.com>\n"
+"Language-Team: Danish <https://translate.ubports.com/projects/ubports/"
+"address-book-app/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 3.1.1\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:50+0000\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
@@ -29,12 +29,12 @@ msgstr "%1 er låst"
 #. TRANSLATORS: this refers to a new contact
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:480
 msgid "+ Create New"
-msgstr "+Opret ny"
+msgstr "+ Opret ny"
 
 #: ../src/imports/Settings/SettingsPage.qml:90
-#, fuzzy, qt-format
+#, qt-format
 msgid "Add %1 account"
-msgstr "Tilføj google konto"
+msgstr "Tilføj %1 konto"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
 msgid "Add Field"
@@ -62,7 +62,7 @@ msgstr "Adressebog"
 #. TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "Aim"
-msgstr "Aim"
+msgstr "AIM"
 
 #. TRANSLATORS: this refers to all contacts
 #: ../src/imports/ABContactListPage.qml:480
@@ -95,7 +95,7 @@ msgstr "Annullér valg"
 #: ../src/imports/BusyImportingDialog.qml:40
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:48
 msgid "Close"
-msgstr "Luk"
+msgstr "Afslut"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:29
 msgid "Contact Editor"
@@ -125,7 +125,7 @@ msgstr "Land"
 
 #: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
 msgid "Create a new contact by swiping up from the bottom of the screen."
-msgstr "Swipe op fra bunden af skærmen for at skabe en ny kontakt."
+msgstr "Stryg op fra bunden af skærmen for at skabe en ny kontakt."
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
@@ -177,7 +177,7 @@ msgstr "Fejl ved import af kontakter!"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:285
 msgid "Fail to read SIM card"
-msgstr "Fejl ved læs af SIM kort"
+msgstr "Fejl ved læsning af SIM kort"
 
 #: ../src/imports/ABContactListPage.qml:480
 msgid "Favorites"
@@ -203,20 +203,20 @@ msgstr "Lynbeskeder"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:58
 msgid "Import"
-msgstr "Importer"
+msgstr "Importér"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
-#, fuzzy, qt-format
+#, qt-format
 msgid "Import contacts from %1"
-msgstr "Importer kontakter fra Google"
+msgstr "Importér kontakter fra %1"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
-msgstr "Importer kontakter fra SIM kort"
+msgstr "Importér kontakter fra SIM kort"
 
 #: ../src/imports/Settings/SettingsPage.qml:131
 msgid "Import from SIM"
-msgstr "Importer fra SIM"
+msgstr "Importér fra SIM"
 
 #: ../src/imports/ABContactListPage.qml:634
 msgid "Imported contacts"
@@ -291,11 +291,11 @@ msgstr "Ingen kontakt valgt."
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
-msgstr "Ny kontakt"
+msgstr "Ingen kontakter"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:155
 msgid "No contacts found"
-msgstr "Ny kontakt fundet"
+msgstr "Ingen kontakter fundet"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:49
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:58
@@ -347,7 +347,7 @@ msgstr "Læser kontakter fra SIM..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
-msgstr "Region"
+msgstr "Område"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"

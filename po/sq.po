@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2017-09-29 14:31+0000\n"
+"PO-Revision-Date: 2018-06-03 07:58+0000\n"
 "Last-Translator: Jeff <jeffi27@live.at>\n"
-"Language-Team: Albanian <https://translate.ubports.com/projects/ubports/"
-"address-book-app/sq/>\n"
+"Language-Team: Albanian <https://translate.ubports.com/projects/ubports"
+"/address-book-app/sq/>\n"
 "Language: sq\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,12 +31,11 @@ msgid "+ Create New"
 msgstr "+ Krijo të ri"
 
 #: ../src/imports/Settings/SettingsPage.qml:90
-#, fuzzy, qt-format
+#, qt-format
 msgid "Add %1 account"
-msgstr "Shto llogari Google"
+msgstr "Shto llogarinë %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
-#, fuzzy
 msgid "Add Field"
 msgstr "Shto fushë"
 
@@ -67,7 +66,7 @@ msgstr "AIM"
 #. TRANSLATORS: this refers to all contacts
 #: ../src/imports/ABContactListPage.qml:480
 msgid "All"
-msgstr "Të Gjitha"
+msgstr "Të gjitha"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
@@ -117,7 +116,7 @@ msgstr "Libri i Adresës të Kontokteve"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
-msgstr ""
+msgstr "Kontaktet;njerëzit;dhe të njohurit;njerëzit;numrat e telefonit;adresat"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:35
 msgid "Country"
@@ -125,17 +124,17 @@ msgstr "Shteti"
 
 #: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
 msgid "Create a new contact by swiping up from the bottom of the screen."
-msgstr ""
+msgstr "Krijo një kontakt të ri duke zvarritur nga fundi i ekranit në krye."
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
-msgstr ""
+msgstr "Librin e adresave të paracaktuar"
 
 #: ../src/imports/ABContactListPage.qml:579
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
 msgid "Delete"
-msgstr "Fshije"
+msgstr "Fshijë"
 
 #: ../src/imports/ABContactViewPage.qml:87
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
@@ -157,7 +156,7 @@ msgstr "Sheno një numër"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOnlineAccountsEditor.qml:27
 msgid "Enter a social alias"
-msgstr ""
+msgstr "Futni një pseudonim"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailEmailsEditor.qml:28
 msgid "Enter an email address"
@@ -169,11 +168,11 @@ msgstr "Gabim"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
-msgstr ""
+msgstr "Kontaktet eksportohen ..."
 
 #: ../src/imports/ABContactListPage.qml:800
 msgid "Fail to import contacts!"
-msgstr ""
+msgstr "Importi i kontakteve dështoi!"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:285
 msgid "Fail to read SIM card"
@@ -181,7 +180,7 @@ msgstr "Dështoi leximi i skedës SIM"
 
 #: ../src/imports/ABContactListPage.qml:480
 msgid "Favorites"
-msgstr "Të Parapëlqyerat"
+msgstr "Favoritet"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:88
 msgid "First name"
@@ -206,13 +205,13 @@ msgid "Import"
 msgstr "Importo"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
-#, fuzzy, qt-format
+#, qt-format
 msgid "Import contacts from %1"
-msgstr "Nuk u gjetën kontakte"
+msgstr "Fut kontaktet nga %1"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
-msgstr ""
+msgstr "Futni kontaktet nga karta SIM"
 
 #: ../src/imports/Settings/SettingsPage.qml:131
 msgid "Import from SIM"
@@ -220,7 +219,7 @@ msgstr "Importo nga SIM"
 
 #: ../src/imports/ABContactListPage.qml:634
 msgid "Imported contacts"
-msgstr ""
+msgstr "Kontaktet e importuara"
 
 #: ../src/imports/BusyImportingDialog.qml:31
 msgid "Importing..."
@@ -249,11 +248,11 @@ msgstr "MSN"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:62
 msgid "Middle Name"
-msgstr ""
+msgstr "Emri i dytë"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:90
 msgid "Middle name"
-msgstr ""
+msgstr "Emri i dytë"
 
 #. TRANSLATORS: This refers to mobile/cellphone phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
@@ -262,12 +261,12 @@ msgstr "Mobil"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:44
 msgid "Multiple contacts"
-msgstr ""
+msgstr "Kontaktet e shumëfishta"
 
 #: ../src/imports/Settings/SettingsPage.qml:72
 #, qt-format
 msgid "My phone number: %1"
-msgstr ""
+msgstr "Numri im i telefonit: %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
@@ -287,7 +286,7 @@ msgstr "Jo"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:40
 msgid "No contact selected."
-msgstr ""
+msgstr "Nuk u përzgjodh asnjë kontakt."
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
@@ -343,7 +342,7 @@ msgstr "Dil"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Reading contacts from SIM..."
-msgstr ""
+msgstr "Kontaktet lexohen nga kartela SIM ..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -360,7 +359,7 @@ msgstr "SIM %1"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:39
 msgid "SIM contacts"
-msgstr ""
+msgstr "SIM-Kontaktet"
 
 #: ../src/imports/ABContactEditorPage.qml:56
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:411
@@ -369,7 +368,7 @@ msgstr "Ruaj"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Saving contacts on phone..."
-msgstr ""
+msgstr "Kontaktet ruhen në telefon ..."
 
 #: ../src/imports/ABContactListPage.qml:422
 msgid "Search"
@@ -387,13 +386,13 @@ msgstr "Përzgjidh Gjithçka"
 #: ../src/imports/ABContactListPage.qml:470
 #: ../src/imports/Settings/SettingsPage.qml:35
 msgid "Settings"
-msgstr "Konfigurimi"
+msgstr "Cilsimet"
 
 #: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/ABContactViewPage.qml:74
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:98
 msgid "Share"
-msgstr "Shpërndaje"
+msgstr "Shpërndajë"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Skype"
@@ -471,6 +470,9 @@ msgid ""
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Llogaria juaj <b>%1</b> e sinkronizimit të kontaktit duhet të përditësohet "
+"nga aplikacioni i kontaktit.\n"
+"Derisa të bëhet kjo, vetëm kontaktet lokale mund të redaktohen."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:33
 #, qt-format
@@ -478,6 +480,8 @@ msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
+"Llogaria juaj <b>%1</b> e sinkronizimit të kontaktit duhet të përditësohet.\n"
+"Ju lutemi prisni për përditësimin për të redaktuar kontaktet."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:38
 #, qt-format
@@ -486,6 +490,9 @@ msgid ""
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Llogaria juaj <b>%1</b> e sinkronizimit të kontaktit duhet të përditësohet. "
+"Përdorni butonin Sync për të përditësuar aplikacionin e kontaktit.\n"
+"Derisa të bëhet kjo, vetëm kontaktet lokale mund të redaktohen."
 
 #~ msgid "Frequently called"
 #~ msgstr "Të thirrur më shpesh"
