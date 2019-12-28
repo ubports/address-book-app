@@ -76,7 +76,7 @@ ListItemWithActions {
                 verticalCenter: parent.verticalCenter
                 right: parent.right
             }
-            color: selected ? theme.palette.normal.activity : theme.palette.normal.backgroundText
+            color: theme.palette.normal.backgroundText
             text: root.displayLabel != "" ? root.displayLabel : i18n.dtr("address-book-app", "No name")
             elide: Text.ElideRight
         }
