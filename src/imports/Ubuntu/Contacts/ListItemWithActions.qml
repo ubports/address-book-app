@@ -29,6 +29,7 @@ Item {
     property bool triggerActionOnMouseRelease: false
     property color color: Theme.palette.normal.background
     property color selectedColor: "#F7F7F7"
+    property color selectedBorderColor: "transparent"
     property bool selected: false
     property bool selectionMode: false
     property alias internalAnchors: mainContents.anchors
@@ -266,7 +267,7 @@ Item {
 
         width: parent.width
         border {
-            color: UbuntuColors.orange
+            color: root.selectedBorderColor
             width: root.selected ? units.dp(1) : 0
         }
         color: root.selected ? root.selectedColor : root.color
