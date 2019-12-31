@@ -218,7 +218,7 @@ Item {
        }
        visible: _visibleRightSideActions.length > 0
        width: rightActionsRepeater.count > 0 ? rightActionsRepeater.count * (root.actionWidth + units.gu(2)) + root.actionThreshold + units.gu(2) : 0
-       color: "white"
+       color: Theme.palette.normal.foreground
        Row {
            anchors{
                top: parent.top
@@ -246,7 +246,7 @@ Item {
                        width: units.gu(3)
                        height: units.gu(3)
                        name: modelData.iconName
-                       color: root.activeAction === modelData ? UbuntuColors.orange : UbuntuColors.lightGrey
+                       color: root.activeAction === modelData ? Theme.palette.normal.activity : Theme.palette.normal.foregroundText
                        asynchronous: true
                    }
               }
@@ -264,6 +264,7 @@ Item {
         }
 
         width: parent.width
+        color: root.color
 
         Loader {
             id: selectionIcon
