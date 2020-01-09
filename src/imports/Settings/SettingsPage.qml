@@ -98,24 +98,6 @@ Page {
                             importFromSimItem.forceActiveFocus()
                         }
                     }
-
-                    // selection visual feedback
-                    //
-                    // FIXME: Using a private property here. This uses the old list item and the only way to change the text
-                    // color is with this property.
-                    // We should remove it when update the app to the new ListItem.
-                    __foregroundColor: selected ? UbuntuColors.blue : Theme.palette.normal.baseText
-
-                    Rectangle {
-                        border {
-                            color: UbuntuColors.orange
-                            width: units.dp(1)
-                        }
-                        color: "#E6E6E6"
-                        anchors.fill: parent
-                        visible: addAccountItem.selected
-                        z: -1
-                    }
                 }
             }
             ListItem.Standard {
@@ -134,24 +116,6 @@ Page {
                 onClicked: importFromSimItem.activate()
                 Keys.onRightPressed: importFromSimItem.activate()
                 Keys.onUpPressed: addGoogleAccountItem.forceActiveFocus()
-
-                // selection visual feedback
-                //
-                // FIXME: Using a private property here. This uses the old list item and the only way to change the text
-                // color is with this property.
-                // We should remove it when update the app to the new ListItem.
-                __foregroundColor: selected ? UbuntuColors.blue : Theme.palette.normal.baseText
-
-                Rectangle {
-                    border {
-                        color: UbuntuColors.orange
-                        width: units.dp(1)
-                    }
-                    color: "#E6E6E6"
-                    anchors.fill: parent
-                    visible: importFromSimItem.selected
-                    z: -1
-                }
             }
             SettingsDefaultSyncTarget {
                 id: defaultSyncTarget
