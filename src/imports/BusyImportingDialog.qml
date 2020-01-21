@@ -37,9 +37,9 @@ Popups.Dialog {
     }
     Button {
         id: closeButton
-        text: i18n.tr("Close")
+        text: i18n.tr("Cancel")
         visible: false
-        color: UbuntuColors.red
+        color: theme.palette.normal.negative
         onClicked: {
             busyImportingDialog.destruction()
             PopupUtils.close(busyImportingDialog)

@@ -193,7 +193,7 @@ Item {
         }
         width: root.leftActionWidth + actionThreshold
         visible: leftSideAction
-        color: UbuntuColors.red
+        color: theme.palette.normal.negative
 
         Icon {
             anchors {

@@ -457,7 +457,7 @@ Page {
 
                 text: i18n.dtr("address-book-app", "Delete")
                 visible: !contactEditor.isNewContact
-                color: UbuntuColors.red
+                color: theme.palette.normal.negative
                 anchors {
                     left: parent.left
                     right: parent.right
