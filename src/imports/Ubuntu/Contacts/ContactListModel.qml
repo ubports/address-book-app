@@ -93,6 +93,10 @@ ContactModel {
                 }
             }
         },
+        CollectionFilter {
+            id: collectionFilter
+            ids: ["qtcontacts:org.nemomobile.contacts.sqlite::32"] // aggregate
+        },
         IntersectionFilter {
             id: contactsFilter
 
@@ -100,7 +104,7 @@ ContactModel {
             readonly property alias filtersProxy: contactsFilter.filters
 
             property bool active: {
-                var filters_ = []
+                var filters_ = root.manager === "galera" ? [collectionFilter] : []
                 if (contactTermFilter.value.length > 0) {
                     filters_.push(contactTermFilter)
                 } else if (root.onlyFavorites) {
