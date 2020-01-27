@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2019-10-21 14:55+0000\n"
+"PO-Revision-Date: 2020-01-19 19:39+0000\n"
 "Last-Translator: Sami Törmänen <tormanen.sami@gmail.com>\n"
 "Language-Team: Finnish <https://translate.ubports.com/projects/ubports/"
 "address-book-app/fi/>\n"
@@ -85,7 +85,7 @@ msgstr "Palaa"
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
-msgstr "Peruuta"
+msgstr "Keskeytä"
 
 #: ../src/imports/ABContactListPage.qml:539
 msgid "Cancel selection"

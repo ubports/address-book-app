@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2019-10-04 08:53+0000\n"
-"Last-Translator: Sander <sander.k1007@kpnmail.nl>\n"
+"PO-Revision-Date: 2020-01-19 19:39+0000\n"
+"Last-Translator: Tom Dom <thomas@patoel.nl>\n"
 "Language-Team: Dutch <https://translate.ubports.com/projects/ubports/"
 "address-book-app/nl/>\n"
 "Language: nl\n"
@@ -109,7 +109,7 @@ msgstr "Contactpersoon niet gevonden"
 #: ../src/imports/ABContactListPage.qml:288
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
-msgstr "Contactpersonen"
+msgstr "Contacten"
 
 #: ../data/address-book-app.desktop.in.in.h:2
 msgid "Contacts Address Book"

@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2019-10-27 07:36+0000\n"
-"Last-Translator: Ivo Xavier <ivofernandes12@gmail.com>\n"
+"PO-Revision-Date: 2020-01-19 19:39+0000\n"
+"Last-Translator: Jaime Pereira <jetpereira@sapo.pt>\n"
 "Language-Team: Portuguese <https://translate.ubports.com/projects/ubports/"
 "address-book-app/pt/>\n"
 "Language: pt\n"
@@ -160,7 +160,7 @@ msgstr "Insira um nome social alternativo"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailEmailsEditor.qml:28
 msgid "Enter an email address"
-msgstr "Introduza um email"
+msgstr "Introduza um endereço de email"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
