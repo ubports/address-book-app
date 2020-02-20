@@ -54,7 +54,7 @@ Column {
         }
         height: paintedHeight
         text: i18n.tr("Create a new contact by swiping up from the bottom of the screen.")
-        color: "#5d5d5d"
+        color: theme.palette.normal.backgroundSecondaryText
         fontSize: "x-large"
         wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignHCenter
