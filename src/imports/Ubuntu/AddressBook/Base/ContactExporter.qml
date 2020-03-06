@@ -100,7 +100,7 @@ Item {
         function generateOutputFileName(contacts)
         {
             if (contacts.length === 1) {
-                return "file:///tmp/%1.vcf".arg(contacts[0].displayLabel.label.replace(/([^a-z0-9]+)/gi, '_'))
+                return "file:///tmp/%1.vcf".arg(contacts[0].displayLabel.label.replace(/[\s/]+/gi, '_'))
             } else {
                 return "file:///tmp/ubuntu_contacts.vcf";
             }
