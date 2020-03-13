@@ -1,3 +1,10 @@
+# This command figures out the target architecture for use in the manifest file
+execute_process(
+    COMMAND dpkg-architecture -qDEB_HOST_ARCH
+    OUTPUT_VARIABLE CLICK_ARCH
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
 if(CLICK_MODE)
     if(NOT BZR_REVNO)
         set(BZR_REVNO "latest")

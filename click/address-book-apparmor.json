@@ -1,4 +1,5 @@
 {
+    "template": "unconfined",
     "policy_groups": [
         "accounts",
         "contacts",
@@ -9,5 +10,8 @@
     "read_path": [
         "@{HOME}/.local/share/evolution/addressbook/system/photos/"
     ],
-    "policy_version": 1.2
+    "write_dir": [
+        "/tmp/"
+    ],
+    "policy_version": 16.04
 }
