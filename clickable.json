@@ -1,0 +1,9 @@
+{
+  "template": "cmake",
+  "build_args": "-DCMAKE_INSTALL_PREFIX='' -DCLICK_MODE=ON -DENABLE_TESTS=OFF",
+  "dependencies_target": [
+    "libofono-qt-dev",
+    "libqofono-qt5-0",
+    "libqofono-dev"
+  ]
+}
