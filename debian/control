@@ -82,6 +82,7 @@ Package: qtdeclarative5-ubuntu-addressbook0.1
 Architecture: any
 Depends: qtdeclarative5-ubuntu-contacts0.1 (= ${binary:Version}),
          qtdeclarative5-ubuntu-content1,
+         qml-module-qt-labs-platform,
          ${misc:Depends},
          ${shlibs:Depends},
 Description: Qt Ubuntu Address Book  Components - QML plugin
@@ -114,7 +115,6 @@ Depends: ${misc:Depends},
          qml-module-ubuntu-components (>= 0.1.49+14.10.20140707) | qml-module-ubuntu-components-gles,
          ubuntu-ui-toolkit-autopilot (>= 0.1.46+14.10.20140527),
          address-book-app (>= ${binary:Version}),
-         qml-module-qt-labs-platform,
          ubuntu-mobile-icons,
 Description: Test package for address-book-app
  Autopilot tests for the address-book-app package
