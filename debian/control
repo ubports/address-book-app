@@ -114,6 +114,7 @@ Depends: ${misc:Depends},
          qml-module-ubuntu-components (>= 0.1.49+14.10.20140707) | qml-module-ubuntu-components-gles,
          ubuntu-ui-toolkit-autopilot (>= 0.1.46+14.10.20140527),
          address-book-app (>= ${binary:Version}),
+         qml-module-qt-labs-platform,
          ubuntu-mobile-icons,
 Description: Test package for address-book-app
  Autopilot tests for the address-book-app package

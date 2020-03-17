@@ -85,6 +85,7 @@ Item {
                                                   ContactDetail.Tag,
                                                   ContactDetail.ExtendedDetail,
                                                   ContactDetail.Guid ]
+        
 
         function filterContactDetails(contact)
         {
