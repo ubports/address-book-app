@@ -10,8 +10,5 @@
     "read_path": [
         "@{HOME}/.local/share/evolution/addressbook/system/photos/"
     ],
-    "write_dir": [
-        "/tmp/"
-    ],
     "policy_version": 16.04
 }

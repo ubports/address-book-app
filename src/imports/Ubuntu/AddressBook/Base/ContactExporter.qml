@@ -20,6 +20,7 @@ import QtContacts 5.0
 import Ubuntu.Components 1.3
 import Ubuntu.Content 1.3
 import Ubuntu.Components.Popups 1.3
+import Qt.labs.platform 1.0
 
 Item {
     id: root
@@ -27,6 +28,7 @@ Item {
     property var contactModel
     property bool exportToDisk: true
     property var activeTransfer: null
+    readonly property string exportPath: StandardPaths.writableLocation(StandardPaths.CacheLocation)
 
     signal contactsFetched(var contacts)
     signal done(string outputFile)
@@ -100,9 +102,9 @@ Item {
         function generateOutputFileName(contacts)
         {
             if (contacts.length === 1) {
-                return "file:///tmp/%1.vcf".arg(contacts[0].displayLabel.label.replace(/[\s/]+/gi, '_'))
+                return exportPath + "/%1.vcf".arg(contacts[0].displayLabel.label.replace(/[\s/]+/gi, '_'))
             } else {
-                return "file:///tmp/ubuntu_contacts.vcf";
+                return exportPath + "/ubuntu_contacts.vcf";
             }
         }
 
