@@ -385,15 +385,6 @@ Page {
         visible: false
         inputMethodHints: Qt.ImhNoPredictiveText
         placeholderText: i18n.tr("Search...")
-        onVisibleChanged: {
-            if (visible) {
-                if (activeFocus) {
-                    Qt.inputMethod.show()
-                } else {
-                    searchField.forceActiveFocus()
-                }
-            }
-        }
 
         Keys.onTabPressed: contactList.forceActiveFocus()
         Keys.onDownPressed: contactList.forceActiveFocus()
@@ -524,7 +515,6 @@ Page {
             PropertyChanges {
                 target: searchField
                 visible: true
-                focus: true
                 text: ""
             }
         },
