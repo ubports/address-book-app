@@ -171,6 +171,18 @@ Page {
                 onActionTrigerred: root.actionTrigerred(actionName, root.contact, detail)
             }
 
+            ContactDetailBirthdayView {
+                objectName: "birthday"
+
+                contact: root.contact
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                height: implicitHeight
+            }
+
+
             ContactDetailOrganizationsView {
                 objectName: "organizations"
 

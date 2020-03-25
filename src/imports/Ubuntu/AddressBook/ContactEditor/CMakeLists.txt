@@ -13,6 +13,7 @@ set(AB_CONTACT_EDITOR_QMLS
     ContactDetailPhoneNumbersEditor.qml
     ContactDetailSyncTargetEditor.qml
     ContactDetailWithTypeEditor.qml
+    ContactDetailBirthdayEditor.qml
     ContactEditorPage.qml
     RemoveContactsDialog.qml
     TextInputDetail.qml

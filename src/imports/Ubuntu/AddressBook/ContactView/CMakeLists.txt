@@ -10,6 +10,7 @@ set(AB_CONTACT_VIEW_QMLS
     ContactDetailOrganizationsView.qml
     ContactDetailPhoneNumbersView.qml
     ContactDetailPhoneNumberView.qml
+    ContactDetailBirthdayView.qml
     ContactDetailSyncTargetView.qml
     ContactDetailWithTypeView.qml
     ContactFetchError.qml
