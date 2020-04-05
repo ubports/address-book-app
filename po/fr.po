@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2019-10-25 19:36+0000\n"
+"PO-Revision-Date: 2020-04-03 09:22+0000\n"
 "Last-Translator: Anne Onyme <anneonyme017@netcourrier.com>\n"
 "Language-Team: French <https://translate.ubports.com/projects/ubports/"
 "address-book-app/fr/>\n"
@@ -125,7 +125,7 @@ msgstr "Pays"
 #: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr ""
-"Créer un nouveau contact en glissant vers le haut à partir du bas de l'écran."
+"Créez un nouveau contact en glissant vers le haut à partir du bas de l'écran."
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
