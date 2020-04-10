@@ -142,5 +142,9 @@ ComboButton {
                 root.expanded = false
             }
         }
+
+        Scrollbar{
+            flickableItem: view
+        }
     }
 }
