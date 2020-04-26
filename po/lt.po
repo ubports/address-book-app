@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2019-09-25 19:51+0000\n"
+"PO-Revision-Date: 2020-04-23 19:23+0000\n"
 "Last-Translator: Moo <moose@mail.ru>\n"
 "Language-Team: Lithuanian <https://translate.ubports.com/projects/ubports/"
 "address-book-app/lt/>\n"
@@ -418,7 +418,7 @@ msgstr ""
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 msgid "Syncing..."
-msgstr ""
+msgstr "Sinchronizuojama..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:30
 msgid "Title"
