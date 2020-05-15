@@ -75,6 +75,12 @@ Page {
                 onCountChanged: numberFlickable.contentY = 0
             }
 
+            ListItem.Standard {
+                id: mynumbersPlaceHolder
+                text: i18n.dtr("address-book-app", "Reading my phone number(s)...")
+                visible: myself.count == 0
+            }
+
             Repeater {
                 model: onlineAccountsHelper.providerModel
 
