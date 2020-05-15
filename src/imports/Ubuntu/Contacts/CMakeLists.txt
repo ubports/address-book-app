@@ -31,6 +31,7 @@ set(CONTACT_COMPONENTS_QMLS
     SubtitledWithColors.qml
     Triangle.qml
     VCardParser.qml
+    ContactImportPage.qml
 )
 
 set(CONTACT_COMPONENTS_SRC
