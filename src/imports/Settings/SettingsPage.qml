@@ -117,6 +117,27 @@ Page {
                 Keys.onRightPressed: importFromSimItem.activate()
                 Keys.onUpPressed: addGoogleAccountItem.forceActiveFocus()
             }
+
+            ListItem.Standard {
+                id: exportAllContactsItem
+
+                property bool selected: (activeFocus && pageStack.hasKeyboard)
+
+                function activate()
+                {
+                    pageStack.addPageToNextColumn(root,
+                                                  Qt.resolvedUrl("../ContactShare/ContactSharePage.qml"),
+                                                  {contactModel: root.contactListModel,
+                                                   contacts: root.contactListModel.contacts })
+                }
+
+                text: i18n.tr("Export all contacts")
+                progression: true
+                onClicked: exportAllContactsItem.activate()
+                Keys.onRightPressed: exportAllContactsItem.activate()
+                Keys.onUpPressed: importFromSimItem.forceActiveFocus()
+            }
+
             SettingsDefaultSyncTarget {
                 id: defaultSyncTarget
                 onChanged: save()
