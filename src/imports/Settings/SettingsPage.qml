@@ -116,6 +116,7 @@ Page {
                 onClicked: importFromSimItem.activate()
                 Keys.onRightPressed: importFromSimItem.activate()
                 Keys.onUpPressed: addGoogleAccountItem.forceActiveFocus()
+                Keys.onDownPressed: exportAllContactsItem.forceActiveFocus()
             }
 
             ListItem.Standard {
