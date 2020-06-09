@@ -5,13 +5,5 @@
         "libofono-qt-dev",
         "libqofono-qt5-0",
         "libqofono-dev"
-    ],
-    "dependencies_host": [
-       "qml-module-qtcontacts",
-       "qtdeclarative5-buteo-syncfw0.1",
-       "qtdeclarative5-gsettings1.0",
-       "qml-module-ofono",
-       "qtdeclarative5-ubuntu-keyboard-extensions0.1",
-       "qtcontact5-galera"
     ]
 }
