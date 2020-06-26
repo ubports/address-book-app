@@ -194,7 +194,7 @@ FocusScope {
 
       This property holds if the import options should be visible on the list
     */
-    property bool showImportOptions: false    
+    property bool showImportOptions: false
     /*!
       \qmlproperty bool showImportFromAccountOption
 
@@ -568,6 +568,26 @@ FocusScope {
                                            {"objectName": "simCardImportPage",
                                             "targetModel": view.listModel,
                                             "sims": simList.sims})
+                    }
+                }
+
+                // Import from vcf file
+                ContactListButtonDelegate {
+                    id: importFromVCF
+                    objectName: "%1.importFromVcfCardButton".arg(root.objectName)
+
+                    expandIcon: true
+                    iconSource: "image://theme/import"
+                    labelText: i18n.dtr("address-book-app", "Import contacts from vcard file")
+                    // Does not show the button if the list is not in a pageStack
+                    visible: typeof(pageStack) !== "undefined"
+                    onClicked: {
+                        if (pageStack.addPageToNextColumn)
+                            pageStack.addPageToNextColumn(pageStack.primaryPage, Qt.resolvedUrl("ContactImportPage.qml"),
+                                                      {"objectName": "contactImportPage" })
+                        else
+                            pageStack.push(Qt.resolvedUrl("ContactImportPage.qml"),
+                                           {"objectName": "contactImportPage" })
                     }
                 }
             }

@@ -23,8 +23,6 @@ import Ubuntu.Content 1.3 as ContentHub
 Page {
     id: root
 
-    signal canceled()
-
     // invisible header
     header: Item { height: 0 }
     ContentHub.ContentPeerPicker {
@@ -41,7 +39,7 @@ Page {
         }
 
         onCancelPressed: {
-            root.canceled()
+            pageStack.removePages(root)
          }
     }
 

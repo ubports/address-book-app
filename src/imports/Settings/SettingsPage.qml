@@ -133,7 +133,7 @@ Page {
                 {
                     pageStack.addPageToCurrentColumn(root, importContactPageComponent)
                 }
-                text: i18n.tr("Import from vcf File")
+                text: i18n.tr("Import from vcard file")
                 progression: true
                 onClicked: importFromVCFItem.activate()
                 Keys.onRightPressed: importFromVCFItem.activate()
@@ -174,11 +174,6 @@ Page {
         id: importContactPageComponent
         ContactsUI.ContactImportPage {
             id: importFromVCF
-
-            onCanceled:{
-                pageStack.removePages(importFromVCF)
-            }
-
         }
     }
 

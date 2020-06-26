@@ -172,10 +172,13 @@ Item {
             // click
             var bottonsHeader = findChild(root.contactListViewObj, "importFromButtons")
             var importButton = findChild(root.contactListViewObj, "contactListViewTest.importFromOnlineAccountButton.testProvider")
+            var importButtonVcf = findChild(root.contactListViewObj, "contactListViewTest.importFromVcfCardButton")
+
             // need to wait a bit more until the list leave the loading state
             tryCompare(bottonsHeader, "visible", true, 10000)
             tryCompare(importButton, "visible", true, 10000)
-            tryCompare(bottonsHeader, "height", importButton.height)
+            tryCompare(importButtonVcf, "visible", true, 10000)
+            tryCompare(bottonsHeader, "height", importButton.height+importButtonVcf.height)
 
             mouseClick(importButton, importButton.width / 2, importButton.height / 2)
             tryCompare(onlineAccountDialog.item, "running", true)
