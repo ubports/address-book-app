@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-29 08:42+0000\n"
+"POT-Creation-Date: 2020-06-29 13:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,7 +36,7 @@ msgstr ""
 msgid "Add Field"
 msgstr ""
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:407
 msgid "Add field"
 msgstr ""
 
@@ -75,6 +75,12 @@ msgstr ""
 
 #: ../src/imports/ABContactListPage.qml:712
 msgid "Back"
+msgstr ""
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:61
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:107
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailBirthdayView.qml:53
+msgid "Birthday"
 msgstr ""
 
 #: ../src/imports/ABContactListPage.qml:406
@@ -135,7 +141,7 @@ msgstr ""
 #: ../src/imports/ABContactListPage.qml:379
 #: ../src/imports/ABContactListPage.qml:670
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:470
 msgid "Delete"
 msgstr ""
 
@@ -151,6 +157,10 @@ msgstr ""
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailEmailsView.qml:25
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailEmailsView.qml:28
 msgid "Email"
+msgstr ""
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:129
+msgid "Enter a birthday"
 msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:27
@@ -253,7 +263,7 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:62
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:64
 msgid "Middle Name"
 msgstr ""
 

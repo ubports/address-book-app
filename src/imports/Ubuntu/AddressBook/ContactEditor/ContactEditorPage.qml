@@ -342,6 +342,18 @@ Page {
                 onNewFieldAdded: root.focusToFirstEntry(field)
             }
 
+            ContactDetailBirthdayEditor {
+                id: birthdayEditor
+                objectName: "birthday"
+
+                contact: contactEditor.contact
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                height: implicitHeight
+            }
+
             ContactDetailOrganizationsEditor {
                 id: organizationsEditor
                 objectName: "professionalDetails"
