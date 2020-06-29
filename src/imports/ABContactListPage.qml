@@ -302,6 +302,14 @@ Page {
             bottom: keyboard.top
             right: parent.right
         }
+        fetchHint: FetchHint {
+                    detailTypesHint: [ ContactDetail.DisplayLabel,
+                                       ContactDetail.PhoneNumber,
+                                       ContactDetail.Email,
+                                       ContactDetail.Name,
+                                       ContactDetail.Avatar,
+                                       ContactDetail.Tag]
+                }
         currentIndex: -1
         filterTerm: searchField.text
         multiSelectionEnabled: true
@@ -363,6 +371,99 @@ Page {
             var next = pageStack._nextItemInFocusChain(view, true)
             if (next === searchField) {
                 pageStack._nextItemInFocusChain(next, true)
+            }
+        }
+
+        leftSideAction: Action {
+            iconName: "delete"
+            text: i18n.tr("Delete")
+            onTriggered: {
+                var currentContact = contactList.listModel.contacts[value.contactIndex]
+                contactList.listModel.removeContact(currentContact.contactId)
+            }
+        }
+
+        rightSideActions: [
+            Action {
+                iconName: "share"
+                text: i18n.tr("Share")
+                onTriggered: {
+                    var currentContact = contactList.listModel.contacts[value.contactIndex]
+                    var contacts = []
+                    contacts.push(currentContact)
+                    contactExporter.start(contacts)
+                }
+            },
+            Action {
+                iconName: "message"
+                text: i18n.tr("Message")
+                onTriggered: {
+                    triggerAction(value.contactIndex, "message")
+                }
+            },
+            Action {
+                iconName: "call-start"
+                text: i18n.tr("Call")
+                onTriggered: {
+                    triggerAction(value.contactIndex, "tel")
+                }
+            }
+
+        ]
+    }
+
+    function triggerAction(contactIndex, action) {
+        var currentContact = contactList.listModel.contacts[contactIndex]
+        if (currentContact.phoneNumbers.length > 1) {
+            var dialog = PopupUtils.open(chooseNumberDialog, mainPage, {
+                'contact': currentContact
+            });
+            dialog.selectedPhoneNumber.connect(
+                        function(number) {
+                            sendAction(action, number);
+                            PopupUtils.close(dialog);
+                        })
+        } else {
+            sendAction(action, currentContact.phoneNumber.number)
+        }
+    }
+
+    function sendAction(action, phoneNumber) {
+        Qt.openUrlExternally(("%1:%2").arg(action).arg(phoneNumber))
+    }
+
+    Component {
+        id: chooseNumberDialog
+        Popups.Dialog {
+            id: dialog
+            property var contact
+            title: i18n.tr("Please select a phone number")
+            modal:true
+
+            signal selectedPhoneNumber(string number)
+
+            ListItem.ItemSelector {
+                id: phoneNumberList
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                activeFocusOnPress: false
+                expanded: true
+                text: i18n.tr("Numbers") + ":"
+                model: contact.phoneNumbers
+                selectedIndex: -1
+                delegate: OptionSelectorDelegate {
+                    highlightWhenPressed: true
+                    text: modelData.number
+                    activeFocusOnPress: false
+                }
+                onDelegateClicked: selectedPhoneNumber(contact.phoneNumbers[index].number)
+            }
+
+            Connections {
+                target: __eventGrabber
+                onPressed: PopupUtils.close(dialog)
             }
         }
     }

@@ -27,6 +27,7 @@ ListItemWithActions {
     property bool isCurrentItem: false
     property string defaultAvatarUrl: ""
     property bool flicking: false
+    property int contactIndex: index
     readonly property string displayLabel: contact ? ContactsJS.formatToDisplay(contact, "") : ""
 
     signal clicked(int index, QtObject contact)
