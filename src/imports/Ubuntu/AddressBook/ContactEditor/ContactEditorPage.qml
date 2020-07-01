@@ -35,6 +35,7 @@ Page {
     property var newDetails: []
     property list<QtObject> leadingActions
     property alias headerActions: trailingBar.actions
+    property bool newFieldAction: false
 
     readonly property bool isNewContact: contact && (!contact.contactId || contact.contactId === "qtcontacts:::")
     readonly property bool isContactValid: !avatarEditor.busy && (!nameEditor.isEmpty() || !phonesEditor.isEmpty())
@@ -169,14 +170,19 @@ Page {
 
     function focusToFirstEntry(field)
     {
-        var itemToFocus = field
-        if (field.repeater)
-            itemToFocus = field.repeater.itemAt(0)
+        //only focus when new field requested
+        if (newFieldAction) {
+            var itemToFocus = field
+            if (field.repeater)
+                itemToFocus = field.repeater.itemAt(0)
 
-        if (itemToFocus) {
-            root.idleMakeMeVisible(itemToFocus)
-            itemToFocus.forceActiveFocus()
+            if (itemToFocus) {
+                root.idleMakeMeVisible(itemToFocus)
+                itemToFocus.forceActiveFocus()
+            }
         }
+        newFieldAction = false
+
     }
 
     function _onContactSaved()
@@ -446,6 +452,7 @@ Page {
                     if (qmlTypeName) {
                         var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + qmlTypeName + "{}", contactEditor)
                         if (newDetail) {
+                            newFieldAction = true
                             var newDetailsCopy = contactEditor.newDetails
                             newDetailsCopy.push(newDetail)
                             contactEditor.newDetails = newDetailsCopy
