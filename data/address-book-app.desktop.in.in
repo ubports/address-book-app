@@ -14,3 +14,4 @@ X-Ubuntu-Touch=true
 X-Ubuntu-Single-Instance=true
 X-Ubuntu-Splash-Show-Header=true
 @XSCREENSHOT@
+X-Ubuntu-Splash-Color=#666666
