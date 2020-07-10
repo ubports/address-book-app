@@ -85,7 +85,6 @@ Item {
                                                   ContactDetail.Tag,
                                                   ContactDetail.ExtendedDetail,
                                                   ContactDetail.Guid ]
-        
 
         function filterContactDetails(contact)
         {
@@ -105,7 +104,8 @@ Item {
             if (contacts.length === 1) {
                 return exportPath + "/%1.vcf".arg(contacts[0].displayLabel.label.replace(/[\s/]+/gi, '_'))
             } else {
-                return exportPath + "/ubuntu_contacts.vcf";
+                var fileName = new Date().toLocaleString(Qt.locale(), "yyyyMMddHHmmss")
+                return exportPath + "/ubuntu_contacts_" + fileName + ".vcf";
             }
         }
 
