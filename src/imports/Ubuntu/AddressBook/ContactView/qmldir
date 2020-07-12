@@ -16,4 +16,5 @@ internal ContactDetailPhoneNumbersView ContactDetailPhoneNumbersView.qml
 internal ContactDetailPhoneNumberView ContactDetailPhoneNumberView.qml
 internal ContactDetailWithTypeView ContactDetailWithTypeView.qml
 internal ContactFetchError ContactFetchError.qml
+internal ContactDetailBirthdayView ContactDetailBirthdayView.qml
 #internal ContactHeaderView ContactHeaderView.qml

@@ -216,26 +216,15 @@ Item {
         preventStealing: true
         onPressed: {
             internal.adjustContentPosition(mouseY)
-            dragginTimer.start()
+            internal.fastScrolling = true
         }
 
         onReleased: {
-            dragginTimer.stop()
-            internal.desireSection = ""
             internal.fastScrolling = false
         }
 
         onPositionChanged: internal.adjustContentPosition(mouseY)
 
-        Timer {
-            id: dragginTimer
-
-            running: false
-            interval: 150
-            onTriggered: {
-                internal.fastScrolling = true
-            }
-        }
     }
 
     Timer {
@@ -327,4 +316,3 @@ Item {
         }
     }
 }
-

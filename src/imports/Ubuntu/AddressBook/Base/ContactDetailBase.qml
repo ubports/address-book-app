@@ -91,6 +91,7 @@ FocusScope {
         detailNameMap[QtContacts.ContactDetail.Address] = "address"
         detailNameMap[QtContacts.ContactDetail.OnlineAccount] = "onlineAccount"
         detailNameMap[QtContacts.ContactDetail.SyncTarget] = "syncTarget"
+        detailNameMap[QtContacts.ContactDetail.Birthday] = "birthday"
 
         if ((detail in detailMap) && (field in detailMap[detail])) {
             return detailMap[detail][field]

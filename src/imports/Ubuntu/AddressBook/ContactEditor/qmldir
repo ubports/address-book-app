@@ -16,3 +16,4 @@ internal ContactDetailSyncTargetEditor ContactDetailSyncTargetEditor.qml
 internal ContactDetailWithTypeEditor ContactDetailWithTypeEditor.qml
 internal TextInputDetail TextInputDetail.qml
 internal ValueSelector ValueSelector.qml
+internal ContactDetailBirthdayEditor ContactDetailBirthdayEditor.qml

@@ -28,14 +28,14 @@ ComboButton {
     readonly property var validDetails: [ ContactDetail.PhoneNumber,
                                           ContactDetail.Email,
                                           ContactDetail.Address,
+                                          ContactDetail.Birthday,
                                           ContactDetail.OnlineAccount,
                                           ContactDetail.Organization
                                           // TODO: Not supported yet
-                                          // ContactDetail.Birthday,
                                           // ContactDetail.Note,
                                           // ContactDetail.Url
                                          ]
-    readonly property var singleValueDetails: [ ContactDetail.Organization ]
+    readonly property var singleValueDetails: [ ContactDetail.Organization, ContactDetail.Birthday ]
     readonly property var specialFields: {
         "CONTACT_DETAIL_MIDDLE_NAME": 1000
     }
@@ -57,6 +57,8 @@ ComboButton {
             return i18n.dtr("address-book-app", "Social")
         case ContactDetail.Organization:
             return i18n.dtr("address-book-app", "Professional Details")
+        case ContactDetail.Birthday:
+            return i18n.dtr("address-book-app", "Birthday")
         // special cases
         case root.specialFields.CONTACT_DETAIL_MIDDLE_NAME:
             return i18n.dtr("address-book-app", "Middle Name")
@@ -80,6 +82,8 @@ ComboButton {
             return "OnlineAccount"
         case ContactDetail.Organization:
             return "Organization"
+        case ContactDetail.Birthday:
+            return "Birthday"
         default:
             console.error("Invalid contact detail enum value:" + value)
             return ""
@@ -102,7 +106,7 @@ ComboButton {
             for(var i=0; i < details.length; i++) {
                 var det = details[i]
                 if (singleValueDetails.indexOf(det) != -1) {
-                    if (contact.details(det).length === 0) {
+                    if (contact.details(det).length === 0 || contact.details(det).value === undefined) {
                         result.push(det)
                     }
                 } else {
@@ -141,6 +145,10 @@ ComboButton {
                 root.selectedDetail = modelData
                 root.expanded = false
             }
+        }
+
+        Scrollbar{
+            flickableItem: view
         }
     }
 }
