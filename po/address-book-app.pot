@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-29 13:02+0000\n"
+"POT-Creation-Date: 2020-06-29 15:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,7 @@ msgstr ""
 msgid "+ Create New"
 msgstr ""
 
-#: ../src/imports/Settings/SettingsPage.qml:90
+#: ../src/imports/Settings/SettingsPage.qml:96
 #, qt-format
 msgid "Add %1 account"
 msgstr ""
@@ -226,8 +226,16 @@ msgstr ""
 msgid "Import contacts from SIM card"
 msgstr ""
 
-#: ../src/imports/Settings/SettingsPage.qml:113
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:581
+msgid "Import contacts from vcard file"
+msgstr ""
+
+#: ../src/imports/Settings/SettingsPage.qml:119
 msgid "Import from SIM"
+msgstr ""
+
+#: ../src/imports/Settings/SettingsPage.qml:136
+msgid "Import from vcard file"
 msgstr ""
 
 #: ../src/imports/ABContactListPage.qml:725
@@ -246,7 +254,7 @@ msgstr ""
 msgid "Last name"
 msgstr ""
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:636
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr ""
@@ -365,6 +373,10 @@ msgstr ""
 msgid "Reading contacts from SIM..."
 msgstr ""
 
+#: ../src/imports/Settings/SettingsPage.qml:80
+msgid "Reading my phone number(s)..."
+msgstr ""
+
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
 msgstr ""
@@ -441,7 +453,7 @@ msgstr ""
 msgid "Syncing"
 msgstr ""
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:636
 msgid "Syncing..."
 msgstr ""
 

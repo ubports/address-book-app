@@ -75,6 +75,12 @@ Page {
                 onCountChanged: numberFlickable.contentY = 0
             }
 
+            ListItem.Standard {
+                id: mynumbersPlaceHolder
+                text: i18n.dtr("address-book-app", "Reading my phone number(s)...")
+                visible: myself.count == 0
+            }
+
             Repeater {
                 model: onlineAccountsHelper.providerModel
 
@@ -116,7 +122,25 @@ Page {
                 onClicked: importFromSimItem.activate()
                 Keys.onRightPressed: importFromSimItem.activate()
                 Keys.onUpPressed: addGoogleAccountItem.forceActiveFocus()
+                Keys.onDownPressed: importFromVCFItem.forceActiveFocus()
             }
+
+            ListItem.Standard {
+                id: importFromVCFItem
+
+                property bool selected: (activeFocus && pageStack.hasKeyboard)
+                function activate()
+                {
+                    pageStack.addPageToCurrentColumn(root, importContactPageComponent)
+                }
+                text: i18n.tr("Import from vcard file")
+                progression: true
+                onClicked: importFromVCFItem.activate()
+                Keys.onRightPressed: importFromVCFItem.activate()
+                Keys.onUpPressed: importFromSimItem.forceActiveFocus()
+            }
+
+
             SettingsDefaultSyncTarget {
                 id: defaultSyncTarget
                 onChanged: save()
@@ -143,6 +167,13 @@ Page {
             targetModel: root.contactListModel
             sims: simList.sims
             onImportCompleted: pageStack.removePages(root)
+        }
+    }
+
+    Component {
+        id: importContactPageComponent
+        ContactsUI.ContactImportPage {
+            id: importFromVCF
         }
     }
 
