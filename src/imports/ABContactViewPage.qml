@@ -110,8 +110,13 @@ ContactViewPage {
         if (action == "default") {
             action = "tel";
         }
+        //special case for call where we have to add an option to the url
+        var options = ""
+        if (action === "tel") {
+            options = "&startcall"
+        }
 
-        Qt.openUrlExternally(("%1:%2").arg(action).arg(detail.value(0)))
+        Qt.openUrlExternally(("%1:%2%3").arg(action).arg(detail.value(0)).arg(options))
     }
 
     Loader {
