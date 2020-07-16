@@ -429,7 +429,13 @@ Page {
     }
 
     function sendAction(action, phoneNumber) {
-        Qt.openUrlExternally(("%1:%2").arg(action).arg(phoneNumber))
+            //special case for call where we have to add an option to the url
+            var options = ""
+            if (action === "tel") {
+                options = "&startcall"
+            }
+
+            Qt.openUrlExternally(("%1:%2%3").arg(action).arg(phoneNumber).arg(options))
     }
 
     Component {
