@@ -21,6 +21,7 @@ import QtContacts 5.0 as QtContacts
 
 import Ubuntu.AddressBook.Base 0.1
 
+
 ContactDetailBase {
     id: root
 
@@ -32,7 +33,7 @@ ContactDetailBase {
     anchors.leftMargin: units.gu(2)
     anchors.rightMargin: units.gu(2)
     visible: implicitHeight > 0
-    implicitHeight:(date.length > 0) ? contents.height : 0
+    implicitHeight:(date.length > 0) ? contents.implicitHeight : 0
 
     function isDateValid(dt) {
         return dt instanceof Date && !isNaN(dt.valueOf())
@@ -84,7 +85,7 @@ ContactDetailBase {
                 width: units.gu(2.5)
                 height: width
                 name: "calendar"
-                color: root.activeFocus ? theme.palette.normal.focus : theme.palette.normal.base
+                color: root.activeFocus ? theme.palette.normal.focus : theme.palette.normal.baseText
                 asynchronous: true
             }
         }
