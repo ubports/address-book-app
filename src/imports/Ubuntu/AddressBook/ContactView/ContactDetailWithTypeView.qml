@@ -79,7 +79,7 @@ ContactDetailBase {
         width: root.action && (root.action.iconName !== "") ? units.gu(2.5) : 0
         height: width
         name: root.action ? root.action.iconName : ""
-        color: root.activeFocus ? theme.palette.normal.focus : theme.palette.normal.base
+        color: root.activeFocus ? theme.palette.normal.focus : theme.palette.normal.baseText
         visible: width > 0
         asynchronous: true
     }
