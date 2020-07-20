@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2020-04-23 19:23+0000\n"
-"Last-Translator: Moo <moose@mail.ru>\n"
+"PO-Revision-Date: 2020-07-08 19:28+0000\n"
+"Last-Translator: Arunas <arunas@anakonda.lt>\n"
 "Language-Team: Lithuanian <https://translate.ubports.com/projects/ubports/"
 "address-book-app/lt/>\n"
 "Language: lt\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > "
 "19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? "
 "1 : 2);\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.11.3\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
@@ -410,11 +410,11 @@ msgstr "Gatvė"
 
 #: ../src/imports/ABContactListPage.qml:458
 msgid "Sync"
-msgstr ""
+msgstr "Sinchronizuoti"
 
 #: ../src/imports/ABContactListPage.qml:458
 msgid "Syncing"
-msgstr ""
+msgstr "Sinchronizavimas"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
 msgid "Syncing..."

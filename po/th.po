@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2020-05-25 06:24+0000\n"
-"Last-Translator: Somnuk Limsiroratana <mailsomnuk@yahoo.com>\n"
+"PO-Revision-Date: 2020-06-30 07:46+0000\n"
+"Last-Translator: PPNplus <ppnplus@protonmail.com>\n"
 "Language-Team: Thai <https://translate.ubports.com/projects/ubports/"
 "address-book-app/th/>\n"
 "Language: th\n"
@@ -17,22 +17,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.11.3\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
 msgid "%1 is locked"
-msgstr "ล็อค"
+msgstr "%1 ถูกล็อก"
 
 #. TRANSLATORS: this refers to a new contact
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:480
 msgid "+ Create New"
-msgstr "สร้างใหม่"
+msgstr "+ สร้างใหม่"
 
 #: ../src/imports/Settings/SettingsPage.qml:90
 #, qt-format
 msgid "Add %1 account"
-msgstr "เพิ่มบัญชี"
+msgstr "เพิ่มบัญชี %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
 msgid "Add Field"
@@ -44,7 +44,7 @@ msgstr "เพิ่ม"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
-msgstr "เพิ่มเบอร์โทร"
+msgstr "เพิ่มหมายเลข..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:55
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:23
@@ -111,7 +111,7 @@ msgstr "ผู้ติดต่อ"
 
 #: ../data/address-book-app.desktop.in.in.h:2
 msgid "Contacts Address Book"
-msgstr "สมุดที่อยู่สมุดติดต่อ"
+msgstr "สมุดที่อยู่ผู้ติดต่อ"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
@@ -123,7 +123,7 @@ msgstr "ประเทศ"
 
 #: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
 msgid "Create a new contact by swiping up from the bottom of the screen."
-msgstr "สร้างผู้ติดต่อใหม่โดยกวาดนิ้วขึ้นจากด้านล่างของหน้าจอ"
+msgstr "สร้างผู้ติดต่อใหม่โดยเลื่อนขึ้นจากด้านล่างของหน้าจอ"
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
@@ -159,11 +159,11 @@ msgstr "ใส่นามแฝงทางสังคม"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailEmailsEditor.qml:28
 msgid "Enter an email address"
-msgstr "ใส่ที่อยู่อีเมล์"
+msgstr "ใส่ที่อยู่อีเมล"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
-msgstr "ผิดพลาด"
+msgstr "ข้อผิดพลาด"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
@@ -171,7 +171,7 @@ msgstr "กำลังส่งออกรายชื่อติดต่อ
 
 #: ../src/imports/ABContactListPage.qml:800
 msgid "Fail to import contacts!"
-msgstr "ไม่สามารถนำเข้าที่อยู่ติดต่อได้!"
+msgstr "ไม่สามารถนำเข้าที่อยู่ติดต่อ!"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:285
 msgid "Fail to read SIM card"
@@ -206,7 +206,7 @@ msgstr "นำเข้า"
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
 #, qt-format
 msgid "Import contacts from %1"
-msgstr "นำเข้าที่อยู่ติดต่อจาก% 1"
+msgstr "นำเข้าที่อยู่ติดต่อจาก %1"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
@@ -277,7 +277,7 @@ msgstr "รายชื่อผู้ติดต่อใหม่"
 #. this word must be less than 5 characters
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/TextInputDetail.qml:88
 msgid "Next"
-msgstr "ตกลง"
+msgstr "ถัดไป"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:79
 msgid "No"
@@ -309,7 +309,7 @@ msgstr "องค์กร"
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:122
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:121
 msgid "Other"
-msgstr "อื่นๆ"
+msgstr "อื่น ๆ"
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:202
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:218
@@ -337,7 +337,7 @@ msgstr "ข้อมูลอาชีพ"
 
 #: ../src/imports/ABContactListPage.qml:412
 msgid "Quit"
-msgstr "เลิก"
+msgstr "ปิด"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Reading contacts from SIM..."
@@ -395,7 +395,7 @@ msgstr "แชร์"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Skype"
-msgstr "สไกป์"
+msgstr "Skype"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:57
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailOnlineAccountsView.qml:26
@@ -428,7 +428,7 @@ msgstr "สัมผัส"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:124
 msgid "Unlock"
-msgstr "ปลดล็อค"
+msgstr "ปลดล็อก"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
 msgid "Unlocking..."
@@ -470,7 +470,7 @@ msgid ""
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
 "บัญชีเชื่อมข้อมูลรายชื่อผู้ติดต่อ <b>%1</b> "
-"ของคุณต้องได้รับการปรับปรุงโดยเปิดแอ็พ Contact. "
+"ของคุณต้องได้รับการปรับปรุงโดยการเปิดแอปรายชื่อ\n"
 "เฉพาะรายชื่อในเครื่องเท่านั้นที่แก้ไขได้จนกว่าจะได้รับการปรับปรุงแล้ว"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:33
@@ -490,5 +490,5 @@ msgid ""
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
 "บัญชีเชื่อมข้อมูลรายชื่อผู้ติดต่อ <b>%1</b> ของคุณต้องได้รับการปรับปรุง "
-"ให้ใช้ปุ่มเชื่อมข้อมูลเพื่อปรับปรุงแอ็พ Contacts.\n"
+"ให้ใช้ปุ่มเชื่อมข้อมูลเพื่อปรับปรุงแอปรายชื่อ\n"
 "เฉพาะรายชื่อผู้ติดต่อในเครื่องเท่านั้นที่แก้ไขได้จนกว่าการปรับปรุงจะเสร็จสิ้น"
