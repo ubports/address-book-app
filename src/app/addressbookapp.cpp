@@ -321,7 +321,7 @@ void AddressBookApp::parseUrl(const QString &arg)
     QMap<QString, QStringList> methodsMetaData;
 
     if (methodsMetaData.isEmpty()) {
-        QStringList args;
+
         //view
         args << "id";
         methodsMetaData.insert("contact", args);
