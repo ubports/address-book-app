@@ -47,6 +47,23 @@ ContactDetailBase {
         fillMode: Image.PreserveAspectCrop
         visible: false
         asynchronous: true
+
+        OpacityMask {
+            source: mask
+            maskSource: imageBg
+        }
+
+        LinearGradient {
+            id: mask
+            anchors.fill: parent
+            start: Qt.point(0, 0)
+            end: Qt.point(imageBg.x + imageBg.width, 0)
+            gradient: Gradient {
+                GradientStop { position: 0.2; color: "transparent"}
+                GradientStop { position: 1.0; color: theme.palette.normal.background }
+            }
+        }
+
     }
 
     FastBlur {
