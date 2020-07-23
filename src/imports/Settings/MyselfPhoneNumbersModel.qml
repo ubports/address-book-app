@@ -30,10 +30,16 @@ ListModel {
             var item = simManagerList.itemAt(i)
             if (item) {
                 var numbers = item.subscriberNumbers
-                for (var n in numbers) {
-                    root.append({'phoneNumber': PhoneUtils.format(numbers[n]),
-                                 'network': item.networkName })
+                if (!numbers || numbers.length === 0 ) {
+                    root.append({'phoneNumber': '',
+                                 'network': item.networkName})
+                } else {
+                    for (var n in numbers) {
+                        root.append({'phoneNumber': PhoneUtils.format(numbers[n]),
+                                     'network': item.networkName })
+                    }
                 }
+
             }
         }
     }
@@ -54,6 +60,7 @@ ListModel {
                 OfonoSimManager {
                     id: simManager
                     modemPath: modelData
+
                     onSubscriberNumbersChanged: {
                         console.debug("New numbers:" + subscriberNumbers)
                         dirtyModel.restart()
