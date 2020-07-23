@@ -60,7 +60,7 @@ ContactDetailBase {
             end: Qt.point(imageBg.x + imageBg.width, 0)
             gradient: Gradient {
                 GradientStop { position: 0.2; color: "transparent"}
-                GradientStop { position: 0.8; color: theme.palette.normal.background }
+                GradientStop { position: 1.0; color: theme.palette.normal.background }
             }
         }
 
