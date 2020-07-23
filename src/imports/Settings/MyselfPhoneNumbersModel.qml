@@ -62,7 +62,6 @@ ListModel {
                     modemPath: modelData
 
                     onSubscriberNumbersChanged: {
-                        console.debug("New numbers:" + subscriberNumbers)
                         dirtyModel.restart()
                     }
                 }
