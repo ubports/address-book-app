@@ -1,4 +1,5 @@
-set(ADDRESS_BOOK_APP_ICON "address-book-app.png")
+set(ADDRESS_BOOK_APP_ICON "address-book-app.svg")
+set(ADDRESS_BOOK_APP_SPLASH "address-book-app-splash.svg")
 set(ADDRESS_BOOK_APP_SYMBOLIC_ICON "address-book-app-symbolic.svg")
 set(ADDRESS_BOOK_ARTWORK_PATH "${ADDRESS_BOOK_APP_FULL_DIR}/artwork")
 
