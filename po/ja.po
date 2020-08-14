@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2020-07-10 07:31+0000\n"
+"PO-Revision-Date: 2020-08-08 15:57+0000\n"
 "Last-Translator: M.Sugahara <equaaqua@hotmail.com>\n"
 "Language-Team: Japanese <https://translate.ubports.com/projects/ubports/"
 "address-book-app/ja/>\n"
@@ -61,7 +61,7 @@ msgstr "アドレス帳"
 #. TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "Aim"
-msgstr "Aim"
+msgstr "AIM"
 
 #. TRANSLATORS: this refers to all contacts
 #: ../src/imports/ABContactListPage.qml:480
@@ -489,6 +489,8 @@ msgid ""
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"<b>%1</b> のアカウントは更新が必要です。同期ボタンを押して更新してください。\n"
+"更新するまではローカルの連絡先のみ編集可能です。"
 
 #~ msgid "Frequently called"
 #~ msgstr "よく使う番号"

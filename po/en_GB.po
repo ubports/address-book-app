@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2018-07-06 12:41+0000\n"
-"Last-Translator: konrad <kohofer@gmail.com>\n"
-"Language-Team: English (United Kingdom) "
-"<https://translate.ubports.com/projects/ubports/address-book-app/en_GB/>\n"
+"PO-Revision-Date: 2020-08-09 19:32+0000\n"
+"Last-Translator: Rüdiger Kupper <ruediger.kupper+launchpad@gmail.com>\n"
+"Language-Team: English (United Kingdom) <https://translate.ubports.com/"
+"projects/ubports/address-book-app/en_GB/>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.15\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:51+0000\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
@@ -342,7 +342,7 @@ msgstr "Quit"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Reading contacts from SIM..."
-msgstr "Reading contacts from SIM..."
+msgstr "Reading contacts from SIM…"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
