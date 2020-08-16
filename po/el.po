@@ -8,15 +8,17 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2016-04-25 16:44+0000\n"
-"Last-Translator: Simos Xenitellis  <Unknown>\n"
-"Language-Team: Greek <el@li.org>\n"
+"PO-Revision-Date: 2020-08-14 15:02+0000\n"
+"Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>\n"
+"Language-Team: Greek <https://translate.ubports.com/projects/ubports/"
+"address-book-app/el/>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:51+0000\n"
-"X-Generator: Launchpad (build 18326)\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
@@ -29,9 +31,9 @@ msgid "+ Create New"
 msgstr "+ Δημιουργία νέας"
 
 #: ../src/imports/Settings/SettingsPage.qml:90
-#, fuzzy, qt-format
+#, qt-format
 msgid "Add %1 account"
-msgstr "Προσθήκη λογαριασμού Google"
+msgstr "Προσθήκη λογαριασμού %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
 msgid "Add Field"
@@ -205,9 +207,9 @@ msgid "Import"
 msgstr "Εισαγωγή"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
-#, fuzzy, qt-format
+#, qt-format
 msgid "Import contacts from %1"
-msgstr "Εισαγωγή επαφών από Google"
+msgstr "Εισαγωγή επαφών από %1"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
@@ -248,11 +250,11 @@ msgstr "MSN"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:62
 msgid "Middle Name"
-msgstr ""
+msgstr "Μεσαίο όνομα"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:90
 msgid "Middle name"
-msgstr ""
+msgstr "Μεσαίο όνομα"
 
 #. TRANSLATORS: This refers to mobile/cellphone phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
@@ -278,7 +280,7 @@ msgstr "Νέα επαφή"
 #. this word must be less than 5 characters
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/TextInputDetail.qml:88
 msgid "Next"
-msgstr "Επόμ."
+msgstr "Επόμενο"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:79
 msgid "No"
@@ -317,7 +319,7 @@ msgstr "Άλλο"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:88
 #, qt-format
 msgid "Personal - %1"
-msgstr ""
+msgstr "Προσωπικό- %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:51
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:23
@@ -470,6 +472,10 @@ msgid ""
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Ο λογαριασμός συγχρονισμού επαφών σας <b>%1</b> πρέπει να αναβαθμιστεί "
+"εκτελώντας την εφαρμογή Επαφές.\n"
+"Μόνο οι τοπικές επαφές θα είναι επεξεργάσιμες έως ότου ολοκληρωθεί η "
+"αναβάθμιση."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:33
 #, qt-format
@@ -477,6 +483,9 @@ msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
+"Ο λογαριασμός συγχρονισμού επαφών σας <b>%1</b> πρέπει να αναβαθμιστεί.\n"
+"Περιμένετε μέχρι να ολοκληρωθεί η αναβάθμιση για να επεξεργαστείτε τις "
+"επαφές."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:38
 #, qt-format
@@ -485,6 +494,11 @@ msgid ""
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+"Ο λογαριασμός συγχρονισμού επαφών σας <b>%1</b> πρέπει να αναβαθμιστεί. "
+"Χρησιμοποιήστε το κουμπί συγχρονισμού για να αναβαθμίσετε την εφαρμογή "
+"Επαφές.\n"
+"Μόνο οι τοπικές επαφές θα είναι επεξεργάσιμες έως ότου ολοκληρωθεί η "
+"αναβάθμιση."
 
 #~ msgid "Frequently called"
 #~ msgstr "Συχνά καλούμενος"

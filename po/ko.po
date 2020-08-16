@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2020-07-30 21:59+0000\n"
+"PO-Revision-Date: 2020-08-04 23:58+0000\n"
 "Last-Translator: Young Kim <rsyh93@gmail.com>\n"
 "Language-Team: Korean <https://translate.ubports.com/projects/ubports/"
 "address-book-app/ko/>\n"
@@ -31,9 +31,9 @@ msgid "+ Create New"
 msgstr "+ 새 연락처"
 
 #: ../src/imports/Settings/SettingsPage.qml:90
-#, fuzzy, qt-format
+#, qt-format
 msgid "Add %1 account"
-msgstr "구글 계정 추가"
+msgstr "%1 계정 추가"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
 msgid "Add Field"
@@ -152,7 +152,7 @@ msgstr "전자메일"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
-msgstr "숫자를 입력하세요"
+msgstr "번호를 입력하세요"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOnlineAccountsEditor.qml:27
 msgid "Enter a social alias"
@@ -219,7 +219,7 @@ msgstr "심카드에서 가져오기"
 
 #: ../src/imports/ABContactListPage.qml:634
 msgid "Imported contacts"
-msgstr "연락처 가져오기."
+msgstr "가져온 연락처"
 
 #: ../src/imports/BusyImportingDialog.qml:31
 msgid "Importing..."
