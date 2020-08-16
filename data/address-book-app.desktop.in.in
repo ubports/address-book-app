@@ -10,8 +10,10 @@ _Keywords=Contacts;People;Numbers
 Exec=@DESKTOP_EXEC@ %u
 Icon=@ADDRESS_BOOK_ARTWORK_PATH@/@ADDRESS_BOOK_APP_ICON@
 X-Ubuntu-SymbolicIcon=@ADDRESS_BOOK_ARTWORK_PATH@/@ADDRESS_BOOK_APP_SYMBOLIC_ICON@
+X-Ubuntu-Splash-Image=@ADDRESS_BOOK_ARTWORK_PATH@/@ADDRESS_BOOK_APP_SPLASH@
 X-Ubuntu-Touch=true
 X-Ubuntu-Single-Instance=true
-X-Ubuntu-Splash-Show-Header=true
 @XSCREENSHOT@
-X-Ubuntu-Splash-Color=#666666
+X-Ubuntu-Splash-Color-Header=#f1f0e9
+X-Ubuntu-Splash-Color=#f2f1eb
+X-Ubuntu-Splash-Color-Footer=#f9f8f5
