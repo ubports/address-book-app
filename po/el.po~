@@ -1,0 +1,518 @@
+# Greek translation for address-book-app
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# This file is distributed under the same license as the address-book-app package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: address-book-app\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-01 12:27+0000\n"
+"PO-Revision-Date: 2020-08-14 15:02+0000\n"
+"Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>\n"
+"Language-Team: Greek <https://translate.ubports.com/projects/ubports/"
+"address-book-app/el/>\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.11.3\n"
+"X-Launchpad-Export-Date: 2017-02-17 05:51+0000\n"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
+#, qt-format
+msgid "%1 is locked"
+msgstr "%1 είναι κλειδωμένο"
+
+#. TRANSLATORS: this refers to a new contact
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:480
+msgid "+ Create New"
+msgstr "+ Δημιουργία νέας"
+
+#: ../src/imports/Settings/SettingsPage.qml:90
+#, qt-format
+msgid "Add %1 account"
+msgstr "Προσθήκη λογαριασμού %1"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
+msgid "Add Field"
+msgstr "Προσθήκη πεδίου"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
+msgid "Add field"
+msgstr "Προσθήκη πεδίου"
+
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
+msgid "Add number..."
+msgstr "Προσθήκη αριθμού..."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:55
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:23
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailAddressesView.qml:24
+msgid "Address"
+msgstr "Διεύθυνση"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:180
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:49
+msgid "Addressbook"
+msgstr "Επαφές"
+
+#. TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
+msgid "Aim"
+msgstr "AIM"
+
+#. TRANSLATORS: this refers to all contacts
+#: ../src/imports/ABContactListPage.qml:480
+msgid "All"
+msgstr "Όλες"
+
+#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:51
+msgid "Are you sure that you want to remove all selected contacts?"
+msgstr "Θέλετε σίγουρα να αφαιρέστε όλες τις επιλεγμένες επαφές;"
+
+#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:49
+msgid "Are you sure that you want to remove this contact?"
+msgstr "Θέλετε σίγουρα να αφαιρέσετε αυτή την επαφή;"
+
+#: ../src/imports/ABContactListPage.qml:621
+msgid "Back"
+msgstr "Πίσω"
+
+#: ../src/imports/ABContactEditorPage.qml:38
+#: ../src/imports/ABContactListPage.qml:500
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: ../src/imports/ABContactListPage.qml:539
+msgid "Cancel selection"
+msgstr "Ακύρωση επιλογής"
+
+#: ../src/imports/BusyImportingDialog.qml:40
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:48
+msgid "Close"
+msgstr "Κλείσιμο"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:29
+msgid "Contact Editor"
+msgstr "Επεξεργαστής επαφών"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:26
+msgid "Contact not found"
+msgstr "Η επαφή δε βρέθηκε"
+
+#: ../src/imports/ABContactListPage.qml:248
+#: ../src/imports/ABContactListPage.qml:288
+#: ../data/address-book-app.desktop.in.in.h:1
+msgid "Contacts"
+msgstr "Επαφές"
+
+#: ../data/address-book-app.desktop.in.in.h:2
+msgid "Contacts Address Book"
+msgstr "Επαφές βιβλίου διευθύνσεων"
+
+#: ../data/address-book-app.desktop.in.in.h:3
+msgid "Contacts;People;Numbers"
+msgstr "Επαφές;Άνθρωποι;Αριθμοί"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:35
+msgid "Country"
+msgstr "Χώρα"
+
+#: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
+msgid "Create a new contact by swiping up from the bottom of the screen."
+msgstr ""
+"Δημιουργία νέας επαφής σέρνοντας προς τα πάνω, ξεκινώντας από το κάτω μέρος "
+"της οθόνης."
+
+#: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
+msgid "Default address book"
+msgstr "Προεπιλεγμένο βιβλίο διευθύνσεων"
+
+#: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
+msgid "Delete"
+msgstr "Διαγραφή"
+
+#: ../src/imports/ABContactViewPage.qml:87
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:107
+msgid "Edit"
+msgstr "Επεξεργασία"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:53
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailEmailsEditor.qml:24
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailEmailsView.qml:25
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailEmailsView.qml:28
+msgid "Email"
+msgstr "Ηλεκτρονική διεύθυνση"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:27
+msgid "Enter a number"
+msgstr "Εισαγωγή ενός αριθμού"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOnlineAccountsEditor.qml:27
+msgid "Enter a social alias"
+msgstr "Εισαγωγή ενός κοινωνικού ψευδώνυμου (alias)"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailEmailsEditor.qml:28
+msgid "Enter an email address"
+msgstr "Εισαγωγή μιας διεύθυνσης ηλεκτρονικής αλληλογραφίας"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
+msgid "Error"
+msgstr "Σφάλμα"
+
+#: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
+msgid "Exporting contacts..."
+msgstr "Εξαγωγή επαφών..."
+
+#: ../src/imports/ABContactListPage.qml:800
+msgid "Fail to import contacts!"
+msgstr "Αποτυχία εισαγωγής επαφών!"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:285
+msgid "Fail to read SIM card"
+msgstr "Αποτυχία ανάγνωσης κάρτας SIM"
+
+#: ../src/imports/ABContactListPage.qml:480
+msgid "Favorites"
+msgstr "Αγαπημένα"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:88
+msgid "First name"
+msgstr "Όνομα"
+
+#. TRANSLATORS: This refers to home landline phone label
+#: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:116
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
+msgid "Home"
+msgstr "Οικία"
+
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:63
+msgid "ICQ"
+msgstr "ICQ"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOnlineAccountsEditor.qml:23
+msgid "IM"
+msgstr "IM"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:58
+msgid "Import"
+msgstr "Εισαγωγή"
+
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
+#, qt-format
+msgid "Import contacts from %1"
+msgstr "Εισαγωγή επαφών από %1"
+
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
+msgid "Import contacts from SIM card"
+msgstr "Εισαγωγή επαφών από κάρτα SIM"
+
+#: ../src/imports/Settings/SettingsPage.qml:131
+msgid "Import from SIM"
+msgstr "Εισαγωγή από SIM"
+
+#: ../src/imports/ABContactListPage.qml:634
+msgid "Imported contacts"
+msgstr "Εισαγμένες επαφές"
+
+#: ../src/imports/BusyImportingDialog.qml:31
+msgid "Importing..."
+msgstr "Γίνεται εισαγωγή..."
+
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
+msgid "Jabber"
+msgstr "Jabber"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:92
+msgid "Last name"
+msgstr "Επώνυμο"
+
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
+msgid "Loading..."
+msgstr "Γίνεται φόρτωση..."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:32
+msgid "Locality"
+msgstr "Εντοπιότητα"
+
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:66
+msgid "MSN"
+msgstr "MSN"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:62
+msgid "Middle Name"
+msgstr "Μεσαίο όνομα"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:90
+msgid "Middle name"
+msgstr "Μεσαίο όνομα"
+
+#. TRANSLATORS: This refers to mobile/cellphone phone label
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
+msgid "Mobile"
+msgstr "Κινητό"
+
+#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:44
+msgid "Multiple contacts"
+msgstr "Πολλαπλές επαφές"
+
+#: ../src/imports/Settings/SettingsPage.qml:72
+#, qt-format
+msgid "My phone number: %1"
+msgstr "Ο αριθμός μου: %1"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
+msgid "New contact"
+msgstr "Νέα επαφή"
+
+#. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
+#. this word must be less than 5 characters
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/TextInputDetail.qml:88
+msgid "Next"
+msgstr "Επόμενο"
+
+#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:79
+msgid "No"
+msgstr "Όχι"
+
+#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:40
+msgid "No contact selected."
+msgstr "Δεν επελέγη καμία επαφή."
+
+#: ../src/imports/ABMultiColumnEmptyState.qml:24
+msgid "No contacts"
+msgstr "Καμία επαφή"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:155
+msgid "No contacts found"
+msgstr "Δε βρέθηκαν επαφές"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:49
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:58
+#: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:80
+msgid "No name"
+msgstr "Χωρίς όνομα"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:28
+msgid "Organization"
+msgstr "Οργανισμός"
+
+#. TRANSLATORS: This refers to any other phone label
+#: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:122
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:121
+msgid "Other"
+msgstr "Άλλο"
+
+#: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:202
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:218
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:88
+#, qt-format
+msgid "Personal - %1"
+msgstr "Προσωπικό- %1"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:51
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:23
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailPhoneNumbersView.qml:29
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailPhoneNumbersView.qml:32
+msgid "Phone"
+msgstr "Τηλέφωνο"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:34
+msgid "Post code"
+msgstr "Τ.Κ."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:59
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:21
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailOrganizationsView.qml:24
+msgid "Professional Details"
+msgstr "Επαγγελματικές λεπτομέρειες"
+
+#: ../src/imports/ABContactListPage.qml:412
+msgid "Quit"
+msgstr "'Εξοδος"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
+msgid "Reading contacts from SIM..."
+msgstr "Ανάγνωση επαφών από SIM..."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
+msgid "Region"
+msgstr "Περιφέρεια"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:29
+msgid "Role"
+msgstr "Ρόλος"
+
+#: ../src/imports/Settings/SettingsPage.qml:73
+#, qt-format
+msgid "SIM %1"
+msgstr "Κάρτα SIM %1"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:39
+msgid "SIM contacts"
+msgstr "Επαφές SIM"
+
+#: ../src/imports/ABContactEditorPage.qml:56
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:411
+msgid "Save"
+msgstr "Αποθήκευση"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
+msgid "Saving contacts on phone..."
+msgstr "Αποθήκευση επαφών στο τηλέφωνο..."
+
+#: ../src/imports/ABContactListPage.qml:422
+msgid "Search"
+msgstr "Αναζήτηση"
+
+#: ../src/imports/ABContactListPage.qml:387
+msgid "Search..."
+msgstr "Αναζήτηση..."
+
+#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
+msgid "Select All"
+msgstr "Επιλογή όλων"
+
+#: ../src/imports/ABContactListPage.qml:470
+#: ../src/imports/Settings/SettingsPage.qml:35
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+#: ../src/imports/ABContactListPage.qml:562
+#: ../src/imports/ABContactViewPage.qml:74
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:98
+msgid "Share"
+msgstr "Κοινοποίηση"
+
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
+msgid "Skype"
+msgstr "Skype"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:57
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailOnlineAccountsView.qml:26
+msgid "Social"
+msgstr "Κοινωνικά"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:31
+msgid "Street"
+msgstr "Οδός"
+
+#: ../src/imports/ABContactListPage.qml:458
+msgid "Sync"
+msgstr "Συγχρονισμός"
+
+#: ../src/imports/ABContactListPage.qml:458
+msgid "Syncing"
+msgstr "Γίνεται συγχρονισμός"
+
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
+msgid "Syncing..."
+msgstr "Γίνεται συγχρονισμός..."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:30
+msgid "Title"
+msgstr "Προσφώνηση"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailOnlineAccountsView.qml:29
+msgid "Touch"
+msgstr "Αφή"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:124
+msgid "Unlock"
+msgstr "Ξεκλείδωμα"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
+msgid "Unlocking..."
+msgstr "Ξεκλείδωμα..."
+
+#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
+msgid "Unselect All"
+msgstr "Αποεπιλογή όλων"
+
+#. TRANSLATORS: This refers to landline work phone label
+#: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:119
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
+msgid "Work"
+msgstr "Εργασία"
+
+#. TRANSLATORS: This refers to mobile/cellphone work phone label
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:117
+msgid "Work Mobile"
+msgstr "Κινητό εργασίας"
+
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
+msgid "Yahoo"
+msgstr "Yahoo"
+
+#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
+msgid "Yes"
+msgstr "Ναι"
+
+#: ../src/imports/ABContactListPage.qml:702
+msgid "You have no contacts."
+msgstr "Δεν έχετε επαφές."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:42
+#, qt-format
+msgid ""
+"Your <b>%1</b> contact sync account needs to be upgraded by running Contacts "
+"app.\n"
+"Only local contacts will be editable until upgrade is complete."
+msgstr ""
+"Ο λογαριασμός συγχρονισμού επαφών σας <b>%1</b> πρέπει να αναβαθμιστεί "
+"εκτελώντας την εφαρμογή Επαφές.\n"
+"Μόνο οι τοπικές επαφές θα είναι επεξεργάσιμες έως ότου ολοκληρωθεί η "
+"αναβάθμιση."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:33
+#, qt-format
+msgid ""
+"Your <b>%1</b> contact sync account needs to be upgraded.\n"
+"Wait until the upgrade is complete to edit contacts."
+msgstr ""
+"Ο λογαριασμός συγχρονισμού επαφών σας <b>%1</b> πρέπει να αναβαθμιστεί.\n"
+"Περιμένετε μέχρι να ολοκληρωθεί η αναβάθμιση για να επεξεργαστείτε τις "
+"επαφές."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:38
+#, qt-format
+msgid ""
+"Your <b>%1</b> contact sync account needs to be upgraded. Use the sync "
+"button to upgrade the Contacts app.\n"
+"Only local contacts will be editable until upgrade is complete."
+msgstr ""
+"Ο λογαριασμός συγχρονισμού επαφών σας <b>%1</b> πρέπει να αναβαθμιστεί. "
+"Χρησιμοποιήστε το κουμπί συγχρονισμού για να αναβαθμίσετε την εφαρμογή "
+"Επαφές.\n"
+"Μόνο οι τοπικές επαφές θα είναι επεξεργάσιμες έως ότου ολοκληρωθεί η "
+"αναβάθμιση."
+
+#~ msgid "Frequently called"
+#~ msgstr "Συχνά καλούμενος"
+
+#~ msgid "Add contact"
+#~ msgstr "Προσθήκη επαφής"
+
+#~ msgid "Import vCards"
+#~ msgstr "Εισαγωγή VCards"
+
+#~ msgid "%1 vCards imported"
+#~ msgstr "Εισήχθησαν %1 vCards"
+
+#~ msgid ""
+#~ "Would you like to sync contacts from your google online accounts now?"
+#~ msgstr ""
+#~ "Θέλετε να συγχρονιστούν τώρα οι επαφές σας από το λογαριασμό του Google;"

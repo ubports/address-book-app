@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-01 12:27+0000\n"
+"POT-Creation-Date: 2020-07-12 22:04+0000\n"
 "PO-Revision-Date: 2019-11-03 19:36+0000\n"
 "Last-Translator: Ege Öz <ege.oz@tutanota.com>\n"
 "Language-Team: Turkish <https://translate.ubports.com/projects/ubports/"
@@ -30,7 +30,7 @@ msgstr "%1 kilitli"
 msgid "+ Create New"
 msgstr "+ Yeni Oluştur"
 
-#: ../src/imports/Settings/SettingsPage.qml:90
+#: ../src/imports/Settings/SettingsPage.qml:96
 #, qt-format
 msgid "Add %1 account"
 msgstr "%1 hesabı ekle"
@@ -39,7 +39,7 @@ msgstr "%1 hesabı ekle"
 msgid "Add Field"
 msgstr "Alan Ekle"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:413
 msgid "Add field"
 msgstr "Alan ekle"
 
@@ -64,7 +64,7 @@ msgid "Aim"
 msgstr "AIM"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:480
+#: ../src/imports/ABContactListPage.qml:572
 msgid "All"
 msgstr "Hepsi"
 
@@ -76,22 +76,33 @@ msgstr "Tüm seçili kişileri silmek istediğinizden emin misiniz?"
 msgid "Are you sure that you want to remove this contact?"
 msgstr "Bu kişiyi silmek istediğinizden emin misiniz?"
 
-#: ../src/imports/ABContactListPage.qml:621
+#: ../src/imports/ABContactListPage.qml:712
 msgid "Back"
 msgstr "Geri"
 
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:61
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:107
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailBirthdayView.qml:53
+msgid "Birthday"
+msgstr ""
+
+#: ../src/imports/ABContactListPage.qml:406
+msgid "Call"
+msgstr ""
+
 #: ../src/imports/ABContactEditorPage.qml:38
-#: ../src/imports/ABContactListPage.qml:500
+#: ../src/imports/ABContactListPage.qml:592
+#: ../src/imports/BusyImportingDialog.qml:40
+#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:79
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "İptal"
 
-#: ../src/imports/ABContactListPage.qml:539
+#: ../src/imports/ABContactListPage.qml:630
 msgid "Cancel selection"
 msgstr "Seçimi iptal et"
 
-#: ../src/imports/BusyImportingDialog.qml:40
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:48
 msgid "Close"
 msgstr "Kapat"
@@ -122,7 +133,7 @@ msgstr "Kayıtlar;Kişiler;Numaralar"
 msgid "Country"
 msgstr "Ülke"
 
-#: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
+#: ../src/imports/ABContactListPage.qml:794 ../src/imports/ABEmptyState.qml:56
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "Ekranın altından yukarı kaydırarak yeni kişi oluşturun."
 
@@ -130,15 +141,16 @@ msgstr "Ekranın altından yukarı kaydırarak yeni kişi oluşturun."
 msgid "Default address book"
 msgstr "Varsayılan adres defteri"
 
-#: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/ABContactListPage.qml:379
+#: ../src/imports/ABContactListPage.qml:670
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:477
 msgid "Delete"
 msgstr "Sil"
 
 #: ../src/imports/ABContactViewPage.qml:87
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:207
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "Düzenle"
@@ -149,6 +161,11 @@ msgstr "Düzenle"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailEmailsView.qml:28
 msgid "Email"
 msgstr "E-posta"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:129
+#, fuzzy
+msgid "Enter a birthday"
+msgstr "Bir numara girin"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
@@ -166,11 +183,16 @@ msgstr "Bir e-posta adresi girin"
 msgid "Error"
 msgstr "Hata"
 
+#: ../src/imports/Settings/SettingsPage.qml:158
+#, fuzzy
+msgid "Export all contacts"
+msgstr "Kişiler dışa aktarılıyor..."
+
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
 msgstr "Kişiler dışa aktarılıyor..."
 
-#: ../src/imports/ABContactListPage.qml:800
+#: ../src/imports/ABContactListPage.qml:891
 msgid "Fail to import contacts!"
 msgstr "Kişiler içe aktarılamadı!"
 
@@ -178,7 +200,7 @@ msgstr "Kişiler içe aktarılamadı!"
 msgid "Fail to read SIM card"
 msgstr "SIM kartı okunamadı"
 
-#: ../src/imports/ABContactListPage.qml:480
+#: ../src/imports/ABContactListPage.qml:572
 msgid "Favorites"
 msgstr "Sık Kullanılanlar"
 
@@ -213,11 +235,21 @@ msgstr "Kişileri %1 'dan aktar"
 msgid "Import contacts from SIM card"
 msgstr "Kişileri SIM kartından aktar"
 
-#: ../src/imports/Settings/SettingsPage.qml:131
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:581
+#, fuzzy
+msgid "Import contacts from vcard file"
+msgstr "Kişileri SIM kartından aktar"
+
+#: ../src/imports/Settings/SettingsPage.qml:119
 msgid "Import from SIM"
 msgstr "SIM'den aktar"
 
-#: ../src/imports/ABContactListPage.qml:634
+#: ../src/imports/Settings/SettingsPage.qml:136
+#, fuzzy
+msgid "Import from vcard file"
+msgstr "SIM'den aktar"
+
+#: ../src/imports/ABContactListPage.qml:725
 msgid "Imported contacts"
 msgstr "İçe aktarılan kişiler"
 
@@ -233,7 +265,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Soyadı"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:636
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "Yükleniyor..."
@@ -246,7 +278,11 @@ msgstr "Konum"
 msgid "MSN"
 msgstr "MSN"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:62
+#: ../src/imports/ABContactListPage.qml:399
+msgid "Message"
+msgstr ""
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:64
 msgid "Middle Name"
 msgstr "Orta Ad"
 
@@ -269,7 +305,7 @@ msgid "My phone number: %1"
 msgstr "Telefon numaram: %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:207
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
 msgstr "Yeni kişi"
@@ -279,10 +315,6 @@ msgstr "Yeni kişi"
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/TextInputDetail.qml:88
 msgid "Next"
 msgstr "Sonraki"
-
-#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:79
-msgid "No"
-msgstr "Hayır"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:40
 msgid "No contact selected."
@@ -298,9 +330,13 @@ msgstr "Kişi bulunamadı"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:49
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:58
-#: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:80
+#: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:81
 msgid "No name"
 msgstr "Adsız"
+
+#: ../src/imports/ABContactListPage.qml:453
+msgid "Numbers"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -326,6 +362,10 @@ msgstr "Kişisel - %1"
 msgid "Phone"
 msgstr "Telefon"
 
+#: ../src/imports/ABContactListPage.qml:440
+msgid "Please select a phone number"
+msgstr ""
+
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
 msgstr "Posta kodu"
@@ -336,7 +376,7 @@ msgstr "Posta kodu"
 msgid "Professional Details"
 msgstr "Profesyonel Ayrıntılar"
 
-#: ../src/imports/ABContactListPage.qml:412
+#: ../src/imports/ABContactListPage.qml:504
 msgid "Quit"
 msgstr "Çık"
 
@@ -344,9 +384,17 @@ msgstr "Çık"
 msgid "Reading contacts from SIM..."
 msgstr "Kişiler SIM kartından okunuyor..."
 
+#: ../src/imports/Settings/SettingsPage.qml:80
+msgid "Reading my phone number(s)..."
+msgstr ""
+
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
 msgstr "Bölge"
+
+#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
+msgid "Remove"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
@@ -370,25 +418,26 @@ msgstr "Kaydet"
 msgid "Saving contacts on phone..."
 msgstr "Kişiler telefona kaydediliyor..."
 
-#: ../src/imports/ABContactListPage.qml:422
+#: ../src/imports/ABContactListPage.qml:514
 msgid "Search"
 msgstr "Ara"
 
-#: ../src/imports/ABContactListPage.qml:387
+#: ../src/imports/ABContactListPage.qml:488
 msgid "Search..."
 msgstr "Ara..."
 
-#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/ABContactListPage.qml:640
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
 msgstr "Tümünü Seç"
 
-#: ../src/imports/ABContactListPage.qml:470
+#: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/Settings/SettingsPage.qml:35
 msgid "Settings"
 msgstr "Ayarlar"
 
-#: ../src/imports/ABContactListPage.qml:562
+#: ../src/imports/ABContactListPage.qml:389
+#: ../src/imports/ABContactListPage.qml:653
 #: ../src/imports/ABContactViewPage.qml:74
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:98
 msgid "Share"
@@ -407,15 +456,15 @@ msgstr "Sosyal"
 msgid "Street"
 msgstr "Cadde"
 
-#: ../src/imports/ABContactListPage.qml:458
+#: ../src/imports/ABContactListPage.qml:550
 msgid "Sync"
 msgstr "Eşle"
 
-#: ../src/imports/ABContactListPage.qml:458
+#: ../src/imports/ABContactListPage.qml:550
 msgid "Syncing"
 msgstr "Eşleniyor"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:636
 msgid "Syncing..."
 msgstr "Eşitleniyor..."
 
@@ -435,7 +484,7 @@ msgstr "Kilidi Aç"
 msgid "Unlocking..."
 msgstr "Açılıyor..."
 
-#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/ABContactListPage.qml:640
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
 msgstr "Seçimi Temizle"
@@ -455,11 +504,7 @@ msgstr "İş Cep Telefonu"
 msgid "Yahoo"
 msgstr "Yahoo"
 
-#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
-msgid "Yes"
-msgstr "Evet"
-
-#: ../src/imports/ABContactListPage.qml:702
+#: ../src/imports/ABContactListPage.qml:793
 msgid "You have no contacts."
 msgstr "Hiç kişiniz yok."
 
@@ -493,6 +538,12 @@ msgstr ""
 "<b> %1 </b> kişileri senkorize etme hesabının yükseltilmesi gerekiyor. "
 "Senkorize et tuşunu kullanarak Kişiler uygulamasını güncelleyin.\n"
 "Yükseltilme bitene kadar sadece yerel kişiler düzenlenebilir olacak."
+
+#~ msgid "No"
+#~ msgstr "Hayır"
+
+#~ msgid "Yes"
+#~ msgstr "Evet"
 
 #~ msgid "Frequently called"
 #~ msgstr "Sık arananlar"

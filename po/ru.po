@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-01 12:27+0000\n"
-"PO-Revision-Date: 2020-06-20 11:44+0000\n"
-"Last-Translator: Eugene Markoff <uralhistory@gmail.com>\n"
+"POT-Creation-Date: 2020-07-12 22:04+0000\n"
+"PO-Revision-Date: 2020-09-04 18:18+0000\n"
+"Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Russian <https://translate.ubports.com/projects/ubports/"
 "address-book-app/ru/>\n"
 "Language: ru\n"
@@ -31,7 +31,7 @@ msgstr "%1 заблокирована"
 msgid "+ Create New"
 msgstr "+ Создать новый"
 
-#: ../src/imports/Settings/SettingsPage.qml:90
+#: ../src/imports/Settings/SettingsPage.qml:96
 #, qt-format
 msgid "Add %1 account"
 msgstr "Добавить учётную запись %1"
@@ -40,7 +40,7 @@ msgstr "Добавить учётную запись %1"
 msgid "Add Field"
 msgstr "Добавить поле"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:413
 msgid "Add field"
 msgstr "Добавить поле"
 
@@ -65,7 +65,7 @@ msgid "Aim"
 msgstr "Цель"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:480
+#: ../src/imports/ABContactListPage.qml:572
 msgid "All"
 msgstr "Всё"
 
@@ -77,22 +77,33 @@ msgstr "Удалить все выбранные контакты?"
 msgid "Are you sure that you want to remove this contact?"
 msgstr "Удалить выбранный контакт?"
 
-#: ../src/imports/ABContactListPage.qml:621
+#: ../src/imports/ABContactListPage.qml:712
 msgid "Back"
 msgstr "Назад"
 
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:61
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:107
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailBirthdayView.qml:53
+msgid "Birthday"
+msgstr "Дата рождения"
+
+#: ../src/imports/ABContactListPage.qml:406
+msgid "Call"
+msgstr "Вызов"
+
 #: ../src/imports/ABContactEditorPage.qml:38
-#: ../src/imports/ABContactListPage.qml:500
+#: ../src/imports/ABContactListPage.qml:592
+#: ../src/imports/BusyImportingDialog.qml:40
+#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:79
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "Отменить"
 
-#: ../src/imports/ABContactListPage.qml:539
+#: ../src/imports/ABContactListPage.qml:630
 msgid "Cancel selection"
 msgstr "Отменить выбор"
 
-#: ../src/imports/BusyImportingDialog.qml:40
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:48
 msgid "Close"
 msgstr "Закрыть"
@@ -113,7 +124,7 @@ msgstr "Контакты"
 
 #: ../data/address-book-app.desktop.in.in.h:2
 msgid "Contacts Address Book"
-msgstr "Адрессная книга контактов"
+msgstr "Адресная книга"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
@@ -123,7 +134,7 @@ msgstr "Контакты;Люди;Номера"
 msgid "Country"
 msgstr "Страна"
 
-#: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
+#: ../src/imports/ABContactListPage.qml:794 ../src/imports/ABEmptyState.qml:56
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "Чтобы создать новый контакт, смахните вверх от нижней части экрана."
 
@@ -131,15 +142,16 @@ msgstr "Чтобы создать новый контакт, смахните в
 msgid "Default address book"
 msgstr "Адресная книга по умолчанию"
 
-#: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/ABContactListPage.qml:379
+#: ../src/imports/ABContactListPage.qml:670
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:477
 msgid "Delete"
 msgstr "Удалить"
 
 #: ../src/imports/ABContactViewPage.qml:87
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:207
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "Редактировать"
@@ -150,6 +162,10 @@ msgstr "Редактировать"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailEmailsView.qml:28
 msgid "Email"
 msgstr "Электронная почта"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:129
+msgid "Enter a birthday"
+msgstr "Введите дату рождения"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
@@ -167,11 +183,15 @@ msgstr "Введите адрес эл. почты"
 msgid "Error"
 msgstr "Ошибка"
 
+#: ../src/imports/Settings/SettingsPage.qml:158
+msgid "Export all contacts"
+msgstr "Экспорт контактов"
+
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
 msgstr "Экспорт контактов..."
 
-#: ../src/imports/ABContactListPage.qml:800
+#: ../src/imports/ABContactListPage.qml:891
 msgid "Fail to import contacts!"
 msgstr "Ошибка импорта контактов!"
 
@@ -179,7 +199,7 @@ msgstr "Ошибка импорта контактов!"
 msgid "Fail to read SIM card"
 msgstr "Ошибка чтения SIM-карты"
 
-#: ../src/imports/ABContactListPage.qml:480
+#: ../src/imports/ABContactListPage.qml:572
 msgid "Favorites"
 msgstr "Избранное"
 
@@ -214,11 +234,19 @@ msgstr "Импортировать контакты из %1"
 msgid "Import contacts from SIM card"
 msgstr "Импортировать контакты с SIM-карты"
 
-#: ../src/imports/Settings/SettingsPage.qml:131
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:581
+msgid "Import contacts from vcard file"
+msgstr "Импортировать контакты из файла"
+
+#: ../src/imports/Settings/SettingsPage.qml:119
 msgid "Import from SIM"
 msgstr "Импортировать с SIM"
 
-#: ../src/imports/ABContactListPage.qml:634
+#: ../src/imports/Settings/SettingsPage.qml:136
+msgid "Import from vcard file"
+msgstr "Импорт из файла"
+
+#: ../src/imports/ABContactListPage.qml:725
 msgid "Imported contacts"
 msgstr "Контакты импортированы"
 
@@ -234,7 +262,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Фамилия"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:636
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "Загрузка..."
@@ -247,7 +275,11 @@ msgstr "Населённый пункт"
 msgid "MSN"
 msgstr "MSN"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:62
+#: ../src/imports/ABContactListPage.qml:399
+msgid "Message"
+msgstr "Сообщение"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:64
 msgid "Middle Name"
 msgstr "Отчество"
 
@@ -270,7 +302,7 @@ msgid "My phone number: %1"
 msgstr "Мой телефонный номер: %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:207
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
 msgstr "Создать контакт"
@@ -280,10 +312,6 @@ msgstr "Создать контакт"
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/TextInputDetail.qml:88
 msgid "Next"
 msgstr "Далее"
-
-#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:79
-msgid "No"
-msgstr "Нет"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:40
 msgid "No contact selected."
@@ -299,9 +327,13 @@ msgstr "Контакты не найдены"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:49
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:58
-#: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:80
+#: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:81
 msgid "No name"
 msgstr "Без имени"
+
+#: ../src/imports/ABContactListPage.qml:453
+msgid "Numbers"
+msgstr "Номера"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -327,6 +359,10 @@ msgstr "Персональные - %1"
 msgid "Phone"
 msgstr "Телефон"
 
+#: ../src/imports/ABContactListPage.qml:440
+msgid "Please select a phone number"
+msgstr "Пожалуйста, выберите номер телефона"
+
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
 msgstr "Почтовый индекс"
@@ -337,7 +373,7 @@ msgstr "Почтовый индекс"
 msgid "Professional Details"
 msgstr "Специальная информация"
 
-#: ../src/imports/ABContactListPage.qml:412
+#: ../src/imports/ABContactListPage.qml:504
 msgid "Quit"
 msgstr "Выйти"
 
@@ -345,9 +381,17 @@ msgstr "Выйти"
 msgid "Reading contacts from SIM..."
 msgstr "Чтение контактов с SIM..."
 
+#: ../src/imports/Settings/SettingsPage.qml:80
+msgid "Reading my phone number(s)..."
+msgstr "Просмотр моих телефонных номеров..."
+
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
 msgstr "Регион"
+
+#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
+msgid "Remove"
+msgstr "Удалить"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
@@ -371,25 +415,26 @@ msgstr "Сохранить"
 msgid "Saving contacts on phone..."
 msgstr "Сохранение контактов в телефоне..."
 
-#: ../src/imports/ABContactListPage.qml:422
+#: ../src/imports/ABContactListPage.qml:514
 msgid "Search"
 msgstr "Поиск"
 
-#: ../src/imports/ABContactListPage.qml:387
+#: ../src/imports/ABContactListPage.qml:488
 msgid "Search..."
 msgstr "Поиск..."
 
-#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/ABContactListPage.qml:640
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
 msgstr "Выбрать всё"
 
-#: ../src/imports/ABContactListPage.qml:470
+#: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/Settings/SettingsPage.qml:35
 msgid "Settings"
 msgstr "Настройки"
 
-#: ../src/imports/ABContactListPage.qml:562
+#: ../src/imports/ABContactListPage.qml:389
+#: ../src/imports/ABContactListPage.qml:653
 #: ../src/imports/ABContactViewPage.qml:74
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:98
 msgid "Share"
@@ -408,15 +453,15 @@ msgstr "Социальное"
 msgid "Street"
 msgstr "Улица"
 
-#: ../src/imports/ABContactListPage.qml:458
+#: ../src/imports/ABContactListPage.qml:550
 msgid "Sync"
 msgstr "Синхронизация"
 
-#: ../src/imports/ABContactListPage.qml:458
+#: ../src/imports/ABContactListPage.qml:550
 msgid "Syncing"
 msgstr "Синхронизация"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:636
 msgid "Syncing..."
 msgstr "Выполняется синхронизация…"
 
@@ -436,7 +481,7 @@ msgstr "Разблокировать"
 msgid "Unlocking..."
 msgstr "Разблокирование..."
 
-#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/ABContactListPage.qml:640
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
 msgstr "Снять выделение"
@@ -456,11 +501,7 @@ msgstr "Рабочий телефон"
 msgid "Yahoo"
 msgstr "Интернет ресурс \"Yahoo\""
 
-#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
-msgid "Yes"
-msgstr "Да"
-
-#: ../src/imports/ABContactListPage.qml:702
+#: ../src/imports/ABContactListPage.qml:793
 msgid "You have no contacts."
 msgstr "У вас нет контактов."
 
@@ -497,6 +538,12 @@ msgstr ""
 "Воспользуйтесь кнопкой синхронизировать для обновления приложения Контакты.\n"
 "До завершения обновления только локально созданные контакты будут доступны "
 "для редактирования."
+
+#~ msgid "No"
+#~ msgstr "Нет"
+
+#~ msgid "Yes"
+#~ msgstr "Да"
 
 #~ msgid "Frequently called"
 #~ msgstr "Частые вызовы"

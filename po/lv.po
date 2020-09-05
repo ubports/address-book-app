@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-01 12:27+0000\n"
+"POT-Creation-Date: 2020-07-12 22:04+0000\n"
 "PO-Revision-Date: 2015-11-22 08:09+0000\n"
 "Last-Translator: Rūdolfs Mazurs <Unknown>\n"
 "Language-Team: Latvian <lv@li.org>\n"
@@ -29,7 +29,7 @@ msgstr "%1 ir bloķēts"
 msgid "+ Create New"
 msgstr "+ Izveidot jaunu"
 
-#: ../src/imports/Settings/SettingsPage.qml:90
+#: ../src/imports/Settings/SettingsPage.qml:96
 #, fuzzy, qt-format
 msgid "Add %1 account"
 msgstr "Pievienot Google kontu"
@@ -38,7 +38,7 @@ msgstr "Pievienot Google kontu"
 msgid "Add Field"
 msgstr "Pievienot lauku"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:413
 msgid "Add field"
 msgstr ""
 
@@ -63,7 +63,7 @@ msgid "Aim"
 msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:480
+#: ../src/imports/ABContactListPage.qml:572
 msgid "All"
 msgstr "Visi"
 
@@ -75,22 +75,33 @@ msgstr "Vai tiešām vēlāties dzēst visus izvēlētos kontaktus?"
 msgid "Are you sure that you want to remove this contact?"
 msgstr "Vai tiešām vēlāties izņemt šo kontaktu?"
 
-#: ../src/imports/ABContactListPage.qml:621
+#: ../src/imports/ABContactListPage.qml:712
 msgid "Back"
 msgstr ""
 
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:61
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:107
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailBirthdayView.qml:53
+msgid "Birthday"
+msgstr ""
+
+#: ../src/imports/ABContactListPage.qml:406
+msgid "Call"
+msgstr ""
+
 #: ../src/imports/ABContactEditorPage.qml:38
-#: ../src/imports/ABContactListPage.qml:500
+#: ../src/imports/ABContactListPage.qml:592
+#: ../src/imports/BusyImportingDialog.qml:40
+#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:79
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "Atcelt"
 
-#: ../src/imports/ABContactListPage.qml:539
+#: ../src/imports/ABContactListPage.qml:630
 msgid "Cancel selection"
 msgstr "Atcelt izvēli"
 
-#: ../src/imports/BusyImportingDialog.qml:40
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:48
 msgid "Close"
 msgstr "Aizvērt"
@@ -121,7 +132,7 @@ msgstr "Kontakti;Cilvēki;Numuri"
 msgid "Country"
 msgstr "Valsts"
 
-#: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
+#: ../src/imports/ABContactListPage.qml:794 ../src/imports/ABEmptyState.qml:56
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "Izveidojiet jaunu kontaktu, velkot no ekrāna apakšas."
 
@@ -129,15 +140,16 @@ msgstr "Izveidojiet jaunu kontaktu, velkot no ekrāna apakšas."
 msgid "Default address book"
 msgstr ""
 
-#: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/ABContactListPage.qml:379
+#: ../src/imports/ABContactListPage.qml:670
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:477
 msgid "Delete"
 msgstr "Dzēst"
 
 #: ../src/imports/ABContactViewPage.qml:87
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:207
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "Rediģēt"
@@ -148,6 +160,11 @@ msgstr "Rediģēt"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailEmailsView.qml:28
 msgid "Email"
 msgstr "E-pasts"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:129
+#, fuzzy
+msgid "Enter a birthday"
+msgstr "Ievadiet numuru"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
@@ -165,11 +182,16 @@ msgstr "Ievadiet e-pasta adresi"
 msgid "Error"
 msgstr "Kļūda"
 
+#: ../src/imports/Settings/SettingsPage.qml:158
+#, fuzzy
+msgid "Export all contacts"
+msgstr "Eksportē kontaktus..."
+
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
 msgstr "Eksportē kontaktus..."
 
-#: ../src/imports/ABContactListPage.qml:800
+#: ../src/imports/ABContactListPage.qml:891
 msgid "Fail to import contacts!"
 msgstr ""
 
@@ -177,7 +199,7 @@ msgstr ""
 msgid "Fail to read SIM card"
 msgstr "Neizdevās nolasīt SIM karti"
 
-#: ../src/imports/ABContactListPage.qml:480
+#: ../src/imports/ABContactListPage.qml:572
 msgid "Favorites"
 msgstr "Izlase"
 
@@ -212,11 +234,21 @@ msgstr "Importēt kontaktus no Google"
 msgid "Import contacts from SIM card"
 msgstr "Importēt kontaktus no SIM kartes"
 
-#: ../src/imports/Settings/SettingsPage.qml:131
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:581
+#, fuzzy
+msgid "Import contacts from vcard file"
+msgstr "Importēt kontaktus no SIM kartes"
+
+#: ../src/imports/Settings/SettingsPage.qml:119
 msgid "Import from SIM"
 msgstr "Importēt no SIM"
 
-#: ../src/imports/ABContactListPage.qml:634
+#: ../src/imports/Settings/SettingsPage.qml:136
+#, fuzzy
+msgid "Import from vcard file"
+msgstr "Importēt no SIM"
+
+#: ../src/imports/ABContactListPage.qml:725
 msgid "Imported contacts"
 msgstr ""
 
@@ -232,7 +264,7 @@ msgstr "Jabber"
 msgid "Last name"
 msgstr "Uzvārds"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:636
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "Ielādē..."
@@ -245,7 +277,11 @@ msgstr "Apgabals"
 msgid "MSN"
 msgstr "MSN"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:62
+#: ../src/imports/ABContactListPage.qml:399
+msgid "Message"
+msgstr ""
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:64
 msgid "Middle Name"
 msgstr ""
 
@@ -268,7 +304,7 @@ msgid "My phone number: %1"
 msgstr "Mans tālruņa numurs: %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:207
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
 msgstr "Jauns kontakts"
@@ -278,10 +314,6 @@ msgstr "Jauns kontakts"
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/TextInputDetail.qml:88
 msgid "Next"
 msgstr "Nākamais"
-
-#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:79
-msgid "No"
-msgstr "Nē"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:40
 msgid "No contact selected."
@@ -297,9 +329,13 @@ msgstr "Nav atrastu kontaktu"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:49
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:58
-#: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:80
+#: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:81
 msgid "No name"
 msgstr "Nav nosaukuma"
+
+#: ../src/imports/ABContactListPage.qml:453
+msgid "Numbers"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -325,6 +361,10 @@ msgstr ""
 msgid "Phone"
 msgstr "Tālrunis"
 
+#: ../src/imports/ABContactListPage.qml:440
+msgid "Please select a phone number"
+msgstr ""
+
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
 msgstr "Pasta indekss"
@@ -335,7 +375,7 @@ msgstr "Pasta indekss"
 msgid "Professional Details"
 msgstr "Profesionālā informācija"
 
-#: ../src/imports/ABContactListPage.qml:412
+#: ../src/imports/ABContactListPage.qml:504
 msgid "Quit"
 msgstr "Iziet"
 
@@ -343,9 +383,17 @@ msgstr "Iziet"
 msgid "Reading contacts from SIM..."
 msgstr ""
 
+#: ../src/imports/Settings/SettingsPage.qml:80
+msgid "Reading my phone number(s)..."
+msgstr ""
+
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
 msgstr "Reģions"
+
+#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
+msgid "Remove"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
@@ -369,25 +417,26 @@ msgstr "Saglabāt"
 msgid "Saving contacts on phone..."
 msgstr ""
 
-#: ../src/imports/ABContactListPage.qml:422
+#: ../src/imports/ABContactListPage.qml:514
 msgid "Search"
 msgstr "Meklēt"
 
-#: ../src/imports/ABContactListPage.qml:387
+#: ../src/imports/ABContactListPage.qml:488
 msgid "Search..."
 msgstr "Meklēt..."
 
-#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/ABContactListPage.qml:640
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
 msgstr "Izvēlēties visu"
 
-#: ../src/imports/ABContactListPage.qml:470
+#: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/Settings/SettingsPage.qml:35
 msgid "Settings"
 msgstr "Iestatījumi"
 
-#: ../src/imports/ABContactListPage.qml:562
+#: ../src/imports/ABContactListPage.qml:389
+#: ../src/imports/ABContactListPage.qml:653
 #: ../src/imports/ABContactViewPage.qml:74
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:98
 msgid "Share"
@@ -406,15 +455,15 @@ msgstr "Sociāls"
 msgid "Street"
 msgstr "Iela"
 
-#: ../src/imports/ABContactListPage.qml:458
+#: ../src/imports/ABContactListPage.qml:550
 msgid "Sync"
 msgstr "Sinhronizācija"
 
-#: ../src/imports/ABContactListPage.qml:458
+#: ../src/imports/ABContactListPage.qml:550
 msgid "Syncing"
 msgstr "Sinhronizē"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:636
 msgid "Syncing..."
 msgstr "Sinhronizē..."
 
@@ -434,7 +483,7 @@ msgstr "Atbloķēt"
 msgid "Unlocking..."
 msgstr "Atbloķē..."
 
-#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/ABContactListPage.qml:640
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
 msgstr "Neizvēlēties neko"
@@ -454,11 +503,7 @@ msgstr "Darba mobilais"
 msgid "Yahoo"
 msgstr "Yahoo"
 
-#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
-msgid "Yes"
-msgstr "Jā"
-
-#: ../src/imports/ABContactListPage.qml:702
+#: ../src/imports/ABContactListPage.qml:793
 msgid "You have no contacts."
 msgstr "Jums nav kontaktu."
 
@@ -492,6 +537,12 @@ msgstr ""
 "Jūsu <b>%1</b> kontaktu sinhronizēšanas konts ir jāuzlabo. Izmantojiet "
 "sinhronizēšanas pogu, lai uzlabotu Kontaktu lietotni.\n"
 "Līdz uzlabošana būs pabeigta, rediģēt varēs tikai lokālos kontaktus."
+
+#~ msgid "No"
+#~ msgstr "Nē"
+
+#~ msgid "Yes"
+#~ msgstr "Jā"
 
 #~ msgid "Frequently called"
 #~ msgstr "Bieži saukts"

@@ -1,0 +1,512 @@
+# Belarusian translation for address-book-app
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
+# This file is distributed under the same license as the address-book-app package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: address-book-app\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-01 12:27+0000\n"
+"PO-Revision-Date: 2018-12-26 10:46+0000\n"
+"Last-Translator: ierihon <idekovets@mail.ru>\n"
+"Language-Team: Belarusian <https://translate.ubports.com/projects/ubports/"
+"address-book-app/be/>\n"
+"Language: be\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 3.1.1\n"
+"X-Launchpad-Export-Date: 2017-02-17 05:50+0000\n"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
+#, qt-format
+msgid "%1 is locked"
+msgstr "%1 заблакавана"
+
+#. TRANSLATORS: this refers to a new contact
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:480
+msgid "+ Create New"
+msgstr "+ Стварыць новы"
+
+#: ../src/imports/Settings/SettingsPage.qml:90
+#, fuzzy, qt-format
+msgid "Add %1 account"
+msgstr "Дадаць карыстальніка Google"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
+msgid "Add Field"
+msgstr "Дадаць поле"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
+msgid "Add field"
+msgstr "Дадаць поле"
+
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
+msgid "Add number..."
+msgstr "Дадаць нумар..."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:55
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:23
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailAddressesView.qml:24
+msgid "Address"
+msgstr "Адрас"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:180
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:49
+msgid "Addressbook"
+msgstr "Адрасная кніга"
+
+#. TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
+msgid "Aim"
+msgstr "Мэта"
+
+#. TRANSLATORS: this refers to all contacts
+#: ../src/imports/ABContactListPage.qml:480
+msgid "All"
+msgstr "Усе"
+
+#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:51
+msgid "Are you sure that you want to remove all selected contacts?"
+msgstr "Выдаліць усе абраныя кантакты?"
+
+#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:49
+msgid "Are you sure that you want to remove this contact?"
+msgstr "Выдаліць абраны кантакт?"
+
+#: ../src/imports/ABContactListPage.qml:621
+msgid "Back"
+msgstr "Назад"
+
+#: ../src/imports/ABContactEditorPage.qml:38
+#: ../src/imports/ABContactListPage.qml:500
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
+msgid "Cancel"
+msgstr "Скасаваць"
+
+#: ../src/imports/ABContactListPage.qml:539
+msgid "Cancel selection"
+msgstr "Скасаваць выбар"
+
+#: ../src/imports/BusyImportingDialog.qml:40
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:48
+msgid "Close"
+msgstr "Зачыніць"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:29
+msgid "Contact Editor"
+msgstr "Рэдактар кантактаў"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:26
+msgid "Contact not found"
+msgstr "Кантакт ня знойдзены"
+
+#: ../src/imports/ABContactListPage.qml:248
+#: ../src/imports/ABContactListPage.qml:288
+#: ../data/address-book-app.desktop.in.in.h:1
+msgid "Contacts"
+msgstr "Кантакты"
+
+#: ../data/address-book-app.desktop.in.in.h:2
+msgid "Contacts Address Book"
+msgstr "Адрасная кніга"
+
+#: ../data/address-book-app.desktop.in.in.h:3
+msgid "Contacts;People;Numbers"
+msgstr "Кантакты;Людзі;Нумары"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:35
+msgid "Country"
+msgstr "Краіна"
+
+#: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
+msgid "Create a new contact by swiping up from the bottom of the screen."
+msgstr ""
+"Каб стварыць новы кантакт, націсьніце і цягніце  ўгару ад ніжняй часткі "
+"экрану."
+
+#: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
+msgid "Default address book"
+msgstr "Адрасная кніга па змаўчанні"
+
+#: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
+msgid "Delete"
+msgstr "Выдаліць"
+
+#: ../src/imports/ABContactViewPage.qml:87
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:107
+msgid "Edit"
+msgstr "Рэдагаваць"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:53
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailEmailsEditor.qml:24
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailEmailsView.qml:25
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailEmailsView.qml:28
+msgid "Email"
+msgstr "Электронная пошта"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:27
+msgid "Enter a number"
+msgstr "Увядзіце нумар тэлефона"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOnlineAccountsEditor.qml:27
+msgid "Enter a social alias"
+msgstr "Мянушка"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailEmailsEditor.qml:28
+msgid "Enter an email address"
+msgstr "Электронная пошта"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
+msgid "Error"
+msgstr "Памылка"
+
+#: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
+msgid "Exporting contacts..."
+msgstr "Экспарт кантактаў..."
+
+#: ../src/imports/ABContactListPage.qml:800
+msgid "Fail to import contacts!"
+msgstr "Не атрымоўваецца імпартаваць кантакты!"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:285
+msgid "Fail to read SIM card"
+msgstr "Памылка пад час  чытаньня SIM-карткі"
+
+#: ../src/imports/ABContactListPage.qml:480
+msgid "Favorites"
+msgstr "Абраныя"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:88
+msgid "First name"
+msgstr "Імя"
+
+#. TRANSLATORS: This refers to home landline phone label
+#: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:116
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:105
+msgid "Home"
+msgstr "Хатні"
+
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:63
+msgid "ICQ"
+msgstr "ICQ"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOnlineAccountsEditor.qml:23
+msgid "IM"
+msgstr "IM"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:58
+msgid "Import"
+msgstr "Імпартаваць"
+
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
+#, fuzzy, qt-format
+msgid "Import contacts from %1"
+msgstr "Імпартаваць кантакты з Google"
+
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
+msgid "Import contacts from SIM card"
+msgstr "Імпартаваць кантакты з SIM-карткі"
+
+#: ../src/imports/Settings/SettingsPage.qml:131
+msgid "Import from SIM"
+msgstr "Імпартаваць з SIM"
+
+#: ../src/imports/ABContactListPage.qml:634
+msgid "Imported contacts"
+msgstr "Імпартаваць кантакты"
+
+#: ../src/imports/BusyImportingDialog.qml:31
+msgid "Importing..."
+msgstr "Імпартаваньне..."
+
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
+msgid "Jabber"
+msgstr "Jabber"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:92
+msgid "Last name"
+msgstr "Прозьвішча"
+
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
+msgid "Loading..."
+msgstr "Загрузка..."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:32
+msgid "Locality"
+msgstr "Мясцаваньне"
+
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:66
+msgid "MSN"
+msgstr "MSN"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:62
+msgid "Middle Name"
+msgstr "Імя па бацьку"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:90
+msgid "Middle name"
+msgstr "Імя па бацьку"
+
+#. TRANSLATORS: This refers to mobile/cellphone phone label
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
+msgid "Mobile"
+msgstr "Мабільны"
+
+#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:44
+msgid "Multiple contacts"
+msgstr "Некалькі кантактаў"
+
+#: ../src/imports/Settings/SettingsPage.qml:72
+#, qt-format
+msgid "My phone number: %1"
+msgstr "Мой тэлефонны нумар: %1"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
+msgid "New contact"
+msgstr "Новы кантакт"
+
+#. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
+#. this word must be less than 5 characters
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/TextInputDetail.qml:88
+msgid "Next"
+msgstr "Далей"
+
+#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:79
+msgid "No"
+msgstr "Не"
+
+#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:40
+msgid "No contact selected."
+msgstr "Кантакты не абраныя."
+
+#: ../src/imports/ABMultiColumnEmptyState.qml:24
+msgid "No contacts"
+msgstr "Няма кантактаў"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:155
+msgid "No contacts found"
+msgstr "Кантактаў не знойдзена"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:49
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:58
+#: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:80
+msgid "No name"
+msgstr "Бяз назвы"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:28
+msgid "Organization"
+msgstr "Установа"
+
+#. TRANSLATORS: This refers to any other phone label
+#: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:122
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:121
+msgid "Other"
+msgstr "Іншае"
+
+#: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:202
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailSyncTargetEditor.qml:218
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:88
+#, qt-format
+msgid "Personal - %1"
+msgstr "Асабістыя - %1"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:51
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:23
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailPhoneNumbersView.qml:29
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailPhoneNumbersView.qml:32
+msgid "Phone"
+msgstr "Тэлефон"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:34
+msgid "Post code"
+msgstr "Паштовы індэкс"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:59
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:21
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailOrganizationsView.qml:24
+msgid "Professional Details"
+msgstr "Адмысловая інфармацыя"
+
+#: ../src/imports/ABContactListPage.qml:412
+msgid "Quit"
+msgstr "Зачыніць"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
+msgid "Reading contacts from SIM..."
+msgstr "Чытанне кантактаў з SIM-карты…"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
+msgid "Region"
+msgstr "Вобласць"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:29
+msgid "Role"
+msgstr "Пасада"
+
+#: ../src/imports/Settings/SettingsPage.qml:73
+#, qt-format
+msgid "SIM %1"
+msgstr "SIM %1"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:39
+msgid "SIM contacts"
+msgstr "Кантакты SIM"
+
+#: ../src/imports/ABContactEditorPage.qml:56
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:411
+msgid "Save"
+msgstr "Захаваць"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
+msgid "Saving contacts on phone..."
+msgstr "Захаванне кантактаў на тэлефоне…"
+
+#: ../src/imports/ABContactListPage.qml:422
+msgid "Search"
+msgstr "Пошук"
+
+#: ../src/imports/ABContactListPage.qml:387
+msgid "Search..."
+msgstr "Пошук..."
+
+#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
+msgid "Select All"
+msgstr "Абраць усе"
+
+#: ../src/imports/ABContactListPage.qml:470
+#: ../src/imports/Settings/SettingsPage.qml:35
+msgid "Settings"
+msgstr "Налады"
+
+#: ../src/imports/ABContactListPage.qml:562
+#: ../src/imports/ABContactViewPage.qml:74
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:98
+msgid "Share"
+msgstr "Падзяліцца"
+
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
+msgid "Skype"
+msgstr "Skype"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:57
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailOnlineAccountsView.qml:26
+msgid "Social"
+msgstr "Сацыяльнае"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:31
+msgid "Street"
+msgstr "Вуліца"
+
+#: ../src/imports/ABContactListPage.qml:458
+msgid "Sync"
+msgstr "Сінхранізацыя"
+
+#: ../src/imports/ABContactListPage.qml:458
+msgid "Syncing"
+msgstr "Сінхранізацыя"
+
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
+msgid "Syncing..."
+msgstr "Сінхранізацыя..."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:30
+msgid "Title"
+msgstr "Назва"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailOnlineAccountsView.qml:29
+msgid "Touch"
+msgstr "Крананьне"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:124
+msgid "Unlock"
+msgstr "Разблакіраваць"
+
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
+msgid "Unlocking..."
+msgstr "Разблакаваньне..."
+
+#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
+msgid "Unselect All"
+msgstr "Скасаваць вылучэньні"
+
+#. TRANSLATORS: This refers to landline work phone label
+#: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:119
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:109
+msgid "Work"
+msgstr "Працоўны"
+
+#. TRANSLATORS: This refers to mobile/cellphone work phone label
+#: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:117
+msgid "Work Mobile"
+msgstr "Працоўны мабільнік"
+
+#: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
+msgid "Yahoo"
+msgstr "Yahoo"
+
+#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
+msgid "Yes"
+msgstr "Так"
+
+#: ../src/imports/ABContactListPage.qml:702
+msgid "You have no contacts."
+msgstr "Адсутнічаюць кантакты."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:42
+#, qt-format
+msgid ""
+"Your <b>%1</b> contact sync account needs to be upgraded by running Contacts "
+"app.\n"
+"Only local contacts will be editable until upgrade is complete."
+msgstr ""
+"Ваш <b>%1</b> карыстальніцкі запіс сінхранізацыі павінен быць абноўлены "
+"шляхам запуску дадатку \"Кантакты\".\n"
+"Толькі лакальныя кантакты магчыма рэдагаваць, пакуль абнаўленьне ня будзе "
+"завершана."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:33
+#, qt-format
+msgid ""
+"Your <b>%1</b> contact sync account needs to be upgraded.\n"
+"Wait until the upgrade is complete to edit contacts."
+msgstr ""
+"Ваш <b>%1</b> карыстальніцкі запіс сінхранізацыі павінен быць абноўлены.\n"
+"Дачакайцеся абнаўленьня рэдагаваных кантактаў."
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:38
+#, qt-format
+msgid ""
+"Your <b>%1</b> contact sync account needs to be upgraded. Use the sync "
+"button to upgrade the Contacts app.\n"
+"Only local contacts will be editable until upgrade is complete."
+msgstr ""
+"Ваш <b>%1</b> карыстальніцкі запіс павінен быць абноўлены. Скарыстайце "
+"кнопку сінхранізацыі, каб абнавіць Кантакты\".\n"
+"Толькі лакальныя кантакты могуць быць даступныя для рэдагавання, пакуль "
+"абнаўленьне ня будзе завершана."
+
+#~ msgid "Frequently called"
+#~ msgstr "Частыя выклікі"
+
+#~ msgid "%1 vCards imported"
+#~ msgstr "%1 візітных картак імпартавана"
+
+#~ msgid "Add contact"
+#~ msgstr "Дадаць кантакт"
+
+#~ msgid "Import vCards"
+#~ msgstr "Імпартаваць візітоўкі"
