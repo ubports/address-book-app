@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-01 12:27+0000\n"
+"POT-Creation-Date: 2020-07-12 22:04+0000\n"
 "PO-Revision-Date: 2015-03-26 04:52+0000\n"
 "Last-Translator: Gursharnjit_Singh <ubuntuser13@gmail.com>\n"
 "Language-Team: Punjabi <pa@li.org>\n"
@@ -28,7 +28,7 @@ msgstr "%1 ਲਾਕ ਹੋਇਆ"
 msgid "+ Create New"
 msgstr "+ ਨਵਾਂ ਬਣਾਓ"
 
-#: ../src/imports/Settings/SettingsPage.qml:90
+#: ../src/imports/Settings/SettingsPage.qml:96
 #, fuzzy, qt-format
 msgid "Add %1 account"
 msgstr "ਗੂਗਲ ਖਾਤਾ ਜੋੜੋ"
@@ -37,7 +37,7 @@ msgstr "ਗੂਗਲ ਖਾਤਾ ਜੋੜੋ"
 msgid "Add Field"
 msgstr "ਖੇਤਰ ਸ਼ਾਮਿਲ"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:395
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:413
 msgid "Add field"
 msgstr ""
 
@@ -62,7 +62,7 @@ msgid "Aim"
 msgstr "ਟੀਚਾ"
 
 #. TRANSLATORS: this refers to all contacts
-#: ../src/imports/ABContactListPage.qml:480
+#: ../src/imports/ABContactListPage.qml:572
 msgid "All"
 msgstr "ਸਾਰੇ"
 
@@ -74,22 +74,33 @@ msgstr "ਕੀ ਤੁਸੀਂ ਸਾਰੇ ਚੁਣੇ ਹੋਏ ਸੰਪਰ�
 msgid "Are you sure that you want to remove this contact?"
 msgstr "ਕੀ ਤੁਸੀਂ ਇਸ ਸੰਪਰਕ ਨੂੰ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: ../src/imports/ABContactListPage.qml:621
+#: ../src/imports/ABContactListPage.qml:712
 msgid "Back"
 msgstr ""
 
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:61
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:107
+#: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailBirthdayView.qml:53
+msgid "Birthday"
+msgstr ""
+
+#: ../src/imports/ABContactListPage.qml:406
+msgid "Call"
+msgstr ""
+
 #: ../src/imports/ABContactEditorPage.qml:38
-#: ../src/imports/ABContactListPage.qml:500
+#: ../src/imports/ABContactListPage.qml:592
+#: ../src/imports/BusyImportingDialog.qml:40
+#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:79
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:398
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:29
 msgid "Cancel"
 msgstr "ਰੱਦ"
 
-#: ../src/imports/ABContactListPage.qml:539
+#: ../src/imports/ABContactListPage.qml:630
 msgid "Cancel selection"
 msgstr "ਚੋਣ ਰੱਦ ਕਰੋ"
 
-#: ../src/imports/BusyImportingDialog.qml:40
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:48
 msgid "Close"
 msgstr "ਬੰਦ"
@@ -120,7 +131,7 @@ msgstr "ਸੰਪਰਕ;ਲੋਕ;ਨੰਬਰ;"
 msgid "Country"
 msgstr "ਦੇਸ਼"
 
-#: ../src/imports/ABContactListPage.qml:703 ../src/imports/ABEmptyState.qml:56
+#: ../src/imports/ABContactListPage.qml:794 ../src/imports/ABEmptyState.qml:56
 msgid "Create a new contact by swiping up from the bottom of the screen."
 msgstr "ਸਕਰੀਨ ਦੇ ਤਲੇ ਨੂੰ ਉੱਪਰ ਖਿਸਕਾਉਣ ਦੁਆਰਾ ਇੱਕ ਨਵੇਂ ਸੰਪਰਕ ਦੀ ਰਚਨਾ ਕਰੋ"
 
@@ -128,15 +139,16 @@ msgstr "ਸਕਰੀਨ ਦੇ ਤਲੇ ਨੂੰ ਉੱਪਰ ਖਿਸਕਾ�
 msgid "Default address book"
 msgstr ""
 
-#: ../src/imports/ABContactListPage.qml:579
+#: ../src/imports/ABContactListPage.qml:379
+#: ../src/imports/ABContactListPage.qml:670
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:458
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:477
 msgid "Delete"
 msgstr "ਹਟਾਓ"
 
 #: ../src/imports/ABContactViewPage.qml:87
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:207
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "ਸੋਧ"
@@ -147,6 +159,11 @@ msgstr "ਸੋਧ"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailEmailsView.qml:28
 msgid "Email"
 msgstr "ਈਮੇਲ"
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:129
+#, fuzzy
+msgid "Enter a birthday"
+msgstr "ਇੱਕ ਨੰਬਰ ਭਰੋ"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
@@ -164,11 +181,16 @@ msgstr "ਇੱਕ ਈਮੇਲ ਪਤਾ ਭਰੋ"
 msgid "Error"
 msgstr "ਖਾਮੀ"
 
+#: ../src/imports/Settings/SettingsPage.qml:158
+#, fuzzy
+msgid "Export all contacts"
+msgstr "ਸੰਪਰਕ ਬਰਾਮਦ ਕਰ ਰਿਹਾ..."
+
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
 msgstr "ਸੰਪਰਕ ਬਰਾਮਦ ਕਰ ਰਿਹਾ..."
 
-#: ../src/imports/ABContactListPage.qml:800
+#: ../src/imports/ABContactListPage.qml:891
 msgid "Fail to import contacts!"
 msgstr ""
 
@@ -176,7 +198,7 @@ msgstr ""
 msgid "Fail to read SIM card"
 msgstr "ਸਿਮ ਕਾਰਡ ਪੜਨ ਵਿੱਚ ਫ਼ੇਲ੍ਹ"
 
-#: ../src/imports/ABContactListPage.qml:480
+#: ../src/imports/ABContactListPage.qml:572
 msgid "Favorites"
 msgstr "ਮਨਪਸੰਦ"
 
@@ -211,11 +233,21 @@ msgstr "ਗੂਗਲ ਤੋਂ ਸੰਪਰਕਾਂ ਦੀ ਆਮਦ"
 msgid "Import contacts from SIM card"
 msgstr "ਸਿਮ ਕਾਰਡ ਤੋਂ ਸੰਪਰਕਾਂ ਦੀ ਆਮਦ ਕਰੋ"
 
-#: ../src/imports/Settings/SettingsPage.qml:131
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:581
+#, fuzzy
+msgid "Import contacts from vcard file"
+msgstr "ਸਿਮ ਕਾਰਡ ਤੋਂ ਸੰਪਰਕਾਂ ਦੀ ਆਮਦ ਕਰੋ"
+
+#: ../src/imports/Settings/SettingsPage.qml:119
 msgid "Import from SIM"
 msgstr "ਸਿਮ ਤੋਂ ਆਮਦ"
 
-#: ../src/imports/ABContactListPage.qml:634
+#: ../src/imports/Settings/SettingsPage.qml:136
+#, fuzzy
+msgid "Import from vcard file"
+msgstr "ਸਿਮ ਤੋਂ ਆਮਦ"
+
+#: ../src/imports/ABContactListPage.qml:725
 msgid "Imported contacts"
 msgstr ""
 
@@ -231,7 +263,7 @@ msgstr "ਜੱਬਰ"
 msgid "Last name"
 msgstr "ਆਖਰੀ ਨਾਂ"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:636
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr "ਲੋਡ ਕਰ ਰਿਹਾ..."
@@ -244,7 +276,11 @@ msgstr "ਇਲਾਕਾ"
 msgid "MSN"
 msgstr "MSN"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:62
+#: ../src/imports/ABContactListPage.qml:399
+msgid "Message"
+msgstr ""
+
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:64
 msgid "Middle Name"
 msgstr ""
 
@@ -267,7 +303,7 @@ msgid "My phone number: %1"
 msgstr "ਮੇਰਾ ਫ਼ੋਨ ਨੰਬਰ: %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:207
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
 msgstr "ਨਵਾਂ ਸੰਪਰਕ"
@@ -277,10 +313,6 @@ msgstr "ਨਵਾਂ ਸੰਪਰਕ"
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/TextInputDetail.qml:88
 msgid "Next"
 msgstr "ਅਗਲਾ"
-
-#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:79
-msgid "No"
-msgstr "ਨਹੀਂ"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:40
 msgid "No contact selected."
@@ -296,9 +328,13 @@ msgstr "ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ ਮਿਲਿਆ"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:49
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:58
-#: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:80
+#: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:81
 msgid "No name"
 msgstr "ਕੋਈ ਨਾਂ ਨਹੀਂ"
+
+#: ../src/imports/ABContactListPage.qml:453
+msgid "Numbers"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -324,6 +360,10 @@ msgstr ""
 msgid "Phone"
 msgstr "ਫੋਨ"
 
+#: ../src/imports/ABContactListPage.qml:440
+msgid "Please select a phone number"
+msgstr ""
+
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
 msgstr "ਪੋਸਟ ਕੋਡ"
@@ -334,7 +374,7 @@ msgstr "ਪੋਸਟ ਕੋਡ"
 msgid "Professional Details"
 msgstr "ਪੇਸ਼ੇਵਰ ਵੇਰਵਾ"
 
-#: ../src/imports/ABContactListPage.qml:412
+#: ../src/imports/ABContactListPage.qml:504
 msgid "Quit"
 msgstr "ਬਾਹਰ"
 
@@ -342,9 +382,17 @@ msgstr "ਬਾਹਰ"
 msgid "Reading contacts from SIM..."
 msgstr ""
 
+#: ../src/imports/Settings/SettingsPage.qml:80
+msgid "Reading my phone number(s)..."
+msgstr ""
+
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
 msgstr "ਖੇਤਰ"
+
+#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
+msgid "Remove"
+msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
@@ -368,25 +416,26 @@ msgstr "ਸੰਭਾਲ੍ਹੋ"
 msgid "Saving contacts on phone..."
 msgstr ""
 
-#: ../src/imports/ABContactListPage.qml:422
+#: ../src/imports/ABContactListPage.qml:514
 msgid "Search"
 msgstr "ਖੋਜ"
 
-#: ../src/imports/ABContactListPage.qml:387
+#: ../src/imports/ABContactListPage.qml:488
 msgid "Search..."
 msgstr "ਖੋਜ..."
 
-#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/ABContactListPage.qml:640
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
 msgstr "ਸਾਰੇ ਚੁਣੋ"
 
-#: ../src/imports/ABContactListPage.qml:470
+#: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/Settings/SettingsPage.qml:35
 msgid "Settings"
 msgstr "ਸੈਟਿੰਗ"
 
-#: ../src/imports/ABContactListPage.qml:562
+#: ../src/imports/ABContactListPage.qml:389
+#: ../src/imports/ABContactListPage.qml:653
 #: ../src/imports/ABContactViewPage.qml:74
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:98
 msgid "Share"
@@ -405,15 +454,15 @@ msgstr "ਸਮਾਜਿਕ"
 msgid "Street"
 msgstr "ਗਲੀ"
 
-#: ../src/imports/ABContactListPage.qml:458
+#: ../src/imports/ABContactListPage.qml:550
 msgid "Sync"
 msgstr "ਸਿੰਕ"
 
-#: ../src/imports/ABContactListPage.qml:458
+#: ../src/imports/ABContactListPage.qml:550
 msgid "Syncing"
 msgstr "ਸਿੰਕ ਕਰ ਰਿਹਾ"
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:636
 msgid "Syncing..."
 msgstr "ਸਿੰਕ ਕਰ ਰਿਹਾ..."
 
@@ -433,7 +482,7 @@ msgstr "ਅਣਲਾਕ"
 msgid "Unlocking..."
 msgstr ""
 
-#: ../src/imports/ABContactListPage.qml:549
+#: ../src/imports/ABContactListPage.qml:640
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
 msgstr "ਕੋਈ ਨਾ ਚੁਣੋ"
@@ -453,11 +502,7 @@ msgstr "ਕੰਮ ਮੋਬਾਈਲ"
 msgid "Yahoo"
 msgstr "ਯਾਹੂ"
 
-#: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
-msgid "Yes"
-msgstr "ਹਾਂ"
-
-#: ../src/imports/ABContactListPage.qml:702
+#: ../src/imports/ABContactListPage.qml:793
 msgid "You have no contacts."
 msgstr "ਤੁਹਾਡੇ ਕੋਲ ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ।"
 
@@ -483,6 +528,12 @@ msgid ""
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
+
+#~ msgid "No"
+#~ msgstr "ਨਹੀਂ"
+
+#~ msgid "Yes"
+#~ msgstr "ਹਾਂ"
 
 #~ msgid "Frequently called"
 #~ msgstr "ਅਕਸਰ ਕਿਹਾ ਜਾਂਦਾ"

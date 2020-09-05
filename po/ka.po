@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-29 13:02+0000\n"
+"POT-Creation-Date: 2020-07-12 22:04+0000\n"
 "PO-Revision-Date: 2020-06-30 13:42+0000\n"
 "Last-Translator: Iuri Jikidze <ijiki16@freeuni.edu.ge>\n"
 "Language-Team: Georgian <https://translate.ubports.com/projects/ubports/"
@@ -29,7 +29,7 @@ msgstr "%1 არის დაბლოკილი"
 msgid "+ Create New"
 msgstr "+ Შექმენი ახალი"
 
-#: ../src/imports/Settings/SettingsPage.qml:90
+#: ../src/imports/Settings/SettingsPage.qml:96
 #, qt-format
 msgid "Add %1 account"
 msgstr "დაამატე %1 ანგარიში"
@@ -38,7 +38,7 @@ msgstr "დაამატე %1 ანგარიში"
 msgid "Add Field"
 msgstr "დაამატეთ ველი"
 
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:407
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:413
 msgid "Add field"
 msgstr "დაამატეთ ველი"
 
@@ -143,13 +143,13 @@ msgstr ""
 #: ../src/imports/ABContactListPage.qml:379
 #: ../src/imports/ABContactListPage.qml:670
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:355
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:470
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:477
 msgid "Delete"
 msgstr "წაშლა"
 
 #: ../src/imports/ABContactViewPage.qml:87
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:207
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:107
 msgid "Edit"
 msgstr "რედაქტირება"
@@ -179,6 +179,10 @@ msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
+msgstr ""
+
+#: ../src/imports/Settings/SettingsPage.qml:158
+msgid "Export all contacts"
 msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
@@ -228,8 +232,16 @@ msgstr ""
 msgid "Import contacts from SIM card"
 msgstr ""
 
-#: ../src/imports/Settings/SettingsPage.qml:113
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:581
+msgid "Import contacts from vcard file"
+msgstr ""
+
+#: ../src/imports/Settings/SettingsPage.qml:119
 msgid "Import from SIM"
+msgstr ""
+
+#: ../src/imports/Settings/SettingsPage.qml:136
+msgid "Import from vcard file"
 msgstr ""
 
 #: ../src/imports/ABContactListPage.qml:725
@@ -248,7 +260,7 @@ msgstr ""
 msgid "Last name"
 msgstr ""
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:636
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
 msgid "Loading..."
 msgstr ""
@@ -288,7 +300,7 @@ msgid "My phone number: %1"
 msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
-#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:201
+#: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:207
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
 msgstr ""
@@ -367,6 +379,10 @@ msgstr ""
 msgid "Reading contacts from SIM..."
 msgstr ""
 
+#: ../src/imports/Settings/SettingsPage.qml:80
+msgid "Reading my phone number(s)..."
+msgstr ""
+
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
 msgstr ""
@@ -443,7 +459,7 @@ msgstr ""
 msgid "Syncing"
 msgstr ""
 
-#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:616
+#: ../src/imports/Ubuntu/Contacts/ContactListView.qml:636
 msgid "Syncing..."
 msgstr ""
 
