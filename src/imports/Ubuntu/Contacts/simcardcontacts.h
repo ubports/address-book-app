@@ -49,7 +49,6 @@ Q_SIGNALS:
     void busyChanged();
 
 private Q_SLOTS:
-    void onModemChanged();
     void onPhoneBookIsValidChanged(bool isValid);
     void onPhoneBookImported(const QString &vcardData);
     void onPhoneBookImportFail();
