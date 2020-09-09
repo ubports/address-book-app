@@ -50,7 +50,7 @@ include_directories(
     ${QOfono_INCLUDE_DIRS}
 )
 
-add_library(${CONTACT_COMPONENTS_PLUGIN} MODULE
+add_library(${CONTACT_COMPONENTS_PLUGIN} SHARED
     ${CONTACT_COMPONENTS_SRC}
 )
 
