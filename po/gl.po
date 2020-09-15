@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2020-04-10 09:23+0000\n"
+"PO-Revision-Date: 2020-09-15 17:43+0000\n"
 "Last-Translator: Neutrum N <neutro@tutanota.com>\n"
 "Language-Team: Galician <https://translate.ubports.com/projects/ubports/"
 "address-book-app/gl/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:51+0000\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
@@ -88,7 +88,7 @@ msgstr ""
 
 #: ../src/imports/ABContactListPage.qml:406
 msgid "Call"
-msgstr ""
+msgstr "Chamar"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:592
@@ -336,7 +336,7 @@ msgstr "Sen nome"
 
 #: ../src/imports/ABContactListPage.qml:453
 msgid "Numbers"
-msgstr ""
+msgstr "Números"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -364,7 +364,7 @@ msgstr "Teléfono"
 
 #: ../src/imports/ABContactListPage.qml:440
 msgid "Please select a phone number"
-msgstr ""
+msgstr "Escolla un número de teléfono"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
