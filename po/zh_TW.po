@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2019-06-06 10:03+0000\n"
+"PO-Revision-Date: 2020-09-24 19:00+0000\n"
 "Last-Translator: P.-H. Lin <cypressyew@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.ubports.com/projects/"
 "ubports/address-book-app/zh_Hant/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:51+0000\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
@@ -84,7 +84,7 @@ msgstr "返回"
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:107
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailBirthdayView.qml:53
 msgid "Birthday"
-msgstr ""
+msgstr "生日"
 
 #: ../src/imports/ABContactListPage.qml:406
 msgid "Call"
@@ -127,7 +127,7 @@ msgstr "聯絡人通訊錄"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
-msgstr "聯絡人;人員;號碼"
+msgstr "聯絡人;人員;電話號碼;Contacts;People;Numbers"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:35
 msgid "Country"
@@ -163,9 +163,8 @@ msgid "Email"
 msgstr "電子郵件"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:129
-#, fuzzy
 msgid "Enter a birthday"
-msgstr "輸入號碼"
+msgstr "輸入生日"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
@@ -184,9 +183,8 @@ msgid "Error"
 msgstr "錯誤"
 
 #: ../src/imports/Settings/SettingsPage.qml:158
-#, fuzzy
 msgid "Export all contacts"
-msgstr "匯出聯絡人中..."
+msgstr "匯出所有聯絡人"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
@@ -236,22 +234,20 @@ msgid "Import contacts from SIM card"
 msgstr "自 SIM 卡匯入聯絡人"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:581
-#, fuzzy
 msgid "Import contacts from vcard file"
-msgstr "自 SIM 卡匯入聯絡人"
+msgstr "自 vcard 檔匯入聯絡人"
 
 #: ../src/imports/Settings/SettingsPage.qml:119
 msgid "Import from SIM"
 msgstr "自 SIM 卡匯入"
 
 #: ../src/imports/Settings/SettingsPage.qml:136
-#, fuzzy
 msgid "Import from vcard file"
-msgstr "自 SIM 卡匯入"
+msgstr "自 vcard 檔匯入"
 
 #: ../src/imports/ABContactListPage.qml:725
 msgid "Imported contacts"
-msgstr "已匯入聯絡人"
+msgstr "已匯入的聯絡人"
 
 #: ../src/imports/BusyImportingDialog.qml:31
 msgid "Importing..."
@@ -364,7 +360,7 @@ msgstr "電話"
 
 #: ../src/imports/ABContactListPage.qml:440
 msgid "Please select a phone number"
-msgstr ""
+msgstr "請選擇一個電話號碼"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
@@ -386,7 +382,7 @@ msgstr "自 SIM 卡讀取聯絡人中..."
 
 #: ../src/imports/Settings/SettingsPage.qml:80
 msgid "Reading my phone number(s)..."
-msgstr ""
+msgstr "讀取我的電話號碼中..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -394,7 +390,7 @@ msgstr "區域"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
 msgid "Remove"
-msgstr ""
+msgstr "移除"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
@@ -506,7 +502,7 @@ msgstr "Yahoo"
 
 #: ../src/imports/ABContactListPage.qml:793
 msgid "You have no contacts."
-msgstr "您尚無聯絡人。"
+msgstr "您尚無任何聯絡人。"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:42
 #, qt-format
