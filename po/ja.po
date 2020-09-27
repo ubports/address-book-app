@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2020-08-08 15:57+0000\n"
+"PO-Revision-Date: 2020-09-26 12:50+0000\n"
 "Last-Translator: M.Sugahara <equaaqua@hotmail.com>\n"
 "Language-Team: Japanese <https://translate.ubports.com/projects/ubports/"
 "address-book-app/ja/>\n"
@@ -88,7 +88,7 @@ msgstr ""
 
 #: ../src/imports/ABContactListPage.qml:406
 msgid "Call"
-msgstr ""
+msgstr "発信"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:592
