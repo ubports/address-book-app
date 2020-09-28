@@ -102,7 +102,7 @@ Item {
         function generateOutputFileName(contacts)
         {
             if (contacts.length === 1) {
-                return exportPath + "/%1.vcf".arg(contacts[0].displayLabel.label.replace(/[\s/]+/gi, '_'))
+                return exportPath + "/%1.vcf".arg(contacts[0].displayLabel.label.replace(/[\s\?\[\]\/\\=<>:;,\'"&\$#*()|~`!{}%+]+/gi, '_'))
             } else {
                 var fileName = new Date().toLocaleString(Qt.locale(), "yyyyMMddHHmmss")
                 return exportPath + "/ubuntu_contacts_" + fileName + ".vcf";
