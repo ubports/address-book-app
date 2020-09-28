@@ -120,6 +120,14 @@ FocusScope {
       By default this is set to true
     */
     property alias showSections: view.showSections
+
+    /*!
+      \qmlproperty bool contactSwiped
+
+      This property holds if a contact swipe left or right is currently made
+    */
+    property  bool  contactSwiped: view._currentSwipedItem !== null
+
     /*!
       \qmlproperty string manager
 
@@ -642,7 +650,7 @@ FocusScope {
 
         listView: view
         // only enable FastScroll if the we have more than 2 pages of content and sections is enabled
-        enabled: showSections &&
+        enabled: !contactSwiped && showSections &&
                  (view.contentHeight > (view.height * 2)) &&
                  (view.height >= minimumHeight) &&
                  (((view.contentY - view.originY) - view.headerItem.height) >= 0)// hearder already invisble
