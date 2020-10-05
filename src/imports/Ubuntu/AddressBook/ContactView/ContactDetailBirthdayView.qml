@@ -68,6 +68,7 @@ ContactDetailBase {
                 left: parent.left
                 right: parent.right
             }
+            color: theme.palette.normal.background
 
             Label {
                 id: label
