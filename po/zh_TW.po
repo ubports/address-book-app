@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2020-09-24 19:00+0000\n"
+"PO-Revision-Date: 2020-10-16 09:10+0000\n"
 "Last-Translator: P.-H. Lin <cypressyew@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.ubports.com/projects/"
 "ubports/address-book-app/zh_Hant/>\n"
@@ -88,7 +88,7 @@ msgstr "生日"
 
 #: ../src/imports/ABContactListPage.qml:406
 msgid "Call"
-msgstr ""
+msgstr "撥號"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:592
@@ -332,7 +332,7 @@ msgstr "沒有名稱"
 
 #: ../src/imports/ABContactListPage.qml:453
 msgid "Numbers"
-msgstr ""
+msgstr "號碼"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
