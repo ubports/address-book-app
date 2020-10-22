@@ -25,6 +25,8 @@ Page {
     id: root
 
     property QtObject contact: null
+    property QtObject contactMainConstituent: null
+    property var constituents: []
     property string contactId
     property alias extensions: extensionsContents.children
     property alias model: contactFetch.model
@@ -35,10 +37,11 @@ Page {
     signal contactRemoved()
     signal actionTrigerred(string action, QtObject contact, QtObject detail)
 
-    function fetchContact(contactId)
-    {
-        if (contactId !== "") {
-            contactFetch.fetchContact(contactId)
+    function _ensureFullContact() {
+        if (contact) contactId = contact.contactId
+        else if (contactId == "") return
+        if (contact == null || constituents.length == 0) {
+            contactFetch.fetchContactFull(contactId)
         }
     }
 
@@ -59,10 +62,12 @@ Page {
         }
     }
 
-    // Pop page if the contact get removed
     onContactChanged: {
         if (!contact) {
+            // Pop page if the contact get removed
             root.contactRemoved()
+        } else {
+            _ensureFullContact()
         }
     }
 
@@ -89,6 +94,8 @@ Page {
         onContactNotFound: PopupUtils.open(Qt.resolvedUrl("ContactFetchError.qml"), root)
         onContactFetched: {
             root.contact = contact
+            root.contactMainConstituent = mainConstituent
+            root.constituents = constituents
             root.contactFetched(root.contact)
         }
     }
@@ -123,6 +130,8 @@ Page {
                 anchors.left: parent.left
                 height: implicitHeight
                 width: implicitWidth
+
+                constituents: root.constituents
             }
 
             ContactDetailPhoneNumbersView {
@@ -207,19 +216,7 @@ Page {
         }
     }
 
-    Component.onCompleted: {
-        if (contact == null) {
-            fetchContact(root.contactId)
-        }
-    }
-    onContactIdChanged: {
-        if (contact == null) {
-            fetchContact(root.contactId)
-        }
-    }
-    onModelChanged: {
-        if (contact == null) {
-            fetchContact(root.contactId)
-        }
-    }
+    Component.onCompleted: _ensureFullContact()
+    onContactIdChanged: _ensureFullContact()
+    onModelChanged: _ensureFullContact()
 }

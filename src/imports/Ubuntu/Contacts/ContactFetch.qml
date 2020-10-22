@@ -27,13 +27,25 @@ Item {
     property bool contactIsDirty: false
 
     property string _pendingId: ""
+    property bool _withConstituents: false
     property bool _ready: false
 
-    signal contactFetched(QtObject contact)
+    signal contactFetched(QtObject contact, var constituents,
+                          QtObject mainConstituent)
     signal contactRemoved()
     signal contactNotFound()
 
     function fetchContact(contactId) {
+        root._withConstituents = false
+        if (root._ready) {
+            root._fetchContact(contactId)
+        } else {
+            root._pendingId = contactId
+        }
+    }
+
+    function fetchContactFull(contactId) {
+        root._withConstituents = true
         if (root._ready) {
             root._fetchContact(contactId)
         } else {
@@ -48,7 +60,12 @@ Item {
         }
 
         if (contact && !contactIsDirty && contact.contacId == contactId) {
-            contactFetched(contact)
+            if (root._withConstituents) {
+                root._fetchConstituents(contact)
+            } else {
+                running = false
+                contactFetched(contact, [], null)
+            }
         } else if (model) {
             contactIsDirty = true
             running = true
@@ -64,6 +81,19 @@ Item {
                 }
             }
         }
+    }
+
+    function _fetchConstituents(contact) {
+        model.enumerateConstituents(contact, function(contacts) {
+            var mainConstituent = null
+            for (var i = 0; i < contacts.length; i++) {
+                /* TODO: add support for the case when there are multiple
+                 * constituents */
+                mainConstituent = contacts[i]
+            }
+            running = false
+            root.contactFetched(root.contact, contacts, mainConstituent)
+        })
     }
 
     onContactChanged: {
@@ -88,7 +118,11 @@ Item {
                 currentQueryId = -1
                 if (fetchedContacts.length > 0) {
                     contact = fetchedContacts[0]
-                    root.contactFetched(fetchedContacts[0])
+                    if (root._withConstituents) {
+                        root._fetchConstituents(contact)
+                    } else {
+                        root.contactFetched(fetchedContacts[0], [], null)
+                    }
                 } else {
                     contactNotFound()
                 }
