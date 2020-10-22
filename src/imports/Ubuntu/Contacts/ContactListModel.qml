@@ -171,5 +171,40 @@ ContactModel {
 
         }
     }
+
+    /* TODO: once https://bugreports.qt.io/browse/QTBUG-87807 is fixed, we can
+     * remove both these models and use the new relatedContacts() method.
+     */
+    property var _relationshipModel: RelationshipModel {
+        manager: root.manager
+        relationshipType: "Aggregates"
+        role: Relationship.First
+        onRelationshipsChanged: inspectModel()
+        function inspectModel() {
+            var ids = []
+            for (var i = 0; i < relationships.length; i++) {
+                ids.push(relationships[i].second)
+            }
+            idFilter.ids = ids
+        }
+    }
+
+    property var _constituentsModel: ContactModel {
+        manager: root.manager
+        filter: IdFilter { id: idFilter }
+        property var callback: null
+        onContactsChanged: {
+            if (callback) callback(contacts)
+        }
+    }
+
+    function enumerateConstituents(contact, callback) {
+        _constituentsModel.callback = null
+        _relationshipModel.participant = null
+        _constituentsModel.callback = function(contacts) {
+            callback(contacts)
+        }
+        _relationshipModel.participant = contact
+    }
 }
 

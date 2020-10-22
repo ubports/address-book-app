@@ -88,7 +88,7 @@ ContactViewPage {
             iconName: "edit"
             enabled: root.active && !root.editing
             shortcut: "Ctrl+e"
-            onTriggered: root.editContact(root.contact)
+            onTriggered: root.editContact(root.contactMainConstituent)
         }
     ]
 
