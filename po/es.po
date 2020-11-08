@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2020-10-09 22:39+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2020-11-01 19:29+0000\n"
+"Last-Translator: Iñaki Aliaga <him@mint.lgbt>\n"
 "Language-Team: Spanish <https://translate.ubports.com/projects/ubports/"
 "address-book-app/es/>\n"
 "Language: es\n"
@@ -312,7 +312,7 @@ msgstr "Nuevo contacto"
 #. this word must be less than 5 characters
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/TextInputDetail.qml:88
 msgid "Next"
-msgstr "Sig."
+msgstr "Siguiente"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:40
 msgid "No contact selected."
