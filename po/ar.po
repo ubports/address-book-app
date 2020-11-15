@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2020-11-15 19:43+0000\n"
+"PO-Revision-Date: 2020-11-15 22:03+0000\n"
 "Last-Translator: abidin <abidin24@tutanota.com>\n"
 "Language-Team: Arabic <https://translate.ubports.com/projects/ubports/"
 "address-book-app/ar/>\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
 msgid "%1 is locked"
-msgstr "1% مغلق"
+msgstr "%1 مغلق"
 
 #. TRANSLATORS: this refers to a new contact
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:480
@@ -34,7 +34,7 @@ msgstr "+ أنشئ متراسلا"
 #: ../src/imports/Settings/SettingsPage.qml:96
 #, qt-format
 msgid "Add %1 account"
-msgstr "أضف حساب 1%"
+msgstr "أضف حساب %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
 msgid "Add Field"
@@ -185,7 +185,7 @@ msgstr "خطأ"
 
 #: ../src/imports/Settings/SettingsPage.qml:158
 msgid "Export all contacts"
-msgstr "صدر كل المتراسلين...."
+msgstr "صدر كل المتراسلين"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
@@ -228,33 +228,31 @@ msgstr "استورد"
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
 #, qt-format
 msgid "Import contacts from %1"
-msgstr "يستورد المتراسلين من 1%"
+msgstr "يستورد المتراسلين من %1"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
-msgstr "استورد المتراسلين من شريحة الهاتف"
+msgstr "استورد متراسلين من شريحة الهاتف"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:581
-#, fuzzy
 msgid "Import contacts from vcard file"
-msgstr "تصدير الاشخاص من شريحة اس اي ام"
+msgstr "استورد متراسلين من شريحة الهاتف"
 
 #: ../src/imports/Settings/SettingsPage.qml:119
 msgid "Import from SIM"
-msgstr "تصدير من اس اي ام"
+msgstr "استورد من شريحة الهاتف"
 
 #: ../src/imports/Settings/SettingsPage.qml:136
-#, fuzzy
 msgid "Import from vcard file"
-msgstr "تصدير من اس اي ام"
+msgstr "استورد من ملف vcard"
 
 #: ../src/imports/ABContactListPage.qml:725
 msgid "Imported contacts"
-msgstr "تم تصدير الاشخاض"
+msgstr "أُستورد متراسلون"
 
 #: ../src/imports/BusyImportingDialog.qml:31
 msgid "Importing..."
-msgstr "يتم التصدير ..."
+msgstr "يستورد..."
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
 msgid "Jabber"
@@ -271,7 +269,7 @@ msgstr "يُحمّل..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:32
 msgid "Locality"
-msgstr "المكان"
+msgstr "الموقع"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:66
 msgid "MSN"
@@ -279,35 +277,35 @@ msgstr "MSN"
 
 #: ../src/imports/ABContactListPage.qml:399
 msgid "Message"
-msgstr ""
+msgstr "رسالة"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:64
 msgid "Middle Name"
-msgstr "الاسم الوسط"
+msgstr "الاسم الأوسط"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:90
 msgid "Middle name"
-msgstr "الاسم الوسط"
+msgstr "الاسم الأوسط"
 
 #. TRANSLATORS: This refers to mobile/cellphone phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:113
 msgid "Mobile"
-msgstr "التليفون المحمول"
+msgstr "الجوّال"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:44
 msgid "Multiple contacts"
-msgstr "تجميع الاشخاص"
+msgstr "عدّة مراسلين"
 
 #: ../src/imports/Settings/SettingsPage.qml:72
 #, qt-format
 msgid "My phone number: %1"
-msgstr "ارقام هاتفي : 1%"
+msgstr "رقم هاتفي : %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:207
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:488
 msgid "New contact"
-msgstr "شخص جديد"
+msgstr "متراسل جديد"
 
 #. TRANSLATORS: This is the text that will be used on the "return" key for the virtual keyboard,
 #. this word must be less than 5 characters
@@ -317,21 +315,21 @@ msgstr "التالي"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:40
 msgid "No contact selected."
-msgstr "لا شخص اختير ."
+msgstr "لم تختر متراسلاً."
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
-msgstr "لا اشخاص"
+msgstr "لا يوجد متراسلون"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:155
 msgid "No contacts found"
-msgstr "لا شخص وجد"
+msgstr "لم يُعثر على متراسلين"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:49
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:58
 #: ../src/imports/Ubuntu/Contacts/ContactDelegate.qml:81
 msgid "No name"
-msgstr "لا اسم"
+msgstr "بدون اسم"
 
 #: ../src/imports/ABContactListPage.qml:453
 msgid "Numbers"
@@ -352,7 +350,7 @@ msgstr "أخرى"
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailSyncTargetView.qml:88
 #, qt-format
 msgid "Personal - %1"
-msgstr "شخصي - 1%"
+msgstr "شخصي - %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:51
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:23
@@ -373,19 +371,19 @@ msgstr "الرمز البريدي"
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:21
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailOrganizationsView.qml:24
 msgid "Professional Details"
-msgstr "تفاصيل محترفة"
+msgstr "تفاصيل مهنية"
 
 #: ../src/imports/ABContactListPage.qml:504
 msgid "Quit"
-msgstr "خروج"
+msgstr "أنهِ"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Reading contacts from SIM..."
-msgstr "قراءة الاشخاص من اس اي ام ..."
+msgstr "يقرأ المتراسلين من شريحة الهاتف..."
 
 #: ../src/imports/Settings/SettingsPage.qml:80
 msgid "Reading my phone number(s)..."
-msgstr ""
+msgstr "يقرأ أرقامي…"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -393,7 +391,7 @@ msgstr "المنطقة"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
 msgid "Remove"
-msgstr ""
+msgstr "أزل"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
@@ -402,11 +400,11 @@ msgstr "الوظيفة"
 #: ../src/imports/Settings/SettingsPage.qml:73
 #, qt-format
 msgid "SIM %1"
-msgstr "اس اي ام 1%"
+msgstr "شريحة %1"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:39
 msgid "SIM contacts"
-msgstr "اشخاص اس اي ام"
+msgstr "متراسلو شريحة الهاتف"
 
 #: ../src/imports/ABContactEditorPage.qml:56
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:411
@@ -415,7 +413,7 @@ msgstr "احفظ"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Saving contacts on phone..."
-msgstr "حفظ الاشخاص في الهاتف ..."
+msgstr "يحفظ المتراسلين في الهاتف..."
 
 #: ../src/imports/ABContactListPage.qml:514
 msgid "Search"
@@ -423,24 +421,24 @@ msgstr "ابحث"
 
 #: ../src/imports/ABContactListPage.qml:488
 msgid "Search..."
-msgstr "البحث ..."
+msgstr "ابحث..."
 
 #: ../src/imports/ABContactListPage.qml:640
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
-msgstr "تحديد كل"
+msgstr "حدد الكل"
 
 #: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/Settings/SettingsPage.qml:35
 msgid "Settings"
-msgstr "الضبط"
+msgstr "الإعدادات"
 
 #: ../src/imports/ABContactListPage.qml:389
 #: ../src/imports/ABContactListPage.qml:653
 #: ../src/imports/ABContactViewPage.qml:74
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactView.qml:98
 msgid "Share"
-msgstr "مشاركة"
+msgstr "شارك"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:68
 msgid "Skype"
@@ -461,7 +459,7 @@ msgstr "زامن"
 
 #: ../src/imports/ABContactListPage.qml:550
 msgid "Syncing"
-msgstr "المزامنة"
+msgstr "يزامن"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:636
 msgid "Syncing..."
@@ -481,12 +479,12 @@ msgstr "فك الإيصاد"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
 msgid "Unlocking..."
-msgstr "مفتوح ..."
+msgstr "يفك الإيصاد..."
 
 #: ../src/imports/ABContactListPage.qml:640
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
-msgstr "لم يتم تحديد لكل"
+msgstr "ألغ تحديد لكل"
 
 #. TRANSLATORS: This refers to landline work phone label
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:119
@@ -497,7 +495,7 @@ msgstr "العمل"
 #. TRANSLATORS: This refers to mobile/cellphone work phone label
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPhoneNumberTypeModel.qml:117
 msgid "Work Mobile"
-msgstr "هاتف العمل المحمول"
+msgstr "هاتف العمل"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:69
 msgid "Yahoo"
@@ -505,7 +503,7 @@ msgstr "ياهو"
 
 #: ../src/imports/ABContactListPage.qml:793
 msgid "You have no contacts."
-msgstr "ليس لديك أي أشخاص."
+msgstr "ليس لديك أي متراسلين."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:42
 #, qt-format
@@ -514,9 +512,9 @@ msgid ""
 "app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
-"يحتاج <b>%1</b> حساب مزامنة جهات الإتصال للتحديث عن طريق تشغيل تطبيق جهات "
-"الإتصال.\n"
-"ستكون جهات الإتصال المحلية فقط قابلة للتعديل حتى يكتمل التحديث."
+"يحتاج <b>%1</b> حساب مزامنة المتراسلين للترقية عن طريق تشغيل تطبيق "
+"المتراسلين.\n"
+"فقط المتراسلون المحليون قابلون للتحرير حتى تكتمل الترقية."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:33
 #, qt-format
@@ -524,8 +522,8 @@ msgid ""
 "Your <b>%1</b> contact sync account needs to be upgraded.\n"
 "Wait until the upgrade is complete to edit contacts."
 msgstr ""
-"تحتاج الترقية حساب مزامنه الاشخاص \n"
-"انتظار حتي تتم الترقية و تعديل الاشخاص"
+"تحتاج لترقية حساب مزامنه المتراسلين <b>%1</b>. \n"
+"انتظر حتي تتم الترقية و لتحرير المتراسلين."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:38
 #, qt-format
@@ -534,9 +532,9 @@ msgid ""
 "button to upgrade the Contacts app.\n"
 "Only local contacts will be editable until upgrade is complete."
 msgstr ""
-"يحتاج <b>%1</b> حساب مزامنة جهات الإتصال للتحديث.\n"
-"استخدم زر المزامنة لتحيث تطبيق جهات الإتصال.\n"
-"ستكون جهات الإتصال المحلية فقط قابلة للتعديل حتى يكتمل التحديث."
+"يحتاج <b>%1</b> حساب مزامنة المتراسلين للترقية. استخدم زر التمزامنة لترقية "
+"تطبيق المتراسلين.\n"
+"فقط المتراسلون المحليون قابلون للتحرير حتى تكتمل الترقية."
 
 #~ msgid "No"
 #~ msgstr "لا"
