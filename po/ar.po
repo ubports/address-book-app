@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2020-11-13 19:53+0000\n"
+"PO-Revision-Date: 2020-11-15 19:43+0000\n"
 "Last-Translator: abidin <abidin24@tutanota.com>\n"
 "Language-Team: Arabic <https://translate.ubports.com/projects/ubports/"
 "address-book-app/ar/>\n"
@@ -29,24 +29,24 @@ msgstr "1% مغلق"
 #. TRANSLATORS: this refers to a new contact
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:480
 msgid "+ Create New"
-msgstr "هذا المحتوي الشخص جديد"
+msgstr "+ أنشئ متراسلا"
 
 #: ../src/imports/Settings/SettingsPage.qml:96
 #, qt-format
 msgid "Add %1 account"
-msgstr "اضافة حساب 1%"
+msgstr "أضف حساب 1%"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
 msgid "Add Field"
-msgstr "اضافة حقل"
+msgstr "أضف حقلًا"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:413
 msgid "Add field"
-msgstr "اضافة حقل"
+msgstr "أضف حقلًا"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
-msgstr "اضافة رقم ..."
+msgstr "أضف رقمًا..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:55
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:23
@@ -62,7 +62,7 @@ msgstr "دفتر العناوين"
 #. TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "Aim"
-msgstr "امريكا اون لين للمحادثات الفوريه"
+msgstr "Aim"
 
 #. TRANSLATORS: this refers to all contacts
 #: ../src/imports/ABContactListPage.qml:572
@@ -71,11 +71,11 @@ msgstr "الكل"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
-msgstr "هل انتا متاكد من مسح كل الاشخاص ؟"
+msgstr "أمتأكد من إزالة كل المتراسلين المحددين ؟"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
-msgstr "هل انتا متاكد من مسح كل الاشخاص ؟"
+msgstr "أمتأكد من إزالة هذا المتراسل؟"
 
 #: ../src/imports/ABContactListPage.qml:712
 msgid "Back"
@@ -85,7 +85,7 @@ msgstr "للخلف"
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:107
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailBirthdayView.qml:53
 msgid "Birthday"
-msgstr ""
+msgstr "تاريخ الميلاد"
 
 #: ../src/imports/ABContactListPage.qml:406
 msgid "Call"
@@ -102,33 +102,33 @@ msgstr "ألغ"
 
 #: ../src/imports/ABContactListPage.qml:630
 msgid "Cancel selection"
-msgstr "الغاء التحديد"
+msgstr "ألغ التحديد"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:48
 msgid "Close"
-msgstr "اغلاق"
+msgstr "أغلق"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:29
 msgid "Contact Editor"
-msgstr "تحرير الاشخاص"
+msgstr "محرر المتراسلين"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:26
 msgid "Contact not found"
-msgstr "لم يُعثر على الشخص"
+msgstr "لم يُعثر على المتراسل"
 
 #: ../src/imports/ABContactListPage.qml:248
 #: ../src/imports/ABContactListPage.qml:288
 #: ../data/address-book-app.desktop.in.in.h:1
 msgid "Contacts"
-msgstr "الأشخاص"
+msgstr "المتراسلون"
 
 #: ../data/address-book-app.desktop.in.in.h:2
 msgid "Contacts Address Book"
-msgstr "دفتر عناوين الاشخاص"
+msgstr "دفتر عناوين المتراسلين"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
-msgstr "الاشخاص ; الافراد ; الارقام"
+msgstr "المتراسلون;الاشخاص;الارقام"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:35
 msgid "Country"
@@ -136,7 +136,7 @@ msgstr "الدولة"
 
 #: ../src/imports/ABContactListPage.qml:794 ../src/imports/ABEmptyState.qml:56
 msgid "Create a new contact by swiping up from the bottom of the screen."
-msgstr "الاضافة شخص جديد عبر التلويح اسفل الي اعلاه"
+msgstr "أضف متراسلًا جديد بالسحب لأعلى من أسفل الشاشة."
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
@@ -164,9 +164,8 @@ msgid "Email"
 msgstr "البريد الإلكتروني"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:129
-#, fuzzy
 msgid "Enter a birthday"
-msgstr "أدخِل رقما"
+msgstr "أدخِل تاريخ الميلاد"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
@@ -185,21 +184,20 @@ msgid "Error"
 msgstr "خطأ"
 
 #: ../src/imports/Settings/SettingsPage.qml:158
-#, fuzzy
 msgid "Export all contacts"
-msgstr "تصدير الاشخاص ...."
+msgstr "صدر كل المتراسلين...."
 
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
-msgstr "تصدير الاشخاص ...."
+msgstr "يصدر المتراسلين...."
 
 #: ../src/imports/ABContactListPage.qml:891
 msgid "Fail to import contacts!"
-msgstr "فشل في تصدير الاشخاص !"
+msgstr "فشل تصدير المتراسلين!"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:285
 msgid "Fail to read SIM card"
-msgstr "فشل في قراء شريحة اس اي ام"
+msgstr "فشلت قراءة شريحة الهاتف"
 
 #: ../src/imports/ABContactListPage.qml:572
 msgid "Favorites"
@@ -221,20 +219,20 @@ msgstr "ICQ"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOnlineAccountsEditor.qml:23
 msgid "IM"
-msgstr "التراسل القوري"
+msgstr "IM"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:58
 msgid "Import"
-msgstr "تصدير"
+msgstr "استورد"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
 #, qt-format
 msgid "Import contacts from %1"
-msgstr "تصدير الاشخاص من 1%"
+msgstr "يستورد المتراسلين من 1%"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:556
 msgid "Import contacts from SIM card"
-msgstr "تصدير الاشخاص من شريحة اس اي ام"
+msgstr "استورد المتراسلين من شريحة الهاتف"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:581
 #, fuzzy
