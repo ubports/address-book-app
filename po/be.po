@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2020-11-27 09:26+0000\n"
+"PO-Revision-Date: 2020-11-27 16:30+0000\n"
 "Last-Translator: Zmicer <nashtlumach@gmail.com>\n"
 "Language-Team: Belarusian <https://translate.ubports.com/projects/ubports/"
 "address-book-app/be/>\n"
@@ -201,7 +201,7 @@ msgstr "Не атрымалася прачытаць SIM-картку"
 
 #: ../src/imports/ABContactListPage.qml:572
 msgid "Favorites"
-msgstr "Улюбёныя"
+msgstr "Улюбёныя кантакты"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:88
 msgid "First name"
