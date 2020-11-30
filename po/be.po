@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2020-11-27 16:30+0000\n"
+"PO-Revision-Date: 2020-11-30 09:55+0000\n"
 "Last-Translator: Zmicer <nashtlumach@gmail.com>\n"
 "Language-Team: Belarusian <https://translate.ubports.com/projects/ubports/"
 "address-book-app/be/>\n"
@@ -136,7 +136,7 @@ msgstr "Краіна"
 
 #: ../src/imports/ABContactListPage.qml:794 ../src/imports/ABEmptyState.qml:56
 msgid "Create a new contact by swiping up from the bottom of the screen."
-msgstr "Каб стварыць новы кантакт, працягніце ўверх ад ніжняй часткі экрана."
+msgstr "Каб стварыць новы кантакт, правядзіце ўверх ад ніжняй часткі экрана."
 
 #: ../src/imports/Settings/SettingsDefaultSyncTarget.qml:174
 msgid "Default address book"
@@ -223,7 +223,7 @@ msgstr "IM"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:58
 msgid "Import"
-msgstr "Імпартаваць"
+msgstr "Імпарт"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:544
 #, qt-format
