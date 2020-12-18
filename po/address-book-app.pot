@@ -127,7 +127,7 @@ msgid "Contacts;People;Numbers"
 msgstr ""
 
 #: ../src/imports/Settings/SettingsPage.qml:72
-msgid "Could not read Phone Number from SIM card"
+msgid "Could not read phone number from SIM card"
 msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:35
