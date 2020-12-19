@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2019-09-03 03:50+0000\n"
+"PO-Revision-Date: 2020-12-20 00:45+0000\n"
 "Last-Translator: Samson <sambelet@yahoo.com>\n"
 "Language-Team: Amharic <https://translate.ubports.com/projects/ubports/"
 "address-book-app/am/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.11.3\n"
 "X-Launchpad-Export-Date: 2017-02-17 05:50+0000\n"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
@@ -84,11 +84,11 @@ msgstr "ወደ ኋላ"
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:107
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailBirthdayView.qml:53
 msgid "Birthday"
-msgstr ""
+msgstr "የ ልደት ቀን"
 
 #: ../src/imports/ABContactListPage.qml:406
 msgid "Call"
-msgstr ""
+msgstr "መጥሪያ"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:592
@@ -163,9 +163,8 @@ msgid "Email"
 msgstr "ኢሜይል"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:129
-#, fuzzy
 msgid "Enter a birthday"
-msgstr "ቁጥር ያስገቡ"
+msgstr "የ ልደት ቀን ያስገቡ"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
@@ -184,9 +183,8 @@ msgid "Error"
 msgstr "ስህተት"
 
 #: ../src/imports/Settings/SettingsPage.qml:158
-#, fuzzy
 msgid "Export all contacts"
-msgstr "ግንኙነቶችን በመላክ ላይ..."
+msgstr "ሁሉንም ግንኙነቶች መላኪያ"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
@@ -280,7 +278,7 @@ msgstr "MSN"
 
 #: ../src/imports/ABContactListPage.qml:399
 msgid "Message"
-msgstr ""
+msgstr "መልእክት"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:64
 msgid "Middle Name"
@@ -318,7 +316,7 @@ msgstr "ይቀጥሉ"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:40
 msgid "No contact selected."
-msgstr "ምንም ግንኙነት አልተመረጠም:"
+msgstr "ምንም ግንኙነት አልተመረጠም"
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
@@ -336,7 +334,7 @@ msgstr "ስም የለም"
 
 #: ../src/imports/ABContactListPage.qml:453
 msgid "Numbers"
-msgstr ""
+msgstr "ቁጥሮች"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -364,7 +362,7 @@ msgstr "ስልክ"
 
 #: ../src/imports/ABContactListPage.qml:440
 msgid "Please select a phone number"
-msgstr ""
+msgstr "እባክዎን የ ስልክ ቁጥር ይምረጡ"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
@@ -394,7 +392,7 @@ msgstr "አካባቢ"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
 msgid "Remove"
-msgstr ""
+msgstr "ማስወገጃ"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
