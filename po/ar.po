@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2020-11-15 22:03+0000\n"
-"Last-Translator: abidin <abidin24@tutanota.com>\n"
+"PO-Revision-Date: 2020-12-26 11:47+0000\n"
+"Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Arabic <https://translate.ubports.com/projects/ubports/"
 "address-book-app/ar/>\n"
 "Language: ar\n"
@@ -24,17 +24,17 @@ msgstr ""
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:122
 #, qt-format
 msgid "%1 is locked"
-msgstr "%1 مغلق"
+msgstr "%1 مقفل"
 
 #. TRANSLATORS: this refers to a new contact
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:480
 msgid "+ Create New"
-msgstr "+ أنشئ متراسلا"
+msgstr "+ إنشاء جديد"
 
 #: ../src/imports/Settings/SettingsPage.qml:96
 #, qt-format
 msgid "Add %1 account"
-msgstr "أضف حساب %1"
+msgstr "أضف حسابًا %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
 msgid "Add Field"
