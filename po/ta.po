@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2020-12-31 16:30+0000\n"
+"PO-Revision-Date: 2021-01-01 15:18+0000\n"
 "Last-Translator: GK <miscgk@pm.me>\n"
 "Language-Team: Tamil <https://translate.ubports.com/projects/ubports/"
 "address-book-app/ta/>\n"
@@ -78,7 +78,7 @@ msgstr ""
 
 #: ../src/imports/ABContactListPage.qml:712
 msgid "Back"
-msgstr ""
+msgstr "பின்செல்"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:61
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:107
@@ -180,7 +180,7 @@ msgstr ""
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
-msgstr ""
+msgstr "பிழை"
 
 #: ../src/imports/Settings/SettingsPage.qml:158
 msgid "Export all contacts"
@@ -454,11 +454,11 @@ msgstr ""
 
 #: ../src/imports/ABContactListPage.qml:550
 msgid "Sync"
-msgstr ""
+msgstr "ஒத்திசை"
 
 #: ../src/imports/ABContactListPage.qml:550
 msgid "Syncing"
-msgstr ""
+msgstr "ஒத்திசைக்கிறது"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:636
 msgid "Syncing..."
