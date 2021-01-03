@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2021-01-02 18:40+0000\n"
+"PO-Revision-Date: 2021-01-03 02:00+0000\n"
 "Last-Translator: GK <miscgk@pm.me>\n"
 "Language-Team: Tamil <https://translate.ubports.com/projects/ubports/"
 "address-book-app/ta/>\n"
@@ -66,7 +66,7 @@ msgstr ""
 #. TRANSLATORS: this refers to all contacts
 #: ../src/imports/ABContactListPage.qml:572
 msgid "All"
-msgstr ""
+msgstr "எல்லாம்"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
