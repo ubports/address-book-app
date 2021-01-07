@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2020-09-07 02:31+0000\n"
+"PO-Revision-Date: 2021-01-08 10:26+0000\n"
 "Last-Translator: Mike <miguel2000@livecom.it>\n"
 "Language-Team: Italian <https://translate.ubports.com/projects/ubports/"
 "address-book-app/it/>\n"
@@ -426,7 +426,7 @@ msgstr "Cerca..."
 #: ../src/imports/ABContactListPage.qml:640
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:46
 msgid "Select All"
-msgstr "Seleziona Tutto"
+msgstr "Seleziona tutto"
 
 #: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/Settings/SettingsPage.qml:35
