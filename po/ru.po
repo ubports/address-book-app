@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2021-01-15 07:25+0000\n"
-"Last-Translator: ierihon <idekovets@mail.ru>\n"
+"PO-Revision-Date: 2021-01-15 20:17+0000\n"
+"Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Russian <https://translate.ubports.com/projects/ubports/"
 "address-book-app/ru/>\n"
 "Language: ru\n"
@@ -244,7 +244,7 @@ msgstr "Импортировать с SIM"
 
 #: ../src/imports/Settings/SettingsPage.qml:136
 msgid "Import from vcard file"
-msgstr "Импорт из файла"
+msgstr "Импортировать из файла vcard"
 
 #: ../src/imports/ABContactListPage.qml:725
 msgid "Imported contacts"
