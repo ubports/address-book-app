@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2020-12-20 00:45+0000\n"
+"PO-Revision-Date: 2021-01-31 01:01+0000\n"
 "Last-Translator: Samson <sambelet@yahoo.com>\n"
 "Language-Team: Amharic <https://translate.ubports.com/projects/ubports/"
 "address-book-app/am/>\n"
@@ -234,18 +234,16 @@ msgid "Import contacts from SIM card"
 msgstr "ከ ሲም ካርድ ውስጥ ግንኙነቶች ማምጫ"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:581
-#, fuzzy
 msgid "Import contacts from vcard file"
-msgstr "ከ ሲም ካርድ ውስጥ ግንኙነቶች ማምጫ"
+msgstr "ከ vcard ፋይል ውስጥ ግንኙነቶች ማምጫ"
 
 #: ../src/imports/Settings/SettingsPage.qml:119
 msgid "Import from SIM"
 msgstr "ከ ሲም ካርድ ውስጥ ማምጫ"
 
 #: ../src/imports/Settings/SettingsPage.qml:136
-#, fuzzy
 msgid "Import from vcard file"
-msgstr "ከ ሲም ካርድ ውስጥ ማምጫ"
+msgstr "ከ vcard ካርድ ፋይል ውስጥ ማምጫ"
 
 #: ../src/imports/ABContactListPage.qml:725
 msgid "Imported contacts"
@@ -480,7 +478,7 @@ msgstr "መክፈቻ"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
 msgid "Unlocking..."
-msgstr "በመክፈት ላይ..."
+msgstr "በ መክፈት ላይ..."
 
 #: ../src/imports/ABContactListPage.qml:640
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
@@ -504,7 +502,7 @@ msgstr "ያሁ"
 
 #: ../src/imports/ABContactListPage.qml:793
 msgid "You have no contacts."
-msgstr "እርስዎ ምንም ግንኙነት የለዎትም:"
+msgstr "እርስዎ ምንም ግንኙነት የለዎትም"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:42
 #, qt-format
