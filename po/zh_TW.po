@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2021-02-14 19:08+0000\n"
+"PO-Revision-Date: 2021-02-14 20:35+0000\n"
 "Last-Translator: louies0623 <louies0623@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.ubports.com/projects/"
 "ubports/address-book-app/zh_Hant/>\n"
@@ -276,7 +276,7 @@ msgstr "MSN"
 
 #: ../src/imports/ABContactListPage.qml:399
 msgid "Message"
-msgstr ""
+msgstr "訊息"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:64
 msgid "Middle Name"
