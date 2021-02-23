@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2020-12-23 10:26+0000\n"
+"PO-Revision-Date: 2021-02-23 12:02+0000\n"
 "Last-Translator: Ivo Xavier <ivofernandes12@gmail.com>\n"
 "Language-Team: Portuguese <https://translate.ubports.com/projects/ubports/"
 "address-book-app/pt/>\n"
@@ -416,7 +416,7 @@ msgstr "A guardar contactos no telefone..."
 
 #: ../src/imports/ABContactListPage.qml:514
 msgid "Search"
-msgstr "Procurar"
+msgstr "Procurar..."
 
 #: ../src/imports/ABContactListPage.qml:488
 msgid "Search..."
