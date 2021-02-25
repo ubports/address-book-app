@@ -181,7 +181,7 @@ msgstr "Masukkan surel"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
-msgstr "Galat"
+msgstr "Gagal"
 
 #: ../src/imports/Settings/SettingsPage.qml:158
 #, fuzzy
@@ -280,7 +280,7 @@ msgstr "MSN"
 
 #: ../src/imports/ABContactListPage.qml:399
 msgid "Message"
-msgstr ""
+msgstr "Pesan"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:64
 msgid "Middle Name"
@@ -302,7 +302,7 @@ msgstr "Multikontak"
 #: ../src/imports/Settings/SettingsPage.qml:72
 #, qt-format
 msgid "My phone number: %1"
-msgstr "Nomor ponselku: %1"
+msgstr "Nomor ponsel saya: %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:142
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:207
@@ -336,7 +336,7 @@ msgstr "Tanpa nama"
 
 #: ../src/imports/ABContactListPage.qml:453
 msgid "Numbers"
-msgstr ""
+msgstr "Nomor"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -364,7 +364,7 @@ msgstr "Telepon"
 
 #: ../src/imports/ABContactListPage.qml:440
 msgid "Please select a phone number"
-msgstr ""
+msgstr "Mohon pilih nomor ponsel"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
@@ -386,7 +386,7 @@ msgstr "Membaca kontak pada SIM..."
 
 #: ../src/imports/Settings/SettingsPage.qml:80
 msgid "Reading my phone number(s)..."
-msgstr ""
+msgstr "Membaca nomor saya(s)"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -394,7 +394,7 @@ msgstr "Wilayah"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
 msgid "Remove"
-msgstr ""
+msgstr "Hapus"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
@@ -487,7 +487,7 @@ msgstr "Membuka kunci..."
 #: ../src/imports/ABContactListPage.qml:640
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45
 msgid "Unselect All"
-msgstr "Tak Pilih Semua"
+msgstr "Jangan Pilih Semua"
 
 #. TRANSLATORS: This refers to landline work phone label
 #: ../src/imports/Ubuntu/AddressBook/Base/ContactDetailGroupWithTypeBase.qml:119
