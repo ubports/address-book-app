@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2020-08-08 18:44+0000\n"
-"Last-Translator: satriocode <satrioismail52@gmail.com>\n"
+"PO-Revision-Date: 2021-02-25 17:35+0000\n"
+"Last-Translator: Darkness Hidden <kmd36rk@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.ubports.com/projects/ubports/"
 "address-book-app/id/>\n"
 "Language: id\n"
@@ -84,11 +84,11 @@ msgstr "Kembali"
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:107
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailBirthdayView.qml:53
 msgid "Birthday"
-msgstr ""
+msgstr "Tanggal Lahir"
 
 #: ../src/imports/ABContactListPage.qml:406
 msgid "Call"
-msgstr ""
+msgstr "Panggil"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:592
@@ -127,7 +127,7 @@ msgstr "Buku Alamat Kontak"
 
 #: ../data/address-book-app.desktop.in.in.h:3
 msgid "Contacts;People;Numbers"
-msgstr "Contacts;People;Numbers;Kontak;Kenalan;Orang;Nomor"
+msgstr "Kontak;Orang;Nomor"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:35
 msgid "Country"
@@ -163,9 +163,8 @@ msgid "Email"
 msgstr "Surel"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:129
-#, fuzzy
 msgid "Enter a birthday"
-msgstr "Masukkan nomor"
+msgstr "Masukkan tanggal lahir"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
@@ -181,12 +180,11 @@ msgstr "Masukkan surel"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
-msgstr "Galat"
+msgstr "Gagal"
 
 #: ../src/imports/Settings/SettingsPage.qml:158
-#, fuzzy
 msgid "Export all contacts"
-msgstr "Mengekspor kontak..."
+msgstr "Mengekspor semua kontak"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
@@ -236,18 +234,16 @@ msgid "Import contacts from SIM card"
 msgstr "Mengimpor kontak dari kartu SIM"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:581
-#, fuzzy
 msgid "Import contacts from vcard file"
-msgstr "Mengimpor kontak dari kartu SIM"
+msgstr "Mengimpor kontak dari file vcard"
 
 #: ../src/imports/Settings/SettingsPage.qml:119
 msgid "Import from SIM"
 msgstr "Impor dari SIM"
 
 #: ../src/imports/Settings/SettingsPage.qml:136
-#, fuzzy
 msgid "Import from vcard file"
-msgstr "Impor dari SIM"
+msgstr "Impor dari file vcard"
 
 #: ../src/imports/ABContactListPage.qml:725
 msgid "Imported contacts"
@@ -280,7 +276,7 @@ msgstr "MSN"
 
 #: ../src/imports/ABContactListPage.qml:399
 msgid "Message"
-msgstr ""
+msgstr "Pesan"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:64
 msgid "Middle Name"
@@ -336,7 +332,7 @@ msgstr "Tanpa nama"
 
 #: ../src/imports/ABContactListPage.qml:453
 msgid "Numbers"
-msgstr ""
+msgstr "Nomor"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -364,7 +360,7 @@ msgstr "Telepon"
 
 #: ../src/imports/ABContactListPage.qml:440
 msgid "Please select a phone number"
-msgstr ""
+msgstr "Tolong pilih nomor ponsel"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
@@ -386,7 +382,7 @@ msgstr "Membaca kontak pada SIM..."
 
 #: ../src/imports/Settings/SettingsPage.qml:80
 msgid "Reading my phone number(s)..."
-msgstr ""
+msgstr "Membaca nomor(s) ponsel saya"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -394,7 +390,7 @@ msgstr "Wilayah"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
 msgid "Remove"
-msgstr ""
+msgstr "Hapus"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
