@@ -228,7 +228,7 @@ Page {
                 currentContact = contactList.listModel.contacts[contactList.currentIndex]
 
             if (!currentContact) {
-                showEmptyPage()
+                showEmptyPage(false)
                 return
             } else if (currentContact && (mainPage.currentViewContactId === currentContact.contactId)) {
                 return
@@ -284,9 +284,6 @@ Page {
         repeat: false
         onTriggered: mainPage.fetchContact()
     }
-
-    title: i18n.tr("Contacts")
-    flickable: null
 
     ContactsUI.ContactListView {
         id: contactList
@@ -539,7 +536,7 @@ Page {
                     shortcut: "Ctrl+N"
                     onTriggered: {
                         if (!pageStack.bottomEdgeOpened && (viewPage || emptyPage)) {
-                            pageStack._bottomEdge.commit()
+                            bottomEdgeLoader.item.commit()
                         } else {
                             showEmptyPage(true)
                         }

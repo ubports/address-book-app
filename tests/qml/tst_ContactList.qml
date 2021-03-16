@@ -102,7 +102,7 @@ Item {
 
         function test_title()
         {
-            tryCompare(root.contactListPageObj, "title", "Contacts")
+            tryCompare(root.contactListPageObj.header, "title", "Contacts")
         }
 
         function test_managerProperty()

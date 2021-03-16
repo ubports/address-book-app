@@ -69,7 +69,7 @@ Page {
                 }
                 model: myself
                 delegate: ListItem.Subtitled {
-                   text:  i18n.tr("My phone number: %1").arg(phoneNumber)
+                   text:  phoneNumber.length > 0 ? i18n.tr("My phone number: %1").arg(phoneNumber) : i18n.tr("Could not read phone number from SIM card")
                    subText: network != "" ? network : i18n.tr("SIM %1").arg(index)
                 }
                 onCountChanged: numberFlickable.contentY = 0
