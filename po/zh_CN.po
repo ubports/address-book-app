@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2021-03-04 10:32+0000\n"
-"Last-Translator: Sam Zhang <sammyok@163.com>\n"
+"PO-Revision-Date: 2021-05-03 03:46+0000\n"
+"Last-Translator: Enceka <enceka@yeah.net>\n"
 "Language-Team: Chinese (Simplified) <https://translate.ubports.com/projects/"
 "ubports/address-book-app/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -78,7 +78,7 @@ msgstr "您确定要删除该联系人吗？"
 
 #: ../src/imports/ABContactListPage.qml:712
 msgid "Back"
-msgstr "返回"
+msgstr "上一步"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:61
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:107
