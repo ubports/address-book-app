@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2021-05-19 15:43+0000\n"
+"PO-Revision-Date: 2021-05-20 01:09+0000\n"
 "Last-Translator: Davidrebolomaga <davidre345@hotmail.com>\n"
 "Language-Team: Galician <https://translate.ubports.com/projects/ubports/"
 "address-book-app/gl/>\n"
@@ -84,7 +84,7 @@ msgstr "Atrás"
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:107
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailBirthdayView.qml:53
 msgid "Birthday"
-msgstr ""
+msgstr "Aniversario"
 
 #: ../src/imports/ABContactListPage.qml:406
 msgid "Call"
@@ -163,9 +163,8 @@ msgid "Email"
 msgstr "Correo electrónico"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:129
-#, fuzzy
 msgid "Enter a birthday"
-msgstr "Introduza un número"
+msgstr "Introduza un aniversario"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
@@ -184,9 +183,8 @@ msgid "Error"
 msgstr "Erro"
 
 #: ../src/imports/Settings/SettingsPage.qml:158
-#, fuzzy
 msgid "Export all contacts"
-msgstr "Exportando contactos..."
+msgstr "Exportando todos os contactos"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
@@ -236,18 +234,16 @@ msgid "Import contacts from SIM card"
 msgstr "Importar contactos da tarxeta SIM"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:581
-#, fuzzy
 msgid "Import contacts from vcard file"
-msgstr "Importar contactos da tarxeta SIM"
+msgstr "Importar contactos do ficheiro vcard"
 
 #: ../src/imports/Settings/SettingsPage.qml:119
 msgid "Import from SIM"
 msgstr "Importar da tarxeta SIM"
 
 #: ../src/imports/Settings/SettingsPage.qml:136
-#, fuzzy
 msgid "Import from vcard file"
-msgstr "Importar da tarxeta SIM"
+msgstr "Importar do ficheiro vcard"
 
 #: ../src/imports/ABContactListPage.qml:725
 msgid "Imported contacts"
@@ -280,7 +276,7 @@ msgstr "MSN"
 
 #: ../src/imports/ABContactListPage.qml:399
 msgid "Message"
-msgstr ""
+msgstr "Mensaxe"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:64
 msgid "Middle Name"
@@ -386,7 +382,7 @@ msgstr "A ler contactos da tarxeta SIM..."
 
 #: ../src/imports/Settings/SettingsPage.qml:80
 msgid "Reading my phone number(s)..."
-msgstr ""
+msgstr "Lendo os meus números de teléfono..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -394,7 +390,7 @@ msgstr "Rexión"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
 msgid "Remove"
-msgstr ""
+msgstr "Eliminar"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
