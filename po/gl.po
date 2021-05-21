@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2021-05-20 01:09+0000\n"
+"PO-Revision-Date: 2021-05-21 14:05+0000\n"
 "Last-Translator: Davidrebolomaga <davidre345@hotmail.com>\n"
 "Language-Team: Galician <https://translate.ubports.com/projects/ubports/"
 "address-book-app/gl/>\n"
@@ -66,7 +66,7 @@ msgstr "Aim"
 #. TRANSLATORS: this refers to all contacts
 #: ../src/imports/ABContactListPage.qml:572
 msgid "All"
-msgstr "Todos"
+msgstr "Todo"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
@@ -88,7 +88,7 @@ msgstr "Aniversario"
 
 #: ../src/imports/ABContactListPage.qml:406
 msgid "Call"
-msgstr "Chamar"
+msgstr "Chamada"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:592
@@ -259,7 +259,7 @@ msgstr "Jabber"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailNameEditor.qml:92
 msgid "Last name"
-msgstr "Apelidos"
+msgstr "Apelido"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:636
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:252
@@ -430,7 +430,7 @@ msgstr "Seleccionar todo"
 #: ../src/imports/ABContactListPage.qml:562
 #: ../src/imports/Settings/SettingsPage.qml:35
 msgid "Settings"
-msgstr "Axustes"
+msgstr "Configuración"
 
 #: ../src/imports/ABContactListPage.qml:389
 #: ../src/imports/ABContactListPage.qml:653
