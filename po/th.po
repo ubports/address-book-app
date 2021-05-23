@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2020-06-30 07:46+0000\n"
-"Last-Translator: PPNplus <ppnplus@protonmail.com>\n"
-"Language-Team: Thai <https://translate.ubports.com/projects/ubports/address-"
-"book-app/th/>\n"
+"PO-Revision-Date: 2021-05-23 05:10+0000\n"
+"Last-Translator: Wannaphong Phatthiyaphaibun <wannaphong@yahoo.com>\n"
+"Language-Team: Thai <https://translate.ubports.com/projects/ubports/"
+"address-book-app/th/>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -73,7 +73,7 @@ msgstr "คุณแน่ใจหรือไม่ว่าต้องกา
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
-msgstr "คุณแน่ใจหรือไม่ว่าต้องการลบรายชื่อติดต่อนี้"
+msgstr "คุณแน่ใจหรือไม่ว่าต้องการลบรายชื่อติดต่อนี้?"
 
 #: ../src/imports/ABContactListPage.qml:712
 msgid "Back"
@@ -83,11 +83,11 @@ msgstr "ย้อนกลับ"
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:107
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailBirthdayView.qml:53
 msgid "Birthday"
-msgstr ""
+msgstr "วันเกิด"
 
 #: ../src/imports/ABContactListPage.qml:406
 msgid "Call"
-msgstr ""
+msgstr "โทร"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:592
@@ -162,9 +162,8 @@ msgid "Email"
 msgstr "อีเมล์"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:129
-#, fuzzy
 msgid "Enter a birthday"
-msgstr "ใส่หมายเลข"
+msgstr "ใส่วันเกิด"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
@@ -183,9 +182,8 @@ msgid "Error"
 msgstr "ข้อผิดพลาด"
 
 #: ../src/imports/Settings/SettingsPage.qml:158
-#, fuzzy
 msgid "Export all contacts"
-msgstr "กำลังส่งออกรายชื่อติดต่อ..."
+msgstr "กำลังส่งออกรายชื่อติดต่อทั้งหมด..."
 
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
@@ -235,18 +233,16 @@ msgid "Import contacts from SIM card"
 msgstr "นำเข้ารายชื่อจากซิมการ์ด"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:581
-#, fuzzy
 msgid "Import contacts from vcard file"
-msgstr "นำเข้ารายชื่อจากซิมการ์ด"
+msgstr "นำเข้ารายชื่อจากไฟล์ vcard"
 
 #: ../src/imports/Settings/SettingsPage.qml:119
 msgid "Import from SIM"
 msgstr "นำเข้าจากซิม"
 
 #: ../src/imports/Settings/SettingsPage.qml:136
-#, fuzzy
 msgid "Import from vcard file"
-msgstr "นำเข้าจากซิม"
+msgstr "นำเข้าจากไฟล์ vcard"
 
 #: ../src/imports/ABContactListPage.qml:725
 msgid "Imported contacts"
@@ -279,7 +275,7 @@ msgstr "MSN"
 
 #: ../src/imports/ABContactListPage.qml:399
 msgid "Message"
-msgstr ""
+msgstr "ข้อความ"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:64
 msgid "Middle Name"
@@ -335,7 +331,7 @@ msgstr "ไม่มีชื่อ"
 
 #: ../src/imports/ABContactListPage.qml:453
 msgid "Numbers"
-msgstr ""
+msgstr "จำนวน"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -363,7 +359,7 @@ msgstr "โทรศัพท์"
 
 #: ../src/imports/ABContactListPage.qml:440
 msgid "Please select a phone number"
-msgstr ""
+msgstr "กรุณาเลือกหมายเลขโทรศัพท์"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
@@ -385,7 +381,7 @@ msgstr "กำลังอ่านรายชื่อผู้ติดต่
 
 #: ../src/imports/Settings/SettingsPage.qml:80
 msgid "Reading my phone number(s)..."
-msgstr ""
+msgstr "กำลังอ่านหมายเลขโทรศัพท์ของคุณ"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -393,7 +389,7 @@ msgstr "พื้นที่"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
 msgid "Remove"
-msgstr ""
+msgstr "ลบ"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
