@@ -206,5 +206,14 @@ ContactModel {
         }
         _relationshipModel.participant = contact
     }
+
+    function removeAggregateContact(contact) {
+        console.log("Removing aggregate contact " + contact)
+        enumerateConstituents(contact, function(contacts) {
+            for (var i = 0; i < contacts.length; i++) {
+                removeContact(contacts[i].contactId)
+            }
+        })
+    }
 }
 

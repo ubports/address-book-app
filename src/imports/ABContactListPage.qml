@@ -376,7 +376,7 @@ Page {
             text: i18n.tr("Delete")
             onTriggered: {
                 var currentContact = contactList.listModel.contacts[value.contactIndex]
-                contactList.listModel.removeContact(currentContact.contactId)
+                contactList.listModel.removeAggregateContact(currentContact)
             }
         }
 
