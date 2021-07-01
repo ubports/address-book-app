@@ -47,7 +47,7 @@ ContactModel {
         } else if (contactsFilter.active) {
             return contactsFilter
         } else {
-            return null
+            return root.manager == "org.nemomobile.contacts.sqlite" ? collectionFilter : null
         }
     }
 
@@ -62,6 +62,10 @@ ContactModel {
             field: Favorite.Favorite
             value: true
             matchFlags: DetailFilter.MatchExactly
+        },
+        CollectionFilter {
+            id: collectionFilter
+            ids: ["qtcontacts:org.nemomobile.contacts.sqlite::636f6c2d31"] // aggregate
         },
         UnionFilter {
             id: contactTermFilter
