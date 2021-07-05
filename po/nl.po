@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2021-03-21 15:22+0000\n"
-"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
+"PO-Revision-Date: 2021-06-30 19:36+0000\n"
+"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <https://translate.ubports.com/projects/ubports/"
 "address-book-app/nl/>\n"
 "Language: nl\n"
@@ -190,7 +190,7 @@ msgstr "Alle contactpersonen exporteren"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
-msgstr "Bezig met exporteren..."
+msgstr "Bezig met exporteren…"
 
 #: ../src/imports/ABContactListPage.qml:891
 msgid "Fail to import contacts!"
@@ -253,7 +253,7 @@ msgstr "Geïmporteerde contactpersonen"
 
 #: ../src/imports/BusyImportingDialog.qml:31
 msgid "Importing..."
-msgstr "Bezig met importeren..."
+msgstr "Bezig met importeren…"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:65
 msgid "Jabber"
@@ -380,11 +380,11 @@ msgstr "Afsluiten"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Reading contacts from SIM..."
-msgstr "Bezig met uitlezen van simkaart..."
+msgstr "Bezig met uitlezen van simkaart…"
 
 #: ../src/imports/Settings/SettingsPage.qml:80
 msgid "Reading my phone number(s)..."
-msgstr "Bezig met uitlezen van telefoonnummer(s)..."
+msgstr "Bezig met uitlezen van telefoonnummer(s)…"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -414,7 +414,7 @@ msgstr "Opslaan"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:277
 msgid "Saving contacts on phone..."
-msgstr "Bezig met opslaan van contactpersonen..."
+msgstr "Bezig met opslaan van contactpersonen…"
 
 #: ../src/imports/ABContactListPage.qml:514
 msgid "Search"
@@ -480,7 +480,7 @@ msgstr "Ontgrendelen"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:261
 msgid "Unlocking..."
-msgstr "Bezig met ontgrendelen..."
+msgstr "Bezig met ontgrendelen…"
 
 #: ../src/imports/ABContactListPage.qml:640
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:45

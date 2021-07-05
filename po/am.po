@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2021-01-31 01:01+0000\n"
+"PO-Revision-Date: 2021-06-06 00:41+0000\n"
 "Last-Translator: Samson <sambelet@yahoo.com>\n"
 "Language-Team: Amharic <https://translate.ubports.com/projects/ubports/"
 "address-book-app/am/>\n"
@@ -382,7 +382,7 @@ msgstr "ግንኙነቶች በማንበብ ላይ ከ ሲም..."
 
 #: ../src/imports/Settings/SettingsPage.qml:80
 msgid "Reading my phone number(s)..."
-msgstr ""
+msgstr "በ ማንበብ ላይ የ እኔን ስልክ ቁጥር(ሮች)..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
