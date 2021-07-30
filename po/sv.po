@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2020-08-26 00:00+0000\n"
-"Last-Translator: Arvid Brodin <arvidb@fripost.org>\n"
+"PO-Revision-Date: 2021-07-26 20:32+0000\n"
+"Last-Translator: Rondy Andersson <rondarius@gmail.com>\n"
 "Language-Team: Swedish <https://translate.ubports.com/projects/ubports/"
 "address-book-app/sv/>\n"
 "Language: sv\n"
@@ -37,7 +37,7 @@ msgstr "Lägg till %1 konto"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
 msgid "Add Field"
-msgstr "Lägg till fält"
+msgstr "Lägg till Fält"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:413
 msgid "Add field"
@@ -61,34 +61,34 @@ msgstr "Adressbok"
 #. TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "Aim"
-msgstr "Syfte"
+msgstr "AIM"
 
 #. TRANSLATORS: this refers to all contacts
 #: ../src/imports/ABContactListPage.qml:572
 msgid "All"
-msgstr "Allt"
+msgstr "Alla"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
-msgstr "Vill du ta bort alla markerade kontakter?"
+msgstr "Är du säker på att du vill ta bort alla markerade kontakter?"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
-msgstr "Vill du ta bort den här kontakten?"
+msgstr "Är du säker på att du vill ta bort den här kontakten?"
 
 #: ../src/imports/ABContactListPage.qml:712
 msgid "Back"
-msgstr "Tillbaka"
+msgstr "Backa"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:61
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:107
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactDetailBirthdayView.qml:53
 msgid "Birthday"
-msgstr ""
+msgstr "Födelsedag"
 
 #: ../src/imports/ABContactListPage.qml:406
 msgid "Call"
-msgstr ""
+msgstr "Ring upp"
 
 #: ../src/imports/ABContactEditorPage.qml:38
 #: ../src/imports/ABContactListPage.qml:592
@@ -163,30 +163,28 @@ msgid "Email"
 msgstr "E-post"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailBirthdayEditor.qml:129
-#, fuzzy
 msgid "Enter a birthday"
-msgstr "Ange nummer"
+msgstr "Ange en födelsedag"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailPhoneNumbersEditor.qml:27
 msgid "Enter a number"
-msgstr "Ange nummer"
+msgstr "Ange ett nummer"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOnlineAccountsEditor.qml:27
 msgid "Enter a social alias"
-msgstr "Ange socialt alias"
+msgstr "Ange ett socialt alias"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailEmailsEditor.qml:28
 msgid "Enter an email address"
-msgstr "Ange e-postadress"
+msgstr "Ange en e-postadress"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactFetchError.qml:25
 msgid "Error"
 msgstr "Fel"
 
 #: ../src/imports/Settings/SettingsPage.qml:158
-#, fuzzy
 msgid "Export all contacts"
-msgstr "Exporterar kontakter..."
+msgstr "Exporterar alla kontakter"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/BusyExportingDialog.qml:23
 msgid "Exporting contacts..."
@@ -236,18 +234,16 @@ msgid "Import contacts from SIM card"
 msgstr "Importera kontakter från SIM-kort"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:581
-#, fuzzy
 msgid "Import contacts from vcard file"
-msgstr "Importera kontakter från SIM-kort"
+msgstr "Importera kontakter från visitkortsfil"
 
 #: ../src/imports/Settings/SettingsPage.qml:119
 msgid "Import from SIM"
 msgstr "Importera från SIM"
 
 #: ../src/imports/Settings/SettingsPage.qml:136
-#, fuzzy
 msgid "Import from vcard file"
-msgstr "Importera från SIM"
+msgstr "Importera från visitkortsfil"
 
 #: ../src/imports/ABContactListPage.qml:725
 msgid "Imported contacts"
@@ -280,7 +276,7 @@ msgstr "MSN"
 
 #: ../src/imports/ABContactListPage.qml:399
 msgid "Message"
-msgstr ""
+msgstr "Meddelande"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:64
 msgid "Middle Name"
@@ -336,7 +332,7 @@ msgstr "Namn saknas"
 
 #: ../src/imports/ABContactListPage.qml:453
 msgid "Numbers"
-msgstr ""
+msgstr "Nummer"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:28
 msgid "Organization"
@@ -364,7 +360,7 @@ msgstr "Telefon"
 
 #: ../src/imports/ABContactListPage.qml:440
 msgid "Please select a phone number"
-msgstr ""
+msgstr "Vänligen ange ett telefonnummer"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:34
 msgid "Post code"
@@ -386,7 +382,7 @@ msgstr "Läser kontakter från SIM-kort..."
 
 #: ../src/imports/Settings/SettingsPage.qml:80
 msgid "Reading my phone number(s)..."
-msgstr ""
+msgstr "Läser in mina telefonnummer..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:33
 msgid "Region"
@@ -394,7 +390,7 @@ msgstr "Region"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:63
 msgid "Remove"
-msgstr ""
+msgstr "Ta bort"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailOrganizationsEditor.qml:29
 msgid "Role"
