@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2020-12-26 11:47+0000\n"
-"Last-Translator: Ahmed Al-Mudaifea <ahmed1414.aam@gmail.com>\n"
+"PO-Revision-Date: 2021-08-30 11:15+0000\n"
+"Last-Translator: HEROBRINE7GAMER <tapermeerkat77@gmail.com>\n"
 "Language-Team: Arabic <https://translate.ubports.com/projects/ubports/"
 "address-book-app/ar/>\n"
 "Language: ar\n"
@@ -34,19 +34,19 @@ msgstr "+ إنشاء جديد"
 #: ../src/imports/Settings/SettingsPage.qml:96
 #, qt-format
 msgid "Add %1 account"
-msgstr "أضف حسابًا %1"
+msgstr "أضف حساب %1"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditor.qml:307
 msgid "Add Field"
-msgstr "أضف حقلًا"
+msgstr "أضف حقلا"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactEditorPage.qml:413
 msgid "Add field"
-msgstr "أضف حقلًا"
+msgstr "أضف حقلا"
 
 #: ../src/imports/Ubuntu/Contacts/ContactDetailPickerPhoneNumberDelegate.qml:82
 msgid "Add number..."
-msgstr "أضف رقمًا..."
+msgstr "أضف رقما..."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ComboButtonAddField.qml:55
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/ContactDetailAddressesEditor.qml:23
@@ -62,7 +62,7 @@ msgstr "دفتر العناوين"
 #. TRANSLATORS: This refers to the AIM chat network http://en.wikipedia.org/wiki/AOL_Instant_Messenger
 #: ../src/imports/Ubuntu/Contacts/ContactDetailOnlineAccountTypeModel.qml:62
 msgid "Aim"
-msgstr "Aim"
+msgstr "هدف"
 
 #. TRANSLATORS: this refers to all contacts
 #: ../src/imports/ABContactListPage.qml:572
@@ -71,11 +71,11 @@ msgstr "الكل"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:51
 msgid "Are you sure that you want to remove all selected contacts?"
-msgstr "أمتأكد من إزالة كل المتراسلين المحددين ؟"
+msgstr "أمتأكد من إزالة كل جهات الاتصال المحددة ؟"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:49
 msgid "Are you sure that you want to remove this contact?"
-msgstr "أمتأكد من إزالة هذا المتراسل؟"
+msgstr "أمتأكد من إزالة جهة الاتصال هذه؟"
 
 #: ../src/imports/ABContactListPage.qml:712
 msgid "Back"
@@ -375,7 +375,7 @@ msgstr "تفاصيل مهنية"
 
 #: ../src/imports/ABContactListPage.qml:504
 msgid "Quit"
-msgstr "أنهِ"
+msgstr "خروج"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:269
 msgid "Reading contacts from SIM..."
