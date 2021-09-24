@@ -42,7 +42,7 @@ X-Ubuntu-Use-Langpack: yes
 Package: address-book-app
 Architecture: any
 Depends:
- address-book-updater,
+ indicator-transfer-buteo,
  libqt5contacts5,
  libqt5versit5,
  qml-module-ofono,
