@@ -43,8 +43,8 @@ ContactDetailBase {
 
     onDetailChanged: {
         if (detail && isDateValid(detail.birthday)) {
-                root.date = new Date(detail.birthday.getTime())
-                root.originalValue = root.date
+            root.date = new Date(detail.birthday.getTime())
+            root.originalValue = root.date
         }
     }
 
@@ -58,16 +58,16 @@ ContactDetailBase {
     }
 
     function save() {
-        var detailchanged  = false
+        var detailchanged = false
         if (isDateValid(root.date)) {
             if (input.text.length == 0) {
-                root.detail.setValue(QtContact.Birthday, "")
-                detailchanged  = true
+                root.detail.birthday = ""
+                detailchanged = true
             }else {
                 var dt = new Date(root.date.getTime())
                 if (!isDateValid(originalValue) || originalValue.getTime() !== dt.getTime()) {
-                    root.detail.setValue(QtContact.Birthday,dt)
-                    detailchanged  = true
+                    root.detail.birthday = dt
+                    detailchanged = true
                 }
             }
 
@@ -172,7 +172,6 @@ ContactDetailBase {
                 }
             }
         }
-
     }
 
     function open() {
@@ -180,5 +179,4 @@ ContactDetailBase {
         input.text = Qt.binding(function() { return Qt.formatDate(root.date)})
         selectDate()
     }
-
 }
