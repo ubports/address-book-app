@@ -449,7 +449,9 @@ Page {
                 }
 
                 onFieldSelected: {
-                    if (qmlTypeName) {
+                    if (qmlTypeName == "Birthday") {
+                        birthdayEditor.open()
+                    } else if (qmlTypeName) {
                         var newDetail = Qt.createQmlObject("import QtContacts 5.0; " + qmlTypeName + "{}", contactEditor)
                         if (newDetail) {
                             newFieldAction = true
