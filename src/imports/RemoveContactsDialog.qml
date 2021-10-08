@@ -23,14 +23,11 @@ import Ubuntu.AddressBook.Base 0.1
 RemoveContactsDialog {
     id: removeContactsDialog
 
-    property var contactListModel
-
     onCanceled: {
         PopupUtils.close(removeContactsDialog)
     }
     
     onAccepted: {
-        removeContactsDialog.removeContacts(removeContactsDialog.contactListModel)
         PopupUtils.close(removeContactsDialog)
     }
 }

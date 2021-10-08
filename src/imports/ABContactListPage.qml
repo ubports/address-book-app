@@ -676,10 +676,12 @@ Page {
                             contacts.push(items.get(i).model.contact)
                         }
 
-                        var dialog = PopupUtils.open(Qt.resolvedUrl("RemoveContactsDialog.qml"),
-                                                     null,
-                                                     {"contactListModel": contactList.listModel})
-                        dialog.contacts = contacts
+                        var dialog = PopupUtils.open(Qt.resolvedUrl("RemoveContactsDialog.qml"), null, {
+                            "contacts": contacts,
+                        })
+                        dialog.accepted.connect(function() {
+                            ContactsJS.removeContacts(contactList.listModel, contacts)
+                        })
                         contactList.endSelection()
                     }
                 }

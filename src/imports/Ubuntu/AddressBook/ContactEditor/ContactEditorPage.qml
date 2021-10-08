@@ -42,6 +42,7 @@ Page {
     readonly property alias editorFlickable: scrollArea
 
     signal contactSaved(var contact);
+    signal removalRequested()
     signal canceled()
 
     function close() {
@@ -488,9 +489,20 @@ Page {
                     enabled: contactEditor.active && deleteButton.visible
                     shortcut: "Ctrl+Delete"
                     onTriggered: {
-                        var dialog = PopupUtils.open(Qt.resolvedUrl("RemoveContactsDialog.qml"), null,
-                                                     {"contactEditor": contactEditor})
-                        dialog.contacts = [contactEditor.contact]
+                        /* Despite what the warning suggests, the second
+                         * parameter is very much needed: without it, the
+                         * infamous QML warning
+                         *
+                         * QQmlExpression: Attempted to evaluate an expression in an invalid context
+                         *
+                         * appears and the app freezes.
+                         */
+                        var dialog = PopupUtils.open(Qt.resolvedUrl("RemoveContactsDialog.qml"), contactEditor, {
+                            "contacts": [contactEditor.contact],
+                        })
+                        dialog.accepted.connect(function() {
+                            contactEditor.removalRequested()
+                        })
                     }
                 }
             }

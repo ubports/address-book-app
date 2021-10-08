@@ -46,8 +46,17 @@ ContactViewPage {
 
     function editContact(contact)
     {
-        root._editPage = pageStack.addComponentToCurrentColumnSync(root, Qt.resolvedUrl("ABContactEditorPage.qml"),
-                                                                  { model: root.model, contact: contact, backIconName: 'back'})
+        root._editPage = pageStack.addComponentToCurrentColumnSync(root, Qt.resolvedUrl("ABContactEditorPage.qml"), {
+            model: root.model,
+            contact: contact,
+            backIconName: 'back',
+        })
+        root._editPage.removalRequested.connect(function() {
+            root._editPage.close()
+            root._editPage = null
+            pageStack.removePages(root)
+            ContactsJS.removeContacts(root.model, [contact])
+        })
         root._editPage.Component.onDestruction(function() {
             root._editPage = null
         })

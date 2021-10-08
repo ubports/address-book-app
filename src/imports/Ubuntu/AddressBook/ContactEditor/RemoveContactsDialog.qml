@@ -24,37 +24,16 @@ import Ubuntu.AddressBook.Base 0.1
 RemoveContactsDialog {
     id: removeContactsDialogMessage
 
-    property bool popPages: false
-    property var contactEditor
-
     onCanceled: {
         PopupUtils.close(removeContactsDialogMessage)
     }
 
     onAccepted: {
-        popPages = true
-        removeContacts(contactEditor.model)
         PopupUtils.close(removeContactsDialogMessage)
     }
 
     // hide virtual keyboard if necessary
     Component.onCompleted: {
-        contactEditor.enabled = false
         Qt.inputMethod.hide()
-    }
-
-    // WORKAROUND: SDK element crash if pop the page where the dialog was created
-    Component.onDestruction: {
-        contactEditor.enabled = true
-        if (popPages) {
-            if (contactEditor.pageStack.removePages) {
-                contactEditor.pageStack.removePages(contactEditor)
-            } else {
-                contactEditor.pageStack.pop() // editor page
-                contactEditor.pageStack.pop() // view page
-            }
-        }
-        if (contactEditor.pageStack.primaryPage)
-            contactEditor.pageStack.primaryPage.forceActiveFocus()
     }
 }

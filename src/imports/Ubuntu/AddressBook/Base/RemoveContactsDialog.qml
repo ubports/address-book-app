@@ -26,15 +26,6 @@ Dialog {
     signal canceled()
     signal accepted()
 
-    function removeContacts(model)
-    {
-        var ids = []
-        for(var i=0, iMax=contacts.length; i < iMax; i++) {
-            ids.push(contacts[i].contactId)
-        }
-        model.removeContacts(ids)
-    }
-
     title: {
         if (contacts.length == 0) {
             return i18n.dtr("address-book-app", "No contact selected.")

@@ -159,3 +159,11 @@ function contactColor(name)
     var hash = Contacts.qHash(name)
     return contactColors[(hash % contactColors.length)]
 }
+
+function removeContacts(model, contacts) {
+    var ids = []
+    for(var i=0, iMax=contacts.length; i < iMax; i++) {
+        ids.push(contacts[i].contactId)
+    }
+    model.removeContacts(ids)
+}
