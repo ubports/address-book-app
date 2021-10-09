@@ -179,17 +179,20 @@ ContactModel {
     /* TODO: once https://bugreports.qt.io/browse/QTBUG-87807 is fixed, we can
      * remove both these models and use the new relatedContacts() method.
      */
-    property var _relationshipModel: RelationshipModel {
-        manager: root.manager
-        relationshipType: "Aggregates"
-        role: Relationship.First
-        onRelationshipsChanged: inspectModel()
-        function inspectModel() {
-            var ids = []
-            for (var i = 0; i < relationships.length; i++) {
-                ids.push(relationships[i].second)
+    property var _relationshipModel: Component {
+        RelationshipModel {
+            property var callback: null
+            manager: root.manager
+            relationshipType: "Aggregates"
+            role: Relationship.First
+            onRelationshipsChanged: inspectModel()
+            function inspectModel() {
+                var ids = []
+                for (var i = 0; i < relationships.length; i++) {
+                    ids.push(relationships[i].second)
+                }
+                callback(ids)
             }
-            idFilter.ids = ids
         }
     }
 
@@ -202,21 +205,30 @@ ContactModel {
         }
     }
 
-    function enumerateConstituents(contact, callback) {
-        _constituentsModel.callback = null
-        _relationshipModel.participant = null
-        _constituentsModel.callback = function(contacts) {
-            callback(contacts)
+    function enumerateConstituentIds(contact, callback) {
+        var relationshipModel = null
+        var relationshipCb = function(contactIds) {
+            callback(contactIds)
+            relationshipModel.destroy()
         }
-        _relationshipModel.participant = contact
+        relationshipModel = _relationshipModel.createObject(null, {
+            "callback": relationshipCb,
+            "participant": contact,
+        })
+    }
+
+    function enumerateConstituents(contact, callback) {
+        _constituentsModel.callback = callback
+        var onConstituentIds = function(contactIds) {
+            idFilter.ids = contactIds
+        }
+        enumerateConstituentIds(contact, onConstituentIds)
     }
 
     function removeAggregateContact(contact) {
         console.log("Removing aggregate contact " + contact)
-        enumerateConstituents(contact, function(contacts) {
-            for (var i = 0; i < contacts.length; i++) {
-                removeContact(contacts[i].contactId)
-            }
+        enumerateConstituentIds(contact, function(contactIds) {
+            removeContacts(contactIds)
         })
     }
 }
