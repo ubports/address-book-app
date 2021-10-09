@@ -680,7 +680,11 @@ Page {
                             "contacts": contacts,
                         })
                         dialog.accepted.connect(function() {
-                            ContactsJS.removeContacts(contactList.listModel, contacts)
+                            var model = contactList.listModel
+                            var ids = []
+                            for (var i = 0; i < contacts.length; i++) {
+                                model.removeAggregateContact(contacts[i])
+                            }
                         })
                         contactList.endSelection()
                     }
