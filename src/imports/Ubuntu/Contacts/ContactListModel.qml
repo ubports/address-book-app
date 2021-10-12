@@ -30,6 +30,7 @@ ContactModel {
     property bool _clearModel: false
     property list<QtObject> _extraFilters
     property QtObject _timeout
+    property string _realManager: "org.nemomobile.contacts.sqlite"
 
 
     function changeFilter(newFilter)
@@ -47,7 +48,7 @@ ContactModel {
         } else if (contactsFilter.active) {
             return contactsFilter
         } else {
-            return root.manager == "org.nemomobile.contacts.sqlite" ? collectionFilter : null
+            return root.manager == root._realManager ? collectionFilter : null
         }
     }
 
@@ -81,9 +82,9 @@ ContactModel {
             filters: [
                 DetailFilter {
                     id: nameFilter
-                    detail: (root.manager === "galera" ? ContactDetail.ExtendedDetail : ContactDetail.DisplayLabel)
-                    field: (root.manager === "galera" ? ExtendedDetail.Data : DisplayLabel.Label)
-                    value: (root.manager === "galera" ? Contacts.normalized(contactTermFilter.value) : contactTermFilter.value)
+                    detail: ContactDetail.DisplayLabel
+                    field: DisplayLabel.Label
+                    value: (root.manager === root._realManager ? Contacts.normalized(contactTermFilter.value) : contactTermFilter.value)
                     matchFlags: DetailFilter.MatchContains
                 }
             ]
