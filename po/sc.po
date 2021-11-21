@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2021-04-22 10:44+0000\n"
+"PO-Revision-Date: 2021-11-21 15:09+0000\n"
 "Last-Translator: Adria <adriamartinmor@gmail.com>\n"
 "Language-Team: Sardinian <https://translate.ubports.com/projects/ubports/"
 "address-book-app/sc/>\n"
@@ -313,15 +313,15 @@ msgstr "Sighi"
 
 #: ../src/imports/Ubuntu/AddressBook/Base/RemoveContactsDialog.qml:40
 msgid "No contact selected."
-msgstr "Perunu cuntatu seletzionadu."
+msgstr "Nissunu cuntatu seletzionadu."
 
 #: ../src/imports/ABMultiColumnEmptyState.qml:24
 msgid "No contacts"
-msgstr "Perunu cuntatu"
+msgstr "Nissunu cuntatu"
 
 #: ../src/imports/Ubuntu/Contacts/SIMCardImportPage.qml:155
 msgid "No contacts found"
-msgstr "Perunu cuntatu agatadu"
+msgstr "Nissunu cuntatu agatadu"
 
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:49
 #: ../src/imports/Ubuntu/AddressBook/ContactView/ContactViewPage.qml:58
@@ -501,7 +501,7 @@ msgstr "Yahoo"
 
 #: ../src/imports/ABContactListPage.qml:793
 msgid "You have no contacts."
-msgstr "No tenes perunu cuntatu."
+msgstr "Non tenes nissunu cuntatu."
 
 #: ../src/imports/Ubuntu/AddressBook/ContactEditor/AlertMessageDialog.qml:42
 #, qt-format
