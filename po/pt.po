@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: address-book-app\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-12 22:04+0000\n"
-"PO-Revision-Date: 2021-03-02 13:39+0000\n"
-"Last-Translator: Ivo Xavier <ivofernandes12@gmail.com>\n"
+"PO-Revision-Date: 2021-11-19 22:39+0000\n"
+"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://translate.ubports.com/projects/ubports/"
 "address-book-app/pt/>\n"
 "Language: pt\n"
@@ -235,7 +235,7 @@ msgstr "Importar contactos do cartão SIM"
 
 #: ../src/imports/Ubuntu/Contacts/ContactListView.qml:581
 msgid "Import contacts from vcard file"
-msgstr "Importar contactos a partir  de ficheiro vcard"
+msgstr "Importar contactos a partir de ficheiro vcard"
 
 #: ../src/imports/Settings/SettingsPage.qml:119
 msgid "Import from SIM"
