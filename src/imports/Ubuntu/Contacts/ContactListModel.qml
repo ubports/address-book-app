@@ -197,15 +197,6 @@ ContactModel {
         }
     }
 
-    property var _constituentsModel: ContactModel {
-        manager: root.manager
-        filter: IdFilter { id: idFilter }
-        property var callback: null
-        onContactsChanged: {
-            if (callback) callback(contacts)
-        }
-    }
-
     function enumerateConstituentIds(contact, callback) {
         var relationshipModel = null
         var relationshipCb = function(contactIds) {
@@ -219,9 +210,13 @@ ContactModel {
     }
 
     function enumerateConstituents(contact, callback) {
-        _constituentsModel.callback = callback
+        var requestId = 0
         var onConstituentIds = function(contactIds) {
-            idFilter.ids = contactIds
+            requestId = root.fetchContacts(contactIds)
+            root.onContactsFetched.connect(function(reqId, contacts) {
+                if (reqId != requestId) return
+                callback(contacts)
+            })
         }
         enumerateConstituentIds(contact, onConstituentIds)
     }
